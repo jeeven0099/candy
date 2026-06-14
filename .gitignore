@@ -1,0 +1,23 @@
+# Claude Code local settings (may contain API keys)
+.claude/
+
+# Python env files (credentials)
+.env
+*.env
+.env.*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Flutter/Dart
+promo_viewer/.dart_tool/
+promo_viewer/build/
+promo_viewer/.flutter-plugins
+promo_viewer/.flutter-plugins-dependencies
+
+# OS
+.DS_Store
+Thumbs.db

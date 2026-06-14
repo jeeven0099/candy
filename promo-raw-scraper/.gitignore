@@ -1,0 +1,32 @@
+# Credentials
+.env
+*.env
+.env.*
+
+# Personal email data (inbox content — never commit)
+raw_email/
+raw_email_text/
+email_pipeline/email_text/*.txt
+email_pipeline/email_text/*.meta.json
+email_pipeline/logs/
+email_pipeline/structured_outputs/email/
+email_pipeline/normalized_outputs/
+
+# Pipeline generated outputs (large, regenerated locally)
+raw_text/
+raw_html/
+structured_outputs/
+normalized_outputs/
+merged_promotions.json
+all_promotions.json
+brand_locations.json
+logos/
+locations/
+logs/
+
+# Local test/cache output
+.pytest_cache/
+.pytest-basetemp/
+.tmp/
+__pycache__/
+*.pyc

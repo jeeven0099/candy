@@ -1,0 +1,185 @@
+{
+  "generated_at": "2026-06-14T09:28:01.926812+00:00",
+  "memberships": [
+    {
+      "brand": "Adore Me",
+      "program": "Adore Me Rewards",
+      "last_seen": "2026-06-01T20:34:38+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "AirAsia rewards",
+      "program": "AirAsia rewards Rewards",
+      "last_seen": "2026-05-28T04:58:32+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "BioSpace",
+      "program": "BioSpace Rewards",
+      "last_seen": "2026-06-03T16:14:17+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "CSC GO",
+      "program": "CSC GO Rewards",
+      "last_seen": "2026-06-03T22:46:53+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Celovis",
+      "program": "Celovis Rewards",
+      "last_seen": "2026-05-28T07:03:50+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Chase",
+      "program": "J.P. Morgan Self-Directed Investing",
+      "last_seen": "2026-06-02T16:02:39+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Chase",
+      "program": "personal checking account holder",
+      "last_seen": "2026-06-03T16:12:22+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Chase",
+      "program": "Chase account holder",
+      "last_seen": "2026-05-27T15:28:35+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Chess.com",
+      "program": "Chess.com Rewards",
+      "last_seen": "2026-05-28T13:23:08+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Codecademy",
+      "program": "Codecademy Rewards",
+      "last_seen": "2026-06-02T15:28:37+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Cotton On",
+      "program": "Cotton On Rewards",
+      "last_seen": "2026-05-31T12:02:50+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Crypto Intel",
+      "program": "Crypto Intel Rewards",
+      "last_seen": "2026-06-01T14:32:05+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "DoorDash",
+      "program": "DoorDash Rewards",
+      "last_seen": "2026-06-12T18:23:27+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Eventbrite",
+      "program": "Eventbrite Rewards",
+      "last_seen": "2026-05-28T21:32:46+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Everyday Alpha",
+      "program": "Everyday Alpha Rewards",
+      "last_seen": "2026-05-31T18:03:29+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Frontier Airlines",
+      "program": "Frontier Airlines Rewards",
+      "last_seen": "2026-06-05T17:31:28+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Instacart",
+      "program": "Instacart Rewards",
+      "last_seen": "2026-06-12T19:06:03+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Jeff Clark w/ Undervalued Edge",
+      "program": "Jeff Clark w/ Undervalued Edge Rewards",
+      "last_seen": "2026-05-27T20:02:24+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "LinkedIn Premium",
+      "program": "LinkedIn Premium Rewards",
+      "last_seen": "2026-06-03T15:21:49+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Macro Notes",
+      "program": "Macro Notes Rewards",
+      "last_seen": "2026-06-02T14:32:29+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Mad Monkey",
+      "program": "Mad Monkey Rewards",
+      "last_seen": "2026-05-28T10:30:34+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Microchip Technology Inc. via LinkedIn",
+      "program": "Microchip Technology Inc. via LinkedIn Rewards",
+      "last_seen": "2026-06-04T13:18:02+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Samsung Malaysia Electronics",
+      "program": "Samsung Malaysia Electronics Rewards",
+      "last_seen": "2026-05-29T01:08:59+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Sephora",
+      "program": "Beauty Insider",
+      "last_seen": "2026-06-14T04:36:30+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "The Wall Street Wire",
+      "program": "The Wall Street Wire Rewards",
+      "last_seen": "2026-05-31T15:34:49+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Uber Eats",
+      "program": "Uber Eats Rewards",
+      "last_seen": "2026-05-29T18:13:14+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Uber One",
+      "program": "Uber One Rewards",
+      "last_seen": "2026-05-30T16:23:22+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Undervalued Edge",
+      "program": "Undervalued Edge Rewards",
+      "last_seen": "2026-06-02T18:01:36+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Zoom",
+      "program": "Zoom Workplace Basic customers",
+      "last_seen": "2026-05-28T19:05:30+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "adidas",
+      "program": "adidas Rewards",
+      "last_seen": "2026-05-29T10:06:58+00:00",
+      "source": "llm_extracted"
+    }
+  ]
+}
