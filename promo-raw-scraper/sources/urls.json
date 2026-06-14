@@ -1,0 +1,2096 @@
+[
+  {
+    "brand": "Starbucks",
+    "category": "coffee",
+    "url": "https://www.starbucks.com/rewards",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Dunkin",
+    "category": "coffee",
+    "url": "https://www.dunkindonuts.com/en/dunkinrewards",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Dutch Bros",
+    "category": "coffee",
+    "url": "https://www.dutchbros.com/rewards/",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Peet's Coffee",
+    "category": "coffee",
+    "url": "https://www.peets.com/pages/peetnik-rewards",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Chipotle",
+    "category": "food",
+    "url": "https://www.chipotle.com/rewards",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "McDonald's",
+    "category": "food",
+    "url": "https://www.mcdonalds.com/us/en-us/deals.html",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Chick-fil-A",
+    "category": "food",
+    "url": "https://www.chick-fil-a.com/one",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Taco Bell",
+    "category": "food",
+    "url": "https://www.tacobell.com/rewards",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Wendy's",
+    "category": "food",
+    "url": "https://www.wendys.com/offers-coupons",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Burger King",
+    "category": "food",
+    "url": "https://www.bk.com/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Subway",
+    "category": "food",
+    "url": "https://www.subway.com/en-us/rewards",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Domino's",
+    "category": "food",
+    "url": "https://www.dominos.com/en/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Papa Johns",
+    "category": "food",
+    "url": "https://www.papajohns.com/rewards/",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Pizza Hut",
+    "category": "food",
+    "url": "https://www.pizzahut.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Panera Bread",
+    "category": "food",
+    "url": "https://www.panerabread.com/en-us/mypanera.html",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Sweetgreen",
+    "category": "food",
+    "url": "https://www.sweetgreen.com/sweet-rewards",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Shake Shack",
+    "category": "food",
+    "url": "https://shakeshack.com/national-regional-offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Popeyes",
+    "category": "food",
+    "url": "https://www.popeyes.com/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false,
+    "disabled_reason": "Cloudflare blocks Playwright - returns binary data on all URLs"
+  },
+  {
+    "brand": "Wingstop",
+    "category": "food",
+    "url": "https://www.wingstop.com/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Sonic Drive-In",
+    "category": "food",
+    "url": "https://www.sonicdrivein.com/rewards/",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Target",
+    "category": "retail",
+    "url": "https://www.target.com/circle",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Walmart",
+    "category": "retail",
+    "url": "https://www.walmart.com/plus",
+    "source_type": "membership_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Best Buy",
+    "category": "tech",
+    "url": "https://www.bestbuy.com/site/misc/my-best-buy/pcmcat309300050007.c",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Kohl's",
+    "category": "retail",
+    "url": "https://www.kohls.com/feature/rewards.jsp",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Macy's",
+    "category": "retail",
+    "url": "https://www.macys.com/p/star-rewards/",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Nike",
+    "category": "fashion",
+    "url": "https://www.nike.com/membership",
+    "source_type": "membership_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Adidas",
+    "category": "fashion",
+    "url": "https://www.adidas.com/us/adiclub",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Old Navy",
+    "category": "fashion",
+    "url": "https://oldnavy.gap.com/browse/category.do?cid=26190",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Gap",
+    "category": "fashion",
+    "url": "https://www.gap.com/browse/category.do?cid=65289",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "JCPenney",
+    "category": "retail",
+    "url": "https://www.jcpenney.com/m/rewards",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "H&M",
+    "category": "fashion",
+    "url": "https://www2.hm.com/en_us/sale.html",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Zara",
+    "category": "fashion",
+    "url": "https://www.zara.com/us/en/sale-l1314.html",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Uniqlo",
+    "category": "fashion",
+    "url": "https://www.uniqlo.com/us/en/special-feature/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Forever 21",
+    "category": "fashion",
+    "url": "https://www.forever21.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Abercrombie & Fitch",
+    "category": "fashion",
+    "url": "https://www.abercrombie.com/shop/us/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Hollister",
+    "category": "fashion",
+    "url": "https://www.hollisterco.com/shop/us/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "American Eagle",
+    "category": "fashion",
+    "url": "https://www.ae.com/us/en/c/ae/sale/cat4840004",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Aerie",
+    "category": "fashion",
+    "url": "https://www.ae.com/us/en/c/aerie/sale/cat4840006",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Urban Outfitters",
+    "category": "fashion",
+    "url": "https://www.urbanoutfitters.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Anthropologie",
+    "category": "fashion",
+    "url": "https://www.anthropologie.com/sale-all",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Free People",
+    "category": "fashion",
+    "url": "https://www.freepeople.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Express",
+    "category": "fashion",
+    "url": "https://www.express.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Banana Republic",
+    "category": "fashion",
+    "url": "https://bananarepublic.gap.com/browse/category.do?cid=1014757",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Athleta",
+    "category": "fashion",
+    "url": "https://athleta.gap.com/browse/category.do?cid=1023728",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "J.Crew",
+    "category": "fashion",
+    "url": "https://www.jcrew.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Madewell",
+    "category": "fashion",
+    "url": "https://www.madewell.com/womens/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Ann Taylor",
+    "category": "fashion",
+    "url": "https://www.anntaylor.com/sale/cata000013/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "LOFT",
+    "category": "fashion",
+    "url": "https://www.loft.com/sale/catl000011/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Talbots",
+    "category": "fashion",
+    "url": "https://www.talbots.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Chico's",
+    "category": "fashion",
+    "url": "https://www.chicos.com/store/category/sale/cat40004/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "White House Black Market",
+    "category": "fashion",
+    "url": "https://www.whitehouseblackmarket.com/store/category/sale/cat210002/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Torrid",
+    "category": "fashion",
+    "url": "https://www.torrid.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Lane Bryant",
+    "category": "fashion",
+    "url": "https://www.lanebryant.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "PacSun",
+    "category": "fashion",
+    "url": "https://www.pacsun.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Zumiez",
+    "category": "fashion",
+    "url": "https://www.zumiez.com/sale.html",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Hot Topic",
+    "category": "fashion",
+    "url": "https://www.hottopic.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "BoxLunch",
+    "category": "fashion",
+    "url": "https://www.boxlunch.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Nordstrom",
+    "category": "retail",
+    "url": "https://www.nordstrom.com/browse/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Nordstrom Rack",
+    "category": "retail",
+    "url": "https://www.nordstromrack.com/c/sales",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Dillard's",
+    "category": "retail",
+    "url": "https://www.dillards.com/c/sale-clearance",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Belk",
+    "category": "retail",
+    "url": "https://www.belk.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Bloomingdale's",
+    "category": "retail",
+    "url": "https://www.bloomingdales.com/shop/sale?id=1001351",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Saks OFF 5TH",
+    "category": "retail",
+    "url": "https://www.saksoff5th.com/c/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Neiman Marcus",
+    "category": "retail",
+    "url": "https://www.neimanmarcus.com/c/sale-cat46520739",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "DSW",
+    "category": "fashion",
+    "url": "https://www.dsw.com/en/us/category/sale/N-1z141jr",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Famous Footwear",
+    "category": "fashion",
+    "url": "https://www.famousfootwear.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Foot Locker",
+    "category": "fashion",
+    "url": "https://www.footlocker.com/category/sale.html",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Champs Sports",
+    "category": "fashion",
+    "url": "https://www.champssports.com/category/sale.html",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Finish Line",
+    "category": "fashion",
+    "url": "https://www.finishline.com/store/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "JD Sports",
+    "category": "fashion",
+    "url": "https://www.jdsports.com/store/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Skechers",
+    "category": "fashion",
+    "url": "https://www.skechers.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Crocs",
+    "category": "fashion",
+    "url": "https://www.crocs.com/c/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Vans",
+    "category": "fashion",
+    "url": "https://www.vans.com/en-us/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Converse",
+    "category": "fashion",
+    "url": "https://www.converse.com/shop/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Puma",
+    "category": "fashion",
+    "url": "https://us.puma.com/us/en/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Under Armour",
+    "category": "fashion",
+    "url": "https://www.underarmour.com/en-us/c/outlet/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Columbia",
+    "category": "fashion",
+    "url": "https://www.columbia.com/c/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "The North Face",
+    "category": "fashion",
+    "url": "https://www.thenorthface.com/en-us/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Patagonia",
+    "category": "fashion",
+    "url": "https://www.patagonia.com/shop/web-specials",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "REI",
+    "category": "retail",
+    "url": "https://www.rei.com/h/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Lululemon",
+    "category": "fashion",
+    "url": "https://shop.lululemon.com/c/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Eddie Bauer",
+    "category": "fashion",
+    "url": "https://www.eddiebauer.com/c/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Lands' End",
+    "category": "fashion",
+    "url": "https://www.landsend.com/shop/sale/S-xfh-xez-y5c-xec",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "L.L.Bean",
+    "category": "fashion",
+    "url": "https://www.llbean.com/llb/shop/32?page=sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Shoe Carnival",
+    "category": "fashion",
+    "url": "https://www.shoecarnival.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "T.J.Maxx",
+    "category": "retail",
+    "url": "https://tjmaxx.tjx.com/store/shop/clearance/_/N-2409280082",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Marshalls",
+    "category": "retail",
+    "url": "https://www.marshalls.com/us/store/shop/clearance/_/N-3951437597",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Burlington",
+    "category": "retail",
+    "url": "https://www.burlington.com/deals/",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Fashion Nova",
+    "category": "fashion",
+    "url": "https://www.fashionnova.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Princess Polly",
+    "category": "fashion",
+    "url": "https://us.princesspolly.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "PrettyLittleThing",
+    "category": "fashion",
+    "url": "https://www.prettylittlething.us/categories/womens-sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Boohoo",
+    "category": "fashion",
+    "url": "https://us.boohoo.com/categories/womens-sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Nasty Gal",
+    "category": "fashion",
+    "url": "https://www.nastygal.com/categories/womens-sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Aritzia",
+    "category": "fashion",
+    "url": "https://www.aritzia.com/us/en/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Francesca's",
+    "category": "fashion",
+    "url": "https://francescas.com/category/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Windsor",
+    "category": "fashion",
+    "url": "https://www.windsorstore.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Lee",
+    "category": "fashion",
+    "url": "https://www.lee.com/shop/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Wrangler",
+    "category": "fashion",
+    "url": "https://www.wrangler.com/shop/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Lucky Brand",
+    "category": "fashion",
+    "url": "https://www.luckybrand.com/clearance",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Tillys",
+    "category": "fashion",
+    "url": "https://www.tillys.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Dr. Martens",
+    "category": "fashion",
+    "url": "https://www.drmartens.com/us/en/sale/c/08000000",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Merrell",
+    "category": "fashion",
+    "url": "https://www.merrell.com/US/en/outlet/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Johnston & Murphy",
+    "category": "fashion",
+    "url": "https://www.johnstonmurphy.com/c/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Cole Haan",
+    "category": "fashion",
+    "url": "https://www.colehaan.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Naturalizer",
+    "category": "fashion",
+    "url": "https://www.naturalizer.com/browse/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Nine West",
+    "category": "fashion",
+    "url": "https://ninewest.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Everlane",
+    "category": "fashion",
+    "url": "https://www.everlane.com/collections/womens-sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Duluth Trading",
+    "category": "fashion",
+    "url": "https://www.duluthtrading.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Rainbow Shops",
+    "category": "fashion",
+    "url": "https://www.rainbowshops.com/pages/r-sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "ModCloth",
+    "category": "fashion",
+    "url": "https://modcloth.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Rack Room Shoes",
+    "category": "fashion",
+    "url": "https://www.rackroomshoes.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Journeys",
+    "category": "fashion",
+    "url": "https://www.journeys.com/products/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Kizik",
+    "category": "fashion",
+    "url": "https://kizik.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Roxy",
+    "category": "fashion",
+    "url": "https://www.roxy.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Quiksilver",
+    "category": "fashion",
+    "url": "https://www.quiksilver.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Volcom",
+    "category": "fashion",
+    "url": "https://www.volcom.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Sephora",
+    "category": "beauty",
+    "url": "https://www.sephora.com/beauty/beauty-offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Ulta Beauty",
+    "category": "beauty",
+    "url": "https://www.ulta.com/rewards/",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Bath & Body Works",
+    "category": "beauty",
+    "url": "https://www.bathandbodyworks.com/g/top-offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Sally Beauty",
+    "category": "beauty",
+    "url": "https://www.sallybeauty.com/rewards/",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "CVS",
+    "category": "pharmacy",
+    "url": "https://www.cvs.com/extracare/home",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Walgreens",
+    "category": "pharmacy",
+    "url": "https://www.walgreens.com/topic/promotion/mywalgreens.jsp",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Rite Aid",
+    "category": "pharmacy",
+    "url": "https://www.riteaid.com/pharmacy/rxrewards",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "H-E-B",
+    "category": "grocery",
+    "url": "https://www.heb.com/digital-coupon/coupon-selection/all-coupons",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Kroger",
+    "category": "grocery",
+    "url": "https://www.kroger.com/savings/",
+    "source_type": "savings_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Whole Foods Market",
+    "category": "grocery",
+    "url": "https://www.wholefoodsmarket.com/sales-flyer",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Trader Joe's",
+    "category": "grocery",
+    "url": "https://locations.traderjoes.com/",
+    "source_type": "locations_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Costco",
+    "category": "grocery",
+    "url": "https://www.costco.com/online-offers.html",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Sam's Club",
+    "category": "grocery",
+    "url": "https://www.samsclub.com/content/instant-savings",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Aldi",
+    "category": "grocery",
+    "url": "https://www.aldi.us/weekly-specials/",
+    "source_type": "weekly_specials_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Sprouts",
+    "category": "grocery",
+    "url": "https://www.sprouts.com/weekly-ad/",
+    "source_type": "weekly_ad_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "AMC Theatres",
+    "category": "entertainment",
+    "url": "https://www.amctheatres.com/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Cinemark",
+    "category": "entertainment",
+    "url": "https://www.cinemark.com/movie-rewards-info/",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Regal",
+    "category": "entertainment",
+    "url": "https://www.regmovies.com/static/en/us/regal-crown-club-info",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Petco",
+    "category": "pets",
+    "url": "https://www.petco.com/shop/en/petcostore/c/vital-care",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "PetSmart",
+    "category": "pets",
+    "url": "https://www.petsmart.com/treats-rewards.html",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Shell",
+    "category": "gas",
+    "url": "https://www.fuelrewards.com/",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Exxon Mobil",
+    "category": "gas",
+    "url": "https://www.exxon.com/en/rewards-program",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Delta Air Lines",
+    "category": "travel",
+    "url": "https://www.delta.com/us/en/skymiles/overview",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "United Airlines",
+    "category": "travel",
+    "url": "https://www.united.com/en/us/fly/mileageplus/awards/travel.html",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "American Airlines",
+    "category": "travel",
+    "url": "https://www.aa.com/i18n/aadvantage-program/aadvantage-program.jsp",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Southwest Airlines",
+    "category": "travel",
+    "url": "https://www.southwest.com/deals/",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "JetBlue",
+    "category": "travel",
+    "url": "https://www.jetblue.com/sale",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Spirit Airlines",
+    "category": "travel",
+    "url": "https://www.spirit.com/en/flight-deal-finder",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Frontier Airlines",
+    "category": "travel",
+    "url": "https://www.flyfrontier.com/deals/",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Marriott",
+    "category": "travel",
+    "url": "https://www.marriott.com/offers.mi",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Hilton",
+    "category": "travel",
+    "url": "https://www.hilton.com/en/offers/",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "IHG Hotels & Resorts",
+    "category": "travel",
+    "url": "https://www.ihg.com/content/us/en/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Hyatt",
+    "category": "travel",
+    "url": "https://www.hyatt.com/promotions/en-US/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Wyndham Hotels",
+    "category": "travel",
+    "url": "https://www.wyndhamhotels.com/hotel-deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Best Western",
+    "category": "travel",
+    "url": "https://www.bestwestern.com/en_US/special-offers.html",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Choice Hotels",
+    "category": "travel",
+    "url": "https://www.choicehotels.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Enterprise",
+    "category": "travel",
+    "url": "https://www.enterprise.com/en/car-rental/deals.html",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Hertz",
+    "category": "travel",
+    "url": "https://www.hertz.com/rentacar/reservation/promotions",
+    "source_type": "deals_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Avis",
+    "category": "travel",
+    "url": "https://www.avis.com/en/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Amazon",
+    "category": "tech",
+    "url": "https://www.amazon.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Apple",
+    "category": "tech",
+    "url": "https://www.apple.com/shop/back-to-school",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Samsung",
+    "category": "tech",
+    "url": "https://www.samsung.com/us/smartphones/galaxy-s/",
+    "source_type": "deals_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Dell",
+    "category": "tech",
+    "url": "https://www.dell.com/en-us/shop/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "HP",
+    "category": "tech",
+    "url": "https://www.hp.com/us-en/shop/slc/promotions",
+    "source_type": "deals_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Lenovo",
+    "category": "tech",
+    "url": "https://www.lenovo.com/us/en/deals/",
+    "source_type": "deals_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Microsoft",
+    "category": "tech",
+    "url": "https://www.microsoft.com/en-us/store/b/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Newegg",
+    "category": "tech",
+    "url": "https://www.newegg.com/todays-deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "IKEA",
+    "category": "home_goods",
+    "url": "https://www.ikea.com/us/en/offers/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Crate & Barrel",
+    "category": "home_goods",
+    "url": "https://www.crateandbarrel.com/sale/1",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Pottery Barn",
+    "category": "home_goods",
+    "url": "https://www.potterybarn.com/pbsale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Williams-Sonoma",
+    "category": "home_goods",
+    "url": "https://www.williams-sonoma.com/shop/sale-special-offer/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Wayfair",
+    "category": "home_goods",
+    "url": "https://www.wayfair.com/daily-sales",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "West Elm",
+    "category": "home_goods",
+    "url": "https://www.westelm.com/shop/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "CB2",
+    "category": "home_goods",
+    "url": "https://www.cb2.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "The Container Store",
+    "category": "home_goods",
+    "url": "https://www.containerstore.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "AutoZone",
+    "category": "auto_parts",
+    "url": "https://www.autozone.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "O'Reilly Auto Parts",
+    "category": "auto_parts",
+    "url": "https://www.oreillyauto.com/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Advance Auto Parts",
+    "category": "auto_parts",
+    "url": "https://shop.advanceautoparts.com/o/deals-promotions",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "NAPA Auto Parts",
+    "category": "auto_parts",
+    "url": "https://www.napaonline.com/en/promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Pep Boys",
+    "category": "auto_parts",
+    "url": "https://www.pepboys.com/deals-promotions",
+    "source_type": "deals_page",
+    "allowed_to_fetch": false
+  },
+  {
+    "brand": "Hulu",
+    "category": "subscription",
+    "url": "https://www.hulu.com/welcome",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Disney+",
+    "category": "subscription",
+    "url": "https://www.disneyplus.com/en-us/welcome",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Spotify",
+    "category": "subscription",
+    "url": "https://www.spotify.com/us/premium/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Peacock",
+    "category": "subscription",
+    "url": "https://www.peacocktv.com/plans/all-monthly",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Paramount+",
+    "category": "subscription",
+    "url": "https://www.paramountplus.com/account/signup/pickplan/",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Max",
+    "category": "subscription",
+    "url": "https://www.max.com/subscribe",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Netflix",
+    "category": "subscription",
+    "url": "https://www.netflix.com/browse",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false,
+    "online_only": true
+  },
+  {
+    "brand": "HelloFresh",
+    "category": "food",
+    "url": "https://www.hellofresh.com/plans",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Factor",
+    "category": "food",
+    "url": "https://www.factormeals.com/plans",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Blue Apron",
+    "category": "food",
+    "url": "https://www.blueapron.com/pages/plans",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false,
+    "online_only": true,
+    "disabled_reason": "No dedicated sale page — deals integrated into main site"
+  },
+  {
+    "brand": "Green Chef",
+    "category": "food",
+    "url": "https://www.greenchef.com/plans",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Hungryroot",
+    "category": "food",
+    "url": "https://www.hungryroot.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Thrive Market",
+    "category": "grocery",
+    "url": "https://thrivemarket.com/join",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Misfits Market",
+    "category": "grocery",
+    "url": "https://www.misfitsmarket.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "SHEIN",
+    "category": "fashion",
+    "url": "https://us.shein.com/flash-sale.html",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "ASOS",
+    "category": "fashion",
+    "url": "https://www.asos.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Gymshark",
+    "category": "fashion",
+    "url": "https://www.gymshark.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false,
+    "online_only": true,
+    "disabled_reason": "No permanent sale page — seasonal only"
+  },
+  {
+    "brand": "Fabletics",
+    "category": "fashion",
+    "url": "https://www.fabletics.com/pages/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "ThredUp",
+    "category": "fashion",
+    "url": "https://www.thredup.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Revolve",
+    "category": "fashion",
+    "url": "https://www.revolve.com/sale/br/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Cider",
+    "category": "fashion",
+    "url": "https://shopcider.com/collections/all",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Torrid",
+    "category": "fashion",
+    "url": "https://www.torrid.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Adore Me",
+    "category": "fashion",
+    "url": "https://www.adoreme.com/sets-and-bundles/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Eloquii",
+    "category": "fashion",
+    "url": "https://www.eloquii.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Showpo",
+    "category": "fashion",
+    "url": "https://www.showpo.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "The RealReal",
+    "category": "fashion",
+    "url": "https://www.therealreal.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "ColourPop",
+    "category": "beauty",
+    "url": "https://colourpop.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "e.l.f. Cosmetics",
+    "category": "beauty",
+    "url": "https://www.elfcosmetics.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Glossier",
+    "category": "beauty",
+    "url": "https://www.glossier.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false,
+    "online_only": true,
+    "disabled_reason": "No permanent sale URL — seasonal only"
+  },
+  {
+    "brand": "IL MAKIAGE",
+    "category": "beauty",
+    "url": "https://www.ilmakiage.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Curology",
+    "category": "beauty",
+    "url": "https://curology.com/pages/get-started",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false,
+    "online_only": true,
+    "disabled_reason": "Subscription-only, no public deals page"
+  },
+  {
+    "brand": "Function of Beauty",
+    "category": "beauty",
+    "url": "https://www.functionofbeauty.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Dossier",
+    "category": "beauty",
+    "url": "https://dossier.co/collections/fragrances",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Prose",
+    "category": "beauty",
+    "url": "https://prose.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Dollar Shave Club",
+    "category": "health",
+    "url": "https://www.dollarshaveclub.com/get-started",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Harry's",
+    "category": "health",
+    "url": "https://harrys.com/en/us/trial-offer",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false,
+    "online_only": true,
+    "disabled_reason": "No deals page — trial offer URL removed"
+  },
+  {
+    "brand": "Manscaped",
+    "category": "health",
+    "url": "https://www.manscaped.com/pages/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Hims",
+    "category": "health",
+    "url": "https://www.forhims.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Hers",
+    "category": "health",
+    "url": "https://www.forhers.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Noom",
+    "category": "health",
+    "url": "https://www.noom.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "AG1",
+    "category": "health",
+    "url": "https://www.drinkag1.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Ritual",
+    "category": "health",
+    "url": "https://ritual.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Gainful",
+    "category": "health",
+    "url": "https://gainful.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Brooklinen",
+    "category": "home_goods",
+    "url": "https://brooklinen.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Parachute",
+    "category": "home_goods",
+    "url": "https://www.parachutehome.com/collections/all-sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Ruggable",
+    "category": "home_goods",
+    "url": "https://ruggable.com/pages/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": false,
+    "online_only": true,
+    "disabled_reason": "No permanent sale page — seasonal only"
+  },
+  {
+    "brand": "Tuft & Needle",
+    "category": "home_goods",
+    "url": "https://www.tuftandneedle.com/pages/promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Chase",
+    "category": "finance",
+    "url": "https://creditcards.chase.com/",
+    "source_type": "offers_page",
+    "online_only": true,
+    "allowed_to_fetch": false,
+    "disabled_reason": "email-only brand — category/online_only metadata for normalize pipeline"
+  },
+  {
+    "brand": "foodpanda",
+    "category": "food",
+    "url": "https://www.foodpanda.com/",
+    "source_type": "offers_page",
+    "online_only": true,
+    "allowed_to_fetch": false,
+    "disabled_reason": "email-only brand — delivery app, online-only; metadata for normalize pipeline"
+  },
+  {
+    "brand": "Uber",
+    "category": "food",
+    "url": "https://www.uber.com/",
+    "source_type": "offers_page",
+    "online_only": true,
+    "allowed_to_fetch": false,
+    "disabled_reason": "email-only brand — rideshare/delivery app, online-only; metadata for normalize pipeline"
+  },
+  {
+    "brand": "Uber Eats",
+    "category": "food",
+    "url": "https://www.ubereats.com/",
+    "source_type": "offers_page",
+    "online_only": true,
+    "allowed_to_fetch": false,
+    "disabled_reason": "email-only brand — delivery app, online-only; metadata for normalize pipeline"
+  },
+  {
+    "brand": "Five Guys",
+    "category": "food",
+    "url": "https://www.fiveguys.com/fans/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Dairy Queen",
+    "category": "food",
+    "url": "https://www.dairyqueen.com/en-us/promotions/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Arby's",
+    "category": "food",
+    "url": "https://www.arbys.com/promotions/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Jack in the Box",
+    "category": "food",
+    "url": "https://www.jackinthebox.com/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Jimmy John's",
+    "category": "food",
+    "url": "https://www.jimmyjohns.com/offers/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Jersey Mike's",
+    "category": "food",
+    "url": "https://www.jerseymikes.com/promo",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Buffalo Wild Wings",
+    "category": "food",
+    "url": "https://www.buffalowildwings.com/deals/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Applebee's",
+    "category": "food",
+    "url": "https://www.applebees.com/en/deals",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Denny's",
+    "category": "food",
+    "url": "https://www.dennys.com/deals/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "IHOP",
+    "category": "food",
+    "url": "https://www.ihop.com/en/deals/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Chili's",
+    "category": "food",
+    "url": "https://www.chilis.com/specials",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Del Taco",
+    "category": "food",
+    "url": "https://www.deltaco.com/deals",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Culver's",
+    "category": "food",
+    "url": "https://www.culvers.com/promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Whataburger",
+    "category": "food",
+    "url": "https://www.whataburger.com/deals",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Firehouse Subs",
+    "category": "food",
+    "url": "https://www.firehousesubs.com/rewards/",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Noodles & Company",
+    "category": "food",
+    "url": "https://www.noodles.com/rewards/",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Red Robin",
+    "category": "food",
+    "url": "https://www.redrobin.com/royalty/deals.html",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Olive Garden",
+    "category": "food",
+    "url": "https://www.olivegarden.com/specials",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Texas Roadhouse",
+    "category": "food",
+    "url": "https://www.texasroadhouse.com/specials",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Cracker Barrel",
+    "category": "food",
+    "url": "https://www.crackerbarrel.com/specials",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Outback Steakhouse",
+    "category": "food",
+    "url": "https://www.outback.com/specials",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Caribou Coffee",
+    "category": "coffee",
+    "url": "https://www.cariboucoffee.com/offers/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "The Coffee Bean & Tea Leaf",
+    "category": "coffee",
+    "url": "https://www.coffeebean.com/deals",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Einstein Bros Bagels",
+    "category": "coffee",
+    "url": "https://www.einsteinbros.com/deals",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Scooter's Coffee",
+    "category": "coffee",
+    "url": "https://www.scooterscoffee.com/deals",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Biggby Coffee",
+    "category": "coffee",
+    "url": "https://www.biggby.com/deals/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Black Rock Coffee Bar",
+    "category": "coffee",
+    "url": "https://www.blackrockcoffee.com/deals",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Publix",
+    "category": "grocery",
+    "url": "https://www.publix.com/savings/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Safeway",
+    "category": "grocery",
+    "url": "https://www.safeway.com/savings/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Albertsons",
+    "category": "grocery",
+    "url": "https://www.albertsons.com/savings/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Food Lion",
+    "category": "grocery",
+    "url": "https://www.foodlion.com/savings/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Giant Food",
+    "category": "grocery",
+    "url": "https://giantfood.com/weekly-specials/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Stop & Shop",
+    "category": "grocery",
+    "url": "https://www.stopandshop.com/savings/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Winn-Dixie",
+    "category": "grocery",
+    "url": "https://www.winndixie.com/savings/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Wegmans",
+    "category": "grocery",
+    "url": "https://www.wegmans.com/save/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "BJ's Wholesale Club",
+    "category": "grocery",
+    "url": "https://www.bjs.com/deals",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "GNC",
+    "category": "pharmacy",
+    "url": "https://www.gnc.com/deals",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Vitamin Shoppe",
+    "category": "pharmacy",
+    "url": "https://www.vitaminshoppe.com/c/promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Ross Dress for Less",
+    "category": "retail",
+    "url": "https://www.rossstores.com/deals/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Five Below",
+    "category": "retail",
+    "url": "https://www.fivebelow.com/deals",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Dollar General",
+    "category": "retail",
+    "url": "https://www.dollargeneral.com/savings/promo-banners.html",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Dollar Tree",
+    "category": "retail",
+    "url": "https://www.dollartree.com/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "HomeGoods",
+    "category": "retail",
+    "url": "https://www.homegoods.com/promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Big Lots",
+    "category": "retail",
+    "url": "https://www.biglots.com/deals",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Bealls",
+    "category": "retail",
+    "url": "https://www.beallsflorida.com/deals/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Dave & Buster's",
+    "category": "entertainment",
+    "url": "https://www.daveandbusters.com/us/en/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Bowlero",
+    "category": "entertainment",
+    "url": "https://www.bowlero.com/deals",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Six Flags",
+    "category": "entertainment",
+    "url": "https://www.sixflags.com/national/deals-packages",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Fandango",
+    "category": "entertainment",
+    "url": "https://www.fandango.com/deals",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "Apple TV+",
+    "category": "entertainment",
+    "url": "https://www.apple.com/apple-tv-plus/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
+  },
+  {
+    "brand": "DoorDash",
+    "category": "food",
+    "online_only": true,
+    "url": "https://www.doordash.com/promotions/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false,
+    "disabled_reason": "delivery app — online-only; metadata for normalize pipeline"
+  },
+  {
+    "brand": "Instacart",
+    "category": "grocery",
+    "online_only": true,
+    "url": "https://www.instacart.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false,
+    "disabled_reason": "delivery app — online-only; metadata for normalize pipeline"
+  },
+  {
+    "brand": "Cotton On",
+    "category": "fashion",
+    "online_only": true,
+    "url": "https://cottonon.com/US/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false,
+    "disabled_reason": "email-only brand — metadata for normalize pipeline"
+  },
+  {
+    "brand": "KAYAK",
+    "category": "travel",
+    "online_only": true,
+    "url": "https://www.kayak.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false,
+    "disabled_reason": "travel search — online-only; metadata for normalize pipeline"
+  },
+  {
+    "brand": "Apple Card",
+    "category": "finance",
+    "online_only": true,
+    "url": "https://www.apple.com/apple-card/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false,
+    "disabled_reason": "finance product — metadata for normalize pipeline"
+  },
+  {
+    "brand": "Chess.com",
+    "category": "entertainment",
+    "online_only": true,
+    "url": "https://www.chess.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false,
+    "disabled_reason": "online gaming — metadata for normalize pipeline"
+  },
+  {
+    "brand": "Codecademy",
+    "category": "tech",
+    "online_only": true,
+    "url": "https://www.codecademy.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false,
+    "disabled_reason": "online learning — metadata for normalize pipeline"
+  },
+  {
+    "brand": "From You Flowers",
+    "category": "retail",
+    "online_only": true,
+    "url": "https://www.fromyouflowers.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false,
+    "disabled_reason": "online delivery — metadata for normalize pipeline"
+  },
+  {
+    "brand": "LinkedIn Premium",
+    "category": "subscription",
+    "online_only": true,
+    "url": "https://www.linkedin.com/premium/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false,
+    "disabled_reason": "online subscription — metadata for normalize pipeline"
+  },
+  {
+    "brand": "ZALORA Menswear",
+    "category": "fashion",
+    "online_only": true,
+    "url": "https://www.zalora.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": false,
+    "disabled_reason": "SEA fashion — online-only; metadata for normalize pipeline"
+  }
+]

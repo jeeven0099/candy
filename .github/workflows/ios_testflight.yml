@@ -1,0 +1,32 @@
+name: iOS Build
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Flutter dependencies
+        run: cd promo_viewer && flutter pub get
+
+      - name: Build unsigned IPA
+        run: |
+          cd promo_viewer
+          flutter build ipa --release --no-codesign
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: candy-ios
+          path: promo_viewer/build/ios/ipa/*.ipa
+          retention-days: 7
