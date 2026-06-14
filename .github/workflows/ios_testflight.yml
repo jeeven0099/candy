@@ -19,14 +19,22 @@ jobs:
       - name: Flutter dependencies
         run: cd promo_viewer && flutter pub get
 
-      - name: Build unsigned IPA
+      - name: Build iOS app (unsigned)
         run: |
           cd promo_viewer
-          flutter build ipa --release --no-codesign
+          flutter build ios --release --no-codesign
+
+      - name: Package into IPA
+        run: |
+          mkdir -p promo_viewer/build/ios/ipa/Payload
+          cp -r promo_viewer/build/ios/Release-iphoneos/Runner.app \
+                promo_viewer/build/ios/ipa/Payload/
+          cd promo_viewer/build/ios/ipa
+          zip -r candy.ipa Payload/
 
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
         with:
           name: candy-ios
-          path: promo_viewer/build/ios/ipa/*.ipa
+          path: promo_viewer/build/ios/ipa/candy.ipa
           retention-days: 7
