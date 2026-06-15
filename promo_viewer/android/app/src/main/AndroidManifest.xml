@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
-        android:label="promo_viewer"
+        android:label="Candy"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">
