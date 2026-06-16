@@ -5,10 +5,12 @@ import 'services/saved_deals_service.dart';
 import 'services/timezone_service.dart';
 import 'theme/candy_colors.dart';
 
+final navigatorKey = GlobalKey<NavigatorState>();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await TimezoneService.init();
-  await NotificationService.init();
+  await NotificationService.init(navigatorKey: navigatorKey);
   await SavedDealsService.init();
   runApp(const PromoViewerApp());
 }
@@ -19,6 +21,7 @@ class PromoViewerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       title: 'Candy',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

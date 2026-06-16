@@ -1308,7 +1308,7 @@
   {
     "brand": "Blue Apron",
     "category": "food",
-    "url": "https://www.blueapron.com/pages/plans",
+    "url": "https://www.blueapron.com/pricing",
     "source_type": "offers_page",
     "allowed_to_fetch": false,
     "online_only": true,
@@ -1454,7 +1454,7 @@
   {
     "brand": "e.l.f. Cosmetics",
     "category": "beauty",
-    "url": "https://www.elfcosmetics.com/sale/",
+    "url": "https://www.elfcosmetics.com/makeup-and-skincare-sale/last-chance-sale",
     "source_type": "sales_page",
     "allowed_to_fetch": true,
     "online_only": true
@@ -1462,7 +1462,7 @@
   {
     "brand": "Glossier",
     "category": "beauty",
-    "url": "https://www.glossier.com/sale",
+    "url": "https://www.glossier.com/collections/surprise-sale",
     "source_type": "sales_page",
     "allowed_to_fetch": false,
     "online_only": true,
@@ -1479,7 +1479,7 @@
   {
     "brand": "Curology",
     "category": "beauty",
-    "url": "https://curology.com/pages/get-started",
+    "url": "https://curology.com/rewardprogram/",
     "source_type": "offers_page",
     "allowed_to_fetch": false,
     "online_only": true,
@@ -1520,7 +1520,7 @@
   {
     "brand": "Harry's",
     "category": "health",
-    "url": "https://harrys.com/en/us/trial-offer",
+    "url": "https://www.harrys.com/en/products/starter-set",
     "source_type": "offers_page",
     "allowed_to_fetch": false,
     "online_only": true,
@@ -1585,7 +1585,7 @@
   {
     "brand": "Brooklinen",
     "category": "home_goods",
-    "url": "https://brooklinen.com/collections/sale",
+    "url": "https://www.brooklinen.com/collections/last-call",
     "source_type": "sales_page",
     "allowed_to_fetch": true,
     "online_only": true
@@ -1601,7 +1601,7 @@
   {
     "brand": "Ruggable",
     "category": "home_goods",
-    "url": "https://ruggable.com/pages/sale",
+    "url": "https://ruggable.com/collections/sale",
     "source_type": "sales_page",
     "allowed_to_fetch": false,
     "online_only": true,
@@ -1654,7 +1654,7 @@
   {
     "brand": "Five Guys",
     "category": "food",
-    "url": "https://www.fiveguys.com/fans/offers",
+    "url": "https://www.fiveguys.com/lto/",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -1668,14 +1668,14 @@
   {
     "brand": "Arby's",
     "category": "food",
-    "url": "https://www.arbys.com/promotions/",
+    "url": "https://www.arbys.com/deals/",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Jack in the Box",
     "category": "food",
-    "url": "https://www.jackinthebox.com/offers",
+    "url": "https://www.jackinthebox.com/menu/categories/products?category=deals-and-digital-exclusives",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -1689,21 +1689,21 @@
   {
     "brand": "Jersey Mike's",
     "category": "food",
-    "url": "https://www.jerseymikes.com/promo",
+    "url": "https://www.jerseymikes.com/menu/deals",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Buffalo Wild Wings",
     "category": "food",
-    "url": "https://www.buffalowildwings.com/deals/",
+    "url": "https://www.buffalowildwings.com/promos/",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Applebee's",
     "category": "food",
-    "url": "https://www.applebees.com/en/deals",
+    "url": "https://www.applebees.com/en/specials",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -1717,7 +1717,7 @@
   {
     "brand": "IHOP",
     "category": "food",
-    "url": "https://www.ihop.com/en/deals/",
+    "url": "https://www.ihop.com/en/specials",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -1731,14 +1731,14 @@
   {
     "brand": "Del Taco",
     "category": "food",
-    "url": "https://www.deltaco.com/deals",
+    "url": "https://deltaco.com/specials.html",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Culver's",
     "category": "food",
-    "url": "https://www.culvers.com/promotions",
+    "url": "https://www.culvers.com/delicious-rewards",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -1766,7 +1766,7 @@
   {
     "brand": "Red Robin",
     "category": "food",
-    "url": "https://www.redrobin.com/royalty/deals.html",
+    "url": "https://www.redrobin.com/deals-and-promos",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -1780,14 +1780,15 @@
   {
     "brand": "Texas Roadhouse",
     "category": "food",
-    "url": "https://www.texasroadhouse.com/specials",
+    "url": "https://www.texasroadhouse.com/vip-club",
     "source_type": "offers_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false,
+    "disabled_reason": "No public specials page — deals through VIP club email only"
   },
   {
     "brand": "Cracker Barrel",
     "category": "food",
-    "url": "https://www.crackerbarrel.com/specials",
+    "url": "https://www.crackerbarrel.com/promotions",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -1801,7 +1802,7 @@
   {
     "brand": "Caribou Coffee",
     "category": "coffee",
-    "url": "https://www.cariboucoffee.com/offers/",
+    "url": "https://www.cariboucoffee.com/caribou-perks/",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -1810,12 +1811,13 @@
     "category": "coffee",
     "url": "https://www.coffeebean.com/deals",
     "source_type": "offers_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false,
+    "disabled_reason": "No public deals page found"
   },
   {
     "brand": "Einstein Bros Bagels",
     "category": "coffee",
-    "url": "https://www.einsteinbros.com/deals",
+    "url": "https://www.einsteinbros.com/rewards/",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -1824,14 +1826,16 @@
     "category": "coffee",
     "url": "https://www.scooterscoffee.com/deals",
     "source_type": "offers_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false,
+    "disabled_reason": "No public deals page found"
   },
   {
     "brand": "Biggby Coffee",
     "category": "coffee",
     "url": "https://www.biggby.com/deals/",
     "source_type": "offers_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false,
+    "disabled_reason": "No public deals page found"
   },
   {
     "brand": "Black Rock Coffee Bar",
@@ -1850,14 +1854,14 @@
   {
     "brand": "Safeway",
     "category": "grocery",
-    "url": "https://www.safeway.com/savings/",
+    "url": "https://www.safeway.com/weeklyad/",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Albertsons",
     "category": "grocery",
-    "url": "https://www.albertsons.com/savings/",
+    "url": "https://www.albertsons.com/weeklyad/",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -1887,12 +1891,13 @@
     "category": "grocery",
     "url": "https://www.winndixie.com/savings/",
     "source_type": "offers_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false,
+    "disabled_reason": "Page not found — site may have shut down or restructured"
   },
   {
     "brand": "Wegmans",
     "category": "grocery",
-    "url": "https://www.wegmans.com/save/",
+    "url": "https://www.wegmans.com/shop/coupons",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -1922,7 +1927,8 @@
     "category": "retail",
     "url": "https://www.rossstores.com/deals/",
     "source_type": "offers_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false,
+    "disabled_reason": "No public deals page — Ross is a discount store, no promotional page"
   },
   {
     "brand": "Five Below",
@@ -1934,7 +1940,7 @@
   {
     "brand": "Dollar General",
     "category": "retail",
-    "url": "https://www.dollargeneral.com/savings/promo-banners.html",
+    "url": "https://www.dollargeneral.com/deals/weekly-ads",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -1943,7 +1949,8 @@
     "category": "retail",
     "url": "https://www.dollartree.com/offers",
     "source_type": "offers_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false,
+    "disabled_reason": "404 — no confirmed public deals page found"
   },
   {
     "brand": "HomeGoods",
@@ -1957,7 +1964,8 @@
     "category": "retail",
     "url": "https://www.biglots.com/deals",
     "source_type": "offers_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false,
+    "disabled_reason": "404 — Big Lots filed for bankruptcy, site may be restructured"
   },
   {
     "brand": "Bealls",
@@ -1969,9 +1977,10 @@
   {
     "brand": "Dave & Buster's",
     "category": "entertainment",
-    "url": "https://www.daveandbusters.com/us/en/offers",
+    "url": "https://www.daveandbusters.com/us/en/power-up/specials",
     "source_type": "offers_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false,
+    "disabled_reason": "Bot protection — returns generic error page"
   },
   {
     "brand": "Bowlero",
@@ -1985,12 +1994,13 @@
     "category": "entertainment",
     "url": "https://www.sixflags.com/national/deals-packages",
     "source_type": "offers_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false,
+    "disabled_reason": "No national deals page — deals are per-park only"
   },
   {
     "brand": "Fandango",
     "category": "entertainment",
-    "url": "https://www.fandango.com/deals",
+    "url": "https://www.fandango.com/offers",
     "source_type": "offers_page",
     "allowed_to_fetch": true,
     "online_only": true

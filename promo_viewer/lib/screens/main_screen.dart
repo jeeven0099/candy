@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import '../models/promotion.dart';
 import '../services/location_service.dart';
+import '../services/notification_service.dart';
 import '../services/promotions_service.dart';
 import '../services/user_memberships_service.dart';
+import 'deal_detail_screen.dart';
 import 'for_you_screen.dart';
 import 'near_me_screen.dart';
 import 'online_screen.dart';
@@ -43,6 +45,20 @@ class _MainScreenState extends State<MainScreen> {
       _loading = false;
     });
     _fetchLocation();
+    _handlePendingNotification(promos);
+  }
+
+  void _handlePendingNotification(List<Promotion> promos) {
+    final promoId = NotificationService.pendingPromoId;
+    if (promoId == null) return;
+    NotificationService.pendingPromoId = null;
+    final matches = promos.where((p) => p.id == promoId);
+    if (matches.isEmpty || !mounted) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (_) => DealDetailScreen(promo: matches.first)),
+      );
+    });
   }
 
   Future<void> _fetchLocation() async {
@@ -76,6 +92,7 @@ class _MainScreenState extends State<MainScreen> {
             position: _position,
             locating: _locating,
             memberships: _memberships,
+            onRefresh: _loadData,
           ),
           OnlineScreen(all: _all, memberships: _memberships),
           RewardsScreen(all: _all, memberships: _memberships),

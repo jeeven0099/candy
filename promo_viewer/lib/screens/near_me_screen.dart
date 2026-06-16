@@ -12,12 +12,14 @@ class NearMeScreen extends StatefulWidget {
   final Position? position;
   final bool locating;
   final Set<String> memberships;
+  final Future<void> Function() onRefresh;
 
   const NearMeScreen({
     super.key,
     required this.all,
     required this.position,
     required this.locating,
+    required this.onRefresh,
     this.memberships = const {},
   });
 
@@ -50,11 +52,26 @@ class _NearMeScreenState extends State<NearMeScreen> {
       if (p.distanceKm == null) return false;
       // Rewards programs belong in the Rewards tab
       if (p.promotionType == 'reward' || p.promotionType == 'membership_benefit') return false;
-      // Online/app-only redemption belongs in the Online tab, not Near Me
-      if (p.redemptionMethod == 'online') return false;
-      if (p.redemptionMethod == 'in_app' && p.dealScope == 'online_only') return false;
-      // Travel and finance deals are not walk-in store deals
-      if (p.category == 'travel' || p.category == 'finance') return false;
+      // Only redemption methods that make sense in-person
+      const nearMeRedemption = {
+        'in_store', 'in_app', 'app_reward', 'show_code', 'open_maps',
+      };
+      if (!nearMeRedemption.contains(p.redemptionMethod)) return false;
+      // Online-only deals belong in the Online tab
+      if (p.dealScope == 'online_only') return false;
+      // Email-sourced deals belong in For You, not Near Me
+      if (p.source == 'email') return false;
+      // Categories that are never walk-in store deals
+      const blockedCategories = {
+        'finance', 'travel', 'streaming', 'subscription',
+        'meal_kit', 'delivery_only',
+      };
+      if (blockedCategories.contains(p.category)) return false;
+      // Brands that are service/delivery/online-only — not physical storefronts
+      const blockedBrands = {
+        'chase', 'uber', 'hungryroot',
+      };
+      if (blockedBrands.contains(p.brand.toLowerCase())) return false;
       // Search
       if (q.isNotEmpty &&
           !p.brand.toLowerCase().contains(q) &&
@@ -235,7 +252,7 @@ class _NearMeScreenState extends State<NearMeScreen> {
 
     final items = groupGroceryDeals(promos);
     return RefreshIndicator(
-      onRefresh: () async {},
+      onRefresh: widget.onRefresh,
       child: ListView.builder(
         padding: const EdgeInsets.only(top: 8, bottom: 24),
         itemCount: items.length + 1,

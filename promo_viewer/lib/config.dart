@@ -1,6 +1,5 @@
-/// Base URL for remote deal data.
-/// Set this to your ngrok static domain before building for TestFlight.
-/// Leave empty to use bundled assets only (local development).
-///
-/// Example: 'https://candy-deals.ngrok-free.app'
-const String kDataBaseUrl = 'http://10.200.166.202:8080';
+/// Stable bootstrap URL — the app fetches this to discover the current
+/// server URL. To point the app at a new server, edit server_config.json
+/// at the repo root and push. No app rebuild needed.
+const String kConfigUrl =
+    'https://raw.githubusercontent.com/jeeven0099/candy/main/server_config.json';
