@@ -19,7 +19,7 @@ jobs:
       - name: Set build version
         id: meta
         run: |
-          VERSION=$(date -u +"%Y.%m.%d.%H%M")
+          VERSION=$(python3 -c "from datetime import datetime,timezone; n=datetime.now(timezone.utc); print(f'{n.year}.{n.month*100+n.day}.{n.hour*100+n.minute}')")
           DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "date=$DATE" >> $GITHUB_OUTPUT
