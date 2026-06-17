@@ -7,7 +7,15 @@
       "bundleIdentifier": "com.promoviewer.promoViewer",
       "developerName": "Jeeven",
       "localizedDescription": "Find the best deals near you and online.",
-      "versions": []
+      "versions": [
+        {
+          "version": "2026.06.17.1937",
+          "date": "2026-06-17T19:37:10Z",
+          "localizedDescription": "Latest build",
+          "downloadURL": "https://github.com/jeeven0099/candy/releases/download/v2026.06.17.1937/candy.ipa",
+          "size": 11270179
+        }
+      ]
     }
   ],
   "news": []
