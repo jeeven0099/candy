@@ -20,7 +20,7 @@ jobs:
         id: meta
         run: |
           VERSION=$(python3 -c "from datetime import datetime,timezone; n=datetime.now(timezone.utc); print(f'{n.year}.{n.month*100+n.day}.{n.hour*100+n.minute}')")
-          DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          DATE=$(date -u +"%Y-%m-%d")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "date=$DATE" >> $GITHUB_OUTPUT
 
@@ -47,7 +47,7 @@ jobs:
           cp -r promo_viewer/build/ios/Release-iphoneos/Runner.app \
                 promo_viewer/build/ios/ipa/Payload/
           cd promo_viewer/build/ios/ipa
-          ditto -ck --sequesterRsrc Payload candy.ipa
+          ditto -ck --keepParent Payload candy.ipa
 
       - name: Get IPA size
         id: size
