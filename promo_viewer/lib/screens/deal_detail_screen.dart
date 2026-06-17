@@ -99,7 +99,9 @@ class DealDetailScreen extends StatelessWidget {
                         : 'No',
                     met: !promo.requiresMembership,
                   ),
-                  if (promo.requiresMembership)
+                  if (promo.requiresMembership &&
+                      promo.membershipCost != null &&
+                      promo.membershipCost!.isNotEmpty)
                     _RequirementRow(
                       label: 'Membership cost',
                       value: _formatMembershipCost(promo.membershipCost),
