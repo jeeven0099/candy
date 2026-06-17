@@ -16,6 +16,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set build version
+        id: meta
+        run: |
+          VERSION=$(date -u +"%Y.%m.%d.%H%M")
+          DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "date=$DATE" >> $GITHUB_OUTPUT
+
+      - name: Stamp version into pubspec.yaml
+        run: |
+          sed -i '' "s/^version: .*/version: ${{ steps.meta.outputs.version }}+1/" promo_viewer/pubspec.yaml
+
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
@@ -37,15 +49,11 @@ jobs:
           cd promo_viewer/build/ios/ipa
           zip -r candy.ipa Payload/
 
-      - name: Set build metadata
-        id: meta
+      - name: Get IPA size
+        id: size
         run: |
-          VERSION=$(date -u +"%Y.%m.%d.%H%M")
           SIZE=$(wc -c < promo_viewer/build/ios/ipa/candy.ipa | tr -d ' ')
-          DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "size=$SIZE" >> $GITHUB_OUTPUT
-          echo "date=$DATE" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -96,7 +104,7 @@ jobs:
         env:
           VERSION: ${{ steps.meta.outputs.version }}
           DATE:    ${{ steps.meta.outputs.date }}
-          SIZE:    ${{ steps.meta.outputs.size }}
+          SIZE:    ${{ steps.size.outputs.size }}
 
       - name: Commit AltStore source
         run: |
