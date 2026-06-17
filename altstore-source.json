@@ -1,0 +1,14 @@
+{
+  "name": "Candy",
+  "identifier": "com.jeeven.candy.altsource",
+  "apps": [
+    {
+      "name": "Candy",
+      "bundleIdentifier": "com.promoviewer.promoViewer",
+      "developerName": "Jeeven",
+      "localizedDescription": "Find the best deals near you and online.",
+      "versions": []
+    }
+  ],
+  "news": []
+}
