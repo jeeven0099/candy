@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/promotion.dart';
 import '../theme/candy_colors.dart';
 import '../utils/deal_grouper.dart';
+import '../utils/format_utils.dart';
 import '../widgets/deal_card.dart';
 import '../widgets/grocery_group_card.dart';
 import 'deal_detail_screen.dart';
+
+const _kRadiusKey = 'near_me_radius_mi';
+const _kRadiusOptions = [1, 3, 5, 10, 25];
 
 class NearMeScreen extends StatefulWidget {
   final List<Promotion> all;
   final Position? position;
   final bool locating;
   final Set<String> memberships;
+  final DateTime? lastUpdated;
   final Future<void> Function() onRefresh;
 
   const NearMeScreen({
@@ -21,6 +27,7 @@ class NearMeScreen extends StatefulWidget {
     required this.locating,
     required this.onRefresh,
     this.memberships = const {},
+    this.lastUpdated,
   });
 
   @override
@@ -29,7 +36,26 @@ class NearMeScreen extends StatefulWidget {
 
 class _NearMeScreenState extends State<NearMeScreen> {
   String _query = '';
+  int _radiusMi = 5;
   final _searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadRadius();
+  }
+
+  Future<void> _loadRadius() async {
+    final prefs = await SharedPreferences.getInstance();
+    final saved = prefs.getInt(_kRadiusKey);
+    if (saved != null && mounted) setState(() => _radiusMi = saved);
+  }
+
+  Future<void> _setRadius(int mi) async {
+    setState(() => _radiusMi = mi);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(_kRadiusKey, mi);
+  }
 
   @override
   void dispose() {
@@ -39,40 +65,29 @@ class _NearMeScreenState extends State<NearMeScreen> {
 
   List<Promotion> get _filtered {
     final position = widget.position;
-
-    // Before location is ready show nothing meaningful
     if (position == null) return [];
 
     final q = _query.toLowerCase();
+    final radiusKm = _radiusMi * 1.60934;
 
     return widget.all.where((p) {
-      // Only active deals
       if (!p.isActive) return false;
-      // Must have a store distance (brand has locations)
       if (p.distanceKm == null) return false;
-      // Rewards programs belong in the Rewards tab
       if (p.promotionType == 'reward' || p.promotionType == 'membership_benefit') return false;
-      // Only redemption methods that make sense in-person
       const nearMeRedemption = {
         'in_store', 'in_app', 'app_reward', 'show_code', 'open_maps',
       };
       if (!nearMeRedemption.contains(p.redemptionMethod)) return false;
-      // Online-only deals belong in the Online tab
       if (p.dealScope == 'online_only') return false;
-      // Email-sourced deals belong in For You, not Near Me
       if (p.source == 'email') return false;
-      // Categories that are never walk-in store deals
       const blockedCategories = {
         'finance', 'travel', 'streaming', 'subscription',
         'meal_kit', 'delivery_only',
       };
       if (blockedCategories.contains(p.category)) return false;
-      // Brands that are service/delivery/online-only — not physical storefronts
-      const blockedBrands = {
-        'chase', 'uber', 'hungryroot',
-      };
+      const blockedBrands = {'chase', 'uber', 'hungryroot'};
       if (blockedBrands.contains(p.brand.toLowerCase())) return false;
-      // Search
+      if ((p.distanceKm ?? double.infinity) > radiusKm) return false;
       if (q.isNotEmpty &&
           !p.brand.toLowerCase().contains(q) &&
           !p.title.toLowerCase().contains(q)) {
@@ -98,6 +113,43 @@ class _NearMeScreenState extends State<NearMeScreen> {
         (memberName.isNotEmpty && (m.contains(memberName) || memberName.contains(m))));
   }
 
+  void _showRadiusPicker() {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (ctx) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Padding(
+              padding: EdgeInsets.fromLTRB(16, 20, 16, 4),
+              child: Text(
+                'Distance Radius',
+                style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+              ),
+            ),
+            ..._kRadiusOptions.map((mi) => ListTile(
+                  title: Text('Within $mi mi'),
+                  leading: Icon(
+                    _radiusMi == mi
+                        ? Icons.radio_button_checked
+                        : Icons.radio_button_unchecked,
+                    color: _radiusMi == mi ? Candy.raspberry : null,
+                  ),
+                  onTap: () {
+                    Navigator.pop(ctx);
+                    _setRadius(mi);
+                  },
+                )),
+            const SizedBox(height: 8),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final promos = _filtered;
@@ -117,6 +169,7 @@ class _NearMeScreenState extends State<NearMeScreen> {
   }
 
   Widget _buildHeader() {
+    final updated = widget.lastUpdated;
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
       child: Column(
@@ -126,10 +179,10 @@ class _NearMeScreenState extends State<NearMeScreen> {
             children: [
               const Icon(Icons.near_me, size: 22),
               const SizedBox(width: 8),
-              Column(
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'Near Me',
                     style: TextStyle(
                       fontSize: 26,
@@ -138,7 +191,7 @@ class _NearMeScreenState extends State<NearMeScreen> {
                       color: Candy.chocolate,
                     ),
                   ),
-                  const Text(
+                  Text(
                     'Sweet deals nearby',
                     style: TextStyle(
                       fontSize: 12,
@@ -164,7 +217,12 @@ class _NearMeScreenState extends State<NearMeScreen> {
                 )
               else if (widget.position == null)
                 Text('Location unavailable',
-                    style: TextStyle(fontSize: 12, color: Colors.grey.shade500)),
+                    style: TextStyle(fontSize: 12, color: Colors.grey.shade500))
+              else if (updated != null)
+                Text(
+                  formatLastUpdated(updated),
+                  style: TextStyle(fontSize: 11, color: Colors.grey.shade400),
+                ),
             ],
           ),
           const SizedBox(height: 12),
@@ -190,6 +248,35 @@ class _NearMeScreenState extends State<NearMeScreen> {
             ),
             padding: const WidgetStatePropertyAll(
               EdgeInsets.symmetric(horizontal: 16),
+            ),
+          ),
+          const SizedBox(height: 8),
+          GestureDetector(
+            onTap: _showRadiusPicker,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                color: Candy.raspberry.withValues(alpha: 0.08),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: Candy.raspberry.withValues(alpha: 0.2)),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.near_me, size: 13, color: Candy.raspberry),
+                  const SizedBox(width: 5),
+                  Text(
+                    'Within $_radiusMi mi',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Candy.raspberry,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(width: 3),
+                  const Icon(Icons.arrow_drop_down, size: 16, color: Candy.raspberry),
+                ],
+              ),
             ),
           ),
         ],
@@ -226,7 +313,7 @@ class _NearMeScreenState extends State<NearMeScreen> {
             ),
             const SizedBox(height: 6),
             Text(
-              'Allow location access in your browser\nto see deals near you.',
+              'Allow location access in Settings\nto see deals near you.',
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.grey.shade400, fontSize: 13),
             ),
@@ -243,8 +330,20 @@ class _NearMeScreenState extends State<NearMeScreen> {
             Icon(Icons.storefront_outlined,
                 size: 48, color: Colors.grey.shade300),
             const SizedBox(height: 12),
-            Text('No nearby deals found',
+            Text('No deals within $_radiusMi mi',
                 style: TextStyle(color: Colors.grey.shade500, fontSize: 16)),
+            if (_radiusMi < 25) ...[
+              const SizedBox(height: 12),
+              OutlinedButton.icon(
+                icon: const Icon(Icons.zoom_out_map, size: 16),
+                label: const Text('Expand Radius'),
+                onPressed: _showRadiusPicker,
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: Candy.raspberry,
+                  side: const BorderSide(color: Candy.raspberry),
+                ),
+              ),
+            ],
           ],
         ),
       );
@@ -261,7 +360,7 @@ class _NearMeScreenState extends State<NearMeScreen> {
             return Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
               child: Text(
-                '${promos.length} deals nearby',
+                '${promos.length} deals within $_radiusMi mi',
                 style: TextStyle(
                   fontSize: 13,
                   color: Colors.grey.shade500,

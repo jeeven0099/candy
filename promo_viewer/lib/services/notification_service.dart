@@ -21,6 +21,9 @@ class NotificationService {
   // MainScreen reads this after promotions are loaded and navigates.
   static String? pendingPromoId;
 
+  // ValueNotifier so MainScreen can react even if the tap fires after _loadData.
+  static final tapNotifier = ValueNotifier<String?>(null);
+
   static Future<void> init({GlobalKey<NavigatorState>? navigatorKey}) async {
     if (kIsWeb) return;
     _navigatorKey = navigatorKey;
@@ -40,7 +43,12 @@ class NotificationService {
     // the notification to open it.
     final launchDetails = await svc._plugin.getNotificationAppLaunchDetails();
     if (launchDetails?.didNotificationLaunchApp == true) {
-      pendingPromoId = launchDetails?.notificationResponse?.payload;
+      final id = launchDetails?.notificationResponse?.payload;
+      if (id != null && id.isNotEmpty) {
+        pendingPromoId = id;
+        // Don't set tapNotifier here — the listener isn't registered yet.
+        // _handlePendingNotification in _loadData() will consume pendingPromoId.
+      }
     }
     final androidPlugin = svc._plugin
         .resolvePlatformSpecificImplementation<
@@ -55,14 +63,18 @@ class NotificationService {
     await androidPlugin?.requestExactAlarmsPermission();
   }
 
-  // Called when user taps a notification while app is open or in background.
+  // Called when user taps a notification while app is open, backgrounded, or
+  // (on some iOS versions) cold-launched.
   static void _handleTap(NotificationResponse response) {
     final promoId = response.payload;
     if (promoId == null || promoId.isEmpty) return;
     final matches = PromotionsService.cached.where((p) => p.id == promoId);
     if (matches.isEmpty) {
-      // Promotions not loaded yet — store for MainScreen to handle after load.
+      // Promotions not loaded yet — store for MainScreen to consume after load.
       pendingPromoId = promoId;
+      // Also fire the notifier so MainScreen can react even if _loadData already
+      // completed (race condition where tap fires after data is ready).
+      tapNotifier.value = promoId;
       return;
     }
     _navigatorKey?.currentState?.push(

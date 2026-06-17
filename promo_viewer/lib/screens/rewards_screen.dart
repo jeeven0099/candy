@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 import '../models/promotion.dart';
 import '../theme/candy_colors.dart';
+import '../utils/format_utils.dart';
 import '../widgets/deal_card.dart';
 import 'deal_detail_screen.dart';
 
 class RewardsScreen extends StatefulWidget {
   final List<Promotion> all;
   final Set<String> memberships;
-  const RewardsScreen({super.key, required this.all, this.memberships = const {}});
+  final DateTime? lastUpdated;
+  final Future<void> Function() onRefresh;
+
+  const RewardsScreen({
+    super.key,
+    required this.all,
+    required this.onRefresh,
+    this.memberships = const {},
+    this.lastUpdated,
+  });
 
   @override
   State<RewardsScreen> createState() => _RewardsScreenState();
@@ -70,37 +80,45 @@ class _RewardsScreenState extends State<RewardsScreen> {
   }
 
   Widget _buildHeader() {
+    final updated = widget.lastUpdated;
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Row(
+          Row(
             children: [
-              Icon(Icons.card_membership, size: 22),
-              SizedBox(width: 8),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Rewards',
-                    style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: -0.5,
-                      color: Candy.chocolate,
+              const Icon(Icons.card_membership, size: 22),
+              const SizedBox(width: 8),
+              const Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Rewards',
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: -0.5,
+                        color: Candy.chocolate,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'Your rewards',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Candy.lavender,
-                      fontWeight: FontWeight.w500,
+                    Text(
+                      'Your rewards',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Candy.lavender,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              if (updated != null)
+                Text(
+                  formatLastUpdated(updated),
+                  style: TextStyle(fontSize: 11, color: Colors.grey.shade400),
+                ),
             ],
           ),
           const SizedBox(height: 12),
@@ -149,33 +167,36 @@ class _RewardsScreenState extends State<RewardsScreen> {
       );
     }
 
-    return ListView.builder(
-      padding: const EdgeInsets.only(top: 8, bottom: 24),
-      itemCount: promos.length + 1,
-      itemBuilder: (context, i) {
-        if (i == 0) {
-          return Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-            child: Text(
-              '${promos.length} programs',
-              style: TextStyle(
-                fontSize: 13,
-                color: Colors.grey.shade500,
-                fontWeight: FontWeight.w500,
+    return RefreshIndicator(
+      onRefresh: widget.onRefresh,
+      child: ListView.builder(
+        padding: const EdgeInsets.only(top: 8, bottom: 24),
+        itemCount: promos.length + 1,
+        itemBuilder: (context, i) {
+          if (i == 0) {
+            return Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+              child: Text(
+                '${promos.length} programs',
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Colors.grey.shade500,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
+            );
+          }
+          final promo = promos[i - 1];
+          return DealCard(
+            promo: promo,
+            memberships: widget.memberships,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),
             ),
           );
-        }
-        final promo = promos[i - 1];
-        return DealCard(
-          promo: promo,
-          memberships: widget.memberships,
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),
-          ),
-        );
-      },
+        },
+      ),
     );
   }
 }
