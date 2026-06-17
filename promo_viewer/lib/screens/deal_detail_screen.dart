@@ -95,10 +95,16 @@ class DealDetailScreen extends StatelessWidget {
                   _RequirementRow(
                     label: 'Requires membership',
                     value: promo.requiresMembership
-                        ? (promo.membershipName ?? 'Yes')
+                        ? (promo.membershipName ?? 'Members only')
                         : 'No',
                     met: !promo.requiresMembership,
                   ),
+                  if (promo.requiresMembership)
+                    _RequirementRow(
+                      label: 'Membership cost',
+                      value: _formatMembershipCost(promo.membershipCost),
+                      met: _isMembershipFree(promo.membershipCost),
+                    ),
                   _RequirementRow(
                     label: 'Requires app',
                     value: promo.requiresApp ? 'Yes' : 'No',
@@ -170,6 +176,19 @@ class DealDetailScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _formatMembershipCost(String? cost) {
+    if (cost == null || cost.isEmpty) return 'Unknown';
+    final c = cost.toLowerCase();
+    if (c.contains('free')) return 'Free to join';
+    if (c.contains('paid')) return 'Paid';
+    return cost;
+  }
+
+  bool _isMembershipFree(String? cost) {
+    if (cost == null) return false;
+    return cost.toLowerCase().contains('free');
   }
 
   String _capitalize(String s) =>
