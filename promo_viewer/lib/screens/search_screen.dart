@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import '../models/promotion.dart';
 import '../theme/candy_colors.dart';
 import '../utils/format_utils.dart';
-import '../widgets/deal_card.dart';
-import 'deal_detail_screen.dart';
+import '../utils/search_utils.dart';
+import '../widgets/brand_result_card.dart';
 
-class RewardsScreen extends StatefulWidget {
+class SearchScreen extends StatefulWidget {
   final List<Promotion> all;
   final Set<String> memberships;
   final DateTime? lastUpdated;
   final Future<void> Function() onRefresh;
 
-  const RewardsScreen({
+  const SearchScreen({
     super.key,
     required this.all,
     required this.onRefresh,
@@ -20,51 +20,24 @@ class RewardsScreen extends StatefulWidget {
   });
 
   @override
-  State<RewardsScreen> createState() => _RewardsScreenState();
+  State<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _RewardsScreenState extends State<RewardsScreen> {
+class _SearchScreenState extends State<SearchScreen> {
   String _query = '';
-  final _searchController = TextEditingController();
+  final _controller = TextEditingController();
 
   @override
   void dispose() {
-    _searchController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
-  bool _hasMembership(Promotion p) {
-    if (widget.memberships.isEmpty) return false;
-    final brand = p.brand.toLowerCase();
-    final memberName = (p.membershipName ?? '').toLowerCase();
-    return widget.memberships.any((m) =>
-        m.contains(brand) || brand.contains(m) ||
-        (memberName.isNotEmpty && (m.contains(memberName) || memberName.contains(m))));
-  }
-
-  List<Promotion> get _filtered {
-    final q = _query.toLowerCase();
-
-    return widget.all.where((p) {
-      // Rewards tab: loyalty programs and membership benefits only
-      if (p.promotionType != 'reward' && p.promotionType != 'membership_benefit') return false;
-      // Finance/credit card "rewards" are not loyalty programs
-      if (p.category == 'finance') return false;
-      if (q.isNotEmpty &&
-          !p.brand.toLowerCase().contains(q) &&
-          !p.title.toLowerCase().contains(q)) {
-        return false;
-      }
-      return true;
-    }).toList()
-      ..sort((a, b) => b.rankScore(isMember: _hasMembership(b))
-            .compareTo(a.rankScore(isMember: _hasMembership(a))));
-  }
+  List<BrandGroup> get _results => runSearch(widget.all, _query);
 
   @override
   Widget build(BuildContext context) {
-    final promos = _filtered;
-
+    final results = _results;
     return Scaffold(
       backgroundColor: Candy.cream,
       body: SafeArea(
@@ -72,7 +45,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
           children: [
             _buildHeader(),
             const Divider(height: 1),
-            Expanded(child: _buildBody(promos)),
+            Expanded(child: _buildBody(results)),
           ],
         ),
       ),
@@ -88,14 +61,14 @@ class _RewardsScreenState extends State<RewardsScreen> {
         children: [
           Row(
             children: [
-              const Icon(Icons.card_membership, size: 22),
+              const Icon(Icons.search, size: 22),
               const SizedBox(width: 8),
               const Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Rewards',
+                      'Search',
                       style: TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.w700,
@@ -104,7 +77,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
                       ),
                     ),
                     Text(
-                      'Your rewards',
+                      'All brands & deals',
                       style: TextStyle(
                         fontSize: 12,
                         color: Candy.lavender,
@@ -123,15 +96,15 @@ class _RewardsScreenState extends State<RewardsScreen> {
           ),
           const SizedBox(height: 12),
           SearchBar(
-            controller: _searchController,
-            hintText: 'Search rewards programs…',
+            controller: _controller,
+            hintText: 'Search brands, deals, codes…',
             leading: const Icon(Icons.search, size: 20),
             trailing: [
               if (_query.isNotEmpty)
                 IconButton(
                   icon: const Icon(Icons.close, size: 18),
                   onPressed: () {
-                    _searchController.clear();
+                    _controller.clear();
                     setState(() => _query = '');
                   },
                 ),
@@ -151,33 +124,56 @@ class _RewardsScreenState extends State<RewardsScreen> {
     );
   }
 
-  Widget _buildBody(List<Promotion> promos) {
-    if (promos.isEmpty) {
+  Widget _buildBody(List<BrandGroup> results) {
+    if (_query.trim().isEmpty) {
       return Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.card_membership_outlined,
-                size: 48, color: Colors.grey.shade300),
+            Icon(Icons.search, size: 48, color: Colors.grey.shade300),
             const SizedBox(height: 12),
-            Text('No rewards programs found',
-                style: TextStyle(color: Colors.grey.shade500, fontSize: 16)),
+            Text(
+              'Search for a brand or deal',
+              style: TextStyle(color: Colors.grey.shade500, fontSize: 16),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Try "Chick-fil-A", "free", or "coffee"',
+              style: TextStyle(color: Colors.grey.shade400, fontSize: 13),
+            ),
           ],
         ),
       );
     }
 
+    if (results.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.search_off, size: 48, color: Colors.grey.shade300),
+            const SizedBox(height: 12),
+            Text(
+              'No results for "$_query"',
+              style: TextStyle(color: Colors.grey.shade500, fontSize: 16),
+            ),
+          ],
+        ),
+      );
+    }
+
+    final totalDeals = results.fold(0, (sum, g) => sum + g.deals.length);
     return RefreshIndicator(
       onRefresh: widget.onRefresh,
       child: ListView.builder(
-        padding: const EdgeInsets.only(top: 8, bottom: 24),
-        itemCount: promos.length + 1,
+        padding: const EdgeInsets.only(top: 4, bottom: 24),
+        itemCount: results.length + 1,
         itemBuilder: (context, i) {
           if (i == 0) {
             return Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+              padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
               child: Text(
-                '${promos.length} programs',
+                '${results.length} brand${results.length == 1 ? '' : 's'} · $totalDeals deal${totalDeals == 1 ? '' : 's'}',
                 style: TextStyle(
                   fontSize: 13,
                   color: Colors.grey.shade500,
@@ -186,14 +182,9 @@ class _RewardsScreenState extends State<RewardsScreen> {
               ),
             );
           }
-          final promo = promos[i - 1];
-          return DealCard(
-            promo: promo,
+          return BrandResultCard(
+            group: results[i - 1],
             memberships: widget.memberships,
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),
-            ),
           );
         },
       ),

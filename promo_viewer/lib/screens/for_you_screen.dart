@@ -2,28 +2,42 @@ import 'package:flutter/material.dart';
 import '../models/promotion.dart';
 import '../services/saved_deals_service.dart';
 import '../theme/candy_colors.dart';
+import '../utils/format_utils.dart';
 import '../widgets/deal_card.dart';
 import 'deal_detail_screen.dart';
 
-class ForYouScreen extends StatelessWidget {
+class ForYouScreen extends StatefulWidget {
   final List<Promotion> all;
   final Set<String> memberships;
+  final DateTime? lastUpdated;
+  final Future<void> Function() onRefresh;
 
-  const ForYouScreen({super.key, required this.all, this.memberships = const {}});
+  const ForYouScreen({
+    super.key,
+    required this.all,
+    required this.onRefresh,
+    this.memberships = const {},
+    this.lastUpdated,
+  });
+
+  @override
+  State<ForYouScreen> createState() => _ForYouScreenState();
+}
+
+class _ForYouScreenState extends State<ForYouScreen> {
+  final _svc = SavedDealsService();
 
   @override
   Widget build(BuildContext context) {
-    final svc = SavedDealsService();
     return ListenableBuilder(
-      listenable: svc,
+      listenable: _svc,
       builder: (ctx, _) {
-        final privateDeals = all
+        final privateDeals = widget.all
             .where((p) {
               if (p.source != 'email' || !p.isActive) return false;
-              // Filter non-consumer / corporate brands that look like inbox spam
               final brand = p.brand.toLowerCase();
               if (brand.contains('talent acquisition') ||
-                  brand.contains(' from ') ||     // e.g. "Adam from foodpanda"
+                  brand.contains(' from ') ||
                   p.confidenceScore < 0.5) {
                 return false;
               }
@@ -32,11 +46,11 @@ class ForYouScreen extends StatelessWidget {
             .toList()
           ..sort((a, b) => b.rankBaseScore.compareTo(a.rankBaseScore));
 
-        final savedIds = svc.all.map((s) => s.id).toList();
+        final savedIds = _svc.all.map((s) => s.id).toList();
         final savedDeals = savedIds
             .map((id) {
               try {
-                return all.firstWhere((p) => p.id == id);
+                return widget.all.firstWhere((p) => p.id == id);
               } catch (_) {
                 return null;
               }
@@ -59,12 +73,14 @@ class ForYouScreen extends StatelessWidget {
                       children: [
                         _PrivateTab(
                           promos: privateDeals,
-                          memberships: memberships,
+                          memberships: widget.memberships,
+                          onRefresh: widget.onRefresh,
                         ),
                         _SavedTab(
                           promos: savedDeals,
-                          memberships: memberships,
-                          svc: svc,
+                          memberships: widget.memberships,
+                          svc: _svc,
+                          onRefresh: widget.onRefresh,
                         ),
                       ],
                     ),
@@ -79,35 +95,46 @@ class ForYouScreen extends StatelessWidget {
   }
 
   Widget _buildHeader() {
-    return const Padding(
-      padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+    final updated = widget.lastUpdated;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(Icons.favorite, size: 22, color: Candy.raspberry),
-          SizedBox(width: 8),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'For You',
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: -0.5,
-                  color: Candy.chocolate,
+          const Icon(Icons.favorite, size: 22, color: Candy.raspberry),
+          const SizedBox(width: 8),
+          const Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'For You',
+                  style: TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: -0.5,
+                    color: Candy.chocolate,
+                  ),
                 ),
-              ),
-              Text(
-                'Personal & saved deals',
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Candy.lavender,
-                  fontWeight: FontWeight.w500,
+                Text(
+                  'Personal & saved deals',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Candy.lavender,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
+          if (updated != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 4),
+              child: Text(
+                formatLastUpdated(updated),
+                style: TextStyle(fontSize: 11, color: Colors.grey.shade400),
+              ),
+            ),
         ],
       ),
     );
@@ -154,8 +181,13 @@ class ForYouScreen extends StatelessWidget {
 class _PrivateTab extends StatelessWidget {
   final List<Promotion> promos;
   final Set<String> memberships;
+  final Future<void> Function() onRefresh;
 
-  const _PrivateTab({required this.promos, required this.memberships});
+  const _PrivateTab({
+    required this.promos,
+    required this.memberships,
+    required this.onRefresh,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -184,39 +216,42 @@ class _PrivateTab extends StatelessWidget {
       );
     }
 
-    return ListView.builder(
-      padding: const EdgeInsets.only(top: 8, bottom: 24),
-      itemCount: promos.length + 1,
-      itemBuilder: (context, i) {
-        if (i == 0) {
-          return Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-            child: Row(
-              children: [
-                const Icon(Icons.lock_outline, size: 13, color: Candy.raspberry),
-                const SizedBox(width: 4),
-                Text(
-                  '${promos.length} private deal${promos.length == 1 ? '' : 's'} from your inbox',
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: Colors.grey.shade500,
-                    fontWeight: FontWeight.w500,
+    return RefreshIndicator(
+      onRefresh: onRefresh,
+      child: ListView.builder(
+        padding: const EdgeInsets.only(top: 8, bottom: 24),
+        itemCount: promos.length + 1,
+        itemBuilder: (context, i) {
+          if (i == 0) {
+            return Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+              child: Row(
+                children: [
+                  const Icon(Icons.lock_outline, size: 13, color: Candy.raspberry),
+                  const SizedBox(width: 4),
+                  Text(
+                    '${promos.length} private deal${promos.length == 1 ? '' : 's'} from your inbox',
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: Colors.grey.shade500,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
+            );
+          }
+          final promo = promos[i - 1];
+          return DealCard(
+            promo: promo,
+            memberships: memberships,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),
             ),
           );
-        }
-        final promo = promos[i - 1];
-        return DealCard(
-          promo: promo,
-          memberships: memberships,
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),
-          ),
-        );
-      },
+        },
+      ),
     );
   }
 }
@@ -229,11 +264,13 @@ class _SavedTab extends StatelessWidget {
   final List<Promotion> promos;
   final Set<String> memberships;
   final SavedDealsService svc;
+  final Future<void> Function() onRefresh;
 
   const _SavedTab({
     required this.promos,
     required this.memberships,
     required this.svc,
+    required this.onRefresh,
   });
 
   @override
@@ -263,57 +300,61 @@ class _SavedTab extends StatelessWidget {
       );
     }
 
-    return ListView.builder(
-      padding: const EdgeInsets.only(top: 8, bottom: 24),
-      itemCount: promos.length + 1,
-      itemBuilder: (context, i) {
-        if (i == 0) {
-          return Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-            child: Text(
-              '${promos.length} saved',
-              style: TextStyle(
-                fontSize: 13,
-                color: Colors.grey.shade500,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          );
-        }
-        final promo = promos[i - 1];
-        final saved = svc.get(promo.id);
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            DealCard(
-              promo: promo,
-              memberships: memberships,
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),
-              ),
-            ),
-            if (saved?.remindAt != null)
-              Padding(
-                padding: const EdgeInsets.fromLTRB(28, 0, 16, 6),
-                child: Row(
-                  children: [
-                    const Icon(Icons.notifications_outlined, size: 12, color: Candy.lavender),
-                    const SizedBox(width: 4),
-                    Text(
-                      'Reminder ${_formatRemindAt(saved!.remindAt!)}',
-                      style: const TextStyle(
-                        fontSize: 11,
-                        color: Candy.lavender,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
+    return RefreshIndicator(
+      onRefresh: onRefresh,
+      child: ListView.builder(
+        padding: const EdgeInsets.only(top: 8, bottom: 24),
+        itemCount: promos.length + 1,
+        itemBuilder: (context, i) {
+          if (i == 0) {
+            return Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+              child: Text(
+                '${promos.length} saved',
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Colors.grey.shade500,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-          ],
-        );
-      },
+            );
+          }
+          final promo = promos[i - 1];
+          final saved = svc.get(promo.id);
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DealCard(
+                promo: promo,
+                memberships: memberships,
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),
+                ),
+              ),
+              if (saved?.remindAt != null)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(28, 0, 16, 6),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.notifications_outlined,
+                          size: 12, color: Candy.lavender),
+                      const SizedBox(width: 4),
+                      Text(
+                        'Reminder ${_formatRemindAt(saved!.remindAt!)}',
+                        style: const TextStyle(
+                          fontSize: 11,
+                          color: Candy.lavender,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+            ],
+          );
+        },
+      ),
     );
   }
 

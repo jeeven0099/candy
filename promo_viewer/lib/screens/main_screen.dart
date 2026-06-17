@@ -10,6 +10,7 @@ import 'for_you_screen.dart';
 import 'near_me_screen.dart';
 import 'online_screen.dart';
 import 'rewards_screen.dart';
+import 'search_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -24,12 +25,25 @@ class _MainScreenState extends State<MainScreen> {
   Position? _position;
   bool _locating = false;
   Set<String> _memberships = {};
+  DateTime? _lastUpdated;
   int _tab = 0;
 
   @override
   void initState() {
     super.initState();
+    NotificationService.tapNotifier.addListener(_onLateNotificationTap);
     _loadData();
+  }
+
+  @override
+  void dispose() {
+    NotificationService.tapNotifier.removeListener(_onLateNotificationTap);
+    super.dispose();
+  }
+
+  // Handles the race where _handleTap fires AFTER _loadData already completed.
+  void _onLateNotificationTap() {
+    if (_all.isNotEmpty) _handlePendingNotification(_all);
   }
 
   Future<void> _loadData() async {
@@ -43,6 +57,7 @@ class _MainScreenState extends State<MainScreen> {
       _all = promos;
       _memberships = memberships;
       _loading = false;
+      _lastUpdated = DateTime.now();
     });
     _fetchLocation();
     _handlePendingNotification(promos);
@@ -92,11 +107,33 @@ class _MainScreenState extends State<MainScreen> {
             position: _position,
             locating: _locating,
             memberships: _memberships,
+            lastUpdated: _lastUpdated,
             onRefresh: _loadData,
           ),
-          OnlineScreen(all: _all, memberships: _memberships),
-          RewardsScreen(all: _all, memberships: _memberships),
-          ForYouScreen(all: _all, memberships: _memberships),
+          OnlineScreen(
+            all: _all,
+            memberships: _memberships,
+            lastUpdated: _lastUpdated,
+            onRefresh: _loadData,
+          ),
+          RewardsScreen(
+            all: _all,
+            memberships: _memberships,
+            lastUpdated: _lastUpdated,
+            onRefresh: _loadData,
+          ),
+          ForYouScreen(
+            all: _all,
+            memberships: _memberships,
+            lastUpdated: _lastUpdated,
+            onRefresh: _loadData,
+          ),
+          SearchScreen(
+            all: _all,
+            memberships: _memberships,
+            lastUpdated: _lastUpdated,
+            onRefresh: _loadData,
+          ),
         ],
       ),
       bottomNavigationBar: NavigationBar(
@@ -129,6 +166,11 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.favorite_border),
             selectedIcon: Icon(Icons.favorite),
             label: 'For You',
+          ),
+          const NavigationDestination(
+            icon: Icon(Icons.search_outlined),
+            selectedIcon: Icon(Icons.search),
+            label: 'Search',
           ),
         ],
       ),
