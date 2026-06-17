@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "brand": "Starbucks",
     "category": "coffee",
@@ -215,21 +215,21 @@
     "category": "fashion",
     "url": "https://www2.hm.com/en_us/sale.html",
     "source_type": "sales_page",
-    "allowed_to_fetch": false
+    "allowed_to_fetch": true
   },
   {
     "brand": "Zara",
     "category": "fashion",
     "url": "https://www.zara.com/us/en/sale-l1314.html",
     "source_type": "sales_page",
-    "allowed_to_fetch": false
+    "allowed_to_fetch": true
   },
   {
     "brand": "Uniqlo",
     "category": "fashion",
     "url": "https://www.uniqlo.com/us/en/special-feature/sale",
     "source_type": "sales_page",
-    "allowed_to_fetch": false
+    "allowed_to_fetch": true
   },
   {
     "brand": "Forever 21",
@@ -658,7 +658,7 @@
     "category": "fashion",
     "url": "https://www.aritzia.com/us/en/sale",
     "source_type": "sales_page",
-    "allowed_to_fetch": false
+    "allowed_to_fetch": true
   },
   {
     "brand": "Francesca's",
