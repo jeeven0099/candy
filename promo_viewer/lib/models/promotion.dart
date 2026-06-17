@@ -191,6 +191,22 @@ class Promotion {
       }
     }
 
+    // ── Day-of-week factor ────────────────────────────────────────────────
+    if (validDays.isNotEmpty) {
+      const dayNames = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
+      const dayShort = ['mon','tue','wed','thu','fri','sat','sun'];
+      final todayIdx = DateTime.now().weekday - 1; // 0=Mon … 6=Sun
+      final normalized = validDays.map((d) => d.toLowerCase()).toList();
+      final validToday = normalized.any(
+        (d) => d == dayNames[todayIdx] || d == dayShort[todayIdx],
+      );
+      if (validToday) {
+        score += 5;   // deal is specifically on today — slight boost
+      } else {
+        score -= 20;  // deal not valid today — rank below general deals
+      }
+    }
+
     // ── Membership bonus ───────────────────────────────────────────────────
     if (isMember) {
       score += 25;
