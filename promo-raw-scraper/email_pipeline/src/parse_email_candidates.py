@@ -33,6 +33,21 @@ BRAND_AFFINITY_FILE = ROOT / "logs" / "brand_affinity.json"
 # Visibilities that warrant full Ollama extraction
 _OLLAMA_VISIBILITIES = {"private_user_offer", "member_offer"}
 
+# Suffixes that make a program name generic when the remainder equals the brand
+_GENERIC_SUFFIXES = re.compile(
+    r'\s+(?:rewards?|program|membership|points?|club|perks?|card|pass|plus|insider)\s*$',
+    re.IGNORECASE,
+)
+
+
+def _is_generic_program(brand: str, program: str) -> bool:
+    """Return True when program is just '{brand} Rewards' or similar filler name."""
+    brand_words = re.sub(r'[^a-z0-9]', ' ', brand.lower()).split()
+    stripped = _GENERIC_SUFFIXES.sub('', program.strip())
+    prog_words = re.sub(r'[^a-z0-9]', ' ', stripped.lower()).split()
+    return prog_words == brand_words
+
+
 # Known loyalty program suffixes — strict enough to avoid marketing copy
 _MEMBERSHIP_PROGRAMS = re.compile(
     r"\b([A-Z][A-Za-z&']{1,20}(?:\s[A-Za-z&']{1,20}){0,3}"
@@ -122,8 +137,10 @@ def extract_memberships_from_structured() -> list[dict]:
                 name = (promo.get("membership_name") or "").strip()
                 sent_at = promo.get("email_date") or ""
                 if name and name not in seen and len(name) > 3:
-                    # Skip generic placeholder names
+                    # Skip generic placeholder names and "{brand} Rewards"-style fillers
                     if any(bad in name.lower() for bad in ("unknown", "n/a", "yes", "membership", "rewards program")):
+                        continue
+                    if _is_generic_program(brand, name):
                         continue
                     seen.add(name)
                     found.append({
