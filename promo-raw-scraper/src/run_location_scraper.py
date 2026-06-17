@@ -7,7 +7,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional
 
+import urllib3
 import requests
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 from models import StoreLocation
 from source_loader import filter_sources, load_sources
@@ -23,6 +26,17 @@ CONTIGUOUS_US_BBOX = "24.396308,-124.848974,49.384358,-66.885444"
 
 # Seconds to wait before retrying after a 429 or 504
 _RETRY_DELAY = 30
+
+# Overpass-level filters to exclude obviously closed stores
+_CLOSED_FILTERS = (
+    '["disused"!="yes"]'
+    '["abandoned"!="yes"]'
+    '["shop"!="vacant"]'
+    '["shop"!="no"]'
+)
+
+# OSM key prefixes that mark a feature as closed/removed
+_CLOSED_KEY_PREFIXES = ("disused:", "abandoned:", "demolished:", "razed:", "was:")
 
 
 def slugify(value: str) -> str:
@@ -60,8 +74,8 @@ def build_overpass_query(
     return (
         f'[out:json][timeout:180];\n'
         f'(\n'
-        f'  node{tag_filters}({CONTIGUOUS_US_BBOX});\n'
-        f'  way{tag_filters}({CONTIGUOUS_US_BBOX});\n'
+        f'  node{tag_filters}{_CLOSED_FILTERS}({CONTIGUOUS_US_BBOX});\n'
+        f'  way{tag_filters}{_CLOSED_FILTERS}({CONTIGUOUS_US_BBOX});\n'
         f');\n'
         f'out center;'
     )
@@ -87,6 +101,7 @@ def fetch_overpass(
                 data={"data": query},
                 timeout=timeout,
                 headers={"User-Agent": "promo-scraper-location/1.0"},
+                verify=False,
             )
         except requests.Timeout:
             raise RuntimeError(f"Overpass API timed out for '{brand_name}'")
@@ -110,11 +125,25 @@ def fetch_overpass(
     raise RuntimeError(f"Overpass API failed for '{brand_name}' after retries")
 
 
+def _is_closed(tags: dict) -> bool:
+    """Return True if OSM tags indicate a permanently or temporarily closed store."""
+    if any(k.startswith(p) for k in tags for p in _CLOSED_KEY_PREFIXES):
+        return True
+    if tags.get("disused") == "yes" or tags.get("abandoned") == "yes":
+        return True
+    if tags.get("shop") in ("vacant", "no"):
+        return True
+    return False
+
+
 def _parse_elements(data: dict, brand: str) -> List[StoreLocation]:
     locations: List[StoreLocation] = []
 
     for element in data.get("elements", []):
         tags = element.get("tags", {})
+
+        if _is_closed(tags):
+            continue
 
         if element["type"] == "node":
             lat = element.get("lat")
