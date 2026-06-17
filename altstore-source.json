@@ -16,7 +16,11 @@
           "downloadURL": "https://github.com/jeeven0099/candy/releases/download/v2026.617.2042/candy.ipa",
           "size": 11269462
         }
-      ]
+      ],
+      "appPermissions": {
+        "entitlements": [],
+        "privacy": {}
+      }
     }
   ],
   "news": []

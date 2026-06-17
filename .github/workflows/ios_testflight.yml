@@ -47,7 +47,7 @@ jobs:
           cp -r promo_viewer/build/ios/Release-iphoneos/Runner.app \
                 promo_viewer/build/ios/ipa/Payload/
           cd promo_viewer/build/ios/ipa
-          zip -r candy.ipa Payload/
+          ditto -ck --sequesterRsrc Payload candy.ipa
 
       - name: Get IPA size
         id: size
@@ -90,7 +90,11 @@ jobs:
                     "downloadURL": f"https://github.com/{repo}/releases/download/v{version}/candy.ipa",
                     "size": size
                   }
-                ]
+                ],
+                "appPermissions": {
+                  "entitlements": [],
+                  "privacy": {}
+                }
               }
             ],
             "news": []
