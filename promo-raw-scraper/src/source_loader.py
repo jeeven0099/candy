@@ -25,7 +25,7 @@ class Source:
 
 def load_sources(path: str | Path = 'sources/urls.json') -> list[Source]:
     p = Path(path)
-    data = json.loads(p.read_text(encoding='utf-8'))
+    data = json.loads(p.read_text(encoding='utf-8-sig'))
     sources: list[Source] = []
     for item in data:
         sources.append(
