@@ -75,36 +75,59 @@ def _brand_affinity_score(brand: str, affinity: dict) -> float:
 # Sub-scores
 # ---------------------------------------------------------------------------
 
+_BOGO_RE      = re.compile(r'\bbogo\b|buy.one.get.one', re.IGNORECASE)
+_TRIAL_RE     = re.compile(r'\bfree\s+trial\b|\btrial\b|\d+\s+(?:months?|weeks?|days?)\s+free', re.IGNORECASE)
+_SITEWIDE_RE  = re.compile(r'\bsitewide\b', re.IGNORECASE)
+
+
 def value_score(promo: dict) -> float:
     dtype  = (promo.get("discount_type") or "").strip()
     dvalue = promo.get("discount_value")
+    title  = (promo.get("promotion_title") or "")
+    ptype  = (promo.get("promotion_type") or "").strip()
 
+    # ── Birthday reward ───────────────────────────────────────────────────────
+    if ptype == "birthday_reward" or promo.get("birthday_related"):
+        return 45.0
+
+    # ── BOGO (keyword in title, regardless of encoded discount_type) ──────────
+    if _BOGO_RE.search(title):
+        return 50.0
+
+    # ── Free item (but not a trial) ───────────────────────────────────────────
     if dtype == "free_item":
-        return 40.0
+        if _TRIAL_RE.search(title):
+            return 18.0   # free trial — valuable but requires sign-up
+        return 65.0
 
+    # ── Percentage off ────────────────────────────────────────────────────────
     if dtype == "percentage_off":
         pct = _extract_percent(dvalue)
-        if pct is None:  return 20.0
-        if pct >= 50:    return 38.0
-        if pct >= 30:    return 30.0
-        if pct >= 20:    return 24.0
+        if pct is None:
+            # Sitewide with no parseable % — still meaningful
+            return 15.0 if _SITEWIDE_RE.search(title) else 14.0
+        if pct >= 50:    return 45.0
+        if pct >= 30:    return 35.0
+        if pct >= 20:    return 26.0
         if pct >= 10:    return 18.0
-        return 12.0
+        return 10.0
 
+    # ── Dollar amount off ─────────────────────────────────────────────────────
     if dtype == "amount_off":
         amt = _extract_dollars(dvalue)
         if amt is None:  return 18.0
-        # $5→18  $10→20  $20→25  $50→33  cap at 35
-        return min(35.0, 16.0 + amt * 0.38)
+        if amt >= 50:    return 42.0
+        if amt >= 10:    return round(24.0 + (amt - 10.0) * (36.0 - 24.0) / (49.0 - 10.0), 1)
+        return round(max(10.0, 16.0 + amt * 0.4), 1)   # < $10
 
     if dtype == "sale_price":
-        return 18.0
+        return 16.0
 
     if dtype == "free_shipping":
-        return 12.0
+        return 10.0
 
     if dtype == "points":
-        return 8.0
+        return 5.0
 
     return 10.0
 
@@ -114,14 +137,14 @@ def fast_redeem_score(promo: dict) -> float:
     if not fr.get("eligible"):
         return 0.0
     return {
-        "copy_code_and_open_url": 20.0,
-        "copy_code":              16.0,
-        "open_url":               14.0,
-        "open_app":               12.0,
+        "copy_code_and_open_url": 12.0,
+        "copy_code":              10.0,
+        "open_app":                8.0,
         "open_rewards":            8.0,
-        "show_barcode_or_code":    8.0,
+        "show_barcode_or_code":    7.0,
+        "open_url":                6.0,
         "open_maps":               6.0,
-        "show_steps":              3.0,
+        "show_steps":              2.0,
     }.get(fr.get("action_type", ""), 0.0)
 
 
@@ -137,31 +160,33 @@ def confidence_score_pts(promo: dict) -> float:
 def freshness_score(promo: dict) -> float:
     today = date.today()
 
-    # Explicit future expiry is the strongest freshness signal
     end = (promo.get("end_date") or "").strip()
     if end:
         try:
-            if date.fromisoformat(end[:10]) >= today:
-                return 25.0
+            end_date = date.fromisoformat(end[:10])
+            delta = (end_date - today).days
+            if delta < 0:     return -15.0  # expired
+            if delta == 0:    return 18.0   # expires today — urgent
+            if delta == 1:    return 14.0   # expires tomorrow
+            if delta <= 3:    return 8.0    # expires in 2-3 days
+            return 4.0                      # known future end_date
         except ValueError:
             pass
 
-    # Fall back to scrape timestamp
+    # No end_date — fall back to scrape age
     scraped_raw = promo.get("scraped_at") or promo.get("checked_at") or ""
     if scraped_raw:
         try:
-            scraped_dt = datetime.fromisoformat(
-                scraped_raw.replace("Z", "+00:00")
-            )
+            scraped_dt = datetime.fromisoformat(scraped_raw.replace("Z", "+00:00"))
             days_old = (datetime.now(timezone.utc) - scraped_dt).days
-            if days_old == 0:   return 20.0
-            if days_old <= 7:   return 15.0
-            if days_old <= 14:  return 8.0
-            return -5.0
+            if days_old == 0:   return 5.0
+            if days_old <= 7:   return 2.0
+            if days_old <= 14:  return -5.0
+            return -15.0
         except ValueError:
             pass
 
-    return 5.0  # age unknown — neutral
+    return 0.0  # age unknown — neutral
 
 
 def preference_score(promo: dict, affinity: dict, user_prefs: dict) -> float:
