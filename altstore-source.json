@@ -10,11 +10,11 @@
       "iconURL": "https://raw.githubusercontent.com/jeeven0099/candy/master/promo_viewer/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png",
       "versions": [
         {
-          "version": "2026.619.1706",
+          "version": "2026.619.1841",
           "date": "2026-06-19",
           "localizedDescription": "Latest build",
-          "downloadURL": "https://github.com/jeeven0099/candy/releases/download/v2026.619.1706/candy.ipa",
-          "size": 11263955
+          "downloadURL": "https://github.com/jeeven0099/candy/releases/download/v2026.619.1841/candy.ipa",
+          "size": 11359184
         }
       ],
       "appPermissions": {
