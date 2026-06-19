@@ -68,6 +68,7 @@ flutter:
 
   assets:
     - assets/all_promotions.json
+    - assets/notification_candidates.json
     - assets/brand_locations.json
     - assets/user_memberships.json
     - assets/brand_affinity.json

@@ -12,6 +12,9 @@ void main() async {
   await TimezoneService.init();
   await NotificationService.init(navigatorKey: navigatorKey);
   await SavedDealsService.init();
+  // Fire-and-forget: process pipeline notification candidates on every launch.
+  // Rate limits and quiet hours are enforced inside the method.
+  NotificationService().processNotificationCandidates();
   runApp(const PromoViewerApp());
 }
 
