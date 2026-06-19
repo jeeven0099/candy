@@ -1,0 +1,467 @@
+{
+  "generated_at": "2026-06-19T19:32:50.549421+00:00",
+  "threshold": 75.0,
+  "total": 27,
+  "candidates": [
+    {
+      "promo_id": "microsoft_freeallaccessdigitalpassformicrosoftbuild",
+      "brand": "Microsoft",
+      "title": "Free All-Access Digital Pass for Microsoft Build",
+      "notify_score": 115.0,
+      "signal_groups": [
+        "context",
+        "personal",
+        "value"
+      ],
+      "notification_title": "Microsoft",
+      "notification_body": "Free: Free All-Access Digital Pass for Microsoft Build",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "end_date": null,
+      "website_domain": null,
+      "source_url": null
+    },
+    {
+      "promo_id": "mcdonalds_freelargefriesw1minpurchase",
+      "brand": "McDonald's",
+      "title": "Free Large Fries w/ $1 min. purchase",
+      "notify_score": 112.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "McDonald's",
+      "notification_body": "Free: Free Large Fries w/ $1 min. purchase",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "end_date": null,
+      "website_domain": "mcdonalds.com",
+      "source_url": "https://www.mcdonalds.com/us/en-us/deals.html"
+    },
+    {
+      "promo_id": "shein_flashsale",
+      "brand": "SHEIN",
+      "title": "Flash Sale",
+      "notify_score": 109.0,
+      "signal_groups": [
+        "context",
+        "personal"
+      ],
+      "notification_title": "SHEIN",
+      "notification_body": "Flash Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 38%",
+      "end_date": null,
+      "website_domain": "us.shein.com",
+      "source_url": "https://us.shein.com/flash-sale.html"
+    },
+    {
+      "promo_id": "foodpanda_60offfreedelivery",
+      "brand": "foodpanda",
+      "title": "60% off & free delivery",
+      "notify_score": 107.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "foodpanda",
+      "notification_body": "60% off & free delivery",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "end_date": null,
+      "website_domain": null,
+      "source_url": null
+    },
+    {
+      "promo_id": "eddiebauer_upto50offclearance",
+      "brand": "Eddie Bauer",
+      "title": "Up To 50% Off Clearance",
+      "notify_score": 104.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Eddie Bauer",
+      "notification_body": "Up To 50% Off Clearance",
+      "discount_type": "percentage_off",
+      "discount_value": "Up To 50%",
+      "end_date": null,
+      "website_domain": "eddiebauer.com",
+      "source_url": "https://www.eddiebauer.com/collections/clearance"
+    },
+    {
+      "promo_id": "fashionnova_80offsitewide",
+      "brand": "Fashion Nova",
+      "title": "80% OFF SITEWIDE",
+      "notify_score": 104.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Fashion Nova",
+      "notification_body": "80% OFF SITEWIDE",
+      "discount_type": "percentage_off",
+      "discount_value": "80%",
+      "end_date": null,
+      "website_domain": "fashionnova.com",
+      "source_url": "https://www.fashionnova.com/collections/sale"
+    },
+    {
+      "promo_id": "hottopic_upto70offthousandsofstyles7tees",
+      "brand": "Hot Topic",
+      "title": "Up To 70% Off Thousands Of Styles* + $7 Tees*",
+      "notify_score": 104.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Hot Topic",
+      "notification_body": "Up To 70% Off Thousands Of Styles* + $7 Tees*",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "end_date": null,
+      "website_domain": "hottopic.com",
+      "source_url": "https://www.hottopic.com/sale/"
+    },
+    {
+      "promo_id": "hottopic_upto50offbagsandbackpacks",
+      "brand": "Hot Topic",
+      "title": "Up To 50% Off Bags And Backpacks",
+      "notify_score": 104.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Hot Topic",
+      "notification_body": "Up To 50% Off Bags And Backpacks",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "end_date": null,
+      "website_domain": "hottopic.com",
+      "source_url": "https://www.hottopic.com/sale/"
+    },
+    {
+      "promo_id": "showpo_midyearsale",
+      "brand": "Showpo",
+      "title": "MID YEAR SALE",
+      "notify_score": 104.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Showpo",
+      "notification_body": "MID YEAR SALE",
+      "discount_type": "percentage_off",
+      "discount_value": "30-80%",
+      "end_date": null,
+      "website_domain": "showpo.com",
+      "source_url": "https://www.showpo.com/collections/sale"
+    },
+    {
+      "promo_id": "nastygal_newseason60off",
+      "brand": "Nasty Gal",
+      "title": "New Season 60% Off",
+      "notify_score": 102.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Nasty Gal",
+      "notification_body": "New Season 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "end_date": null,
+      "website_domain": "nastygal.com",
+      "source_url": "https://www.nastygal.com/categories/womens-sale"
+    },
+    {
+      "promo_id": "nastygal_summerhotlist70offselectedlines",
+      "brand": "Nasty Gal",
+      "title": "Summer Hot List 70% Off Selected Lines",
+      "notify_score": 102.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Nasty Gal",
+      "notification_body": "Summer Hot List 70% Off Selected Lines",
+      "discount_type": "percentage_off",
+      "discount_value": "70%",
+      "end_date": null,
+      "website_domain": "nastygal.com",
+      "source_url": "https://www.nastygal.com/categories/womens-sale"
+    },
+    {
+      "promo_id": "wendys_freeanysizefrywpurchase",
+      "brand": "Wendy's",
+      "title": "Free Any Size Fry w/ Purchase",
+      "notify_score": 101.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Wendy's",
+      "notification_body": "Free: Free Any Size Fry w/ Purchase",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "end_date": null,
+      "website_domain": "wendys.com",
+      "source_url": "https://www.wendys.com/offers-coupons"
+    },
+    {
+      "promo_id": "wayfair_bogo15offstorageorganization",
+      "brand": "Wayfair",
+      "title": "BOGO 15% OFF STORAGE & ORGANIZATION",
+      "notify_score": 99.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Wayfair",
+      "notification_body": "BOGO 15% OFF STORAGE & ORGANIZATION",
+      "discount_type": "percentage_off",
+      "discount_value": "15%",
+      "end_date": null,
+      "website_domain": "wayfair.com",
+      "source_url": "https://www.wayfair.com/daily-sales"
+    },
+    {
+      "promo_id": "culvers_freebirthdayandhalfbirthdaytreats",
+      "brand": "Culver's",
+      "title": "Free birthday and half-birthday treats",
+      "notify_score": 98.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Culver's",
+      "notification_body": "Birthday deal: Free birthday and half-birthday treats",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "end_date": null,
+      "website_domain": "culvers.com",
+      "source_url": "https://www.culvers.com/delicious-rewards"
+    },
+    {
+      "promo_id": "pacsun_lastchancesavingsupto70offmarkdowns",
+      "brand": "PacSun",
+      "title": "LAST CHANCE SAVINGS! UP TO 70% OFF MARKDOWNS",
+      "notify_score": 98.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "PacSun",
+      "notification_body": "LAST CHANCE SAVINGS! UP TO 70% OFF MARKDOWNS",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "end_date": null,
+      "website_domain": "pacsun.com",
+      "source_url": "https://www.pacsun.com/sale/"
+    },
+    {
+      "promo_id": "wayfair_upto50offbacktoschooldealweek",
+      "brand": "Wayfair",
+      "title": "UP TO 50% OFF | BACK-TO-SCHOOL DEAL WEEK",
+      "notify_score": 94.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Wayfair",
+      "notification_body": "UP TO 50% OFF | BACK-TO-SCHOOL DEAL WEEK",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "end_date": null,
+      "website_domain": "wayfair.com",
+      "source_url": "https://www.wayfair.com/daily-sales"
+    },
+    {
+      "promo_id": "williamssonoma_upto75offclearanceitems",
+      "brand": "Williams-Sonoma",
+      "title": "Up to 75% Off Clearance Items",
+      "notify_score": 94.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Williams-Sonoma",
+      "notification_body": "Up to 75% Off Clearance Items",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 75%",
+      "end_date": null,
+      "website_domain": "williams-sonoma.com",
+      "source_url": "https://www.williams-sonoma.com/shop/sale-special-offer/"
+    },
+    {
+      "promo_id": "einsteinbrosbagels_freeeggsandwichwithpurchaseforyourbirthday",
+      "brand": "Einstein Bros Bagels",
+      "title": "FREE Egg Sandwich with purchase for your birthday.",
+      "notify_score": 93.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Einstein Bros Bagels",
+      "notification_body": "Birthday deal: FREE Egg Sandwich with purchase for your birthday.",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "end_date": null,
+      "website_domain": "einsteinbros.com",
+      "source_url": "https://www.einsteinbros.com/rewards/"
+    },
+    {
+      "promo_id": "cariboucoffee_membersreceiveafreedrinkduringtheirbirthdayweek",
+      "brand": "Caribou Coffee",
+      "title": "Members receive a free drink during their birthday week",
+      "notify_score": 91.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Caribou Coffee",
+      "notification_body": "Birthday deal: Members receive a free drink during their birthday week",
+      "discount_type": "free_item",
+      "discount_value": null,
+      "end_date": null,
+      "website_domain": "cariboucoffee.com",
+      "source_url": "https://www.cariboucoffee.com/caribou-perks/"
+    },
+    {
+      "promo_id": "prettylittlething_50ormoreoffalmosteverything",
+      "brand": "PrettyLittleThing",
+      "title": "50% OR MORE OFF ALMOST EVERYTHING*",
+      "notify_score": 90.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "PrettyLittleThing",
+      "notification_body": "50% OR MORE OFF ALMOST EVERYTHING*",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "end_date": null,
+      "website_domain": "prettylittlething.us",
+      "source_url": "https://www.prettylittlething.us/categories/womens-sale"
+    },
+    {
+      "promo_id": "adoreme_semiannualsaleupto70off",
+      "brand": "Adore Me",
+      "title": "SEMI-ANNUAL SALE: Up to 70% OFF",
+      "notify_score": 88.0,
+      "signal_groups": [
+        "context",
+        "personal"
+      ],
+      "notification_title": "Adore Me",
+      "notification_body": "SEMI-ANNUAL SALE: Up to 70% OFF",
+      "discount_type": "percentage_off",
+      "discount_value": null,
+      "end_date": null,
+      "website_domain": "adoreme.com",
+      "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
+    },
+    {
+      "promo_id": "applebees_birthdayspecialoffer",
+      "brand": "Applebee's",
+      "title": "Birthday Special Offer",
+      "notify_score": 88.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Applebee's",
+      "notification_body": "Birthday deal: Birthday Special Offer",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "end_date": null,
+      "website_domain": "applebees.com",
+      "source_url": "https://www.applebees.com/en/specials"
+    },
+    {
+      "promo_id": "starbucks_greenmembersbirthdayreward",
+      "brand": "Starbucks",
+      "title": "Green members birthday reward",
+      "notify_score": 82.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Starbucks",
+      "notification_body": "Birthday deal: Green members birthday reward",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "end_date": null,
+      "website_domain": "starbucks.com",
+      "source_url": "https://www.starbucks.com/rewards"
+    },
+    {
+      "promo_id": "starbucks_goldmembersbirthdayreward",
+      "brand": "Starbucks",
+      "title": "Gold members birthday reward",
+      "notify_score": 82.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Starbucks",
+      "notification_body": "Birthday deal: Gold members birthday reward",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "end_date": null,
+      "website_domain": "starbucks.com",
+      "source_url": "https://www.starbucks.com/rewards"
+    },
+    {
+      "promo_id": "starbucks_reservemembersbirthdayreward",
+      "brand": "Starbucks",
+      "title": "Reserve members birthday reward",
+      "notify_score": 82.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Starbucks",
+      "notification_body": "Birthday deal: Reserve members birthday reward",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "end_date": null,
+      "website_domain": "starbucks.com",
+      "source_url": "https://www.starbucks.com/rewards"
+    },
+    {
+      "promo_id": "chipotle_birthdayrewardselection",
+      "brand": "Chipotle",
+      "title": "Birthday Reward Selection",
+      "notify_score": 80.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Chipotle",
+      "notification_body": "Birthday deal: Birthday Reward Selection",
+      "discount_type": "free_item",
+      "discount_value": null,
+      "end_date": null,
+      "website_domain": "chipotle.com",
+      "source_url": "https://www.chipotle.com/rewards"
+    },
+    {
+      "promo_id": "panerabread_birthdayrewardfreebakerytreatorbagel",
+      "brand": "Panera Bread",
+      "title": "Birthday Reward: Free Bakery Treat or Bagel",
+      "notify_score": 78.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Panera Bread",
+      "notification_body": "Birthday deal: Birthday Reward: Free Bakery Treat or Bagel",
+      "discount_type": "free_item",
+      "discount_value": "one free item",
+      "end_date": null,
+      "website_domain": "panerabread.com",
+      "source_url": "https://www.panerabread.com/en-us/mypanera/meet-mypanera.html"
+    }
+  ]
+}

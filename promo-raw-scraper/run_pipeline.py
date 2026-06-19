@@ -2,17 +2,18 @@
 Full web discount extraction pipeline.
 
 Steps:
-  1. run_scraper.py             -fetch brand pages, save raw text (1 file per brand)
-  2. inspect_raw_data.py        -scan raw text, build summary CSV
-  3. list_text_candidates.py    -deduplicate and rank candidates
-  4. parse_candidates.py        -LLM extraction -> structured_outputs/{brand}.json
-  5. normalize_promotions.py    -clean + deduplicate -> normalized_outputs/{brand}.json
-  6. generate_review_csv.py     -human-readable review -> logs/promotion_review.csv
-  7. generate_merged_json.py    -single merged JSON -> merged_promotions.json
-  8. merge_all_promotions.py    -web + email -> all_promotions.json
-  9. generate_fast_redemption.py-add fast_redemption to all_promotions.json
- 10. generate_scores.py         -add rank_base_score to all_promotions.json
- 11. copy to promo_viewer/assets/all_promotions.json
+  1.  run_scraper.py              -fetch brand pages, save raw text (1 file per brand)
+  2.  inspect_raw_data.py         -scan raw text, build summary CSV
+  3.  list_text_candidates.py     -deduplicate and rank candidates
+  4.  parse_candidates.py         -LLM extraction -> structured_outputs/{brand}.json
+  5.  normalize_promotions.py     -clean + deduplicate -> normalized_outputs/{brand}.json
+  6.  generate_review_csv.py      -human-readable review -> logs/promotion_review.csv
+  7.  generate_merged_json.py     -single merged JSON -> merged_promotions.json
+  8.  merge_all_promotions.py     -web + email -> all_promotions.json
+  9.  generate_fast_redemption.py -add fast_redemption to all_promotions.json
+ 10.  generate_scores.py          -add rank_base_score to all_promotions.json
+ 11.  generate_notifications.py   -notification_candidates.json -> Flutter assets
+ 12.  copy to promo_viewer/assets/all_promotions.json
 
 All output is written to logs/pipeline_<timestamp>.log in addition to the terminal.
 """
@@ -106,19 +107,19 @@ def main() -> None:
             if args.scrape_limit:
                 scrape_cmd += ["--limit", str(args.scrape_limit)]
 
-            rc = run(scrape_cmd, "Step 1/7 -Scraping brand pages", log_fh)
+            rc = run(scrape_cmd, "Step 1/12 -Scraping brand pages", log_fh)
             if rc != 0:
                 log_print(f"\n[ERROR] Scraper exited with code {rc}. Aborting.", log_fh)
                 sys.exit(rc)
 
         # Step 2: Inspect
-        rc = run([str(SRC / "inspect_raw_data.py")], "Step 2/7 -Inspecting raw text files", log_fh)
+        rc = run([str(SRC / "inspect_raw_data.py")], "Step 2/12 -Inspecting raw text files", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] inspect_raw_data exited with code {rc}. Aborting.", log_fh)
             sys.exit(rc)
 
         # Step 3: List candidates
-        rc = run([str(SRC / "list_text_candidates.py")], "Step 3/7 -Building candidate list", log_fh)
+        rc = run([str(SRC / "list_text_candidates.py")], "Step 3/12 -Building candidate list", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] list_text_candidates exited with code {rc}. Aborting.", log_fh)
             sys.exit(rc)
@@ -140,7 +141,7 @@ def main() -> None:
                 parse_cmd.append("--force")
             if args.brand:
                 parse_cmd += ["--brand", args.brand]
-            rc = run(parse_cmd, "Step 4/7 -Extracting promotions", log_fh)
+            rc = run(parse_cmd, "Step 4/12 -Extracting promotions", log_fh)
             if rc != 0:
                 log_print(f"\n[ERROR] parse_candidates exited with code {rc}.", log_fh)
                 sys.exit(rc)
@@ -149,7 +150,7 @@ def main() -> None:
         normalize_cmd = [str(SRC / "normalize_promotions.py")]
         if args.brand:
             normalize_cmd += ["--brand", args.brand]
-        rc = run(normalize_cmd, "Step 5/7 -Normalizing promotions", log_fh)
+        rc = run(normalize_cmd, "Step 5/12 -Normalizing promotions", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] normalize_promotions exited with code {rc}.", log_fh)
             sys.exit(rc)
@@ -158,7 +159,7 @@ def main() -> None:
         review_cmd = [str(SRC / "generate_review_csv.py")]
         if args.brand:
             review_cmd += ["--brand", args.brand]
-        rc = run(review_cmd, "Step 6/7 -Generating promotion review CSV", log_fh)
+        rc = run(review_cmd, "Step 6/12 -Generating promotion review CSV", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] generate_review_csv exited with code {rc}.", log_fh)
             sys.exit(rc)
@@ -187,14 +188,20 @@ def main() -> None:
             log_print(f"\n[ERROR] generate_scores exited with code {rc}.", log_fh)
             sys.exit(rc)
 
-        # Step 11: Copy to Flutter app assets
+        # Step 11: Compute notification candidates
+        rc = run([str(SRC / "generate_notifications.py")], "Step 11/12 -Computing notification candidates", log_fh)
+        if rc != 0:
+            log_print(f"\n[ERROR] generate_notifications exited with code {rc}.", log_fh)
+            sys.exit(rc)
+
+        # Step 12: Copy to Flutter app assets
         import shutil
         assets_dest = Path(__file__).resolve().parents[1] / "promo_viewer" / "assets" / "all_promotions.json"
         src_file = Path(__file__).resolve().parent / "all_promotions.json"
         if src_file.exists():
             shutil.copy2(src_file, assets_dest)
             size_kb = assets_dest.stat().st_size // 1024
-            log_print(f"\n[Step 11/11] Copied all_promotions.json to app assets ({size_kb} KB)", log_fh)
+            log_print(f"\n[Step 12/12] Copied all_promotions.json to app assets ({size_kb} KB)", log_fh)
         else:
             log_print(f"\n[ERROR] all_promotions.json not found at {src_file}", log_fh)
             sys.exit(1)
@@ -211,6 +218,7 @@ def main() -> None:
             f"  Review sheet     -> logs/promotion_review.csv\n"
             f"  Merged JSON      -> merged_promotions.json\n"
             f"  App JSON         -> promo_viewer/assets/all_promotions.json\n"
+            f"  Notifications    -> promo_viewer/assets/notification_candidates.json\n"
             f"  Log              -> {log_path.name}\n"
             f"{'='*60}\n"
         )
