@@ -2,13 +2,17 @@
 Full web discount extraction pipeline.
 
 Steps:
-  1. run_scraper.py          -fetch brand pages, save raw text (1 file per brand)
-  2. inspect_raw_data.py     -scan raw text, build summary CSV
-  3. list_text_candidates.py -deduplicate and rank candidates
-  4. parse_candidates.py     -LLM extraction -> structured_outputs/{brand}.json
-  5. normalize_promotions.py -clean + deduplicate -> normalized_outputs/{brand}.json
-  6. generate_review_csv.py  -human-readable review -> logs/promotion_review.csv
-  7. generate_merged_json.py -single merged JSON -> merged_promotions.json
+  1. run_scraper.py             -fetch brand pages, save raw text (1 file per brand)
+  2. inspect_raw_data.py        -scan raw text, build summary CSV
+  3. list_text_candidates.py    -deduplicate and rank candidates
+  4. parse_candidates.py        -LLM extraction -> structured_outputs/{brand}.json
+  5. normalize_promotions.py    -clean + deduplicate -> normalized_outputs/{brand}.json
+  6. generate_review_csv.py     -human-readable review -> logs/promotion_review.csv
+  7. generate_merged_json.py    -single merged JSON -> merged_promotions.json
+  8. merge_all_promotions.py    -web + email -> all_promotions.json
+  9. generate_fast_redemption.py-add fast_redemption to all_promotions.json
+ 10. generate_scores.py         -add rank_base_score to all_promotions.json
+ 11. copy to promo_viewer/assets/all_promotions.json
 
 All output is written to logs/pipeline_<timestamp>.log in addition to the terminal.
 """
@@ -160,10 +164,40 @@ def main() -> None:
             sys.exit(rc)
 
         # Step 7: Merged JSON
-        rc = run([str(SRC / "generate_merged_json.py")], "Step 7/7 -Generating merged promotions JSON", log_fh)
+        rc = run([str(SRC / "generate_merged_json.py")], "Step 7/11 -Generating merged promotions JSON", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] generate_merged_json exited with code {rc}.", log_fh)
             sys.exit(rc)
+
+        # Step 8: Merge web + email into all_promotions.json
+        rc = run([str(SRC / "merge_all_promotions.py")], "Step 8/11 -Merging web + email promotions", log_fh)
+        if rc != 0:
+            log_print(f"\n[ERROR] merge_all_promotions exited with code {rc}.", log_fh)
+            sys.exit(rc)
+
+        # Step 9: Add fast_redemption to all_promotions.json
+        rc = run([str(SRC / "generate_fast_redemption.py")], "Step 9/11 -Generating fast redemption data", log_fh)
+        if rc != 0:
+            log_print(f"\n[ERROR] generate_fast_redemption exited with code {rc}.", log_fh)
+            sys.exit(rc)
+
+        # Step 10: Add rank_base_score to all_promotions.json
+        rc = run([str(SRC / "generate_scores.py")], "Step 10/11 -Computing rank scores", log_fh)
+        if rc != 0:
+            log_print(f"\n[ERROR] generate_scores exited with code {rc}.", log_fh)
+            sys.exit(rc)
+
+        # Step 11: Copy to Flutter app assets
+        import shutil
+        assets_dest = Path(__file__).resolve().parents[1] / "promo_viewer" / "assets" / "all_promotions.json"
+        src_file = Path(__file__).resolve().parent / "all_promotions.json"
+        if src_file.exists():
+            shutil.copy2(src_file, assets_dest)
+            size_kb = assets_dest.stat().st_size // 1024
+            log_print(f"\n[Step 11/11] Copied all_promotions.json to app assets ({size_kb} KB)", log_fh)
+        else:
+            log_print(f"\n[ERROR] all_promotions.json not found at {src_file}", log_fh)
+            sys.exit(1)
 
         write_run_summary(log_path, log_fh)
 
@@ -176,6 +210,7 @@ def main() -> None:
             f"  Clean outputs    -> normalized_outputs/\n"
             f"  Review sheet     -> logs/promotion_review.csv\n"
             f"  Merged JSON      -> merged_promotions.json\n"
+            f"  App JSON         -> promo_viewer/assets/all_promotions.json\n"
             f"  Log              -> {log_path.name}\n"
             f"{'='*60}\n"
         )
