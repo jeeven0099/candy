@@ -164,15 +164,15 @@
   {
     "brand": "Kohl's",
     "category": "retail",
-    "url": "https://www.kohls.com/feature/rewards.jsp",
-    "source_type": "rewards_page",
+    "url": "https://www.kohls.com/sale/",
+    "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Macy's",
     "category": "retail",
-    "url": "https://www.macys.com/p/star-rewards/",
-    "source_type": "rewards_page",
+    "url": "https://www.macys.com/shop/sale",
+    "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
@@ -423,8 +423,8 @@
   {
     "brand": "Belk",
     "category": "retail",
-    "url": "https://www.belk.com/sale/",
-    "source_type": "sales_page",
+    "url": "https://www.belk.com/deals/",
+    "source_type": "deals_page",
     "allowed_to_fetch": true
   },
   {
@@ -1911,7 +1911,7 @@
   {
     "brand": "GNC",
     "category": "pharmacy",
-    "url": "https://www.gnc.com/deals",
+    "url": "https://www.gnc.com/c/promotions-specials",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },

@@ -29,8 +29,13 @@ def utc_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-# Errors where requests fails but a real browser may succeed
-_PLAYWRIGHT_RETRY_ERRORS = {"timeout", "non_200_response:406", "non_200_response:307"}
+# Errors where requests fails but a real browser with stealth may succeed
+_PLAYWRIGHT_RETRY_ERRORS = {
+    "timeout",
+    "non_200_response:403",  # actively blocked — stealth Playwright often gets through
+    "non_200_response:406",
+    "non_200_response:307",
+}
 
 
 def _try_playwright(url: str, session: PlaywrightSession | None = None) -> tuple | None:
@@ -165,6 +170,10 @@ def process_source(source, dry_run: bool = False, *,
 
     bad_page_reason = detect_bad_page(title, text, fetch.final_url)
     if bad_page_reason:
+        # In pass 1 (requests_only), queue for stealth Playwright rather than hard-fail
+        if requests_only and fetch_method == 'requests':
+            return {'brand': source.brand, 'category': source.category,
+                    'url': source.url, 'status': 'needs_playwright', 'scraped_at': scraped_at}
         return {
             'brand': source.brand,
             'category': source.category,

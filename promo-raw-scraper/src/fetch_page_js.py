@@ -9,6 +9,16 @@ _CHROMIUM_UA = (
     "Chrome/124.0.0.0 Safari/537.36"
 )
 
+try:
+    from playwright_stealth import stealth_sync as _stealth
+except ImportError:
+    _stealth = None
+
+
+def _apply_stealth(page) -> None:
+    if _stealth is not None:
+        _stealth(page)
+
 
 class PlaywrightSession:
     """
@@ -47,6 +57,7 @@ class PlaywrightSession:
                 viewport={"width": 1280, "height": 800},
             )
             page = context.new_page()
+            _apply_stealth(page)
             response = page.goto(url, wait_until="domcontentloaded", timeout=self.timeout_ms)
             try:
                 page.wait_for_load_state("networkidle", timeout=10_000)
@@ -94,6 +105,7 @@ def fetch_page_js(url: str, timeout_ms: int = 30_000) -> FetchResult:
                 java_script_enabled=True,
             )
             page = context.new_page()
+            _apply_stealth(page)
 
             response = page.goto(url, wait_until="domcontentloaded", timeout=timeout_ms)
 
