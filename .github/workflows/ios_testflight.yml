@@ -20,7 +20,7 @@ jobs:
         id: meta
         run: |
           VERSION=$(python3 -c "from datetime import datetime,timezone; n=datetime.now(timezone.utc); print(f'{n.year}.{n.month*100+n.day}.{n.hour*100+n.minute}')")
-          DATE=$(date -u +"%Y-%m-%d")
+          DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "date=$DATE" >> $GITHUB_OUTPUT
 
@@ -85,8 +85,10 @@ jobs:
                 "name": "Candy",
                 "bundleIdentifier": "com.promoviewer.promoViewer",
                 "developerName": "Jeeven",
+                "subtitle": "Deals near you and online",
                 "localizedDescription": "Find the best deals near you and online.",
                 "iconURL": f"https://raw.githubusercontent.com/{repo}/master/promo_viewer/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png",
+                "screenshots": [],
                 "versions": [
                   {
                     "version": version,
@@ -98,7 +100,9 @@ jobs:
                 ],
                 "appPermissions": {
                   "entitlements": [],
-                  "privacy": {}
+                  "privacy": {
+                    "NSLocationWhenInUseUsageDescription": "Used to find deals near your current location."
+                  }
                 }
               }
             ],
