@@ -178,7 +178,7 @@ class _ForYouScreenState extends State<ForYouScreen> {
 // Private tab — email-sourced deals
 // ---------------------------------------------------------------------------
 
-class _PrivateTab extends StatelessWidget {
+class _PrivateTab extends StatefulWidget {
   final List<Promotion> promos;
   final Set<String> memberships;
   final Future<void> Function() onRefresh;
@@ -190,8 +190,20 @@ class _PrivateTab extends StatelessWidget {
   });
 
   @override
+  State<_PrivateTab> createState() => _PrivateTabState();
+}
+
+class _PrivateTabState extends State<_PrivateTab> {
+  static const _kLimit = 10;
+  bool _showAll = false;
+
+  @override
   Widget build(BuildContext context) {
-    if (promos.isEmpty) {
+    final all = widget.promos;
+    final display = (_showAll || all.length <= _kLimit) ? all : all.sublist(0, _kLimit);
+    final showSeeAll = !_showAll && all.length > _kLimit;
+
+    if (all.isEmpty) {
       return Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -217,34 +229,54 @@ class _PrivateTab extends StatelessWidget {
     }
 
     return RefreshIndicator(
-      onRefresh: onRefresh,
+      onRefresh: widget.onRefresh,
       child: ListView.builder(
         padding: const EdgeInsets.only(top: 8, bottom: 24),
-        itemCount: promos.length + 1,
+        itemCount: display.length + 1 + (showSeeAll ? 1 : 0),
         itemBuilder: (context, i) {
           if (i == 0) {
+            final label = showSeeAll
+                ? '${display.length} of ${all.length} private deals from your inbox'
+                : '${all.length} private deal${all.length == 1 ? '' : 's'} from your inbox';
             return Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
               child: Row(
                 children: [
                   const Icon(Icons.lock_outline, size: 13, color: Candy.raspberry),
                   const SizedBox(width: 4),
-                  Text(
-                    '${promos.length} private deal${promos.length == 1 ? '' : 's'} from your inbox',
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.grey.shade500,
-                      fontWeight: FontWeight.w500,
+                  Expanded(
+                    child: Text(
+                      label,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.grey.shade500,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ],
               ),
             );
           }
-          final promo = promos[i - 1];
+          if (showSeeAll && i == display.length + 1) {
+            return Padding(
+              padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+              child: OutlinedButton(
+                onPressed: () => setState(() => _showAll = true),
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: Candy.raspberry,
+                  side: const BorderSide(color: Candy.raspberry),
+                  minimumSize: const Size(double.infinity, 44),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                child: Text('See all ${all.length} private deals'),
+              ),
+            );
+          }
+          final promo = display[i - 1];
           return DealCard(
             promo: promo,
-            memberships: memberships,
+            memberships: widget.memberships,
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),

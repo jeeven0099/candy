@@ -96,7 +96,14 @@ class DealCard extends StatelessWidget {
                 spacing: 6,
                 runSpacing: 4,
                 children: [
-                  if (promo.promotionType == 'online_only')
+                  if (promo.isLocal && promo.neighborhood != null)
+                    _Tag(
+                      icon: Icons.storefront,
+                      label: 'Local · ${promo.neighborhood}',
+                      color: const Color(0xFF2E7D32),
+                      filled: true,
+                    )
+                  else if (promo.promotionType == 'online_only')
                     _Tag(
                       icon: Icons.language,
                       label: 'Online',
@@ -141,7 +148,7 @@ class DealCard extends StatelessWidget {
               if (promo.fastRedemption != null &&
                   promo.fastRedemption!.eligible) ...[
                 const SizedBox(height: 12),
-                FastRedeemButton(fr: promo.fastRedemption!, brand: promo.brand),
+                FastRedeemButton(fr: promo.fastRedemption!, brand: promo.brand, promoId: promo.id),
               ],
             ],
           ),

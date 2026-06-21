@@ -1,10 +1,12 @@
 """
-merge_all_promotions.py — Merge web and email promotions into a single
-all_promotions.json for the Flutter app.
+merge_all_promotions.py — Merge web, email, and local neighborhood promotions
+into a single all_promotions.json for the Flutter app.
 
 Deduplication key: (brand_slug, title_slug, discount_type)
 When duplicates exist, keep the one with higher confidence_score.
-Adds a 'source' field: 'web' | 'email' | 'both'
+Adds a 'source' field: 'web' | 'email' | 'both' | 'local_neighborhood'
+Local promotions are kept separate — they don't dedup against web/email since
+local businesses are distinct from national brands.
 """
 from __future__ import annotations
 
@@ -16,6 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 WEB_FILE   = ROOT / "merged_promotions.json"
 EMAIL_FILE = ROOT / "email_promotions.json"
+LOCAL_FILE = ROOT / "local_promotions.json"
 OUTPUT     = ROOT / "all_promotions.json"
 
 
@@ -44,7 +47,7 @@ def load(path: Path, source_tag: str) -> list[dict]:
     return promos
 
 
-def merge(web: list[dict], email: list[dict]) -> list[dict]:
+def merge_national(web: list[dict], email: list[dict]) -> list[dict]:
     index: dict[str, dict] = {}
 
     for promo in web:
@@ -56,7 +59,6 @@ def merge(web: list[dict], email: list[dict]) -> list[dict]:
         key = dedup_key(promo)
         if key in index:
             existing = index[key]
-            # Keep higher confidence; mark as sourced from both
             if (promo.get("confidence_score") or 0) >= (existing.get("confidence_score") or 0):
                 promo["source"] = "both"
                 index[key] = promo
@@ -70,24 +72,35 @@ def merge(web: list[dict], email: list[dict]) -> list[dict]:
 
 
 _MIN_CONFIDENCE = 0.65
+_MIN_LOCAL_CONFIDENCE = 0.85  # stricter gate for local deals
 
 
 def main() -> None:
     print("Loading promotions...")
     web   = load(WEB_FILE, "web")
     email = load(EMAIL_FILE, "email")
+    local = load(LOCAL_FILE, "local_neighborhood")
 
-    merged = merge(web, email)
+    national = merge_national(web, email)
 
-    # Drop anything below the confidence threshold
-    before = len(merged)
-    merged = [p for p in merged if (p.get("confidence_score") or 0) >= _MIN_CONFIDENCE]
-    dropped = before - len(merged)
+    # Drop low-confidence national promotions
+    before = len(national)
+    national = [p for p in national if (p.get("confidence_score") or 0) >= _MIN_CONFIDENCE]
+    dropped_national = before - len(national)
+
+    # Drop low-confidence local promotions (stricter threshold already applied by scraper,
+    # but enforce again here in case the file was manually edited)
+    before_local = len(local)
+    local = [p for p in local if (p.get("confidence_score") or 0) >= _MIN_LOCAL_CONFIDENCE]
+    dropped_local = before_local - len(local)
+
+    merged = national + local
 
     # Stats
-    by_source = {"web": 0, "email": 0, "both": 0}
+    by_source: dict[str, int] = {}
     for p in merged:
-        by_source[p.get("source", "web")] += 1
+        src = p.get("source", "web")
+        by_source[src] = by_source.get(src, 0) + 1
 
     output = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -97,10 +110,10 @@ def main() -> None:
     OUTPUT.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")
 
     print(f"\nMerged {len(merged)} promotions -> {OUTPUT.name}")
-    print(f"  Dropped (confidence < {_MIN_CONFIDENCE:.0%}): {dropped}")
-    print(f"  Web only  : {by_source['web']}")
-    print(f"  Email only: {by_source['email']}")
-    print(f"  Both      : {by_source['both']}")
+    print(f"  Dropped national (confidence < {_MIN_CONFIDENCE:.0%}): {dropped_national}")
+    print(f"  Dropped local    (confidence < {_MIN_LOCAL_CONFIDENCE:.0%}): {dropped_local}")
+    for src, count in sorted(by_source.items()):
+        print(f"  {src}: {count}")
 
 
 if __name__ == "__main__":

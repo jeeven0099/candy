@@ -5,6 +5,8 @@ import '../utils/format_utils.dart';
 import '../widgets/deal_card.dart';
 import 'deal_detail_screen.dart';
 
+const _kDefaultLimit = 10;
+
 class RewardsScreen extends StatefulWidget {
   final List<Promotion> all;
   final Set<String> memberships;
@@ -25,6 +27,7 @@ class RewardsScreen extends StatefulWidget {
 
 class _RewardsScreenState extends State<RewardsScreen> {
   String _query = '';
+  bool _showAll = false;
   final _searchController = TextEditingController();
 
   @override
@@ -42,13 +45,21 @@ class _RewardsScreenState extends State<RewardsScreen> {
         (memberName.isNotEmpty && (m.contains(memberName) || memberName.contains(m))));
   }
 
+  // Quality gate for the curated rewards feed.
+  // Confirmed memberships and free-to-join programs always make the cut.
+  bool _isQualityReward(Promotion p) {
+    if (_hasMembership(p)) return true;
+    final cost = (p.membershipCost ?? '').toLowerCase();
+    if (cost.isEmpty || cost.contains('free')) return true;
+    if (p.discountType == 'free_item') return true;
+    return p.rankScore(isMember: false) >= 60;
+  }
+
   List<Promotion> get _filtered {
     final q = _query.toLowerCase();
 
     return widget.all.where((p) {
-      // Rewards tab: loyalty programs and membership benefits only
       if (p.promotionType != 'reward' && p.promotionType != 'membership_benefit') return false;
-      // Finance/credit card "rewards" are not loyalty programs
       if (p.category == 'finance') return false;
       if (q.isNotEmpty &&
           !p.brand.toLowerCase().contains(q) &&
@@ -61,9 +72,16 @@ class _RewardsScreenState extends State<RewardsScreen> {
             .compareTo(a.rankScore(isMember: _hasMembership(a))));
   }
 
+  List<Promotion> _toDisplay(List<Promotion> base) {
+    if (_query.isNotEmpty || _showAll) return base;
+    final quality = base.where(_isQualityReward).toList();
+    return quality.length > _kDefaultLimit ? quality.sublist(0, _kDefaultLimit) : quality;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final promos = _filtered;
+    final all = _filtered;
+    final display = _toDisplay(all);
 
     return Scaffold(
       backgroundColor: Candy.cream,
@@ -72,7 +90,7 @@ class _RewardsScreenState extends State<RewardsScreen> {
           children: [
             _buildHeader(),
             const Divider(height: 1),
-            Expanded(child: _buildBody(promos)),
+            Expanded(child: _buildBody(display, all)),
           ],
         ),
       ),
@@ -142,23 +160,20 @@ class _RewardsScreenState extends State<RewardsScreen> {
             shape: WidgetStatePropertyAll(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             ),
-            padding: const WidgetStatePropertyAll(
-              EdgeInsets.symmetric(horizontal: 16),
-            ),
+            padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 16)),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildBody(List<Promotion> promos) {
-    if (promos.isEmpty) {
+  Widget _buildBody(List<Promotion> display, List<Promotion> all) {
+    if (display.isEmpty) {
       return Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.card_membership_outlined,
-                size: 48, color: Colors.grey.shade300),
+            Icon(Icons.card_membership_outlined, size: 48, color: Colors.grey.shade300),
             const SizedBox(height: 12),
             Text('No rewards programs found',
                 style: TextStyle(color: Colors.grey.shade500, fontSize: 16)),
@@ -167,26 +182,41 @@ class _RewardsScreenState extends State<RewardsScreen> {
       );
     }
 
+    final isCurated = _query.isEmpty && !_showAll;
+    final showSeeAll = isCurated && display.length < all.length;
+
     return RefreshIndicator(
       onRefresh: widget.onRefresh,
       child: ListView.builder(
         padding: const EdgeInsets.only(top: 8, bottom: 24),
-        itemCount: promos.length + 1,
+        itemCount: display.length + 1 + (showSeeAll ? 1 : 0),
         itemBuilder: (context, i) {
           if (i == 0) {
+            final label = isCurated
+                ? '${display.length} of ${all.length} programs'
+                : '${display.length} program${display.length == 1 ? '' : 's'}';
             return Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-              child: Text(
-                '${promos.length} programs',
-                style: TextStyle(
-                  fontSize: 13,
-                  color: Colors.grey.shade500,
-                  fontWeight: FontWeight.w500,
+              child: Text(label,
+                  style: TextStyle(fontSize: 13, color: Colors.grey.shade500, fontWeight: FontWeight.w500)),
+            );
+          }
+          if (showSeeAll && i == display.length + 1) {
+            return Padding(
+              padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+              child: OutlinedButton(
+                onPressed: () => setState(() => _showAll = true),
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: Candy.raspberry,
+                  side: const BorderSide(color: Candy.raspberry),
+                  minimumSize: const Size(double.infinity, 44),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 ),
+                child: Text('See all ${all.length} programs'),
               ),
             );
           }
-          final promo = promos[i - 1];
+          final promo = display[i - 1];
           return DealCard(
             promo: promo,
             memberships: widget.memberships,

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/fast_redemption.dart';
+import '../services/interaction_service.dart';
 import '../theme/candy_colors.dart';
 
 class FastRedeemButton extends StatelessWidget {
   final FastRedemption fr;
   final String brand;
-  const FastRedeemButton({super.key, required this.fr, required this.brand});
+  final String promoId;
+  const FastRedeemButton({super.key, required this.fr, required this.brand, required this.promoId});
 
   // ── Styling ────────────────────────────────────────────────────────────────
 
@@ -29,6 +31,7 @@ class FastRedeemButton extends StatelessWidget {
   // ── Actions ────────────────────────────────────────────────────────────────
 
   Future<void> _execute(BuildContext ctx) async {
+    InteractionService().recordFastRedeem(promoId);
     switch (fr.actionType) {
       case 'copy_code':
         await _copyCode(ctx);

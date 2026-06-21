@@ -87,12 +87,12 @@ class LocationService {
   ) async {
     final locations = await _loadLocations();
     for (final p in promos) {
-      p.distanceKm = nearestKm(
-        p.brand,
-        position.latitude,
-        position.longitude,
-        locations,
-      );
+      if (p.isLocal && p.lat != null && p.lon != null) {
+        // Local businesses use their embedded neighborhood coordinates.
+        p.distanceKm = haversineKm(position.latitude, position.longitude, p.lat!, p.lon!);
+      } else {
+        p.distanceKm = nearestKm(p.brand, position.latitude, position.longitude, locations);
+      }
     }
   }
 

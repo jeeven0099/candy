@@ -1,0 +1,32 @@
+[
+  {
+    "neighborhood": "Hayes Valley",
+    "city": "San Francisco",
+    "state": "CA",
+    "lat": 37.7762,
+    "lon": -122.4232,
+    "enabled": true,
+    "directories": [
+      {
+        "name": "Explore Hayes Valley - Shopping",
+        "url": "https://www.explorehayesvalley.com/shopping/",
+        "category_hint": "retail"
+      },
+      {
+        "name": "Explore Hayes Valley - Dining",
+        "url": "https://www.explorehayesvalley.com/restaurants-cafes/",
+        "category_hint": "food"
+      },
+      {
+        "name": "Explore Hayes Valley - Services",
+        "url": "https://www.explorehayesvalley.com/services-wellness/",
+        "category_hint": "services"
+      },
+      {
+        "name": "HVNA Shop Local",
+        "url": "https://www.hvna.org/local-business-directory/",
+        "category_hint": "general"
+      }
+    ]
+  }
+]
