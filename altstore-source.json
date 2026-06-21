@@ -6,20 +6,24 @@
       "name": "Candy",
       "bundleIdentifier": "com.promoviewer.promoViewer",
       "developerName": "Jeeven",
+      "subtitle": "Deals near you and online",
       "localizedDescription": "Find the best deals near you and online.",
       "iconURL": "https://raw.githubusercontent.com/jeeven0099/candy/master/promo_viewer/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png",
+      "screenshots": [],
       "versions": [
         {
-          "version": "2026.621.1757",
-          "date": "2026-06-21",
+          "version": "2026.621.1816",
+          "date": "2026-06-21T18:16:19Z",
           "localizedDescription": "Latest build",
-          "downloadURL": "https://github.com/jeeven0099/candy/releases/download/v2026.621.1757/candy.ipa",
-          "size": 11390941
+          "downloadURL": "https://github.com/jeeven0099/candy/releases/download/v2026.621.1816/candy.ipa",
+          "size": 11390945
         }
       ],
       "appPermissions": {
         "entitlements": [],
-        "privacy": {}
+        "privacy": {
+          "NSLocationWhenInUseUsageDescription": "Used to find deals near your current location."
+        }
       }
     }
   ],
