@@ -3,6 +3,20 @@ $ErrorActionPreference = "Stop"
 $root     = "C:\Users\user\Downloads\promo-raw-scraper"
 $python   = "C:\Python314\python.exe"
 $pipeline = "$root\promo-raw-scraper\run_pipeline.py"
+$lockFile = "$root\promo-raw-scraper\.pipeline.lock"
+
+# Prevent concurrent runs
+if (Test-Path $lockFile) {
+    $lockPid = Get-Content $lockFile -ErrorAction SilentlyContinue
+    $running = $lockPid -and (Get-Process -Id $lockPid -ErrorAction SilentlyContinue)
+    if ($running) {
+        Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Pipeline already running (PID $lockPid). Exiting."
+        exit 0
+    }
+    Remove-Item $lockFile -Force  # stale lock from a crashed run
+}
+$PID | Out-File $lockFile -Force
+try {
 $assets   = "$root\promo_viewer\assets"
 
 # Start Ollama if it isn't already running
@@ -15,9 +29,10 @@ if (-not $ollamaRunning) {
 
 Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Starting pipeline..."
 & $python $pipeline --ollama-model qwen2.5:14b --ollama-timeout 2700
-if (-not $?) { Write-Host "[ERROR] Pipeline failed"; exit 1 }
+if (-not $?) { throw "Pipeline failed - check run_pipeline.py output above" }
 
 Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Running email pipeline..."
+$env:SSLKEYLOGFILE = $null  # Avast sets this to a kernel device path; Python 3.14 can't open it
 & $python "$root\promo-raw-scraper\email_pipeline\src\run_email_pipeline.py" --env-file "$root\promo-raw-scraper\.env.email" --ollama-model qwen2.5:14b --ollama-timeout 2700 --gmail-query "category:promotions newer_than:1d"
 if (-not $?) { Write-Host "[WARN] Email pipeline failed - continuing" }
 
@@ -33,13 +48,18 @@ Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Adding fast redemption actions..."
 Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Computing rank scores..."
 & $python "$root\promo-raw-scraper\src\generate_scores.py"
 
+Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Computing notification candidates..."
+& $python "$root\promo-raw-scraper\src\generate_notifications.py"
+if (-not $?) { Write-Host "[WARN] Notification generation had errors - continuing" }
+
 Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Downloading brand logos..."
 & $python "$root\promo-raw-scraper\src\download_logos.py"
 if (-not $?) { Write-Host "[WARN] Logo download had failures - continuing" }
 
 Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Copying assets..."
-Copy-Item "$root\promo-raw-scraper\all_promotions.json"     "$assets\all_promotions.json"     -Force
-Copy-Item "$root\promo-raw-scraper\brand_locations.json"    "$assets\brand_locations.json"    -Force
+Copy-Item "$root\promo-raw-scraper\all_promotions.json"              "$assets\all_promotions.json"              -Force
+Copy-Item "$root\promo-raw-scraper\brand_locations.json"             "$assets\brand_locations.json"             -Force
+Copy-Item "$root\promo-raw-scraper\notification_candidates.json"     "$assets\notification_candidates.json"     -Force -ErrorAction SilentlyContinue
 if (Test-Path "$root\promo-raw-scraper\email_pipeline\logs\user_memberships.json") {
     Copy-Item "$root\promo-raw-scraper\email_pipeline\logs\user_memberships.json" "$assets\user_memberships.json" -Force
 }
@@ -56,3 +76,6 @@ Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Running quality report..."
 if (-not $?) { Write-Host "[WARN] Quality report had errors - continuing" }
 
 Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Done."
+} finally {
+    Remove-Item $lockFile -ErrorAction SilentlyContinue
+}

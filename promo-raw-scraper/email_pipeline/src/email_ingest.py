@@ -23,6 +23,11 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Python 3.14 honours SSLKEYLOGFILE at context creation time. Avast sets this
+# env var to a kernel device path it owns, which causes PermissionError when
+# Python tries to open it as a key-log file. Clear it before any SSL import.
+os.environ.pop("SSLKEYLOGFILE", None)
+
 # Allow emoji and non-ASCII in subjects on Windows consoles
 if hasattr(sys.stdout, "buffer"):
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")

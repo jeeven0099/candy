@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../models/promotion.dart';
+import '../services/interaction_service.dart';
 import '../theme/candy_colors.dart';
 import '../utils/deal_grouper.dart';
+import '../utils/feed_ranker.dart';
 import '../utils/format_utils.dart';
 import '../widgets/deal_card.dart';
 import '../widgets/grocery_group_card.dart';
@@ -46,7 +48,10 @@ class OnlineScreen extends StatefulWidget {
 class _OnlineScreenState extends State<OnlineScreen> {
   String _query = '';
   String _selectedCategory = 'All';
+  bool _showAll = false;
   final _searchController = TextEditingController();
+  final _svc = InteractionService();
+  final _markedSeen = <String>{};
 
   @override
   void dispose() {
@@ -63,21 +68,29 @@ class _OnlineScreenState extends State<OnlineScreen> {
         (memberName.isNotEmpty && (m.contains(memberName) || memberName.contains(m))));
   }
 
+  bool _isQualityDeal(Promotion p) {
+    if (p.confidenceScore < 0.75) return false;
+    if (p.discountType == 'points') return false;
+    if (p.discountType == 'free_shipping') return false;
+    if (p.requiresMembership) {
+      final cost = (p.membershipCost ?? '').toLowerCase();
+      if (cost.contains('paid') && !_hasMembership(p)) return false;
+    }
+    return p.rankScore(isMember: _hasMembership(p)) >= 65;
+  }
+
   List<Promotion> get _filtered {
     final cats = _selectedCategory == 'All' ? null : _categoryMap[_selectedCategory];
     final q = _query.toLowerCase();
 
     return widget.all.where((p) {
       if (!p.isActive) return false;
-      // Rewards programs belong in the Rewards tab
       if (p.promotionType == 'reward' || p.promotionType == 'membership_benefit') return false;
-      // Online tab: online redemption, or show_code with online_only scope
       final isOnline = p.redemptionMethod == 'online' ||
           (p.redemptionMethod == 'show_code' && p.dealScope == 'online_only');
       if (!isOnline) return false;
-      // Email-only deals are private (from personal inbox) — belong in For You only.
-      // source='both' means the deal also exists on the public web, so it stays.
       if (p.source == 'email') return false;
+      if (p.isLocal) return false;
       if (cats != null && !cats.contains(p.category.toLowerCase())) return false;
       if (q.isNotEmpty &&
           !p.brand.toLowerCase().contains(q) &&
@@ -90,9 +103,28 @@ class _OnlineScreenState extends State<OnlineScreen> {
             .compareTo(a.rankScore(isMember: _hasMembership(a))));
   }
 
+  // Search bypasses cap. Browsing shows curated top 10 with personalized scoring.
+  List<Promotion> _toDisplay(List<Promotion> base) {
+    if (_query.isNotEmpty || _showAll) return base;
+    final quality = base.where(_isQualityDeal).toList();
+    return selectTopDeals(quality, _svc, getIsMember: _hasMembership);
+  }
+
+  void _maybeMarkSeen(List<Promotion> promos) {
+    if (_showAll || _query.isNotEmpty) return;
+    final newIds = promos.map((p) => p.id).where((id) => !_markedSeen.contains(id)).toList();
+    if (newIds.isEmpty) return;
+    _markedSeen.addAll(newIds);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _svc.recordSeen(newIds);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final promos = _filtered;
+    final all = _filtered;
+    final display = _toDisplay(all);
+    _maybeMarkSeen(display);
 
     return Scaffold(
       backgroundColor: Candy.cream,
@@ -102,7 +134,7 @@ class _OnlineScreenState extends State<OnlineScreen> {
             _buildHeader(),
             _buildCategoryChips(),
             const Divider(height: 1),
-            Expanded(child: _buildBody(promos)),
+            Expanded(child: _buildBody(display, all)),
           ],
         ),
       ),
@@ -172,9 +204,7 @@ class _OnlineScreenState extends State<OnlineScreen> {
             shape: WidgetStatePropertyAll(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             ),
-            padding: const WidgetStatePropertyAll(
-              EdgeInsets.symmetric(horizontal: 16),
-            ),
+            padding: const WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 16)),
           ),
         ],
       ),
@@ -196,7 +226,10 @@ class _OnlineScreenState extends State<OnlineScreen> {
             child: ChoiceChip(
               label: Text(cat),
               selected: selected,
-              onSelected: (_) => setState(() => _selectedCategory = cat),
+              onSelected: (_) => setState(() {
+                _selectedCategory = cat;
+                _showAll = false;
+              }),
               labelStyle: TextStyle(
                 fontSize: 13,
                 fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
@@ -214,8 +247,8 @@ class _OnlineScreenState extends State<OnlineScreen> {
     );
   }
 
-  Widget _buildBody(List<Promotion> promos) {
-    if (promos.isEmpty) {
+  Widget _buildBody(List<Promotion> display, List<Promotion> all) {
+    if (display.isEmpty) {
       return Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -229,41 +262,56 @@ class _OnlineScreenState extends State<OnlineScreen> {
       );
     }
 
-    final items = groupGroceryDeals(promos);
+    final isCurated = _query.isEmpty && !_showAll;
+    final showSeeAll = isCurated && display.length < all.length;
+    final items = groupGroceryDeals(display);
+
     return RefreshIndicator(
       onRefresh: widget.onRefresh,
       child: ListView.builder(
         padding: const EdgeInsets.only(top: 8, bottom: 24),
-        itemCount: items.length + 1,
+        itemCount: items.length + 1 + (showSeeAll ? 1 : 0),
         itemBuilder: (context, i) {
           if (i == 0) {
+            final label = isCurated
+                ? '${display.length} of ${all.length} deals'
+                : '${display.length} deal${display.length == 1 ? '' : 's'}';
             return Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-              child: Text(
-                '${promos.length} deals',
-                style: TextStyle(
-                  fontSize: 13,
-                  color: Colors.grey.shade500,
-                  fontWeight: FontWeight.w500,
+              child: Text(label,
+                  style: TextStyle(fontSize: 13, color: Colors.grey.shade500, fontWeight: FontWeight.w500)),
+            );
+          }
+          if (showSeeAll && i == items.length + 1) {
+            return Padding(
+              padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+              child: OutlinedButton(
+                onPressed: () => setState(() => _showAll = true),
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: Candy.raspberry,
+                  side: const BorderSide(color: Candy.raspberry),
+                  minimumSize: const Size(double.infinity, 44),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 ),
+                child: Text('See all ${all.length} deals'),
               ),
             );
           }
           final item = items[i - 1];
           if (item is GroceryGroup) {
-            return GroceryGroupCard(
-              promos: item.items,
-              memberships: widget.memberships,
-            );
+            return GroceryGroupCard(promos: item.items, memberships: widget.memberships);
           }
           final promo = item as Promotion;
           return DealCard(
             promo: promo,
             memberships: widget.memberships,
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),
-            ),
+            onTap: () {
+              _svc.recordClick(promo.id);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),
+              ).then((_) { if (mounted) setState(() {}); });
+            },
           );
         },
       ),

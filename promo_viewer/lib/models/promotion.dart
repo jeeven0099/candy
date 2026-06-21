@@ -41,6 +41,12 @@ class Promotion {
   // Pre-computed in pipeline (generate_scores.py)
   final double rankBaseScore;
 
+  // Local neighborhood fields (local_neighborhood source only)
+  final String? neighborhood;
+  final String? address;
+  final double? lat;
+  final double? lon;
+
   // Set after location is resolved — not from JSON
   double? distanceKm;
 
@@ -79,6 +85,10 @@ class Promotion {
     this.senderEmail,
     this.fastRedemption,
     this.rankBaseScore = 0.0,
+    this.neighborhood,
+    this.address,
+    this.lat,
+    this.lon,
   });
 
   factory Promotion.fromJson(Map<String, dynamic> json) {
@@ -125,6 +135,10 @@ class Promotion {
               json['fast_redemption'] as Map<String, dynamic>)
           : null,
       rankBaseScore: (json['rank_base_score'] as num?)?.toDouble() ?? 0.0,
+      neighborhood: json['neighborhood'] as String?,
+      address: json['address'] as String?,
+      lat: (json['lat'] as num?)?.toDouble(),
+      lon: (json['lon'] as num?)?.toDouble(),
     );
   }
 
@@ -163,6 +177,8 @@ class Promotion {
 
   bool get isActive =>
       status == 'active' || status == 'probably_active' || status == 'online_only';
+
+  bool get isLocal => source == 'local_neighborhood';
 
   /// Full rank score adding runtime signals (distance + membership) to the
   /// pipeline-computed base score.

@@ -21,3 +21,9 @@ promo_viewer/.flutter-plugins-dependencies
 # OS
 .DS_Store
 Thumbs.db
+
+# IDE
+.vscode/
+
+# Pipeline lock file (runtime artifact)
+**/.pipeline.lock

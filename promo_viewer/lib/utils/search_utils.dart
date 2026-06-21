@@ -29,7 +29,7 @@ const Map<String, List<String>> kBrandProductTags = {
   'Tory Burch':      ['handbags', 'bags', 'wallets', 'purses', 'shoes', 'sandals', 'accessories'],
   'Rebecca Minkoff': ['handbags', 'bags', 'wallets', 'purses', 'backpacks', 'accessories'],
   'Vera Bradley':    ['bags', 'totes', 'backpacks', 'purses', 'luggage', 'accessories'],
-  'BCBG':            ['handbags', 'bags', 'dresses', 'clothing', 'accessories'],
+  'BCBG':            ['handbags', 'bags', 'dresses', 'clothing', 'formal wear', 'work clothes', 'accessories'],
   'Fossil':          ['watches', 'wallets', 'bags', 'jewelry', 'accessories', 'smartwatches'],
 
   // ── Jewelry ──────────────────────────────────────────────────────────────
@@ -97,7 +97,6 @@ const Map<String, List<String>> kBrandProductTags = {
   'Calvin Klein':    ['jeans', 'underwear', 'clothing', 'dresses', 'basics'],
   'Guess':           ['jeans', 'dresses', 'clothing', 'handbags', 'accessories'],
   'Ted Baker':       ['dresses', 'suits', 'work clothes', 'clothing', 'blazers'],
-  'BCBG':            ['dresses', 'clothing', 'formal wear', 'work clothes'],
 
   // ── Work Clothes / Office wear ────────────────────────────────────────────
   'Brooks Brothers': ['suits', 'dress shirts', 'work clothes', 'office wear', 'ties', 'blazers', 'business wear', 'suiting'],
@@ -221,6 +220,8 @@ class BrandGroup {
 
 /// Searches [all] for [query] and returns brand groups sorted by relevance.
 /// Excludes email-only (private) deals.
+/// Brand matches (tier 1-4) are always included regardless of score.
+/// Non-brand matches (tier 5+) require rankBaseScore >= 40.
 List<BrandGroup> runSearch(List<Promotion> all, String query) {
   if (query.trim().isEmpty) return [];
 
@@ -229,7 +230,9 @@ List<BrandGroup> runSearch(List<Promotion> all, String query) {
     if (!p.isActive) continue;
     if (p.source == 'email') continue;
     final tier = searchTier(p, query);
-    if (tier > 0) scored[p] = tier;
+    if (tier <= 0) continue;
+    // Brand-level matches: always show even if score is low
+    if (tier <= 4 || p.rankBaseScore >= 40) scored[p] = tier;
   }
   if (scored.isEmpty) return [];
 

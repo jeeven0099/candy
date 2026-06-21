@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/main_screen.dart';
+import 'services/interaction_service.dart';
 import 'services/notification_service.dart';
 import 'services/saved_deals_service.dart';
 import 'services/timezone_service.dart';
@@ -12,6 +13,7 @@ void main() async {
   await TimezoneService.init();
   await NotificationService.init(navigatorKey: navigatorKey);
   await SavedDealsService.init();
+  await InteractionService.init();
   // Fire-and-forget: process pipeline notification candidates on every launch.
   // Rate limits and quiet hours are enforced inside the method.
   NotificationService().processNotificationCandidates();

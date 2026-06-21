@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/promotion.dart';
+import '../services/interaction_service.dart';
 import '../theme/candy_colors.dart';
 import '../utils/format_utils.dart';
 import '../utils/search_utils.dart';
@@ -161,6 +162,14 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       );
     }
+
+    // Record brand-level searches so affinity boosts work in the curated feeds.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final svc = InteractionService();
+      for (final g in results) {
+        if (g.bestTier <= 4) svc.recordBrandSearch(g.brand);
+      }
+    });
 
     final totalDeals = results.fold(0, (sum, g) => sum + g.deals.length);
     return RefreshIndicator(

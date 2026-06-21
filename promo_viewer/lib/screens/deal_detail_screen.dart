@@ -65,7 +65,7 @@ class DealDetailScreen extends StatelessWidget {
                   if (promo.fastRedemption != null &&
                       promo.fastRedemption!.eligible) ...[
                     const SizedBox(height: 20),
-                    FastRedeemButton(fr: promo.fastRedemption!, brand: promo.brand),
+                    FastRedeemButton(fr: promo.fastRedemption!, brand: promo.brand, promoId: promo.id),
                   ],
 
                   const SizedBox(height: 24),
