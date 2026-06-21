@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/promotion.dart';
 import '../theme/candy_colors.dart';
 import '../services/interaction_service.dart';
+import '../services/location_service.dart';
 import '../utils/deal_grouper.dart';
 import '../utils/feed_ranker.dart';
 import '../utils/format_utils.dart';
@@ -226,10 +227,10 @@ class _NearMeScreenState extends State<NearMeScreen> {
             children: [
               const Icon(Icons.near_me, size: 22),
               const SizedBox(width: 8),
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Near Me',
                     style: TextStyle(
                       fontSize: 26,
@@ -239,8 +240,13 @@ class _NearMeScreenState extends State<NearMeScreen> {
                     ),
                   ),
                   Text(
-                    'Sweet deals nearby',
-                    style: TextStyle(
+                    widget.position != null
+                        ? LocationService.cityName(
+                            widget.position!.latitude,
+                            widget.position!.longitude,
+                          )
+                        : 'Sweet deals nearby',
+                    style: const TextStyle(
                       fontSize: 12,
                       color: Candy.lavender,
                       fontWeight: FontWeight.w500,
