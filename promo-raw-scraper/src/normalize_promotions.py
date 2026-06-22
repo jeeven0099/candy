@@ -357,6 +357,14 @@ def fix_confidence(promo: dict) -> dict:
     # Unknown discount type = LLM couldn't identify a concrete deal — cap below quality threshold
     if promo.get("discount_type") == "unknown":
         score = min(score, 0.6)
+    # Gift card deals are not savings on products — cap below quality threshold
+    combined = " ".join(filter(None, [
+        promo.get("promotion_title", ""),
+        promo.get("short_summary", ""),
+    ])).lower()
+    if "gift card" in combined:
+        score = min(score, 0.55)
+        promo["category"] = "gift_card"
     if not promo.get("promotion_title"):
         score -= 0.15
     if not promo.get("short_summary"):
