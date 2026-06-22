@@ -36,6 +36,8 @@ class Promotion {
   final String? emailSubject;
   final String? senderEmail;
 
+  final String? summary;
+
   final FastRedemption? fastRedemption;
 
   // Pre-computed in pipeline (generate_scores.py)
@@ -83,6 +85,7 @@ class Promotion {
     this.visibility,
     this.emailSubject,
     this.senderEmail,
+    this.summary,
     this.fastRedemption,
     this.rankBaseScore = 0.0,
     this.neighborhood,
@@ -130,6 +133,7 @@ class Promotion {
       visibility: json['visibility'] as String?,
       emailSubject: json['email_subject'] as String?,
       senderEmail: json['sender_email'] as String?,
+      summary: json['short_summary'] as String?,
       fastRedemption: json['fast_redemption'] != null
           ? FastRedemption.fromJson(
               json['fast_redemption'] as Map<String, dynamic>)
