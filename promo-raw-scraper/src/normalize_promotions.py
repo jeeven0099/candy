@@ -354,8 +354,8 @@ def fix_confidence(promo: dict) -> dict:
         score = min(score, 0.4)
     if promo.get("discount_type") == "unknown" and promo.get("promotion_type") == "unknown":
         score -= 0.2
-    # No concrete discount value AND unknown type = menu item / feature highlight, not a deal
-    if promo.get("discount_type") == "unknown" and not promo.get("discount_value"):
+    # Unknown discount type = LLM couldn't identify a concrete deal — cap below quality threshold
+    if promo.get("discount_type") == "unknown":
         score = min(score, 0.6)
     if not promo.get("promotion_title"):
         score -= 0.15

@@ -90,6 +90,7 @@ class _NearMeScreenState extends State<NearMeScreen> {
 
   bool _isQualityDeal(Promotion p) {
     if (p.confidenceScore < 0.75) return false;
+    if (p.discountType == 'unknown') return false;
     if (p.discountType == 'points') return false;
     return p.rankScore(distanceKm: p.distanceKm, isMember: _hasMembership(p)) >= 65;
   }

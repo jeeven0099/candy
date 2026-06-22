@@ -70,6 +70,7 @@ class _OnlineScreenState extends State<OnlineScreen> {
 
   bool _isQualityDeal(Promotion p) {
     if (p.confidenceScore < 0.75) return false;
+    if (p.discountType == 'unknown') return false;
     if (p.discountType == 'points') return false;
     if (p.discountType == 'free_shipping') return false;
     if (p.requiresMembership) {
