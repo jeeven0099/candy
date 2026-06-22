@@ -102,6 +102,7 @@ class _NearMeScreenState extends State<NearMeScreen> {
 
     return widget.all.where((p) {
       if (!p.isActive) return false;
+      if (!p.isValidToday) return false;
       if (p.distanceKm == null) return false;
       if (p.promotionType == 'reward' || p.promotionType == 'membership_benefit') return false;
       const nearMeRedemption = {'in_store', 'in_app', 'app_reward', 'show_code', 'open_maps'};

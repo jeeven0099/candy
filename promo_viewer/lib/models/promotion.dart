@@ -242,6 +242,15 @@ class Promotion {
     return score;
   }
 
+  bool get isValidToday {
+    if (validDays.isEmpty) return true;
+    const dayNames = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
+    const dayShort = ['mon','tue','wed','thu','fri','sat','sun'];
+    final todayIdx = DateTime.now().weekday - 1;
+    final normalized = validDays.map((d) => d.toLowerCase()).toList();
+    return normalized.any((d) => d == dayNames[todayIdx] || d == dayShort[todayIdx]);
+  }
+
   /// Legacy value-only score (kept for backwards compatibility).
   double get dealScore {
     double base = 0;
