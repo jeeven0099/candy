@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../models/promotion.dart';
+import '../services/interaction_service.dart';
 import '../services/location_service.dart';
 import '../services/saved_deals_service.dart';
 import '../theme/candy_colors.dart';
+import '../utils/feed_ranker.dart';
 import 'brand_logo.dart';
 import 'fast_redeem_button.dart';
 import 'save_sheet.dart';
@@ -14,6 +16,77 @@ class DealCard extends StatelessWidget {
   final Set<String> memberships;
 
   const DealCard({super.key, required this.promo, this.onTap, this.memberships = const {}});
+
+  void _showScoreDebug(BuildContext context) {
+    final svc = InteractionService();
+    final bd = computeBreakdown(
+      promo, svc,
+      distanceKm: promo.distanceKm,
+      isMember: _isMember,
+    );
+
+    final rows = [
+      ('Pipeline base',    bd.rankBase,         ''),
+      ('Distance',         bd.distanceBonus,    promo.distanceKm != null ? '${LocationService.formatDistance(promo.distanceKm)} away' : 'no location'),
+      ('Day of week',      bd.dayBonus,         promo.validDays.isEmpty ? 'any day' : promo.validDays.join(', ')),
+      ('Membership',       bd.membershipBonus,  _isMember ? 'member ✓' : promo.requiresMembership ? 'required' : 'open'),
+      ('Affinity',         bd.affinityBoost,    'saved/clicked/searched'),
+      ('Fatigue penalty',  -bd.fatiguePenalty,  bd.isHidden ? 'HIDDEN (cooldown)' : 'seen ${svc.seenCount(promo.id)}x'),
+    ];
+
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (_) => Padding(
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(promo.brand, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+            Text(promo.title, maxLines: 2,
+                style: TextStyle(fontSize: 13, color: Colors.grey.shade600)),
+            const SizedBox(height: 16),
+            ...rows.map((r) {
+              final (label, value, note) = r;
+              final isNeg = value < 0;
+              final color = value > 0 ? const Color(0xFF2E7D32) : (value < 0 ? const Color(0xFFC62828) : Colors.grey.shade500);
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: Row(
+                  children: [
+                    SizedBox(width: 140, child: Text(label, style: const TextStyle(fontSize: 13))),
+                    Text(
+                      '${isNeg ? '' : value > 0 ? '+' : ''}${value.toStringAsFixed(0)}',
+                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: color),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(child: Text(note, style: TextStyle(fontSize: 11, color: Colors.grey.shade500))),
+                  ],
+                ),
+              );
+            }),
+            const Divider(height: 24),
+            Row(
+              children: [
+                const SizedBox(width: 140, child: Text('TOTAL', style: TextStyle(fontWeight: FontWeight.w700))),
+                Text(
+                  bd.isHidden ? 'HIDDEN' : bd.total.toStringAsFixed(1),
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: bd.isHidden ? Colors.red : Candy.raspberry,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   bool get _isMember {
     if (memberships.isEmpty || !promo.requiresMembership) return false;
@@ -46,6 +119,7 @@ class DealCard extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
         onTap: onTap,
+        onLongPress: () => _showScoreDebug(context),
         child: Padding(
           padding: const EdgeInsets.all(14),
           child: Column(

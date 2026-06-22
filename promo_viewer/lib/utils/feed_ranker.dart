@@ -4,6 +4,93 @@ import '../services/saved_deals_service.dart';
 
 const _kHide = 999.0;
 
+// ---------------------------------------------------------------------------
+// Score breakdown (for debug overlay)
+// ---------------------------------------------------------------------------
+
+class ScoreBreakdown {
+  final double rankBase;
+  final double distanceBonus;
+  final double dayBonus;
+  final double membershipBonus;
+  final double affinityBoost;
+  final double fatiguePenalty;
+  final bool isHidden;
+
+  const ScoreBreakdown({
+    required this.rankBase,
+    required this.distanceBonus,
+    required this.dayBonus,
+    required this.membershipBonus,
+    required this.affinityBoost,
+    required this.fatiguePenalty,
+    required this.isHidden,
+  });
+
+  double get total => isHidden
+      ? double.negativeInfinity
+      : rankBase + distanceBonus + dayBonus + membershipBonus + affinityBoost - fatiguePenalty;
+}
+
+ScoreBreakdown computeBreakdown(
+  Promotion p,
+  InteractionService svc, {
+  double? distanceKm,
+  bool isMember = false,
+}) {
+  // Distance bonus
+  double distBonus = 0;
+  if (distanceKm != null) {
+    final miles = distanceKm * 0.621371;
+    if (miles <= 0.5)      { distBonus = 30; }
+    else if (miles <= 1.0) { distBonus = 25; }
+    else if (miles <= 2.0) { distBonus = 18; }
+    else if (miles <= 5.0) { distBonus = 8; }
+    else                   { distBonus = 2; }
+  }
+
+  // Day-of-week bonus
+  double dayBonus = 0;
+  if (p.validDays.isNotEmpty) {
+    const dayNames = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
+    const dayShort = ['mon','tue','wed','thu','fri','sat','sun'];
+    final todayIdx = DateTime.now().weekday - 1;
+    final normalized = p.validDays.map((d) => d.toLowerCase()).toList();
+    final validToday = normalized.any(
+      (d) => d == dayNames[todayIdx] || d == dayShort[todayIdx],
+    );
+    dayBonus = validToday ? 5 : -20;
+  }
+
+  // Membership bonus
+  double memberBonus;
+  if (isMember) {
+    memberBonus = 25;
+  } else if (!p.requiresMembership) {
+    memberBonus = 8;
+  } else {
+    final cost = (p.membershipCost ?? '').toLowerCase();
+    if (cost.contains('free'))       { memberBonus = -2; }
+    else if (cost.contains('paid'))  { memberBonus = -15; }
+    else                             { memberBonus = -5; }
+  }
+
+  // Device-side signals
+  final rawFatigue = fatiguePenalty(p.id, svc);
+  final hidden = rawFatigue >= _kHide;
+  final aBoost = affinityBoost(p, svc);
+
+  return ScoreBreakdown(
+    rankBase: p.rankBaseScore,
+    distanceBonus: distBonus,
+    dayBonus: dayBonus,
+    membershipBonus: memberBonus,
+    affinityBoost: aBoost,
+    fatiguePenalty: hidden ? 999 : rawFatigue,
+    isHidden: hidden,
+  );
+}
+
 /// Fatigue penalty based on how many times the user saw a deal with no interaction.
 /// Returns _kHide when the deal should be suppressed from the default feed.
 double fatiguePenalty(String id, InteractionService svc) {
