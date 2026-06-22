@@ -12,11 +12,11 @@
       "screenshots": [],
       "versions": [
         {
-          "version": "2026.622.2002",
-          "date": "2026-06-22T20:02:30Z",
+          "version": "2026.622.2009",
+          "date": "2026-06-22T20:09:54Z",
           "localizedDescription": "Latest build",
-          "downloadURL": "https://github.com/jeeven0099/candy/releases/download/v2026.622.2002/candy.ipa",
-          "size": 11516656
+          "downloadURL": "https://github.com/jeeven0099/candy/releases/download/v2026.622.2009/candy.ipa",
+          "size": 11516995
         }
       ],
       "appPermissions": {
