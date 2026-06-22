@@ -200,6 +200,35 @@ def fix_rewards_program_title(promo: dict) -> dict:
     return promo
 
 
+_THIRD_PARTY_MEMBERSHIPS = [
+    ("aarp",       "AARP",       "paid"),
+    ("aaa",        "AAA",        "paid"),
+    ("costco",     "Costco",     "paid"),
+    ("sam's club", "Sam's Club", "paid"),
+    ("bj's",       "BJ's",       "paid"),
+]
+_MEMBER_TITLE_RE = re.compile(r"\bmembers?\b", re.IGNORECASE)
+
+def fix_third_party_membership(promo: dict) -> dict:
+    """Detect known paid third-party memberships (AARP, AAA, etc.) in the title
+    when the LLM missed them, and set requires_membership + membership_name accordingly."""
+    if promo.get("requires_membership"):
+        return promo
+    combined = " ".join(filter(None, [
+        promo.get("promotion_title", ""),
+        promo.get("short_summary", ""),
+    ])).lower()
+    if not _MEMBER_TITLE_RE.search(combined):
+        return promo
+    for keyword, name, cost in _THIRD_PARTY_MEMBERSHIPS:
+        if keyword in combined:
+            promo["requires_membership"] = True
+            promo["membership_name"] = name
+            promo["membership_cost"] = cost
+            break
+    return promo
+
+
 def fix_requires_membership_type(promo: dict) -> dict:
     """Upgrade promotion_type to membership_benefit when the deal explicitly requires membership."""
     if not promo.get("requires_membership"):
@@ -504,6 +533,7 @@ def normalize_file(
         promo = fix_free_shipping(promo)
         promo = fix_subscription_pricing(promo)
         promo = fix_unknown_type_from_title(promo)
+        promo = fix_third_party_membership(promo)
         promo = fix_requires_membership_type(promo)
         promo = fix_rewards_program_title(promo)
         promo = fix_promotion_title(promo, canonical_brand)
