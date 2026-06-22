@@ -161,7 +161,18 @@ class OllamaModel(LocalModelInterface):
             elif isinstance(val, str):
                 data[field] = [val] if val.strip() else []
             elif isinstance(val, list):
-                data[field] = [item for item in val if item is not None]
+                coerced = []
+                for item in val:
+                    if item is None:
+                        continue
+                    if isinstance(item, dict):
+                        # LLM returned {"step": "..."} or {"day": "..."} instead of a plain string
+                        inner = next(iter(item.values()), None)
+                        if inner is not None:
+                            coerced.append(str(inner))
+                    else:
+                        coerced.append(item)
+                data[field] = coerced
 
         # Coerce boolean fields — handle None and string representations
         for field in _BOOL_FIELDS:
