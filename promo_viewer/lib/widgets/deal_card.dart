@@ -156,6 +156,19 @@ class DealCard extends StatelessWidget {
                             color: Candy.chocolate,
                           ),
                         ),
+                        if (promo.summary != null && promo.summary!.isNotEmpty) ...[
+                          const SizedBox(height: 3),
+                          Text(
+                            promo.summary!,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 12,
+                              height: 1.4,
+                              color: Candy.muted,
+                            ),
+                          ),
+                        ],
                       ],
                     ),
                   ),
