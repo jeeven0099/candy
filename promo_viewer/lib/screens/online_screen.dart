@@ -85,6 +85,7 @@ class _OnlineScreenState extends State<OnlineScreen> {
 
     return widget.all.where((p) {
       if (!p.isActive) return false;
+      if (!p.isValidToday) return false;
       if (p.promotionType == 'reward' || p.promotionType == 'membership_benefit') return false;
       final isOnline = p.redemptionMethod == 'online' ||
           (p.redemptionMethod == 'show_code' && p.dealScope == 'online_only');
