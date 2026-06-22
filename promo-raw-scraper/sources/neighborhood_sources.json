@@ -8,24 +8,14 @@
     "enabled": true,
     "directories": [
       {
-        "name": "Explore Hayes Valley - Offers",
-        "url": "https://www.explorehayesvalley.com/offers",
-        "category_hint": "general"
-      },
-      {
-        "name": "Explore Hayes Valley - Merchants",
-        "url": "https://www.explorehayesvalley.com/hayes-valley-merchants-zones",
+        "name": "Explore Hayes Valley - Shop",
+        "url": "https://www.explorehayesvalley.org/shop",
         "category_hint": "retail"
       },
       {
-        "name": "Explore Hayes Valley - Services",
-        "url": "https://www.explorehayesvalley.com/services",
-        "category_hint": "services"
-      },
-      {
-        "name": "HVNA Shop Local",
-        "url": "https://hayesvalleysf.org/shop-local/",
-        "category_hint": "general"
+        "name": "Explore Hayes Valley - Dine",
+        "url": "https://www.explorehayesvalley.org/dine",
+        "category_hint": "food"
       }
     ]
   }
