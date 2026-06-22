@@ -100,9 +100,12 @@ jobs:
                 ],
                 "appPermissions": {
                   "entitlements": [],
-                  "privacy": {
-                    "NSLocationWhenInUseUsageDescription": "Used to find deals near your current location."
-                  }
+                  "privacy": [
+                    {
+                      "name": "NSLocationWhenInUseUsageDescription",
+                      "usageDescription": "Used to find deals near your current location."
+                    }
+                  ]
                 }
               }
             ],
