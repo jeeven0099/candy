@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest.dart' as tz_data;
 import 'package:timezone/timezone.dart' as tz;
@@ -9,9 +10,15 @@ class TimezoneService {
   static Future<void> init() async {
     if (_initialized) return;
     tz_data.initializeTimeZones();
-    final tzInfo = await FlutterTimezone.getLocalTimezone();
-    _deviceTzName = tzInfo.identifier;
-    tz.setLocalLocation(tz.getLocation(_deviceTzName));
+    if (!kIsWeb) {
+      try {
+        final tzInfo = await FlutterTimezone.getLocalTimezone();
+        _deviceTzName = tzInfo.identifier;
+      } catch (_) {}
+    }
+    try {
+      tz.setLocalLocation(tz.getLocation(_deviceTzName));
+    } catch (_) {}
     _initialized = true;
   }
 
