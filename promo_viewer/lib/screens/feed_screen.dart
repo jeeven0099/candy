@@ -101,6 +101,7 @@ class _FeedScreenState extends State<FeedScreen> {
     var result = _all.where((p) {
       if (_activeOnly && !p.isActive) return false;
       if (!p.isValidToday) return false;
+      if (p.discountType == 'unknown') return false;
       if (cats != null && !cats.contains(p.category.toLowerCase())) {
         return false;
       }
