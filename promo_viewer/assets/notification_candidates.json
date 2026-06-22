@@ -1,42 +1,8 @@
 {
-  "generated_at": "2026-06-20T08:26:28.398908+00:00",
+  "generated_at": "2026-06-22T11:15:41.568048+00:00",
   "threshold": 75.0,
-  "total": 36,
+  "total": 40,
   "candidates": [
-    {
-      "promo_id": "kroger_freekrogerbrandicecreampint",
-      "brand": "Kroger",
-      "title": "FREE Kroger Brand Ice Cream Pint",
-      "notify_score": 136.0,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Kroger",
-      "notification_body": "Free: FREE Kroger Brand Ice Cream Pint",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "end_date": "2026-07-03",
-      "website_domain": "kroger.com",
-      "source_url": "https://www.kroger.com/savings/"
-    },
-    {
-      "promo_id": "amctheatres_toystory5collectiblelorcanatcgcard",
-      "brand": "AMC Theatres",
-      "title": "TOY STORY 5 Collectible Lorcana TCG Card",
-      "notify_score": 124.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "AMC Theatres",
-      "notification_body": "Free: TOY STORY 5 Collectible Lorcana TCG Card",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "end_date": "2026-06-21",
-      "website_domain": "amctheatres.com",
-      "source_url": "https://www.amctheatres.com/offers"
-    },
     {
       "promo_id": "adoreme_semiannualsaleupto70off",
       "brand": "Adore Me",
@@ -72,23 +38,6 @@
       "end_date": null,
       "website_domain": "adoreme.com",
       "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
-    },
-    {
-      "promo_id": "hottopic_buyonegetone50offalmosteverything",
-      "brand": "Hot Topic",
-      "title": "Buy One, Get One 50% Off Almost Everything",
-      "notify_score": 118.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Hot Topic",
-      "notification_body": "Expires today: Buy One, Get One 50% Off Almost Everything",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "end_date": "2026-06-20",
-      "website_domain": "hottopic.com",
-      "source_url": null
     },
     {
       "promo_id": "mcdonalds_freelargefriesw1minpurchase",
@@ -228,38 +177,21 @@
       "source_url": "https://www.amctheatres.com/offers"
     },
     {
-      "promo_id": "underarmour_semiannualeventupto50offwithcodesummer",
-      "brand": "Under Armour",
-      "title": "SEMI-ANNUAL EVENT: Up To 50% Off with code SUMMER",
-      "notify_score": 110.0,
+      "promo_id": "starbucks_modmondaybenefit",
+      "brand": "Starbucks",
+      "title": "Mod Monday Benefit",
+      "notify_score": 112.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Under Armour",
-      "notification_body": "SEMI-ANNUAL EVENT: Up To 50% Off with code SUMMER",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
+      "notification_title": "Starbucks",
+      "notification_body": "Free: Mod Monday Benefit",
+      "discount_type": "free_item",
+      "discount_value": "free",
       "end_date": null,
-      "website_domain": "underarmour.com",
-      "source_url": "https://www.underarmour.com/en-us/c/outlet/"
-    },
-    {
-      "promo_id": "shein_flashsale",
-      "brand": "SHEIN",
-      "title": "Flash Sale",
-      "notify_score": 109.0,
-      "signal_groups": [
-        "context",
-        "personal"
-      ],
-      "notification_title": "SHEIN",
-      "notification_body": "Flash Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 38%",
-      "end_date": null,
-      "website_domain": "us.shein.com",
-      "source_url": null
+      "website_domain": "starbucks.com",
+      "source_url": "https://www.starbucks.com/rewards"
     },
     {
       "promo_id": "amctheatres_imaxcollectibleposter",
@@ -279,61 +211,10 @@
       "source_url": "https://www.amctheatres.com/offers"
     },
     {
-      "promo_id": "foodpanda_60offfreedelivery",
-      "brand": "foodpanda",
-      "title": "60% off & free delivery",
-      "notify_score": 107.0,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "foodpanda",
-      "notification_body": "60% off & free delivery",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "end_date": null,
-      "website_domain": null,
-      "source_url": null
-    },
-    {
-      "promo_id": "boxlunch_upto50offselectstyles",
-      "brand": "BoxLunch",
-      "title": "Up To 50% Off Select Styles*",
-      "notify_score": 104.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "BoxLunch",
-      "notification_body": "Up To 50% Off Select Styles*",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "end_date": null,
-      "website_domain": "boxlunch.com",
-      "source_url": null
-    },
-    {
-      "promo_id": "fashionnova_80offsitewide",
-      "brand": "Fashion Nova",
-      "title": "80% OFF SITEWIDE",
-      "notify_score": 104.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fashion Nova",
-      "notification_body": "80% OFF SITEWIDE",
-      "discount_type": "percentage_off",
-      "discount_value": "80%",
-      "end_date": null,
-      "website_domain": "fashionnova.com",
-      "source_url": null
-    },
-    {
       "promo_id": "abercrombiefitch_buyonegetone50offclearanceitems",
       "brand": "Abercrombie & Fitch",
       "title": "Buy One, Get One 50% Off Clearance Items",
-      "notify_score": 102.0,
+      "notify_score": 104.0,
       "signal_groups": [
         "context",
         "value"
@@ -347,21 +228,38 @@
       "source_url": "https://www.abercrombie.com/shop/us/sale"
     },
     {
-      "promo_id": "amazon_lightningdealsover50off",
-      "brand": "Amazon",
-      "title": "Lightning deals over 50% off",
-      "notify_score": 102.0,
+      "promo_id": "eddiebauer_upto50offclearance",
+      "brand": "Eddie Bauer",
+      "title": "Up To 50% Off Clearance",
+      "notify_score": 104.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Amazon",
-      "notification_body": "Lightning deals over 50% off",
+      "notification_title": "Eddie Bauer",
+      "notification_body": "Up To 50% Off Clearance",
       "discount_type": "percentage_off",
-      "discount_value": "over 50%",
+      "discount_value": "Up To 50%",
       "end_date": null,
-      "website_domain": "amazon.com",
-      "source_url": null
+      "website_domain": "eddiebauer.com",
+      "source_url": "https://www.eddiebauer.com/collections/clearance"
+    },
+    {
+      "promo_id": "showpo_archivesale",
+      "brand": "Showpo",
+      "title": "ARCHIVE SALE",
+      "notify_score": 104.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Showpo",
+      "notification_body": "ARCHIVE SALE",
+      "discount_type": "percentage_off",
+      "discount_value": "30 - 80%",
+      "end_date": null,
+      "website_domain": "showpo.com",
+      "source_url": "https://www.showpo.com/collections/sale"
     },
     {
       "promo_id": "nastygal_newseason60off",
@@ -398,6 +296,57 @@
       "source_url": "https://www.nastygal.com/categories/womens-sale"
     },
     {
+      "promo_id": "skechers_50offaccessories",
+      "brand": "Skechers",
+      "title": "50% Off Accessories",
+      "notify_score": 102.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Skechers",
+      "notification_body": "50% Off Accessories",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "end_date": null,
+      "website_domain": "skechers.com",
+      "source_url": "https://www.skechers.com/sale/"
+    },
+    {
+      "promo_id": "skechers_50offworkstyles",
+      "brand": "Skechers",
+      "title": "50% Off Work Styles",
+      "notify_score": 102.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Skechers",
+      "notification_body": "50% Off Work Styles",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "end_date": null,
+      "website_domain": "skechers.com",
+      "source_url": "https://www.skechers.com/sale/"
+    },
+    {
+      "promo_id": "samedelman_30off150withcodesummeredit",
+      "brand": "Sam Edelman",
+      "title": "$30 OFF $150 with code SUMMEREDIT",
+      "notify_score": 101.2,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Sam Edelman",
+      "notification_body": "Expires today: $30 OFF $150 with code SUMMEREDIT",
+      "discount_type": "amount_off",
+      "discount_value": "$30",
+      "end_date": "2026-06-22",
+      "website_domain": "samedelman.com",
+      "source_url": "https://www.samedelman.com/browse/sale#sortCriteria=relevance"
+    },
+    {
       "promo_id": "wayfair_bogo15offstorageorganization",
       "brand": "Wayfair",
       "title": "BOGO 15% OFF STORAGE & ORGANIZATION",
@@ -432,55 +381,106 @@
       "source_url": "https://www.culvers.com/delicious-rewards"
     },
     {
-      "promo_id": "ikea_saveupto50attheikeasummersale",
-      "brand": "IKEA",
-      "title": "Save up to 50% at the IKEA Summer Sale",
+      "promo_id": "llbean_10offselectmensshirtsfishinggear",
+      "brand": "L.L.Bean",
+      "title": "10% OFF Select Men's Shirts & Fishing Gear!",
       "notify_score": 95.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "IKEA",
-      "notification_body": "Save up to 50% at the IKEA Summer Sale",
+      "notification_title": "L.L.Bean",
+      "notification_body": "Expires today: 10% OFF Select Men's Shirts & Fishing Gear!",
       "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "end_date": "2026-07-02",
-      "website_domain": "ikea.com",
-      "source_url": null
+      "discount_value": "10%",
+      "end_date": "2026-06-22",
+      "website_domain": "llbean.com",
+      "source_url": "https://www.llbean.com/llb/shop/32?page=sale"
     },
     {
-      "promo_id": "anntaylor_50offeverything",
-      "brand": "Ann Taylor",
-      "title": "50% OFF EVERYTHING",
-      "notify_score": 94.0,
+      "promo_id": "foodpanda_60offfreedelivery",
+      "brand": "foodpanda",
+      "title": "60% off & free delivery",
+      "notify_score": 95.0,
       "signal_groups": [
-        "context",
+        "personal",
         "value"
       ],
-      "notification_title": "Ann Taylor",
-      "notification_body": "50% OFF EVERYTHING",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "end_date": null,
-      "website_domain": "anntaylor.com",
-      "source_url": "https://www.anntaylor.com/"
-    },
-    {
-      "promo_id": "boohoo_60offalmosteverything",
-      "brand": "Boohoo",
-      "title": "60% Off Almost Everything",
-      "notify_score": 94.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Boohoo",
-      "notification_body": "60% Off Almost Everything",
+      "notification_title": "foodpanda",
+      "notification_body": "60% off & free delivery",
       "discount_type": "percentage_off",
       "discount_value": "60%",
       "end_date": null,
-      "website_domain": "us.boohoo.com",
+      "website_domain": null,
       "source_url": null
+    },
+    {
+      "promo_id": "surlatable_upto75offcastiron",
+      "brand": "Sur La Table",
+      "title": "Up to 75% off cast iron",
+      "notify_score": 95.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Sur La Table",
+      "notification_body": "Up to 75% off cast iron",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 75%",
+      "end_date": null,
+      "website_domain": null,
+      "source_url": null
+    },
+    {
+      "promo_id": "zaloramenswear_sportshoesupto50off",
+      "brand": "ZALORA Menswear",
+      "title": "Sport Shoes Up To 50% Off",
+      "notify_score": 95.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "ZALORA Menswear",
+      "notification_body": "Sport Shoes Up To 50% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "end_date": null,
+      "website_domain": null,
+      "source_url": null
+    },
+    {
+      "promo_id": "rei_upto50offpastseasonstylesfromarcteryxpatagoniacolumbiamore",
+      "brand": "REI",
+      "title": "Up to 50% off past-season styles from Arc'teryx, Patagonia, Columbia & more",
+      "notify_score": 94.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "REI",
+      "notification_body": "Up to 50% off past-season styles from Arc'teryx, Patagonia, Columbia & more",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "end_date": null,
+      "website_domain": "rei.com",
+      "source_url": "https://www.rei.com/h/deals"
+    },
+    {
+      "promo_id": "rei_upto50offpastseasonjacketsfromthenorthfacereicoopbrandmore",
+      "brand": "REI",
+      "title": "Up to 50% off past-season jackets from The North Face, REI Co-op brand & more",
+      "notify_score": 94.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "REI",
+      "notification_body": "Up to 50% off past-season jackets from The North Face, REI Co-op brand & more",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "end_date": null,
+      "website_domain": "rei.com",
+      "source_url": "https://www.rei.com/h/deals"
     },
     {
       "promo_id": "wayfair_upto50offbacktoschooldealweek",
@@ -515,6 +515,23 @@
       "end_date": null,
       "website_domain": "einsteinbros.com",
       "source_url": "https://www.einsteinbros.com/rewards/"
+    },
+    {
+      "promo_id": "rei_shopreioutlet",
+      "brand": "REI",
+      "title": "Shop REI Outlet",
+      "notify_score": 92.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "REI",
+      "notification_body": "Shop REI Outlet",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "end_date": null,
+      "website_domain": "rei.com",
+      "source_url": "https://www.rei.com/h/deals"
     },
     {
       "promo_id": "cariboucoffee_membersreceiveafreedrinkduringtheirbirthdayweek",
@@ -583,6 +600,57 @@
       "end_date": null,
       "website_domain": "applebees.com",
       "source_url": "https://www.applebees.com/en/specials"
+    },
+    {
+      "promo_id": "regal_birthdayfreepopcornoffer",
+      "brand": "Regal",
+      "title": "Birthday Free Popcorn Offer",
+      "notify_score": 88.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Regal",
+      "notification_body": "Birthday deal: Birthday Free Popcorn Offer",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "end_date": null,
+      "website_domain": "regmovies.com",
+      "source_url": "https://www.regmovies.com/regal-crown-club"
+    },
+    {
+      "promo_id": "wrangler_todayonlyfreeshippingonallorders",
+      "brand": "Wrangler",
+      "title": "Today Only: Free Shipping on All Orders",
+      "notify_score": 87.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Wrangler",
+      "notification_body": "Expires today: Today Only: Free Shipping on All Orders",
+      "discount_type": "free_shipping",
+      "discount_value": "free",
+      "end_date": "2026-06-22",
+      "website_domain": "wrangler.com",
+      "source_url": "https://www.wrangler.com/shop/sale"
+    },
+    {
+      "promo_id": "amctheatres_toystory5collectiblelorcanatcgcard",
+      "brand": "AMC Theatres",
+      "title": "TOY STORY 5 Collectible Lorcana TCG Card",
+      "notify_score": 85.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "AMC Theatres",
+      "notification_body": "Free: TOY STORY 5 Collectible Lorcana TCG Card",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "end_date": "2026-06-21",
+      "website_domain": "amctheatres.com",
+      "source_url": "https://www.amctheatres.com/offers"
     },
     {
       "promo_id": "chipotle_birthdayrewardselection",
