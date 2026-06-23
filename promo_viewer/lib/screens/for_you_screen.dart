@@ -38,7 +38,7 @@ class _ForYouScreenState extends State<ForYouScreen> {
               final brand = p.brand.toLowerCase();
               if (brand.contains('talent acquisition') ||
                   brand.contains(' from ') ||
-                  p.confidenceScore < 0.5) {
+                  p.confidenceScore < 0.6) {
                 return false;
               }
               return true;

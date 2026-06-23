@@ -98,10 +98,12 @@ class _SearchScreenState extends State<SearchScreen> {
       Set.from(SavedDealsService().all.map((d) => d.id));
 
   SearchOptions get _opts => SearchOptions(
-    memberships:  widget.memberships,
-    savedIds:     _savedIds,
-    context:      _ctx,
-    minConfidence: 0.5,
+    memberships:   widget.memberships,
+    savedIds:      _savedIds,
+    context:       _ctx,
+    // ForYou/Saved are personal contexts — slightly more lenient (0.60).
+    // All other contexts (chip-browsing or search) use the default 0.65.
+    minConfidence: (_ctx == SearchContext.forYou || _ctx == SearchContext.saved) ? 0.6 : 0.65,
   );
 
   List<BrandGroup> get _results {
