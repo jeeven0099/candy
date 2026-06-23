@@ -1,59 +1,8 @@
 {
-  "generated_at": "2026-06-23T17:38:43.993621+00:00",
+  "generated_at": "2026-06-22T11:15:41.568048+00:00",
   "threshold": 75.0,
-  "total": 52,
+  "total": 40,
   "candidates": [
-    {
-      "promo_id": "kroger_buy1get1freeonlongmont",
-      "brand": "Kroger",
-      "title": "Buy 1, Get 1 Free on Longmont",
-      "notify_score": 137.0,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Kroger",
-      "notification_body": "Free: Buy 1, Get 1 Free on Longmont",
-      "discount_type": "free_item",
-      "discount_value": null,
-      "end_date": "2026-07-31",
-      "website_domain": "kroger.com",
-      "source_url": "https://www.kroger.com/savings/"
-    },
-    {
-      "promo_id": "aerie_buy4get4free",
-      "brand": "Aerie",
-      "title": "BUY 4, GET 4 FREE",
-      "notify_score": 124.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Aerie",
-      "notification_body": "Free: BUY 4, GET 4 FREE",
-      "discount_type": "free_item",
-      "discount_value": "FREE",
-      "end_date": null,
-      "website_domain": "ae.com",
-      "source_url": "https://www.ae.com/us/en/c/aerie/cat4840006"
-    },
-    {
-      "promo_id": "sprouts_buy1get1freekaramellchokladketoproteinbar",
-      "brand": "Sprouts",
-      "title": "Buy 1, get 1 free Karamell Choklad Keto/Protein Bar",
-      "notify_score": 120.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Sprouts",
-      "notification_body": "Free: Buy 1, get 1 free Karamell Choklad Keto/Protein Bar",
-      "discount_type": "free_item",
-      "discount_value": null,
-      "end_date": null,
-      "website_domain": "sprouts.com",
-      "source_url": "https://shop.sprouts.com/store/sprouts/storefront"
-    },
     {
       "promo_id": "adoreme_semiannualsaleupto70off",
       "brand": "Adore Me",
@@ -228,21 +177,21 @@
       "source_url": "https://www.amctheatres.com/offers"
     },
     {
-      "promo_id": "athleta_lastday30offtravelessentials",
-      "brand": "Athleta",
-      "title": "LAST DAY: 30% Off* Travel Essentials",
-      "notify_score": 110.0,
+      "promo_id": "starbucks_modmondaybenefit",
+      "brand": "Starbucks",
+      "title": "Mod Monday Benefit",
+      "notify_score": 112.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Athleta",
-      "notification_body": "Expires today: LAST DAY: 30% Off* Travel Essentials",
-      "discount_type": "percentage_off",
-      "discount_value": "30%",
-      "end_date": "2026-06-23",
-      "website_domain": "athleta.gap.com",
-      "source_url": "https://athleta.gap.com/browse/sale/all-sale?cid=1023728"
+      "notification_title": "Starbucks",
+      "notification_body": "Free: Mod Monday Benefit",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "end_date": null,
+      "website_domain": "starbucks.com",
+      "source_url": "https://www.starbucks.com/rewards"
     },
     {
       "promo_id": "amctheatres_imaxcollectibleposter",
@@ -262,55 +211,55 @@
       "source_url": "https://www.amctheatres.com/offers"
     },
     {
-      "promo_id": "wrangler_cowboycutjeans2for80",
-      "brand": "Wrangler",
-      "title": "Cowboy Cut Jeans: 2 for $80*",
-      "notify_score": 106.2,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Wrangler",
-      "notification_body": "Expires today: Cowboy Cut Jeans: 2 for $80*",
-      "discount_type": "amount_off",
-      "discount_value": "$40 off",
-      "end_date": "2026-06-23",
-      "website_domain": "wrangler.com",
-      "source_url": "https://www.wrangler.com/shop/sale"
-    },
-    {
-      "promo_id": "aerie_upto50offeverything",
-      "brand": "Aerie",
-      "title": "Up to 50% off everything",
+      "promo_id": "abercrombiefitch_buyonegetone50offclearanceitems",
+      "brand": "Abercrombie & Fitch",
+      "title": "Buy One, Get One 50% Off Clearance Items",
       "notify_score": 104.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Aerie",
-      "notification_body": "Up to 50% off everything",
+      "notification_title": "Abercrombie & Fitch",
+      "notification_body": "Buy One, Get One 50% Off Clearance Items",
       "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
+      "discount_value": "50%",
       "end_date": null,
-      "website_domain": "ae.com",
-      "source_url": "https://www.ae.com/us/en/c/aerie/cat4840006"
+      "website_domain": "abercrombie.com",
+      "source_url": "https://www.abercrombie.com/shop/us/sale"
     },
     {
-      "promo_id": "aerie_upto70offclearanceitems",
-      "brand": "Aerie",
-      "title": "Up to 70% off clearance items",
+      "promo_id": "eddiebauer_upto50offclearance",
+      "brand": "Eddie Bauer",
+      "title": "Up To 50% Off Clearance",
       "notify_score": 104.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Aerie",
-      "notification_body": "Up to 70% off clearance items",
+      "notification_title": "Eddie Bauer",
+      "notification_body": "Up To 50% Off Clearance",
       "discount_type": "percentage_off",
-      "discount_value": "60-70%",
+      "discount_value": "Up To 50%",
       "end_date": null,
-      "website_domain": "ae.com",
-      "source_url": "https://www.ae.com/us/en/c/aerie/cat4840006"
+      "website_domain": "eddiebauer.com",
+      "source_url": "https://www.eddiebauer.com/collections/clearance"
+    },
+    {
+      "promo_id": "showpo_archivesale",
+      "brand": "Showpo",
+      "title": "ARCHIVE SALE",
+      "notify_score": 104.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Showpo",
+      "notification_body": "ARCHIVE SALE",
+      "discount_type": "percentage_off",
+      "discount_value": "30 - 80%",
+      "end_date": null,
+      "website_domain": "showpo.com",
+      "source_url": "https://www.showpo.com/collections/sale"
     },
     {
       "promo_id": "nastygal_newseason60off",
@@ -347,38 +296,55 @@
       "source_url": "https://www.nastygal.com/categories/womens-sale"
     },
     {
-      "promo_id": "hottopic_upto50offselectstyles",
-      "brand": "Hot Topic",
-      "title": "Up To 50% Off Select Styles*",
-      "notify_score": 100.0,
+      "promo_id": "skechers_50offaccessories",
+      "brand": "Skechers",
+      "title": "50% Off Accessories",
+      "notify_score": 102.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Hot Topic",
-      "notification_body": "Up To 50% Off Select Styles*",
-      "discount_type": "percentage_off",
-      "discount_value": "Up To 50%",
-      "end_date": null,
-      "website_domain": "hottopic.com",
-      "source_url": "https://www.hottopic.com/sale/"
-    },
-    {
-      "promo_id": "sprouts_buy1get150offorganicmediumavocadobag",
-      "brand": "Sprouts",
-      "title": "Buy 1, get 1 50% off Organic Medium Avocado Bag",
-      "notify_score": 100.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Sprouts",
-      "notification_body": "Buy 1, get 1 50% off Organic Medium Avocado Bag",
+      "notification_title": "Skechers",
+      "notification_body": "50% Off Accessories",
       "discount_type": "percentage_off",
       "discount_value": "50%",
       "end_date": null,
-      "website_domain": "sprouts.com",
-      "source_url": "https://shop.sprouts.com/store/sprouts/storefront"
+      "website_domain": "skechers.com",
+      "source_url": "https://www.skechers.com/sale/"
+    },
+    {
+      "promo_id": "skechers_50offworkstyles",
+      "brand": "Skechers",
+      "title": "50% Off Work Styles",
+      "notify_score": 102.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Skechers",
+      "notification_body": "50% Off Work Styles",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "end_date": null,
+      "website_domain": "skechers.com",
+      "source_url": "https://www.skechers.com/sale/"
+    },
+    {
+      "promo_id": "samedelman_30off150withcodesummeredit",
+      "brand": "Sam Edelman",
+      "title": "$30 OFF $150 with code SUMMEREDIT",
+      "notify_score": 101.2,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Sam Edelman",
+      "notification_body": "Expires today: $30 OFF $150 with code SUMMEREDIT",
+      "discount_type": "amount_off",
+      "discount_value": "$30",
+      "end_date": "2026-06-22",
+      "website_domain": "samedelman.com",
+      "source_url": "https://www.samedelman.com/browse/sale#sortCriteria=relevance"
     },
     {
       "promo_id": "wayfair_bogo15offstorageorganization",
@@ -415,55 +381,21 @@
       "source_url": "https://www.culvers.com/delicious-rewards"
     },
     {
-      "promo_id": "adamfromfoodpanda_60offfreedelivery",
-      "brand": "Adam from foodpanda",
-      "title": "60% off & free delivery",
-      "notify_score": 97.0,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Adam from foodpanda",
-      "notification_body": "60% off & free delivery",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "end_date": null,
-      "website_domain": null,
-      "source_url": null
-    },
-    {
-      "promo_id": "ikea_saveupto50attheikeasummersale",
-      "brand": "IKEA",
-      "title": "Save up to 50% at the IKEA Summer Sale",
+      "promo_id": "llbean_10offselectmensshirtsfishinggear",
+      "brand": "L.L.Bean",
+      "title": "10% OFF Select Men's Shirts & Fishing Gear!",
       "notify_score": 95.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "IKEA",
-      "notification_body": "Save up to 50% at the IKEA Summer Sale",
+      "notification_title": "L.L.Bean",
+      "notification_body": "Expires today: 10% OFF Select Men's Shirts & Fishing Gear!",
       "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "end_date": "2026-07-02",
-      "website_domain": "ikea.com",
-      "source_url": "https://www.ikea.com/us/en/offers/"
-    },
-    {
-      "promo_id": "ikea_50offsheetsetsave1000",
-      "brand": "IKEA",
-      "title": "50% off sheet set, save $10.00",
-      "notify_score": 95.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "IKEA",
-      "notification_body": "50% off sheet set, save $10.00",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "end_date": "2026-07-02",
-      "website_domain": "ikea.com",
-      "source_url": "https://www.ikea.com/us/en/offers/"
+      "discount_value": "10%",
+      "end_date": "2026-06-22",
+      "website_domain": "llbean.com",
+      "source_url": "https://www.llbean.com/llb/shop/32?page=sale"
     },
     {
       "promo_id": "foodpanda_60offfreedelivery",
@@ -515,23 +447,6 @@
       "end_date": null,
       "website_domain": null,
       "source_url": null
-    },
-    {
-      "promo_id": "coach_upto50offselectstyles",
-      "brand": "Coach",
-      "title": "Up to 50% off select styles",
-      "notify_score": 94.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Coach",
-      "notification_body": "Up to 50% off select styles",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "end_date": null,
-      "website_domain": "coach.com",
-      "source_url": "https://www.coach.com/content/promo"
     },
     {
       "promo_id": "rei_upto50offpastseasonstylesfromarcteryxpatagoniacolumbiamore",
@@ -602,23 +517,6 @@
       "source_url": "https://www.einsteinbros.com/rewards/"
     },
     {
-      "promo_id": "tuftneedle_summersleepsalesave25onbreathablebedding",
-      "brand": "Tuft & Needle",
-      "title": "Summer Sleep Sale: Save 25% on breathable bedding.",
-      "notify_score": 93.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Tuft & Needle",
-      "notification_body": "Expires today: Summer Sleep Sale: Save 25% on breathable bedding.",
-      "discount_type": "percentage_off",
-      "discount_value": "25%",
-      "end_date": "2026-06-23",
-      "website_domain": "tuftandneedle.com",
-      "source_url": "https://www.tuftandneedle.com/pages/promo-terms"
-    },
-    {
       "promo_id": "rei_shopreioutlet",
       "brand": "REI",
       "title": "Shop REI Outlet",
@@ -651,23 +549,6 @@
       "end_date": null,
       "website_domain": "cariboucoffee.com",
       "source_url": "https://www.cariboucoffee.com/caribou-perks/"
-    },
-    {
-      "promo_id": "talbots_30extra20offallmarkdowns",
-      "brand": "Talbots",
-      "title": "30% + EXTRA 20% off all MARKDOWNS",
-      "notify_score": 91.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Talbots",
-      "notification_body": "Expires today: 30% + EXTRA 20% off all MARKDOWNS",
-      "discount_type": "percentage_off",
-      "discount_value": null,
-      "end_date": "2026-06-23",
-      "website_domain": "talbots.com",
-      "source_url": "https://www.talbots.com/sale"
     },
     {
       "promo_id": "bowlero_thespecial",
@@ -738,6 +619,23 @@
       "source_url": "https://www.regmovies.com/regal-crown-club"
     },
     {
+      "promo_id": "wrangler_todayonlyfreeshippingonallorders",
+      "brand": "Wrangler",
+      "title": "Today Only: Free Shipping on All Orders",
+      "notify_score": 87.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Wrangler",
+      "notification_body": "Expires today: Today Only: Free Shipping on All Orders",
+      "discount_type": "free_shipping",
+      "discount_value": "free",
+      "end_date": "2026-06-22",
+      "website_domain": "wrangler.com",
+      "source_url": "https://www.wrangler.com/shop/sale"
+    },
+    {
       "promo_id": "amctheatres_toystory5collectiblelorcanatcgcard",
       "brand": "AMC Theatres",
       "title": "TOY STORY 5 Collectible Lorcana TCG Card",
@@ -753,23 +651,6 @@
       "end_date": "2026-06-21",
       "website_domain": "amctheatres.com",
       "source_url": "https://www.amctheatres.com/offers"
-    },
-    {
-      "promo_id": "regal_regalvaluedaystuesdaydeals",
-      "brand": "Regal",
-      "title": "Regal Value Days - Tuesday Deals",
-      "notify_score": 84.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Regal",
-      "notification_body": "Regal Value Days - Tuesday Deals",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "end_date": null,
-      "website_domain": "regmovies.com",
-      "source_url": "https://www.regmovies.com/regal-crown-club"
     },
     {
       "promo_id": "chipotle_birthdayrewardselection",
@@ -804,91 +685,6 @@
       "end_date": null,
       "website_domain": "panerabread.com",
       "source_url": "https://www.panerabread.com/en-us/mypanera/meet-mypanera.html"
-    },
-    {
-      "promo_id": "tommyhilfiger_upto70offsalestyles",
-      "brand": "Tommy Hilfiger",
-      "title": "Up To 70% Off Sale Styles",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Tommy Hilfiger",
-      "notification_body": "Up To 70% Off Sale Styles",
-      "discount_type": "percentage_off",
-      "discount_value": "up_to_70%",
-      "end_date": "2023-06-24T23:59:59-07:00",
-      "website_domain": "usa.tommy.com",
-      "source_url": "https://usa.tommy.com/en/tommy-hilfiger-coupons"
-    },
-    {
-      "promo_id": "tommyhilfiger_60offselectaccessories",
-      "brand": "Tommy Hilfiger",
-      "title": "60% Off Select Accessories",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Tommy Hilfiger",
-      "notification_body": "60% Off Select Accessories",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "end_date": "2023-06-24T23:59:59-07:00",
-      "website_domain": "usa.tommy.com",
-      "source_url": "https://usa.tommy.com/en/tommy-hilfiger-coupons"
-    },
-    {
-      "promo_id": "tommyhilfiger_60offselectwomensstyles",
-      "brand": "Tommy Hilfiger",
-      "title": "60% Off Select Women's Styles",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Tommy Hilfiger",
-      "notification_body": "60% Off Select Women's Styles",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "end_date": "2023-06-24T23:59:59-07:00",
-      "website_domain": "usa.tommy.com",
-      "source_url": "https://usa.tommy.com/en/tommy-hilfiger-coupons"
-    },
-    {
-      "promo_id": "tommyhilfiger_50offselectkidsstyles",
-      "brand": "Tommy Hilfiger",
-      "title": "50% Off Select Kids' Styles",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Tommy Hilfiger",
-      "notification_body": "50% Off Select Kids' Styles",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "end_date": "2023-06-24T23:59:59-07:00",
-      "website_domain": "usa.tommy.com",
-      "source_url": "https://usa.tommy.com/en/tommy-hilfiger-coupons"
-    },
-    {
-      "promo_id": "tommyhilfiger_50offselectmensstyles",
-      "brand": "Tommy Hilfiger",
-      "title": "50% Off Select Men's Styles",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Tommy Hilfiger",
-      "notification_body": "50% Off Select Men's Styles",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "end_date": "2023-06-24T23:59:59-07:00",
-      "website_domain": "usa.tommy.com",
-      "source_url": "https://usa.tommy.com/en/tommy-hilfiger-coupons"
     }
   ]
 }
