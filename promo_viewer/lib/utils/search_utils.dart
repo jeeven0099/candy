@@ -164,6 +164,46 @@ const Map<String, List<String>> kBrandAliases = {
   "Marriott":               ['marriott hotels', 'marriott bonvoy'],
   "Hilton":                 ['hilton hotels'],
   "Wyndham Hotels":         ['wyndham'],
+  "Raising Cane's":         ['canes', "cane's", 'raising canes'],
+  "Little Caesars":         ['little caesars pizza'],
+  "Tropical Smoothie Cafe": ['tropical smoothie', 'tsc'],
+  "Baskin-Robbins":         ['baskin robbins', 'baskin'],
+  "Qdoba":                  ['qdoba mexican eats'],
+  "Moe's Southwest Grill":  ['moes', "moe's"],
+  "El Pollo Loco":          ['el pollo', 'epl'],
+  "Church's Chicken":       ['churches chicken', 'church chicken'],
+  "Hardee's":               ['hardees'],
+  "LongHorn Steakhouse":    ['longhorn'],
+  "P.F. Chang's":           ['pf changs', 'pfchangs'],
+  "MAC Cosmetics":          ['mac makeup', 'mac beauty'],
+  "NYX Professional Makeup":['nyx cosmetics', 'nyx makeup', 'nyx'],
+  "Too Faced":              ['too faced cosmetics'],
+  "Charlotte Tilbury":      ['ct beauty'],
+  "Fenty Beauty":           ['fenty'],
+  "The Ordinary":           ['theordinary', 'ordinary deciem'],
+  "Kiehl's":                ['kiehls'],
+  "NARS":                   ['nars cosmetics'],
+  "Benefit Cosmetics":      ['benefit'],
+  "UGG":                    ['ugg boots'],
+  "Timberland":             ['timberlands'],
+  "New Balance":            ['nb', 'newbalance'],
+  "Reebok":                 ['reebok shoes'],
+  "Hoka":                   ['hoka one one', 'hoka shoes'],
+  "Asics":                  ['asics running'],
+  "Aldo":                   ['aldo shoes'],
+  "Clarks":                 ['clarks shoes', 'clarks originals'],
+  "Sperry":                 ['sperry topsider'],
+  "Hey Dude":               ['heydude'],
+  "Brooks Running":         ['brooks shoes', 'brooks'],
+  "Saucony":                ['saucony shoes'],
+  "Allbirds":               ['all birds'],
+  "Home Depot":             ['the home depot', 'homedepot'],
+  "Lowe's":                 ['lowes'],
+  "Ace Hardware":           ['ace'],
+  "GameStop":               ['game stop', 'gs'],
+  "B&H Photo":              ['b&h', 'bandh', 'b and h'],
+  "Micro Center":           ['microcenter'],
+  "Adorama":                ['adorama camera'],
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -258,6 +298,39 @@ const Map<String, List<String>> kBrandProductTags = {
   'REI':                ['outdoor', 'hiking', 'camping', 'sporting goods', 'adventure gear'],
   'Best Buy':           ['electronics', 'tech', 'computers', 'laptops', 'tvs', 'gadgets'],
   'Newegg':             ['electronics', 'tech', 'computers', 'components', 'pc parts'],
+  'MAC Cosmetics':      ['makeup', 'cosmetics', 'foundation', 'lipstick', 'beauty'],
+  'Urban Decay':        ['makeup', 'cosmetics', 'eyeshadow', 'beauty', 'eyeshadow palette'],
+  'Tarte Cosmetics':    ['makeup', 'cosmetics', 'beauty', 'skincare', 'foundation'],
+  'NYX Professional Makeup': ['makeup', 'cosmetics', 'beauty', 'lipstick', 'affordable beauty'],
+  'Too Faced':          ['makeup', 'cosmetics', 'beauty', 'mascara', 'eyeshadow'],
+  'Charlotte Tilbury':  ['makeup', 'cosmetics', 'skincare', 'beauty', 'luxury beauty'],
+  'Fenty Beauty':       ['makeup', 'cosmetics', 'beauty', 'foundation', 'skincare'],
+  'The Ordinary':       ['skincare', 'serums', 'beauty', 'retinol', 'vitamin c'],
+  'Kiehl\'s':           ['skincare', 'beauty', 'moisturizer', 'cleanser', 'body care'],
+  'NARS':               ['makeup', 'cosmetics', 'beauty', 'blush', 'foundation'],
+  'Benefit Cosmetics':  ['makeup', 'cosmetics', 'beauty', 'brows', 'mascara'],
+  'Clinique':           ['skincare', 'beauty', 'makeup', 'moisturizer', 'cosmetics'],
+  'Steve Madden':       ['shoes', 'boots', 'sandals', 'heels', 'sneakers', 'footwear'],
+  'UGG':                ['boots', 'shoes', 'slippers', 'sandals', 'footwear'],
+  'Timberland':         ['boots', 'shoes', 'outdoor footwear', 'work boots', 'footwear'],
+  'New Balance':        ['sneakers', 'running shoes', 'athletic shoes', 'shoes', 'footwear'],
+  'Hoka':               ['running shoes', 'sneakers', 'athletic shoes', 'trail shoes', 'footwear'],
+  'Asics':              ['running shoes', 'sneakers', 'athletic shoes', 'shoes', 'footwear'],
+  'Aldo':               ['shoes', 'heels', 'boots', 'sandals', 'accessories', 'footwear'],
+  'Clarks':             ['shoes', 'boots', 'sandals', 'comfort shoes', 'footwear'],
+  'Sperry':             ['shoes', 'boat shoes', 'boots', 'sandals', 'footwear'],
+  'Hey Dude':           ['shoes', 'casual shoes', 'loafers', 'slip-on', 'footwear'],
+  'Brooks Running':     ['running shoes', 'sneakers', 'athletic shoes', 'footwear'],
+  'Saucony':            ['running shoes', 'sneakers', 'athletic shoes', 'footwear'],
+  'Allbirds':           ['shoes', 'sneakers', 'sustainable shoes', 'footwear'],
+  'Home Depot':         ['tools', 'hardware', 'home improvement', 'appliances', 'garden'],
+  'Lowe\'s':            ['tools', 'hardware', 'home improvement', 'appliances', 'garden'],
+  'Ace Hardware':       ['tools', 'hardware', 'home improvement', 'paint'],
+  'Menards':            ['tools', 'hardware', 'home improvement', 'building materials'],
+  'GameStop':           ['video games', 'gaming', 'consoles', 'ps5', 'xbox', 'nintendo'],
+  'Micro Center':       ['computers', 'pc parts', 'electronics', 'tech', 'components'],
+  'B&H Photo':          ['cameras', 'photography', 'electronics', 'tech', 'lenses'],
+  'Adorama':            ['cameras', 'photography', 'electronics', 'tech', 'lenses'],
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -284,7 +357,7 @@ const Map<String, Map<String, List<String>>> kSearchTaxonomy = {
   },
   'chicken': {
     'aliases': ['fried chicken', 'chicken sandwich', 'nuggets', 'tenders'],
-    'brands':  ["Chick-fil-A", "Popeyes", "KFC", "Raising Cane's"],
+    'brands':  ["Chick-fil-A", "Popeyes", "KFC", "Raising Cane's", "Church's Chicken", "El Pollo Loco", "Hardee's"],
   },
   'wings': {
     'aliases': ['wing', 'boneless wings', 'buffalo wings'],
@@ -308,7 +381,7 @@ const Map<String, Map<String, List<String>>> kSearchTaxonomy = {
   },
   'smoothies': {
     'aliases': ['smoothie', 'juice', 'acai', 'blend'],
-    'brands':  ["Jamba", "Smoothie King"],
+    'brands':  ["Jamba", "Smoothie King", "Tropical Smoothie Cafe"],
   },
   'steak': {
     'aliases': ['steakhouse', 'ribeye', 'sirloin', 'bbq', 'grill'],
@@ -347,11 +420,11 @@ const Map<String, Map<String, List<String>>> kSearchTaxonomy = {
   },
   'shoes': {
     'aliases': ['shoe', 'footwear', 'boots', 'sandals', 'flats', 'heels', 'loafers'],
-    'brands':  ["Nike", "Skechers", "Puma", "Under Armour", "Dr. Martens", "Merrell", "Cole Haan", "Nine West", "Sam Edelman", "Stuart Weitzman", "DSW", "Famous Footwear"],
+    'brands':  ["Nike", "Skechers", "Puma", "Under Armour", "Dr. Martens", "Merrell", "Cole Haan", "Nine West", "Sam Edelman", "Stuart Weitzman", "DSW", "Famous Footwear", "Steve Madden", "UGG", "Aldo", "Clarks", "Sperry", "Hey Dude", "Hoka", "Asics", "Allbirds"],
   },
   'sneakers': {
     'aliases': ['sneaker', 'athletic shoes', 'running shoes', 'trainers', 'kicks'],
-    'brands':  ["Nike", "Adidas", "Foot Locker", "Finish Line", "Champs Sports", "Reebok", "Puma", "New Balance"],
+    'brands':  ["Nike", "Adidas", "Foot Locker", "Finish Line", "Champs Sports", "Reebok", "Puma", "New Balance", "Hoka", "Asics", "Brooks Running", "Saucony", "Allbirds"],
   },
   'handbags': {
     'aliases': ['handbag', 'bag', 'purse', 'wallet', 'tote', 'crossbody', 'clutch', 'shoulder bag'],
@@ -376,11 +449,11 @@ const Map<String, Map<String, List<String>>> kSearchTaxonomy = {
   // ── Beauty ────────────────────────────────────────────────────────────────
   'makeup': {
     'aliases': ['cosmetics', 'foundation', 'lipstick', 'mascara', 'eyeshadow', 'blush', 'beauty'],
-    'brands':  ["Ulta Beauty", "ColourPop", "e.l.f. Cosmetics", "IL MAKIAGE", "Sephora", "NYX"],
+    'brands':  ["Ulta Beauty", "Sephora", "ColourPop", "e.l.f. Cosmetics", "IL MAKIAGE", "MAC Cosmetics", "Urban Decay", "Tarte Cosmetics", "NYX Professional Makeup", "Too Faced", "NARS", "Benefit Cosmetics", "Fenty Beauty"],
   },
   'skincare': {
     'aliases': ['moisturizer', 'serum', 'sunscreen', 'cleanser', 'face wash', 'skin care'],
-    'brands':  ["Ulta Beauty", "e.l.f. Cosmetics", "Prose", "Function of Beauty", "Sephora", "The Body Shop"],
+    'brands':  ["Ulta Beauty", "Sephora", "e.l.f. Cosmetics", "Prose", "Function of Beauty", "The Body Shop", "The Ordinary", "Kiehl's", "Charlotte Tilbury", "Clinique", "Tarte Cosmetics"],
   },
   'fragrance': {
     'aliases': ['perfume', 'cologne', 'scent', 'body spray'],
@@ -393,11 +466,23 @@ const Map<String, Map<String, List<String>>> kSearchTaxonomy = {
   // ── Tech & Home ───────────────────────────────────────────────────────────
   'electronics': {
     'aliases': ['laptop', 'computer', 'phone', 'tv', 'headphones', 'tablet', 'tech'],
-    'brands':  ["Best Buy", "Dell", "Newegg"],
+    'brands':  ["Best Buy", "Dell", "Newegg", "Micro Center", "B&H Photo", "Adorama"],
+  },
+  'cameras': {
+    'aliases': ['camera', 'photography', 'lens', 'dslr', 'mirrorless', 'photo gear'],
+    'brands':  ["B&H Photo", "Adorama"],
   },
   'home': {
     'aliases': ['furniture', 'decor', 'sofa', 'couch', 'home goods', 'kitchen'],
     'brands':  ["IKEA", "West Elm"],
+  },
+  'home improvement': {
+    'aliases': ['hardware', 'tools', 'power tools', 'paint', 'garden', 'building', 'renovation', 'diy'],
+    'brands':  ["Home Depot", "Lowe's", "Ace Hardware", "Menards"],
+  },
+  'gaming': {
+    'aliases': ['video games', 'game', 'ps5', 'playstation', 'xbox', 'nintendo', 'console', 'switch'],
+    'brands':  ["GameStop"],
   },
 };
 
