@@ -31,10 +31,11 @@ Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Starting pipeline..."
 & $python $pipeline --ollama-model qwen2.5:14b --ollama-timeout 2700
 if (-not $?) { throw "Pipeline failed - check run_pipeline.py output above" }
 
-Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Running email pipeline..."
-$env:SSLKEYLOGFILE = $null  # Avast sets this to a kernel device path; Python 3.14 can't open it
-& $python "$root\promo-raw-scraper\email_pipeline\src\run_email_pipeline.py" --env-file "$root\promo-raw-scraper\.env.email" --ollama-model qwen2.5:14b --ollama-timeout 2700 --gmail-query "category:promotions newer_than:1d"
-if (-not $?) { Write-Host "[WARN] Email pipeline failed - continuing" }
+# EMAIL PIPELINE DISABLED — re-enable when ready for launch
+# Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Running email pipeline..."
+# $env:SSLKEYLOGFILE = $null
+# & $python "$root\promo-raw-scraper\email_pipeline\src\run_email_pipeline.py" --env-file "$root\promo-raw-scraper\.env.email" --ollama-model qwen2.5:14b --ollama-timeout 2700 --gmail-query "category:promotions newer_than:1d"
+# if (-not $?) { Write-Host "[WARN] Email pipeline failed - continuing" }
 
 Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Generating merged web promotions..."
 & $python "$root\promo-raw-scraper\src\generate_merged_json.py"
@@ -60,12 +61,13 @@ Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Copying assets..."
 Copy-Item "$root\promo-raw-scraper\all_promotions.json"              "$assets\all_promotions.json"              -Force
 Copy-Item "$root\promo-raw-scraper\brand_locations.json"             "$assets\brand_locations.json"             -Force
 Copy-Item "$root\promo-raw-scraper\notification_candidates.json"     "$assets\notification_candidates.json"     -Force -ErrorAction SilentlyContinue
-if (Test-Path "$root\promo-raw-scraper\email_pipeline\logs\user_memberships.json") {
-    Copy-Item "$root\promo-raw-scraper\email_pipeline\logs\user_memberships.json" "$assets\user_memberships.json" -Force
-}
-if (Test-Path "$root\promo-raw-scraper\email_pipeline\logs\brand_affinity.json") {
-    Copy-Item "$root\promo-raw-scraper\email_pipeline\logs\brand_affinity.json" "$assets\brand_affinity.json" -Force
-}
+# EMAIL PIPELINE DISABLED — these copies re-enable with the pipeline
+# if (Test-Path "$root\promo-raw-scraper\email_pipeline\logs\user_memberships.json") {
+#     Copy-Item "$root\promo-raw-scraper\email_pipeline\logs\user_memberships.json" "$assets\user_memberships.json" -Force
+# }
+# if (Test-Path "$root\promo-raw-scraper\email_pipeline\logs\brand_affinity.json") {
+#     Copy-Item "$root\promo-raw-scraper\email_pipeline\logs\brand_affinity.json" "$assets\brand_affinity.json" -Force
+# }
 
 # Copy logos folder (only new/changed files)
 New-Item -ItemType Directory -Force "$assets\logos" | Out-Null
