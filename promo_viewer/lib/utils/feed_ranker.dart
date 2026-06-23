@@ -1,4 +1,5 @@
 import '../models/promotion.dart';
+import '../models/user_prefs.dart';
 import '../services/interaction_service.dart';
 import '../services/saved_deals_service.dart';
 
@@ -14,6 +15,7 @@ class ScoreBreakdown {
   final double dayBonus;
   final double membershipBonus;
   final double affinityBoost;
+  final double preferenceBoost;
   final double fatiguePenalty;
   final bool isHidden;
 
@@ -23,13 +25,14 @@ class ScoreBreakdown {
     required this.dayBonus,
     required this.membershipBonus,
     required this.affinityBoost,
+    required this.preferenceBoost,
     required this.fatiguePenalty,
     required this.isHidden,
   });
 
   double get total => isHidden
       ? double.negativeInfinity
-      : rankBase + distanceBonus + dayBonus + membershipBonus + affinityBoost - fatiguePenalty;
+      : rankBase + distanceBonus + dayBonus + membershipBonus + affinityBoost + preferenceBoost - fatiguePenalty;
 }
 
 ScoreBreakdown computeBreakdown(
@@ -37,6 +40,7 @@ ScoreBreakdown computeBreakdown(
   InteractionService svc, {
   double? distanceKm,
   bool isMember = false,
+  UserPrefs? prefs,
 }) {
   // Distance bonus
   double distBonus = 0;
@@ -79,6 +83,7 @@ ScoreBreakdown computeBreakdown(
   final rawFatigue = fatiguePenalty(p.id, svc);
   final hidden = rawFatigue >= _kHide;
   final aBoost = affinityBoost(p, svc);
+  final pBoost = preferenceBoost(p, prefs);
 
   return ScoreBreakdown(
     rankBase: p.rankBaseScore,
@@ -86,6 +91,7 @@ ScoreBreakdown computeBreakdown(
     dayBonus: dayBonus,
     membershipBonus: memberBonus,
     affinityBoost: aBoost,
+    preferenceBoost: pBoost,
     fatiguePenalty: hidden ? 999 : rawFatigue,
     isHidden: hidden,
   );
@@ -110,6 +116,17 @@ double fatiguePenalty(String id, InteractionService svc) {
   }
 }
 
+/// Preference boost from user's saved categories (+10) and favorite brands (+15).
+double preferenceBoost(Promotion p, UserPrefs? prefs) {
+  if (prefs == null) return 0;
+  double boost = 0;
+  final brand = p.brand.toLowerCase();
+  if (prefs.favoriteBrands.any((b) => b.toLowerCase() == brand)) boost += 15;
+  final cat = p.category.toLowerCase();
+  if (cat.isNotEmpty && prefs.favoriteCategories.any((c) => c.toLowerCase() == cat)) boost += 10;
+  return boost;
+}
+
 /// Affinity boost from positive signals: saved, fast-redeemed, clicked, brand searched.
 double affinityBoost(Promotion p, InteractionService svc) {
   double boost = 0;
@@ -120,17 +137,19 @@ double affinityBoost(Promotion p, InteractionService svc) {
   return boost;
 }
 
-/// Full personalized score: base rank + affinity boost - fatigue penalty.
+/// Full personalized score: base rank + affinity + preference boost - fatigue penalty.
 double personalizedScore(
   Promotion p,
   InteractionService svc, {
   double? distanceKm,
   bool isMember = false,
+  UserPrefs? prefs,
 }) {
   final penalty = fatiguePenalty(p.id, svc);
   if (penalty >= _kHide) return -_kHide;
   return p.rankScore(distanceKm: distanceKm, isMember: isMember)
       + affinityBoost(p, svc)
+      + preferenceBoost(p, prefs)
       - penalty;
 }
 
@@ -144,6 +163,7 @@ List<Promotion> selectTopDeals(
   InteractionService svc, {
   double? Function(Promotion)? getDistance,
   bool Function(Promotion)? getIsMember,
+  UserPrefs? prefs,
   int limit = 10,
   int maxPerBrand = 2,
 }) {
@@ -153,6 +173,7 @@ List<Promotion> selectTopDeals(
       p, svc,
       distanceKm: getDistance?.call(p),
       isMember: getIsMember?.call(p) ?? false,
+      prefs: prefs,
     );
     if (score > -_kHide / 2) scored.add((p, score));
   }
