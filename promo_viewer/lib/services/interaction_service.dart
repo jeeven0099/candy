@@ -69,5 +69,29 @@ class InteractionService {
     await _prefs?.setString('$_brandSrc${_norm(brand)}', DateTime.now().toIso8601String());
   }
 
+  // ── Query search tracking ─────────────────────────────────────────────────
+
+  static const _srchPrefix = 'srch_q_';
+  static const _srchFailedKey = 'srch_failed_list';
+
+  Future<void> recordSearch(String query, int resultCount) async {
+    final p = _prefs;
+    if (p == null || query.trim().isEmpty) return;
+    final key = '$_srchPrefix${_norm(query)}';
+    await p.setInt(key, (p.getInt(key) ?? 0) + 1);
+    if (resultCount == 0) {
+      final normed = _norm(query);
+      final failed = List<String>.from(p.getStringList(_srchFailedKey) ?? []);
+      if (!failed.contains(normed)) {
+        failed.add(normed);
+        if (failed.length > 50) failed.removeAt(0);
+        await p.setStringList(_srchFailedKey, failed);
+      }
+    }
+  }
+
+  List<String> getFailedSearches() =>
+      List<String>.from(_prefs?.getStringList(_srchFailedKey) ?? []);
+
   static String _norm(String s) => s.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]'), '_');
 }
