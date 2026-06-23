@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Tracks per-deal user interactions to power fatigue penalties and affinity boosts.
@@ -92,6 +93,43 @@ class InteractionService {
 
   List<String> getFailedSearches() =>
       List<String>.from(_prefs?.getStringList(_srchFailedKey) ?? []);
+
+  // ── Recent searches ───────────────────────────────────────────────────────
+
+  static const _recentKey = 'srch_recent';
+
+  Future<void> recordRecentSearch(String query) async {
+    final q = query.trim();
+    if (q.length < 2) return;
+    final p = _prefs;
+    if (p == null) return;
+    final raw = List<String>.from(p.getStringList(_recentKey) ?? []);
+    raw.remove(q);
+    raw.insert(0, q);
+    if (raw.length > 10) raw.removeLast();
+    await p.setStringList(_recentKey, raw);
+  }
+
+  List<String> getRecentSearches() =>
+      List<String>.from(_prefs?.getStringList(_recentKey) ?? []);
+
+  Future<void> clearRecentSearch(String query) async {
+    final p = _prefs;
+    if (p == null) return;
+    final raw = List<String>.from(p.getStringList(_recentKey) ?? []);
+    raw.remove(query.trim());
+    await p.setStringList(_recentKey, raw);
+  }
+
+  // ── Analytics events ──────────────────────────────────────────────────────
+  // Lightweight hook — wire to Firebase/Amplitude in production.
+
+  void recordSearchEvent(String type, {Map<String, String>? params}) {
+    if (kDebugMode) {
+      final extra = params?.entries.map((e) => '${e.key}=${e.value}').join(', ') ?? '';
+      debugPrint('[Search:$type]${extra.isEmpty ? '' : ' $extra'}');
+    }
+  }
 
   static String _norm(String s) => s.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]'), '_');
 }
