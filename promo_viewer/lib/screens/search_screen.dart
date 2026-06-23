@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/promotion.dart';
 import '../services/interaction_service.dart';
@@ -13,17 +14,13 @@ import '../utils/format_utils.dart';
 import '../utils/search_utils.dart';
 import '../widgets/brand_result_card.dart';
 
-// ── Suggestion constants ──────────────────────────────────────────────────────
+// ── Constants ─────────────────────────────────────────────────────────────────
+
+const _kRadiusKey = 'near_me_radius_mi';
 
 const _kPopularSearches = [
   'burgers', 'coffee', 'jeans', 'handbags', 'pizza',
-  'groceries', 'makeup', 'shoes',
-];
-const _kPopularBrands = [
-  'Target', 'Starbucks', 'Nike', 'Coach', 'Kroger', 'Chipotle',
-];
-const _kNearbySearches = [
-  'lunch near me', 'coffee near me', 'grocery deals', 'burgers near me',
+  'groceries', 'makeup', 'shoes', 'movies', 'travel',
 ];
 
 // ── Context chip definitions ───────────────────────────────────────────────────
@@ -35,13 +32,13 @@ class _ContextChip {
   const _ContextChip(this.ctx, this.label, this.icon);
 }
 
+// Labels are overridden dynamically for Near Me to show radius.
 const _kChips = [
   _ContextChip(SearchContext.forYou,   'For You',   Icons.auto_awesome),
   _ContextChip(SearchContext.nearMe,   'Near Me',   Icons.near_me),
   _ContextChip(SearchContext.online,   'Online',    Icons.language),
   _ContextChip(SearchContext.rewards,  'Rewards',   Icons.card_membership),
   _ContextChip(SearchContext.freeBogo, 'Free/BOGO', Icons.redeem),
-  _ContextChip(SearchContext.saved,    'Saved',     Icons.favorite),
 ];
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -65,24 +62,30 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  final _controller  = TextEditingController();
-  final _svc         = InteractionService();
+  final _controller = TextEditingController();
+  final _svc        = InteractionService();
 
-  String _query         = '';        // live text (controls TextField)
-  String _debouncedQ    = '';        // settled query used for actual search
-  String _lastTrackedQ  = '';
+  String  _query        = '';
+  String  _debouncedQ   = '';
+  String  _lastTrackedQ = '';
   SearchContext _ctx    = SearchContext.forYou;
-
-  Timer?    _debounce;
+  int     _radiusMi     = 5;
+  Timer?  _debounce;
   Position? _position;
-  bool      _locating        = false;
-  bool      _locationDenied  = false;
+  bool    _locating       = false;
+  bool    _locationDenied = false;
 
   @override
   void initState() {
     super.initState();
-    // If any distances are already attached (from the Near Me tab), reuse them.
+    _loadRadius();
     if (widget.all.any((p) => p.distanceKm != null)) _position = const _FakePosition();
+  }
+
+  Future<void> _loadRadius() async {
+    final prefs = await SharedPreferences.getInstance();
+    final saved = prefs.getInt(_kRadiusKey);
+    if (saved != null && mounted) setState(() => _radiusMi = saved);
   }
 
   @override
@@ -101,9 +104,7 @@ class _SearchScreenState extends State<SearchScreen> {
     memberships:   widget.memberships,
     savedIds:      _savedIds,
     context:       _ctx,
-    // ForYou/Saved are personal contexts — slightly more lenient (0.60).
-    // All other contexts (chip-browsing or search) use the default 0.65.
-    minConfidence: (_ctx == SearchContext.forYou || _ctx == SearchContext.saved) ? 0.6 : 0.65,
+    minConfidence: (_ctx == SearchContext.forYou) ? 0.6 : 0.65,
   );
 
   List<BrandGroup> get _results {
@@ -111,19 +112,17 @@ class _SearchScreenState extends State<SearchScreen> {
     return runSearch(widget.all, _debouncedQ, _opts);
   }
 
-  List<BrandGroup> get _contextDeals {
-    if (_ctx == SearchContext.forYou) return [];
-    final scorer = _ctx == SearchContext.nearMe
-        ? _nearMeScorer
-        : _ctx == SearchContext.forYou
-            ? _forYouScorer
-            : null;
+  List<BrandGroup> _getContextGroups() {
+    double Function(Promotion)? scorer;
+    if (_ctx == SearchContext.nearMe) scorer = _nearMeScorer;
+    if (_ctx == SearchContext.forYou) scorer = _forYouScorer;
     return getContextDeals(widget.all, _opts, scorer: scorer);
   }
 
   double _nearMeScorer(Promotion p) {
     if (p.distanceKm == null) return -999;
     final miles = p.distanceKm! * 0.621371;
+    if (miles > _radiusMi) return -999;
     final dist = miles <= 0.5 ? 30 : miles <= 1.0 ? 25 : miles <= 2.0 ? 18 : miles <= 5.0 ? 8 : 2;
     return p.rankBaseScore + dist;
   }
@@ -155,13 +154,10 @@ class _SearchScreenState extends State<SearchScreen> {
   void _clearQuery() {
     _debounce?.cancel();
     _controller.clear();
-    setState(() {
-      _query       = '';
-      _debouncedQ  = '';
-    });
+    setState(() { _query = ''; _debouncedQ = ''; });
   }
 
-  // ── Context chip selection ────────────────────────────────────────────────
+  // ── Chip selection ────────────────────────────────────────────────────────
 
   Future<void> _selectChip(SearchContext ctx) async {
     if (ctx == SearchContext.nearMe && _position == null && !_locationDenied) {
@@ -169,10 +165,8 @@ class _SearchScreenState extends State<SearchScreen> {
       if (_locationDenied) return;
     }
     if (_ctx != ctx) {
-      _svc.recordSearchEvent('search_filter_chip_changed', params: {
-        'chip': ctx.name,
-        'query': _query,
-      });
+      _svc.recordSearchEvent('search_filter_chip_changed',
+          params: {'chip': ctx.name, 'query': _query});
     }
     setState(() => _ctx = ctx);
   }
@@ -204,16 +198,11 @@ class _SearchScreenState extends State<SearchScreen> {
       _svc.recordRecentSearch(q);
       _svc.recordSearch(q, results.length);
       if (results.isEmpty) {
-        _svc.recordSearchEvent('search_no_results', params: {
-          'query': q,
-          'chip': _ctx.name,
-        });
+        _svc.recordSearchEvent('search_no_results',
+            params: {'query': q, 'chip': _ctx.name});
       } else {
-        _svc.recordSearchEvent('search_submitted', params: {
-          'query': q,
-          'chip': _ctx.name,
-          'result_count': '${results.length}',
-        });
+        _svc.recordSearchEvent('search_submitted',
+            params: {'query': q, 'chip': _ctx.name, 'result_count': '${results.length}'});
         for (final g in results) {
           if (g.bestTier <= 4) _svc.recordBrandSearch(g.brand);
         }
@@ -222,19 +211,13 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   void _onBrandExpanded(BrandGroup g) {
-    _svc.recordSearchEvent('brand_result_opened', params: {
-      'brand': g.brand,
-      'query': _debouncedQ,
-      'chip': _ctx.name,
-    });
+    _svc.recordSearchEvent('brand_result_opened',
+        params: {'brand': g.brand, 'query': _debouncedQ, 'chip': _ctx.name});
   }
 
   void _onDealTap(String dealId, String brand) {
-    _svc.recordSearchEvent('search_result_clicked', params: {
-      'deal_id': dealId,
-      'brand': brand,
-      'query': _debouncedQ,
-    });
+    _svc.recordSearchEvent('search_result_clicked',
+        params: {'deal_id': dealId, 'brand': brand, 'query': _debouncedQ});
   }
 
   // ── Build ─────────────────────────────────────────────────────────────────
@@ -268,27 +251,17 @@ class _SearchScreenState extends State<SearchScreen> {
         children: [
           Row(
             children: [
-              const Icon(Icons.search, size: 22),
-              const SizedBox(width: 8),
               const Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Search',
+                      'Deals',
                       style: TextStyle(
-                        fontSize: 26,
+                        fontSize: 28,
                         fontWeight: FontWeight.w700,
                         letterSpacing: -0.5,
                         color: Candy.chocolate,
-                      ),
-                    ),
-                    Text(
-                      'All brands & deals',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Candy.lavender,
-                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
@@ -304,7 +277,7 @@ class _SearchScreenState extends State<SearchScreen> {
           const SizedBox(height: 10),
           SearchBar(
             controller: _controller,
-            hintText: 'Search brands, deals, codes…',
+            hintText: 'Search burgers, jeans, coffee, Coach…',
             leading: const Icon(Icons.search, size: 20),
             trailing: [
               if (_query.isNotEmpty)
@@ -338,12 +311,14 @@ class _SearchScreenState extends State<SearchScreen> {
         itemBuilder: (context, i) {
           final chip     = _kChips[i];
           final selected = chip.ctx == _ctx;
-          final isNearMe = chip.ctx == SearchContext.nearMe && _locating;
+          final isNearMe = chip.ctx == SearchContext.nearMe;
+          final isLocating = isNearMe && _locating;
+          final label = isNearMe ? 'Near Me · $_radiusMi mi' : chip.label;
 
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
             child: ChoiceChip(
-              avatar: isNearMe
+              avatar: isLocating
                   ? SizedBox(
                       width: 14, height: 14,
                       child: CircularProgressIndicator(
@@ -353,7 +328,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     )
                   : Icon(chip.icon, size: 14,
                       color: selected ? Colors.white : Candy.chocolate.withValues(alpha: 0.7)),
-              label: Text(chip.label),
+              label: Text(label),
               selected: selected,
               onSelected: (_) => _selectChip(chip.ctx),
               labelStyle: TextStyle(
@@ -380,92 +355,93 @@ class _SearchScreenState extends State<SearchScreen> {
 
   Widget _buildBody(bool hasQuery, List<BrandGroup> results) {
     if (hasQuery) {
-      return results.isEmpty
-          ? _buildNoResults()
-          : _buildSearchResults(results);
+      return results.isEmpty ? _buildNoResults() : _buildGroupList(results);
     }
-
-    // No query: For You shows suggestions; other chips show filtered deals.
-    if (_ctx == SearchContext.forYou) return _buildSuggestions();
-
-    // Near Me without location
     if (_ctx == SearchContext.nearMe && _position == null && !_locating) {
       return _buildLocationPrompt();
     }
-
-    final contextGroups = _contextDeals;
-    return contextGroups.isEmpty
-        ? _buildContextEmpty()
-        : _buildGroupList(contextGroups, isContext: true);
+    final groups = _getContextGroups();
+    return groups.isEmpty ? _buildContextEmpty() : _buildGroupList(groups);
   }
 
-  // ── Suggestion state (ForYou, no query) ──────────────────────────────────
+  // ── Feed (chips, no query) ────────────────────────────────────────────────
 
-  Widget _buildSuggestions() {
-    final recents = _svc.getRecentSearches();
-    return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 20, 16, 32),
-      children: [
-        if (recents.isNotEmpty) ...[
-          _SectionHeader(
-            label: 'Recent',
-            trailing: TextButton(
-              onPressed: () async {
-                for (final q in recents) {
-                  await _svc.clearRecentSearch(q);
-                }
-                setState(() {});
-              },
-              child: const Text('Clear', style: TextStyle(fontSize: 12)),
+  Widget _buildGroupList(List<BrandGroup> groups) {
+    return RefreshIndicator(
+      onRefresh: widget.onRefresh,
+      child: CustomScrollView(
+        slivers: [
+          // Quick-search suggestion row — always visible at top
+          SliverToBoxAdapter(child: _buildQuickSearchRow()),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
+              child: Text(
+                _debouncedQ.isNotEmpty
+                    ? '${groups.length} brand${groups.length == 1 ? '' : 's'}'
+                    : _ctxLabel,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Colors.grey.shade500,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
           ),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: recents.map((q) => _SuggestionChip(
-              label: q,
-              icon: Icons.history,
-              onTap: () => _setQuery(q),
-              onDelete: () async {
-                await _svc.clearRecentSearch(q);
-                setState(() {});
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (ctx, i) {
+                final g = groups[i];
+                return BrandResultCard(
+                  group: g,
+                  memberships: widget.memberships,
+                  onExpanded:  () => _onBrandExpanded(g),
+                  onDealTap:   _onDealTap,
+                );
               },
-            )).toList(),
+              childCount: groups.length,
+            ),
           ),
-          const SizedBox(height: 20),
+          const SliverPadding(padding: EdgeInsets.only(bottom: 24)),
         ],
-        _SectionHeader(label: 'Popular searches'),
-        const SizedBox(height: 8),
-        Wrap(
-          spacing: 8, runSpacing: 8,
-          children: _kPopularSearches.map((s) => _SuggestionChip(
-            label: s, onTap: () => _setQuery(s),
-          )).toList(),
-        ),
-        const SizedBox(height: 20),
-        _SectionHeader(label: 'Popular brands'),
-        const SizedBox(height: 8),
-        Wrap(
-          spacing: 8, runSpacing: 8,
-          children: _kPopularBrands.map((s) => _SuggestionChip(
-            label: s,
-            icon: Icons.storefront_outlined,
-            onTap: () => _setQuery(s),
-          )).toList(),
-        ),
-        const SizedBox(height: 20),
-        _SectionHeader(label: 'Nearby searches'),
-        const SizedBox(height: 8),
-        Wrap(
-          spacing: 8, runSpacing: 8,
-          children: _kNearbySearches.map((s) => _SuggestionChip(
-            label: s,
-            icon: Icons.near_me,
-            onTap: () => _setQuery(s),
-          )).toList(),
-        ),
-      ],
+      ),
+    );
+  }
+
+  String get _ctxLabel {
+    switch (_ctx) {
+      case SearchContext.forYou:   return 'Top picks for you';
+      case SearchContext.nearMe:   return 'Nearby deals within $_radiusMi mi';
+      case SearchContext.online:   return 'Top online deals';
+      case SearchContext.rewards:  return 'Rewards & membership deals';
+      case SearchContext.freeBogo: return 'Free items & BOGO deals';
+      case SearchContext.saved:    return 'Your saved deals';
+    }
+  }
+
+  Widget _buildQuickSearchRow() {
+    return SizedBox(
+      height: 44,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        itemCount: _kPopularSearches.length,
+        itemBuilder: (_, i) {
+          final s = _kPopularSearches[i];
+          return Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: ActionChip(
+              label: Text(s),
+              onPressed: () => _setQuery(s),
+              backgroundColor: Colors.white,
+              side: BorderSide(color: Candy.pink.withValues(alpha: 0.25)),
+              labelStyle: const TextStyle(fontSize: 12, color: Candy.chocolate),
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              visualDensity: VisualDensity.compact,
+            ),
+          );
+        },
+      ),
     );
   }
 
@@ -484,11 +460,7 @@ class _SearchScreenState extends State<SearchScreen> {
             Text(
               'No results for "$_debouncedQ"',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.grey.shade600,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
+              style: TextStyle(color: Colors.grey.shade600, fontSize: 16, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 6),
             Text(
@@ -504,11 +476,8 @@ class _SearchScreenState extends State<SearchScreen> {
               const SizedBox(height: 20),
               Text(
                 'Related searches',
-                style: TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w600,
-                  color: Candy.chocolate.withValues(alpha: 0.7),
-                ),
+                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600,
+                    color: Candy.chocolate.withValues(alpha: 0.7)),
               ),
               const SizedBox(height: 10),
               Wrap(
@@ -524,21 +493,16 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             ],
             const SizedBox(height: 20),
-            // Context switch hints
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 if (_ctx != SearchContext.online)
-                  _HintChip(
-                    label: 'Try Online',
-                    onTap: () => _selectChip(SearchContext.online),
-                  ),
+                  _HintChip(label: 'Try Online',
+                      onTap: () => _selectChip(SearchContext.online)),
                 if (_ctx != SearchContext.nearMe) ...[
                   const SizedBox(width: 8),
-                  _HintChip(
-                    label: 'Try Near Me',
-                    onTap: () => _selectChip(SearchContext.nearMe),
-                  ),
+                  _HintChip(label: 'Try Near Me',
+                      onTap: () => _selectChip(SearchContext.nearMe)),
                 ],
               ],
             ),
@@ -548,7 +512,7 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  // ── Location prompt (Near Me, no position) ────────────────────────────────
+  // ── Location prompt ───────────────────────────────────────────────────────
 
   Widget _buildLocationPrompt() {
     return Center(
@@ -600,76 +564,12 @@ class _SearchScreenState extends State<SearchScreen> {
         children: [
           Icon(Icons.inbox_outlined, size: 48, color: Colors.grey.shade300),
           const SizedBox(height: 12),
-          Text(
-            'No $label deals right now',
-            style: TextStyle(color: Colors.grey.shade500, fontSize: 16),
-          ),
+          Text('No $label deals right now',
+              style: TextStyle(color: Colors.grey.shade500, fontSize: 16)),
           const SizedBox(height: 4),
-          Text(
-            'Try searching for a specific brand or item',
-            style: TextStyle(color: Colors.grey.shade400, fontSize: 13),
-          ),
+          Text('Try searching for a specific brand or item',
+              style: TextStyle(color: Colors.grey.shade400, fontSize: 13)),
         ],
-      ),
-    );
-  }
-
-  // ── Grouped result list (shared by search results + context deals) ─────────
-
-  Widget _buildSearchResults(List<BrandGroup> results) {
-    final total = results.fold(0, (n, g) => n + g.deals.length);
-    return RefreshIndicator(
-      onRefresh: widget.onRefresh,
-      child: ListView.builder(
-        padding: const EdgeInsets.only(top: 4, bottom: 24),
-        itemCount: results.length + 1,
-        itemBuilder: (context, i) {
-          if (i == 0) {
-            return Padding(
-              padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
-              child: Text(
-                '${results.length} brand${results.length == 1 ? '' : 's'} · $total deal${total == 1 ? '' : 's'}',
-                style: TextStyle(fontSize: 13, color: Colors.grey.shade500, fontWeight: FontWeight.w500),
-              ),
-            );
-          }
-          final g = results[i - 1];
-          return BrandResultCard(
-            group: g,
-            memberships: widget.memberships,
-            onExpanded:  () => _onBrandExpanded(g),
-            onDealTap:   _onDealTap,
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _buildGroupList(List<BrandGroup> groups, {required bool isContext}) {
-    final chipLabel = _kChips.firstWhere((c) => c.ctx == _ctx).label;
-    return RefreshIndicator(
-      onRefresh: widget.onRefresh,
-      child: ListView.builder(
-        padding: const EdgeInsets.only(top: 4, bottom: 24),
-        itemCount: groups.length + 1,
-        itemBuilder: (context, i) {
-          if (i == 0) {
-            return Padding(
-              padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
-              child: Text(
-                'Top $chipLabel deals',
-                style: TextStyle(fontSize: 13, color: Colors.grey.shade500, fontWeight: FontWeight.w500),
-              ),
-            );
-          }
-          final g = groups[i - 1];
-          return BrandResultCard(
-            group: g,
-            memberships: widget.memberships,
-            onExpanded:  () => _onBrandExpanded(g),
-            onDealTap:   _onDealTap,
-          );
-        },
       ),
     );
   }
@@ -678,61 +578,6 @@ class _SearchScreenState extends State<SearchScreen> {
 // ─────────────────────────────────────────────────────────────────────────────
 // Tiny widgets
 // ─────────────────────────────────────────────────────────────────────────────
-
-class _SectionHeader extends StatelessWidget {
-  final String label;
-  final Widget? trailing;
-  const _SectionHeader({required this.label, this.trailing});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Text(
-            label,
-            style: const TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w600,
-              color: Candy.chocolate,
-              letterSpacing: 0.2,
-            ),
-          ),
-        ),
-        ?trailing,
-      ],
-    );
-  }
-}
-
-class _SuggestionChip extends StatelessWidget {
-  final String label;
-  final IconData? icon;
-  final VoidCallback onTap;
-  final VoidCallback? onDelete;
-  const _SuggestionChip({
-    required this.label,
-    required this.onTap,
-    this.icon,
-    this.onDelete,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InputChip(
-      avatar: icon != null ? Icon(icon, size: 14, color: Candy.lavender) : null,
-      label: Text(label),
-      onPressed: onTap,
-      onDeleted: onDelete,
-      deleteIconColor: Colors.grey.shade400,
-      backgroundColor: Colors.white,
-      side: BorderSide(color: Candy.pink.withValues(alpha: 0.25)),
-      labelStyle: const TextStyle(fontSize: 13, color: Candy.chocolate),
-      elevation: 0,
-      padding: const EdgeInsets.symmetric(horizontal: 2),
-    );
-  }
-}
 
 class _HintChip extends StatelessWidget {
   final String label;
@@ -746,14 +591,15 @@ class _HintChip extends StatelessWidget {
       onPressed: onTap,
       backgroundColor: Colors.white,
       side: BorderSide(color: Candy.raspberry.withValues(alpha: 0.4)),
-      labelStyle: const TextStyle(fontSize: 13, color: Candy.raspberry, fontWeight: FontWeight.w500),
+      labelStyle: const TextStyle(
+          fontSize: 13, color: Candy.raspberry, fontWeight: FontWeight.w500),
     );
   }
 }
 
-// Marker class so we can check "position already set" without holding
-// the real Position object (which geolocator requires platform channels).
+// Sentinel so we can check "distances already attached" without a platform channel.
 class _FakePosition implements Position {
   const _FakePosition();
-  @override dynamic noSuchMethod(Invocation i) => null;
+  @override
+  dynamic noSuchMethod(Invocation i) => null;
 }

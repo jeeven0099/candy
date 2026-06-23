@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+
 import '../models/promotion.dart';
-import '../services/location_service.dart';
 import '../services/notification_service.dart';
 import '../services/promotions_service.dart';
 import '../services/user_memberships_service.dart';
 import 'deal_detail_screen.dart';
-import 'for_you_screen.dart';
-import 'near_me_screen.dart';
-import 'online_screen.dart';
-import 'rewards_screen.dart';
+import 'profile_screen.dart';
+import 'saved_screen.dart';
 import 'search_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -22,8 +19,6 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   List<Promotion> _all = [];
   bool _loading = true;
-  Position? _position;
-  bool _locating = false;
   Set<String> _memberships = {};
   DateTime? _lastUpdated;
   int _tab = 0;
@@ -41,7 +36,6 @@ class _MainScreenState extends State<MainScreen> {
     super.dispose();
   }
 
-  // Handles the race where _handleTap fires AFTER _loadData already completed.
   void _onLateNotificationTap() {
     if (_all.isNotEmpty) _handlePendingNotification(_all);
   }
@@ -51,15 +45,16 @@ class _MainScreenState extends State<MainScreen> {
       PromotionsService.load(),
       UserMembershipsService.load(),
     ]);
-    final promos = results[0] as List<Promotion>;
+    final promos      = results[0] as List<Promotion>;
     final memberships = results[1] as Set<String>;
-    setState(() {
-      _all = promos;
-      _memberships = memberships;
-      _loading = false;
-      _lastUpdated = DateTime.now();
-    });
-    _fetchLocation();
+    if (mounted) {
+      setState(() {
+        _all          = promos;
+        _memberships  = memberships;
+        _loading      = false;
+        _lastUpdated  = DateTime.now();
+      });
+    }
     _handlePendingNotification(promos);
   }
 
@@ -76,20 +71,6 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
-  Future<void> _fetchLocation() async {
-    setState(() => _locating = true);
-    final position = await LocationService.getPosition();
-    if (position != null) {
-      await LocationService.attachDistances(_all, position);
-    }
-    if (mounted) {
-      setState(() {
-        _position = position;
-        _locating = false;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     if (_loading) {
@@ -102,37 +83,19 @@ class _MainScreenState extends State<MainScreen> {
       body: IndexedStack(
         index: _tab,
         children: [
-          NearMeScreen(
-            all: _all,
-            position: _position,
-            locating: _locating,
-            memberships: _memberships,
-            lastUpdated: _lastUpdated,
-            onRefresh: _loadData,
-          ),
-          OnlineScreen(
-            all: _all,
-            memberships: _memberships,
-            lastUpdated: _lastUpdated,
-            onRefresh: _loadData,
-          ),
-          RewardsScreen(
-            all: _all,
-            memberships: _memberships,
-            lastUpdated: _lastUpdated,
-            onRefresh: _loadData,
-          ),
-          ForYouScreen(
-            all: _all,
-            memberships: _memberships,
-            lastUpdated: _lastUpdated,
-            onRefresh: _loadData,
-          ),
           SearchScreen(
-            all: _all,
+            all:         _all,
             memberships: _memberships,
             lastUpdated: _lastUpdated,
-            onRefresh: _loadData,
+            onRefresh:   _loadData,
+          ),
+          SavedScreen(
+            all:         _all,
+            memberships: _memberships,
+            onRefresh:   _loadData,
+          ),
+          ProfileScreen(
+            memberships: _memberships,
           ),
         ],
       ),
@@ -140,37 +103,21 @@ class _MainScreenState extends State<MainScreen> {
         selectedIndex: _tab,
         onDestinationSelected: (i) => setState(() => _tab = i),
         labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
-        destinations: [
+        destinations: const [
           NavigationDestination(
-            icon: _locating
-                ? const SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                : const Icon(Icons.near_me_outlined),
-            selectedIcon: const Icon(Icons.near_me),
-            label: 'Near Me',
+            icon:         Icon(Icons.local_offer_outlined),
+            selectedIcon: Icon(Icons.local_offer),
+            label:        'Deals',
           ),
-          const NavigationDestination(
-            icon: Icon(Icons.laptop_outlined),
-            selectedIcon: Icon(Icons.laptop),
-            label: 'Online',
-          ),
-          const NavigationDestination(
-            icon: Icon(Icons.card_membership_outlined),
-            selectedIcon: Icon(Icons.card_membership),
-            label: 'Rewards',
-          ),
-          const NavigationDestination(
-            icon: Icon(Icons.favorite_border),
+          NavigationDestination(
+            icon:         Icon(Icons.favorite_border),
             selectedIcon: Icon(Icons.favorite),
-            label: 'For You',
+            label:        'Saved',
           ),
-          const NavigationDestination(
-            icon: Icon(Icons.search_outlined),
-            selectedIcon: Icon(Icons.search),
-            label: 'Search',
+          NavigationDestination(
+            icon:         Icon(Icons.person_outline),
+            selectedIcon: Icon(Icons.person),
+            label:        'Profile',
           ),
         ],
       ),
