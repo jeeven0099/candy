@@ -3,8 +3,10 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  app_links
   flutter_timezone
   geolocator_windows
+  passkeys_windows
   url_launcher_windows
 )
 

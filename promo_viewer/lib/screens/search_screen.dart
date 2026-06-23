@@ -8,6 +8,7 @@ import '../models/promotion.dart';
 import '../services/interaction_service.dart';
 import '../services/location_service.dart';
 import '../services/saved_deals_service.dart';
+import '../services/user_prefs_service.dart';
 import '../theme/candy_colors.dart';
 import '../utils/feed_ranker.dart';
 import '../utils/format_utils.dart';
@@ -62,8 +63,9 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  final _controller = TextEditingController();
-  final _svc        = InteractionService();
+  final _controller  = TextEditingController();
+  final _svc         = InteractionService();
+  final _prefsSvc    = UserPrefsService();
 
   String  _query        = '';
   String  _debouncedQ   = '';
@@ -80,7 +82,10 @@ class _SearchScreenState extends State<SearchScreen> {
     super.initState();
     _loadRadius();
     if (widget.all.any((p) => p.distanceKm != null)) _position = const _FakePosition();
+    _prefsSvc.addListener(_onPrefsChanged);
   }
+
+  void _onPrefsChanged() => setState(() {});
 
   Future<void> _loadRadius() async {
     final prefs = await SharedPreferences.getInstance();
@@ -90,6 +95,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void dispose() {
+    _prefsSvc.removeListener(_onPrefsChanged);
     _debounce?.cancel();
     _controller.dispose();
     super.dispose();
@@ -128,7 +134,7 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   double _forYouScorer(Promotion p) =>
-      personalizedScore(p, _svc, distanceKm: p.distanceKm);
+      personalizedScore(p, _svc, distanceKm: p.distanceKm, prefs: _prefsSvc.prefs);
 
   // ── Input handling ────────────────────────────────────────────────────────
 

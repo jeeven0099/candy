@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'screens/main_screen.dart';
+import 'screens/onboarding_screen.dart';
 import 'services/interaction_service.dart';
 import 'services/notification_service.dart';
 import 'services/saved_deals_service.dart';
+import 'services/supabase_service.dart';
 import 'services/timezone_service.dart';
+import 'services/user_prefs_service.dart';
 import 'theme/candy_colors.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -14,6 +17,8 @@ void main() async {
   await NotificationService.init(navigatorKey: navigatorKey);
   await SavedDealsService.init();
   await InteractionService.init();
+  await SupabaseService.init();
+  if (SupabaseService.isLoggedIn) await UserPrefsService().load();
   // Fire-and-forget: process pipeline notification candidates on every launch.
   // Rate limits and quiet hours are enforced inside the method.
   NotificationService().processNotificationCandidates();
@@ -60,7 +65,7 @@ class PromoViewerApp extends StatelessWidget {
           }),
         ),
       ),
-      home: const MainScreen(),
+      home: SupabaseService.isLoggedIn ? const MainScreen() : const OnboardingScreen(),
     );
   }
 }

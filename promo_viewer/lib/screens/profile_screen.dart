@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../services/auth_service.dart';
+import '../services/supabase_service.dart';
+import '../services/user_prefs_service.dart';
 import '../theme/candy_colors.dart';
+import 'onboarding_screen.dart';
 
 const _kRadiusKey     = 'near_me_radius_mi';
 const _kRadiusOptions = [1, 3, 5, 10, 25];
@@ -48,6 +52,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(child: _buildHeader()),
+            if (SupabaseService.isLoggedIn)
+              SliverToBoxAdapter(child: _buildAccountSection()),
             SliverToBoxAdapter(child: _buildMembershipsSection()),
             SliverToBoxAdapter(child: _buildLocationSection()),
             SliverToBoxAdapter(child: _buildAboutSection()),
@@ -69,6 +75,49 @@ class _ProfileScreenState extends State<ProfileScreen> {
           letterSpacing: -0.5,
           color: Candy.chocolate,
         ),
+      ),
+    );
+  }
+
+  // ── Account ────────────────────────────────────────────────────────────────
+
+  Widget _buildAccountSection() {
+    final email = SupabaseService.currentUser?.email ?? '';
+    return _Section(
+      icon: Icons.account_circle_outlined,
+      title: 'Account',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (email.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: Text(email,
+                  style: TextStyle(fontSize: 13, color: Colors.grey.shade500)),
+            ),
+          _TileRow(
+            icon: Icons.tune_outlined,
+            label: 'Edit preferences',
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const OnboardingScreen()),
+            ),
+          ),
+          const Divider(height: 1, indent: 40),
+          _TileRow(
+            icon: Icons.logout,
+            label: 'Sign out',
+            onTap: () async {
+              await AuthService.signOut();
+              UserPrefsService().clear();
+              if (mounted) {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (_) => const OnboardingScreen()),
+                  (_) => false,
+                );
+              }
+            },
+          ),
+        ],
       ),
     );
   }
