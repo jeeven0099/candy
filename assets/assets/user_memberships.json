@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-06-23T17:38:26.637673+00:00",
+  "memberships": [
+    {
+      "brand": "Chase",
+      "program": "J.P. Morgan Self-Directed Investing",
+      "last_seen": "2026-06-02T16:02:39+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Chase",
+      "program": "personal checking account holder",
+      "last_seen": "2026-06-03T16:12:22+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Chase",
+      "program": "Chase account holder",
+      "last_seen": "2026-05-27T15:28:35+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Sephora",
+      "program": "Beauty Insider",
+      "last_seen": "2026-06-14T04:36:30+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Sephora",
+      "program": "Beauty Pass",
+      "last_seen": "2026-06-16T04:35:31+00:00",
+      "source": "llm_extracted"
+    },
+    {
+      "brand": "Zoom",
+      "program": "Zoom Workplace Basic customers",
+      "last_seen": "2026-05-28T19:05:30+00:00",
+      "source": "llm_extracted"
+    }
+  ]
+}
