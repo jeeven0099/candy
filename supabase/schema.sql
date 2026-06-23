@@ -1,6 +1,7 @@
 -- ============================================================
 -- Candy Beta — Supabase schema
 -- Run this in: Supabase Dashboard → SQL Editor → Run
+-- Safe to re-run: all statements are idempotent.
 -- ============================================================
 
 -- Invite codes (beta gate)
@@ -79,18 +80,25 @@ create table if not exists notification_history (
 
 -- ── Row Level Security ────────────────────────────────────────────────────────
 
-alter table invite_codes        enable row level security;
-alter table users               enable row level security;
-alter table user_preferences    enable row level security;
-alter table saved_deals         enable row level security;
-alter table user_interactions   enable row level security;
+alter table invite_codes         enable row level security;
+alter table users                enable row level security;
+alter table user_preferences     enable row level security;
+alter table saved_deals          enable row level security;
+alter table user_interactions    enable row level security;
 alter table notification_history enable row level security;
 
 -- Invite codes: anyone can read (needed during sign-up before auth)
+drop policy if exists "invite_codes_select" on invite_codes;
 create policy "invite_codes_select" on invite_codes
   for select using (true);
 
+-- Invite codes: authenticated users can increment use_count during sign-up
+drop policy if exists "invite_codes_update" on invite_codes;
+create policy "invite_codes_update" on invite_codes
+  for update using (auth.uid() is not null);
+
 -- Users: only own row
+drop policy if exists "users_own" on users;
 create policy "users_own" on users
   for all using (auth.uid() = auth_id);
 
@@ -100,15 +108,19 @@ returns uuid language sql stable as $$
   select id from users where auth_id = auth.uid() limit 1
 $$;
 
+drop policy if exists "prefs_own" on user_preferences;
 create policy "prefs_own" on user_preferences
   for all using (user_id = own_user_id());
 
+drop policy if exists "saved_own" on saved_deals;
 create policy "saved_own" on saved_deals
   for all using (user_id = own_user_id());
 
+drop policy if exists "interactions_own" on user_interactions;
 create policy "interactions_own" on user_interactions
   for all using (user_id = own_user_id());
 
+drop policy if exists "notifications_own" on notification_history;
 create policy "notifications_own" on notification_history
   for all using (user_id = own_user_id());
 
@@ -123,6 +135,7 @@ begin
 end
 $$;
 
+drop trigger if exists on_interaction_insert on user_interactions;
 create trigger on_interaction_insert
   after insert on user_interactions
   for each row execute function touch_last_active();
