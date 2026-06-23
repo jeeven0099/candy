@@ -21,7 +21,7 @@ class SupabaseService {
       return;
     }
     try {
-      await Supabase.initialize(url: supabaseUrl, anonKey: supabaseAnon);
+      await Supabase.initialize(url: supabaseUrl, anonKey: supabaseAnon); // ignore: deprecated_member_use
       _ready = true;
     } catch (e) {
       debugPrint('[Supabase] Init failed: $e — running in guest mode');
