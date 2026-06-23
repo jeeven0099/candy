@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../models/user_prefs.dart';
@@ -11,6 +12,7 @@ import 'main_screen.dart';
 
 const _kMaxCats   = 3;
 const _kMaxBrands = 7;
+const _kRadiusKey = 'near_me_radius_mi';
 
 // ── Category definitions ──────────────────────────────────────────────────────
 
@@ -19,26 +21,35 @@ class _Cat {
   final String emoji;
   final String title;
   final String subtitle;
-  const _Cat(this.slug, this.emoji, this.title, this.subtitle);
+  final List<String> examples;
+  const _Cat(this.slug, this.emoji, this.title, this.subtitle, this.examples);
 }
 
 const _kCategories = [
-  _Cat('food',          '🍔', 'Food & Coffee',
-      'Eating out, coffee runs, quick meals'),
-  _Cat('grocery',       '🛒', 'Groceries & Essentials',
-      'Groceries, pharmacy, household items'),
-  _Cat('fashion',       '👕', 'Clothes & Shoes',
-      'Fashion, shoes, activewear'),
-  _Cat('luxury',        '👜', 'Bags, Jewelry & Accessible Luxury',
-      'Coach, Kate Spade, Kendra Scott, etc.'),
-  _Cat('beauty',        '💄', 'Beauty & Personal Care',
-      'Makeup, skincare, fragrance, grooming'),
+  _Cat('food', '🍔', 'Food & Coffee',
+      'Eating out, coffee runs, quick meals',
+      ['Starbucks', 'Chipotle', "McDonald's", 'Dunkin']),
+  _Cat('grocery', '🛒', 'Groceries & Essentials',
+      'Groceries, pharmacy, household items',
+      ['Kroger', 'H-E-B', 'Target', 'CVS']),
+  _Cat('fashion', '👕', 'Clothes & Shoes',
+      'Fashion, shoes, activewear',
+      ['Nike', 'Old Navy', 'Zara', 'Steve Madden']),
+  _Cat('luxury', '👜', 'Bags, Jewelry & Accessible Luxury',
+      'Coach, Kate Spade, Kendra Scott, etc.',
+      ['Coach', 'Kate Spade', 'Tory Burch', 'Michael Kors']),
+  _Cat('beauty', '💄', 'Beauty & Personal Care',
+      'Makeup, skincare, fragrance, grooming',
+      ['Sephora', 'Ulta Beauty', 'e.l.f.', 'Fenty Beauty']),
   _Cat('entertainment', '🎬', 'Entertainment',
-      'Movies, bowling, events, streaming'),
-  _Cat('home',          '🏠', 'Home',
-      'Furniture, bedding, kitchen, decor'),
-  _Cat('tech',          '💻', 'Tech',
-      'Laptops, electronics, software'),
+      'Movies, bowling, events, streaming',
+      ['AMC Theatres', 'Topgolf', 'Dave & Buster\'s', 'Spotify']),
+  _Cat('home', '🏠', 'Home',
+      'Furniture, bedding, kitchen, decor',
+      ['IKEA', 'Wayfair', 'Home Depot', 'West Elm']),
+  _Cat('tech', '💻', 'Tech',
+      'Laptops, electronics, software',
+      ['Best Buy', 'Amazon', 'Apple', 'Dell']),
 ];
 
 // ── Brands per category ───────────────────────────────────────────────────────
@@ -91,6 +102,48 @@ List<String> _brandsForCategories(Set<String> cats) {
   return result;
 }
 
+// ── Deal type definitions ─────────────────────────────────────────────────────
+
+class _DealType {
+  final String slug;
+  final String emoji;
+  final String title;
+  final String subtitle;
+  const _DealType(this.slug, this.emoji, this.title, this.subtitle);
+}
+
+const _kDealTypes = [
+  _DealType('free',     '🎁', 'Free items & birthday rewards',
+      'Free food, birthday deals, loyalty freebies'),
+  _DealType('bogo',     '🔥', 'BOGO deals',
+      'Buy one get one free or 50% off'),
+  _DealType('discount', '💸', 'Big discounts',
+      '30% off or more, major sales'),
+  _DealType('nearby',   '📍', 'Nearby deals',
+      'Deals within your chosen radius'),
+  _DealType('online',   '🛍', 'Online promo codes',
+      'Discount codes usable from any device'),
+  _DealType('rewards',  '🏷', 'Rewards & member deals',
+      'Loyalty program and membership exclusives'),
+];
+
+// ── Radius options ────────────────────────────────────────────────────────────
+
+class _Radius {
+  final int    miles;
+  final String label;
+  final String subtitle;
+  const _Radius(this.miles, this.label, this.subtitle);
+}
+
+const _kRadii = [
+  _Radius(1,  '1 mile',   'Walking distance'),
+  _Radius(3,  '3 miles',  'Short drive'),
+  _Radius(5,  '5 miles',  'Good for most cities'),
+  _Radius(10, '10 miles', 'Wider area, great for Houston'),
+  _Radius(25, '25 miles', 'Large metro or suburb'),
+];
+
 // ─────────────────────────────────────────────────────────────────────────────
 
 class OnboardingScreen extends StatefulWidget {
@@ -104,6 +157,7 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  // Page 0: Auth  1: Categories  2: Brands  3: Deal types  4: Radius
   late final PageController _pageCtrl;
 
   bool    _isSignIn = false;
@@ -115,8 +169,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final _codeCtrl  = TextEditingController();
   bool  _obscure   = true;
 
-  final _selectedCats   = <String>{};
-  final _selectedBrands = <String>{};
+  final _selectedCats      = <String>{};
+  final _selectedBrands    = <String>{};
+  final _selectedDealTypes = <String>{};
+  int   _radiusMi          = 5;
 
   @override
   void initState() {
@@ -127,8 +183,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       if (prefs != null) {
         _selectedCats.addAll(prefs.favoriteCategories);
         _selectedBrands.addAll(prefs.favoriteBrands);
+        _selectedDealTypes.addAll(prefs.dealPriorities);
       }
+      _loadRadius();
     }
+  }
+
+  Future<void> _loadRadius() async {
+    final sp = await SharedPreferences.getInstance();
+    final saved = sp.getInt(_kRadiusKey);
+    if (saved != null && mounted) setState(() => _radiusMi = saved);
   }
 
   @override
@@ -181,13 +245,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Future<void> _savePrefsAndFinish() async {
     setState(() { _loading = true; _error = null; });
+    // Save radius to SharedPreferences
+    try {
+      final sp = await SharedPreferences.getInstance();
+      await sp.setInt(_kRadiusKey, _radiusMi);
+    } catch (_) {}
+    // Save category/brand/deal prefs to Supabase
     try {
       await UserPrefsService().save(UserPrefs(
         favoriteCategories: _selectedCats.toList(),
         favoriteBrands:     _selectedBrands.toList(),
+        dealPriorities:     _selectedDealTypes.toList(),
       ));
     } catch (_) {}
     if (!mounted) return;
+    setState(() => _loading = false);
     if (widget.startAtPreferences) {
       Navigator.of(context).pop();
     } else {
@@ -210,15 +282,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     });
   }
 
-  void _toggleBrand(String name) {
-    setState(() {
-      if (_selectedBrands.contains(name)) {
-        _selectedBrands.remove(name);
-      } else if (_selectedBrands.length < _kMaxBrands) {
-        _selectedBrands.add(name);
-      }
-    });
-  }
+  void _toggleBrand(String name) => setState(() {
+    if (_selectedBrands.contains(name)) {
+      _selectedBrands.remove(name);
+    } else if (_selectedBrands.length < _kMaxBrands) {
+      _selectedBrands.add(name);
+    }
+  });
+
+  void _toggleDeal(String slug) => setState(() {
+    if (_selectedDealTypes.contains(slug)) {
+      _selectedDealTypes.remove(slug);
+    } else {
+      _selectedDealTypes.add(slug);
+    }
+  });
 
   // ── Build ─────────────────────────────────────────────────────────────────
 
@@ -233,6 +311,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           _buildAuthPage(),
           _buildCategoriesPage(),
           _buildBrandsPage(),
+          _buildDealTypesPage(),
+          _buildRadiusPage(),
         ],
       ),
     );
@@ -244,70 +324,64 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(28, 48, 28, 28),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(children: [
-              Container(
-                width: 44, height: 44,
-                decoration: BoxDecoration(color: Candy.raspberry,
-                    borderRadius: BorderRadius.circular(12)),
-                child: const Icon(Icons.local_offer, color: Colors.white, size: 24),
-              ),
-              const SizedBox(width: 12),
-              const Text('Candy', style: TextStyle(fontSize: 32,
-                  fontWeight: FontWeight.w800, letterSpacing: -1,
-                  color: Candy.chocolate)),
-            ]),
-            const SizedBox(height: 32),
-            Text(_isSignIn ? 'Welcome back' : 'Join the beta',
-                style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w700,
-                    color: Candy.chocolate, letterSpacing: -0.5)),
-            const SizedBox(height: 6),
-            Text(
-              _isSignIn ? 'Sign in to your Candy account'
-                        : 'Discover the best deals around you',
-              style: TextStyle(fontSize: 15, color: Colors.grey.shade500),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(children: [
+            Container(
+              width: 44, height: 44,
+              decoration: BoxDecoration(color: Candy.raspberry,
+                  borderRadius: BorderRadius.circular(12)),
+              child: const Icon(Icons.local_offer, color: Colors.white, size: 24),
             ),
-            const SizedBox(height: 28),
-            _Field(controller: _emailCtrl, label: 'Email',
-                hint: 'you@example.com', inputType: TextInputType.emailAddress),
+            const SizedBox(width: 12),
+            const Text('Candy', style: TextStyle(fontSize: 32,
+                fontWeight: FontWeight.w800, letterSpacing: -1, color: Candy.chocolate)),
+          ]),
+          const SizedBox(height: 32),
+          Text(_isSignIn ? 'Welcome back' : 'Join the beta',
+              style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w700,
+                  color: Candy.chocolate, letterSpacing: -0.5)),
+          const SizedBox(height: 6),
+          Text(
+            _isSignIn ? 'Sign in to your Candy account'
+                      : 'Discover the best deals around you',
+            style: TextStyle(fontSize: 15, color: Colors.grey.shade500),
+          ),
+          const SizedBox(height: 28),
+          _Field(controller: _emailCtrl, label: 'Email',
+              hint: 'you@example.com', inputType: TextInputType.emailAddress),
+          const SizedBox(height: 14),
+          _Field(
+            controller: _passCtrl, label: 'Password', hint: '6+ characters',
+            obscure: _obscure,
+            suffix: IconButton(
+              icon: Icon(_obscure ? Icons.visibility_off : Icons.visibility,
+                  size: 20, color: Colors.grey),
+              onPressed: () => setState(() => _obscure = !_obscure),
+            ),
+          ),
+          if (!_isSignIn) ...[
             const SizedBox(height: 14),
-            _Field(
-              controller: _passCtrl, label: 'Password', hint: '6+ characters',
-              obscure: _obscure,
-              suffix: IconButton(
-                icon: Icon(_obscure ? Icons.visibility_off : Icons.visibility,
-                    size: 20, color: Colors.grey),
-                onPressed: () => setState(() => _obscure = !_obscure),
-              ),
-            ),
-            if (!_isSignIn) ...[
-              const SizedBox(height: 14),
-              _Field(controller: _codeCtrl, label: 'Invite code',
-                  hint: 'e.g. CANDY2025',
-                  capitalization: TextCapitalization.characters),
-            ],
-            if (_error != null) ...[
-              const SizedBox(height: 14),
-              _ErrorBox(message: _error!),
-            ],
-            const SizedBox(height: 24),
-            _PrimaryButton(
-                label: _isSignIn ? 'Sign In' : 'Join Beta',
-                loading: _loading, onTap: _submit),
-            const SizedBox(height: 18),
-            Center(child: TextButton(
-              onPressed: () => setState(() { _isSignIn = !_isSignIn; _error = null; }),
-              child: Text(
-                _isSignIn ? "Don't have an account? Join Beta"
-                          : 'Already have an account? Sign In',
-                style: const TextStyle(color: Candy.raspberry,
-                    fontWeight: FontWeight.w500),
-              ),
-            )),
+            _Field(controller: _codeCtrl, label: 'Invite code',
+                hint: 'e.g. CANDY2025',
+                capitalization: TextCapitalization.characters),
           ],
-        ),
+          if (_error != null) ...[
+            const SizedBox(height: 14),
+            _ErrorBox(message: _error!),
+          ],
+          const SizedBox(height: 24),
+          _PrimaryButton(label: _isSignIn ? 'Sign In' : 'Join Beta',
+              loading: _loading, onTap: _submit),
+          const SizedBox(height: 18),
+          Center(child: TextButton(
+            onPressed: () => setState(() { _isSignIn = !_isSignIn; _error = null; }),
+            child: Text(
+              _isSignIn ? "Don't have an account? Join Beta"
+                        : 'Already have an account? Sign In',
+              style: const TextStyle(color: Candy.raspberry, fontWeight: FontWeight.w500),
+            ),
+          )),
+        ]),
       ),
     );
   }
@@ -317,66 +391,46 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget _buildCategoriesPage() {
     final count = _selectedCats.length;
     return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 28, 20, 0),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              if (!widget.startAtPreferences) _StepDots(current: 0),
-              if (!widget.startAtPreferences) const SizedBox(height: 20),
-              Row(children: [
-                const Expanded(
-                  child: Text('What do you usually buy?',
-                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700,
-                          color: Candy.chocolate, letterSpacing: -0.5)),
-                ),
-                if (widget.startAtPreferences)
-                  IconButton(
-                    icon: const Icon(Icons.close, color: Candy.chocolate),
-                    onPressed: () => Navigator.of(context).pop(),
-                  ),
-              ]),
-              const SizedBox(height: 4),
-              Text(
-                count == 0 ? 'Pick up to $_kMaxCats categories'
-                           : '$count / $_kMaxCats selected',
-                style: TextStyle(
-                  fontSize: 13,
-                  color: count == _kMaxCats ? Candy.raspberry : Colors.grey.shade500,
-                  fontWeight: count == _kMaxCats ? FontWeight.w600 : FontWeight.normal,
-                ),
-              ),
-            ]),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        _PageHeader(
+          step: 1, totalSteps: 4,
+          showDots: !widget.startAtPreferences,
+          title: 'Make Candy yours',
+          subtitle: 'Pick what you usually buy. Candy will show better deals first.\nYou can change this anytime.',
+          trailing: widget.startAtPreferences
+              ? IconButton(icon: const Icon(Icons.close, color: Candy.chocolate),
+                  onPressed: () => Navigator.of(context).pop())
+              : const SizedBox.shrink(),
+          badge: count == 0 ? 'Pick up to $_kMaxCats'
+              : '$count / $_kMaxCats selected',
+          badgeHighlight: count == _kMaxCats,
+        ),
+        Expanded(
+          child: ListView.separated(
+            padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
+            itemCount: _kCategories.length,
+            separatorBuilder: (context, i) => const SizedBox(height: 10),
+            itemBuilder: (context, i) {
+              final cat      = _kCategories[i];
+              final sel      = _selectedCats.contains(cat.slug);
+              final disabled = !sel && count >= _kMaxCats;
+              return _CatCard(
+                emoji: cat.emoji, title: cat.title,
+                subtitle: cat.subtitle, examples: cat.examples,
+                selected: sel, disabled: disabled,
+                onTap: disabled ? null : () => _toggleCat(cat.slug),
+              );
+            },
           ),
-          const SizedBox(height: 12),
-          Expanded(
-            child: ListView.separated(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-              itemCount: _kCategories.length,
-              separatorBuilder: (context, i) => const SizedBox(height: 10),
-              itemBuilder: (_, i) {
-                final cat      = _kCategories[i];
-                final sel      = _selectedCats.contains(cat.slug);
-                final disabled = !sel && count >= _kMaxCats;
-                return _CatCard(
-                  emoji: cat.emoji, title: cat.title, subtitle: cat.subtitle,
-                  selected: sel, disabled: disabled,
-                  onTap: disabled ? null : () => _toggleCat(cat.slug),
-                );
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-            child: _PrimaryButton(
-              label: 'Continue →', loading: false,
-              enabled: count > 0,
-              onTap: count > 0 ? () => _goToPage(2) : null,
-            ),
-          ),
-        ],
-      ),
+        ),
+        _BottomActions(
+          primaryLabel: 'Continue →',
+          primaryEnabled: count > 0,
+          onPrimary: count > 0 ? () => _goToPage(2) : null,
+          onSkip: () => _goToPage(2),
+          loading: false,
+        ),
+      ]),
     );
   }
 
@@ -386,100 +440,251 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     final brands = _brandsForCategories(_selectedCats);
     final count  = _selectedBrands.length;
     return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 28, 20, 0),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              if (!widget.startAtPreferences) _StepDots(current: 1),
-              if (!widget.startAtPreferences) const SizedBox(height: 20),
-              Row(children: [
-                GestureDetector(
-                  onTap: () => _goToPage(1),
-                  child: const Icon(Icons.arrow_back_ios_new,
-                      size: 18, color: Candy.chocolate),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        _PageHeader(
+          step: 2, totalSteps: 4,
+          showDots: !widget.startAtPreferences,
+          backOnTap: () => _goToPage(1),
+          title: 'Which brands do you care about?',
+          subtitle: 'Pick brands you actually shop from, or would buy from if there was a good deal.',
+          badge: count == 0 ? 'Pick up to $_kMaxBrands'
+              : '$count / $_kMaxBrands selected',
+          badgeHighlight: count == _kMaxBrands,
+        ),
+        Expanded(
+          child: brands.isEmpty
+              ? Center(child: Text('Select categories first to see brands here.',
+                  style: TextStyle(color: Colors.grey.shade500)))
+              : SingleChildScrollView(
+                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
+                  child: Wrap(
+                    spacing: 8, runSpacing: 8,
+                    children: brands.map((b) {
+                      final sel      = _selectedBrands.contains(b);
+                      final disabled = !sel && count >= _kMaxBrands;
+                      return FilterChip(
+                        label: Text(b),
+                        selected: sel,
+                        onSelected: disabled ? null : (_) => _toggleBrand(b),
+                        selectedColor: Candy.raspberry.withValues(alpha: 0.12),
+                        disabledColor: Colors.grey.shade100,
+                        checkmarkColor: Candy.raspberry,
+                        side: BorderSide(
+                          color: sel ? Candy.raspberry
+                              : disabled ? Colors.grey.shade200
+                              : Colors.grey.shade300),
+                        labelStyle: TextStyle(fontSize: 13,
+                          color: sel ? Candy.raspberry
+                              : disabled ? Colors.grey.shade400 : Candy.chocolate,
+                          fontWeight: sel ? FontWeight.w600 : FontWeight.normal),
+                        backgroundColor: Colors.white,
+                        shape: const StadiumBorder(),
+                        showCheckmark: true,
+                      );
+                    }).toList(),
+                  ),
                 ),
-                const SizedBox(width: 8),
-                const Expanded(
-                  child: Text('Pick your favorite brands',
-                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700,
-                          color: Candy.chocolate, letterSpacing: -0.5)),
-                ),
-              ]),
-              const SizedBox(height: 4),
-              Text(
-                count == 0 ? 'Pick up to $_kMaxBrands brands'
-                           : '$count / $_kMaxBrands selected',
-                style: TextStyle(
-                  fontSize: 13,
-                  color: count == _kMaxBrands ? Candy.raspberry : Colors.grey.shade500,
-                  fontWeight: count == _kMaxBrands ? FontWeight.w600 : FontWeight.normal,
-                ),
-              ),
-            ]),
-          ),
-          const SizedBox(height: 14),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
-              child: Wrap(
-                spacing: 8, runSpacing: 8,
-                children: brands.map((b) {
-                  final sel      = _selectedBrands.contains(b);
-                  final disabled = !sel && count >= _kMaxBrands;
-                  return FilterChip(
-                    label: Text(b),
-                    selected: sel,
-                    onSelected: disabled ? null : (_) => _toggleBrand(b),
-                    selectedColor: Candy.raspberry.withValues(alpha: 0.12),
-                    disabledColor: Colors.grey.shade100,
-                    checkmarkColor: Candy.raspberry,
-                    side: BorderSide(
-                      color: sel ? Candy.raspberry
-                          : disabled ? Colors.grey.shade200
-                          : Colors.grey.shade300,
-                    ),
-                    labelStyle: TextStyle(
-                      fontSize: 13,
-                      color: sel ? Candy.raspberry
-                          : disabled ? Colors.grey.shade400 : Candy.chocolate,
-                      fontWeight: sel ? FontWeight.w600 : FontWeight.normal,
-                    ),
-                    backgroundColor: Colors.white,
-                    shape: const StadiumBorder(),
-                    showCheckmark: true,
-                  );
-                }).toList(),
-              ),
-            ),
-          ),
-          Padding(
+        ),
+        _BottomActions(
+          primaryLabel: 'Continue →',
+          primaryEnabled: true,
+          onPrimary: () => _goToPage(3),
+          onSkip: () => _goToPage(3),
+          loading: false,
+        ),
+      ]),
+    );
+  }
+
+  // ── Page 3: Deal types ────────────────────────────────────────────────────
+
+  Widget _buildDealTypesPage() {
+    return SafeArea(
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        _PageHeader(
+          step: 3, totalSteps: 4,
+          showDots: !widget.startAtPreferences,
+          backOnTap: () => _goToPage(2),
+          title: 'What kind of deals should Candy prioritize?',
+          subtitle: 'Select all that apply. This directly improves your ranking.',
+        ),
+        Expanded(
+          child: ListView.separated(
             padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
-            child: _PrimaryButton(
-              label: widget.startAtPreferences ? 'Save preferences'
-                  : count == 0 ? 'Skip for now →' : 'Start discovering deals →',
-              loading: _loading,
-              onTap: _savePrefsAndFinish,
-            ),
+            itemCount: _kDealTypes.length,
+            separatorBuilder: (context, i) => const SizedBox(height: 10),
+            itemBuilder: (context, i) {
+              final dt  = _kDealTypes[i];
+              final sel = _selectedDealTypes.contains(dt.slug);
+              return _SimpleCard(
+                emoji: dt.emoji, title: dt.title, subtitle: dt.subtitle,
+                selected: sel, onTap: () => _toggleDeal(dt.slug),
+              );
+            },
           ),
-        ],
-      ),
+        ),
+        _BottomActions(
+          primaryLabel: 'Continue →',
+          primaryEnabled: true,
+          onPrimary: () => _goToPage(4),
+          onSkip: () => _goToPage(4),
+          loading: false,
+        ),
+      ]),
+    );
+  }
+
+  // ── Page 4: Radius ────────────────────────────────────────────────────────
+
+  Widget _buildRadiusPage() {
+    return SafeArea(
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        _PageHeader(
+          step: 4, totalSteps: 4,
+          showDots: !widget.startAtPreferences,
+          backOnTap: () => _goToPage(3),
+          title: 'How far should Candy look?',
+          subtitle: 'Set the distance for nearby deals. You can always change this in Profile.',
+        ),
+        Expanded(
+          child: ListView.separated(
+            padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
+            itemCount: _kRadii.length,
+            separatorBuilder: (context, i) => const SizedBox(height: 10),
+            itemBuilder: (context, i) {
+              final r   = _kRadii[i];
+              final sel = r.miles == _radiusMi;
+              return _SimpleCard(
+                emoji: '📍',
+                title: r.label,
+                subtitle: r.label == '5 miles'
+                    ? '${r.subtitle} (default)' : r.subtitle,
+                selected: sel,
+                onTap: () => setState(() => _radiusMi = r.miles),
+              );
+            },
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+          child: _PrimaryButton(
+            label: widget.startAtPreferences ? 'Save preferences'
+                : 'Start discovering deals →',
+            loading: _loading,
+            onTap: _savePrefsAndFinish,
+          ),
+        ),
+      ]),
     );
   }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Small reusable widgets
+// Shared layout components
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _PageHeader extends StatelessWidget {
+  final int     step;
+  final int     totalSteps;
+  final bool    showDots;
+  final String  title;
+  final String  subtitle;
+  final String? badge;
+  final bool    badgeHighlight;
+  final VoidCallback? backOnTap;
+  final Widget trailing;
+
+  const _PageHeader({
+    required this.step, required this.totalSteps, required this.showDots,
+    required this.title, required this.subtitle,
+    this.badge, this.badgeHighlight = false,
+    this.backOnTap, this.trailing = const SizedBox.shrink(),
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 28, 20, 0),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        if (showDots) ...[
+          _StepDots(current: step - 1, total: totalSteps),
+          const SizedBox(height: 20),
+        ],
+        Row(children: [
+          if (backOnTap != null) ...[
+            GestureDetector(
+              onTap: backOnTap,
+              child: const Icon(Icons.arrow_back_ios_new,
+                  size: 18, color: Candy.chocolate),
+            ),
+            const SizedBox(width: 8),
+          ],
+          Expanded(child: Text(title,
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700,
+                  color: Candy.chocolate, letterSpacing: -0.5))),
+          trailing,
+        ]),
+        const SizedBox(height: 6),
+        Text(subtitle, style: TextStyle(fontSize: 13, color: Colors.grey.shade500)),
+        if (badge != null) ...[
+          const SizedBox(height: 6),
+          Text(badge!,
+            style: TextStyle(
+              fontSize: 12,
+              color: badgeHighlight ? Candy.raspberry : Colors.grey.shade400,
+              fontWeight: badgeHighlight ? FontWeight.w600 : FontWeight.normal,
+            ),
+          ),
+        ],
+      ]),
+    );
+  }
+}
+
+class _BottomActions extends StatelessWidget {
+  final String       primaryLabel;
+  final bool         primaryEnabled;
+  final bool         loading;
+  final VoidCallback? onPrimary;
+  final VoidCallback? onSkip;
+
+  const _BottomActions({
+    required this.primaryLabel, required this.primaryEnabled,
+    required this.loading, this.onPrimary, this.onSkip,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+      child: Column(children: [
+        _PrimaryButton(label: primaryLabel, loading: loading,
+            enabled: primaryEnabled, onTap: onPrimary),
+        if (onSkip != null) ...[
+          const SizedBox(height: 10),
+          TextButton(
+            onPressed: onSkip,
+            child: Text('Skip for now',
+                style: TextStyle(fontSize: 14, color: Colors.grey.shade500)),
+          ),
+        ],
+      ]),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Card widgets
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _StepDots extends StatelessWidget {
   final int current;
-  const _StepDots({required this.current});
+  final int total;
+  const _StepDots({required this.current, required this.total});
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: List.generate(2, (i) {
+    return Row(children: List.generate(total, (i) {
       final active = i == current;
       return AnimatedContainer(
         duration: const Duration(milliseconds: 200),
@@ -495,16 +700,18 @@ class _StepDots extends StatelessWidget {
 }
 
 class _CatCard extends StatelessWidget {
-  final String emoji;
-  final String title;
-  final String subtitle;
-  final bool   selected;
-  final bool   disabled;
+  final String       emoji;
+  final String       title;
+  final String       subtitle;
+  final List<String> examples;
+  final bool         selected;
+  final bool         disabled;
   final VoidCallback? onTap;
 
   const _CatCard({
     required this.emoji, required this.title, required this.subtitle,
-    required this.selected, required this.disabled, required this.onTap,
+    required this.examples, required this.selected, required this.disabled,
+    required this.onTap,
   });
 
   @override
@@ -520,9 +727,8 @@ class _CatCard extends StatelessWidget {
               : disabled ? Colors.grey.shade50 : Colors.white,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: selected ? Candy.raspberry : Colors.grey.shade200,
-            width: selected ? 1.5 : 1,
-          ),
+              color: selected ? Candy.raspberry : Colors.grey.shade200,
+              width: selected ? 1.5 : 1),
         ),
         child: Row(children: [
           Text(emoji, style: const TextStyle(fontSize: 26)),
@@ -535,10 +741,9 @@ class _CatCard extends StatelessWidget {
                 color: disabled ? Colors.grey.shade400 : Candy.chocolate,
               )),
               const SizedBox(height: 2),
-              Text(subtitle, style: TextStyle(
-                fontSize: 12,
-                color: disabled ? Colors.grey.shade300 : Colors.grey.shade500,
-              )),
+              Text(examples.join(', '),
+                style: TextStyle(fontSize: 12,
+                  color: disabled ? Colors.grey.shade300 : Colors.grey.shade500)),
             ],
           )),
           if (selected)
@@ -547,6 +752,56 @@ class _CatCard extends StatelessWidget {
             Icon(Icons.circle_outlined,
                 color: disabled ? Colors.grey.shade200 : Colors.grey.shade300,
                 size: 20),
+        ]),
+      ),
+    );
+  }
+}
+
+class _SimpleCard extends StatelessWidget {
+  final String       emoji;
+  final String       title;
+  final String       subtitle;
+  final bool         selected;
+  final VoidCallback onTap;
+
+  const _SimpleCard({
+    required this.emoji, required this.title, required this.subtitle,
+    required this.selected, required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        decoration: BoxDecoration(
+          color: selected ? Candy.raspberry.withValues(alpha: 0.08) : Colors.white,
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(
+              color: selected ? Candy.raspberry : Colors.grey.shade200,
+              width: selected ? 1.5 : 1),
+        ),
+        child: Row(children: [
+          Text(emoji, style: const TextStyle(fontSize: 24)),
+          const SizedBox(width: 14),
+          Expanded(child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: TextStyle(
+                fontSize: 15, fontWeight: FontWeight.w600,
+                color: selected ? Candy.raspberry : Candy.chocolate,
+              )),
+              const SizedBox(height: 2),
+              Text(subtitle, style: TextStyle(fontSize: 12, color: Colors.grey.shade500)),
+            ],
+          )),
+          if (selected)
+            const Icon(Icons.check_circle, color: Candy.raspberry, size: 20)
+          else
+            Icon(Icons.circle_outlined, color: Colors.grey.shade300, size: 20),
         ]),
       ),
     );
@@ -621,17 +876,16 @@ class _Field extends StatelessWidget {
 
   const _Field({
     required this.controller, required this.label, required this.hint,
-    this.obscure        = false,
-    this.suffix,
-    this.inputType      = TextInputType.text,
+    this.obscure = false, this.suffix,
+    this.inputType = TextInputType.text,
     this.capitalization = TextCapitalization.none,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(label, style: const TextStyle(
-          fontSize: 13, fontWeight: FontWeight.w600, color: Candy.chocolate)),
+      Text(label, style: const TextStyle(fontSize: 13,
+          fontWeight: FontWeight.w600, color: Candy.chocolate)),
       const SizedBox(height: 6),
       TextField(
         controller: controller, obscureText: obscure,

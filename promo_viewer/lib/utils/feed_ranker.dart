@@ -116,14 +116,32 @@ double fatiguePenalty(String id, InteractionService svc) {
   }
 }
 
-/// Preference boost from user's saved categories (+10) and favorite brands (+15).
+/// Preference boost from favorite brands (+15), categories (+10), and deal priorities (+8–12).
 double preferenceBoost(Promotion p, UserPrefs? prefs) {
   if (prefs == null) return 0;
   double boost = 0;
+
   final brand = p.brand.toLowerCase();
   if (prefs.favoriteBrands.any((b) => b.toLowerCase() == brand)) boost += 15;
   final cat = p.category.toLowerCase();
   if (cat.isNotEmpty && prefs.favoriteCategories.any((c) => c.toLowerCase() == cat)) boost += 10;
+
+  final ptype  = p.promotionType.toLowerCase();
+  final dtype  = p.discountType.toLowerCase();
+  final dscope = p.dealScope.toLowerCase();
+  final dp     = prefs.dealPriorities;
+
+  if (dp.contains('free') && (ptype.contains('free') || p.rankBaseScore >= 60)) boost += 12;
+  if (dp.contains('bogo') && (ptype.contains('bogo') || dtype.contains('bogo'))) boost += 12;
+  if (dp.contains('nearby') && p.distanceKm != null) boost += 10;
+  if (dp.contains('online') && (dscope.contains('online') || p.distanceKm == null)) boost += 8;
+  if (dp.contains('rewards') && p.requiresMembership) boost += 8;
+  if (dp.contains('discount')) {
+    final val = p.discountValue ?? '';
+    final pct = RegExp(r'(\d+)').firstMatch(val);
+    if (pct != null && (int.tryParse(pct.group(1)!) ?? 0) >= 30) boost += 10;
+  }
+
   return boost;
 }
 
