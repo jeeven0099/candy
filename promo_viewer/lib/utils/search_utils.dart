@@ -19,12 +19,13 @@ class SearchOptions {
     this.minConfidence = 0.65,
   });
 
-  SearchOptions copyWith({SearchContext? context}) => SearchOptions(
-    memberships:   memberships,
-    savedIds:      savedIds,
-    context:       context ?? this.context,
-    minConfidence: minConfidence,
-  );
+  SearchOptions copyWith({SearchContext? context, double? minConfidence, Set<String>? savedIds}) =>
+      SearchOptions(
+        memberships:   memberships,
+        savedIds:      savedIds      ?? this.savedIds,
+        context:       context       ?? this.context,
+        minConfidence: minConfidence ?? this.minConfidence,
+      );
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -607,10 +608,13 @@ List<BrandGroup> getContextDeals(
   }
 
   final scoreFn = scorer ?? defaultScore;
-  filtered.sort((a, b) => scoreFn(b).compareTo(scoreFn(a)));
+  // Scorers may return a sentinel like -999 to signal "exclude this deal"
+  // (e.g. the Near Me scorer excludes deals beyond the user's radius).
+  final valid = filtered.where((p) => scoreFn(p) > -900).toList()
+    ..sort((a, b) => scoreFn(b).compareTo(scoreFn(a)));
 
   final brandMap = <String, List<Promotion>>{};
-  for (final p in filtered) {
+  for (final p in valid) {
     brandMap.putIfAbsent(p.brand, () => []).add(p);
   }
 

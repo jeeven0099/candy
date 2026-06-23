@@ -1,0 +1,287 @@
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../theme/candy_colors.dart';
+
+const _kRadiusKey     = 'near_me_radius_mi';
+const _kRadiusOptions = [1, 3, 5, 10, 25];
+
+class ProfileScreen extends StatefulWidget {
+  final Set<String> memberships;
+
+  const ProfileScreen({
+    super.key,
+    this.memberships = const {},
+  });
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  int _radiusMi = 5;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadRadius();
+  }
+
+  Future<void> _loadRadius() async {
+    final prefs = await SharedPreferences.getInstance();
+    final saved = prefs.getInt(_kRadiusKey);
+    if (saved != null && mounted) setState(() => _radiusMi = saved);
+  }
+
+  Future<void> _saveRadius(int mi) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(_kRadiusKey, mi);
+    if (mounted) setState(() => _radiusMi = mi);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Candy.cream,
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(child: _buildHeader()),
+            SliverToBoxAdapter(child: _buildMembershipsSection()),
+            SliverToBoxAdapter(child: _buildLocationSection()),
+            SliverToBoxAdapter(child: _buildAboutSection()),
+            const SliverPadding(padding: EdgeInsets.only(bottom: 32)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildHeader() {
+    return const Padding(
+      padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
+      child: Text(
+        'Profile',
+        style: TextStyle(
+          fontSize: 28,
+          fontWeight: FontWeight.w700,
+          letterSpacing: -0.5,
+          color: Candy.chocolate,
+        ),
+      ),
+    );
+  }
+
+  // ── Memberships ────────────────────────────────────────────────────────────
+
+  Widget _buildMembershipsSection() {
+    final memberships = widget.memberships.toList()..sort();
+    return _Section(
+      icon: Icons.card_membership_outlined,
+      title: 'My Memberships',
+      subtitle: 'Used to personalize your rewards',
+      child: memberships.isEmpty
+          ? _EmptyHint(
+              text: 'No memberships detected yet. '
+                  'They are read from your saved deals and email history.',
+            )
+          : Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: memberships
+                  .map((m) => Chip(
+                        label: Text(_capitalize(m)),
+                        backgroundColor: Candy.pink.withValues(alpha: 0.15),
+                        side: BorderSide(
+                            color: Candy.raspberry.withValues(alpha: 0.3)),
+                        labelStyle: const TextStyle(
+                            fontSize: 13, color: Candy.chocolate),
+                      ))
+                  .toList(),
+            ),
+    );
+  }
+
+  // ── Location radius ────────────────────────────────────────────────────────
+
+  Widget _buildLocationSection() {
+    return _Section(
+      icon: Icons.near_me_outlined,
+      title: 'Near Me Radius',
+      subtitle: 'Distance for the Near Me chip in Deals',
+      child: Row(
+        children: _kRadiusOptions.map((mi) {
+          final selected = mi == _radiusMi;
+          return Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: ChoiceChip(
+              label: Text('$mi mi'),
+              selected: selected,
+              onSelected: (_) => _saveRadius(mi),
+              selectedColor: Candy.raspberry,
+              backgroundColor: Colors.white,
+              side: BorderSide(
+                  color: selected ? Candy.raspberry : Colors.grey.shade300),
+              labelStyle: TextStyle(
+                fontSize: 13,
+                fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
+                color: selected ? Colors.white : Candy.chocolate,
+              ),
+              showCheckmark: false,
+              shape: const StadiumBorder(),
+            ),
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  // ── About / feedback ───────────────────────────────────────────────────────
+
+  Widget _buildAboutSection() {
+    return _Section(
+      icon: Icons.info_outline,
+      title: 'About',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _TileRow(
+            icon: Icons.bug_report_outlined,
+            label: 'Send feedback',
+            onTap: () async {
+              final uri = Uri.parse(
+                  'mailto:support@candy.app?subject=Candy%20Feedback');
+              if (await canLaunchUrl(uri)) await launchUrl(uri);
+            },
+          ),
+          const Divider(height: 1, indent: 40),
+          _TileRow(
+            icon: Icons.privacy_tip_outlined,
+            label: 'Privacy & data',
+            onTap: () => showDialog(
+              context: context,
+              builder: (_) => AlertDialog(
+                title: const Text('Privacy & Data'),
+                content: const Text(
+                  'Candy does not share your personal data with third parties. '
+                  'Search history and saved deals are stored locally on your device.',
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Got it'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _capitalize(String s) =>
+      s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Tiny layout helpers
+// ─────────────────────────────────────────────────────────────────────────────
+
+class _Section extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String? subtitle;
+  final Widget child;
+
+  const _Section({
+    required this.icon,
+    required this.title,
+    required this.child,
+    this.subtitle,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(icon, size: 18, color: Candy.raspberry),
+              const SizedBox(width: 8),
+              Text(title,
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: Candy.chocolate)),
+            ],
+          ),
+          if (subtitle != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 2, left: 26),
+              child: Text(subtitle!,
+                  style:
+                      TextStyle(fontSize: 12, color: Colors.grey.shade500)),
+            ),
+          const SizedBox(height: 12),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: Colors.grey.shade200),
+            ),
+            child: child,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _TileRow extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+
+  const _TileRow({required this.icon, required this.label, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Row(
+          children: [
+            Icon(icon, size: 18, color: Candy.chocolate.withValues(alpha: 0.6)),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(label,
+                  style: const TextStyle(fontSize: 14, color: Candy.chocolate)),
+            ),
+            Icon(Icons.chevron_right,
+                size: 18, color: Colors.grey.shade400),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _EmptyHint extends StatelessWidget {
+  final String text;
+  const _EmptyHint({required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(text,
+        style: TextStyle(fontSize: 13, color: Colors.grey.shade500));
+  }
+}
