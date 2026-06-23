@@ -99,7 +99,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             icon: Icons.tune_outlined,
             label: 'Edit preferences',
             onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => const OnboardingScreen()),
+              MaterialPageRoute(
+                  builder: (_) => const OnboardingScreen(startAtPreferences: true)),
             ),
           ),
           const Divider(height: 1, indent: 40),
