@@ -8,11 +8,15 @@ import '../screens/deal_detail_screen.dart';
 class BrandResultCard extends StatefulWidget {
   final BrandGroup group;
   final Set<String> memberships;
+  final VoidCallback? onExpanded;
+  final void Function(String dealId, String brand)? onDealTap;
 
   const BrandResultCard({
     super.key,
     required this.group,
     this.memberships = const {},
+    this.onExpanded,
+    this.onDealTap,
   });
 
   @override
@@ -31,7 +35,11 @@ class _BrandResultCardState extends State<BrandResultCard> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         InkWell(
-          onTap: () => setState(() => _expanded = !_expanded),
+          onTap: () {
+            final opening = !_expanded;
+            setState(() => _expanded = opening);
+            if (opening) widget.onExpanded?.call();
+          },
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
             child: Row(
@@ -79,10 +87,13 @@ class _BrandResultCardState extends State<BrandResultCard> {
             (p) => DealCard(
               promo: p,
               memberships: widget.memberships,
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => DealDetailScreen(promo: p)),
-              ),
+              onTap: () {
+                widget.onDealTap?.call(p.id, p.brand);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => DealDetailScreen(promo: p)),
+                );
+              },
             ),
           ),
         const Divider(height: 8, indent: 16, endIndent: 16),
