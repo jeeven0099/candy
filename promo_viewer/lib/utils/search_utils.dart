@@ -16,7 +16,7 @@ class SearchOptions {
     this.memberships  = const {},
     this.savedIds     = const {},
     this.context      = SearchContext.forYou,
-    this.minConfidence = 0.5,
+    this.minConfidence = 0.65,
   });
 
   SearchOptions copyWith({SearchContext? context}) => SearchOptions(
@@ -31,10 +31,10 @@ class SearchOptions {
 // Exclusion & context predicates
 // ─────────────────────────────────────────────────────────────────────────────
 
-bool passesExclusion(Promotion p, SearchOptions opts) {
+// Membership + active/email check — no confidence gate (callers apply separately).
+bool _passesBasicExclusion(Promotion p, SearchOptions opts) {
   if (!p.isActive) return false;
   if (p.source == 'email') return false;
-  if (p.confidenceScore < opts.minConfidence) return false;
   if (p.requiresMembership) {
     final cost = (p.membershipCost ?? '').toLowerCase();
     final isPaid = cost.contains('paid') ||
@@ -52,6 +52,12 @@ bool passesExclusion(Promotion p, SearchOptions opts) {
     }
   }
   return true;
+}
+
+// Full exclusion including confidence gate — used by getContextDeals and external callers.
+bool passesExclusion(Promotion p, SearchOptions opts) {
+  if (!_passesBasicExclusion(p, opts)) return false;
+  return p.confidenceScore >= opts.minConfidence;
 }
 
 bool passesContext(Promotion p, SearchContext ctx, Set<String> savedIds) {
@@ -537,12 +543,16 @@ List<BrandGroup> runSearch(
 
   final scored = <Promotion, ({double score, int tier})>{};
   for (final p in all) {
-    if (!passesExclusion(p, opts)) continue;
-    if (!passesContext(p, opts.context, opts.savedIds)) continue;
+    if (!_passesBasicExclusion(p, opts)) continue;
     final m = searchMatch(p, query, distanceKm: p.distanceKm);
     if (m.tier <= 0) continue;
-    // Tier 1-4 (brand matches): always include.
-    // Tier 5+ (semantic/tag): require minimum quality.
+    // Tier-aware confidence: exact brand/alias matches (tier ≤3) use 0.5 so the
+    // user who types "Coach" always sees Coach deals even if confidence is 0.55.
+    // Semantic/tag matches use opts.minConfidence (default 0.65).
+    final confMin = m.tier <= 3 ? 0.5 : opts.minConfidence;
+    if (p.confidenceScore < confMin) continue;
+    if (!passesContext(p, opts.context, opts.savedIds)) continue;
+    // Tier 1-4 (brand matches): always include. Tier 5+ (semantic): require quality.
     if (m.tier <= 4 || p.rankBaseScore >= 40) scored[p] = m;
   }
   if (scored.isEmpty) return [];

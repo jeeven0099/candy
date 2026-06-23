@@ -48,7 +48,8 @@ class _RewardsScreenState extends State<RewardsScreen> {
   // Quality gate for the curated rewards feed.
   // Confirmed memberships and free-to-join programs always make the cut.
   bool _isQualityReward(Promotion p) {
-    if (_hasMembership(p)) return true;
+    if (_hasMembership(p)) return true; // confirmed member: always surface
+    if (p.confidenceScore < 0.75) return false;
     final cost = (p.membershipCost ?? '').toLowerCase();
     if (cost.isEmpty || cost.contains('free')) return true;
     if (p.discountType == 'free_item') return true;
