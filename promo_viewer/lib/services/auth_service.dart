@@ -35,15 +35,19 @@ class AuthService {
     }
 
     // Insert user profile row
-    await _sb.from('users').insert({
-      'auth_id':     res.user!.id,
-      'invite_code': code,
-    });
+    try {
+      await _sb.from('users').insert({
+        'auth_id':     res.user!.id,
+        'invite_code': code,
+      });
+    } catch (_) {}
 
-    // Increment use_count
-    await _sb.from('invite_codes')
-        .update({'use_count': useCount + 1})
-        .eq('code', code);
+    // Increment use_count (best-effort — non-fatal if RLS blocks it)
+    try {
+      await _sb.from('invite_codes')
+          .update({'use_count': useCount + 1})
+          .eq('code', code);
+    } catch (_) {}
   }
 
   static Future<void> signIn({
