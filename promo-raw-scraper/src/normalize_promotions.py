@@ -46,6 +46,29 @@ _SHIPPING_RE = re.compile(
     r"|\bship(?:ping|s)?\s+(?:is\s+)?free\b",
     re.IGNORECASE,
 )
+# Sweepstakes/contest/raffle entries — not monetary deals
+_SWEEPSTAKES_RE = re.compile(
+    r"\bsweepstakes\b|\bcontest\b|\braffle\b|\bgiveaway\b|\benter\s+to\s+win\b",
+    re.IGNORECASE,
+)
+# Plain "[Movie Title] Tickets" — title ends in "Tickets", possibly with a "(subtitle)"
+_TICKETS_SUFFIX_RE = re.compile(
+    r"^.{2,60}\s+tickets?\s*(?:\([^)]*\))?\s*$",
+    re.IGNORECASE,
+)
+# Service offering keywords — things you pay for at regular price
+_SERVICE_OFFERING_RE = re.compile(
+    r"\brent(?:al)?\b|\bhire\b",
+    re.IGNORECASE,
+)
+# Real discount signals: % off, $ off, save $, BOGO
+_REAL_DISCOUNT_RE = re.compile(
+    r"(?:up\s+to\s+)?\d+(?:\.\d+)?%\s+off"
+    r"|\$\d+(?:\.\d+)?\s+off"
+    r"|\bsave\s+(?:up\s+to\s+)?\$\d+"
+    r"|\bbuy\s+one\s+get\s+one\b|\bbogo\b",
+    re.IGNORECASE,
+)
 _IN_APP_RE = re.compile(r"\bapp\b|\bdownload\b|\bmobile\b", re.IGNORECASE)
 _IN_STORE_RE = re.compile(r"\bin[-\s]store\b|\bat\s+(the\s+)?store\b|\bin\s+person\b", re.IGNORECASE)
 _CODE_RE = re.compile(r"\bpromo\s+code\b|\bcoupon\s+code\b|\benter\s+(the\s+)?code\b", re.IGNORECASE)
@@ -188,6 +211,52 @@ def is_placeholder(promo: dict) -> bool:
     """Return True for LLM-emitted placeholder/error entries that aren't real promotions."""
     title = (promo.get("promotion_title") or "").strip()
     return bool(_PLACEHOLDER_RE.match(title))
+
+
+_FREE_IN_TEXT_RE = re.compile(r"\bfree\b", re.IGNORECASE)
+
+
+def is_junk_deal(promo: dict) -> bool:
+    """Return True for entries that look like deals but provide no real discount to the user.
+
+    Catches four patterns the LLM commonly over-extracts:
+      1. Sweepstakes / contests / raffles
+      2. Plain movie-ticket sales with no actual discount signal ("[MOVIE] Tickets")
+      3. Service offerings (rentals etc.) at regular price — not "Free Car Rental Upgrade"
+      4. Membership feature descriptions for paid plans with no concrete offer
+    """
+    title = (promo.get("promotion_title") or "").strip()
+    combined = _text_fields(promo)
+    has_real_discount = bool(_REAL_DISCOUNT_RE.search(combined))
+    has_free = bool(_FREE_IN_TEXT_RE.search(combined))
+
+    # 1. Sweepstakes / contest / raffle — winning a prize is not a deal
+    if _SWEEPSTAKES_RE.search(title):
+        return True
+
+    # 2. "[MOVIE TITLE] Tickets" — plain ticket sale, no discount
+    if _TICKETS_SUFFIX_RE.match(title) and not has_real_discount:
+        return True
+
+    # 3. Service offering (e.g. "Private Theatre Rental") with no discount.
+    #    Guard: "Free Car Rental Upgrade" is legitimate — skip when "free" appears.
+    if _SERVICE_OFFERING_RE.search(title) and not has_real_discount and not has_free:
+        return True
+
+    # 4. Paid-membership feature description with no concrete offer:
+    #    e.g. "A-List: Extra Weekly Opportunity" describes what the subscription lets you do.
+    #    Guard: "free" anywhere (free trial, free item) or concrete % / $ discount = real deal.
+    if (
+        promo.get("promotion_type") == "membership_benefit"
+        and promo.get("membership_cost") == "unknown"
+        and not promo.get("start_date")
+        and not promo.get("end_date")
+        and not has_real_discount
+        and not has_free
+    ):
+        return True
+
+    return False
 
 
 def fix_rewards_program_title(promo: dict) -> dict:
@@ -527,6 +596,8 @@ def normalize_file(
         if not isinstance(promo, dict):
             continue
         if is_placeholder(promo):
+            continue
+        if is_junk_deal(promo):
             continue
         promo["brand"] = canonical_brand
         if not promo.get("category") and category:

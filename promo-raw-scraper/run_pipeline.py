@@ -40,7 +40,7 @@ def run(cmd: list[str], label: str, log_fh) -> int:
     log_fh.flush()
 
     process = subprocess.Popen(
-        [sys.executable] + cmd,
+        [sys.executable, "-u"] + cmd,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         text=True,
