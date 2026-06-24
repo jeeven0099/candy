@@ -121,6 +121,22 @@ class InteractionService {
     await p.setStringList(_recentKey, raw);
   }
 
+  // ── Deal skip (not interested in this deal) ──────────────────────────────
+  // Lighter than brand-level hiding: penalises only the single promotion,
+  // not the whole brand. Persisted locally; no Supabase sync needed for beta.
+
+  static const _skipDeal = 'skip_deal_';
+
+  bool isDealSkipped(String id) => _prefs?.getBool('$_skipDeal$id') ?? false;
+
+  Future<void> skipDeal(String id) async {
+    await _prefs?.setBool('$_skipDeal$id', true);
+  }
+
+  Future<void> unskipDeal(String id) async {
+    await _prefs?.remove('$_skipDeal$id');
+  }
+
   // ── Analytics events ──────────────────────────────────────────────────────
   // Lightweight hook — wire to Firebase/Amplitude in production.
 

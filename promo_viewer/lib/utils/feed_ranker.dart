@@ -100,6 +100,7 @@ ScoreBreakdown computeBreakdown(
 /// Fatigue penalty based on how many times the user saw a deal with no interaction.
 /// Returns _kHide when the deal should be suppressed from the default feed.
 double fatiguePenalty(String id, InteractionService svc) {
+  if (svc.isDealSkipped(id)) return _kHide;
   final seen = svc.seenCount(id);
   if (seen == 0) return 0;
   // Positive interactions cancel fatigue

@@ -380,12 +380,27 @@ class _MenuButton extends StatelessWidget {
       iconSize: 18,
       icon: Icon(Icons.more_vert, size: 18, color: Candy.muted.withValues(alpha: 0.45)),
       onSelected: (v) async {
-        if (v == 'hide') {
+        if (v == 'skip_deal') {
+          await InteractionService().skipDeal(promo.id);
+          if (context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: const Text('This deal will no longer appear in your feed'),
+                duration: const Duration(seconds: 4),
+                behavior: SnackBarBehavior.floating,
+                action: SnackBarAction(
+                  label: 'Undo',
+                  onPressed: () => InteractionService().unskipDeal(promo.id),
+                ),
+              ),
+            );
+          }
+        } else if (v == 'hide_brand') {
           await UserPrefsService().hideBrand(promo.brand);
           if (context.mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text('Hiding ${promo.brand} deals'),
+                content: Text('Hiding ${promo.brand} deals from your feed'),
                 duration: const Duration(seconds: 4),
                 behavior: SnackBarBehavior.floating,
                 action: SnackBarAction(
@@ -395,19 +410,57 @@ class _MenuButton extends StatelessWidget {
               ),
             );
           }
+        } else if (v == 'report') {
+          if (context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Thanks — we\'ll review this deal'),
+                duration: Duration(seconds: 3),
+                behavior: SnackBarBehavior.floating,
+              ),
+            );
+          }
         }
       },
       itemBuilder: (_) => [
         PopupMenuItem(
-          value: 'hide',
-          child: Row(
-            children: [
-              Icon(Icons.not_interested, size: 16, color: Colors.grey.shade600),
-              const SizedBox(width: 10),
-              Text('Not interested in ${promo.brand}'),
-            ],
+          value: 'skip_deal',
+          child: _MenuItem(
+            icon: Icons.visibility_off_outlined,
+            label: 'Not interested in this deal',
           ),
         ),
+        PopupMenuItem(
+          value: 'hide_brand',
+          child: _MenuItem(
+            icon: Icons.not_interested,
+            label: 'Not interested in ${promo.brand}',
+          ),
+        ),
+        PopupMenuItem(
+          value: 'report',
+          child: _MenuItem(
+            icon: Icons.flag_outlined,
+            label: 'Report wrong or expired',
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _MenuItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  const _MenuItem({required this.icon, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(icon, size: 16, color: Colors.grey.shade600),
+        const SizedBox(width: 10),
+        Text(label, style: const TextStyle(fontSize: 14)),
       ],
     );
   }
