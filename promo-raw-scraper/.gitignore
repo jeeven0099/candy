@@ -13,16 +13,22 @@ email_pipeline/structured_outputs/email/
 email_pipeline/normalized_outputs/
 
 # Pipeline generated outputs (large, regenerated locally)
-raw_text/
-raw_html/
-structured_outputs/
-normalized_outputs/
+# .gitkeep files are committed so directories survive git clean
+raw_text/*
+!raw_text/.gitkeep
+raw_html/*
+!raw_html/.gitkeep
+structured_outputs/*
+!structured_outputs/.gitkeep
+normalized_outputs/*
+!normalized_outputs/.gitkeep
+logs/*
+!logs/.gitkeep
 merged_promotions.json
 all_promotions.json
 brand_locations.json
 logos/
 locations/
-logs/
 
 # Local test/cache output
 .pytest_cache/
