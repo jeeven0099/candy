@@ -116,15 +116,20 @@ double fatiguePenalty(String id, InteractionService svc) {
   }
 }
 
-/// Preference boost from favorite brands (+15), categories (+10), and deal priorities (+8–12).
+/// Preference boost from favorite brands (+30), categories (+20), and deal priorities (+8–12).
 double preferenceBoost(Promotion p, UserPrefs? prefs) {
   if (prefs == null) return 0;
   double boost = 0;
 
+  // Flexible brand match: "Starbucks" matches "Starbucks Coffee" and vice versa.
   final brand = p.brand.toLowerCase();
-  if (prefs.favoriteBrands.any((b) => b.toLowerCase() == brand)) boost += 15;
+  if (prefs.favoriteBrands.any((b) {
+    final bl = b.toLowerCase();
+    return bl == brand || brand.contains(bl) || bl.contains(brand);
+  })) { boost += 30; }
+
   final cat = p.category.toLowerCase();
-  if (cat.isNotEmpty && prefs.favoriteCategories.any((c) => c.toLowerCase() == cat)) boost += 10;
+  if (cat.isNotEmpty && prefs.favoriteCategories.any((c) => c.toLowerCase() == cat)) boost += 20;
 
   final ptype  = p.promotionType.toLowerCase();
   final dtype  = p.discountType.toLowerCase();
