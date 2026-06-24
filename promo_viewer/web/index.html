@@ -41,6 +41,18 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
+  <!-- Stub PasskeyAuthenticator so passkeys_web (supabase transitive dep) doesn't crash on init -->
+  <script>
+    window.PasskeyAuthenticator = {
+      init: function() {},
+      register: function() { return Promise.reject('Passkeys not configured'); },
+      login: function() { return Promise.reject('Passkeys not configured'); },
+      cancelCurrentAuthenticatorOperation: function() {},
+      isUserVerifyingPlatformAuthenticatorAvailable: function() { return Promise.resolve(false); },
+      isConditionalMediationAvailable: function() { return Promise.resolve(false); },
+      hasPasskeySupport: function() { return false; }
+    };
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
