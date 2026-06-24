@@ -132,14 +132,29 @@ class _SearchScreenState extends State<SearchScreen> {
   );
 
   List<Promotion> get _visiblePromos {
+    final prefs = _prefsSvc.prefs;
+    if (prefs == null || prefs.hiddenBrands.isEmpty) return widget.all;
+    return widget.all.where((p) => !prefs.isHiddenBrand(p.brand)).toList();
+  }
+
+  // Hidden brands that directly match the current query (explicit intent → bypass filter).
+  Set<String> get _hiddenBrandsMatchingQuery {
+    final q = _debouncedQ.toLowerCase().trim();
+    if (q.isEmpty) return const {};
     final hidden = _prefsSvc.prefs?.hiddenBrands ?? const [];
-    if (hidden.isEmpty) return widget.all;
-    return widget.all.where((p) => !_prefsSvc.prefs!.isHiddenBrand(p.brand)).toList();
+    return {
+      for (final h in hidden)
+        if (h.brand.toLowerCase().contains(q) || q.contains(h.brand.toLowerCase()))
+          h.brand,
+    };
   }
 
   List<BrandGroup> get _results {
     if (_debouncedQ.trim().isEmpty) return [];
-    return runSearch(_visiblePromos, _debouncedQ, _opts);
+    // If the query directly names a hidden brand, bypass the filter so explicit
+    // search intent is respected. The UI will show a notice.
+    final promos = _hiddenBrandsMatchingQuery.isNotEmpty ? widget.all : _visiblePromos;
+    return runSearch(promos, _debouncedQ, _opts);
   }
 
   List<BrandGroup> _getContextGroups() {
@@ -440,7 +455,11 @@ class _SearchScreenState extends State<SearchScreen> {
 
   Widget _buildBody(bool hasQuery, List<BrandGroup> results) {
     if (hasQuery) {
-      return results.isEmpty ? _buildNoResults() : _buildGroupList(results);
+      return results.isEmpty
+          ? _buildNoResults()
+          : _buildGroupList(results, hiddenBrandNotice: _hiddenBrandsMatchingQuery.isNotEmpty
+              ? _hiddenBrandsMatchingQuery.first
+              : null);
     }
     if (_ctx == SearchContext.nearMe && _position == null && !_locating) {
       return _buildLocationPrompt();
@@ -451,13 +470,20 @@ class _SearchScreenState extends State<SearchScreen> {
 
   // ── Feed (chips, no query) ────────────────────────────────────────────────
 
-  Widget _buildGroupList(List<BrandGroup> groups) {
+  Widget _buildGroupList(List<BrandGroup> groups, {String? hiddenBrandNotice}) {
     return RefreshIndicator(
       onRefresh: widget.onRefresh,
       child: CustomScrollView(
         slivers: [
           // Quick-search suggestion row — always visible at top
           SliverToBoxAdapter(child: _buildQuickSearchRow()),
+          if (hiddenBrandNotice != null)
+            SliverToBoxAdapter(
+              child: _HiddenBrandBanner(
+                brand: hiddenBrandNotice,
+                onUnhide: () => UserPrefsService().unhideBrand(hiddenBrandNotice),
+              ),
+            ),
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
@@ -664,6 +690,48 @@ class _SearchScreenState extends State<SearchScreen> {
 // ─────────────────────────────────────────────────────────────────────────────
 // Tiny widgets
 // ─────────────────────────────────────────────────────────────────────────────
+
+class _HiddenBrandBanner extends StatelessWidget {
+  final String brand;
+  final VoidCallback onUnhide;
+  const _HiddenBrandBanner({required this.brand, required this.onUnhide});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      decoration: BoxDecoration(
+        color: Colors.amber.shade50,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.amber.shade200),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.visibility_off_outlined, size: 16, color: Colors.amber.shade800),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              '$brand is hidden from your feed — showing because you searched for it.',
+              style: TextStyle(fontSize: 12, color: Colors.amber.shade900),
+            ),
+          ),
+          GestureDetector(
+            onTap: onUnhide,
+            child: Text(
+              'Unhide',
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+                color: Colors.amber.shade800,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 class _HintChip extends StatelessWidget {
   final String label;
