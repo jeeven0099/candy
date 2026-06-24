@@ -258,6 +258,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         dealPriorities:     _selectedDealTypes.toList(),
       ));
     } catch (_) {}
+    // Mark onboarding complete (only on first-time flow, not edit-preferences)
+    if (!widget.startAtPreferences) {
+      try {
+        final userId = Supabase.instance.client.auth.currentUser?.id;
+        if (userId != null) {
+          await Supabase.instance.client.from('users').update({
+            'onboarding_completed':    true,
+            'onboarding_completed_at': DateTime.now().toIso8601String(),
+          }).eq('auth_id', userId);
+        }
+      } catch (_) {}
+    }
     if (!mounted) return;
     setState(() => _loading = false);
     if (widget.startAtPreferences) {
