@@ -31,7 +31,7 @@ class NotificationService {
   static const _kSentToday            = 'notif_sent_today_v1';          // JSON {date, count}
   static const _kLastSentAt           = 'notif_last_sent_at_v1';        // ISO string
 
-  final _plugin = FlutterLocalNotificationsPlugin();
+  FlutterLocalNotificationsPlugin? _plugin;
 
   static GlobalKey<NavigatorState>? _navigatorKey;
 
@@ -43,7 +43,8 @@ class NotificationService {
     if (kIsWeb) return;
     _navigatorKey = navigatorKey;
     final svc = NotificationService();
-    await svc._plugin.initialize(
+    svc._plugin = FlutterLocalNotificationsPlugin();
+    await svc._plugin!.initialize(
       settings: const InitializationSettings(
         android: AndroidInitializationSettings('@mipmap/ic_launcher'),
         iOS: DarwinInitializationSettings(
@@ -54,14 +55,14 @@ class NotificationService {
       ),
       onDidReceiveNotificationResponse: _handleTap,
     );
-    final launchDetails = await svc._plugin.getNotificationAppLaunchDetails();
+    final launchDetails = await svc._plugin!.getNotificationAppLaunchDetails();
     if (launchDetails?.didNotificationLaunchApp == true) {
       final id = launchDetails?.notificationResponse?.payload;
       if (id != null && id.isNotEmpty) {
         pendingPromoId = id;
       }
     }
-    final androidPlugin = svc._plugin
+    final androidPlugin = svc._plugin!
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>();
     await androidPlugin?.createNotificationChannel(const AndroidNotificationChannel(
@@ -189,7 +190,7 @@ class NotificationService {
     final when = tz.TZDateTime.from(remindAt, tz.local);
     if (when.isBefore(tz.TZDateTime.now(tz.local))) return;
 
-    await _plugin.zonedSchedule(
+    await _plugin?.zonedSchedule(
       id: _notifId(promoId),
       title: '$brand deal is expiring soon!',
       body: title,
@@ -213,7 +214,7 @@ class NotificationService {
 
   Future<void> cancelReminder(String promoId) async {
     if (kIsWeb) return;
-    await _plugin.cancel(id: _notifId(promoId));
+    await _plugin?.cancel(id: _notifId(promoId));
   }
 
   // ---------------------------------------------------------------------------
@@ -227,7 +228,7 @@ class NotificationService {
     required String payload,
     required double score,
   }) async {
-    await _plugin.show(
+    await _plugin?.show(
       id: id,
       title: title,
       body: body,
