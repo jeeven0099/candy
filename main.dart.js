@@ -30833,11 +30833,11 @@ case 2:return A.r(o.at(-1),r)}})
 return A.u($async$my,r)},
 api(){var s=0,r=A.v(t.H),q,p=2,o=[],n,m,l
 var $async$api=A.w(function(a,b){if(a===1){o.push(b)
-s=p}for(;;)switch(s){case 0:if(B.c.n("https://YOUR_PROJECT_ID.supabase.co","YOUR_PROJECT_ID")){A.ug().$1("[Supabase] Not configured \u2014 running in guest mode")
+s=p}for(;;)switch(s){case 0:if(B.c.n("https://liwncnxxsxbgijfgchdy.supabase.co","YOUR_PROJECT_ID")){A.ug().$1("[Supabase] Not configured \u2014 running in guest mode")
 s=1
 break}p=4
 s=7
-return A.n(A.apn("YOUR_SUPABASE_ANON_KEY","https://YOUR_PROJECT_ID.supabase.co"),$async$api)
+return A.n(A.apn("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxpd25jbnh4c3hiZ2lqZmdjaGR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyMzg3NDksImV4cCI6MjA5NzgxNDc0OX0.tlpMSzewN_jisIQPTyIEWQf8HxjIkx3IwgFq9bFCpZQ","https://liwncnxxsxbgijfgchdy.supabase.co"),$async$api)
 case 7:$.x0=!0
 p=2
 s=6
