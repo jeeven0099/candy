@@ -1,5 +1,17 @@
+import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'supabase_service.dart';
+
+String _appPlatform() {
+  if (kIsWeb) return 'web';
+  switch (defaultTargetPlatform) {
+    case TargetPlatform.iOS:     return 'ios';
+    case TargetPlatform.android: return 'android';
+    case TargetPlatform.macOS:   return 'macos';
+    case TargetPlatform.windows: return 'windows';
+    default:                     return 'unknown';
+  }
+}
 
 class AuthService {
   static SupabaseClient get _sb => SupabaseService.client;
@@ -37,8 +49,10 @@ class AuthService {
     // Insert user profile row
     try {
       await _sb.from('users').insert({
-        'auth_id':     res.user!.id,
-        'invite_code': code,
+        'auth_id':      res.user!.id,
+        'email':        res.user!.email,
+        'invite_code':  code,
+        'app_platform': _appPlatform(),
       });
     } catch (_) {}
 
@@ -54,10 +68,20 @@ class AuthService {
     required String email,
     required String password,
   }) async {
-    await _sb.auth.signInWithPassword(
+    final res = await _sb.auth.signInWithPassword(
       email: email.trim(),
       password: password,
     );
+    // Update last_login_at (and backfill email/platform for accounts created before these columns)
+    if (res.user != null) {
+      try {
+        await _sb.from('users').update({
+          'last_login_at': DateTime.now().toIso8601String(),
+          'email':         res.user!.email,
+          'app_platform':  _appPlatform(),
+        }).eq('auth_id', res.user!.id);
+      } catch (_) {}
+    }
   }
 
   static Future<void> signOut() async {
