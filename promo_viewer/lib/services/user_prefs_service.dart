@@ -8,8 +8,10 @@ class UserPrefsService extends ChangeNotifier {
   UserPrefsService._();
 
   UserPrefs? _prefs;
+  String? _userId; // users.id (not auth.uid)
 
   UserPrefs? get prefs => _prefs;
+  String? get userId => _userId;
   bool get hasPrefs => _prefs != null && !_prefs!.isEmpty;
 
   Future<void> load() async {
@@ -23,11 +25,12 @@ class UserPrefsService extends ChangeNotifier {
           .eq('auth_id', authId)
           .maybeSingle();
       if (userRow == null) return;
+      _userId = userRow['id'] as String;
 
       final row = await SupabaseService.client
           .from('user_preferences')
           .select()
-          .eq('user_id', userRow['id'] as String)
+          .eq('user_id', _userId!)
           .maybeSingle();
       if (row != null) {
         _prefs = UserPrefs.fromJson(row);
@@ -43,15 +46,20 @@ class UserPrefsService extends ChangeNotifier {
     final authId = SupabaseService.currentUserId;
     if (authId == null) return;
     try {
-      final userRow = await SupabaseService.client
-          .from('users')
-          .select('id')
-          .eq('auth_id', authId)
-          .maybeSingle();
-      if (userRow == null) return;
+      String? uid = _userId;
+      if (uid == null) {
+        final userRow = await SupabaseService.client
+            .from('users')
+            .select('id')
+            .eq('auth_id', authId)
+            .maybeSingle();
+        if (userRow == null) return;
+        _userId = userRow['id'] as String;
+        uid = _userId;
+      }
 
       await SupabaseService.client.from('user_preferences').upsert({
-        'user_id': userRow['id'] as String,
+        'user_id': uid,
         ...prefs.toJson(),
       });
       _prefs = prefs;
@@ -61,8 +69,21 @@ class UserPrefsService extends ChangeNotifier {
     }
   }
 
+  Future<void> hideBrand(String brand) async {
+    final current = _prefs;
+    if (current == null || current.isHiddenBrand(brand)) return;
+    await save(current.withHiddenBrand(brand));
+  }
+
+  Future<void> unhideBrand(String brand) async {
+    final current = _prefs;
+    if (current == null) return;
+    await save(current.withoutHiddenBrand(brand));
+  }
+
   void clear() {
     _prefs = null;
+    _userId = null;
     notifyListeners();
   }
 }
