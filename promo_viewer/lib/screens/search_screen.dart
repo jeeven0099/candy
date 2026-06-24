@@ -19,10 +19,22 @@ import '../widgets/brand_result_card.dart';
 
 const _kRadiusKey = 'near_me_radius_mi';
 
-const _kPopularSearches = [
+const _kFallbackSearches = [
   'burgers', 'coffee', 'jeans', 'handbags', 'pizza',
-  'groceries', 'makeup', 'shoes', 'movies', 'travel',
+  'groceries', 'makeup', 'shoes', 'movies', 'skincare',
 ];
+
+// 10 search chips per onboarding category slug.
+const _kChipsByCategory = <String, List<String>>{
+  'food':          ['burgers', 'coffee', 'pizza', 'tacos', 'chicken', 'sushi', 'sandwiches', 'breakfast', 'donuts', 'smoothies'],
+  'grocery':       ['groceries', 'organic', 'snacks', 'produce', 'meal kits', 'beverages', 'frozen', 'bakery', 'bulk buy', 'pantry'],
+  'fashion':       ['jeans', 'sneakers', 'dresses', 'jackets', 'activewear', 'shirts', 'shoes', 'accessories', 'swimwear', 'basics'],
+  'luxury':        ['handbags', 'jewelry', 'watches', 'sunglasses', 'wallets', 'luggage', 'perfume', 'scarves', 'designer shoes', 'belts'],
+  'beauty':        ['makeup', 'skincare', 'lipstick', 'haircare', 'foundation', 'mascara', 'serum', 'fragrance', 'nail polish', 'sunscreen'],
+  'entertainment': ['movies', 'concerts', 'gaming', 'fitness', 'streaming', 'sports', 'books', 'music', 'theme parks', 'museums'],
+  'home':          ['furniture', 'bedding', 'kitchen', 'lighting', 'decor', 'cleaning', 'storage', 'tools', 'garden', 'bath'],
+  'tech':          ['headphones', 'laptops', 'phones', 'cameras', 'smart home', 'gaming', 'tablets', 'speakers', 'wearables', 'chargers'],
+};
 
 // ── Context chip definitions ───────────────────────────────────────────────────
 
@@ -119,10 +131,35 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   List<BrandGroup> _getContextGroups() {
-    double Function(Promotion)? scorer;
-    if (_ctx == SearchContext.nearMe) scorer = _nearMeScorer;
-    if (_ctx == SearchContext.forYou) scorer = _forYouScorer;
+    final double Function(Promotion) scorer;
+    switch (_ctx) {
+      case SearchContext.nearMe:
+        scorer = _nearMeScorer;
+      case SearchContext.forYou:
+        scorer = _forYouScorer;
+      default:
+        scorer = _prefScorer;
+    }
     return getContextDeals(widget.all, _opts, scorer: scorer);
+  }
+
+  // Chips to show in the quick-search row — pulled from the user's chosen categories.
+  List<String> get _quickSearchChips {
+    final cats = _prefsSvc.prefs?.favoriteCategories ?? [];
+    if (cats.isEmpty) return _kFallbackSearches;
+    final chips = <String>[];
+    for (final cat in cats) {
+      final pool = _kChipsByCategory[cat.toLowerCase()] ?? [];
+      chips.addAll(pool.take(3));
+    }
+    // Pad with fallbacks if fewer than 6 chips
+    if (chips.length < 6) {
+      for (final s in _kFallbackSearches) {
+        if (!chips.contains(s)) chips.add(s);
+        if (chips.length >= 10) break;
+      }
+    }
+    return chips.take(10).toList();
   }
 
   double _nearMeScorer(Promotion p) {
@@ -130,8 +167,11 @@ class _SearchScreenState extends State<SearchScreen> {
     final miles = p.distanceKm! * 0.621371;
     if (miles > _radiusMi) return -999;
     final dist = miles <= 0.5 ? 30 : miles <= 1.0 ? 25 : miles <= 2.0 ? 18 : miles <= 5.0 ? 8 : 2;
-    return p.rankBaseScore + dist;
+    return p.rankBaseScore + dist + preferenceBoost(p, _prefsSvc.prefs);
   }
+
+  double _prefScorer(Promotion p) =>
+      p.rankBaseScore + preferenceBoost(p, _prefsSvc.prefs);
 
   double _forYouScorer(Promotion p) =>
       personalizedScore(p, _svc, distanceKm: p.distanceKm, prefs: _prefsSvc.prefs);
@@ -426,14 +466,15 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Widget _buildQuickSearchRow() {
+    final chips = _quickSearchChips;
     return SizedBox(
       height: 44,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-        itemCount: _kPopularSearches.length,
+        itemCount: chips.length,
         itemBuilder: (_, i) {
-          final s = _kPopularSearches[i];
+          final s = chips[i];
           return Padding(
             padding: const EdgeInsets.only(right: 8),
             child: ActionChip(
