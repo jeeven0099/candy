@@ -4,6 +4,7 @@ import '../models/promotion.dart';
 import '../services/interaction_service.dart';
 import '../services/location_service.dart';
 import '../services/saved_deals_service.dart';
+import '../services/supabase_service.dart';
 import '../services/user_prefs_service.dart';
 import '../theme/candy_colors.dart';
 import '../utils/feed_ranker.dart';
@@ -412,11 +413,18 @@ class _MenuButton extends StatelessWidget {
           }
         } else if (v == 'report') {
           if (context.mounted) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Thanks — we\'ll review this deal'),
-                duration: Duration(seconds: 3),
-                behavior: SnackBarBehavior.floating,
+            final outerCtx = context;
+            showModalBottomSheet(
+              context: context,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+              ),
+              builder: (sheetCtx) => _ReportSheet(
+                promo: promo,
+                onSubmit: (type) {
+                  Navigator.pop(sheetCtx);
+                  _submitReport(promo, type, outerCtx);
+                },
               ),
             );
           }
@@ -462,6 +470,86 @@ class _MenuItem extends StatelessWidget {
         const SizedBox(width: 10),
         Text(label, style: const TextStyle(fontSize: 14)),
       ],
+    );
+  }
+}
+
+// ── Report sheet ─────────────────────────────────────────────────────────────
+
+const _kReportTypes = [
+  (slug: 'wrong_deal',      icon: Icons.edit_off_outlined,         label: 'Wrong deal',         sub: 'The deal details are incorrect'),
+  (slug: 'expired',         icon: Icons.event_busy_outlined,        label: 'Expired',            sub: 'This deal has already ended'),
+  (slug: 'bad_link',        icon: Icons.link_off,                   label: 'Bad link',           sub: "The link doesn't work"),
+  (slug: 'not_real',        icon: Icons.block,                      label: 'Not a real deal',    sub: "Doesn't look like a genuine promotion"),
+  (slug: 'store_closed',    icon: Icons.store_mall_directory_outlined, label: 'Store closed',    sub: 'This store location is permanently closed'),
+];
+
+Future<void> _submitReport(Promotion promo, String reportType, BuildContext ctx) async {
+  // Fire-and-forget: write to user_interactions so pipeline quality is tracked.
+  if (SupabaseService.isLoggedIn) {
+    final userId = UserPrefsService().userId;
+    if (userId != null) {
+      try {
+        await SupabaseService.client.from('user_interactions').insert({
+          'user_id':    userId,
+          'event_type': 'reported',
+          'promotion_id': promo.id,
+          'brand':      promo.brand,
+          'category':   promo.category,
+          'metadata':   {'report_type': reportType},
+        });
+      } catch (_) {}
+    }
+  }
+  if (ctx.mounted) {
+    ScaffoldMessenger.of(ctx).showSnackBar(
+      const SnackBar(
+        content: Text('Thanks — we\'ll review this deal'),
+        duration: Duration(seconds: 3),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+}
+
+class _ReportSheet extends StatelessWidget {
+  final Promotion promo;
+  final void Function(String reportType) onSubmit;
+  const _ReportSheet({required this.promo, required this.onSubmit});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 32),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Text('Report this deal',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+              const Spacer(),
+              IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.close, size: 20),
+                visualDensity: VisualDensity.compact,
+                padding: EdgeInsets.zero,
+              ),
+            ],
+          ),
+          Text(promo.brand,
+              style: TextStyle(fontSize: 13, color: Colors.grey.shade500)),
+          const SizedBox(height: 16),
+          ..._kReportTypes.map((t) => ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: Icon(t.icon, size: 22, color: Colors.grey.shade600),
+            title: Text(t.label, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
+            subtitle: Text(t.sub, style: TextStyle(fontSize: 12, color: Colors.grey.shade500)),
+            onTap: () => onSubmit(t.slug),
+          )),
+        ],
+      ),
     );
   }
 }
