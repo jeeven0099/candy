@@ -4,6 +4,7 @@ import '../models/promotion.dart';
 import '../services/interaction_service.dart';
 import '../services/location_service.dart';
 import '../services/saved_deals_service.dart';
+import '../services/user_prefs_service.dart';
 import '../theme/candy_colors.dart';
 import '../utils/feed_ranker.dart';
 import 'brand_logo.dart';
@@ -173,6 +174,7 @@ class DealCard extends StatelessWidget {
                     ),
                   ),
                   _HeartButton(promo: promo),
+                  _MenuButton(promo: promo),
                 ],
               ),
 
@@ -364,6 +366,52 @@ class _HeartButton extends StatelessWidget {
   }
 }
 
+
+// ── Not-interested menu ───────────────────────────────────────────────────────
+
+class _MenuButton extends StatelessWidget {
+  final Promotion promo;
+  const _MenuButton({required this.promo});
+
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton<String>(
+      padding: EdgeInsets.zero,
+      iconSize: 18,
+      icon: Icon(Icons.more_vert, size: 18, color: Candy.muted.withValues(alpha: 0.45)),
+      onSelected: (v) async {
+        if (v == 'hide') {
+          await UserPrefsService().hideBrand(promo.brand);
+          if (context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Hiding ${promo.brand} deals'),
+                duration: const Duration(seconds: 4),
+                behavior: SnackBarBehavior.floating,
+                action: SnackBarAction(
+                  label: 'Undo',
+                  onPressed: () => UserPrefsService().unhideBrand(promo.brand),
+                ),
+              ),
+            );
+          }
+        }
+      },
+      itemBuilder: (_) => [
+        PopupMenuItem(
+          value: 'hide',
+          child: Row(
+            children: [
+              Icon(Icons.not_interested, size: 16, color: Colors.grey.shade600),
+              const SizedBox(width: 10),
+              Text('Not interested in ${promo.brand}'),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
 
 // ── Promo code pill ───────────────────────────────────────────────────────────
 

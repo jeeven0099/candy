@@ -5,9 +5,11 @@ import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/promotion.dart';
+import '../services/impression_service.dart';
 import '../services/interaction_service.dart';
 import '../services/location_service.dart';
 import '../services/saved_deals_service.dart';
+import '../services/supabase_service.dart';
 import '../services/user_prefs_service.dart';
 import '../theme/candy_colors.dart';
 import '../utils/feed_ranker.dart';
@@ -95,9 +97,13 @@ class _SearchScreenState extends State<SearchScreen> {
     _loadRadius();
     if (widget.all.any((p) => p.distanceKm != null)) _position = const _FakePosition();
     _prefsSvc.addListener(_onPrefsChanged);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _recordContextImpressions());
   }
 
-  void _onPrefsChanged() => setState(() {});
+  void _onPrefsChanged() {
+    setState(() {});
+    _recordContextImpressions();
+  }
 
   Future<void> _loadRadius() async {
     final prefs = await SharedPreferences.getInstance();
@@ -125,9 +131,15 @@ class _SearchScreenState extends State<SearchScreen> {
     minConfidence: (_ctx == SearchContext.forYou) ? 0.6 : 0.65,
   );
 
+  List<Promotion> get _visiblePromos {
+    final hidden = _prefsSvc.prefs?.hiddenBrands ?? const [];
+    if (hidden.isEmpty) return widget.all;
+    return widget.all.where((p) => !_prefsSvc.prefs!.isHiddenBrand(p.brand)).toList();
+  }
+
   List<BrandGroup> get _results {
     if (_debouncedQ.trim().isEmpty) return [];
-    return runSearch(widget.all, _debouncedQ, _opts);
+    return runSearch(_visiblePromos, _debouncedQ, _opts);
   }
 
   List<BrandGroup> _getContextGroups() {
@@ -140,7 +152,14 @@ class _SearchScreenState extends State<SearchScreen> {
       default:
         scorer = _prefScorer;
     }
-    return getContextDeals(widget.all, _opts, scorer: scorer);
+    return getContextDeals(_visiblePromos, _opts, scorer: scorer);
+  }
+
+  void _recordContextImpressions() {
+    if (!mounted || _debouncedQ.trim().isNotEmpty) return;
+    final groups = _getContextGroups();
+    final promos = groups.expand((g) => g.deals).toList();
+    ImpressionService().recordImpressions(promos, context: _ctx.name);
   }
 
   // Chips to show in the quick-search row — pulled from the user's chosen categories.
@@ -215,6 +234,7 @@ class _SearchScreenState extends State<SearchScreen> {
           params: {'chip': ctx.name, 'query': _query});
     }
     setState(() => _ctx = ctx);
+    _recordContextImpressions();
   }
 
   Future<void> _requestLocation() async {
@@ -240,9 +260,10 @@ class _SearchScreenState extends State<SearchScreen> {
     _lastTrackedQ = q;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      final results = runSearch(widget.all, q, _opts);
+      final results = runSearch(_visiblePromos, q, _opts);
       _svc.recordRecentSearch(q);
       _svc.recordSearch(q, results.length);
+      _writeSearchEvent(q, results);
       if (results.isEmpty) {
         _svc.recordSearchEvent('search_no_results',
             params: {'query': q, 'chip': _ctx.name});
@@ -252,8 +273,26 @@ class _SearchScreenState extends State<SearchScreen> {
         for (final g in results) {
           if (g.bestTier <= 4) _svc.recordBrandSearch(g.brand);
         }
+        final promos = results.expand((g) => g.deals).toList();
+        ImpressionService().recordImpressions(promos, context: 'search_${_ctx.name}');
       }
     });
+  }
+
+  Future<void> _writeSearchEvent(String q, List<BrandGroup> results) async {
+    if (!SupabaseService.isLoggedIn) return;
+    final userId = _prefsSvc.userId;
+    if (userId == null) return;
+    try {
+      await SupabaseService.client.from('search_events').insert({
+        'user_id':          userId,
+        'query':            q,
+        'normalized_query': q.toLowerCase().trim(),
+        'context':          _ctx.name,
+        'result_count':     results.length,
+        'no_result':        results.isEmpty,
+      });
+    } catch (_) {}
   }
 
   void _onBrandExpanded(BrandGroup g) {
