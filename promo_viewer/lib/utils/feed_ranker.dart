@@ -5,6 +5,10 @@ import '../services/saved_deals_service.dart';
 
 const _kHide = 999.0;
 
+// Calibrated from 4 external reranker experiments (Ponpare, RetailRocket, Taobao, Yoochoose).
+// Cap prevents many boosts stacking into an unrealistically inflated score.
+const double kPersonalizationBoostCap = 45.0;
+
 // ---------------------------------------------------------------------------
 // Score breakdown (for debug overlay)
 // ---------------------------------------------------------------------------
@@ -32,7 +36,9 @@ class ScoreBreakdown {
 
   double get total => isHidden
       ? double.negativeInfinity
-      : rankBase + distanceBonus + dayBonus + membershipBonus + affinityBoost + preferenceBoost - fatiguePenalty;
+      : rankBase + distanceBonus + dayBonus + membershipBonus
+        + (affinityBoost + preferenceBoost).clamp(0, kPersonalizationBoostCap)
+        - fatiguePenalty;
 }
 
 ScoreBreakdown computeBreakdown(
@@ -99,6 +105,10 @@ ScoreBreakdown computeBreakdown(
 
 /// Fatigue penalty based on how many times the user saw a deal with no interaction.
 /// Returns _kHide when the deal should be suppressed from the default feed.
+///
+/// Penalties are intentionally mild for low seen counts: external datasets
+/// (RetailRocket, Taobao) show repeated views without action are still a
+/// positive purchase-intent signal. Only suppress after 5+ ignored impressions.
 double fatiguePenalty(String id, InteractionService svc) {
   if (svc.isDealSkipped(id)) return _kHide;
   final seen = svc.seenCount(id);
@@ -106,18 +116,20 @@ double fatiguePenalty(String id, InteractionService svc) {
   // Positive interactions cancel fatigue
   if (svc.clickCount(id) > 0 || svc.hasFastRedeemed(id)) return 0;
   switch (seen) {
-    case 1:  return 5;
-    case 2:  return 12;
-    case 3:  return 22;
+    case 1:  return 0;
+    case 2:  return 0;
+    case 3:  return 3;
+    case 4:  return 8;
     default:
-      // 4+ no-interaction views: hide for 7 days from last seen
+      // 5+ no-interaction views: hide for 7 days from last seen
       final last = svc.lastSeenAt(id);
       if (last != null && DateTime.now().difference(last).inDays < 7) return _kHide;
-      return 22; // after cooldown: moderate penalty, back in rotation
+      return 8; // after cooldown: moderate penalty, back in rotation
   }
 }
 
-/// Preference boost from favorite brands (+30), categories (+20), and deal priorities (+8–12).
+/// Preference boost from favorite brands (+25), categories (+22), and deal priorities.
+/// Values calibrated from E1 (Ponpare) and E3 (Taobao) experiment coefficients.
 double preferenceBoost(Promotion p, UserPrefs? prefs) {
   if (prefs == null) return 0;
   double boost = 0;
@@ -127,10 +139,10 @@ double preferenceBoost(Promotion p, UserPrefs? prefs) {
   if (prefs.favoriteBrands.any((b) {
     final bl = b.toLowerCase();
     return bl == brand || brand.contains(bl) || bl.contains(brand);
-  })) { boost += 30; }
+  })) { boost += 25; }  // E1: explicit pref is strongest signal; reduced from 30
 
   final cat = p.category.toLowerCase();
-  if (cat.isNotEmpty && prefs.favoriteCategories.any((c) => c.toLowerCase() == cat)) boost += 20;
+  if (cat.isNotEmpty && prefs.favoriteCategories.any((c) => c.toLowerCase() == cat)) boost += 22;  // E1+E3: raised from 20
 
   final ptype  = p.promotionType.toLowerCase();
   final dtype  = p.discountType.toLowerCase();
@@ -139,25 +151,27 @@ double preferenceBoost(Promotion p, UserPrefs? prefs) {
 
   if (dp.contains('free') && (ptype.contains('free') || p.rankBaseScore >= 60)) boost += 12;
   if (dp.contains('bogo') && (ptype.contains('bogo') || dtype.contains('bogo'))) boost += 12;
-  if (dp.contains('nearby') && p.distanceKm != null) boost += 10;
+  if (dp.contains('nearby') && p.distanceKm != null) boost += 4;   // E1: area_match was weak (+0.2); reduced from 10
   if (dp.contains('online') && (dscope.contains('online') || p.distanceKm == null)) boost += 8;
   if (dp.contains('rewards') && p.requiresMembership) boost += 8;
   if (dp.contains('discount')) {
     final val = p.discountValue ?? '';
     final pct = RegExp(r'(\d+)').firstMatch(val);
-    if (pct != null && (int.tryParse(pct.group(1)!) ?? 0) >= 30) boost += 10;
+    if (pct != null && (int.tryParse(pct.group(1)!) ?? 0) >= 30) boost += 4;  // E1: PRICE_RATE was weak; reduced from 10
   }
 
   return boost;
 }
 
 /// Affinity boost from positive signals: saved, fast-redeemed, clicked, brand searched.
+/// recent_search_boost raised 15→18: E4 (Yoochoose) repeated_click_same_item was the
+/// strongest session signal.
 double affinityBoost(Promotion p, InteractionService svc) {
   double boost = 0;
   if (SavedDealsService().get(p.id) != null) boost += 30;
   if (svc.hasFastRedeemed(p.id)) boost += 20;
   if (svc.clickCount(p.id) > 0) boost += 8;
-  if (svc.isBrandRecentlySearched(p.brand)) boost += 15;
+  if (svc.isBrandRecentlySearched(p.brand)) boost += 18;  // E4: raised from 15
   return boost;
 }
 
@@ -171,14 +185,18 @@ double personalizedScore(
 }) {
   final penalty = fatiguePenalty(p.id, svc);
   if (penalty >= _kHide) return -_kHide;
+  final personalization = (affinityBoost(p, svc) + preferenceBoost(p, prefs))
+      .clamp(0.0, kPersonalizationBoostCap);
   return p.rankScore(distanceKm: distanceKm, isMember: isMember)
-      + affinityBoost(p, svc)
-      + preferenceBoost(p, prefs)
+      + personalization
       - penalty;
 }
 
 /// Selects the best [limit] deals from [candidates] using personalized scoring
 /// and brand diversity (no more than [maxPerBrand] deals from the same brand).
+///
+/// Default For You top 10: maxPerBrand = 2.
+/// Search results: pass maxPerBrand = 999 to bypass the cap.
 ///
 /// Deals suppressed by fatigue (score == -_kHide) are excluded.
 /// If brand diversity leaves slots unfilled, remaining top-scored deals fill them.
