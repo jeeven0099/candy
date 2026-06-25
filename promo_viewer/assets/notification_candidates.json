@@ -1,66 +1,218 @@
 {
-  "generated_at": "2026-06-22T11:15:41.568048+00:00",
+  "generated_at": "2026-06-25T01:36:11.952548+00:00",
   "threshold": 75.0,
-  "total": 40,
+  "total": 35,
   "candidates": [
     {
-      "promo_id": "adoreme_semiannualsaleupto70off",
-      "brand": "Adore Me",
-      "title": "SEMI-ANNUAL SALE: Up to 70% OFF",
-      "notify_score": 119.0,
-      "signal_groups": [
-        "context",
-        "personal",
-        "value"
-      ],
-      "notification_title": "Adore Me",
-      "notification_body": "SEMI-ANNUAL SALE: Up to 70% OFF",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
-    },
-    {
-      "promo_id": "adoreme_thebowcollection50off",
-      "brand": "Adore Me",
-      "title": "The Bow Collection - 50% Off",
-      "notify_score": 119.0,
-      "signal_groups": [
-        "context",
-        "personal",
-        "value"
-      ],
-      "notification_title": "Adore Me",
-      "notification_body": "The Bow Collection - 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
-    },
-    {
-      "promo_id": "mcdonalds_freelargefriesw1minpurchase",
+      "promo_id": "mcdonalds_freelargefrieswith1minpurchaseforfirsttimeappusers",
       "brand": "McDonald's",
-      "title": "Free large Fries w/ $1 min. purchase",
-      "notify_score": 116.0,
+      "title": "Free Large Fries with $1 Min. Purchase for First Time App Users",
+      "notify_score": 124.0,
       "signal_groups": [
         "personal",
         "value"
       ],
       "notification_title": "McDonald's",
-      "notification_body": "Free: Free large Fries w/ $1 min. purchase",
+      "notification_body": "Free: Free Large Fries with $1 Min. Purchase for First Time App Users",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "end_date": "2026-12-31",
+      "website_domain": "mcdonalds.com",
+      "source_url": "https://www.mcdonalds.com/us/en-us/deals.html"
+    },
+    {
+      "promo_id": "wendys_free6pcnuggswpurchase",
+      "brand": "Wendy's",
+      "title": "Free 6pc Nuggs w/ Purchase",
+      "notify_score": 113.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Wendy's",
+      "notification_body": "Free: Free 6pc Nuggs w/ Purchase",
       "discount_type": "free_item",
       "discount_value": "free",
       "end_date": null,
-      "website_domain": "mcdonalds.com",
-      "source_url": "https://www.mcdonalds.com/us/en-us/deals.html"
+      "website_domain": "wendys.com",
+      "source_url": "https://www.wendys.com/offers-coupons"
+    },
+    {
+      "promo_id": "calvinklein_contourriblogographicslimtshirt",
+      "brand": "Calvin Klein",
+      "title": "Contour Rib Logo Graphic Slim T-Shirt*",
+      "notify_score": 108.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Calvin Klein",
+      "notification_body": "Expires today: Contour Rib Logo Graphic Slim T-Shirt*",
+      "discount_type": "percentage_off",
+      "discount_value": "57%",
+      "end_date": "2026-06-24",
+      "website_domain": "calvinklein.us",
+      "source_url": "https://www.calvinklein.us/en/sale"
+    },
+    {
+      "promo_id": "calvinklein_ckblacktrunk",
+      "brand": "Calvin Klein",
+      "title": "CK Black Trunk*",
+      "notify_score": 108.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Calvin Klein",
+      "notification_body": "Expires today: CK Black Trunk*",
+      "discount_type": "percentage_off",
+      "discount_value": "55%",
+      "end_date": "2026-06-24",
+      "website_domain": "calvinklein.us",
+      "source_url": "https://www.calvinklein.us/en/sale"
+    },
+    {
+      "promo_id": "coach_upto50offselectstyles",
+      "brand": "Coach",
+      "title": "Up to 50% off select styles.",
+      "notify_score": 104.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Coach",
+      "notification_body": "Up to 50% off select styles.",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "end_date": null,
+      "website_domain": "coach.com",
+      "source_url": "https://www.coach.com/content/promo"
+    },
+    {
+      "promo_id": "colehaan_sandalsupto60off",
+      "brand": "Cole Haan",
+      "title": "Sandals up to 60% Off",
+      "notify_score": 104.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Cole Haan",
+      "notification_body": "Sandals up to 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "end_date": null,
+      "website_domain": "colehaan.com",
+      "source_url": "https://www.colehaan.com/collections/sale"
+    },
+    {
+      "promo_id": "colehaan_sneakersupto50off",
+      "brand": "Cole Haan",
+      "title": "Sneakers up to 50% Off",
+      "notify_score": 104.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Cole Haan",
+      "notification_body": "Sneakers up to 50% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "end_date": null,
+      "website_domain": "colehaan.com",
+      "source_url": "https://www.colehaan.com/collections/sale"
+    },
+    {
+      "promo_id": "eddiebauer_upto50offclearance",
+      "brand": "Eddie Bauer",
+      "title": "Up To 50% Off Clearance",
+      "notify_score": 104.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Eddie Bauer",
+      "notification_body": "Up To 50% Off Clearance",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "end_date": null,
+      "website_domain": "eddiebauer.com",
+      "source_url": "https://www.eddiebauer.com/collections/clearance"
+    },
+    {
+      "promo_id": "oldnavy_50offeverything",
+      "brand": "Old Navy",
+      "title": "50% Off Everything",
+      "notify_score": 104.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Old Navy",
+      "notification_body": "50% Off Everything",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "end_date": null,
+      "website_domain": "oldnavy.gap.com",
+      "source_url": "https://oldnavy.gap.com/browse/women/sale?cid=26190"
+    },
+    {
+      "promo_id": "saucony_upto50offselectstyles",
+      "brand": "Saucony",
+      "title": "Up to 50% Off Select Styles",
+      "notify_score": 104.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Saucony",
+      "notification_body": "Up to 50% Off Select Styles",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "end_date": null,
+      "website_domain": "saucony.com",
+      "source_url": "https://www.saucony.com/en/sale/"
+    },
+    {
+      "promo_id": "johnstonmurphy_endofseasonsale",
+      "brand": "Johnston & Murphy",
+      "title": "End of Season Sale",
+      "notify_score": 102.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Johnston & Murphy",
+      "notification_body": "End of Season Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 55%",
+      "end_date": null,
+      "website_domain": "johnstonmurphy.com",
+      "source_url": "https://www.johnstonmurphy.com/c/sale"
+    },
+    {
+      "promo_id": "benihana_kabukikidsbirthdayoffer",
+      "brand": "Benihana",
+      "title": "Kabuki Kids Birthday Offer",
+      "notify_score": 100.0,
+      "signal_groups": [
+        "context",
+        "personal",
+        "value"
+      ],
+      "notification_title": "Benihana",
+      "notification_body": "Birthday deal: Kabuki Kids Birthday Offer",
+      "discount_type": "free_item",
+      "discount_value": "free souvenir mug",
+      "end_date": null,
+      "website_domain": "benihana.com",
+      "source_url": "https://www.benihana.com/loyalty/"
     },
     {
       "promo_id": "microsoft_freeallaccessdigitalpassformicrosoftbuild",
       "brand": "Microsoft",
       "title": "Free All-Access Digital Pass for Microsoft Build",
-      "notify_score": 115.0,
+      "notify_score": 100.0,
       "signal_groups": [
         "context",
         "personal",
@@ -75,333 +227,27 @@
       "source_url": null
     },
     {
-      "promo_id": "amctheatres_openingnighteventspidermanbrandnewdaycollectiblesocks",
-      "brand": "AMC Theatres",
-      "title": "OPENING NIGHT EVENT: SPIDER-MAN: BRAND NEW DAY Collectible Socks",
-      "notify_score": 114.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "AMC Theatres",
-      "notification_body": "Free: OPENING NIGHT EVENT: SPIDER-MAN: BRAND NEW DAY Collectible Socks",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "end_date": "2026-07-30",
-      "website_domain": "amctheatres.com",
-      "source_url": "https://www.amctheatres.com/offers"
-    },
-    {
-      "promo_id": "amctheatres_astarisborntickets",
-      "brand": "AMC Theatres",
-      "title": "A STAR IS BORN Tickets",
-      "notify_score": 112.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "AMC Theatres",
-      "notification_body": "Free: A STAR IS BORN Tickets",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "end_date": "2026-10-11",
-      "website_domain": "amctheatres.com",
-      "source_url": "https://www.amctheatres.com/offers"
-    },
-    {
-      "promo_id": "amctheatres_moonlighttickets",
-      "brand": "AMC Theatres",
-      "title": "MOONLIGHT Tickets",
-      "notify_score": 112.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "AMC Theatres",
-      "notification_body": "Free: MOONLIGHT Tickets",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "end_date": "2026-07-01",
-      "website_domain": "amctheatres.com",
-      "source_url": "https://www.amctheatres.com/offers"
-    },
-    {
-      "promo_id": "amctheatres_minionsmonsterssweepstakes",
-      "brand": "AMC Theatres",
-      "title": "MINIONS & MONSTERS Sweepstakes",
-      "notify_score": 112.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "AMC Theatres",
-      "notification_body": "Free: MINIONS & MONSTERS Sweepstakes",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "end_date": "2026-07-05",
-      "website_domain": "amctheatres.com",
-      "source_url": "https://www.amctheatres.com/offers"
-    },
-    {
-      "promo_id": "amctheatres_moonlightticketspridemonth",
-      "brand": "AMC Theatres",
-      "title": "MOONLIGHT Tickets (Pride Month)",
-      "notify_score": 112.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "AMC Theatres",
-      "notification_body": "Free: MOONLIGHT Tickets (Pride Month)",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "end_date": "2026-07-01",
-      "website_domain": "amctheatres.com",
-      "source_url": "https://www.amctheatres.com/offers"
-    },
-    {
-      "promo_id": "amctheatres_minionsmonsterssweepstakespridemonth",
-      "brand": "AMC Theatres",
-      "title": "MINIONS & MONSTERS Sweepstakes (Pride Month)",
-      "notify_score": 112.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "AMC Theatres",
-      "notification_body": "Free: MINIONS & MONSTERS Sweepstakes (Pride Month)",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "end_date": "2026-07-05",
-      "website_domain": "amctheatres.com",
-      "source_url": "https://www.amctheatres.com/offers"
-    },
-    {
-      "promo_id": "starbucks_modmondaybenefit",
-      "brand": "Starbucks",
-      "title": "Mod Monday Benefit",
-      "notify_score": 112.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Starbucks",
-      "notification_body": "Free: Mod Monday Benefit",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "end_date": null,
-      "website_domain": "starbucks.com",
-      "source_url": "https://www.starbucks.com/rewards"
-    },
-    {
-      "promo_id": "amctheatres_imaxcollectibleposter",
-      "brand": "AMC Theatres",
-      "title": "IMAX Collectible Poster",
-      "notify_score": 108.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "AMC Theatres",
-      "notification_body": "Free: IMAX Collectible Poster",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "end_date": null,
-      "website_domain": "amctheatres.com",
-      "source_url": "https://www.amctheatres.com/offers"
-    },
-    {
-      "promo_id": "abercrombiefitch_buyonegetone50offclearanceitems",
-      "brand": "Abercrombie & Fitch",
-      "title": "Buy One, Get One 50% Off Clearance Items",
-      "notify_score": 104.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Abercrombie & Fitch",
-      "notification_body": "Buy One, Get One 50% Off Clearance Items",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "end_date": null,
-      "website_domain": "abercrombie.com",
-      "source_url": "https://www.abercrombie.com/shop/us/sale"
-    },
-    {
-      "promo_id": "eddiebauer_upto50offclearance",
-      "brand": "Eddie Bauer",
-      "title": "Up To 50% Off Clearance",
-      "notify_score": 104.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Eddie Bauer",
-      "notification_body": "Up To 50% Off Clearance",
-      "discount_type": "percentage_off",
-      "discount_value": "Up To 50%",
-      "end_date": null,
-      "website_domain": "eddiebauer.com",
-      "source_url": "https://www.eddiebauer.com/collections/clearance"
-    },
-    {
-      "promo_id": "showpo_archivesale",
-      "brand": "Showpo",
-      "title": "ARCHIVE SALE",
-      "notify_score": 104.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Showpo",
-      "notification_body": "ARCHIVE SALE",
-      "discount_type": "percentage_off",
-      "discount_value": "30 - 80%",
-      "end_date": null,
-      "website_domain": "showpo.com",
-      "source_url": "https://www.showpo.com/collections/sale"
-    },
-    {
-      "promo_id": "nastygal_newseason60off",
-      "brand": "Nasty Gal",
-      "title": "New Season 60% Off",
-      "notify_score": 102.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Nasty Gal",
-      "notification_body": "New Season 60% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "end_date": null,
-      "website_domain": "nastygal.com",
-      "source_url": "https://www.nastygal.com/categories/womens-sale"
-    },
-    {
-      "promo_id": "nastygal_summerhotlist70offselectedlines",
-      "brand": "Nasty Gal",
-      "title": "Summer Hot List 70% Off Selected Lines",
-      "notify_score": 102.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Nasty Gal",
-      "notification_body": "Summer Hot List 70% Off Selected Lines",
-      "discount_type": "percentage_off",
-      "discount_value": "70%",
-      "end_date": null,
-      "website_domain": "nastygal.com",
-      "source_url": "https://www.nastygal.com/categories/womens-sale"
-    },
-    {
-      "promo_id": "skechers_50offaccessories",
-      "brand": "Skechers",
-      "title": "50% Off Accessories",
-      "notify_score": 102.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Skechers",
-      "notification_body": "50% Off Accessories",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "end_date": null,
-      "website_domain": "skechers.com",
-      "source_url": "https://www.skechers.com/sale/"
-    },
-    {
-      "promo_id": "skechers_50offworkstyles",
-      "brand": "Skechers",
-      "title": "50% Off Work Styles",
-      "notify_score": 102.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Skechers",
-      "notification_body": "50% Off Work Styles",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "end_date": null,
-      "website_domain": "skechers.com",
-      "source_url": "https://www.skechers.com/sale/"
-    },
-    {
-      "promo_id": "samedelman_30off150withcodesummeredit",
-      "brand": "Sam Edelman",
-      "title": "$30 OFF $150 with code SUMMEREDIT",
-      "notify_score": 101.2,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Sam Edelman",
-      "notification_body": "Expires today: $30 OFF $150 with code SUMMEREDIT",
-      "discount_type": "amount_off",
-      "discount_value": "$30",
-      "end_date": "2026-06-22",
-      "website_domain": "samedelman.com",
-      "source_url": "https://www.samedelman.com/browse/sale#sortCriteria=relevance"
-    },
-    {
-      "promo_id": "wayfair_bogo15offstorageorganization",
-      "brand": "Wayfair",
-      "title": "BOGO 15% OFF STORAGE & ORGANIZATION",
-      "notify_score": 99.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Wayfair",
-      "notification_body": "BOGO 15% OFF STORAGE & ORGANIZATION",
-      "discount_type": "percentage_off",
-      "discount_value": "15%",
-      "end_date": null,
-      "website_domain": "wayfair.com",
-      "source_url": null
-    },
-    {
-      "promo_id": "culvers_freebirthdayandhalfbirthdaytreats",
-      "brand": "Culver's",
-      "title": "Free birthday and half-birthday treats",
+      "promo_id": "calvinklein_90sdenimtruckerjacket",
+      "brand": "Calvin Klein",
+      "title": "90s Denim Trucker Jacket*",
       "notify_score": 98.0,
       "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Culver's",
-      "notification_body": "Birthday deal: Free birthday and half-birthday treats",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "end_date": null,
-      "website_domain": "culvers.com",
-      "source_url": "https://www.culvers.com/delicious-rewards"
-    },
-    {
-      "promo_id": "llbean_10offselectmensshirtsfishinggear",
-      "brand": "L.L.Bean",
-      "title": "10% OFF Select Men's Shirts & Fishing Gear!",
-      "notify_score": 95.0,
-      "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "L.L.Bean",
-      "notification_body": "Expires today: 10% OFF Select Men's Shirts & Fishing Gear!",
+      "notification_title": "Calvin Klein",
+      "notification_body": "Expires today: 90s Denim Trucker Jacket*",
       "discount_type": "percentage_off",
-      "discount_value": "10%",
-      "end_date": "2026-06-22",
-      "website_domain": "llbean.com",
-      "source_url": "https://www.llbean.com/llb/shop/32?page=sale"
+      "discount_value": "37%",
+      "end_date": "2026-06-24",
+      "website_domain": "calvinklein.us",
+      "source_url": "https://www.calvinklein.us/en/sale"
     },
     {
       "promo_id": "foodpanda_60offfreedelivery",
       "brand": "foodpanda",
       "title": "60% off & free delivery",
-      "notify_score": 95.0,
+      "notify_score": 97.0,
       "signal_groups": [
         "personal",
         "value"
@@ -415,135 +261,118 @@
       "source_url": null
     },
     {
-      "promo_id": "surlatable_upto75offcastiron",
-      "brand": "Sur La Table",
-      "title": "Up to 75% off cast iron",
-      "notify_score": 95.0,
+      "promo_id": "peetscoffee_birthdayanniversaryperks",
+      "brand": "Peet's Coffee",
+      "title": "Birthday & Anniversary Perks",
+      "notify_score": 96.0,
       "signal_groups": [
         "personal",
         "value"
       ],
-      "notification_title": "Sur La Table",
-      "notification_body": "Up to 75% off cast iron",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 75%",
-      "end_date": null,
-      "website_domain": null,
-      "source_url": null
-    },
-    {
-      "promo_id": "zaloramenswear_sportshoesupto50off",
-      "brand": "ZALORA Menswear",
-      "title": "Sport Shoes Up To 50% Off",
-      "notify_score": 95.0,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "ZALORA Menswear",
-      "notification_body": "Sport Shoes Up To 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "end_date": null,
-      "website_domain": null,
-      "source_url": null
-    },
-    {
-      "promo_id": "rei_upto50offpastseasonstylesfromarcteryxpatagoniacolumbiamore",
-      "brand": "REI",
-      "title": "Up to 50% off past-season styles from Arc'teryx, Patagonia, Columbia & more",
-      "notify_score": 94.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "REI",
-      "notification_body": "Up to 50% off past-season styles from Arc'teryx, Patagonia, Columbia & more",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "end_date": null,
-      "website_domain": "rei.com",
-      "source_url": "https://www.rei.com/h/deals"
-    },
-    {
-      "promo_id": "rei_upto50offpastseasonjacketsfromthenorthfacereicoopbrandmore",
-      "brand": "REI",
-      "title": "Up to 50% off past-season jackets from The North Face, REI Co-op brand & more",
-      "notify_score": 94.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "REI",
-      "notification_body": "Up to 50% off past-season jackets from The North Face, REI Co-op brand & more",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "end_date": null,
-      "website_domain": "rei.com",
-      "source_url": "https://www.rei.com/h/deals"
-    },
-    {
-      "promo_id": "wayfair_upto50offbacktoschooldealweek",
-      "brand": "Wayfair",
-      "title": "UP TO 50% OFF | BACK-TO-SCHOOL DEAL WEEK",
-      "notify_score": 94.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Wayfair",
-      "notification_body": "UP TO 50% OFF | BACK-TO-SCHOOL DEAL WEEK",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "end_date": null,
-      "website_domain": "wayfair.com",
-      "source_url": null
-    },
-    {
-      "promo_id": "einsteinbrosbagels_freeeggsandwichwithpurchaseforyourbirthday",
-      "brand": "Einstein Bros Bagels",
-      "title": "FREE Egg Sandwich with purchase for your birthday.",
-      "notify_score": 93.0,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Einstein Bros Bagels",
-      "notification_body": "Birthday deal: FREE Egg Sandwich with purchase for your birthday.",
+      "notification_title": "Peet's Coffee",
+      "notification_body": "Birthday deal: Birthday & Anniversary Perks",
       "discount_type": "free_item",
-      "discount_value": "free",
+      "discount_value": null,
       "end_date": null,
-      "website_domain": "einsteinbros.com",
-      "source_url": "https://www.einsteinbros.com/rewards/"
+      "website_domain": "peets.com",
+      "source_url": "https://www.peets.com/pages/peetnik-rewards"
     },
     {
-      "promo_id": "rei_shopreioutlet",
-      "brand": "REI",
-      "title": "Shop REI Outlet",
-      "notify_score": 92.0,
+      "promo_id": "aerie_upto50offeverything",
+      "brand": "Aerie",
+      "title": "Up to 50% off everything",
+      "notify_score": 94.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "REI",
-      "notification_body": "Shop REI Outlet",
+      "notification_title": "Aerie",
+      "notification_body": "Up to 50% off everything",
       "discount_type": "percentage_off",
       "discount_value": "50%",
       "end_date": null,
-      "website_domain": "rei.com",
-      "source_url": "https://www.rei.com/h/deals"
+      "website_domain": "ae.com",
+      "source_url": "https://www.ae.com/us/en/c/aerie/cat4840006"
     },
     {
-      "promo_id": "cariboucoffee_membersreceiveafreedrinkduringtheirbirthdayweek",
+      "promo_id": "nastygal_newseason60off",
+      "brand": "Nasty Gal",
+      "title": "New Season 60% Off",
+      "notify_score": 94.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Nasty Gal",
+      "notification_body": "New Season 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "end_date": null,
+      "website_domain": "nastygal.com",
+      "source_url": "https://www.nastygal.com/categories/womens-sale"
+    },
+    {
+      "promo_id": "nastygal_summerhotlist70off",
+      "brand": "Nasty Gal",
+      "title": "Summer Hot List 70% Off",
+      "notify_score": 94.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Nasty Gal",
+      "notification_body": "Summer Hot List 70% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "70%",
+      "end_date": null,
+      "website_domain": "nastygal.com",
+      "source_url": "https://www.nastygal.com/categories/womens-sale"
+    },
+    {
+      "promo_id": "parachute_classicturkishcottontowels",
+      "brand": "Parachute",
+      "title": "Classic Turkish Cotton Towels",
+      "notify_score": 94.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Parachute",
+      "notification_body": "Classic Turkish Cotton Towels",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "end_date": null,
+      "website_domain": "parachutehome.com",
+      "source_url": "https://parachutehome.com/collections/all-sale"
+    },
+    {
+      "promo_id": "prettylittlething_50offalmosteverything",
+      "brand": "PrettyLittleThing",
+      "title": "50% OFF ALMOST EVERYTHING*",
+      "notify_score": 94.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "PrettyLittleThing",
+      "notification_body": "50% OFF ALMOST EVERYTHING*",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "end_date": null,
+      "website_domain": "prettylittlething.us",
+      "source_url": "https://www.prettylittlething.us/categories/womens-sale"
+    },
+    {
+      "promo_id": "cariboucoffee_freebirthdaydrinkduringyourbirthdayweek",
       "brand": "Caribou Coffee",
-      "title": "Members receive a free drink during their birthday week",
-      "notify_score": 91.0,
+      "title": "Free birthday drink during your birthday week",
+      "notify_score": 92.0,
       "signal_groups": [
         "personal",
         "value"
       ],
       "notification_title": "Caribou Coffee",
-      "notification_body": "Birthday deal: Members receive a free drink during their birthday week",
+      "notification_body": "Birthday deal: Free birthday drink during your birthday week",
       "discount_type": "free_item",
       "discount_value": null,
       "end_date": null,
@@ -551,21 +380,89 @@
       "source_url": "https://www.cariboucoffee.com/caribou-perks/"
     },
     {
-      "promo_id": "bowlero_thespecial",
-      "brand": "Bowlero",
-      "title": "The Special",
-      "notify_score": 90.0,
+      "promo_id": "culvers_freebirthdayandhalfbirthdaytreats",
+      "brand": "Culver's",
+      "title": "Free birthday and half-birthday treats",
+      "notify_score": 92.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Culver's",
+      "notification_body": "Birthday deal: Free birthday and half-birthday treats",
+      "discount_type": "free_item",
+      "discount_value": null,
+      "end_date": null,
+      "website_domain": "culvers.com",
+      "source_url": "https://www.culvers.com/delicious-rewards"
+    },
+    {
+      "promo_id": "williamssonoma_upto50offselectbrands",
+      "brand": "Williams-Sonoma",
+      "title": "Up to 50% Off Select Brands",
+      "notify_score": 92.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Bowlero",
-      "notification_body": "The Special",
+      "notification_title": "Williams-Sonoma",
+      "notification_body": "Up to 50% Off Select Brands",
       "discount_type": "percentage_off",
-      "discount_value": "50%",
+      "discount_value": "up to 50%",
       "end_date": null,
-      "website_domain": "bowlero.com",
-      "source_url": "https://www.bowlero.com/specials"
+      "website_domain": "williams-sonoma.com",
+      "source_url": "https://www.williams-sonoma.com/shop/sale-special-offer/"
+    },
+    {
+      "promo_id": "williamssonoma_75offclearanceitems",
+      "brand": "Williams-Sonoma",
+      "title": "75% Off Clearance Items",
+      "notify_score": 92.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Williams-Sonoma",
+      "notification_body": "75% Off Clearance Items",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 75%",
+      "end_date": null,
+      "website_domain": "williams-sonoma.com",
+      "source_url": "https://www.williams-sonoma.com/shop/sale-special-offer/"
+    },
+    {
+      "promo_id": "sprouts_saleendstodaystrawberries",
+      "brand": "Sprouts",
+      "title": "Sale Ends Today - Strawberries",
+      "notify_score": 91.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Sprouts",
+      "notification_body": "Expires today: Sale Ends Today - Strawberries",
+      "discount_type": "percentage_off",
+      "discount_value": "40%",
+      "end_date": "2026-06-24",
+      "website_domain": "sprouts.com",
+      "source_url": "https://shop.sprouts.com/store/sprouts/storefront"
+    },
+    {
+      "promo_id": "panerabread_birthdayrewardfreebakerytreatorbagel",
+      "brand": "Panera Bread",
+      "title": "Birthday Reward: Free Bakery Treat or Bagel",
+      "notify_score": 90.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Panera Bread",
+      "notification_body": "Birthday deal: Birthday Reward: Free Bakery Treat or Bagel",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "end_date": null,
+      "website_domain": "panerabread.com",
+      "source_url": "https://www.panerabread.com/en-us/mypanera/meet-mypanera.html"
     },
     {
       "promo_id": "starbucks_freetreatonyourbirthday",
@@ -585,106 +482,123 @@
       "source_url": "https://www.starbucks.com/rewards"
     },
     {
-      "promo_id": "applebees_birthdayspecialoffer",
+      "promo_id": "starbucks_7daystoredeemyourbirthdaytreat",
+      "brand": "Starbucks",
+      "title": "7 days to redeem your birthday treat",
+      "notify_score": 90.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Starbucks",
+      "notification_body": "Birthday deal: 7 days to redeem your birthday treat",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "end_date": null,
+      "website_domain": "starbucks.com",
+      "source_url": "https://www.starbucks.com/rewards"
+    },
+    {
+      "promo_id": "starbucks_30daystoredeemyourbirthdaytreat",
+      "brand": "Starbucks",
+      "title": "30 days to redeem your birthday treat",
+      "notify_score": 90.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Starbucks",
+      "notification_body": "Birthday deal: 30 days to redeem your birthday treat",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "end_date": null,
+      "website_domain": "starbucks.com",
+      "source_url": "https://www.starbucks.com/rewards"
+    },
+    {
+      "promo_id": "applebees_aspecialbirthdaytheapplebeesway",
       "brand": "Applebee's",
-      "title": "Birthday Special Offer",
+      "title": "A Special Birthday, The Applebee's Way",
       "notify_score": 88.0,
       "signal_groups": [
         "personal",
         "value"
       ],
       "notification_title": "Applebee's",
-      "notification_body": "Birthday deal: Birthday Special Offer",
+      "notification_body": "Birthday deal: A Special Birthday, The Applebee's Way",
       "discount_type": "free_item",
-      "discount_value": "free",
+      "discount_value": "Free dessert",
       "end_date": null,
       "website_domain": "applebees.com",
       "source_url": "https://www.applebees.com/en/specials"
     },
     {
-      "promo_id": "regal_birthdayfreepopcornoffer",
-      "brand": "Regal",
-      "title": "Birthday Free Popcorn Offer",
+      "promo_id": "einsteinbrosbagels_freeeggsandwichwithpurchaseforyourbirthday",
+      "brand": "Einstein Bros Bagels",
+      "title": "FREE Egg Sandwich with purchase for your birthday.",
       "notify_score": 88.0,
       "signal_groups": [
         "personal",
         "value"
       ],
-      "notification_title": "Regal",
-      "notification_body": "Birthday deal: Birthday Free Popcorn Offer",
+      "notification_title": "Einstein Bros Bagels",
+      "notification_body": "Birthday deal: FREE Egg Sandwich with purchase for your birthday.",
       "discount_type": "free_item",
       "discount_value": "free",
+      "end_date": null,
+      "website_domain": "einsteinbros.com",
+      "source_url": "https://www.einsteinbros.com/rewards/"
+    },
+    {
+      "promo_id": "regal_birthdaypopcornfreebie",
+      "brand": "Regal",
+      "title": "Birthday Popcorn Freebie",
+      "notify_score": 86.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Regal",
+      "notification_body": "Birthday deal: Birthday Popcorn Freebie",
+      "discount_type": "free_item",
+      "discount_value": null,
       "end_date": null,
       "website_domain": "regmovies.com",
       "source_url": "https://www.regmovies.com/regal-crown-club"
     },
     {
-      "promo_id": "wrangler_todayonlyfreeshippingonallorders",
-      "brand": "Wrangler",
-      "title": "Today Only: Free Shipping on All Orders",
-      "notify_score": 87.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Wrangler",
-      "notification_body": "Expires today: Today Only: Free Shipping on All Orders",
-      "discount_type": "free_shipping",
-      "discount_value": "free",
-      "end_date": "2026-06-22",
-      "website_domain": "wrangler.com",
-      "source_url": "https://www.wrangler.com/shop/sale"
-    },
-    {
-      "promo_id": "amctheatres_toystory5collectiblelorcanatcgcard",
-      "brand": "AMC Theatres",
-      "title": "TOY STORY 5 Collectible Lorcana TCG Card",
+      "promo_id": "calvinklein_extra20offordersof100",
+      "brand": "Calvin Klein",
+      "title": "Extra 20% off orders of $100+*",
       "notify_score": 85.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "AMC Theatres",
-      "notification_body": "Free: TOY STORY 5 Collectible Lorcana TCG Card",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "end_date": "2026-06-21",
-      "website_domain": "amctheatres.com",
-      "source_url": "https://www.amctheatres.com/offers"
+      "notification_title": "Calvin Klein",
+      "notification_body": "Expires today: Extra 20% off orders of $100+*",
+      "discount_type": "percentage_off",
+      "discount_value": "20%",
+      "end_date": "2026-06-24",
+      "website_domain": "calvinklein.us",
+      "source_url": "https://www.calvinklein.us/en/sale"
     },
     {
-      "promo_id": "chipotle_birthdayrewardselection",
-      "brand": "Chipotle",
-      "title": "Birthday Reward Selection",
+      "promo_id": "lee_35offforrewardsmembers",
+      "brand": "Lee",
+      "title": "35% Off For Rewards Members",
       "notify_score": 80.0,
       "signal_groups": [
-        "personal",
+        "context",
         "value"
       ],
-      "notification_title": "Chipotle",
-      "notification_body": "Birthday deal: Birthday Reward Selection",
-      "discount_type": "free_item",
-      "discount_value": null,
-      "end_date": null,
-      "website_domain": "chipotle.com",
-      "source_url": "https://www.chipotle.com/rewards"
-    },
-    {
-      "promo_id": "panerabread_birthdayrewardfreebakerytreatorbagel",
-      "brand": "Panera Bread",
-      "title": "Birthday Reward: Free Bakery Treat or Bagel",
-      "notify_score": 78.0,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Panera Bread",
-      "notification_body": "Birthday deal: Birthday Reward: Free Bakery Treat or Bagel",
-      "discount_type": "free_item",
-      "discount_value": "one free item",
-      "end_date": null,
-      "website_domain": "panerabread.com",
-      "source_url": "https://www.panerabread.com/en-us/mypanera/meet-mypanera.html"
+      "notification_title": "Lee",
+      "notification_body": "Expires today: 35% Off For Rewards Members",
+      "discount_type": "percentage_off",
+      "discount_value": "35%",
+      "end_date": "2026-06-24T23:59:00",
+      "website_domain": "lee.com",
+      "source_url": "https://www.lee.com/shop/sale"
     }
   ]
 }
