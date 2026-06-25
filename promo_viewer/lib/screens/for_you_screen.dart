@@ -35,7 +35,7 @@ class ForYouScreen extends StatelessWidget {
         final birthdayDeals = all
             .where((p) => p.birthdayRelated && p.isActive)
             .toList()
-          ..sort((a, b) => b.rankBaseScore.compareTo(a.rankBaseScore));
+          ..sort((a, b) => b.globalQualityScore.compareTo(a.globalQualityScore));
 
         return Scaffold(
           backgroundColor: Candy.cream,

@@ -92,7 +92,7 @@ ScoreBreakdown computeBreakdown(
   final pBoost = preferenceBoost(p, prefs);
 
   return ScoreBreakdown(
-    rankBase: p.rankBaseScore,
+    rankBase: p.globalQualityScore,
     distanceBonus: distBonus,
     dayBonus: dayBonus,
     membershipBonus: memberBonus,
@@ -157,7 +157,7 @@ double preferenceBoost(Promotion p, UserPrefs? prefs) {
   final dscope = p.dealScope.toLowerCase();
   final dp     = prefs.dealPriorities;
 
-  if (dp.contains('free') && (ptype.contains('free') || p.rankBaseScore >= 60)) boost += 12;
+  if (dp.contains('free') && (ptype.contains('free') || p.globalQualityScore >= 60)) boost += 12;
   if (dp.contains('bogo') && (ptype.contains('bogo') || dtype.contains('bogo'))) boost += 12;
   if (dp.contains('nearby') && p.distanceKm != null) boost += 4;   // E1: area_match was weak (+0.2); reduced from 10
   if (dp.contains('online') && (dscope.contains('online') || p.distanceKm == null)) boost += 8;

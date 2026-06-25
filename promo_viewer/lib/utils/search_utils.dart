@@ -576,7 +576,7 @@ String _norm(String s) =>
   if (tier == 0) return (score: 0, tier: 0);
 
   // ── Secondary boosts (tiebreakers only) ───────────────────────────────────
-  score += (p.rankBaseScore.clamp(0.0, 100.0) / 100.0) * 25;
+  score += (p.globalQualityScore.clamp(0.0, 100.0) / 100.0) * 25;
 
   if (distanceKm != null) {
     final miles = distanceKm * 0.621371;
@@ -638,7 +638,7 @@ List<BrandGroup> runSearch(
     if (p.confidenceScore < confMin) continue;
     if (!passesContext(p, opts.context, opts.savedIds)) continue;
     // Tier 1-4 (brand matches): always include. Tier 5+ (semantic): require quality.
-    if (m.tier <= 4 || p.rankBaseScore >= 40) scored[p] = m;
+    if (m.tier <= 4 || p.globalQualityScore >= 40) scored[p] = m;
   }
   if (scored.isEmpty) return [];
 
@@ -683,7 +683,7 @@ List<BrandGroup> getContextDeals(
       passesExclusion(p, opts) && passesContext(p, opts.context, opts.savedIds)).toList();
 
   double defaultScore(Promotion p) {
-    double s = p.rankBaseScore;
+    double s = p.globalQualityScore;
     if (opts.context == SearchContext.nearMe && p.distanceKm != null) {
       final miles = p.distanceKm! * 0.621371;
       s += miles <= 0.5 ? 30 : miles <= 1.0 ? 25 : miles <= 2.0 ? 18 : miles <= 5.0 ? 8 : 2;
