@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-25T01:36:11.952548+00:00",
+  "generated_at": "2026-06-25T19:24:39.537814+00:00",
   "threshold": 75.0,
-  "total": 35,
+  "total": 33,
   "candidates": [
     {
       "promo_id": "mcdonalds_freelargefrieswith1minpurchaseforfirsttimeappusers",
@@ -21,123 +21,38 @@
       "source_url": "https://www.mcdonalds.com/us/en-us/deals.html"
     },
     {
-      "promo_id": "wendys_free6pcnuggswpurchase",
-      "brand": "Wendy's",
-      "title": "Free 6pc Nuggs w/ Purchase",
-      "notify_score": 113.0,
+      "promo_id": "prettylittlething_50ormoreoffalmosteverything",
+      "brand": "PrettyLittleThing",
+      "title": "50% OR MORE OFF ALMOST EVERYTHING*",
+      "notify_score": 110.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Wendy's",
-      "notification_body": "Free: Free 6pc Nuggs w/ Purchase",
-      "discount_type": "free_item",
-      "discount_value": "free",
+      "notification_title": "PrettyLittleThing",
+      "notification_body": "50% OR MORE OFF ALMOST EVERYTHING*",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
       "end_date": null,
-      "website_domain": "wendys.com",
-      "source_url": "https://www.wendys.com/offers-coupons"
-    },
-    {
-      "promo_id": "calvinklein_contourriblogographicslimtshirt",
-      "brand": "Calvin Klein",
-      "title": "Contour Rib Logo Graphic Slim T-Shirt*",
-      "notify_score": 108.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Calvin Klein",
-      "notification_body": "Expires today: Contour Rib Logo Graphic Slim T-Shirt*",
-      "discount_type": "percentage_off",
-      "discount_value": "57%",
-      "end_date": "2026-06-24",
-      "website_domain": "calvinklein.us",
-      "source_url": "https://www.calvinklein.us/en/sale"
-    },
-    {
-      "promo_id": "calvinklein_ckblacktrunk",
-      "brand": "Calvin Klein",
-      "title": "CK Black Trunk*",
-      "notify_score": 108.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Calvin Klein",
-      "notification_body": "Expires today: CK Black Trunk*",
-      "discount_type": "percentage_off",
-      "discount_value": "55%",
-      "end_date": "2026-06-24",
-      "website_domain": "calvinklein.us",
-      "source_url": "https://www.calvinklein.us/en/sale"
+      "website_domain": "prettylittlething.us",
+      "source_url": "https://www.prettylittlething.us/categories/womens-sale"
     },
     {
       "promo_id": "coach_upto50offselectstyles",
       "brand": "Coach",
-      "title": "Up to 50% off select styles.",
+      "title": "Up to 50% off select styles",
       "notify_score": 104.0,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Coach",
-      "notification_body": "Up to 50% off select styles.",
+      "notification_body": "Up to 50% off select styles",
       "discount_type": "percentage_off",
       "discount_value": "50%",
       "end_date": null,
       "website_domain": "coach.com",
       "source_url": "https://www.coach.com/content/promo"
-    },
-    {
-      "promo_id": "colehaan_sandalsupto60off",
-      "brand": "Cole Haan",
-      "title": "Sandals up to 60% Off",
-      "notify_score": 104.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Cole Haan",
-      "notification_body": "Sandals up to 60% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "end_date": null,
-      "website_domain": "colehaan.com",
-      "source_url": "https://www.colehaan.com/collections/sale"
-    },
-    {
-      "promo_id": "colehaan_sneakersupto50off",
-      "brand": "Cole Haan",
-      "title": "Sneakers up to 50% Off",
-      "notify_score": 104.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Cole Haan",
-      "notification_body": "Sneakers up to 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "end_date": null,
-      "website_domain": "colehaan.com",
-      "source_url": "https://www.colehaan.com/collections/sale"
-    },
-    {
-      "promo_id": "eddiebauer_upto50offclearance",
-      "brand": "Eddie Bauer",
-      "title": "Up To 50% Off Clearance",
-      "notify_score": 104.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Eddie Bauer",
-      "notification_body": "Up To 50% Off Clearance",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "end_date": null,
-      "website_domain": "eddiebauer.com",
-      "source_url": "https://www.eddiebauer.com/collections/clearance"
     },
     {
       "promo_id": "oldnavy_50offeverything",
@@ -174,6 +89,40 @@
       "source_url": "https://www.saucony.com/en/sale/"
     },
     {
+      "promo_id": "tedbaker_summersaleupto50offselecteditems",
+      "brand": "Ted Baker",
+      "title": "SUMMER SALE: UP TO 50% OFF SELECTED ITEMS",
+      "notify_score": 104.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Ted Baker",
+      "notification_body": "SUMMER SALE: UP TO 50% OFF SELECTED ITEMS",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "end_date": null,
+      "website_domain": "tedbaker.com",
+      "source_url": "https://www.tedbaker.com/collections/sale-us"
+    },
+    {
+      "promo_id": "eddiebauer_upto50offclearance",
+      "brand": "Eddie Bauer",
+      "title": "Up To 50% Off Clearance",
+      "notify_score": 102.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Eddie Bauer",
+      "notification_body": "Up To 50% Off Clearance",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "end_date": null,
+      "website_domain": "eddiebauer.com",
+      "source_url": "https://www.eddiebauer.com/collections/clearance"
+    },
+    {
       "promo_id": "johnstonmurphy_endofseasonsale",
       "brand": "Johnston & Murphy",
       "title": "End of Season Sale",
@@ -189,6 +138,23 @@
       "end_date": null,
       "website_domain": "johnstonmurphy.com",
       "source_url": "https://www.johnstonmurphy.com/c/sale"
+    },
+    {
+      "promo_id": "tuftneedle_summersleepsnoozesale",
+      "brand": "Tuft & Needle",
+      "title": "Summer Sleep & Snooze Sale",
+      "notify_score": 102.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Tuft & Needle",
+      "notification_body": "Expires today: Summer Sleep & Snooze Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "30%",
+      "end_date": "2026-06-25",
+      "website_domain": "tuftandneedle.com",
+      "source_url": "https://www.tuftandneedle.com/pages/promo-terms"
     },
     {
       "promo_id": "benihana_kabukikidsbirthdayoffer",
@@ -227,21 +193,21 @@
       "source_url": null
     },
     {
-      "promo_id": "calvinklein_90sdenimtruckerjacket",
-      "brand": "Calvin Klein",
-      "title": "90s Denim Trucker Jacket*",
-      "notify_score": 98.0,
+      "promo_id": "petsmart_extra20off",
+      "brand": "PetSmart",
+      "title": "Extra 20% OFF",
+      "notify_score": 99.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Calvin Klein",
-      "notification_body": "Expires today: 90s Denim Trucker Jacket*",
+      "notification_title": "PetSmart",
+      "notification_body": "Expires today: Extra 20% OFF",
       "discount_type": "percentage_off",
-      "discount_value": "37%",
-      "end_date": "2026-06-24",
-      "website_domain": "calvinklein.us",
-      "source_url": "https://www.calvinklein.us/en/sale"
+      "discount_value": "20%",
+      "end_date": "2026-06-25",
+      "website_domain": "petsmart.com",
+      "source_url": "https://www.petsmart.com/treats-rewards"
     },
     {
       "promo_id": "foodpanda_60offfreedelivery",
@@ -295,6 +261,40 @@
       "source_url": "https://www.ae.com/us/en/c/aerie/cat4840006"
     },
     {
+      "promo_id": "colehaan_allsaleupto50off",
+      "brand": "Cole Haan",
+      "title": "All Sale up to 50% Off",
+      "notify_score": 94.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Cole Haan",
+      "notification_body": "All Sale up to 50% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "end_date": null,
+      "website_domain": "colehaan.com",
+      "source_url": "https://www.colehaan.com/collections/sale"
+    },
+    {
+      "promo_id": "colehaan_sandalsupto60off",
+      "brand": "Cole Haan",
+      "title": "Sandals up to 60% Off",
+      "notify_score": 94.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Cole Haan",
+      "notification_body": "Sandals up to 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "end_date": null,
+      "website_domain": "colehaan.com",
+      "source_url": "https://www.colehaan.com/collections/sale"
+    },
+    {
       "promo_id": "nastygal_newseason60off",
       "brand": "Nasty Gal",
       "title": "New Season 60% Off",
@@ -346,21 +346,38 @@
       "source_url": "https://parachutehome.com/collections/all-sale"
     },
     {
-      "promo_id": "prettylittlething_50offalmosteverything",
-      "brand": "PrettyLittleThing",
-      "title": "50% OFF ALMOST EVERYTHING*",
+      "promo_id": "tommyhilfiger_60offselectaccessories",
+      "brand": "Tommy Hilfiger",
+      "title": "60% Off Select Accessories",
       "notify_score": 94.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "PrettyLittleThing",
-      "notification_body": "50% OFF ALMOST EVERYTHING*",
+      "notification_title": "Tommy Hilfiger",
+      "notification_body": "60% Off Select Accessories",
       "discount_type": "percentage_off",
-      "discount_value": "50%",
+      "discount_value": "60%",
       "end_date": null,
-      "website_domain": "prettylittlething.us",
-      "source_url": "https://www.prettylittlething.us/categories/womens-sale"
+      "website_domain": "usa.tommy.com",
+      "source_url": "https://usa.tommy.com/en/tommy-hilfiger-coupons"
+    },
+    {
+      "promo_id": "tommyhilfiger_upto70offsalestyles",
+      "brand": "Tommy Hilfiger",
+      "title": "Up To 70% Off Sale Styles",
+      "notify_score": 94.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Tommy Hilfiger",
+      "notification_body": "Up To 70% Off Sale Styles",
+      "discount_type": "percentage_off",
+      "discount_value": "70%",
+      "end_date": null,
+      "website_domain": "usa.tommy.com",
+      "source_url": "https://usa.tommy.com/en/tommy-hilfiger-coupons"
     },
     {
       "promo_id": "cariboucoffee_freebirthdaydrinkduringyourbirthdayweek",
@@ -429,23 +446,6 @@
       "end_date": null,
       "website_domain": "williams-sonoma.com",
       "source_url": "https://www.williams-sonoma.com/shop/sale-special-offer/"
-    },
-    {
-      "promo_id": "sprouts_saleendstodaystrawberries",
-      "brand": "Sprouts",
-      "title": "Sale Ends Today - Strawberries",
-      "notify_score": 91.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Sprouts",
-      "notification_body": "Expires today: Sale Ends Today - Strawberries",
-      "discount_type": "percentage_off",
-      "discount_value": "40%",
-      "end_date": "2026-06-24",
-      "website_domain": "sprouts.com",
-      "source_url": "https://shop.sprouts.com/store/sprouts/storefront"
     },
     {
       "promo_id": "panerabread_birthdayrewardfreebakerytreatorbagel",
@@ -553,7 +553,7 @@
       "promo_id": "regal_birthdaypopcornfreebie",
       "brand": "Regal",
       "title": "Birthday Popcorn Freebie",
-      "notify_score": 86.0,
+      "notify_score": 88.0,
       "signal_groups": [
         "personal",
         "value"
@@ -561,44 +561,10 @@
       "notification_title": "Regal",
       "notification_body": "Birthday deal: Birthday Popcorn Freebie",
       "discount_type": "free_item",
-      "discount_value": null,
+      "discount_value": "free",
       "end_date": null,
       "website_domain": "regmovies.com",
       "source_url": "https://www.regmovies.com/regal-crown-club"
-    },
-    {
-      "promo_id": "calvinklein_extra20offordersof100",
-      "brand": "Calvin Klein",
-      "title": "Extra 20% off orders of $100+*",
-      "notify_score": 85.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Calvin Klein",
-      "notification_body": "Expires today: Extra 20% off orders of $100+*",
-      "discount_type": "percentage_off",
-      "discount_value": "20%",
-      "end_date": "2026-06-24",
-      "website_domain": "calvinklein.us",
-      "source_url": "https://www.calvinklein.us/en/sale"
-    },
-    {
-      "promo_id": "lee_35offforrewardsmembers",
-      "brand": "Lee",
-      "title": "35% Off For Rewards Members",
-      "notify_score": 80.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Lee",
-      "notification_body": "Expires today: 35% Off For Rewards Members",
-      "discount_type": "percentage_off",
-      "discount_value": "35%",
-      "end_date": "2026-06-24T23:59:00",
-      "website_domain": "lee.com",
-      "source_url": "https://www.lee.com/shop/sale"
     }
   ]
 }
