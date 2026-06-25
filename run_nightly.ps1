@@ -77,6 +77,26 @@ Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Running quality report..."
 & $python "$root\promo-raw-scraper\src\generate_quality_report.py"
 if (-not $?) { Write-Host "[WARN] Quality report had errors - continuing" }
 
+# Push updated assets to GitHub so the live app gets the latest deals
+Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Pushing updated assets to GitHub..."
+Push-Location $root
+try {
+    git add promo_viewer/assets/all_promotions.json promo_viewer/assets/notification_candidates.json promo_viewer/assets/brand_locations.json
+    $status = git status --porcelain promo_viewer/assets/all_promotions.json promo_viewer/assets/notification_candidates.json promo_viewer/assets/brand_locations.json
+    if ($status) {
+        $dateStr = Get-Date -Format "yyyy-MM-dd"
+        git commit -m "Update deals from $dateStr pipeline run"
+        git push origin master
+        Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Pushed to GitHub."
+    } else {
+        Write-Host "[$(Get-Date -Format 'HH:mm:ss')] No asset changes to push."
+    }
+} catch {
+    Write-Host "[WARN] Git push failed: $_"
+} finally {
+    Pop-Location
+}
+
 Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Done."
 } finally {
     Remove-Item $lockFile -ErrorAction SilentlyContinue
