@@ -1,17 +1,18 @@
 """
-generate_scores.py — compute rank_base_score for every promotion.
+generate_scores.py — compute global_quality_score for every promotion.
 
 Runs after generate_fast_redemption.py (needs fast_redemption data).
 
-rank_base_score = value_score
-               + fast_redeem_score
-               + confidence_score_pts
-               + freshness_score
-               + preference_score      (from brand_affinity.json)
-               - friction_penalty
+global_quality_score = value_score
+                     + fast_redeem_score
+                     + confidence_score_pts
+                     + freshness_score
+                     - friction_penalty
 
-Distance and membership bonuses are added at runtime in Flutter because
-they require live geolocation and user membership data.
+NO user preferences, NO email affinity — those are pure per-user signals
+and must be applied at runtime in Flutter (feed_ranker.dart / search_utils.dart).
+Distance and membership bonuses are also added at runtime because they require
+live geolocation and user membership data.
 """
 from __future__ import annotations
 
@@ -20,20 +21,8 @@ import re
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-ROOT         = Path(__file__).resolve().parents[1]
-ALL_PROMOS   = ROOT / "all_promotions.json"
-AFFINITY_LOG = ROOT / "email_pipeline" / "logs" / "brand_affinity.json"
-USER_PREFS   = ROOT / "user_preferences.json"
-
-# Category aliases — maps a user favourite to the raw category values in JSON
-_CAT_ALIASES: dict[str, list[str]] = {
-    "food":    ["food", "fast_food", "restaurant", "coffee", "grocery", "supermarket"],
-    "travel":  ["travel", "hotels", "airlines", "automotive"],
-    "fashion": ["fashion", "clothing", "apparel"],
-    "tech":    ["tech", "electronics"],
-    "beauty":  ["beauty", "personal_care"],
-    "home":    ["home", "home_goods", "furniture"],
-}
+ROOT       = Path(__file__).resolve().parents[1]
+ALL_PROMOS = ROOT / "all_promotions.json"
 
 
 # ---------------------------------------------------------------------------
@@ -56,19 +45,6 @@ def _extract_dollars(value: str | None) -> float | None:
 
 def _slugify(s: str) -> str:
     return re.sub(r"[^a-z0-9]", "", (s or "").lower())
-
-
-def _brand_affinity_score(brand: str, affinity: dict) -> float:
-    slug = _slugify(brand)
-    for aff_brand, data in affinity.items():
-        aff_slug = _slugify(aff_brand)
-        if slug == aff_slug or slug in aff_slug or aff_slug in slug:
-            count = data.get("email_count", 0)
-            # 1–4 emails → +5, 5–9 → +10, 10+ → +15
-            if count >= 10: return 15.0
-            if count >= 5:  return 10.0
-            if count >= 1:  return 5.0
-    return 0.0
 
 
 # ---------------------------------------------------------------------------
@@ -189,42 +165,6 @@ def freshness_score(promo: dict) -> float:
     return 0.0  # age unknown — neutral
 
 
-def preference_score(promo: dict, affinity: dict, user_prefs: dict) -> float:
-    score = 0.0
-    brand    = promo.get("brand", "")
-    category = (promo.get("category") or "").lower().strip()
-
-    # Favourite brand match (+15)
-    fav_brands = [_slugify(b) for b in user_prefs.get("favorite_brands", [])]
-    brand_slug = _slugify(brand)
-    if any(brand_slug == fb or brand_slug in fb or fb in brand_slug
-           for fb in fav_brands if fb):
-        score += 15.0
-
-    # Favourite category match (+10)
-    fav_cats = [c.lower() for c in user_prefs.get("favorite_categories", [])]
-    for fav_cat in fav_cats:
-        aliases = _CAT_ALIASES.get(fav_cat, [fav_cat])
-        if category in aliases:
-            score += 10.0
-            break
-
-    # Brand affinity from email (+5–15)
-    score += _brand_affinity_score(brand, affinity)
-
-    # Birthday-month boost (+25) — lasts the whole calendar month
-    birthday_str = user_prefs.get("birthday", "")
-    if birthday_str:
-        try:
-            bday = date.fromisoformat(birthday_str)
-            if date.today().month == bday.month:
-                score += 25.0
-        except ValueError:
-            pass
-
-    return score
-
-
 def friction_penalty(promo: dict) -> float:
     penalty = 0.0
 
@@ -268,13 +208,12 @@ def friction_penalty(promo: dict) -> float:
 # Main
 # ---------------------------------------------------------------------------
 
-def compute_base_score(promo: dict, affinity: dict, user_prefs: dict) -> float:
+def compute_global_quality_score(promo: dict) -> float:
     return round(
         value_score(promo)
         + fast_redeem_score(promo)
         + confidence_score_pts(promo)
         + freshness_score(promo)
-        + preference_score(promo, affinity, user_prefs)
         - friction_penalty(promo),
         2,
     )
@@ -284,22 +223,10 @@ def main() -> None:
     data   = json.loads(ALL_PROMOS.read_text(encoding="utf-8"))
     promos = data.get("promotions", []) if isinstance(data, dict) else data
 
-    affinity: dict = {}
-    if AFFINITY_LOG.exists():
-        raw = json.loads(AFFINITY_LOG.read_text(encoding="utf-8"))
-        affinity = raw.get("brands", raw) if isinstance(raw, dict) else {}
-
-    user_prefs: dict = {}
-    if USER_PREFS.exists():
-        user_prefs = json.loads(USER_PREFS.read_text(encoding="utf-8"))
-        print(f"  User prefs: birthday={user_prefs.get('birthday')} "
-              f"brands={user_prefs.get('favorite_brands')} "
-              f"cats={user_prefs.get('favorite_categories')}")
-
     scores: list[float] = []
     for p in promos:
-        s = compute_base_score(p, affinity, user_prefs)
-        p["rank_base_score"] = s
+        s = compute_global_quality_score(p)
+        p["global_quality_score"] = s
         scores.append(s)
 
     if isinstance(data, dict):
@@ -309,7 +236,7 @@ def main() -> None:
     )
 
     if scores:
-        print(f"Scores computed for {len(scores)} promotions")
+        print(f"global_quality_score computed for {len(scores)} promotions")
         print(f"  min={min(scores):.1f}  max={max(scores):.1f}  "
               f"avg={sum(scores)/len(scores):.1f}")
     print(f"Wrote -> {ALL_PROMOS}")

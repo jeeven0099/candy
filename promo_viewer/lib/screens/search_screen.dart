@@ -201,11 +201,11 @@ class _SearchScreenState extends State<SearchScreen> {
     final miles = p.distanceKm! * 0.621371;
     if (miles > _radiusMi) return -999;
     final dist = miles <= 0.5 ? 30 : miles <= 1.0 ? 25 : miles <= 2.0 ? 18 : miles <= 5.0 ? 8 : 2;
-    return p.rankBaseScore + dist + preferenceBoost(p, _prefsSvc.prefs);
+    return p.globalQualityScore + dist + preferenceBoost(p, _prefsSvc.prefs);
   }
 
   double _prefScorer(Promotion p) =>
-      p.rankBaseScore + preferenceBoost(p, _prefsSvc.prefs);
+      p.globalQualityScore + preferenceBoost(p, _prefsSvc.prefs);
 
   double _forYouScorer(Promotion p) =>
       personalizedScore(p, _svc, distanceKm: p.distanceKm, prefs: _prefsSvc.prefs);

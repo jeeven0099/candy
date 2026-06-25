@@ -43,7 +43,7 @@ class Promotion {
   final bool birthdayRelated;
 
   // Pre-computed in pipeline (generate_scores.py)
-  final double rankBaseScore;
+  final double globalQualityScore;
 
   // Local neighborhood fields (local_neighborhood source only)
   final String? neighborhood;
@@ -90,7 +90,7 @@ class Promotion {
     this.summary,
     this.birthdayRelated = false,
     this.fastRedemption,
-    this.rankBaseScore = 0.0,
+    this.globalQualityScore = 0.0,
     this.neighborhood,
     this.address,
     this.lat,
@@ -142,7 +142,7 @@ class Promotion {
           ? FastRedemption.fromJson(
               json['fast_redemption'] as Map<String, dynamic>)
           : null,
-      rankBaseScore: (json['rank_base_score'] as num?)?.toDouble() ?? 0.0,
+      globalQualityScore: ((json['global_quality_score'] ?? json['rank_base_score']) as num?)?.toDouble() ?? 0.0,
       neighborhood: json['neighborhood'] as String?,
       address: json['address'] as String?,
       lat: (json['lat'] as num?)?.toDouble(),
@@ -197,7 +197,7 @@ class Promotion {
   ///                        (0 if not tracked; handled in pipeline, passed here
   ///                         only for tab-level re-ranking if needed).
   double rankScore({double? distanceKm, bool isMember = false}) {
-    double score = rankBaseScore;
+    double score = globalQualityScore;
 
     // ── Distance bonus (Near Me tab) ──────────────────────────────────────
     if (distanceKm != null) {

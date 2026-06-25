@@ -48,7 +48,7 @@ class ImpressionService {
         'category':            e.value.category,
         'context':             context,
         'rank_position':       e.key,
-        'score_at_impression': e.value.rankBaseScore,
+        'score_at_impression': e.value.globalQualityScore,
       }).toList();
       await SupabaseService.client.from('deal_impressions').insert(rows);
       for (final p in novel) {

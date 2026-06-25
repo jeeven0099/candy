@@ -67,7 +67,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 87.0
+      "rank_base_score": 87.0,
+      "global_quality_score": 52.0
     },
     {
       "brand": "Abercrombie & Fitch",
@@ -131,7 +132,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Abercrombie & Fitch",
@@ -197,7 +199,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 73.0
+      "rank_base_score": 73.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Adore Me",
@@ -262,7 +265,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Adore Me",
@@ -327,7 +331,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Adore Me",
@@ -392,7 +397,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 84.8
+      "rank_base_score": 84.8,
+      "global_quality_score": 49.8
     },
     {
       "brand": "Aerie",
@@ -460,7 +466,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Aerie",
@@ -528,7 +535,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 114.0
+      "rank_base_score": 114.0,
+      "global_quality_score": 89.0
     },
     {
       "brand": "Aerie",
@@ -596,7 +604,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Aldi",
@@ -662,7 +671,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 81.0
+      "rank_base_score": 81.0,
+      "global_quality_score": 46.0
     },
     {
       "brand": "Aldi",
@@ -728,7 +738,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 81.0
+      "rank_base_score": 81.0,
+      "global_quality_score": 46.0
     },
     {
       "brand": "Aldi",
@@ -794,7 +805,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 73.0
+      "rank_base_score": 73.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Aldi",
@@ -860,7 +872,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 73.0
+      "rank_base_score": 73.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Aldi",
@@ -926,7 +939,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 73.0
+      "rank_base_score": 73.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Aldi",
@@ -992,7 +1006,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 73.0
+      "rank_base_score": 73.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Aldo",
@@ -1058,7 +1073,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 101.0
+      "rank_base_score": 101.0,
+      "global_quality_score": 66.0
     },
     {
       "brand": "AllSaints",
@@ -1123,7 +1139,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "AllSaints",
@@ -1188,7 +1205,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 55.0
+      "rank_base_score": 55.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "American Eagle",
@@ -1255,7 +1273,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 75.0
+      "rank_base_score": 75.0,
+      "global_quality_score": 50.0
     },
     {
       "brand": "American Eagle",
@@ -1326,7 +1345,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 58.0
+      "rank_base_score": 58.0,
+      "global_quality_score": 33.0
     },
     {
       "brand": "Ann Taylor",
@@ -1394,7 +1414,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Ann Taylor",
@@ -1460,7 +1481,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 85.0
+      "rank_base_score": 85.0,
+      "global_quality_score": 50.0
     },
     {
       "brand": "Ann Taylor",
@@ -1526,7 +1548,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Ann Taylor",
@@ -1591,7 +1614,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 75.0
+      "rank_base_score": 75.0,
+      "global_quality_score": 40.0
     },
     {
       "brand": "Ann Taylor",
@@ -1657,7 +1681,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Anthropologie",
@@ -1723,7 +1748,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Apple TV+",
@@ -1793,7 +1819,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 56.0
+      "rank_base_score": 56.0,
+      "global_quality_score": 31.0
     },
     {
       "brand": "Apple TV+",
@@ -1863,7 +1890,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 83.0
+      "rank_base_score": 83.0,
+      "global_quality_score": 58.0
     },
     {
       "brand": "Apple TV+",
@@ -1933,7 +1961,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 70.0
+      "rank_base_score": 70.0,
+      "global_quality_score": 45.0
     },
     {
       "brand": "Applebee's",
@@ -2004,7 +2033,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 88.0
+      "rank_base_score": 88.0,
+      "global_quality_score": 53.0
     },
     {
       "brand": "Applebee's",
@@ -2075,7 +2105,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 98.0
+      "rank_base_score": 98.0,
+      "global_quality_score": 63.0
     },
     {
       "brand": "Athleta",
@@ -2143,7 +2174,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 71.0
+      "rank_base_score": 71.0,
+      "global_quality_score": 36.0
     },
     {
       "brand": "Athleta",
@@ -2211,7 +2243,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 57.0
+      "rank_base_score": 57.0,
+      "global_quality_score": 22.0
     },
     {
       "brand": "Avis",
@@ -2277,7 +2310,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Avis",
@@ -2343,7 +2377,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 80.5
+      "rank_base_score": 80.5,
+      "global_quality_score": 45.5
     },
     {
       "brand": "Avis",
@@ -2409,7 +2444,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 71.0
+      "rank_base_score": 71.0,
+      "global_quality_score": 36.0
     },
     {
       "brand": "Avis",
@@ -2475,7 +2511,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 122.0
+      "rank_base_score": 122.0,
+      "global_quality_score": 87.0
     },
     {
       "brand": "Avis",
@@ -2541,7 +2578,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 85.0
+      "rank_base_score": 85.0,
+      "global_quality_score": 50.0
     },
     {
       "brand": "Baskin-Robbins",
@@ -2609,7 +2647,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Bath & Body Works",
@@ -2676,7 +2715,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 59.0
+      "rank_base_score": 59.0,
+      "global_quality_score": 34.0
     },
     {
       "brand": "Bath & Body Works",
@@ -2741,7 +2781,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 55.0
+      "rank_base_score": 55.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Bath & Body Works",
@@ -2806,7 +2847,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "BCBG",
@@ -2874,7 +2916,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 67.0
+      "rank_base_score": 67.0,
+      "global_quality_score": 32.0
     },
     {
       "brand": "BCBG",
@@ -2942,7 +2985,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Bealls",
@@ -3012,7 +3056,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 53.0
+      "rank_base_score": 53.0,
+      "global_quality_score": 28.0
     },
     {
       "brand": "Benihana",
@@ -3081,7 +3126,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 118.0
+      "rank_base_score": 118.0,
+      "global_quality_score": 83.0
     },
     {
       "brand": "Benihana",
@@ -3158,7 +3204,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 98.0
+      "rank_base_score": 98.0,
+      "global_quality_score": 63.0
     },
     {
       "brand": "Benihana",
@@ -3235,7 +3282,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 100.0
+      "rank_base_score": 100.0,
+      "global_quality_score": 65.0
     },
     {
       "brand": "Best Buy",
@@ -3305,7 +3353,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 42.0
+      "rank_base_score": 42.0,
+      "global_quality_score": 17.0
     },
     {
       "brand": "Best Buy",
@@ -3375,7 +3424,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 57.0
+      "rank_base_score": 57.0,
+      "global_quality_score": 32.0
     },
     {
       "brand": "Boohoo",
@@ -3443,7 +3493,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 92.0
+      "rank_base_score": 92.0,
+      "global_quality_score": 67.0
     },
     {
       "brand": "Boohoo",
@@ -3509,7 +3560,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.2
+      "rank_base_score": 65.2,
+      "global_quality_score": 40.2
     },
     {
       "brand": "Bowlero",
@@ -3584,7 +3636,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 110.0
+      "rank_base_score": 110.0,
+      "global_quality_score": 85.0
     },
     {
       "brand": "Bowlero",
@@ -3657,7 +3710,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 110.0
+      "rank_base_score": 110.0,
+      "global_quality_score": 85.0
     },
     {
       "brand": "Bowlero",
@@ -3726,7 +3780,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 76.7
+      "rank_base_score": 76.7,
+      "global_quality_score": 51.7
     },
     {
       "brand": "Bowlero",
@@ -3800,7 +3855,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 90.0
+      "rank_base_score": 90.0,
+      "global_quality_score": 65.0
     },
     {
       "brand": "Bowlero",
@@ -3869,7 +3925,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 61.0
+      "rank_base_score": 61.0,
+      "global_quality_score": 36.0
     },
     {
       "brand": "Bowlero",
@@ -3943,7 +4000,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 61.0
+      "rank_base_score": 61.0,
+      "global_quality_score": 36.0
     },
     {
       "brand": "BoxLunch",
@@ -4011,7 +4069,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Brooklinen",
@@ -4083,7 +4142,8 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "rank_base_score": 85.0
+      "rank_base_score": 85.0,
+      "global_quality_score": 60.0
     },
     {
       "brand": "Brooklinen",
@@ -4150,7 +4210,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 55.0
+      "rank_base_score": 55.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Brooks Running",
@@ -4215,7 +4276,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Burlington",
@@ -4285,7 +4347,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Burlington",
@@ -4357,7 +4420,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 58.0
+      "rank_base_score": 58.0,
+      "global_quality_score": 33.0
     },
     {
       "brand": "Calvin Klein",
@@ -4418,7 +4482,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 52.0
+      "rank_base_score": 52.0,
+      "global_quality_score": 17.0
     },
     {
       "brand": "Calvin Klein",
@@ -4479,7 +4544,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 75.0
+      "rank_base_score": 75.0,
+      "global_quality_score": 40.0
     },
     {
       "brand": "Calvin Klein",
@@ -4540,7 +4606,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 75.0
+      "rank_base_score": 75.0,
+      "global_quality_score": 40.0
     },
     {
       "brand": "Calvin Klein",
@@ -4601,7 +4668,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Caribou Coffee",
@@ -4670,7 +4738,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 112.0
+      "rank_base_score": 112.0,
+      "global_quality_score": 77.0
     },
     {
       "brand": "Caribou Coffee",
@@ -4746,7 +4815,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 92.0
+      "rank_base_score": 92.0,
+      "global_quality_score": 57.0
     },
     {
       "brand": "Caribou Coffee",
@@ -4820,7 +4890,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 61.0
+      "rank_base_score": 61.0,
+      "global_quality_score": 26.0
     },
     {
       "brand": "Chick-fil-A",
@@ -4891,7 +4962,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 59.0
+      "rank_base_score": 59.0,
+      "global_quality_score": 24.0
     },
     {
       "brand": "Chico's",
@@ -4969,7 +5041,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 80.0
+      "rank_base_score": 80.0,
+      "global_quality_score": 55.0
     },
     {
       "brand": "Chico's",
@@ -5048,7 +5121,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 41.0
+      "rank_base_score": 41.0,
+      "global_quality_score": 16.0
     },
     {
       "brand": "Chipotle",
@@ -5117,7 +5191,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 52.0
+      "rank_base_score": 52.0,
+      "global_quality_score": 17.0
     },
     {
       "brand": "Choice Hotels",
@@ -5184,7 +5259,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 89.0
+      "rank_base_score": 89.0,
+      "global_quality_score": 54.0
     },
     {
       "brand": "Choice Hotels",
@@ -5251,7 +5327,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 73.0
+      "rank_base_score": 73.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Church's Chicken",
@@ -5320,7 +5397,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 87.6
+      "rank_base_score": 87.6,
+      "global_quality_score": 52.6
     },
     {
       "brand": "Cinemark",
@@ -5391,7 +5469,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 39.0
+      "rank_base_score": 39.0,
+      "global_quality_score": 14.0
     },
     {
       "brand": "Club Monaco",
@@ -5455,7 +5534,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Coach",
@@ -5523,7 +5603,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Cole Haan",
@@ -5590,7 +5671,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Cole Haan",
@@ -5657,7 +5739,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Cole Haan",
@@ -5724,7 +5807,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 55.0
+      "rank_base_score": 55.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "ColourPop",
@@ -5791,7 +5875,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 55.0
+      "rank_base_score": 55.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "ColourPop",
@@ -5858,7 +5943,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 55.0
+      "rank_base_score": 55.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Columbia",
@@ -5930,7 +6016,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 75.0
+      "rank_base_score": 75.0,
+      "global_quality_score": 40.0
     },
     {
       "brand": "Cracker Barrel",
@@ -6000,7 +6087,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 28.0
     },
     {
       "brand": "Culver's",
@@ -6067,7 +6155,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 73.0
+      "rank_base_score": 73.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Culver's",
@@ -6137,7 +6226,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 92.0
+      "rank_base_score": 92.0,
+      "global_quality_score": 57.0
     },
     {
       "brand": "Dell",
@@ -6209,7 +6299,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 69.0
+      "rank_base_score": 69.0,
+      "global_quality_score": 34.0
     },
     {
       "brand": "Dell",
@@ -6278,7 +6369,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Dell",
@@ -6346,7 +6438,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 73.0
+      "rank_base_score": 73.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Delta Air Lines",
@@ -6414,7 +6507,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 61.0
+      "rank_base_score": 61.0,
+      "global_quality_score": 26.0
     },
     {
       "brand": "Delta Air Lines",
@@ -6485,7 +6579,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 66.0
+      "rank_base_score": 66.0,
+      "global_quality_score": 31.0
     },
     {
       "brand": "Denny's",
@@ -6555,7 +6650,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 106.0
+      "rank_base_score": 106.0,
+      "global_quality_score": 71.0
     },
     {
       "brand": "Dillard's",
@@ -6621,7 +6717,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 106.0
+      "rank_base_score": 106.0,
+      "global_quality_score": 81.0
     },
     {
       "brand": "Disney+",
@@ -6690,7 +6787,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Disney+",
@@ -6759,7 +6857,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 84.0
+      "rank_base_score": 84.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Disney+",
@@ -6828,7 +6927,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 84.0
+      "rank_base_score": 84.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Dollar Shave Club",
@@ -6895,7 +6995,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 67.0
+      "rank_base_score": 67.0,
+      "global_quality_score": 42.0
     },
     {
       "brand": "Dollar Shave Club",
@@ -6961,7 +7062,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 55.0
+      "rank_base_score": 55.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Domino's",
@@ -7021,7 +7123,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 43.0
+      "rank_base_score": 43.0,
+      "global_quality_score": 8.0
     },
     {
       "brand": "Domino's",
@@ -7087,7 +7190,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 70.0
+      "rank_base_score": 70.0,
+      "global_quality_score": 35.0
     },
     {
       "brand": "Domino's",
@@ -7159,7 +7263,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 70.0
+      "rank_base_score": 70.0,
+      "global_quality_score": 35.0
     },
     {
       "brand": "Domino's",
@@ -7225,7 +7330,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 70.0
+      "rank_base_score": 70.0,
+      "global_quality_score": 35.0
     },
     {
       "brand": "Domino's",
@@ -7291,7 +7397,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 70.0
+      "rank_base_score": 70.0,
+      "global_quality_score": 35.0
     },
     {
       "brand": "Dossier",
@@ -7362,7 +7469,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 106.0
+      "rank_base_score": 106.0,
+      "global_quality_score": 81.0
     },
     {
       "brand": "Dossier",
@@ -7433,7 +7541,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 76.0
+      "rank_base_score": 76.0,
+      "global_quality_score": 51.0
     },
     {
       "brand": "Dossier",
@@ -7504,7 +7613,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 51.0
+      "rank_base_score": 51.0,
+      "global_quality_score": 26.0
     },
     {
       "brand": "Dr. Martens",
@@ -7574,7 +7684,8 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "rank_base_score": 81.0
+      "rank_base_score": 81.0,
+      "global_quality_score": 46.0
     },
     {
       "brand": "Dr. Martens",
@@ -7640,7 +7751,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Dutch Bros",
@@ -7709,7 +7821,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 112.0
+      "rank_base_score": 112.0,
+      "global_quality_score": 77.0
     },
     {
       "brand": "Dutch Bros",
@@ -7779,7 +7892,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 117.0
+      "rank_base_score": 117.0,
+      "global_quality_score": 82.0
     },
     {
       "brand": "e.l.f. Cosmetics",
@@ -7845,7 +7959,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 73.0
+      "rank_base_score": 73.0,
+      "global_quality_score": 48.0
     },
     {
       "brand": "e.l.f. Cosmetics",
@@ -7911,7 +8026,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 66.6
+      "rank_base_score": 66.6,
+      "global_quality_score": 41.6
     },
     {
       "brand": "Eddie Bauer",
@@ -7977,7 +8093,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 102.0
+      "rank_base_score": 102.0,
+      "global_quality_score": 67.0
     },
     {
       "brand": "Eddie Bauer",
@@ -8043,7 +8160,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 28.0
     },
     {
       "brand": "Einstein Bros Bagels",
@@ -8116,7 +8234,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 108.0
+      "rank_base_score": 108.0,
+      "global_quality_score": 73.0
     },
     {
       "brand": "Einstein Bros Bagels",
@@ -8185,7 +8304,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 74.6
+      "rank_base_score": 74.6,
+      "global_quality_score": 39.6
     },
     {
       "brand": "Einstein Bros Bagels",
@@ -8258,7 +8378,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 88.0
+      "rank_base_score": 88.0,
+      "global_quality_score": 53.0
     },
     {
       "brand": "Einstein Bros Bagels",
@@ -8331,7 +8452,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 45.0
+      "rank_base_score": 45.0,
+      "global_quality_score": 10.0
     },
     {
       "brand": "Enterprise",
@@ -8402,7 +8524,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 73.0
+      "rank_base_score": 73.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Enterprise",
@@ -8470,7 +8593,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 76.2
+      "rank_base_score": 76.2,
+      "global_quality_score": 41.2
     },
     {
       "brand": "Everlane",
@@ -8538,7 +8662,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 71.0
+      "rank_base_score": 71.0,
+      "global_quality_score": 46.0
     },
     {
       "brand": "Everlane",
@@ -8607,7 +8732,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 45.0
+      "rank_base_score": 45.0,
+      "global_quality_score": 20.0
     },
     {
       "brand": "Exxon Mobil",
@@ -8675,7 +8801,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 39.0
+      "rank_base_score": 39.0,
+      "global_quality_score": 14.0
     },
     {
       "brand": "Exxon Mobil",
@@ -8741,7 +8868,74 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 43.0
+      "rank_base_score": 43.0,
+      "global_quality_score": 18.0
+    },
+    {
+      "brand": "Fandango",
+      "category": "entertainment",
+      "promotion_title": "¡Oferta especial para niños en el Mundial!",
+      "short_summary": "Recibe gratis un boleto infantil al comprar un boleto de adulto usando código TELEMUNDO.",
+      "promotion_type": "sale",
+      "discount_type": "free_item",
+      "discount_value": null,
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": false,
+      "requires_account_login": false,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "online",
+      "redemption_steps": [
+        "Use the code TELEMUNDO at checkout"
+      ],
+      "promo_code": "TELEMUNDO",
+      "terms_text": "Hasta $11 de precio total y cargos.",
+      "minimum_spend": null,
+      "purchase_required": true,
+      "deal_scope": "online_only",
+      "friction_level": "low",
+      "friction_reasons": [],
+      "confidence_score": 0.9,
+      "source_type": "web_page",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\fandango_20260624T021623Z.txt",
+      "extraction_status": "success",
+      "notes": [],
+      "visibility": null,
+      "sender_email": null,
+      "email_subject": null,
+      "email_date": null,
+      "website_domain": "fandango.com",
+      "status": "online_only",
+      "source": "web",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "copy_code_and_open_url",
+        "button_label": "Copy Code & Shop",
+        "primary_value": "TELEMUNDO",
+        "primary_url": "https://www.fandango.com",
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Paste code \"TELEMUNDO\" at checkout.",
+          "Confirm the discount is applied before paying."
+        ],
+        "eliminates_steps": [
+          "Manually copying the promo code",
+          "Searching for the brand website"
+        ],
+        "effort_level": "low",
+        "confidence": 0.95
+      },
+      "rank_base_score": 120.0,
+      "global_quality_score": 95.0
     },
     {
       "brand": "Fandango",
@@ -8806,7 +9000,8 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "rank_base_score": 73.0
+      "rank_base_score": 73.0,
+      "global_quality_score": 48.0
     },
     {
       "brand": "Fandango",
@@ -8867,7 +9062,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 33.0
+      "rank_base_score": 33.0,
+      "global_quality_score": 8.0
     },
     {
       "brand": "Fandango",
@@ -8931,7 +9127,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 114.0
+      "rank_base_score": 114.0,
+      "global_quality_score": 89.0
     },
     {
       "brand": "Fandango",
@@ -8998,7 +9195,8 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "rank_base_score": 77.0
+      "rank_base_score": 77.0,
+      "global_quality_score": 52.0
     },
     {
       "brand": "Fandango",
@@ -9062,7 +9260,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 67.0
+      "rank_base_score": 67.0,
+      "global_quality_score": 42.0
     },
     {
       "brand": "Fandango",
@@ -9126,7 +9325,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 114.0
+      "rank_base_score": 114.0,
+      "global_quality_score": 89.0
     },
     {
       "brand": "Fandango",
@@ -9190,7 +9390,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 114.0
+      "rank_base_score": 114.0,
+      "global_quality_score": 89.0
     },
     {
       "brand": "Fashion Nova",
@@ -9256,7 +9457,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Fashion Nova",
@@ -9322,7 +9524,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Fenty Beauty",
@@ -9391,7 +9594,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 80.4
+      "rank_base_score": 80.4,
+      "global_quality_score": 55.4
     },
     {
       "brand": "Fenty Beauty",
@@ -9460,7 +9664,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 66.6
+      "rank_base_score": 66.6,
+      "global_quality_score": 41.6
     },
     {
       "brand": "Fenty Beauty",
@@ -9529,7 +9734,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 68.6
+      "rank_base_score": 68.6,
+      "global_quality_score": 43.6
     },
     {
       "brand": "Forever 21",
@@ -9595,7 +9801,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Forever 21",
@@ -9661,7 +9868,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Forever 21",
@@ -9727,7 +9935,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Forever 21",
@@ -9793,7 +10002,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Forever 21",
@@ -9859,7 +10069,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Forever 21",
@@ -9925,7 +10136,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Forever 21",
@@ -9991,7 +10203,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Forever 21",
@@ -10057,7 +10270,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Forever 21",
@@ -10123,7 +10337,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Fossil",
@@ -10192,7 +10407,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 69.0
+      "rank_base_score": 69.0,
+      "global_quality_score": 34.0
     },
     {
       "brand": "Fossil",
@@ -10257,7 +10473,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Frontier Airlines",
@@ -10323,7 +10540,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 53.0
+      "rank_base_score": 53.0,
+      "global_quality_score": 18.0
     },
     {
       "brand": "Function of Beauty",
@@ -10389,7 +10607,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 55.0
+      "rank_base_score": 55.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Gainful",
@@ -10450,7 +10669,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 40.0
     },
     {
       "brand": "Gainful",
@@ -10516,7 +10736,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 59.0
+      "rank_base_score": 59.0,
+      "global_quality_score": 34.0
     },
     {
       "brand": "Guess",
@@ -10582,7 +10803,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 85.0
+      "rank_base_score": 85.0,
+      "global_quality_score": 50.0
     },
     {
       "brand": "Hilton",
@@ -10648,7 +10870,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Hilton",
@@ -10716,7 +10939,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 60.0
+      "rank_base_score": 60.0,
+      "global_quality_score": 25.0
     },
     {
       "brand": "Hilton",
@@ -10784,7 +11008,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Hilton",
@@ -10852,7 +11077,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 58.0
+      "rank_base_score": 58.0,
+      "global_quality_score": 23.0
     },
     {
       "brand": "Hilton",
@@ -10920,7 +11146,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 69.0
+      "rank_base_score": 69.0,
+      "global_quality_score": 34.0
     },
     {
       "brand": "Hollister",
@@ -10986,7 +11213,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Hollister",
@@ -11058,7 +11286,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 76.0
+      "rank_base_score": 76.0,
+      "global_quality_score": 41.0
     },
     {
       "brand": "Hollister",
@@ -11124,7 +11353,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Hollister",
@@ -11192,7 +11422,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 72.0
+      "rank_base_score": 72.0,
+      "global_quality_score": 37.0
     },
     {
       "brand": "Hot Topic",
@@ -11259,7 +11490,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Hot Topic",
@@ -11326,7 +11558,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Hulu",
@@ -11399,7 +11632,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 75.0
+      "rank_base_score": 75.0,
+      "global_quality_score": 50.0
     },
     {
       "brand": "Hulu",
@@ -11472,7 +11706,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 75.0
+      "rank_base_score": 75.0,
+      "global_quality_score": 50.0
     },
     {
       "brand": "Hulu",
@@ -11553,7 +11788,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 105.0
+      "rank_base_score": 105.0,
+      "global_quality_score": 80.0
     },
     {
       "brand": "Hungryroot",
@@ -11621,7 +11857,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 87.0
+      "rank_base_score": 87.0,
+      "global_quality_score": 52.0
     },
     {
       "brand": "Hungryroot",
@@ -11688,7 +11925,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 117.0
+      "rank_base_score": 117.0,
+      "global_quality_score": 82.0
     },
     {
       "brand": "Hungryroot",
@@ -11755,7 +11993,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 58.0
+      "rank_base_score": 58.0,
+      "global_quality_score": 23.0
     },
     {
       "brand": "IHOP",
@@ -11826,7 +12065,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 110.0
+      "rank_base_score": 110.0,
+      "global_quality_score": 75.0
     },
     {
       "brand": "IL MAKIAGE",
@@ -11895,7 +12135,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 59.0
+      "rank_base_score": 59.0,
+      "global_quality_score": 34.0
     },
     {
       "brand": "IL MAKIAGE",
@@ -11962,7 +12203,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 55.0
+      "rank_base_score": 55.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "JetBlue",
@@ -12031,7 +12273,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 108.0
+      "rank_base_score": 108.0,
+      "global_quality_score": 73.0
     },
     {
       "brand": "JetBlue",
@@ -12099,7 +12342,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 62.0
+      "rank_base_score": 62.0,
+      "global_quality_score": 27.0
     },
     {
       "brand": "Jimmy John's",
@@ -12163,7 +12407,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 74.6
+      "rank_base_score": 74.6,
+      "global_quality_score": 39.6
     },
     {
       "brand": "Jimmy John's",
@@ -12227,7 +12472,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 118.0
+      "rank_base_score": 118.0,
+      "global_quality_score": 83.0
     },
     {
       "brand": "Johnston & Murphy",
@@ -12294,7 +12540,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 102.0
+      "rank_base_score": 102.0,
+      "global_quality_score": 67.0
     },
     {
       "brand": "Johnston & Murphy",
@@ -12364,7 +12611,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 55.0
+      "rank_base_score": 55.0,
+      "global_quality_score": 20.0
     },
     {
       "brand": "Johnston & Murphy",
@@ -12431,7 +12679,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Journeys",
@@ -12497,7 +12746,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 69.0
+      "rank_base_score": 69.0,
+      "global_quality_score": 44.0
     },
     {
       "brand": "Journeys",
@@ -12565,7 +12815,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 49.0
+      "rank_base_score": 49.0,
+      "global_quality_score": 24.0
     },
     {
       "brand": "Kate Spade",
@@ -12632,7 +12883,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 70.0
+      "rank_base_score": 70.0,
+      "global_quality_score": 35.0
     },
     {
       "brand": "Kate Spade",
@@ -12697,7 +12949,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 69.0
+      "rank_base_score": 69.0,
+      "global_quality_score": 34.0
     },
     {
       "brand": "Kate Spade",
@@ -12762,7 +13015,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Kendra Scott",
@@ -12822,7 +13076,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 40.0
+      "rank_base_score": 40.0,
+      "global_quality_score": 5.0
     },
     {
       "brand": "Kendra Scott",
@@ -12888,7 +13143,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 63.2
+      "rank_base_score": 63.2,
+      "global_quality_score": 28.2
     },
     {
       "brand": "Kizik",
@@ -12957,7 +13213,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 85.0
+      "rank_base_score": 85.0,
+      "global_quality_score": 50.0
     },
     {
       "brand": "Kizik",
@@ -13026,7 +13283,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 85.0
+      "rank_base_score": 85.0,
+      "global_quality_score": 50.0
     },
     {
       "brand": "Kizik",
@@ -13095,7 +13353,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 85.0
+      "rank_base_score": 85.0,
+      "global_quality_score": 50.0
     },
     {
       "brand": "Kizik",
@@ -13164,7 +13423,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Kizik",
@@ -13233,7 +13493,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 83.0
+      "rank_base_score": 83.0,
+      "global_quality_score": 48.0
     },
     {
       "brand": "Krispy Kreme",
@@ -13302,7 +13563,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 63.8
+      "rank_base_score": 63.8,
+      "global_quality_score": 28.8
     },
     {
       "brand": "Lee",
@@ -13367,7 +13629,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 57.0
+      "rank_base_score": 57.0,
+      "global_quality_score": 22.0
     },
     {
       "brand": "Lee",
@@ -13435,7 +13698,8 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "rank_base_score": 91.0
+      "rank_base_score": 91.0,
+      "global_quality_score": 56.0
     },
     {
       "brand": "Lee",
@@ -13500,7 +13764,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 69.0
+      "rank_base_score": 69.0,
+      "global_quality_score": 34.0
     },
     {
       "brand": "Lilly Pulitzer",
@@ -13567,7 +13832,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 69.0
+      "rank_base_score": 69.0,
+      "global_quality_score": 34.0
     },
     {
       "brand": "Lilly Pulitzer",
@@ -13638,7 +13904,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 68.0
+      "rank_base_score": 68.0,
+      "global_quality_score": 33.0
     },
     {
       "brand": "Lilly Pulitzer",
@@ -13708,7 +13975,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 59.0
+      "rank_base_score": 59.0,
+      "global_quality_score": 24.0
     },
     {
       "brand": "LOFT",
@@ -13769,7 +14037,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 75.0
+      "rank_base_score": 75.0,
+      "global_quality_score": 40.0
     },
     {
       "brand": "LOFT",
@@ -13830,7 +14099,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "LOFT",
@@ -13896,7 +14166,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "LOFT",
@@ -13964,7 +14235,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 83.0
+      "rank_base_score": 83.0,
+      "global_quality_score": 48.0
     },
     {
       "brand": "LOFT",
@@ -14032,7 +14304,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 77.0
+      "rank_base_score": 77.0,
+      "global_quality_score": 42.0
     },
     {
       "brand": "Max",
@@ -14102,7 +14375,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 91.0
+      "rank_base_score": 91.0,
+      "global_quality_score": 66.0
     },
     {
       "brand": "McDonald's",
@@ -14171,7 +14445,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 124.0
+      "rank_base_score": 124.0,
+      "global_quality_score": 74.0
     },
     {
       "brand": "Merrell",
@@ -14238,7 +14513,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 98.0
+      "rank_base_score": 98.0,
+      "global_quality_score": 63.0
     },
     {
       "brand": "Merrell",
@@ -14304,7 +14580,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Michael Kors",
@@ -14372,7 +14649,8 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "rank_base_score": 83.0
+      "rank_base_score": 83.0,
+      "global_quality_score": 48.0
     },
     {
       "brand": "Michael Kors",
@@ -14440,7 +14718,8 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "rank_base_score": 83.0
+      "rank_base_score": 83.0,
+      "global_quality_score": 48.0
     },
     {
       "brand": "Nasty Gal",
@@ -14508,7 +14787,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Nasty Gal",
@@ -14575,7 +14855,8 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "rank_base_score": 73.0
+      "rank_base_score": 73.0,
+      "global_quality_score": 48.0
     },
     {
       "brand": "Nasty Gal",
@@ -14643,7 +14924,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Nike",
@@ -14714,7 +14996,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 28.0
     },
     {
       "brand": "Nine West",
@@ -14780,7 +15063,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 55.0
+      "rank_base_score": 55.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Nine West",
@@ -14846,7 +15130,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Nine West",
@@ -14912,7 +15197,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 84.0
+      "rank_base_score": 84.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Nine West",
@@ -14978,7 +15264,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 84.0
+      "rank_base_score": 84.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Nine West",
@@ -15044,7 +15331,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Nine West",
@@ -15110,7 +15398,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Nine West",
@@ -15176,7 +15465,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Nine West",
@@ -15242,7 +15532,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Nine West",
@@ -15308,7 +15599,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Noodles & Company",
@@ -15376,7 +15668,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 35.0
+      "rank_base_score": 35.0,
+      "global_quality_score": 0.0
     },
     {
       "brand": "Noodles & Company",
@@ -15455,7 +15748,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 103.0
+      "rank_base_score": 103.0,
+      "global_quality_score": 68.0
     },
     {
       "brand": "NYX Professional Makeup",
@@ -15523,7 +15817,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 59.0
+      "rank_base_score": 59.0,
+      "global_quality_score": 34.0
     },
     {
       "brand": "NYX Professional Makeup",
@@ -15589,7 +15884,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 92.0
+      "rank_base_score": 92.0,
+      "global_quality_score": 67.0
     },
     {
       "brand": "NYX Professional Makeup",
@@ -15655,7 +15951,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 92.0
+      "rank_base_score": 92.0,
+      "global_quality_score": 67.0
     },
     {
       "brand": "Old Navy",
@@ -15722,7 +16019,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Old Navy",
@@ -15789,7 +16087,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 57.0
+      "rank_base_score": 57.0,
+      "global_quality_score": 22.0
     },
     {
       "brand": "Olive Garden",
@@ -15860,7 +16159,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 67.4
+      "rank_base_score": 67.4,
+      "global_quality_score": 32.4
     },
     {
       "brand": "Outback Steakhouse",
@@ -15930,7 +16230,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 62.0
+      "rank_base_score": 62.0,
+      "global_quality_score": 27.0
     },
     {
       "brand": "PacSun",
@@ -15997,7 +16298,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "PacSun",
@@ -16064,7 +16366,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 77.0
+      "rank_base_score": 77.0,
+      "global_quality_score": 42.0
     },
     {
       "brand": "Panera Bread",
@@ -16143,7 +16446,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 114.0
+      "rank_base_score": 114.0,
+      "global_quality_score": 79.0
     },
     {
       "brand": "Panera Bread",
@@ -16223,7 +16527,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 56.0
+      "rank_base_score": 56.0,
+      "global_quality_score": 21.0
     },
     {
       "brand": "Panera Bread",
@@ -16300,7 +16605,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 90.0
+      "rank_base_score": 90.0,
+      "global_quality_score": 55.0
     },
     {
       "brand": "Parachute",
@@ -16368,7 +16674,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 40.0
     },
     {
       "brand": "Parachute",
@@ -16436,7 +16743,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 67.0
+      "rank_base_score": 67.0,
+      "global_quality_score": 42.0
     },
     {
       "brand": "Parachute",
@@ -16504,7 +16812,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Peet's Coffee",
@@ -16575,7 +16884,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 87.0
+      "rank_base_score": 87.0,
+      "global_quality_score": 52.0
     },
     {
       "brand": "Peet's Coffee",
@@ -16644,7 +16954,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 28.0
     },
     {
       "brand": "Peet's Coffee",
@@ -16715,7 +17026,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 52.0
+      "rank_base_score": 52.0,
+      "global_quality_score": 17.0
     },
     {
       "brand": "Peet's Coffee",
@@ -16791,7 +17103,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 96.0
+      "rank_base_score": 96.0,
+      "global_quality_score": 61.0
     },
     {
       "brand": "PetSmart",
@@ -16865,7 +17178,8 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "rank_base_score": 99.0
+      "rank_base_score": 99.0,
+      "global_quality_score": 74.0
     },
     {
       "brand": "PetSmart",
@@ -16936,7 +17250,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 49.0
+      "rank_base_score": 49.0,
+      "global_quality_score": 24.0
     },
     {
       "brand": "PetSmart",
@@ -17006,7 +17321,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 45.0
+      "rank_base_score": 45.0,
+      "global_quality_score": 20.0
     },
     {
       "brand": "PrettyLittleThing",
@@ -17074,7 +17390,8 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "rank_base_score": 110.0
+      "rank_base_score": 110.0,
+      "global_quality_score": 75.0
     },
     {
       "brand": "PrettyLittleThing",
@@ -17143,7 +17460,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 78.2
+      "rank_base_score": 78.2,
+      "global_quality_score": 43.2
     },
     {
       "brand": "Princess Polly",
@@ -17209,7 +17527,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 90.0
+      "rank_base_score": 90.0,
+      "global_quality_score": 55.0
     },
     {
       "brand": "Princess Polly",
@@ -17274,7 +17593,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Prose",
@@ -17344,7 +17664,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Puma",
@@ -17411,7 +17732,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Puma",
@@ -17478,7 +17800,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 85.0
+      "rank_base_score": 85.0,
+      "global_quality_score": 50.0
     },
     {
       "brand": "Quiksilver",
@@ -17545,7 +17868,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Rack Room Shoes",
@@ -17611,7 +17935,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 99.0
+      "rank_base_score": 99.0,
+      "global_quality_score": 74.0
     },
     {
       "brand": "Rack Room Shoes",
@@ -17679,7 +18004,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 48.0
+      "rank_base_score": 48.0,
+      "global_quality_score": 23.0
     },
     {
       "brand": "Rag & Bone",
@@ -17747,7 +18073,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Rainbow Shops",
@@ -17815,7 +18142,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Rainbow Shops",
@@ -17883,7 +18211,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Rainbow Shops",
@@ -17951,7 +18280,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Rebecca Minkoff",
@@ -18020,7 +18350,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 101.0
+      "rank_base_score": 101.0,
+      "global_quality_score": 66.0
     },
     {
       "brand": "Red Robin",
@@ -18097,7 +18428,8 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "rank_base_score": 91.0
+      "rank_base_score": 91.0,
+      "global_quality_score": 56.0
     },
     {
       "brand": "Red Robin",
@@ -18175,7 +18507,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 114.0
+      "rank_base_score": 114.0,
+      "global_quality_score": 79.0
     },
     {
       "brand": "Red Robin",
@@ -18251,7 +18584,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 117.0
+      "rank_base_score": 117.0,
+      "global_quality_score": 82.0
     },
     {
       "brand": "Regal",
@@ -18320,7 +18654,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 57.0
+      "rank_base_score": 57.0,
+      "global_quality_score": 32.0
     },
     {
       "brand": "Regal",
@@ -18389,7 +18724,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 69.0
+      "rank_base_score": 69.0,
+      "global_quality_score": 44.0
     },
     {
       "brand": "Regal",
@@ -18458,7 +18794,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 88.0
+      "rank_base_score": 88.0,
+      "global_quality_score": 63.0
     },
     {
       "brand": "REI",
@@ -18523,7 +18860,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "REI",
@@ -18588,7 +18926,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "REI",
@@ -18653,7 +18992,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "REI",
@@ -18718,7 +19058,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "REI",
@@ -18783,7 +19124,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "REI",
@@ -18850,7 +19192,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 57.0
+      "rank_base_score": 57.0,
+      "global_quality_score": 32.0
     },
     {
       "brand": "REI",
@@ -18917,7 +19260,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 54.0
+      "rank_base_score": 54.0,
+      "global_quality_score": 29.0
     },
     {
       "brand": "Revolve",
@@ -18986,7 +19330,8 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "rank_base_score": 81.0
+      "rank_base_score": 81.0,
+      "global_quality_score": 46.0
     },
     {
       "brand": "Revolve",
@@ -19055,7 +19400,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 68.0
+      "rank_base_score": 68.0,
+      "global_quality_score": 33.0
     },
     {
       "brand": "Ritual",
@@ -19135,7 +19481,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 84.0
+      "rank_base_score": 84.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Roxy",
@@ -19204,7 +19551,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 57.0
+      "rank_base_score": 57.0,
+      "global_quality_score": 22.0
     },
     {
       "brand": "Roxy",
@@ -19272,7 +19620,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 77.0
+      "rank_base_score": 77.0,
+      "global_quality_score": 42.0
     },
     {
       "brand": "Sally Beauty",
@@ -19343,7 +19692,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 44.0
+      "rank_base_score": 44.0,
+      "global_quality_score": 19.0
     },
     {
       "brand": "Sally Beauty",
@@ -19413,7 +19763,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 53.0
+      "rank_base_score": 53.0,
+      "global_quality_score": 28.0
     },
     {
       "brand": "Sally Beauty",
@@ -19486,7 +19837,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 59.0
+      "rank_base_score": 59.0,
+      "global_quality_score": 34.0
     },
     {
       "brand": "Sam Edelman",
@@ -19553,7 +19905,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 51.0
+      "rank_base_score": 51.0,
+      "global_quality_score": 26.0
     },
     {
       "brand": "Saucony",
@@ -19619,7 +19972,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Saucony",
@@ -19688,7 +20042,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 73.0
+      "rank_base_score": 73.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Shake Shack",
@@ -19756,7 +20111,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 70.0
+      "rank_base_score": 70.0,
+      "global_quality_score": 35.0
     },
     {
       "brand": "Shake Shack",
@@ -19818,7 +20174,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 90.0
+      "rank_base_score": 90.0,
+      "global_quality_score": 55.0
     },
     {
       "brand": "Shake Shack",
@@ -19888,7 +20245,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 117.0
+      "rank_base_score": 117.0,
+      "global_quality_score": 82.0
     },
     {
       "brand": "SHEIN",
@@ -19954,7 +20312,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "SHEIN",
@@ -20020,7 +20379,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 100.0
+      "rank_base_score": 100.0,
+      "global_quality_score": 65.0
     },
     {
       "brand": "SHEIN",
@@ -20086,7 +20446,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 90.0
+      "rank_base_score": 90.0,
+      "global_quality_score": 55.0
     },
     {
       "brand": "SHEIN",
@@ -20152,7 +20513,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 100.0
+      "rank_base_score": 100.0,
+      "global_quality_score": 65.0
     },
     {
       "brand": "SHEIN",
@@ -20218,7 +20580,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 90.0
+      "rank_base_score": 90.0,
+      "global_quality_score": 55.0
     },
     {
       "brand": "SHEIN",
@@ -20284,7 +20647,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 90.0
+      "rank_base_score": 90.0,
+      "global_quality_score": 55.0
     },
     {
       "brand": "SHEIN",
@@ -20350,7 +20714,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 81.0
+      "rank_base_score": 81.0,
+      "global_quality_score": 46.0
     },
     {
       "brand": "SHEIN",
@@ -20416,7 +20781,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "SHEIN",
@@ -20482,7 +20848,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 100.0
+      "rank_base_score": 100.0,
+      "global_quality_score": 65.0
     },
     {
       "brand": "SHEIN",
@@ -20548,7 +20915,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 100.0
+      "rank_base_score": 100.0,
+      "global_quality_score": 65.0
     },
     {
       "brand": "SHEIN",
@@ -20614,7 +20982,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 100.0
+      "rank_base_score": 100.0,
+      "global_quality_score": 65.0
     },
     {
       "brand": "Showpo",
@@ -20680,7 +21049,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Showpo",
@@ -20746,7 +21116,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Showpo",
@@ -20813,7 +21184,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 73.0
+      "rank_base_score": 73.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Skechers",
@@ -20884,7 +21256,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 111.0
+      "rank_base_score": 111.0,
+      "global_quality_score": 76.0
     },
     {
       "brand": "Skechers",
@@ -20952,7 +21325,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 89.0
+      "rank_base_score": 89.0,
+      "global_quality_score": 54.0
     },
     {
       "brand": "Spotify",
@@ -21020,7 +21394,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 62.0
+      "rank_base_score": 62.0,
+      "global_quality_score": 37.0
     },
     {
       "brand": "Spotify",
@@ -21088,7 +21463,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 58.0
+      "rank_base_score": 58.0,
+      "global_quality_score": 33.0
     },
     {
       "brand": "Sprouts",
@@ -21154,7 +21530,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 79.1
+      "rank_base_score": 79.1,
+      "global_quality_score": 44.1
     },
     {
       "brand": "Sprouts",
@@ -21222,7 +21599,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 112.0
+      "rank_base_score": 112.0,
+      "global_quality_score": 77.0
     },
     {
       "brand": "Sprouts",
@@ -21290,7 +21668,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 92.0
+      "rank_base_score": 92.0,
+      "global_quality_score": 57.0
     },
     {
       "brand": "Sprouts",
@@ -21352,7 +21731,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 58.0
+      "rank_base_score": 58.0,
+      "global_quality_score": 23.0
     },
     {
       "brand": "Starbucks",
@@ -21423,7 +21803,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 50.0
+      "rank_base_score": 50.0,
+      "global_quality_score": 15.0
     },
     {
       "brand": "Starbucks",
@@ -21494,7 +21875,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 90.0
+      "rank_base_score": 90.0,
+      "global_quality_score": 55.0
     },
     {
       "brand": "Starbucks",
@@ -21565,7 +21947,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 90.0
+      "rank_base_score": 90.0,
+      "global_quality_score": 55.0
     },
     {
       "brand": "Starbucks",
@@ -21636,7 +22019,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 90.0
+      "rank_base_score": 90.0,
+      "global_quality_score": 55.0
     },
     {
       "brand": "Starbucks",
@@ -21706,7 +22090,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 110.0
+      "rank_base_score": 110.0,
+      "global_quality_score": 75.0
     },
     {
       "brand": "Stuart Weitzman",
@@ -21772,7 +22157,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 55.0
+      "rank_base_score": 55.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Stuart Weitzman",
@@ -21837,7 +22223,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 89.0
+      "rank_base_score": 89.0,
+      "global_quality_score": 64.0
     },
     {
       "brand": "Stuart Weitzman",
@@ -21902,7 +22289,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 89.0
+      "rank_base_score": 89.0,
+      "global_quality_score": 64.0
     },
     {
       "brand": "Subway",
@@ -21974,7 +22362,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 55.0
+      "rank_base_score": 55.0,
+      "global_quality_score": 20.0
     },
     {
       "brand": "Sweetgreen",
@@ -22042,7 +22431,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 58.0
+      "rank_base_score": 58.0,
+      "global_quality_score": 23.0
     },
     {
       "brand": "Sweetgreen",
@@ -22112,7 +22502,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 72.0
+      "rank_base_score": 72.0,
+      "global_quality_score": 37.0
     },
     {
       "brand": "Taco Bell",
@@ -22188,7 +22579,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 109.0
+      "rank_base_score": 109.0,
+      "global_quality_score": 74.0
     },
     {
       "brand": "Talbots",
@@ -22264,7 +22656,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Talbots",
@@ -22340,7 +22733,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Talbots",
@@ -22414,7 +22808,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Target",
@@ -22488,7 +22883,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 44.0
+      "rank_base_score": 44.0,
+      "global_quality_score": 19.0
     },
     {
       "brand": "Ted Baker",
@@ -22554,7 +22950,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Ted Baker",
@@ -22620,7 +23017,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 77.0
+      "rank_base_score": 77.0,
+      "global_quality_score": 42.0
     },
     {
       "brand": "Ted Baker",
@@ -22686,7 +23084,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Ted Baker",
@@ -22752,7 +23151,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Ted Baker",
@@ -22818,7 +23218,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Ted Baker",
@@ -22884,7 +23285,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Ted Baker",
@@ -22950,7 +23352,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Thrive Market",
@@ -23021,7 +23424,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 82.0
+      "rank_base_score": 82.0,
+      "global_quality_score": 47.0
     },
     {
       "brand": "Tommy Hilfiger",
@@ -23085,7 +23489,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 44.2
+      "rank_base_score": 44.2,
+      "global_quality_score": 19.2
     },
     {
       "brand": "Tommy Hilfiger",
@@ -23149,7 +23554,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 48.2
+      "rank_base_score": 48.2,
+      "global_quality_score": 23.2
     },
     {
       "brand": "Tommy Hilfiger",
@@ -23213,7 +23619,8 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 47.2
+      "rank_base_score": 47.2,
+      "global_quality_score": 22.2
     },
     {
       "brand": "Tommy Hilfiger",
@@ -23280,7 +23687,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 55.0
+      "rank_base_score": 55.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Tommy Hilfiger",
@@ -23347,7 +23755,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Tommy Hilfiger",
@@ -23414,7 +23823,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Tory Burch",
@@ -23483,7 +23893,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 75.0
+      "rank_base_score": 75.0,
+      "global_quality_score": 50.0
     },
     {
       "brand": "Tuft & Needle",
@@ -23553,7 +23964,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 102.0
+      "rank_base_score": 102.0,
+      "global_quality_score": 77.0
     },
     {
       "brand": "Ulta Beauty",
@@ -23623,7 +24035,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 89.0
+      "rank_base_score": 89.0,
+      "global_quality_score": 64.0
     },
     {
       "brand": "Under Armour",
@@ -23691,7 +24104,8 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "rank_base_score": 110.0
+      "rank_base_score": 110.0,
+      "global_quality_score": 75.0
     },
     {
       "brand": "Vera Bradley",
@@ -23758,7 +24172,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Vera Bradley",
@@ -23825,7 +24240,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "Vince",
@@ -23890,7 +24306,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 101.0
+      "rank_base_score": 101.0,
+      "global_quality_score": 66.0
     },
     {
       "brand": "Vince",
@@ -23955,7 +24372,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 101.0
+      "rank_base_score": 101.0,
+      "global_quality_score": 66.0
     },
     {
       "brand": "Vince",
@@ -24020,7 +24438,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 101.0
+      "rank_base_score": 101.0,
+      "global_quality_score": 66.0
     },
     {
       "brand": "Vince",
@@ -24085,7 +24504,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 101.0
+      "rank_base_score": 101.0,
+      "global_quality_score": 66.0
     },
     {
       "brand": "Vince",
@@ -24150,7 +24570,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 101.0
+      "rank_base_score": 101.0,
+      "global_quality_score": 66.0
     },
     {
       "brand": "Vince",
@@ -24215,7 +24636,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 101.0
+      "rank_base_score": 101.0,
+      "global_quality_score": 66.0
     },
     {
       "brand": "Vince",
@@ -24280,7 +24702,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 101.0
+      "rank_base_score": 101.0,
+      "global_quality_score": 66.0
     },
     {
       "brand": "Vince",
@@ -24345,7 +24768,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 101.0
+      "rank_base_score": 101.0,
+      "global_quality_score": 66.0
     },
     {
       "brand": "Vince",
@@ -24410,7 +24834,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 101.0
+      "rank_base_score": 101.0,
+      "global_quality_score": 66.0
     },
     {
       "brand": "Vince",
@@ -24475,7 +24900,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 101.0
+      "rank_base_score": 101.0,
+      "global_quality_score": 66.0
     },
     {
       "brand": "Volcom",
@@ -24543,7 +24969,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 57.0
+      "rank_base_score": 57.0,
+      "global_quality_score": 22.0
     },
     {
       "brand": "Walgreens",
@@ -24609,7 +25036,8 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "rank_base_score": 77.0
+      "rank_base_score": 77.0,
+      "global_quality_score": 52.0
     },
     {
       "brand": "Walgreens",
@@ -24674,7 +25102,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 59.0
+      "rank_base_score": 59.0,
+      "global_quality_score": 34.0
     },
     {
       "brand": "Walgreens",
@@ -24739,7 +25168,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 59.0
+      "rank_base_score": 59.0,
+      "global_quality_score": 34.0
     },
     {
       "brand": "Walgreens",
@@ -24806,7 +25236,8 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "rank_base_score": 50.0
+      "rank_base_score": 50.0,
+      "global_quality_score": 25.0
     },
     {
       "brand": "Walmart",
@@ -24876,7 +25307,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 87.0
+      "rank_base_score": 87.0,
+      "global_quality_score": 62.0
     },
     {
       "brand": "Walmart",
@@ -24946,7 +25378,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 55.0
+      "rank_base_score": 55.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Wendy's",
@@ -25017,7 +25450,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 68.4
+      "rank_base_score": 68.4,
+      "global_quality_score": 33.4
     },
     {
       "brand": "Wendy's",
@@ -25088,7 +25522,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 65.2
+      "rank_base_score": 65.2,
+      "global_quality_score": 30.2
     },
     {
       "brand": "Wendy's",
@@ -25161,7 +25596,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 113.0
+      "rank_base_score": 113.0,
+      "global_quality_score": 78.0
     },
     {
       "brand": "Wendy's",
@@ -25234,7 +25670,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 113.0
+      "rank_base_score": 113.0,
+      "global_quality_score": 78.0
     },
     {
       "brand": "West Elm",
@@ -25299,7 +25736,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "West Elm",
@@ -25367,7 +25805,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 50.0
+      "rank_base_score": 50.0,
+      "global_quality_score": 25.0
     },
     {
       "brand": "White House Black Market",
@@ -25433,7 +25872,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "White House Black Market",
@@ -25499,7 +25939,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 94.0
+      "rank_base_score": 94.0,
+      "global_quality_score": 59.0
     },
     {
       "brand": "White House Black Market",
@@ -25565,7 +26006,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Williams-Sonoma",
@@ -25630,7 +26072,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 59.0
+      "rank_base_score": 59.0,
+      "global_quality_score": 34.0
     },
     {
       "brand": "Williams-Sonoma",
@@ -25695,7 +26138,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 92.0
+      "rank_base_score": 92.0,
+      "global_quality_score": 67.0
     },
     {
       "brand": "Williams-Sonoma",
@@ -25760,7 +26204,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 92.0
+      "rank_base_score": 92.0,
+      "global_quality_score": 67.0
     },
     {
       "brand": "Windsor",
@@ -25828,7 +26273,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 104.0
+      "rank_base_score": 104.0,
+      "global_quality_score": 69.0
     },
     {
       "brand": "Windsor",
@@ -25900,7 +26346,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 68.0
+      "rank_base_score": 68.0,
+      "global_quality_score": 33.0
     },
     {
       "brand": "Wingstop",
@@ -25963,7 +26410,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 61.0
+      "rank_base_score": 61.0,
+      "global_quality_score": 26.0
     },
     {
       "brand": "Wingstop",
@@ -26033,7 +26481,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 67.0
+      "rank_base_score": 67.0,
+      "global_quality_score": 32.0
     },
     {
       "brand": "Wingstop",
@@ -26103,7 +26552,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 69.0
+      "rank_base_score": 69.0,
+      "global_quality_score": 34.0
     },
     {
       "brand": "Wingstop",
@@ -26173,7 +26623,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 65.0
+      "rank_base_score": 65.0,
+      "global_quality_score": 30.0
     },
     {
       "brand": "Wrangler",
@@ -26239,7 +26690,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 85.0
+      "rank_base_score": 85.0,
+      "global_quality_score": 50.0
     },
     {
       "brand": "Wrangler",
@@ -26305,7 +26757,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 86.4
+      "rank_base_score": 86.4,
+      "global_quality_score": 51.4
     },
     {
       "brand": "Wrangler",
@@ -26372,7 +26825,8 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "rank_base_score": 83.0
+      "rank_base_score": 83.0,
+      "global_quality_score": 48.0
     },
     {
       "brand": "Wyndham Hotels",
@@ -26437,7 +26891,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 62.0
+      "rank_base_score": 62.0,
+      "global_quality_score": 27.0
     },
     {
       "brand": "Wyndham Hotels",
@@ -26502,7 +26957,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 62.0
+      "rank_base_score": 62.0,
+      "global_quality_score": 27.0
     },
     {
       "brand": "Wyndham Hotels",
@@ -26569,7 +27025,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 73.0
+      "rank_base_score": 73.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "Wyndham Hotels",
@@ -26638,7 +27095,8 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 64.0
+      "rank_base_score": 64.0,
+      "global_quality_score": 29.0
     },
     {
       "brand": "Wyndham Hotels",
@@ -26703,7 +27161,484 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "rank_base_score": 69.0
+      "rank_base_score": 69.0,
+      "global_quality_score": 34.0
+    },
+    {
+      "brand": "Adam from foodpanda",
+      "category": null,
+      "promotion_title": "Adam from foodpanda 60% offer",
+      "short_summary": "Adam from foodpanda has a 60% offer and may require the app.",
+      "promotion_type": "app_offer",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Open the Adam from foodpanda app or rewards account.",
+        "Find and activate the offer if required.",
+        "Use the app or account at checkout."
+      ],
+      "promo_code": null,
+      "terms_text": "Don't let this offer slip restaurant and use the offer on your next order. 😋 Valid for your next food delivery order, exclusively on the foodpanda app. T&Cs apply. https://app.adjust.io/f6igys?campaign=MY_email_iOS&deep_link=foodpanda%3A%2F%2F%3Fc%3DMY%26s%3Ds%0A )     play ( https://app.adjust.io/dfv9zs?campaign=MY_email_Android&deep_link=foodpanda%3A%2F%2F%3Fc%3DMY%26s%3Ds%0A )        play ( https://app.adjust.io/dfv9zs?campaign=MY_email_Android&deep_link=foodpanda%3A%2F%2F%3Fc%3DMY%26s%3Ds%0A ) ) General terms and conditions | (",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [
+        "App may be required"
+      ],
+      "confidence_score": 0.65,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\adam_from_foodpanda_20260613T093432Z_03439d00.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Generated by offline rule-based parser.",
+        "Review manually before treating as final promotion data."
+      ],
+      "visibility": "public_general_offer",
+      "sender_email": "contact@info.foodpanda.my",
+      "email_subject": "This way to 60% off & free delivery!",
+      "email_date": "2026-06-13T09:34:32+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_app",
+        "button_label": "Open Adam from foodpanda App",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Find this promotion in the app.",
+          "Add qualifying items to your cart.",
+          "Complete checkout in-app."
+        ],
+        "eliminates_steps": [
+          "Searching for the offer manually in the app"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.8
+      },
+      "rank_base_score": 82.0,
+      "global_quality_score": 57.0
+    },
+    {
+      "brand": "andSons",
+      "category": null,
+      "promotion_title": "25% OFF for Returning Customers",
+      "short_summary": "Enjoy 25% off your next order as a returning customer.",
+      "promotion_type": "coupon",
+      "discount_type": "percentage_off",
+      "discount_value": "25%",
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": false,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": "2026-06-14",
+      "end_date": null,
+      "valid_days": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "online",
+      "redemption_steps": [
+        "Click 'Reorder Now'",
+        "Apply coupon code ANDSONS25"
+      ],
+      "promo_code": "ANDSONS25",
+      "terms_text": "*T&Cs apply",
+      "minimum_spend": null,
+      "purchase_required": true,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [],
+      "confidence_score": 0.87,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\andsons_20260614T053134Z_8fc0b1a6.txt",
+      "extraction_status": "success",
+      "notes": [],
+      "visibility": "private_user_offer",
+      "sender_email": "noreply@care.andsons.com.my",
+      "email_subject": "An Exclusive 25% OFF Offer for Returning Customers",
+      "email_date": "2026-06-14T05:31:34+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "copy_code",
+        "button_label": "Copy Code",
+        "primary_value": "ANDSONS25",
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Visit andSons's website.",
+          "Paste code \"ANDSONS25\" at checkout.",
+          "Confirm the discount before paying."
+        ],
+        "eliminates_steps": [
+          "Manually copying the promo code"
+        ],
+        "effort_level": "low",
+        "confidence": 0.9
+      },
+      "rank_base_score": 77.0,
+      "global_quality_score": 52.0
+    },
+    {
+      "brand": "Apple Card",
+      "category": null,
+      "promotion_title": "Earn Back the Cost of AirPods Pro 3",
+      "short_summary": "Get up to $250 Bonus Daily Cash when you buy AirPods Pro 3 with a new Apple Card.",
+      "promotion_type": "reward",
+      "discount_type": "amount_off",
+      "discount_value": "$250",
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": false,
+      "requires_account_login": true,
+      "new_user_only": true,
+      "birthday_related": false,
+      "start_date": "2026-07-01",
+      "end_date": "2027-04-30",
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/Los_Angeles",
+      "redemption_method": "in_store",
+      "redemption_steps": [
+        "Get a new Apple Card",
+        "Buy AirPods Pro 3 at an Apple Store by June 15, 2026",
+        "Earn $25 Bonus Daily Cash for each of the next 10 months when making 10+ purchases"
+      ],
+      "promo_code": null,
+      "terms_text": "First, get a new Apple Card and buy AirPods Pro 3 at Apple by June 15. Then, each month for 10 months, you’ll earn $25 when you make 10+ purchases.",
+      "minimum_spend": "$10",
+      "purchase_required": true,
+      "deal_scope": "brand_level",
+      "friction_level": "medium",
+      "friction_reasons": [
+        "Requires opening a new Apple Card account"
+      ],
+      "confidence_score": 0.95,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\apple_card_20260602T221338Z_eb8b5258.txt",
+      "extraction_status": "success",
+      "notes": [
+        "The offer is specifically tied to the purchase of AirPods Pro 3."
+      ],
+      "visibility": "private_user_offer",
+      "sender_email": "applecard@insideapple.apple.com",
+      "email_subject": "Your credit limit offer is ready to preview.",
+      "email_date": "2026-06-02T22:13:38+00:00",
+      "status": "active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": false,
+        "action_type": "not_supported",
+        "button_label": "",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [],
+        "eliminates_steps": [],
+        "effort_level": "high",
+        "confidence": 0.0
+      },
+      "rank_base_score": 77.0,
+      "global_quality_score": 52.0
+    },
+    {
+      "brand": "Chase",
+      "category": null,
+      "promotion_title": "Cash bonus up to $1,000 from J.P. Morgan Wealth Management",
+      "short_summary": "Open and fund a new general investment, traditional IRA, or Roth IRA account with specified amounts to earn cash bonuses.",
+      "promotion_type": "reward",
+      "discount_type": "amount_off",
+      "discount_value": null,
+      "requires_membership": true,
+      "membership_name": "J.P. Morgan Self-Directed Investing",
+      "membership_cost": "free",
+      "requires_app": false,
+      "requires_account_login": true,
+      "new_user_only": true,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_store",
+      "redemption_steps": [
+        "open your account",
+        "transfer funds",
+        "earn your bonus"
+      ],
+      "promo_code": null,
+      "terms_text": "Offer is limited to one per customer and can only be applied to one new J.P. Morgan Self-Directed Investing account.",
+      "minimum_spend": null,
+      "purchase_required": true,
+      "deal_scope": "brand_level",
+      "friction_level": "high",
+      "friction_reasons": [
+        "requires opening a new account",
+        "transfer funds requirement"
+      ],
+      "confidence_score": 0.85,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\chase_20260602T160239Z_527d3580.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Offer is for a specific investment account type and requires meeting certain funding requirements."
+      ],
+      "visibility": "private_user_offer",
+      "sender_email": "no_reply@mcmap.chase.com",
+      "email_subject": "Message for Unknown: We're presenting you with a bonus of up to $1,000 from J.P. Morgan Wealth Management",
+      "email_date": "2026-06-02T16:02:39+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": false,
+        "action_type": "not_supported",
+        "button_label": "",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [],
+        "eliminates_steps": [],
+        "effort_level": "high",
+        "confidence": 0.0
+      },
+      "rank_base_score": 49.0,
+      "global_quality_score": 24.0
+    },
+    {
+      "brand": "Chase",
+      "category": null,
+      "promotion_title": "Refer friends and earn up to $500 per calendar year",
+      "short_summary": "Get $50 for each friend who opens a qualifying Chase checking account (up to 10 times). Your friends can get $400 when they open a qualifying Chase checking account.",
+      "promotion_type": "app_offer",
+      "discount_type": "unknown",
+      "discount_value": null,
+      "requires_membership": true,
+      "membership_name": "personal checking account holder",
+      "membership_cost": "free",
+      "requires_app": false,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "online",
+      "redemption_steps": [
+        "Share the personalized link with friends via text or social media.",
+        "Ensure your friend opens a qualifying Chase checking account using the referral site."
+      ],
+      "promo_code": null,
+      "terms_text": "You can receive up to 10 referral bonus deposits (totaling $500) per calendar year. Eligibility may be limited based on account ownership.",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [],
+      "confidence_score": 1.0,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\chase_20260603T161222Z_bdc5ea61.txt",
+      "extraction_status": "success",
+      "notes": [],
+      "visibility": "private_user_offer",
+      "sender_email": "no_reply@mcmap.chase.com",
+      "email_subject": "Hello Unknown: You have a special opportunity waiting — up to $500 per calendar year!",
+      "email_date": "2026-06-03T16:12:22+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": false,
+        "action_type": "not_supported",
+        "button_label": "",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [],
+        "eliminates_steps": [],
+        "effort_level": "high",
+        "confidence": 0.0
+      },
+      "rank_base_score": 43.0,
+      "global_quality_score": 18.0
+    },
+    {
+      "brand": "Chase",
+      "category": null,
+      "promotion_title": "$125 Chase High School Checking promotion",
+      "short_summary": "Open a new Chase High School Checking account with your teen by July 15, 2026. Complete 5 qualifying transactions within 60 days to receive $125.",
+      "promotion_type": "reward",
+      "discount_type": "amount_off",
+      "discount_value": "$125",
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": false,
+      "requires_account_login": true,
+      "new_user_only": true,
+      "birthday_related": false,
+      "start_date": "2026-01-01",
+      "end_date": "2026-07-15",
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_store",
+      "redemption_steps": [
+        "Open a new Chase High School Checking account in branch",
+        "Complete 5 qualifying transactions within 60 days"
+      ],
+      "promo_code": "YZ33 3296 37PX Y7MV",
+      "terms_text": "Account is subject to approval. Eligibility may be limited based on account ownership.",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [
+        "Requires opening a new account",
+        "Qualifying transactions required"
+      ],
+      "confidence_score": 0.95,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\chase_20260603T075327Z_f90bdbe5.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Promotion requires opening a new account and completing qualifying transactions."
+      ],
+      "visibility": "private_user_offer",
+      "sender_email": "no_reply@mcmap.chase.com",
+      "email_subject": "$125 Chase High School Checking promotion",
+      "email_date": "2026-06-03T07:53:27+00:00",
+      "status": "active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "copy_code",
+        "button_label": "Copy Code",
+        "primary_value": "YZ33 3296 37PX Y7MV",
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Visit Chase's website.",
+          "Paste code \"YZ33 3296 37PX Y7MV\" at checkout.",
+          "Confirm the discount before paying."
+        ],
+        "eliminates_steps": [
+          "Manually copying the promo code"
+        ],
+        "effort_level": "low",
+        "confidence": 0.9
+      },
+      "rank_base_score": 99.0,
+      "global_quality_score": 74.0
+    },
+    {
+      "brand": "Chess.com",
+      "category": null,
+      "promotion_title": "Chess.com 50% offer",
+      "short_summary": "Chess.com has a 50% offer that may require membership and may require the app.",
+      "promotion_type": "sale",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "requires_membership": true,
+      "membership_name": "Chess.com Rewards",
+      "membership_cost": "free",
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Sign in to or join the Chess.com rewards/membership program.",
+        "Open the Chess.com app or rewards account.",
+        "Find and activate the offer if required.",
+        "Use the app or account at checkout."
+      ],
+      "promo_code": null,
+      "terms_text": "50% discount will be applied to the first billing cycle only. Cancel anytime. Offer cannot be transferred or gifted. Offer not available for the Friends & Family Plan or No Ads Plan. Existing Premium members are not eligible for this offer. Offer expires on May 29, 2026.",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "medium",
+      "friction_reasons": [
+        "Membership or rewards account required",
+        "App may be required"
+      ],
+      "confidence_score": 0.65,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\chess_com_20260528T132308Z_2f528c91.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Generated by offline rule-based parser.",
+        "Review manually before treating as final promotion data."
+      ],
+      "visibility": "public_general_offer",
+      "sender_email": "hello@chess.com",
+      "email_subject": "Last Call For 50% off Premium! ⏰️",
+      "email_date": "2026-05-28T13:23:08+00:00",
+      "status": "needs_review",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": false,
+        "action_type": "not_supported",
+        "button_label": "",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [],
+        "eliminates_steps": [],
+        "effort_level": "high",
+        "confidence": 0.0
+      },
+      "rank_base_score": 68.0,
+      "global_quality_score": 43.0
     },
     {
       "brand": "Codecademy",
@@ -26776,7 +27711,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 80.0
+      "rank_base_score": 80.0,
+      "global_quality_score": 55.0
     },
     {
       "brand": "Cotton On",
@@ -26849,7 +27785,216 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 61.0
+      "rank_base_score": 61.0,
+      "global_quality_score": 36.0
+    },
+    {
+      "brand": "Cotton On",
+      "category": null,
+      "promotion_title": "Cotton On 50% offer",
+      "short_summary": "Cotton On has a 50% offer that may require membership and may require the app.",
+      "promotion_type": "coupon",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "requires_membership": true,
+      "membership_name": "Cotton On Rewards",
+      "membership_cost": "free",
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Sign in to or join the Cotton On rewards/membership program.",
+        "Open the Cotton On app or rewards account.",
+        "Find and activate the offer if required.",
+        "Use the app or account at checkout."
+      ],
+      "promo_code": null,
+      "terms_text": "You have RM0 of perks rewards21 points until next RM15 Terms & Conditions: Up to 50% off Sale Instore & Online: Up to 50% off sale at Cotton On Women, Cotton On Men, Cotton On Body, Cotton On Kids, Typo and Rubi. Offer excludes Cotton On Foundation, Personalisation, Bundles and Gift Cards. Offer available exclusively online at cottonon.com/MY  until 11.59pm 24/06/26. Discount applied at checkout when promo code is applied. Cannot be used in conjunction with any other coupons & promo codes.",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "medium",
+      "friction_reasons": [
+        "Membership or rewards account required",
+        "App may be required"
+      ],
+      "confidence_score": 0.65,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\cotton_on_20260529T110247Z_7913a8da.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Generated by offline rule-based parser.",
+        "Review manually before treating as final promotion data."
+      ],
+      "visibility": "public_general_offer",
+      "sender_email": "news@e.cottonon.com",
+      "email_subject": "RM30 Sleep👏 RM45 Active👏 RM60 Denim👏and more (!!)",
+      "email_date": "2026-05-29T11:02:47+00:00",
+      "status": "needs_review",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": false,
+        "action_type": "not_supported",
+        "button_label": "",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [],
+        "eliminates_steps": [],
+        "effort_level": "high",
+        "confidence": 0.0
+      },
+      "rank_base_score": 68.0,
+      "global_quality_score": 43.0
+    },
+    {
+      "brand": "CSC GO",
+      "category": null,
+      "promotion_title": "$30 Gift for Using CSC Laundry App",
+      "short_summary": "Earn a $30 gift card to use on wine, food delivery, clothing and more via GoNift.com.",
+      "promotion_type": "app_offer",
+      "discount_type": "amount_off",
+      "discount_value": "$30",
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": "2026-07-13",
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "online",
+      "redemption_steps": [
+        "Sign in to GoNift.com with the gift code 8EY5JH",
+        "Redeem the $30 gift card at participating businesses"
+      ],
+      "promo_code": "8EY5JH",
+      "terms_text": "Gifts may not be combined with promotions or sales, and are non-transferable.",
+      "minimum_spend": null,
+      "purchase_required": true,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [],
+      "confidence_score": 1.0,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\csc_go_20260613T140117Z_ff036d19.txt",
+      "extraction_status": "success",
+      "notes": [],
+      "visibility": "private_user_offer",
+      "sender_email": "cscgo@hello.cscsw.com",
+      "email_subject": "A Gift from CSC",
+      "email_date": "2026-06-13T14:01:17+00:00",
+      "status": "active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_app",
+        "button_label": "Open CSC GO App",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Find this promotion in the app.",
+          "Add qualifying items to your cart.",
+          "Complete checkout in-app."
+        ],
+        "eliminates_steps": [
+          "Searching for the offer manually in the app"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.8
+      },
+      "rank_base_score": 76.2,
+      "global_quality_score": 51.2
+    },
+    {
+      "brand": "DoorDash",
+      "category": null,
+      "promotion_title": "DoorDash 15% offer",
+      "short_summary": "DoorDash has a 15% offer that may require membership and may require the app.",
+      "promotion_type": "app_offer",
+      "discount_type": "percentage_off",
+      "discount_value": "15%",
+      "requires_membership": true,
+      "membership_name": "DoorDash Rewards",
+      "membership_cost": "free",
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Sign in to or join the DoorDash rewards/membership program.",
+        "Open the DoorDash app or rewards account.",
+        "Find and activate the offer if required.",
+        "Use the app or account at checkout."
+      ],
+      "promo_code": null,
+      "terms_text": "More deals below, fewer fees on top. DashPass members get $0 delivery fees and reduced service fees on eligible orders* to help you save even more. *Terms apply. the app *Terms apply. Only available to select users as indicated in their account associated with this email address. Must have an existing DoorDash account with a valid form of accepted payment on file. Featured offers are provided by participating merchants and are subject to their individual terms, availability, and change. Available at participating locations. Offers may vary over time. See full terms and conditions at doordash.com/terms/ $0 delivery fees with DashPass: DashPass members can also enjoy $0 delivery fees ($0 delivery fee plus no service fee) on eligible grocery orders with a minimum subtotal of $35 (subtotal excludes taxes and gratuity). Taxes and gratuity for the order still apply. Must be an active DashPass member. See further terms and conditions DashPass benefits apply only to eligible orders from DashPass merchants that meet the minimum subtotal requirement, excluding fees and taxes. Subtotal minimums will be identified on DoorDash for each DashPass eligible merchant. Other fees (including service fee), taxes, and gratuity still apply. DashPass terms Must have an active DashPass account linked to a Lyft account. Discount applies to subtotal only; does not apply to fees, taxes, and gratuity. Maximum of 4 discounted rides per month in total for 5% discounted on-demand rides and 10% scheduled rid",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "medium",
+      "friction_reasons": [
+        "Membership or rewards account required",
+        "App may be required"
+      ],
+      "confidence_score": 0.65,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\doordash_20260612T182327Z_0d780e1e.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Generated by offline rule-based parser.",
+        "Review manually before treating as final promotion data."
+      ],
+      "visibility": "public_general_offer",
+      "sender_email": "no-reply@doordash.com",
+      "email_subject": "New ways to save this week",
+      "email_date": "2026-06-12T18:23:27+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_app",
+        "button_label": "Open DoorDash App",
+        "primary_value": null,
+        "primary_url": "https://www.doordash.com",
+        "app_deep_link": "doordash://",
+        "web_fallback_url": "https://www.doordash.com",
+        "steps_after_click": [
+          "Find this promotion in the app.",
+          "Add qualifying items to your cart.",
+          "Complete checkout in-app."
+        ],
+        "eliminates_steps": [
+          "Searching for the offer manually in the app"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.8
+      },
+      "rank_base_score": 49.0,
+      "global_quality_score": 24.0
     },
     {
       "brand": "DoorDash",
@@ -26923,7 +28068,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 80.0
+      "rank_base_score": 80.0,
+      "global_quality_score": 55.0
     },
     {
       "brand": "DoorDash",
@@ -26996,7 +28142,136 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 53.0
+      "rank_base_score": 53.0,
+      "global_quality_score": 28.0
+    },
+    {
+      "brand": "Flex + Portico Kirby",
+      "category": null,
+      "promotion_title": "Flex + Portico Kirby Promotion",
+      "short_summary": "Flex + Portico Kirby is offering $14.99/month for recurring monthly membership fee off. See terms for details.",
+      "promotion_type": "membership_benefit",
+      "discount_type": "sale_price",
+      "discount_value": "$14.99/month for recurring monthly membership fee",
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "online",
+      "redemption_steps": [],
+      "promo_code": null,
+      "terms_text": "All lines of credit, (including “Flex Rent”), banking services, money movement, and payment transmissions are offered by Lead Bank or Column N.A., Member FDIC. Memberships automatically renew until canceled.",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "medium",
+      "friction_reasons": [
+        "Requires app and account login"
+      ],
+      "confidence_score": 0.75,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\flex_portico_kirby_20260607T162819Z_16d3040c.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Recurring monthly membership fee is explicitly stated."
+      ],
+      "visibility": "private_user_offer",
+      "sender_email": "team@payments.getflex.com",
+      "email_subject": "Still thinking about Flex Rent? It’s simple and secure",
+      "email_date": "2026-06-07T16:28:19+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_app",
+        "button_label": "Open Flex + Portico Kirby App",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Find this promotion in the app.",
+          "Add qualifying items to your cart.",
+          "Complete checkout in-app."
+        ],
+        "eliminates_steps": [
+          "Searching for the offer manually in the app"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.8
+      },
+      "rank_base_score": 55.0,
+      "global_quality_score": 30.0
+    },
+    {
+      "brand": "Flex + Portico Kirby",
+      "category": null,
+      "promotion_title": "Flex + Portico Kirby Promotion",
+      "short_summary": "Flex + Portico Kirby: Flex + Portico Kirby Promotion.",
+      "promotion_type": "membership_benefit",
+      "discount_type": "free_shipping",
+      "discount_value": null,
+      "requires_membership": true,
+      "membership_name": null,
+      "membership_cost": "unknown",
+      "requires_app": false,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "online",
+      "redemption_steps": [],
+      "promo_code": null,
+      "terms_text": "A bill payment fee of 1% of your total rent is also charged when you pay your rent using the Flex app (additional card processing fee applies when using a credit card).",
+      "minimum_spend": null,
+      "purchase_required": true,
+      "deal_scope": "brand_level",
+      "friction_level": "medium",
+      "friction_reasons": [
+        "Requires account login and membership"
+      ],
+      "confidence_score": 0.75,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\flex_portico_kirby_20260605T162820Z_a5f2eed1.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Free shipping for Flex app users, but requires membership and account login."
+      ],
+      "visibility": "private_user_offer",
+      "sender_email": "rentportal@alerts.getflex.com",
+      "email_subject": "Don’t forget: Complete sign-up with Flex Rent to split your June rent!",
+      "email_date": "2026-06-05T16:28:20+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": false,
+        "action_type": "not_supported",
+        "button_label": "",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [],
+        "eliminates_steps": [],
+        "effort_level": "high",
+        "confidence": 0.0
+      },
+      "rank_base_score": 34.0,
+      "global_quality_score": 9.0
     },
     {
       "brand": "foodpanda",
@@ -27067,7 +28342,8 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 63.0
+      "rank_base_score": 63.0,
+      "global_quality_score": 38.0
     },
     {
       "brand": "foodpanda",
@@ -27132,7 +28408,74 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "rank_base_score": 70.0
+      "rank_base_score": 70.0,
+      "global_quality_score": 45.0
+    },
+    {
+      "brand": "foodpanda",
+      "category": "food",
+      "promotion_title": "60% off & free delivery",
+      "short_summary": "Get 60% off and free delivery on your next order with the code WEMISSYOU.",
+      "promotion_type": "app_offer",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "Asia/Kuala_Lumpur",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Open the foodpanda app",
+        "Apply code WEMISSYOU"
+      ],
+      "promo_code": "WEMISSYOU",
+      "terms_text": "Valid for your next food delivery order, exclusively on the foodpanda app.",
+      "minimum_spend": null,
+      "purchase_required": true,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [],
+      "confidence_score": 0.95,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\foodpanda_20260603T110541Z_fa470a37.txt",
+      "extraction_status": "success",
+      "notes": [],
+      "visibility": "private_user_offer",
+      "sender_email": "contact@info.foodpanda.my",
+      "email_subject": "This way to 60% off & free delivery!",
+      "email_date": "2026-06-03T11:05:41+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_app",
+        "button_label": "Open foodpanda App",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Go to Offers or Deals in the app.",
+          "Activate the deal and add qualifying items.",
+          "Complete your order in-app."
+        ],
+        "eliminates_steps": [
+          "Searching for the offer manually in the app"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.8
+      },
+      "rank_base_score": 97.0,
+      "global_quality_score": 62.0
     },
     {
       "brand": "From You Flowers",
@@ -27203,7 +28546,145 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 82.0
+      "rank_base_score": 82.0,
+      "global_quality_score": 57.0
+    },
+    {
+      "brand": "Frontier Airlines",
+      "category": null,
+      "promotion_title": "Frontier Airlines $50 offer",
+      "short_summary": "Frontier Airlines has a $50 offer that may require membership and may require the app.",
+      "promotion_type": "sale",
+      "discount_type": "amount_off",
+      "discount_value": "$50",
+      "requires_membership": true,
+      "membership_name": "Frontier Airlines Rewards",
+      "membership_cost": "free",
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": true,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Sign in to or join the Frontier Airlines rewards/membership program.",
+        "Open the Frontier Airlines app or rewards account.",
+        "Find and activate the offer if required.",
+        "Use the app or account at checkout."
+      ],
+      "promo_code": null,
+      "terms_text": "Your ticket to more adventures and more savings starts with Discount Den. Join Discount Den Discount Den fares Unlock membership-only perks like exclusive deals, lower fares, and savings you can share with up to 8 people today! Waived enrollment fee is valid 6/1/26–6/7/26. for Discount Den terms and conditions. Buy by 6/7/26. Fly by 11/19/26 select days of week. 14‑day advance purchase required. Blackout dates apply. Seats limited. Full terms and conditions below. Terms apply",
+      "minimum_spend": null,
+      "purchase_required": true,
+      "deal_scope": "brand_level",
+      "friction_level": "high",
+      "friction_reasons": [
+        "Membership or rewards account required",
+        "App may be required",
+        "May be limited to new users"
+      ],
+      "confidence_score": 0.65,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\frontier_airlines_20260601T153757Z_8847719b.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Generated by offline rule-based parser.",
+        "Review manually before treating as final promotion data."
+      ],
+      "visibility": "public_general_offer",
+      "sender_email": "deals@emails.flyfrontier.com",
+      "email_subject": "Save $50 on Discount Den membership and get summer travel starting at $34 fares",
+      "email_date": "2026-06-01T15:37:57+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_app",
+        "button_label": "Open Frontier Airlines App",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Find this promotion in the app.",
+          "Add qualifying items to your cart.",
+          "Complete checkout in-app."
+        ],
+        "eliminates_steps": [
+          "Searching for the offer manually in the app"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.8
+      },
+      "rank_base_score": 77.0,
+      "global_quality_score": 52.0
+    },
+    {
+      "brand": "IBM Talent Acquisition",
+      "category": null,
+      "promotion_title": "AI Builders Challenge with IBM Bob",
+      "short_summary": "Join the AI Builders Challenge and compete for a share of $15,000 in prizes. Register now to build an AI project you can showcase to employers.",
+      "promotion_type": "sale",
+      "discount_type": "unknown",
+      "discount_value": null,
+      "requires_membership": true,
+      "membership_name": "SkillsBuild learning platform membership",
+      "membership_cost": "free",
+      "requires_app": false,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "online",
+      "redemption_steps": [
+        "Sign into the SkillsBuild learning platform.",
+        "Register for the AI Builders Challenge."
+      ],
+      "promo_code": null,
+      "terms_text": "You'll have to sign into our free SkillsBuild learning platform to access the course below.",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [],
+      "confidence_score": 0.85,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\ibm_talent_acquisition_20260608T151716Z_e6110caf.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Requires a free account on the SkillsBuild learning platform."
+      ],
+      "visibility": "private_user_offer",
+      "sender_email": "talent@ibm.com",
+      "email_subject": "This AI challenge could land on your CV 🧠💼",
+      "email_date": "2026-06-08T15:17:16+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": false,
+        "action_type": "not_supported",
+        "button_label": "",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [],
+        "eliminates_steps": [],
+        "effort_level": "high",
+        "confidence": 0.0
+      },
+      "rank_base_score": 41.0,
+      "global_quality_score": 16.0
     },
     {
       "brand": "Instacart",
@@ -27277,7 +28758,216 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 59.0
+      "rank_base_score": 59.0,
+      "global_quality_score": 34.0
+    },
+    {
+      "brand": "KAYAK",
+      "category": null,
+      "promotion_title": "KAYAK 25% offer",
+      "short_summary": "KAYAK has a birthday-related reward and may require the app.",
+      "promotion_type": "birthday_reward",
+      "discount_type": "percentage_off",
+      "discount_value": "25%",
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": true,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Open the KAYAK app or rewards account.",
+        "Find and activate the offer if required.",
+        "Use the app or account at checkout."
+      ],
+      "promo_code": null,
+      "terms_text": "Book now to get a free two-car-class upgrade when you reserve an intermediate or above car. Plus, save up to 25% off base rates. Terms apply.* Whether you're traveling to soccer's biggest tournament, or to celebrate America's 250th birthday, reserve now to secure a great deal on the car of your choice this summer. Full terms and conditions Prices, savings, and availability may vary. Additional restrictions may apply. Savings are not ensured. KAYAK does not sell tickets but provides a price comparison service. The deals in this newsletter were current at the time this email was published and subject to change based on date, time and availability, which may be extremely limited. KAYAK accepts no liability for inaccuracies arising from this or any other cause, including, but not limited to, expiration of deals and typographical error, we are not responsible for any loss, damages, or injury incurred by the deals herein. Unless otherwise specified, hotel prices are per night and based on double-occupancy rooms. Unless specified to be one-way (ow) or otherwise, flight prices are for round-trip (rt) economy class travel and include taxes and fees. If in doubt, always consult the agent or company supplying the tickets. Please check the provider’s webpage or contact the provider for additional details.",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [
+        "App may be required"
+      ],
+      "confidence_score": 0.65,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\kayak_20260603T160915Z_e8708ca6.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Generated by offline rule-based parser.",
+        "Review manually before treating as final promotion data."
+      ],
+      "visibility": "public_general_offer",
+      "sender_email": "kayak@msg.kayak.com",
+      "email_subject": "Need a rental car? Grab this Double Deal from Avis.",
+      "email_date": "2026-06-03T16:09:15+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_app",
+        "button_label": "Open KAYAK App",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Find this promotion in the app.",
+          "Add qualifying items to your cart.",
+          "Complete checkout in-app."
+        ],
+        "eliminates_steps": [
+          "Searching for the offer manually in the app"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.8
+      },
+      "rank_base_score": 82.0,
+      "global_quality_score": 57.0
+    },
+    {
+      "brand": "LinkedIn Premium",
+      "category": null,
+      "promotion_title": "LinkedIn Premium 25% offer",
+      "short_summary": "LinkedIn Premium has a 25% offer that may require membership and may require the app.",
+      "promotion_type": "app_offer",
+      "discount_type": "percentage_off",
+      "discount_value": "25%",
+      "requires_membership": true,
+      "membership_name": "LinkedIn Premium Rewards",
+      "membership_cost": "free",
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Sign in to or join the LinkedIn Premium rewards/membership program.",
+        "Open the LinkedIn Premium app or rewards account.",
+        "Find and activate the offer if required.",
+        "Use the app or account at checkout."
+      ],
+      "promo_code": null,
+      "terms_text": "my offer We’re excited to offer discount to job top applicant my offer Easy to cancel. Offer ends 2026-06-11 *Promotional price discount is available as long as Premium member continues subscription. If you",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "medium",
+      "friction_reasons": [
+        "Membership or rewards account required",
+        "App may be required"
+      ],
+      "confidence_score": 0.65,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\linkedin_premium_20260603T152149Z_60c51b79.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Generated by offline rule-based parser.",
+        "Review manually before treating as final promotion data."
+      ],
+      "visibility": "public_general_offer",
+      "sender_email": "linkedin@em.linkedin.com",
+      "email_subject": "Jeeven, thanks for being a valued member",
+      "email_date": "2026-06-03T15:21:49+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_app",
+        "button_label": "Open LinkedIn Premium App",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Find this promotion in the app.",
+          "Add qualifying items to your cart.",
+          "Complete checkout in-app."
+        ],
+        "eliminates_steps": [
+          "Searching for the offer manually in the app"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.8
+      },
+      "rank_base_score": 61.0,
+      "global_quality_score": 36.0
+    },
+    {
+      "brand": "Microsoft",
+      "category": null,
+      "promotion_title": "Free All-Access Digital Pass for Microsoft Build",
+      "short_summary": "Register now to get a free all-access digital pass, including live streaming of the keynote and sessions.",
+      "promotion_type": "sale",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": false,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/Los_Angeles",
+      "redemption_method": "online",
+      "redemption_steps": [
+        "Register now at the provided link",
+        "Log in with your Microsoft account"
+      ],
+      "promo_code": null,
+      "terms_text": "All of it is free. No travel required.",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [],
+      "confidence_score": 0.95,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\microsoft_20260530T190528Z_7757597c.txt",
+      "extraction_status": "success",
+      "notes": [
+        "This offer includes access to live streaming, sessions, and hands-on labs."
+      ],
+      "visibility": "private_user_offer",
+      "sender_email": "replyto@email.microsoft.com",
+      "email_subject": "Last call: Join Microsoft Build, free to register",
+      "email_date": "2026-05-30T19:05:28+00:00",
+      "status": "needs_review",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": false,
+        "action_type": "not_supported",
+        "button_label": "",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [],
+        "eliminates_steps": [],
+        "effort_level": "high",
+        "confidence": 0.0
+      },
+      "rank_base_score": 100.0,
+      "global_quality_score": 75.0
     },
     {
       "brand": "Sephora",
@@ -27350,7 +29040,154 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 61.0
+      "rank_base_score": 61.0,
+      "global_quality_score": 36.0
+    },
+    {
+      "brand": "Sephora",
+      "category": null,
+      "promotion_title": "Sephora 15% offer",
+      "short_summary": "Sephora has a 15% offer that may require membership and may require the app.",
+      "promotion_type": "app_offer",
+      "discount_type": "percentage_off",
+      "discount_value": "15%",
+      "requires_membership": true,
+      "membership_name": "Beauty Insider",
+      "membership_cost": "free",
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Sign in to or join the Sephora rewards/membership program.",
+        "Open the Sephora app or rewards account.",
+        "Find and activate the offer if required.",
+        "Use the app or account at checkout."
+      ],
+      "promo_code": null,
+      "terms_text": "MEMBER#: 6501373943405 TERMS TERMS & CONDITIONS and on the Sephora Mobile app. [Beauty Pass Exclusive] Get 15% off on selected brands (excluding any applicable cost of delivery). Valid on Burberry beauty, Gucci Beauty, Calvin Klein, Chloe, Hugo Boss, Kylie Cosmetics, Marc Jacobs Fragrances and Tiffany & Co.) Promotion is valid from 29 May (10:00am MYT) till 2 June 2026 (11:59pm MYT) on , Sephora Malaysia Mobile App. You must be signed into your beauty pass account for the promo to be applicable. Offer is not valid with other discounts and promotions. Offer is not valid on gift cards, services, charitable items or any other exclusions mentioned in-store, on and/or Sephora Malaysia mobile app. Offered product is not exchangeable. [Beauty Pass Exclusive] Receive a 3-piece gift (Kylie Jenner Cosmic Eau De Parfum (5ml), Gucci Beauty Flora Gorgeous Gardenia Eau De Parfum (5ml) and Burberry Beauty Goddess Parfum (5ml)), while stocks last. Valid with min. spend RM 1,000 across Burberry beauty, Gucci Beauty, Calvin Klein, Chloe, Hugo Boss, Kylie Cosmetics, Marc Jacobs Fragrances and Tiffany & Co.) Promotion is valid from 29 May (10:00am MYT) till 2 June 2026 (11:59pm MYT) on",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "medium",
+      "friction_reasons": [
+        "Membership or rewards account required",
+        "App may be required"
+      ],
+      "confidence_score": 0.65,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\sephora_20260529T043804Z_b32ac918.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Generated by offline rule-based parser.",
+        "Review manually before treating as final promotion data."
+      ],
+      "visibility": "public_general_offer",
+      "sender_email": "hello@beauty.sephora.my",
+      "email_subject": "🌼Spring Beauty Deals",
+      "email_date": "2026-05-29T04:38:04+00:00",
+      "status": "needs_review",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": false,
+        "action_type": "not_supported",
+        "button_label": "",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [],
+        "eliminates_steps": [],
+        "effort_level": "high",
+        "confidence": 0.0
+      },
+      "rank_base_score": 41.0,
+      "global_quality_score": 16.0
+    },
+    {
+      "brand": "Uber",
+      "category": null,
+      "promotion_title": "Show up for Dad and save 30%",
+      "short_summary": "Enjoy 30% off (up to $8) an item delivery with Courier.",
+      "promotion_type": "app_offer",
+      "discount_type": "percentage_off",
+      "discount_value": "30%",
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": "2026-06-13",
+      "end_date": "2026-06-27",
+      "valid_days": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Open the Uber app",
+        "Select Courier delivery option",
+        "Choose an item to deliver"
+      ],
+      "promo_code": null,
+      "terms_text": "Maximum discount of $8 per trip. Maximum of 1 trip per user.",
+      "minimum_spend": null,
+      "purchase_required": true,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [],
+      "confidence_score": 0.95,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\uber_20260613T123827Z_c129a87e.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Offer is valid for 14 days after being added to the user's account.",
+        "Discount/promo is valid for Courier trip(s) only."
+      ],
+      "visibility": "private_user_offer",
+      "sender_email": "noreply@uber.com",
+      "email_subject": "30% off Father’s Day deliveries",
+      "email_date": "2026-06-13T12:38:27+00:00",
+      "status": "active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_app",
+        "button_label": "Open Uber App",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Find this promotion in the app.",
+          "Add qualifying items to your cart.",
+          "Complete checkout in-app."
+        ],
+        "eliminates_steps": [
+          "Searching for the offer manually in the app"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.8
+      },
+      "rank_base_score": 85.0,
+      "global_quality_score": 60.0
     },
     {
       "brand": "Uber Eats",
@@ -27423,7 +29260,347 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 55.0
+      "rank_base_score": 55.0,
+      "global_quality_score": 30.0
+    },
+    {
+      "brand": "Uber Eats",
+      "category": null,
+      "promotion_title": "Uber Eats 50% offer",
+      "short_summary": "Uber Eats has a 50% offer that may require membership and may require the app.",
+      "promotion_type": "app_offer",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "requires_membership": true,
+      "membership_name": "Uber Eats Rewards",
+      "membership_cost": "free",
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Sign in to or join the Uber Eats rewards/membership program.",
+        "Open the Uber Eats app or rewards account.",
+        "Find and activate the offer if required.",
+        "Use the app or account at checkout."
+      ],
+      "promo_code": null,
+      "terms_text": "Member Days is officially here. For the next 10 days, our biggest deals of the year are strictly for the inner circle. (Maximum discount of $15  off your next  order over $25)* Thanks for being an Uber One member, Jeeven Members get $0 Delivery Fee and up to 10% off on eligible orders with Uber Eats.** *Expires Jun 1, 2026 12:00AM PT.  Valid for up to $15 off your next  order at qualifying restaurants for delivery only.   Order minimum of $25 (before taxes and fees). Must apply the promo code in the app before completing your order. Cannot be combined. Exclusions may apply. See app for details. **Benefits available only where Uber operates for eligible stores and rides marked with the Uber One icon. Other fees & taxes apply, but do not count towards order minimums or Uber One credits benefits. Receive $0 Delivery Fee on standard delivery within at least 3 miles, and discounted Service Fee, from participating stores when you meet the order minimums shown on the storefront.  Additional and optional fees may be charged for Priority Delivery and Long Range Delivery.  Where applicable, Uber One credits are earned after completion of eligible rides and expire 60 days after being added to your wallet. Subject to change.  View the Renewable Membership T&Cs Terms",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "medium",
+      "friction_reasons": [
+        "Membership or rewards account required",
+        "App may be required"
+      ],
+      "confidence_score": 0.65,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\uber_eats_20260529T181314Z_5c2b6ee6.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Generated by offline rule-based parser.",
+        "Review manually before treating as final promotion data."
+      ],
+      "visibility": "public_general_offer",
+      "sender_email": "noreply@uber.com",
+      "email_subject": "Jeeven, your promo is expiring soon ⏰",
+      "email_date": "2026-05-29T18:13:14+00:00",
+      "status": "needs_review",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": false,
+        "action_type": "not_supported",
+        "button_label": "",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [],
+        "eliminates_steps": [],
+        "effort_level": "high",
+        "confidence": 0.0
+      },
+      "rank_base_score": 64.0,
+      "global_quality_score": 39.0
+    },
+    {
+      "brand": "Uber Eats",
+      "category": null,
+      "promotion_title": "Uber Eats 10% offer",
+      "short_summary": "Uber Eats has a 10% offer that may require membership and may require the app.",
+      "promotion_type": "membership_benefit",
+      "discount_type": "percentage_off",
+      "discount_value": "10%",
+      "requires_membership": true,
+      "membership_name": "Uber Eats Rewards",
+      "membership_cost": "free",
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Sign in to or join the Uber Eats rewards/membership program.",
+        "Open the Uber Eats app or rewards account.",
+        "Find and activate the offer if required.",
+        "Use the app or account at checkout."
+      ],
+      "promo_code": null,
+      "terms_text": "Thanks for being an Uber One member, Jeeven Members get $0 Delivery Fee and up to 10% off on eligible orders with Uber Eats.** *Expires Jun 8, 2026 12:00AM PT.  Valid for $7 off your next  order at qualifying restaurants for delivery only.  Order minimum of $25 (before taxes and fees). Must apply the promo code in the app before completing your order. Cannot be combined. Exclusions may apply. See app for details. **Benefits available only where Uber operates for eligible stores and rides marked with the Uber One icon. Other fees & taxes apply, but do not count towards order minimums or Uber One credits benefits. Receive $0 Delivery Fee on standard delivery within at least 3 miles, and discounted Service Fee, from participating stores when you meet the order minimums shown on the storefront.  Additional and optional fees may be charged for Priority Delivery and Long Range Delivery.  Where applicable, Uber One credits are earned after completion of eligible rides and expire 60 days after being added to your wallet. Subject to change.  View the Renewable Membership T&Cs Terms",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "medium",
+      "friction_reasons": [
+        "Membership or rewards account required",
+        "App may be required"
+      ],
+      "confidence_score": 0.65,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\uber_eats_20260601T123236Z_8f7ed922.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Generated by offline rule-based parser.",
+        "Review manually before treating as final promotion data."
+      ],
+      "visibility": "public_general_offer",
+      "sender_email": "noreply@uber.com",
+      "email_subject": "You've got a promo, Jeeven! 🥳  Get $7 off your next  order",
+      "email_date": "2026-06-01T12:32:36+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_app",
+        "button_label": "Open Uber Eats App",
+        "primary_value": null,
+        "primary_url": "https://www.ubereats.com",
+        "app_deep_link": "ubereats://",
+        "web_fallback_url": "https://www.ubereats.com",
+        "steps_after_click": [
+          "Find this promotion in the app.",
+          "Add qualifying items to your cart.",
+          "Complete checkout in-app."
+        ],
+        "eliminates_steps": [
+          "Searching for the offer manually in the app"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.8
+      },
+      "rank_base_score": 49.0,
+      "global_quality_score": 24.0
+    },
+    {
+      "brand": "Uber Eats",
+      "category": null,
+      "promotion_title": "Uber Eats 30% offer",
+      "short_summary": "Uber Eats has a 30% offer that may require membership and may require the app.",
+      "promotion_type": "app_offer",
+      "discount_type": "percentage_off",
+      "discount_value": "30%",
+      "requires_membership": true,
+      "membership_name": "Uber Eats Rewards",
+      "membership_cost": "free",
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Sign in to or join the Uber Eats rewards/membership program.",
+        "Open the Uber Eats app or rewards account.",
+        "Find and activate the offer if required.",
+        "Use the app or account at checkout."
+      ],
+      "promo_code": null,
+      "terms_text": "Happy Tuesday! Uber One members save 30% on select fresh groceries like produce, eggs, dairy and more every week. And don’t forget, your membership always includes $0 Delivery Fee on every eligible order. Promo expires every Tuesday at 11:59PM local time. Promo valid for 30% off. Before taxes and fees, from select products and stores in the Grocery section of the Uber Eats app. Discount available on your next order only. Eligible orders placed ahead of time must be scheduled for delivery before expiration date. Valid only for those who received the offer directly from Uber. Taxes and fees still apply. Terms are subject to change. Pickup orders excluded. Other exclusions may apply (e.g., alcohol orders). See the Uber Eats app for details. Discount on select items from participating stores in the Grocery and Retail sections of the Uber Eats app. Order minimum (before taxes and fees) and maximum savings apply, some restrictions apply, see app for details. Orders placed ahead of time must be scheduled for delivery before expiration date. Offer and terms are subject to change or cancellation. Benefits available only where Uber operates for eligible stores and rides marked with the Uber One icon. Other fees & taxes apply, but do not count towards order minimums or Uber One credits benefits. Receive $0 Delivery Fee on standard delivery within at least 3 miles, and discounted Service Fee, from participating stores when you meet the order minimums shown on the storefront.  Additional ",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "medium",
+      "friction_reasons": [
+        "Membership or rewards account required",
+        "App may be required"
+      ],
+      "confidence_score": 0.65,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\uber_eats_20260602T141946Z_c4cb8884.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Generated by offline rule-based parser.",
+        "Review manually before treating as final promotion data."
+      ],
+      "visibility": "public_general_offer",
+      "sender_email": "noreply@uber.com",
+      "email_subject": "30% off? Now that’s fresh.",
+      "email_date": "2026-06-02T14:19:46+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_app",
+        "button_label": "Open Uber Eats App",
+        "primary_value": null,
+        "primary_url": "https://www.ubereats.com",
+        "app_deep_link": "ubereats://",
+        "web_fallback_url": "https://www.ubereats.com",
+        "steps_after_click": [
+          "Find this promotion in the app.",
+          "Add qualifying items to your cart.",
+          "Complete checkout in-app."
+        ],
+        "eliminates_steps": [
+          "Searching for the offer manually in the app"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.8
+      },
+      "rank_base_score": 66.0,
+      "global_quality_score": 41.0
+    },
+    {
+      "brand": "Viva",
+      "category": null,
+      "promotion_title": "Viva 10% offer",
+      "short_summary": "Viva has a 10% offer.",
+      "promotion_type": "unknown",
+      "discount_type": "percentage_off",
+      "discount_value": "10%",
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": false,
+      "requires_account_login": false,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Open the Viva app or rewards account.",
+        "Find and activate the offer if required.",
+        "Use the app or account at checkout."
+      ],
+      "promo_code": null,
+      "terms_text": "App Store download",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [
+        "Simple redemption"
+      ],
+      "confidence_score": 0.65,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\viva_20260611T170637Z_ab1b7d27.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Generated by offline rule-based parser.",
+        "Review manually before treating as final promotion data."
+      ],
+      "visibility": "public_general_offer",
+      "sender_email": "promo@newsletter.vivaaerobus.com",
+      "email_subject": "⚽¿Listo para gritar GOOOOL?💚",
+      "email_date": "2026-06-11T17:06:37+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": false,
+        "action_type": "not_supported",
+        "button_label": "",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [],
+        "eliminates_steps": [],
+        "effort_level": "high",
+        "confidence": 0.0
+      },
+      "rank_base_score": 48.0,
+      "global_quality_score": 23.0
+    },
+    {
+      "brand": "ZALORA",
+      "category": null,
+      "promotion_title": "Flash deals, lowered price & top brands on HUGE markdowns—checkout now",
+      "short_summary": "Flash deals, lowered price & top brands on HUGE markdowns—checkout now",
+      "promotion_type": "sale",
+      "discount_type": "percentage_off",
+      "discount_value": null,
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": false,
+      "requires_account_login": false,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "online",
+      "redemption_steps": [],
+      "promo_code": null,
+      "terms_text": "T&C APPLY",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [],
+      "confidence_score": 0.75,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\zalora_20260605T113521Z_ec56506d.txt",
+      "extraction_status": "success",
+      "notes": [],
+      "visibility": "private_user_offer",
+      "sender_email": "noreply@em.zalora.com.my",
+      "email_subject": "6.6 Sale is LIVE 🔴 Shopping Spree Begins!",
+      "email_date": "2026-06-05T11:35:21+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": false,
+        "action_type": "not_supported",
+        "button_label": "",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [],
+        "eliminates_steps": [],
+        "effort_level": "high",
+        "confidence": 0.0
+      },
+      "rank_base_score": 46.0,
+      "global_quality_score": 21.0
     },
     {
       "brand": "ZALORA Menswear",
@@ -27489,7 +29666,75 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "rank_base_score": 50.0
+      "rank_base_score": 50.0,
+      "global_quality_score": 25.0
+    },
+    {
+      "brand": "ZALORA Menswear",
+      "category": null,
+      "promotion_title": "Up to 30% off polo shirts, jackets & more premium selects!",
+      "short_summary": "Upto 30% discount on polo shirts and jackets.",
+      "promotion_type": "sale",
+      "discount_type": "percentage_off",
+      "discount_value": null,
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "Asia/Kuala_Lumpur",
+      "redemption_method": "online",
+      "redemption_steps": [
+        "Tap in >"
+      ],
+      "promo_code": null,
+      "terms_text": "T&C APPLY",
+      "minimum_spend": null,
+      "purchase_required": true,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [],
+      "confidence_score": 0.85,
+      "source_type": "email",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\email_pipeline\\email_text\\zalora_menswear_20260611T050319Z_cec2ee66.txt",
+      "extraction_status": "success",
+      "notes": [
+        "No specific discount value provided, only up to 30% off."
+      ],
+      "visibility": "private_user_offer",
+      "sender_email": "noreply@em.zalora.com.my",
+      "email_subject": "Polo Ralph Lauren Super Brand Day 🌟",
+      "email_date": "2026-06-11T05:03:19+00:00",
+      "status": "probably_active",
+      "source": "email",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_app",
+        "button_label": "Open ZALORA Menswear App",
+        "primary_value": null,
+        "primary_url": null,
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Find this promotion in the app.",
+          "Add qualifying items to your cart.",
+          "Complete checkout in-app."
+        ],
+        "eliminates_steps": [
+          "Searching for the offer manually in the app"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.8
+      },
+      "rank_base_score": 54.0,
+      "global_quality_score": 29.0
     }
   ]
 }

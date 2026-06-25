@@ -16,7 +16,7 @@ Hard disqualifiers:
   - discount_type == "points"
   - requires paid membership AND user is not a confirmed member
   - new_user_only AND user is evidently an existing customer
-  - rank_base_score < 75
+  - global_quality_score < 75
 
 Near Me signals are intentionally excluded for beta.
 """
@@ -253,7 +253,7 @@ def main() -> None:
     skip_counts: dict[str, int] = {}
 
     for promo in promos:
-        score = promo.get('rank_base_score', 0.0)
+        score = promo.get('global_quality_score', 0.0)
         if score < NOTIFY_THRESHOLD:
             skip_counts['below_threshold'] = skip_counts.get('below_threshold', 0) + 1
             continue

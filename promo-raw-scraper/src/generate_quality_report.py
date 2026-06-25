@@ -96,12 +96,12 @@ def _delta_line(label: str, prev_val, curr_val: int | float, fmt: str = "d") -> 
 
 
 def _top_n_lines(pool: list[dict], n: int = 10) -> list[str]:
-    ranked = sorted(pool, key=lambda x: x.get("rank_base_score") or 0, reverse=True)[:n]
+    ranked = sorted(pool, key=lambda x: x.get("global_quality_score") or 0, reverse=True)[:n]
     lines: list[str] = []
     for i, p in enumerate(ranked, 1):
         brand  = p.get("brand") or "?"
         title  = (p.get("promotion_title") or "")[:48]
-        score  = p.get("rank_base_score") or 0
+        score  = p.get("global_quality_score") or 0
         conf   = p.get("confidence_score") or 0
         fr     = p.get("fast_redemption") or {}
         action = fr.get("button_label") or fr.get("action_type") or "—"
@@ -176,14 +176,14 @@ def main() -> None:
     out("=" * 60)
 
     fr_eligible = sum(1 for p in visible if (p.get("fast_redemption") or {}).get("eligible"))
-    has_score   = sum(1 for p in visible if p.get("rank_base_score") is not None)
+    has_score   = sum(1 for p in visible if p.get("global_quality_score") is not None)
     miss_title  = sum(1 for p in visible if not (p.get("promotion_title") or "").strip())
     miss_url    = sum(1 for p in visible if not (p.get("source_url") or "").strip())
     miss_brand  = sum(1 for p in visible if not (p.get("brand") or "").strip())
 
     out(f"  Visible deals after confidence filter : {len(visible)}")
     out(f"  Deals with fast_redemption eligible   : {fr_eligible}")
-    out(f"  Deals with rank_base_score            : {has_score}")
+    out(f"  Deals with global_quality_score            : {has_score}")
     out(f"  Deals missing title                   : {miss_title}")
     out(f"  Deals missing source_url              : {miss_url}")
     out(f"  Deals missing brand                   : {miss_brand}")
@@ -206,7 +206,7 @@ def main() -> None:
     if no_fast:
         warnings.append(f"  - {no_fast} deal(s) have no fast redeem action")
 
-    top20 = sorted(visible, key=lambda x: x.get("rank_base_score") or 0, reverse=True)[:20]
+    top20 = sorted(visible, key=lambda x: x.get("global_quality_score") or 0, reverse=True)[:20]
     low_conf_top = [p for p in top20 if (p.get("confidence_score") or 0) < 0.75]
     if low_conf_top:
         warnings.append(f"  - {len(low_conf_top)} of the top-20 ranked deals have confidence < 0.75")
