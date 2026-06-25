@@ -12,12 +12,7 @@ const _kRadiusKey     = 'near_me_radius_mi';
 const _kRadiusOptions = [1, 3, 5, 10, 25];
 
 class ProfileScreen extends StatefulWidget {
-  final Set<String> memberships;
-
-  const ProfileScreen({
-    super.key,
-    this.memberships = const {},
-  });
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -54,7 +49,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             SliverToBoxAdapter(child: _buildHeader()),
             if (SupabaseService.isLoggedIn)
               SliverToBoxAdapter(child: _buildAccountSection()),
-            SliverToBoxAdapter(child: _buildMembershipsSection()),
             SliverToBoxAdapter(child: _buildLocationSection()),
             SliverToBoxAdapter(child: _buildAboutSection()),
             const SliverPadding(padding: EdgeInsets.only(bottom: 32)),
@@ -120,36 +114,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ],
       ),
-    );
-  }
-
-  // ── Memberships ────────────────────────────────────────────────────────────
-
-  Widget _buildMembershipsSection() {
-    final memberships = widget.memberships.toList()..sort();
-    return _Section(
-      icon: Icons.card_membership_outlined,
-      title: 'My Memberships',
-      subtitle: 'Used to personalize your rewards',
-      child: memberships.isEmpty
-          ? _EmptyHint(
-              text: 'No memberships detected yet. '
-                  'They are read from your saved deals and email history.',
-            )
-          : Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: memberships
-                  .map((m) => Chip(
-                        label: Text(_capitalize(m)),
-                        backgroundColor: Candy.pink.withValues(alpha: 0.15),
-                        side: BorderSide(
-                            color: Candy.raspberry.withValues(alpha: 0.3)),
-                        labelStyle: const TextStyle(
-                            fontSize: 13, color: Candy.chocolate),
-                      ))
-                  .toList(),
-            ),
     );
   }
 
@@ -231,8 +195,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  String _capitalize(String s) =>
-      s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -325,13 +287,3 @@ class _TileRow extends StatelessWidget {
   }
 }
 
-class _EmptyHint extends StatelessWidget {
-  final String text;
-  const _EmptyHint({required this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(text,
-        style: TextStyle(fontSize: 13, color: Colors.grey.shade500));
-  }
-}
