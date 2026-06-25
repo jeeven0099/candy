@@ -109,7 +109,6 @@ class _NearMeScreenState extends State<NearMeScreen> {
       const nearMeRedemption = {'in_store', 'in_app', 'app_reward', 'show_code', 'open_maps'};
       if (!nearMeRedemption.contains(p.redemptionMethod)) return false;
       if (p.dealScope == 'online_only') return false;
-      if (p.source == 'email') return false;
       const blockedCategories = {'finance', 'travel', 'streaming', 'subscription', 'meal_kit', 'delivery_only'};
       if (blockedCategories.contains(p.category)) return false;
       const blockedBrands = {'chase', 'uber', 'hungryroot'};

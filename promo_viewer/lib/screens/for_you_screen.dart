@@ -32,20 +32,6 @@ class _ForYouScreenState extends State<ForYouScreen> {
     return ListenableBuilder(
       listenable: _svc,
       builder: (ctx, _) {
-        final privateDeals = widget.all
-            .where((p) {
-              if (p.source != 'email' || !p.isActive) return false;
-              final brand = p.brand.toLowerCase();
-              if (brand.contains('talent acquisition') ||
-                  brand.contains(' from ') ||
-                  p.confidenceScore < 0.6) {
-                return false;
-              }
-              return true;
-            })
-            .toList()
-          ..sort((a, b) => b.rankBaseScore.compareTo(a.rankBaseScore));
-
         final savedIds = _svc.all.map((s) => s.id).toList();
         final savedDeals = savedIds
             .map((id) {
@@ -58,35 +44,22 @@ class _ForYouScreenState extends State<ForYouScreen> {
             .whereType<Promotion>()
             .toList();
 
-        return DefaultTabController(
-          length: 2,
-          child: Scaffold(
-            backgroundColor: Candy.cream,
-            body: SafeArea(
-              child: Column(
-                children: [
-                  _buildHeader(),
-                  _buildTabBar(),
-                  const Divider(height: 1),
-                  Expanded(
-                    child: TabBarView(
-                      children: [
-                        _PrivateTab(
-                          promos: privateDeals,
-                          memberships: widget.memberships,
-                          onRefresh: widget.onRefresh,
-                        ),
-                        _SavedTab(
-                          promos: savedDeals,
-                          memberships: widget.memberships,
-                          svc: _svc,
-                          onRefresh: widget.onRefresh,
-                        ),
-                      ],
-                    ),
+        return Scaffold(
+          backgroundColor: Candy.cream,
+          body: SafeArea(
+            child: Column(
+              children: [
+                _buildHeader(),
+                const Divider(height: 1),
+                Expanded(
+                  child: _SavedTab(
+                    promos: savedDeals,
+                    memberships: widget.memberships,
+                    svc: _svc,
+                    onRefresh: widget.onRefresh,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );
@@ -103,11 +76,11 @@ class _ForYouScreenState extends State<ForYouScreen> {
         children: [
           const Icon(Icons.favorite, size: 22, color: Candy.raspberry),
           const SizedBox(width: 8),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'For You',
                   style: TextStyle(
                     fontSize: 26,
@@ -116,8 +89,8 @@ class _ForYouScreenState extends State<ForYouScreen> {
                     color: Candy.chocolate,
                   ),
                 ),
-                Text(
-                  'Personal & saved deals',
+                const Text(
+                  'Saved deals',
                   style: TextStyle(
                     fontSize: 12,
                     color: Candy.lavender,
@@ -136,153 +109,6 @@ class _ForYouScreenState extends State<ForYouScreen> {
               ),
             ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildTabBar() {
-    return const TabBar(
-      labelColor: Candy.raspberry,
-      unselectedLabelColor: Candy.muted,
-      indicatorColor: Candy.raspberry,
-      indicatorSize: TabBarIndicatorSize.label,
-      labelStyle: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
-      unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
-      tabs: [
-        Tab(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(Icons.mark_email_unread_outlined, size: 16),
-              SizedBox(width: 6),
-              Text('Private'),
-            ],
-          ),
-        ),
-        Tab(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(Icons.favorite_border, size: 16),
-              SizedBox(width: 6),
-              Text('Saved'),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Private tab — email-sourced deals
-// ---------------------------------------------------------------------------
-
-class _PrivateTab extends StatefulWidget {
-  final List<Promotion> promos;
-  final Set<String> memberships;
-  final Future<void> Function() onRefresh;
-
-  const _PrivateTab({
-    required this.promos,
-    required this.memberships,
-    required this.onRefresh,
-  });
-
-  @override
-  State<_PrivateTab> createState() => _PrivateTabState();
-}
-
-class _PrivateTabState extends State<_PrivateTab> {
-  static const _kLimit = 10;
-  bool _showAll = false;
-
-  @override
-  Widget build(BuildContext context) {
-    final all = widget.promos;
-    final display = (_showAll || all.length <= _kLimit) ? all : all.sublist(0, _kLimit);
-    final showSeeAll = !_showAll && all.length > _kLimit;
-
-    if (all.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.mark_email_unread_outlined, size: 48, color: Colors.grey.shade300),
-            const SizedBox(height: 12),
-            Text(
-              'No private deals yet',
-              style: TextStyle(
-                color: Colors.grey.shade500,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            const SizedBox(height: 4),
-            Text(
-              'Deals from your emails will appear here',
-              style: TextStyle(color: Colors.grey.shade400, fontSize: 13),
-            ),
-          ],
-        ),
-      );
-    }
-
-    return RefreshIndicator(
-      onRefresh: widget.onRefresh,
-      child: ListView.builder(
-        padding: const EdgeInsets.only(top: 8, bottom: 24),
-        itemCount: display.length + 1 + (showSeeAll ? 1 : 0),
-        itemBuilder: (context, i) {
-          if (i == 0) {
-            final label = showSeeAll
-                ? '${display.length} of ${all.length} private deals from your inbox'
-                : '${all.length} private deal${all.length == 1 ? '' : 's'} from your inbox';
-            return Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-              child: Row(
-                children: [
-                  const Icon(Icons.lock_outline, size: 13, color: Candy.raspberry),
-                  const SizedBox(width: 4),
-                  Expanded(
-                    child: Text(
-                      label,
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.grey.shade500,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          }
-          if (showSeeAll && i == display.length + 1) {
-            return Padding(
-              padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
-              child: OutlinedButton(
-                onPressed: () => setState(() => _showAll = true),
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: Candy.raspberry,
-                  side: const BorderSide(color: Candy.raspberry),
-                  minimumSize: const Size(double.infinity, 44),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                ),
-                child: Text('See all ${all.length} private deals'),
-              ),
-            );
-          }
-          final promo = display[i - 1];
-          return DealCard(
-            promo: promo,
-            memberships: widget.memberships,
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),
-            ),
-          );
-        },
       ),
     );
   }

@@ -68,21 +68,10 @@ class _SavedBody extends StatelessWidget {
       ..sort((a, b) => DateTime.parse(a.endDate!).compareTo(DateTime.parse(b.endDate!)));
   }
 
-  List<Promotion> get _privateDeals {
-    return all.where((p) {
-      if (p.source != 'email' || !p.isActive) return false;
-      final brand = p.brand.toLowerCase();
-      if (brand.contains('talent acquisition') || brand.contains(' from ')) return false;
-      return p.confidenceScore >= 0.6;
-    }).toList()
-      ..sort((a, b) => b.rankBaseScore.compareTo(a.rankBaseScore));
-  }
-
   @override
   Widget build(BuildContext context) {
     final saved   = _savedDeals;
     final expiring = _expiringSoon;
-    final private = _privateDeals;
 
     return Scaffold(
       backgroundColor: Candy.cream,
@@ -110,17 +99,6 @@ class _SavedBody extends StatelessWidget {
                 ))
               else
                 _dealSliverWithReminder(context, saved),
-              // Private/email deals
-              _sectionHeader(context, Icons.mark_email_unread_outlined, 'Private Deals',
-                  'Deals from your inbox'),
-              if (private.isEmpty)
-                SliverToBoxAdapter(child: _emptyState(
-                  icon: Icons.inbox_outlined,
-                  title: 'No private deals yet',
-                  subtitle: 'Deals emailed to you will appear here',
-                ))
-              else
-                _dealSliver(context, private),
               const SliverPadding(padding: EdgeInsets.only(bottom: 32)),
             ],
           ),

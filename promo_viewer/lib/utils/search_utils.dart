@@ -32,10 +32,9 @@ class SearchOptions {
 // Exclusion & context predicates
 // ─────────────────────────────────────────────────────────────────────────────
 
-// Membership + active/email check — no confidence gate (callers apply separately).
+// Membership + active check — no confidence gate (callers apply separately).
 bool _passesBasicExclusion(Promotion p, SearchOptions opts) {
   if (!p.isActive) return false;
-  if (p.source == 'email') return false;
   if (p.requiresMembership) {
     final cost = (p.membershipCost ?? '').toLowerCase();
     final isPaid = cost.contains('paid') ||
