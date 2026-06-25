@@ -1,6 +1,6 @@
 {
   "generated_at": "2026-06-25T19:24:39Z",
-  "promotion_count": 431,
+  "promotion_count": 430,
   "promotions": [
     {
       "brand": "Abercrombie & Fitch",
@@ -8870,72 +8870,6 @@
       },
       "rank_base_score": 43.0,
       "global_quality_score": 18.0
-    },
-    {
-      "brand": "Fandango",
-      "category": "entertainment",
-      "promotion_title": "¡Oferta especial para niños en el Mundial!",
-      "short_summary": "Recibe gratis un boleto infantil al comprar un boleto de adulto usando código TELEMUNDO.",
-      "promotion_type": "sale",
-      "discount_type": "free_item",
-      "discount_value": null,
-      "requires_membership": false,
-      "membership_name": null,
-      "membership_cost": null,
-      "requires_app": false,
-      "requires_account_login": false,
-      "new_user_only": false,
-      "birthday_related": false,
-      "start_date": null,
-      "end_date": null,
-      "valid_days": [],
-      "time_start": null,
-      "time_end": null,
-      "timezone": "America/New_York",
-      "redemption_method": "online",
-      "redemption_steps": [
-        "Use the code TELEMUNDO at checkout"
-      ],
-      "promo_code": "TELEMUNDO",
-      "terms_text": "Hasta $11 de precio total y cargos.",
-      "minimum_spend": null,
-      "purchase_required": true,
-      "deal_scope": "online_only",
-      "friction_level": "low",
-      "friction_reasons": [],
-      "confidence_score": 0.9,
-      "source_type": "web_page",
-      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\fandango_20260624T021623Z.txt",
-      "extraction_status": "success",
-      "notes": [],
-      "visibility": null,
-      "sender_email": null,
-      "email_subject": null,
-      "email_date": null,
-      "website_domain": "fandango.com",
-      "status": "online_only",
-      "source": "web",
-      "fast_redemption": {
-        "eligible": true,
-        "action_type": "copy_code_and_open_url",
-        "button_label": "Copy Code & Shop",
-        "primary_value": "TELEMUNDO",
-        "primary_url": "https://www.fandango.com",
-        "app_deep_link": null,
-        "web_fallback_url": null,
-        "steps_after_click": [
-          "Paste code \"TELEMUNDO\" at checkout.",
-          "Confirm the discount is applied before paying."
-        ],
-        "eliminates_steps": [
-          "Manually copying the promo code",
-          "Searching for the brand website"
-        ],
-        "effort_level": "low",
-        "confidence": 0.95
-      },
-      "rank_base_score": 120.0,
-      "global_quality_score": 95.0
     },
     {
       "brand": "Fandango",
