@@ -91,7 +91,6 @@ class _OnlineScreenState extends State<OnlineScreen> {
       final isOnline = p.redemptionMethod == 'online' ||
           (p.redemptionMethod == 'show_code' && p.dealScope == 'online_only');
       if (!isOnline) return false;
-      if (p.source == 'email') return false;
       if (p.isLocal) return false;
       if (cats != null && !cats.contains(p.category.toLowerCase())) return false;
       if (q.isNotEmpty &&
