@@ -24,76 +24,97 @@ class BrandResultCard extends StatefulWidget {
 }
 
 class _BrandResultCardState extends State<BrandResultCard> {
-  bool _expanded = true;
+  static const _kPreviewCount = 2;
+  bool _expanded = false;
 
   @override
   Widget build(BuildContext context) {
     final group = widget.group;
-    final lead = group.deals.first;
+    final lead  = group.deals.first;
+    final overflow = group.deals.length - _kPreviewCount;
+    final hasMore  = overflow > 0;
+    final visible  = _expanded ? group.deals : group.deals.take(_kPreviewCount).toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        InkWell(
-          onTap: () {
-            final opening = !_expanded;
-            setState(() => _expanded = opening);
-            if (opening) widget.onExpanded?.call();
-          },
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-            child: Row(
-              children: [
-                BrandLogo(promo: lead, size: 36),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        group.brand,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
-                          color: Candy.chocolate,
-                        ),
+        // Brand header — display only, no tap toggle
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
+          child: Row(
+            children: [
+              BrandLogo(promo: lead, size: 36),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      group.brand,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: Candy.chocolate,
                       ),
-                      const SizedBox(height: 4),
-                      Wrap(
-                        spacing: 4,
-                        runSpacing: 2,
-                        children: [
-                          _Chip(
-                            '${group.deals.length} deal${group.deals.length == 1 ? '' : 's'}',
-                            color: Candy.raspberry,
-                          ),
-                          ...group.contexts.map((c) => _Chip(c, color: _contextColor(c))),
-                        ],
-                      ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 4),
+                    Wrap(
+                      spacing: 4,
+                      runSpacing: 2,
+                      children: group.contexts
+                          .map((c) => _Chip(c, color: _contextColor(c)))
+                          .toList(),
+                    ),
+                  ],
                 ),
-                Icon(
-                  _expanded ? Icons.expand_less : Icons.expand_more,
-                  size: 20,
-                  color: Candy.muted,
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
-        if (_expanded)
-          ...group.deals.map(
-            (p) => DealCard(
-              promo: p,
-              memberships: widget.memberships,
-              onTap: () {
-                widget.onDealTap?.call(p.id, p.brand);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => DealDetailScreen(promo: p)),
-                );
-              },
+        // Top 2 deals (or all when expanded)
+        ...visible.map(
+          (p) => DealCard(
+            promo: p,
+            memberships: widget.memberships,
+            onTap: () {
+              widget.onDealTap?.call(p.id, p.brand);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => DealDetailScreen(promo: p)),
+              );
+            },
+          ),
+        ),
+        // Expand / collapse row
+        if (hasMore)
+          InkWell(
+            onTap: () {
+              final opening = !_expanded;
+              setState(() => _expanded = opening);
+              if (opening) widget.onExpanded?.call();
+            },
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 6, 16, 8),
+              child: Row(
+                children: [
+                  Icon(
+                    _expanded ? Icons.expand_less : Icons.expand_more,
+                    size: 16,
+                    color: Candy.raspberry,
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    _expanded
+                        ? 'Show less'
+                        : '+$overflow more from ${group.brand}',
+                    style: const TextStyle(
+                      fontSize: 13,
+                      color: Candy.raspberry,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         const Divider(height: 8, indent: 16, endIndent: 16),
