@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import '../models/promotion.dart';
-import '../services/saved_deals_service.dart';
+import '../services/user_prefs_service.dart';
 import '../theme/candy_colors.dart';
-import '../utils/format_utils.dart';
 import '../widgets/deal_card.dart';
 import 'deal_detail_screen.dart';
 
-class ForYouScreen extends StatefulWidget {
+const _kMonthNames = [
+  '', 'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+
+class ForYouScreen extends StatelessWidget {
   final List<Promotion> all;
   final Set<String> memberships;
-  final DateTime? lastUpdated;
   final Future<void> Function() onRefresh;
 
   const ForYouScreen({
@@ -17,49 +20,60 @@ class ForYouScreen extends StatefulWidget {
     required this.all,
     required this.onRefresh,
     this.memberships = const {},
-    this.lastUpdated,
   });
-
-  @override
-  State<ForYouScreen> createState() => _ForYouScreenState();
-}
-
-class _ForYouScreenState extends State<ForYouScreen> {
-  final _svc = SavedDealsService();
 
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
-      listenable: _svc,
+      listenable: UserPrefsService(),
       builder: (ctx, _) {
-        final savedIds = _svc.all.map((s) => s.id).toList();
-        final savedDeals = savedIds
-            .map((id) {
-              try {
-                return widget.all.firstWhere((p) => p.id == id);
-              } catch (_) {
-                return null;
-              }
-            })
-            .whereType<Promotion>()
-            .toList();
+        final prefs = UserPrefsService().prefs;
+        final birthdayMonth = prefs?.birthdayMonth;
+        final isBirthdayMonth =
+            birthdayMonth != null && birthdayMonth == DateTime.now().month;
+
+        final birthdayDeals = all
+            .where((p) => p.birthdayRelated && p.isActive)
+            .toList()
+          ..sort((a, b) => b.rankBaseScore.compareTo(a.rankBaseScore));
 
         return Scaffold(
           backgroundColor: Candy.cream,
           body: SafeArea(
-            child: Column(
-              children: [
-                _buildHeader(),
-                const Divider(height: 1),
-                Expanded(
-                  child: _SavedTab(
-                    promos: savedDeals,
-                    memberships: widget.memberships,
-                    svc: _svc,
-                    onRefresh: widget.onRefresh,
-                  ),
-                ),
-              ],
+            child: RefreshIndicator(
+              onRefresh: onRefresh,
+              child: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(child: _buildHeader(isBirthdayMonth)),
+                  if (isBirthdayMonth) ...[
+                    if (birthdayDeals.isEmpty)
+                      SliverToBoxAdapter(child: _emptyBirthdayDeals())
+                    else ...[
+                      SliverToBoxAdapter(child: _countBar(birthdayDeals.length)),
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (ctx, i) {
+                            final p = birthdayDeals[i];
+                            return DealCard(
+                              promo: p,
+                              memberships: memberships,
+                              onTap: () => Navigator.push(
+                                ctx,
+                                MaterialPageRoute(
+                                    builder: (_) => DealDetailScreen(promo: p)),
+                              ),
+                            );
+                          },
+                          childCount: birthdayDeals.length,
+                        ),
+                      ),
+                    ],
+                  ] else
+                    SliverToBoxAdapter(
+                        child: _notBirthdayMonth(birthdayMonth)),
+                  const SliverPadding(padding: EdgeInsets.only(bottom: 32)),
+                ],
+              ),
             ),
           ),
         );
@@ -67,20 +81,23 @@ class _ForYouScreenState extends State<ForYouScreen> {
     );
   }
 
-  Widget _buildHeader() {
-    final updated = widget.lastUpdated;
+  Widget _buildHeader(bool isBirthdayMonth) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Icon(Icons.favorite, size: 22, color: Candy.raspberry),
+          Icon(
+            isBirthdayMonth ? Icons.cake : Icons.cake_outlined,
+            size: 22,
+            color: Candy.raspberry,
+          ),
           const SizedBox(width: 8),
-          Expanded(
+          const Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'For You',
                   style: TextStyle(
                     fontSize: 26,
@@ -89,8 +106,8 @@ class _ForYouScreenState extends State<ForYouScreen> {
                     color: Candy.chocolate,
                   ),
                 ),
-                const Text(
-                  'Saved deals',
+                Text(
+                  'Birthday deals just for you',
                   style: TextStyle(
                     fontSize: 12,
                     color: Candy.lavender,
@@ -100,127 +117,89 @@ class _ForYouScreenState extends State<ForYouScreen> {
               ],
             ),
           ),
-          if (updated != null)
-            Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Text(
-                formatLastUpdated(updated),
-                style: TextStyle(fontSize: 11, color: Colors.grey.shade400),
-              ),
-            ),
         ],
       ),
     );
   }
-}
 
-// ---------------------------------------------------------------------------
-// Saved tab — heart-saved deals
-// ---------------------------------------------------------------------------
-
-class _SavedTab extends StatelessWidget {
-  final List<Promotion> promos;
-  final Set<String> memberships;
-  final SavedDealsService svc;
-  final Future<void> Function() onRefresh;
-
-  const _SavedTab({
-    required this.promos,
-    required this.memberships,
-    required this.svc,
-    required this.onRefresh,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    if (promos.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.favorite_border, size: 48, color: Colors.grey.shade300),
-            const SizedBox(height: 12),
-            Text(
-              'Nothing saved yet',
-              style: TextStyle(
-                color: Colors.grey.shade500,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
+  Widget _countBar(int count) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+      child: Row(
+        children: [
+          const Icon(Icons.celebration_outlined, size: 13, color: Candy.raspberry),
+          const SizedBox(width: 4),
+          Text(
+            '$count birthday deal${count == 1 ? '' : 's'} available this month 🎂',
+            style: TextStyle(
+              fontSize: 13,
+              color: Colors.grey.shade500,
+              fontWeight: FontWeight.w500,
             ),
-            const SizedBox(height: 4),
-            Text(
-              'Tap ♡ on any deal to save it here',
-              style: TextStyle(color: Colors.grey.shade400, fontSize: 13),
-            ),
-          ],
-        ),
-      );
-    }
-
-    return RefreshIndicator(
-      onRefresh: onRefresh,
-      child: ListView.builder(
-        padding: const EdgeInsets.only(top: 8, bottom: 24),
-        itemCount: promos.length + 1,
-        itemBuilder: (context, i) {
-          if (i == 0) {
-            return Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-              child: Text(
-                '${promos.length} saved',
-                style: TextStyle(
-                  fontSize: 13,
-                  color: Colors.grey.shade500,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            );
-          }
-          final promo = promos[i - 1];
-          final saved = svc.get(promo.id);
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              DealCard(
-                promo: promo,
-                memberships: memberships,
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),
-                ),
-              ),
-              if (saved?.remindAt != null)
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(28, 0, 16, 6),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.notifications_outlined,
-                          size: 12, color: Candy.lavender),
-                      const SizedBox(width: 4),
-                      Text(
-                        'Reminder ${_formatRemindAt(saved!.remindAt!)}',
-                        style: const TextStyle(
-                          fontSize: 11,
-                          color: Candy.lavender,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-            ],
-          );
-        },
+          ),
+        ],
       ),
     );
   }
 
-  String _formatRemindAt(DateTime dt) {
-    final diff = dt.difference(DateTime.now()).inDays;
-    if (diff < 0) return '(passed)';
-    if (diff == 0) return 'today';
-    if (diff == 1) return 'tomorrow';
-    return 'in $diff days';
+  Widget _emptyBirthdayDeals() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 32),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.cake_outlined, size: 52, color: Colors.grey.shade300),
+          const SizedBox(height: 16),
+          Text(
+            'No birthday deals right now',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.grey.shade500,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            'Check back — new birthday offers are added regularly.',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 13, color: Colors.grey.shade400),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _notBirthdayMonth(int? birthdayMonth) {
+    final hasMonth = birthdayMonth != null;
+    final monthName = hasMonth ? _kMonthNames[birthdayMonth] : null;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 32),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.cake_outlined, size: 52, color: Colors.grey.shade300),
+          const SizedBox(height: 16),
+          Text(
+            hasMonth
+                ? 'Your birthday deals arrive in $monthName 🎂'
+                : 'Add your birthday to unlock exclusive deals',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.grey.shade500,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            hasMonth
+                ? 'Birthday deals from your favorite brands will appear here when your month arrives.'
+                : 'Set your birth month in Profile → Edit Preferences to see birthday deals from Starbucks, Sephora, and more.',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 13, color: Colors.grey.shade400),
+          ),
+        ],
+      ),
+    );
   }
 }

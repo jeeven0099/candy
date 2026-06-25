@@ -40,6 +40,8 @@ class Promotion {
 
   final FastRedemption? fastRedemption;
 
+  final bool birthdayRelated;
+
   // Pre-computed in pipeline (generate_scores.py)
   final double rankBaseScore;
 
@@ -86,6 +88,7 @@ class Promotion {
     this.emailSubject,
     this.senderEmail,
     this.summary,
+    this.birthdayRelated = false,
     this.fastRedemption,
     this.rankBaseScore = 0.0,
     this.neighborhood,
@@ -134,6 +137,7 @@ class Promotion {
       emailSubject: json['email_subject'] as String?,
       senderEmail: json['sender_email'] as String?,
       summary: json['short_summary'] as String?,
+      birthdayRelated: json['birthday_related'] as bool? ?? false,
       fastRedemption: json['fast_redemption'] != null
           ? FastRedemption.fromJson(
               json['fast_redemption'] as Map<String, dynamic>)
