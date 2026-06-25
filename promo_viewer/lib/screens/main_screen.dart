@@ -94,9 +94,7 @@ class _MainScreenState extends State<MainScreen> {
             memberships: _memberships,
             onRefresh:   _loadData,
           ),
-          ProfileScreen(
-            memberships: _memberships,
-          ),
+          const ProfileScreen(),
         ],
       ),
       bottomNavigationBar: NavigationBar(
