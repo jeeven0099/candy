@@ -128,11 +128,19 @@ double fatiguePenalty(String id, InteractionService svc) {
   }
 }
 
+bool _isBirthdayMonth(UserPrefs? prefs) {
+  final bm = prefs?.birthdayMonth;
+  return bm != null && bm == DateTime.now().month;
+}
+
 /// Preference boost from favorite brands (+25), categories (+22), and deal priorities.
 /// Values calibrated from E1 (Ponpare) and E3 (Taobao) experiment coefficients.
+/// During the user's birthday month, birthday_related deals get a +60 bonus.
 double preferenceBoost(Promotion p, UserPrefs? prefs) {
   if (prefs == null) return 0;
   double boost = 0;
+
+  if (p.birthdayRelated && _isBirthdayMonth(prefs)) boost += 60;
 
   // Flexible brand match: "Starbucks" matches "Starbucks Coffee" and vice versa.
   final brand = p.brand.toLowerCase();
@@ -209,8 +217,14 @@ List<Promotion> selectTopDeals(
   int limit = 10,
   int maxPerBrand = 2,
 }) {
+  final isBday = _isBirthdayMonth(prefs);
+  final hasBday = prefs?.birthdayMonth != null;
+
   final scored = <(Promotion, double)>[];
   for (final p in candidates) {
+    // Hide birthday deals outside the user's birthday month (only if birthday is set)
+    if (p.birthdayRelated && hasBday && !isBday) continue;
+
     final score = personalizedScore(
       p, svc,
       distanceKm: getDistance?.call(p),

@@ -5,7 +5,6 @@ import '../services/notification_service.dart';
 import '../services/promotions_service.dart';
 import '../services/user_memberships_service.dart';
 import 'deal_detail_screen.dart';
-import 'for_you_screen.dart';
 import 'profile_screen.dart';
 import 'saved_screen.dart';
 import 'search_screen.dart';
@@ -90,11 +89,6 @@ class _MainScreenState extends State<MainScreen> {
             lastUpdated: _lastUpdated,
             onRefresh:   _loadData,
           ),
-          ForYouScreen(
-            all:         _all,
-            memberships: _memberships,
-            onRefresh:   _loadData,
-          ),
           SavedScreen(
             all:         _all,
             memberships: _memberships,
@@ -114,11 +108,6 @@ class _MainScreenState extends State<MainScreen> {
             icon:         Icon(Icons.local_offer_outlined),
             selectedIcon: Icon(Icons.local_offer),
             label:        'Deals',
-          ),
-          NavigationDestination(
-            icon:         Icon(Icons.cake_outlined),
-            selectedIcon: Icon(Icons.cake),
-            label:        'For You',
           ),
           NavigationDestination(
             icon:         Icon(Icons.favorite_border),
