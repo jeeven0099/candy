@@ -341,6 +341,7 @@ class OllamaModel(LocalModelInterface):
             "redemption_method='online'.\n"
             "- Do NOT extract third-party credit card or bank partnership promotions (e.g. 'Free shipping with the Chase Sapphire Card'). "
             "Only extract promotions offered directly by the brand.\n"
+            "- Do NOT extract promotions whose title or description is not in English. Skip any deal written in Spanish, French, or any other non-English language.\n"
             "- Do NOT extract sweepstakes, contests, or raffles. A chance to win a prize is not a deal "
             "(e.g. 'MINIONS & MONSTERS Sweepstakes' should be skipped entirely).\n"
             "- Do NOT extract plain movie or event ticket sales offered at full price. A listing like "
