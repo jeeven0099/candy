@@ -74,6 +74,20 @@ def merge_national(web: list[dict], email: list[dict]) -> list[dict]:
 _MIN_CONFIDENCE = 0.65
 _MIN_LOCAL_CONFIDENCE = 0.85  # stricter gate for local deals
 
+# Characters that unambiguously indicate non-English text in a deal title.
+# ¡ ¿ are Spanish-only punctuation; ñ is essentially absent from English.
+_NON_ENGLISH_RE = re.compile(r'[¡¿ñÑ]')
+
+
+def _is_english(promo: dict) -> bool:
+    title = promo.get("promotion_title") or ""
+    if _NON_ENGLISH_RE.search(title):
+        return False
+    desc = promo.get("short_summary") or promo.get("description") or ""
+    if _NON_ENGLISH_RE.search(desc):
+        return False
+    return True
+
 
 def main() -> None:
     print("Loading promotions...")
@@ -82,6 +96,11 @@ def main() -> None:
     local = load(LOCAL_FILE, "local_neighborhood")
 
     national = merge_national(web, email)
+
+    # Drop non-English national promotions
+    before = len(national)
+    national = [p for p in national if _is_english(p)]
+    dropped_non_english = before - len(national)
 
     # Drop low-confidence national promotions
     before = len(national)
@@ -110,8 +129,9 @@ def main() -> None:
     OUTPUT.write_text(json.dumps(output, indent=2, ensure_ascii=False), encoding="utf-8")
 
     print(f"\nMerged {len(merged)} promotions -> {OUTPUT.name}")
-    print(f"  Dropped national (confidence < {_MIN_CONFIDENCE:.0%}): {dropped_national}")
-    print(f"  Dropped local    (confidence < {_MIN_LOCAL_CONFIDENCE:.0%}): {dropped_local}")
+    print(f"  Dropped non-English                              : {dropped_non_english}")
+    print(f"  Dropped national (confidence < {_MIN_CONFIDENCE:.0%})           : {dropped_national}")
+    print(f"  Dropped local    (confidence < {_MIN_LOCAL_CONFIDENCE:.0%})           : {dropped_local}")
     for src, count in sorted(by_source.items()):
         print(f"  {src}: {count}")
 
