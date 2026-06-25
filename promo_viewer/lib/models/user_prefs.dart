@@ -32,12 +32,16 @@ class UserPrefs {
   final List<String>       favoriteBrands;
   final List<String>       dealPriorities; // slugs: free, bogo, discount, nearby, online, rewards
   final List<HiddenBrand>  hiddenBrands;
+  final int?               birthdayMonth;  // 1–12
+  final int?               birthdayDay;    // 1–31
 
   const UserPrefs({
     this.favoriteCategories = const [],
     this.favoriteBrands     = const [],
     this.dealPriorities     = const [],
     this.hiddenBrands       = const [],
+    this.birthdayMonth,
+    this.birthdayDay,
   });
 
   bool get isEmpty =>
@@ -55,6 +59,8 @@ class UserPrefs {
     hiddenBrands: (j['hidden_brands'] as List? ?? [])
         .map((e) => HiddenBrand.fromJson(e))
         .toList(),
+    birthdayMonth: j['birthday_month'] as int?,
+    birthdayDay:   j['birthday_day']   as int?,
   );
 
   Map<String, dynamic> toJson() => {
@@ -62,6 +68,8 @@ class UserPrefs {
     'favorite_brands':     favoriteBrands,
     'preferred_contexts':  dealPriorities,
     'hidden_brands':       hiddenBrands.map((h) => h.toJson()).toList(),
+    if (birthdayMonth != null) 'birthday_month': birthdayMonth,
+    if (birthdayDay   != null) 'birthday_day':   birthdayDay,
     'updated_at':          DateTime.now().toIso8601String(),
   };
 
@@ -73,6 +81,8 @@ class UserPrefs {
       ...hiddenBrands,
       HiddenBrand(brand: brand, hiddenAt: DateTime.now()),
     ],
+    birthdayMonth: birthdayMonth,
+    birthdayDay:   birthdayDay,
   );
 
   UserPrefs withoutHiddenBrand(String brand) {
@@ -82,6 +92,8 @@ class UserPrefs {
       favoriteBrands:     favoriteBrands,
       dealPriorities:     dealPriorities,
       hiddenBrands: hiddenBrands.where((h) => h.brand.toLowerCase() != b).toList(),
+      birthdayMonth: birthdayMonth,
+      birthdayDay:   birthdayDay,
     );
   }
 }

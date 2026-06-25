@@ -173,6 +173,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final _selectedBrands    = <String>{};
   final _selectedDealTypes = <String>{};
   int   _radiusMi          = 5;
+  int?  _birthdayMonth;
+  int?  _birthdayDay;
 
   @override
   void initState() {
@@ -184,6 +186,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         _selectedCats.addAll(prefs.favoriteCategories);
         _selectedBrands.addAll(prefs.favoriteBrands);
         _selectedDealTypes.addAll(prefs.dealPriorities);
+        _birthdayMonth = prefs.birthdayMonth;
+        _birthdayDay   = prefs.birthdayDay;
       }
       _loadRadius();
     }
@@ -256,6 +260,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         favoriteCategories: _selectedCats.toList(),
         favoriteBrands:     _selectedBrands.toList(),
         dealPriorities:     _selectedDealTypes.toList(),
+        birthdayMonth:      _birthdayMonth,
+        birthdayDay:        _birthdayDay,
       ));
     } catch (_) {}
     // Mark onboarding complete (only on first-time flow, not edit-preferences)
@@ -376,6 +382,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             _Field(controller: _codeCtrl, label: 'Invite code',
                 hint: 'e.g. CANDY2025',
                 capitalization: TextCapitalization.characters),
+            const SizedBox(height: 14),
+            _birthdayPicker(),
           ],
           if (_error != null) ...[
             const SizedBox(height: 14),
@@ -395,6 +403,53 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           )),
         ]),
       ),
+    );
+  }
+
+  static const _kMonths = [
+    'January','February','March','April','May','June',
+    'July','August','September','October','November','December',
+  ];
+
+  Widget _birthdayPicker() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'Birthday (optional)',
+          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Candy.chocolate),
+        ),
+        const SizedBox(height: 6),
+        Row(
+          children: [
+            Expanded(
+              flex: 3,
+              child: _BirthdayDropdown<int>(
+                hint: 'Month',
+                value: _birthdayMonth,
+                items: List.generate(12, (i) => DropdownMenuItem(
+                  value: i + 1,
+                  child: Text(_kMonths[i], style: const TextStyle(fontSize: 14)),
+                )),
+                onChanged: (v) => setState(() => _birthdayMonth = v),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              flex: 2,
+              child: _BirthdayDropdown<int>(
+                hint: 'Day',
+                value: _birthdayDay,
+                items: List.generate(31, (i) => DropdownMenuItem(
+                  value: i + 1,
+                  child: Text('${i + 1}', style: const TextStyle(fontSize: 14)),
+                )),
+                onChanged: (v) => setState(() => _birthdayDay = v),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
@@ -849,6 +904,45 @@ class _PrimaryButton extends StatelessWidget {
                 child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
             : Text(label,
                 style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+      ),
+    );
+  }
+}
+
+class _BirthdayDropdown<T> extends StatelessWidget {
+  final String hint;
+  final T? value;
+  final List<DropdownMenuItem<T>> items;
+  final ValueChanged<T?> onChanged;
+
+  const _BirthdayDropdown({
+    required this.hint,
+    required this.value,
+    required this.items,
+    required this.onChanged,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButtonFormField<T>(
+      value: value,
+      hint: Text(hint, style: TextStyle(color: Colors.grey.shade400, fontSize: 14)),
+      items: items,
+      onChanged: onChanged,
+      isExpanded: true,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Colors.grey.shade200)),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Colors.grey.shade200)),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: Candy.raspberry, width: 1.5)),
       ),
     );
   }
