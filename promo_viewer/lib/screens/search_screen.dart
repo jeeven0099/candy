@@ -172,9 +172,15 @@ class _SearchScreenState extends State<SearchScreen> {
 
   void _recordContextImpressions() {
     if (!mounted || _debouncedQ.trim().isNotEmpty) return;
+    final scorer = switch (_ctx) {
+      SearchContext.nearMe  => _nearMeScorer,
+      SearchContext.forYou  => _forYouScorer,
+      _                     => _prefScorer,
+    };
     final groups = _getContextGroups();
     final promos = groups.expand((g) => g.deals).toList();
-    ImpressionService().recordImpressions(promos, context: _ctx.name);
+    final scores = {for (final p in promos) p.id: scorer(p)};
+    ImpressionService().recordImpressions(promos, context: _ctx.name, runtimeScores: scores);
   }
 
   // Chips to show in the quick-search row — pulled from the user's chosen categories.

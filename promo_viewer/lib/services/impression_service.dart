@@ -20,17 +20,28 @@ class ImpressionService {
   final Set<String> _recorded = {};
 
   /// Record that [promos] appeared in [context].
+  /// [runtimeScores] — optional map of promoId → personalized runtime score
+  /// (the full score used to rank the deal, not just the pipeline base).
+  /// Falls back to globalQualityScore when omitted.
   /// Debounced 2 s per context; each (promoId, context) pair is only
   /// inserted once per session to avoid inflating fatigue counters.
-  void recordImpressions(List<Promotion> promos, {required String context}) {
+  void recordImpressions(
+    List<Promotion> promos, {
+    required String context,
+    Map<String, double>? runtimeScores,
+  }) {
     _timers[context]?.cancel();
     _timers[context] = Timer(
       const Duration(seconds: 2),
-      () => _write(List.unmodifiable(promos), context),
+      () => _write(List.unmodifiable(promos), context, runtimeScores),
     );
   }
 
-  Future<void> _write(List<Promotion> promos, String context) async {
+  Future<void> _write(
+    List<Promotion> promos,
+    String context,
+    Map<String, double>? runtimeScores,
+  ) async {
     if (!SupabaseService.isLoggedIn) return;
     final userId = UserPrefsService().userId;
     if (userId == null || promos.isEmpty) return;
@@ -48,7 +59,7 @@ class ImpressionService {
         'category':            e.value.category,
         'context':             context,
         'rank_position':       e.key,
-        'score_at_impression': e.value.globalQualityScore,
+        'score_at_impression': runtimeScores?[e.value.id] ?? e.value.globalQualityScore,
       }).toList();
       await SupabaseService.client.from('deal_impressions').insert(rows);
       for (final p in novel) {
