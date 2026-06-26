@@ -141,7 +141,7 @@ class _BrandResultCardState extends State<BrandResultCard> {
     final brand = group.brand;
     final deals = group.deals;
 
-    // ── Behavioral affinity ───────────────────────────────────────────────
+    // ── Compute components ────────────────────────────────────────────────
     int brandClicks = 0, brandSaves = 0, brandRedeems = 0;
     for (final p in deals) {
       if (svc.clickCount(p.id) > 0)              brandClicks++;
@@ -153,32 +153,69 @@ class _BrandResultCardState extends State<BrandResultCard> {
             + (brandClicks.clamp(0, 5) * 3.0))
         .clamp(0.0, 35.0);
 
-    // ── Onboarding preferences ────────────────────────────────────────────
     bool isFavBrand = false;
     bool isFavCat   = false;
+    String catName  = '';
     if (prefs != null) {
       final bl = brand.toLowerCase();
       isFavBrand = prefs.favoriteBrands.any((b) {
         final bfl = b.toLowerCase();
         return bfl == bl || bl.contains(bfl) || bfl.contains(bl);
       });
-      final cl = deals.first.category.toLowerCase();
+      catName = deals.first.category;
+      final cl = catName.toLowerCase();
       isFavCat = cl.isNotEmpty &&
           prefs.favoriteCategories.any((c) => c.toLowerCase() == cl);
     }
 
-    // ── Other signals ─────────────────────────────────────────────────────
     final recentSearch   = svc.isBrandRecentlySearched(brand);
     final dealCountBonus = deals.length.clamp(0, 3) * 2.0;
     final bestQ          = deals
         .map((d) => d.globalQualityScore)
         .reduce((a, b) => a > b ? a : b);
     final qualityBonus = bestQ * 0.3;
+    final total        = group.bestScore;
 
-    final total = group.bestScore;
+    // ── Friendly reasons ──────────────────────────────────────────────────
+    final reasons = <({IconData icon, String text, bool active})>[
+      (
+        icon:   Icons.touch_app_outlined,
+        text:   behavAffinity > 0
+            ? _behavSentence(brandSaves, brandRedeems, brandClicks)
+            : 'No interactions with $brand deals yet',
+        active: behavAffinity > 0,
+      ),
+      (
+        icon:   Icons.favorite_outline,
+        text:   isFavBrand
+            ? '$brand is one of your favourite brands'
+            : '$brand is not in your saved brands',
+        active: isFavBrand,
+      ),
+      (
+        icon:   Icons.category_outlined,
+        text:   isFavCat
+            ? '${_capitalize(catName)} matches your saved categories'
+            : '${_capitalize(catName)} is not a saved category',
+        active: isFavCat,
+      ),
+      (
+        icon:   Icons.search,
+        text:   recentSearch
+            ? 'You searched for $brand this session'
+            : 'You haven\'t searched $brand this session',
+        active: recentSearch,
+      ),
+      (
+        icon:   Icons.local_offer_outlined,
+        text:   '${deals.length} live deal${deals.length == 1 ? '' : 's'} available from $brand',
+        active: deals.length > 1,
+      ),
+    ];
 
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -199,99 +236,122 @@ class _BrandResultCardState extends State<BrandResultCard> {
               ),
             ),
             const SizedBox(height: 16),
-            Row(
-              children: [
-                BrandLogo(promo: deals.first, size: 32),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    brand,
-                    style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.w700,
-                      color: Candy.chocolate,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: Candy.raspberry.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    'Score ${total.toStringAsFixed(1)}',
-                    style: const TextStyle(
-                      fontSize: 13, fontWeight: FontWeight.w700,
-                      color: Candy.raspberry,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            const Divider(height: 1),
-            const SizedBox(height: 12),
-            _ScoreSection(
-              label: 'Behavioral affinity',
-              value: behavAffinity,
-              detail: _behavDetail(brandSaves, brandRedeems, brandClicks),
-            ),
-            _ScoreSection(
-              label: 'Favourite brand',
-              value: isFavBrand ? 30.0 : 0.0,
-              detail: isFavBrand ? 'In your saved brands' : 'Not a saved brand',
-            ),
-            _ScoreSection(
-              label: 'Favourite category',
-              value: isFavCat ? 20.0 : 0.0,
-              detail: isFavCat
-                  ? '${deals.first.category} is a saved category'
-                  : 'Category not saved',
-              note: '+ inferred weight from brand mix',
-            ),
-            _ScoreSection(
-              label: 'Recently searched',
-              value: recentSearch ? 22.0 : 0.0,
-              detail: recentSearch ? 'Searched this session' : 'Not searched this session',
-            ),
-            _ScoreSection(
-              label: 'Deal count (${deals.length})',
-              value: dealCountBonus,
-              detail: '${deals.length.clamp(0, 3)} × 2 pts',
-            ),
-            _ScoreSection(
-              label: 'Quality tiebreaker',
-              value: qualityBonus,
-              detail: 'Best deal ${bestQ.toStringAsFixed(0)} × 0.3',
-            ),
-            const SizedBox(height: 8),
-            const Divider(height: 1),
-            const SizedBox(height: 8),
-            Text(
-              'Total: ${total.toStringAsFixed(1)}',
-              style: const TextStyle(
-                fontSize: 14, fontWeight: FontWeight.w700, color: Candy.chocolate,
+
+            // Header
+            const Text(
+              'Why this brand ranked here',
+              style: TextStyle(
+                fontSize: 16, fontWeight: FontWeight.w700, color: Candy.chocolate,
               ),
             ),
             const SizedBox(height: 4),
             Text(
-              'Higher score = this brand appears earlier in your feed.',
-              style: TextStyle(fontSize: 12, color: Colors.grey.shade500),
+              'Candy placed $brand based on these signals.',
+              style: TextStyle(fontSize: 13, color: Colors.grey.shade500),
             ),
+            const SizedBox(height: 16),
+
+            // ── Visual formula ─────────────────────────────────────────────
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade50,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.grey.shade200),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Total = behavior + fav brand + category + recent search + deal count + quality',
+                    style: TextStyle(
+                      fontSize: 11, color: Colors.grey.shade500,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        _FormulaCell(
+                          value: total,
+                          label: 'total',
+                          highlight: true,
+                        ),
+                        _formulaOp('='),
+                        _FormulaCell(value: behavAffinity,              label: 'behavior'),
+                        _formulaOp('+'),
+                        _FormulaCell(value: isFavBrand ? 30.0 : 0.0,   label: 'fav brand'),
+                        _formulaOp('+'),
+                        _FormulaCell(value: isFavCat   ? 20.0 : 0.0,   label: 'category'),
+                        _formulaOp('+'),
+                        _FormulaCell(value: recentSearch ? 22.0 : 0.0,  label: 'recent'),
+                        _formulaOp('+'),
+                        _FormulaCell(value: dealCountBonus,             label: 'deals'),
+                        _formulaOp('+'),
+                        _FormulaCell(value: qualityBonus,               label: 'quality'),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            // ── Friendly signal list ───────────────────────────────────────
+            ...reasons.map((r) => Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(
+                    r.active ? r.icon : r.icon,
+                    size: 16,
+                    color: r.active ? Candy.raspberry : Colors.grey.shade400,
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      r.text,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: r.active ? Candy.chocolate : Colors.grey.shade400,
+                        fontWeight: r.active ? FontWeight.w500 : FontWeight.normal,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )),
           ],
         ),
       ),
     );
   }
 
-  String _behavDetail(int saves, int redeems, int clicks) {
-    if (saves == 0 && redeems == 0 && clicks == 0) return 'No interactions yet';
+  String _behavSentence(int saves, int redeems, int clicks) {
     final parts = <String>[];
-    if (saves   > 0) parts.add('$saves save${saves   == 1 ? '' : 's'}');
-    if (redeems > 0) parts.add('$redeems redeem${redeems == 1 ? '' : 's'}');
-    if (clicks  > 0) parts.add('$clicks click${clicks  == 1 ? '' : 's'}');
-    return parts.join(', ');
+    if (saves   > 0) parts.add('saved $saves deal${saves   == 1 ? '' : 's'}');
+    if (redeems > 0) parts.add('redeemed $redeems deal${redeems == 1 ? '' : 's'}');
+    if (clicks  > 0) parts.add('clicked $clicks deal${clicks  == 1 ? '' : 's'}');
+    return 'You\'ve ${parts.join(' and ')} from ${widget.group.brand}';
   }
+
+  static String _capitalize(String s) =>
+      s.isEmpty ? s : s[0].toUpperCase() + s.substring(1);
+
+  Widget _formulaOp(String op) => Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 4),
+    child: Text(
+      op,
+      style: TextStyle(
+        fontSize: 15, fontWeight: FontWeight.w500, color: Colors.grey.shade400,
+      ),
+    ),
+  );
 
   Color _contextColor(String label) {
     switch (label) {
@@ -302,59 +362,60 @@ class _BrandResultCardState extends State<BrandResultCard> {
   }
 }
 
-// ── Score row ─────────────────────────────────────────────────────────────────
+// ── Formula cell ──────────────────────────────────────────────────────────────
 
-class _ScoreSection extends StatelessWidget {
-  final String label;
+class _FormulaCell extends StatelessWidget {
   final double value;
-  final String detail;
-  final String? note;
+  final String label;
+  final bool highlight;
 
-  const _ScoreSection({
-    required this.label,
+  const _FormulaCell({
     required this.value,
-    required this.detail,
-    this.note,
+    required this.label,
+    this.highlight = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    final positive = value > 0;
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(label,
-                    style: const TextStyle(
-                        fontSize: 13, fontWeight: FontWeight.w600,
-                        color: Candy.chocolate)),
-                Text(detail,
-                    style: TextStyle(fontSize: 12, color: Colors.grey.shade500)),
-                if (note != null)
-                  Text(note!,
-                      style: TextStyle(
-                          fontSize: 11,
-                          color: Colors.grey.shade400,
-                          fontStyle: FontStyle.italic)),
-              ],
-            ),
+    final active = value > 0;
+    final numStr = value % 1 == 0
+        ? value.toStringAsFixed(0)
+        : value.toStringAsFixed(1);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          decoration: BoxDecoration(
+            color: highlight
+                ? Candy.raspberry
+                : active
+                    ? Candy.raspberry.withValues(alpha: 0.1)
+                    : Colors.grey.shade100,
+            borderRadius: BorderRadius.circular(8),
           ),
-          const SizedBox(width: 12),
-          Text(
-            positive ? '+${value.toStringAsFixed(value % 1 == 0 ? 0 : 1)}' : '0',
+          child: Text(
+            numStr,
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 15,
               fontWeight: FontWeight.w700,
-              color: positive ? Candy.raspberry : Colors.grey.shade400,
+              color: highlight
+                  ? Colors.white
+                  : active
+                      ? Candy.raspberry
+                      : Colors.grey.shade400,
             ),
           ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 10,
+            color: Colors.grey.shade500,
+          ),
+        ),
+      ],
     );
   }
 }
