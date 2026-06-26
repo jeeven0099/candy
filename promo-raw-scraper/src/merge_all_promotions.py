@@ -92,10 +92,11 @@ def _is_english(promo: dict) -> bool:
 def main() -> None:
     print("Loading promotions...")
     web   = load(WEB_FILE, "web")
-    email = load(EMAIL_FILE, "email")
+    # Email pipeline disabled — deals came from personal inbox, not suitable for multi-user beta.
+    # To re-enable: replace [] with load(EMAIL_FILE, "email")
     local = load(LOCAL_FILE, "local_neighborhood")
 
-    national = merge_national(web, email)
+    national = merge_national(web, [])
 
     # Drop non-English national promotions
     before = len(national)
