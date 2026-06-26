@@ -35,7 +35,7 @@ MEMBERSHIPS_IN = ROOT.parent / "promo_viewer" / "assets" / "user_memberships.jso
 ASSETS_DIR     = ROOT.parent / "promo_viewer" / "assets"
 OUTPUT         = ASSETS_DIR / "notification_candidates.json"
 
-NOTIFY_THRESHOLD    = 75.0
+NOTIFY_THRESHOLD    = 60.0   # wider pool — client personalisation applies the real cut-off
 MIN_SIGNAL_GROUPS   = 2
 
 _BOGO_RE   = re.compile(r'\bbogo\b|buy.one.get.one', re.IGNORECASE)
@@ -277,6 +277,7 @@ def main() -> None:
         candidates.append({
             'promo_id':           promo_id,
             'brand':              promo.get('brand', ''),
+            'category':           promo.get('category', ''),
             'title':              promo.get('promotion_title', ''),
             'notify_score':       score,
             'signal_groups':      sorted(groups),
@@ -284,6 +285,7 @@ def main() -> None:
             'notification_body':  notif_body,
             'discount_type':      promo.get('discount_type'),
             'discount_value':     promo.get('discount_value'),
+            'estimated_savings':  promo.get('estimated_savings'),
             'end_date':           promo.get('end_date'),
             'website_domain':     promo.get('website_domain'),
             'source_url':         promo.get('source_url'),
