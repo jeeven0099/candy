@@ -1,4 +1,7 @@
 import '../models/promotion.dart';
+import '../models/user_prefs.dart';
+import '../services/interaction_service.dart';
+import 'feed_ranker.dart';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Context chips & options
@@ -677,11 +680,68 @@ List<BrandGroup> getContextDeals(
   List<Promotion> all,
   SearchOptions opts, {
   int maxBrands = 15,
-  double Function(Promotion)? scorer,
+  // Two-level params (preferred path):
+  InteractionService? svc,
+  UserPrefs? prefs,
+  double? radiusMi, // Near Me radius filter in miles
 }) {
   final filtered = all.where((p) =>
       passesExclusion(p, opts) && passesContext(p, opts.context, opts.savedIds)).toList();
 
+  // ── Two-level path ──────────────────────────────────────────────────────────
+  // Level 1: brandLevelScore determines which brand card appears first.
+  // Level 2: dealQualityScore determines deal order within each brand card.
+  if (svc != null) {
+    // Near Me: pre-filter deals outside the user's radius
+    final eligible = (opts.context == SearchContext.nearMe && radiusMi != null)
+        ? filtered.where((p) {
+            if (p.distanceKm == null) return false;
+            return (p.distanceKm! * 0.621371) <= radiusMi;
+          }).toList()
+        : filtered;
+
+    // Group by brand
+    final brandMap = <String, List<Promotion>>{};
+    for (final p in eligible) {
+      brandMap.putIfAbsent(p.brand, () => []).add(p);
+    }
+
+    final groups = <BrandGroup>[];
+    for (final entry in brandMap.entries) {
+      final brand = entry.key;
+      final deals = entry.value;
+
+      // Level 2: sort deals within brand by deal quality (no brand/cat boost here)
+      final scored = deals
+          .map((p) => (p, dealQualityScore(p, svc, distanceKm: p.distanceKm, prefs: prefs)))
+          .where((t) => t.$2 > -500)
+          .toList()
+        ..sort((a, b) => b.$2.compareTo(a.$2));
+
+      if (scored.isEmpty) continue;
+
+      // Level 1: brand card score (fav brand/cat, recent search, deal count)
+      final bScore = brandLevelScore(brand, deals.first.category, deals, svc, prefs: prefs);
+
+      final contexts = <String>{};
+      for (final p in scored.map((t) => t.$1)) {
+        contexts.addAll(dealContextLabels(p));
+      }
+
+      groups.add(BrandGroup(
+        brand:     brand,
+        deals:     scored.map((t) => t.$1).toList(),
+        bestTier:  1,
+        bestScore: bScore,
+        contexts:  contexts.toList(),
+      ));
+    }
+
+    groups.sort((a, b) => b.bestScore.compareTo(a.bestScore));
+    return groups.take(maxBrands).toList();
+  }
+
+  // ── Legacy single-level path (no svc provided) ─────────────────────────────
   double defaultScore(Promotion p) {
     double s = p.globalQualityScore;
     if (opts.context == SearchContext.nearMe && p.distanceKm != null) {
@@ -691,11 +751,8 @@ List<BrandGroup> getContextDeals(
     return s;
   }
 
-  final scoreFn = scorer ?? defaultScore;
-  // Scorers may return a sentinel like -999 to signal "exclude this deal"
-  // (e.g. the Near Me scorer excludes deals beyond the user's radius).
-  final valid = filtered.where((p) => scoreFn(p) > -900).toList()
-    ..sort((a, b) => scoreFn(b).compareTo(scoreFn(a)));
+  final valid = filtered.where((p) => defaultScore(p) > -900).toList()
+    ..sort((a, b) => defaultScore(b).compareTo(defaultScore(a)));
 
   final brandMap = <String, List<Promotion>>{};
   for (final p in valid) {
@@ -710,7 +767,7 @@ List<BrandGroup> getContextDeals(
       brand:     e.key,
       deals:     deals,
       bestTier:  1,
-      bestScore: scoreFn(deals.first),
+      bestScore: defaultScore(deals.first),
       contexts:  contexts.toList(),
     );
   }).toList()

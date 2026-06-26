@@ -158,28 +158,24 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   List<BrandGroup> _getContextGroups() {
-    final double Function(Promotion) scorer;
-    switch (_ctx) {
-      case SearchContext.nearMe:
-        scorer = _nearMeScorer;
-      case SearchContext.forYou:
-        scorer = _forYouScorer;
-      default:
-        scorer = _prefScorer;
-    }
-    return getContextDeals(_visiblePromos, _opts, scorer: scorer);
+    return getContextDeals(
+      _visiblePromos,
+      _opts,
+      svc:      _svc,
+      prefs:    _prefsSvc.prefs,
+      radiusMi: _ctx == SearchContext.nearMe ? _radiusMi.toDouble() : null,
+    );
   }
 
   void _recordContextImpressions() {
     if (!mounted || _debouncedQ.trim().isNotEmpty) return;
-    final scorer = switch (_ctx) {
-      SearchContext.nearMe  => _nearMeScorer,
-      SearchContext.forYou  => _forYouScorer,
-      _                     => _prefScorer,
-    };
     final groups = _getContextGroups();
     final promos = groups.expand((g) => g.deals).toList();
-    final scores = {for (final p in promos) p.id: scorer(p)};
+    // Score at impression = Level 2 deal quality score (determines deal position)
+    final scores = {
+      for (final p in promos)
+        p.id: dealQualityScore(p, _svc, distanceKm: p.distanceKm, prefs: _prefsSvc.prefs),
+    };
     ImpressionService().recordImpressions(promos, context: _ctx.name, runtimeScores: scores);
   }
 
@@ -201,20 +197,6 @@ class _SearchScreenState extends State<SearchScreen> {
     }
     return chips.take(10).toList();
   }
-
-  double _nearMeScorer(Promotion p) {
-    if (p.distanceKm == null) return -999;
-    final miles = p.distanceKm! * 0.621371;
-    if (miles > _radiusMi) return -999;
-    final dist = miles <= 0.5 ? 30 : miles <= 1.0 ? 25 : miles <= 2.0 ? 18 : miles <= 5.0 ? 8 : 2;
-    return p.globalQualityScore + dist + preferenceBoost(p, _prefsSvc.prefs);
-  }
-
-  double _prefScorer(Promotion p) =>
-      p.globalQualityScore + preferenceBoost(p, _prefsSvc.prefs);
-
-  double _forYouScorer(Promotion p) =>
-      personalizedScore(p, _svc, distanceKm: p.distanceKm, prefs: _prefsSvc.prefs);
 
   // ── Input handling ────────────────────────────────────────────────────────
 
