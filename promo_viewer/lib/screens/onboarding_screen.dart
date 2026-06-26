@@ -395,8 +395,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             _Field(controller: _codeCtrl, label: 'Invite code',
                 hint: 'e.g. CANDY2025',
                 capitalization: TextCapitalization.characters),
-            const SizedBox(height: 14),
-            _birthdayPicker(),
           ],
           if (_error != null) ...[
             const SizedBox(height: 14),
@@ -646,7 +644,27 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+          padding: const EdgeInsets.fromLTRB(20, 4, 20, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Divider(height: 24),
+              const Text(
+                'Birthday (optional)',
+                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Candy.chocolate),
+              ),
+              const SizedBox(height: 4),
+              Text(
+                'Unlock birthday deals from your favourite brands.',
+                style: TextStyle(fontSize: 12, color: Colors.grey.shade500),
+              ),
+              const SizedBox(height: 10),
+              _birthdayPicker(),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
           child: _PrimaryButton(
             label: widget.startAtPreferences ? 'Save preferences'
                 : 'Start discovering deals →',
