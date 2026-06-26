@@ -245,6 +245,26 @@ def main() -> None:
 
         write_run_summary(log_path, log_fh)
 
+        # Step 15: Publish updated assets to GitHub so all users get fresh data
+        repo_root = Path(__file__).resolve().parents[1]
+        assets_to_push = [
+            "promo_viewer/assets/all_promotions.json",
+            "promo_viewer/assets/notification_candidates.json",
+        ]
+        try:
+            subprocess.run(["git", "add"] + assets_to_push, cwd=repo_root, check=True)
+            commit_result = subprocess.run(
+                ["git", "commit", "-m", f"chore: update promotions {ts} [skip ci]"],
+                cwd=repo_root, capture_output=True, text=True,
+            )
+            if commit_result.returncode == 0:
+                subprocess.run(["git", "push", "origin", "master"], cwd=repo_root, check=True)
+                log_print(f"\n[Step 15/15] Assets pushed to GitHub.", log_fh)
+            else:
+                log_print(f"\n[Step 15/15] No asset changes to push.", log_fh)
+        except Exception as e:
+            log_print(f"\n[Step 15/15] Git push failed (non-fatal): {e}", log_fh)
+
         elapsed = int(time.time() - start)
         minutes, seconds = divmod(elapsed, 60)
         summary = (
