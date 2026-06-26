@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import '../models/promotion.dart';
+import '../services/interaction_service.dart';
 import '../services/user_prefs_service.dart';
 import '../theme/candy_colors.dart';
+import '../utils/feed_ranker.dart';
 import '../widgets/deal_card.dart';
 import 'deal_detail_screen.dart';
 
-const _kMonthNames = [
-  '', 'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
-];
+const _kFeedLimit = 30;
 
 class ForYouScreen extends StatelessWidget {
   final List<Promotion> all;
@@ -28,14 +27,29 @@ class ForYouScreen extends StatelessWidget {
       listenable: UserPrefsService(),
       builder: (ctx, _) {
         final prefs = UserPrefsService().prefs;
-        final birthdayMonth = prefs?.birthdayMonth;
-        final isBirthdayMonth =
-            birthdayMonth != null && birthdayMonth == DateTime.now().month;
+        final svc   = InteractionService();
+        final isBirthdayMonth = prefs?.birthdayMonth != null &&
+            prefs!.birthdayMonth == DateTime.now().month;
 
-        final birthdayDeals = all
-            .where((p) => p.birthdayRelated && p.isActive)
-            .toList()
-          ..sort((a, b) => b.globalQualityScore.compareTo(a.globalQualityScore));
+        // Birthday deals — highlighted section, only during birthday month
+        final bdayDeals = isBirthdayMonth
+            ? (all
+                .where((p) => p.birthdayRelated && p.isActive)
+                .toList()
+              ..sort((a, b) => b.globalQualityScore.compareTo(a.globalQualityScore)))
+            : <Promotion>[];
+        final bdayIds = {for (final p in bdayDeals) p.id};
+
+        // Main personalized feed — birthday deals excluded (shown above)
+        final ranked = selectTopDeals(
+          all.where((p) => p.isActive && !bdayIds.contains(p.id)).toList(),
+          svc,
+          prefs: prefs,
+          limit: _kFeedLimit,
+          maxPerBrand: 2,
+        );
+
+        final hasPrefs = prefs != null && !prefs.isEmpty;
 
         return Scaffold(
           backgroundColor: Candy.cream,
@@ -44,33 +58,42 @@ class ForYouScreen extends StatelessWidget {
               onRefresh: onRefresh,
               child: CustomScrollView(
                 slivers: [
-                  SliverToBoxAdapter(child: _buildHeader(isBirthdayMonth)),
+                  SliverToBoxAdapter(child: _buildHeader(hasPrefs)),
+
+                  // ── Birthday deals ──────────────────────────────────────
                   if (isBirthdayMonth) ...[
-                    if (birthdayDeals.isEmpty)
+                    SliverToBoxAdapter(child: _sectionHeading(
+                      icon: Icons.celebration_outlined,
+                      label: 'Birthday Deals',
+                      count: bdayDeals.length,
+                    )),
+                    if (bdayDeals.isEmpty)
                       SliverToBoxAdapter(child: _emptyBirthdayDeals())
-                    else ...[
-                      SliverToBoxAdapter(child: _countBar(birthdayDeals.length)),
+                    else
                       SliverList(
                         delegate: SliverChildBuilderDelegate(
-                          (ctx, i) {
-                            final p = birthdayDeals[i];
-                            return DealCard(
-                              promo: p,
-                              memberships: memberships,
-                              onTap: () => Navigator.push(
-                                ctx,
-                                MaterialPageRoute(
-                                    builder: (_) => DealDetailScreen(promo: p)),
-                              ),
-                            );
-                          },
-                          childCount: birthdayDeals.length,
+                          (ctx, i) => _dealCard(ctx, bdayDeals[i]),
+                          childCount: bdayDeals.length,
                         ),
                       ),
-                    ],
-                  ] else
-                    SliverToBoxAdapter(
-                        child: _notBirthdayMonth(birthdayMonth)),
+                  ],
+
+                  // ── Personalized feed ───────────────────────────────────
+                  if (ranked.isNotEmpty) ...[
+                    SliverToBoxAdapter(child: _sectionHeading(
+                      icon: hasPrefs ? Icons.auto_awesome : Icons.trending_up,
+                      label: hasPrefs ? 'Picked for you' : 'Top deals right now',
+                      count: ranked.length,
+                    )),
+                    SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (ctx, i) => _dealCard(ctx, ranked[i]),
+                        childCount: ranked.length,
+                      ),
+                    ),
+                  ] else if (!isBirthdayMonth)
+                    SliverToBoxAdapter(child: _emptyState()),
+
                   const SliverPadding(padding: EdgeInsets.only(bottom: 32)),
                 ],
               ),
@@ -81,23 +104,23 @@ class ForYouScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader(bool isBirthdayMonth) {
+  Widget _buildHeader(bool hasPrefs) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(
-            isBirthdayMonth ? Icons.cake : Icons.cake_outlined,
+            hasPrefs ? Icons.auto_awesome : Icons.auto_awesome_outlined,
             size: 22,
             color: Candy.raspberry,
           ),
           const SizedBox(width: 8),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'For You',
                   style: TextStyle(
                     fontSize: 26,
@@ -107,8 +130,10 @@ class ForYouScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'Birthday deals just for you',
-                  style: TextStyle(
+                  hasPrefs
+                      ? 'Ranked by your brands & categories'
+                      : 'Set preferences to personalise your feed',
+                  style: const TextStyle(
                     fontSize: 12,
                     color: Candy.lavender,
                     fontWeight: FontWeight.w500,
@@ -122,43 +147,63 @@ class ForYouScreen extends StatelessWidget {
     );
   }
 
-  Widget _countBar(int count) {
+  Widget _sectionHeading({
+    required IconData icon,
+    required String label,
+    required int count,
+  }) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
       child: Row(
         children: [
-          const Icon(Icons.celebration_outlined, size: 13, color: Candy.raspberry),
-          const SizedBox(width: 4),
+          Icon(icon, size: 14, color: Candy.raspberry),
+          const SizedBox(width: 6),
           Text(
-            '$count birthday deal${count == 1 ? '' : 's'} available this month 🎂',
-            style: TextStyle(
+            label,
+            style: const TextStyle(
               fontSize: 13,
-              color: Colors.grey.shade500,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w700,
+              color: Candy.chocolate,
             ),
+          ),
+          const SizedBox(width: 6),
+          Text(
+            '($count)',
+            style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
           ),
         ],
       ),
     );
   }
 
+  Widget _dealCard(BuildContext context, Promotion p) {
+    return DealCard(
+      promo: p,
+      memberships: memberships,
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => DealDetailScreen(promo: p)),
+      ),
+    );
+  }
+
   Widget _emptyBirthdayDeals() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 32),
+      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 32),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.cake_outlined, size: 52, color: Colors.grey.shade300),
-          const SizedBox(height: 16),
+          Icon(Icons.cake_outlined, size: 40, color: Colors.grey.shade300),
+          const SizedBox(height: 12),
           Text(
             'No birthday deals right now',
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 15,
               fontWeight: FontWeight.w600,
               color: Colors.grey.shade500,
             ),
           ),
-          const SizedBox(height: 6),
+          const SizedBox(height: 4),
           Text(
             'Check back — new birthday offers are added regularly.',
             textAlign: TextAlign.center,
@@ -169,34 +214,21 @@ class ForYouScreen extends StatelessWidget {
     );
   }
 
-  Widget _notBirthdayMonth(int? birthdayMonth) {
-    final hasMonth = birthdayMonth != null;
-    final monthName = hasMonth ? _kMonthNames[birthdayMonth] : null;
+  Widget _emptyState() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 32),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.cake_outlined, size: 52, color: Colors.grey.shade300),
+          Icon(Icons.auto_awesome_outlined, size: 52, color: Colors.grey.shade300),
           const SizedBox(height: 16),
           Text(
-            hasMonth
-                ? 'Your birthday deals arrive in $monthName 🎂'
-                : 'Add your birthday to unlock exclusive deals',
-            textAlign: TextAlign.center,
+            'No deals available right now',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
               color: Colors.grey.shade500,
             ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            hasMonth
-                ? 'Birthday deals from your favorite brands will appear here when your month arrives.'
-                : 'Set your birth month in Profile → Edit Preferences to see birthday deals from Starbucks, Sephora, and more.',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 13, color: Colors.grey.shade400),
           ),
         ],
       ),
