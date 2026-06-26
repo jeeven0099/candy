@@ -307,7 +307,7 @@ class _OnlineScreenState extends State<OnlineScreen> {
             promo: promo,
             memberships: widget.memberships,
             onTap: () {
-              _svc.recordClick(promo.id);
+              _svc.recordClick(promo.id, brand: promo.brand, category: promo.category);
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),

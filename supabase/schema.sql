@@ -323,6 +323,78 @@ drop policy if exists "category_affinity_own" on user_category_affinity;
 create policy "category_affinity_own" on user_category_affinity
   for all using (user_id = own_user_id());
 
+-- ── Affinity increment RPCs ───────────────────────────────────────────────────
+--
+-- Called from Flutter after each interaction. Atomic upsert-with-increment
+-- so concurrent writes never lose a count. Weights mirror feed_ranker.dart.
+
+create or replace function increment_brand_affinity(
+  p_user_id      uuid,
+  p_brand        text,
+  p_views        int default 0,
+  p_clicks       int default 0,
+  p_saves        int default 0,
+  p_fast_redeems int default 0,
+  p_searches     int default 0,
+  p_ignored      int default 0
+) returns void language plpgsql security invoker as $$
+begin
+  insert into user_brand_affinity
+    (user_id, brand, views_count, clicks_count, saves_count,
+     fast_redeem_count, searches_count, ignored_count, affinity_score, updated_at)
+  values
+    (p_user_id, p_brand, p_views, p_clicks, p_saves,
+     p_fast_redeems, p_searches, p_ignored, 0, now())
+  on conflict (user_id, brand) do update set
+    views_count       = user_brand_affinity.views_count       + excluded.views_count,
+    clicks_count      = user_brand_affinity.clicks_count      + excluded.clicks_count,
+    saves_count       = user_brand_affinity.saves_count       + excluded.saves_count,
+    fast_redeem_count = user_brand_affinity.fast_redeem_count + excluded.fast_redeem_count,
+    searches_count    = user_brand_affinity.searches_count    + excluded.searches_count,
+    ignored_count     = user_brand_affinity.ignored_count     + excluded.ignored_count,
+    affinity_score    =
+        (user_brand_affinity.views_count       + excluded.views_count)       * 1
+      + (user_brand_affinity.clicks_count      + excluded.clicks_count)      * 8
+      + (user_brand_affinity.saves_count       + excluded.saves_count)       * 30
+      + (user_brand_affinity.fast_redeem_count + excluded.fast_redeem_count) * 20
+      + (user_brand_affinity.searches_count    + excluded.searches_count)    * 18
+      - (user_brand_affinity.ignored_count     + excluded.ignored_count)     * 3,
+    updated_at        = now();
+end;
+$$;
+
+create or replace function increment_category_affinity(
+  p_user_id  uuid,
+  p_category text,
+  p_views    int default 0,
+  p_clicks   int default 0,
+  p_saves    int default 0,
+  p_searches int default 0,
+  p_ignored  int default 0
+) returns void language plpgsql security invoker as $$
+begin
+  insert into user_category_affinity
+    (user_id, category, views_count, clicks_count, saves_count,
+     searches_count, ignored_count, affinity_score, updated_at)
+  values
+    (p_user_id, p_category, p_views, p_clicks, p_saves,
+     p_searches, p_ignored, 0, now())
+  on conflict (user_id, category) do update set
+    views_count    = user_category_affinity.views_count    + excluded.views_count,
+    clicks_count   = user_category_affinity.clicks_count   + excluded.clicks_count,
+    saves_count    = user_category_affinity.saves_count    + excluded.saves_count,
+    searches_count = user_category_affinity.searches_count + excluded.searches_count,
+    ignored_count  = user_category_affinity.ignored_count  + excluded.ignored_count,
+    affinity_score =
+        (user_category_affinity.views_count    + excluded.views_count)    * 1
+      + (user_category_affinity.clicks_count   + excluded.clicks_count)   * 8
+      + (user_category_affinity.saves_count    + excluded.saves_count)    * 30
+      + (user_category_affinity.searches_count + excluded.searches_count) * 18
+      - (user_category_affinity.ignored_count  + excluded.ignored_count)  * 3,
+    updated_at     = now();
+end;
+$$;
+
 -- ── Triggers ──────────────────────────────────────────────────────────────────
 
 create or replace function touch_last_active()

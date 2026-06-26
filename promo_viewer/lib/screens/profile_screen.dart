@@ -37,6 +37,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(_kRadiusKey, mi);
     if (mounted) setState(() => _radiusMi = mi);
+    // Persist to users table so the DB reflects the actual choice
+    final authId = SupabaseService.currentUserId;
+    if (authId != null) {
+      SupabaseService.client
+          .from('users')
+          .update({'radius_miles': mi})
+          .eq('auth_id', authId)
+          .then((_) {}, onError: (_) {});
+    }
   }
 
   @override

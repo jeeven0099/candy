@@ -272,6 +272,17 @@ class _SearchScreenState extends State<SearchScreen> {
     }
     await LocationService.attachDistances(widget.all, pos);
     setState(() { _locating = false; _position = pos; });
+    // Persist location to users table (best-effort, non-blocking)
+    final authId = SupabaseService.currentUserId;
+    if (authId != null) {
+      final city = LocationService.cityName(pos.latitude, pos.longitude);
+      SupabaseService.client.from('users').update({
+        'home_location_lat':          pos.latitude,
+        'home_location_lng':          pos.longitude,
+        'home_city':                  city,
+        'location_permission_status': 'granted',
+      }).eq('auth_id', authId).then((_) {}, onError: (_) {});
+    }
   }
 
   // ── Analytics ─────────────────────────────────────────────────────────────

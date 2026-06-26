@@ -475,7 +475,7 @@ class _NearMeScreenState extends State<NearMeScreen> {
             promo: promo,
             memberships: widget.memberships,
             onTap: () {
-              _svc.recordClick(promo.id);
+              _svc.recordClick(promo.id, brand: promo.brand, category: promo.category);
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),
