@@ -200,14 +200,133 @@ double personalizedScore(
       - penalty;
 }
 
-/// Selects the best [limit] deals from [candidates] using personalized scoring
-/// and brand diversity (no more than [maxPerBrand] deals from the same brand).
+// ── Two-level ranker ──────────────────────────────────────────────────────────
+//
+// Level 1 (brandLevelScore): which brand card appears first.
+//   Uses brand-wide signals only — favourite brand/category, recent search,
+//   deal count, and best quality as a tiebreaker.
+//
+// Level 2 (dealQualityScore): which deal appears first inside a brand card.
+//   Uses deal-specific signals — pipeline quality, distance, day-of-week,
+//   membership, deal-type priorities, birthday, and per-deal interaction
+//   history. Brand/category boost is intentionally excluded here; applying
+//   it at both levels inflates every deal from a favourite brand equally
+//   and prevents the best individual deal from rising to the top.
+
+/// Level 1 — brand score: determines brand card order.
+double brandLevelScore(
+  String brand,
+  String category,
+  List<Promotion> deals,
+  InteractionService svc, {
+  UserPrefs? prefs,
+}) {
+  double score = 0;
+
+  if (prefs != null) {
+    final bl = brand.toLowerCase();
+    if (prefs.favoriteBrands.any((b) {
+      final bfl = b.toLowerCase();
+      return bfl == bl || bl.contains(bfl) || bfl.contains(bl);
+    })) { score += 35; }
+
+    final cl = category.toLowerCase();
+    if (cl.isNotEmpty &&
+        prefs.favoriteCategories.any((c) => c.toLowerCase() == cl)) {
+      score += 22;
+    }
+  }
+
+  if (svc.isBrandRecentlySearched(brand)) score += 18;
+
+  // More live deals = more browsing value for this brand
+  score += deals.length.clamp(1, 5) * 3.0;
+
+  // Best deal quality as a low-weight tiebreaker only
+  final bestQ = deals
+      .map((d) => d.globalQualityScore)
+      .reduce((a, b) => a > b ? a : b);
+  score += bestQ * 0.3;
+
+  return score;
+}
+
+/// Level 2 — deal score: determines deal order within a brand card.
+/// Returns -_kHide for fatigue-suppressed deals (caller should exclude them).
+double dealQualityScore(
+  Promotion p,
+  InteractionService svc, {
+  double? distanceKm,
+  bool isMember = false,
+  UserPrefs? prefs,
+}) {
+  final penalty = fatiguePenalty(p.id, svc);
+  if (penalty >= _kHide) return -_kHide;
+
+  double score = p.globalQualityScore;
+
+  // Distance bonus
+  if (distanceKm != null) {
+    final miles = distanceKm * 0.621371;
+    score += miles <= 0.5 ? 30
+           : miles <= 1.0 ? 25
+           : miles <= 2.0 ? 18
+           : miles <= 5.0 ? 8 : 2;
+  }
+
+  // Day-of-week
+  if (p.validDays.isNotEmpty) {
+    const dayNames = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
+    const dayShort = ['mon','tue','wed','thu','fri','sat','sun'];
+    final todayIdx = DateTime.now().weekday - 1;
+    final norm = p.validDays.map((d) => d.toLowerCase()).toList();
+    score += norm.any((d) => d == dayNames[todayIdx] || d == dayShort[todayIdx]) ? 5 : -20;
+  }
+
+  // Membership
+  if (isMember) {
+    score += 25;
+  } else if (!p.requiresMembership) {
+    score += 8;
+  } else {
+    final cost = (p.membershipCost ?? '').toLowerCase();
+    score += cost.contains('free') ? -2 : cost.contains('paid') ? -15 : -5;
+  }
+
+  // Deal-type priorities
+  if (prefs != null) {
+    final dp     = prefs.dealPriorities;
+    final ptype  = p.promotionType.toLowerCase();
+    final dtype  = p.discountType.toLowerCase();
+    final dscope = p.dealScope.toLowerCase();
+    if (dp.contains('free') && (ptype.contains('free') || p.globalQualityScore >= 60)) score += 12;
+    if (dp.contains('bogo') && (ptype.contains('bogo') || dtype.contains('bogo')))     score += 12;
+    if (dp.contains('nearby') && p.distanceKm != null)                                 score += 4;
+    if (dp.contains('online') && (dscope.contains('online') || p.distanceKm == null))  score += 8;
+    if (dp.contains('rewards') && p.requiresMembership)                                score += 8;
+    if (dp.contains('discount')) {
+      final pct = RegExp(r'(\d+)').firstMatch(p.discountValue ?? '');
+      if (pct != null && (int.tryParse(pct.group(1)!) ?? 0) >= 30) score += 4;
+    }
+  }
+
+  // Birthday boost (deal-specific)
+  if (p.birthdayRelated && _isBirthdayMonth(prefs)) score += 60;
+
+  // Per-deal interaction signals (lower weights — brand-level signal is at Level 1)
+  if (SavedDealsService().get(p.id) != null) score += 15;
+  if (svc.hasFastRedeemed(p.id))             score += 10;
+  if (svc.clickCount(p.id) > 0)              score += 5;
+
+  score -= penalty;
+  return score;
+}
+
+/// Two-level selectTopDeals for the For You feed (flat list, no brand grouping).
 ///
-/// Default For You top 10: maxPerBrand = 2.
-/// Search results: pass maxPerBrand = 999 to bypass the cap.
-///
-/// Deals suppressed by fatigue (score == -_kHide) are excluded.
-/// If brand diversity leaves slots unfilled, remaining top-scored deals fill them.
+/// Level 1: brands are sorted by brandLevelScore (fav brand/cat, recent search,
+/// deal count). Level 2: up to [maxPerBrand] deals per brand are picked by
+/// dealQualityScore (pipeline quality, deal-type priorities, birthday, affinity).
 List<Promotion> selectTopDeals(
   List<Promotion> candidates,
   InteractionService svc, {
@@ -220,39 +339,43 @@ List<Promotion> selectTopDeals(
   final isBday = _isBirthdayMonth(prefs);
   final hasBday = prefs?.birthdayMonth != null;
 
-  final scored = <(Promotion, double)>[];
+  // Group active, non-suppressed deals by brand
+  final brandMap = <String, List<Promotion>>{};
   for (final p in candidates) {
-    // Hide birthday deals outside the user's birthday month (only if birthday is set)
     if (p.birthdayRelated && hasBday && !isBday) continue;
-
-    final score = personalizedScore(
-      p, svc,
-      distanceKm: getDistance?.call(p),
-      isMember: getIsMember?.call(p) ?? false,
-      prefs: prefs,
-    );
-    if (score > -_kHide / 2) scored.add((p, score));
+    final dScore = dealQualityScore(p, svc,
+        distanceKm: getDistance?.call(p),
+        isMember: getIsMember?.call(p) ?? false,
+        prefs: prefs);
+    if (dScore <= -_kHide / 2) continue;
+    brandMap.putIfAbsent(p.brand, () => []).add(p);
   }
-  scored.sort((a, b) => b.$2.compareTo(a.$2));
 
+  // Level 1: sort brands by brand-level score
+  final brands = brandMap.keys.toList();
+  brands.sort((a, b) {
+    final sa = brandLevelScore(a, brandMap[a]!.first.category, brandMap[a]!, svc, prefs: prefs);
+    final sb = brandLevelScore(b, brandMap[b]!.first.category, brandMap[b]!, svc, prefs: prefs);
+    return sb.compareTo(sa);
+  });
+
+  // Level 2: from each brand (in order), take best deals by deal quality
   final result = <Promotion>[];
-  final brandCount = <String, int>{};
-
-  // Pass 1: enforce brand cap
-  for (final (promo, _) in scored) {
+  for (final brand in brands) {
     if (result.length >= limit) break;
-    final n = brandCount[promo.brand] ?? 0;
-    if (n < maxPerBrand) {
-      result.add(promo);
-      brandCount[promo.brand] = n + 1;
-    }
-  }
-
-  // Pass 2: fill any remaining slots with next-best (brand cap relaxed)
-  if (result.length < limit) {
-    for (final (promo, _) in scored) {
-      if (result.length >= limit) break;
-      if (!result.contains(promo)) result.add(promo);
+    final deals = brandMap[brand]!;
+    deals.sort((a, b) {
+      final sa = dealQualityScore(a, svc, distanceKm: getDistance?.call(a),
+          isMember: getIsMember?.call(a) ?? false, prefs: prefs);
+      final sb = dealQualityScore(b, svc, distanceKm: getDistance?.call(b),
+          isMember: getIsMember?.call(b) ?? false, prefs: prefs);
+      return sb.compareTo(sa);
+    });
+    int taken = 0;
+    for (final p in deals) {
+      if (taken >= maxPerBrand || result.length >= limit) break;
+      result.add(p);
+      taken++;
     }
   }
 
