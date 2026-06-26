@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' show AuthException;
 
 import '../models/user_prefs.dart';
 import '../services/auth_service.dart';
+import '../services/supabase_service.dart';
 import '../services/user_prefs_service.dart';
 import '../theme/candy_colors.dart';
 import 'main_screen.dart';
@@ -249,12 +250,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Future<void> _savePrefsAndFinish() async {
     setState(() { _loading = true; _error = null; });
-    // Save radius to SharedPreferences
+
+    // Save radius to SharedPreferences (non-fatal)
     try {
       final sp = await SharedPreferences.getInstance();
       await sp.setInt(_kRadiusKey, _radiusMi);
     } catch (_) {}
-    // Save category/brand/deal prefs to Supabase
+
+    // Save category/brand/deal prefs to Supabase — show error if it fails
     try {
       await UserPrefsService().save(UserPrefs(
         favoriteCategories: _selectedCats.toList(),
@@ -263,19 +266,29 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         birthdayMonth:      _birthdayMonth,
         birthdayDay:        _birthdayDay,
       ));
-    } catch (_) {}
-    // Mark onboarding complete (only on first-time flow, not edit-preferences)
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _loading = false;
+          _error = 'Could not save your preferences. Please check your connection and try again.';
+        });
+      }
+      return;
+    }
+
+    // Mark onboarding complete (best-effort, non-fatal)
     if (!widget.startAtPreferences) {
       try {
-        final userId = Supabase.instance.client.auth.currentUser?.id;
-        if (userId != null) {
-          await Supabase.instance.client.from('users').update({
+        final authId = SupabaseService.currentUserId;
+        if (authId != null) {
+          await SupabaseService.client.from('users').update({
             'onboarding_completed':    true,
             'onboarding_completed_at': DateTime.now().toIso8601String(),
-          }).eq('auth_id', userId);
+          }).eq('auth_id', authId);
         }
       } catch (_) {}
     }
+
     if (!mounted) return;
     setState(() => _loading = false);
     if (widget.startAtPreferences) {

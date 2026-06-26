@@ -81,9 +81,11 @@ create table if not exists user_preferences (
 );
 
 -- Upgrade existing user_preferences table
-alter table user_preferences add column if not exists hidden_categories     jsonb not null default '[]';
-alter table user_preferences add column if not exists hidden_brands         jsonb not null default '[]';
-alter table user_preferences add column if not exists deal_type_preferences jsonb not null default '{}';
+alter table user_preferences add column if not exists hidden_categories     jsonb    not null default '[]';
+alter table user_preferences add column if not exists hidden_brands         jsonb    not null default '[]';
+alter table user_preferences add column if not exists deal_type_preferences jsonb    not null default '{}';
+alter table user_preferences add column if not exists birthday_month        integer;
+alter table user_preferences add column if not exists birthday_day          integer;
 
 -- ── Saved deals ───────────────────────────────────────────────────────────────
 --
