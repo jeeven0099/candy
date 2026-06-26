@@ -48,24 +48,40 @@ class UserPrefsService extends ChangeNotifier {
     try {
       String? uid = _userId;
       if (uid == null) {
-        final userRow = await SupabaseService.client
+        var userRow = await SupabaseService.client
             .from('users')
             .select('id')
             .eq('auth_id', authId)
             .maybeSingle();
-        if (userRow == null) return;
+
+        // Recovery: users row missing (signUp insert failed). Create it now.
+        if (userRow == null) {
+          final email = SupabaseService.client.auth.currentUser?.email ?? '';
+          await SupabaseService.client.from('users').insert({
+            'auth_id': authId,
+            'email':   email,
+          });
+          userRow = await SupabaseService.client
+              .from('users')
+              .select('id')
+              .eq('auth_id', authId)
+              .single();
+        }
+
         _userId = userRow['id'] as String;
         uid = _userId;
       }
 
-      await SupabaseService.client.from('user_preferences').upsert({
-        'user_id': uid,
-        ...prefs.toJson(),
-      });
+      // onConflict: 'user_id' ensures UPDATE on re-save, not duplicate INSERT.
+      await SupabaseService.client.from('user_preferences').upsert(
+        {'user_id': uid, ...prefs.toJson()},
+        onConflict: 'user_id',
+      );
       _prefs = prefs;
       notifyListeners();
     } catch (e) {
       debugPrint('[UserPrefsService] save: $e');
+      rethrow;
     }
   }
 
