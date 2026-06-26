@@ -214,6 +214,14 @@ double personalizedScore(
 //   and prevents the best individual deal from rising to the top.
 
 /// Level 1 — brand score: determines brand card order.
+///
+/// Signal hierarchy (highest → lowest):
+///   behavioral affinity  (0–35)  — clicks/saves/redeems on this brand's deals
+///   favorite brand       (+30)   — onboarding choice; slightly below behavioral max
+///   recent search        (+22)   — session-level intent signal
+///   favorite category    (+20)   — broad preference
+///   deal count bonus     (0–+6)  — tiebreaker: more live deals = more value
+///   best quality         (×0.3)  — final tiebreaker
 double brandLevelScore(
   String brand,
   String category,
@@ -223,26 +231,41 @@ double brandLevelScore(
 }) {
   double score = 0;
 
+  // Behavioral brand affinity — derived from per-deal interactions for this brand.
+  // Tops out at +35 so demonstrated behavior beats a stated onboarding preference.
+  int brandClicks = 0, brandSaves = 0, brandRedeems = 0;
+  for (final p in deals) {
+    if (svc.clickCount(p.id) > 0)             brandClicks++;
+    if (svc.hasFastRedeemed(p.id))            brandRedeems++;
+    if (SavedDealsService().get(p.id) != null) brandSaves++;
+  }
+  score += ((brandSaves.clamp(0, 3) * 10.0)
+          + (brandRedeems.clamp(0, 2) * 8.0)
+          + (brandClicks.clamp(0, 5) * 3.0))
+      .clamp(0.0, 35.0);
+
+  // Onboarding preferences (slightly weaker than max behavioral affinity)
   if (prefs != null) {
     final bl = brand.toLowerCase();
     if (prefs.favoriteBrands.any((b) {
       final bfl = b.toLowerCase();
       return bfl == bl || bl.contains(bfl) || bfl.contains(bl);
-    })) { score += 35; }
+    })) { score += 30; }
 
     final cl = category.toLowerCase();
     if (cl.isNotEmpty &&
         prefs.favoriteCategories.any((c) => c.toLowerCase() == cl)) {
-      score += 22;
+      score += 20;
     }
   }
 
-  if (svc.isBrandRecentlySearched(brand)) score += 18;
+  // Session recency: user searched for this brand this session
+  if (svc.isBrandRecentlySearched(brand)) score += 22;
 
-  // More live deals = more browsing value for this brand
-  score += deals.length.clamp(1, 5) * 3.0;
+  // Deal count: more live deals = more browsing value (max +6, pure tiebreaker)
+  score += deals.length.clamp(0, 3) * 2.0;
 
-  // Best deal quality as a low-weight tiebreaker only
+  // Best deal quality as final tiebreaker
   final bestQ = deals
       .map((d) => d.globalQualityScore)
       .reduce((a, b) => a > b ? a : b);
