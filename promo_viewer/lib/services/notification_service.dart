@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'remote_data_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -100,7 +100,7 @@ class NotificationService {
 
     final Map<String, dynamic> data;
     try {
-      final raw = await rootBundle.loadString('assets/notification_candidates.json');
+      final raw = await RemoteDataService.load('notification_candidates.json');
       data = jsonDecode(raw) as Map<String, dynamic>;
     } catch (e) {
       return; // file missing or malformed — skip silently
