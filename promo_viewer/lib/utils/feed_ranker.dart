@@ -213,21 +213,58 @@ double personalizedScore(
 //   it at both levels inflates every deal from a favourite brand equally
 //   and prevents the best individual deal from rising to the top.
 
+/// Infers how strongly the user implicitly prefers each category by counting
+/// how many of their favorite brands belong to it.
+///
+/// Example: favBrands = [Coach, Zara, Nike, Kate Spade, Starbucks]
+///   fashion → 4/5 = 0.80
+///   food    → 1/5 = 0.20
+///
+/// Returns category → weight (0.0–1.0). Brands not found in [allPromos] are
+/// skipped, so the denominator is favBrands.length (not matched count) to
+/// preserve the relative intensity of the signal.
+Map<String, double> inferCategoryWeights(
+  List<String> favoriteBrands,
+  List<Promotion> allPromos,
+) {
+  if (favoriteBrands.isEmpty) return {};
+
+  // Build brand → category from promotions (first occurrence wins)
+  final brandCategory = <String, String>{};
+  for (final p in allPromos) {
+    if (p.category.isNotEmpty) brandCategory.putIfAbsent(p.brand, () => p.category);
+  }
+
+  final counts = <String, int>{};
+  for (final brand in favoriteBrands) {
+    final cat = brandCategory[brand];
+    if (cat != null && cat.isNotEmpty) {
+      counts[cat] = (counts[cat] ?? 0) + 1;
+    }
+  }
+  if (counts.isEmpty) return {};
+
+  final total = favoriteBrands.length;
+  return {for (final e in counts.entries) e.key: e.value / total};
+}
+
 /// Level 1 — brand score: determines brand card order.
 ///
 /// Signal hierarchy (highest → lowest):
-///   behavioral affinity  (0–35)  — clicks/saves/redeems on this brand's deals
-///   favorite brand       (+30)   — onboarding choice; slightly below behavioral max
-///   recent search        (+22)   — session-level intent signal
-///   favorite category    (+20)   — broad preference
-///   deal count bonus     (0–+6)  — tiebreaker: more live deals = more value
-///   best quality         (×0.3)  — final tiebreaker
+///   behavioral affinity     (0–35)  — clicks/saves/redeems on this brand's deals
+///   favorite brand          (+30)   — onboarding choice; slightly below behavioral max
+///   recent search           (+22)   — session-level intent signal
+///   explicit category       (+20)   — broad onboarding preference
+///   inferred category       (0–+10) — proportional to how many fav brands share category
+///   deal count bonus        (0–+6)  — tiebreaker: more live deals = more value
+///   best quality            (×0.3)  — final tiebreaker
 double brandLevelScore(
   String brand,
   String category,
   List<Promotion> deals,
   InteractionService svc, {
   UserPrefs? prefs,
+  Map<String, double>? inferredCategoryWeights,
 }) {
   double score = 0;
 
@@ -253,9 +290,17 @@ double brandLevelScore(
     })) { score += 30; }
 
     final cl = category.toLowerCase();
-    if (cl.isNotEmpty &&
-        prefs.favoriteCategories.any((c) => c.toLowerCase() == cl)) {
-      score += 20;
+    if (cl.isNotEmpty) {
+      // Flat boost for explicit category selection
+      if (prefs.favoriteCategories.any((c) => c.toLowerCase() == cl)) score += 20;
+
+      // Inferred boost from brand concentration in this category (max +10).
+      // Stacks on top of explicit selection, so fashion with 4/5 brands gets
+      // +20 + 8 = +28, while food with 1/5 brands gets +20 + 2 = +22.
+      // Also fires for categories the user did NOT explicitly pick but their
+      // brand choices imply they care about.
+      final inferredWeight = inferredCategoryWeights?[cl] ?? 0.0;
+      if (inferredWeight > 0) score += inferredWeight * 10.0;
     }
   }
 
@@ -375,10 +420,13 @@ List<Promotion> selectTopDeals(
   }
 
   // Level 1: sort brands by brand-level score
+  final inferredWeights = inferCategoryWeights(prefs?.favoriteBrands ?? [], candidates);
   final brands = brandMap.keys.toList();
   brands.sort((a, b) {
-    final sa = brandLevelScore(a, brandMap[a]!.first.category, brandMap[a]!, svc, prefs: prefs);
-    final sb = brandLevelScore(b, brandMap[b]!.first.category, brandMap[b]!, svc, prefs: prefs);
+    final sa = brandLevelScore(a, brandMap[a]!.first.category, brandMap[a]!, svc,
+        prefs: prefs, inferredCategoryWeights: inferredWeights);
+    final sb = brandLevelScore(b, brandMap[b]!.first.category, brandMap[b]!, svc,
+        prefs: prefs, inferredCategoryWeights: inferredWeights);
     return sb.compareTo(sa);
   });
 

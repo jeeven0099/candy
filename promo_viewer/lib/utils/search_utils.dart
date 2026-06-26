@@ -706,6 +706,9 @@ List<BrandGroup> getContextDeals(
       brandMap.putIfAbsent(p.brand, () => []).add(p);
     }
 
+    // Inferred category weights from brand concentration — computed once for all brands
+    final inferredWeights = inferCategoryWeights(prefs?.favoriteBrands ?? [], eligible);
+
     final groups = <BrandGroup>[];
     for (final entry in brandMap.entries) {
       final brand = entry.key;
@@ -720,8 +723,9 @@ List<BrandGroup> getContextDeals(
 
       if (scored.isEmpty) continue;
 
-      // Level 1: brand card score (fav brand/cat, recent search, deal count)
-      final bScore = brandLevelScore(brand, deals.first.category, deals, svc, prefs: prefs);
+      // Level 1: brand card score (fav brand/cat, recent search, deal count, inferred category)
+      final bScore = brandLevelScore(brand, deals.first.category, deals, svc,
+          prefs: prefs, inferredCategoryWeights: inferredWeights);
 
       final contexts = <String>{};
       for (final p in scored.map((t) => t.$1)) {
