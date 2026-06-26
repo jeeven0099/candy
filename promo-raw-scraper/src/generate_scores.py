@@ -167,36 +167,108 @@ _BRAND_VALUE_LOOKUP: dict[str, float] = {
     _slugify(k): v for k, v in _BRAND_ITEM_VALUE_RAW.items()
 }
 
-# Title keywords for inferring the value of a free item
-_FREE_ITEM_HINTS: list[tuple[re.Pattern, float]] = [
-    (re.compile(r"\bfries?\b|\bchips?\b|\bside\b", re.I),                       3.5),
-    (re.compile(r"\bcoffee\b|\btea\b|\bespresso\b|\bamericano\b", re.I),         5.5),
-    (re.compile(r"\blatte\b|\bcappuccino\b|\bmacchiato\b|\bfrapp", re.I),         6.5),
-    (re.compile(r"\bsmoothie\b|\bshake\b|\bmilkshake\b", re.I),                  7.0),
-    (re.compile(r"\bdrink\b|\bbeverage\b|\bsoda\b|\bfountain\b", re.I),           4.0),
-    (re.compile(r"\bdonut\b|\bdoughnut\b|\bmuffin\b|\bbagel\b|\bpastry\b", re.I), 3.5),
-    (re.compile(r"\bcookie\b|\bbrownie\b", re.I),                                 2.5),
-    (re.compile(r"\bburger\b|\bwhopper\b|\bbig mac\b", re.I),                     9.0),
-    (re.compile(r"\bsandwich\b|\bsub\b|\bwrap\b|\bhoagie\b", re.I),              10.0),
-    (re.compile(r"\btaco\b|\bburrito\b|\bquesadilla\b|\bbowl\b", re.I),           10.0),
-    (re.compile(r"\bentr[eé]e\b|\bmeal\b|\bcombo\b", re.I),                      11.0),
-    (re.compile(r"\bpizza\b", re.I),                                              13.0),
-    (re.compile(r"\bscoop\b|\bice\s+cream\b|\bgelato\b", re.I),                   5.0),
-    (re.compile(r"\blipstick\b|\blip\s+color\b|\blip\s+gloss\b", re.I),          18.0),
-    (re.compile(r"\bmascara\b|\beyeliner\b|\bconcealer\b|\beyeshadow\b", re.I),   16.0),
-    (re.compile(r"\bfoundation\b", re.I),                                         28.0),
-    (re.compile(r"\bserum\b|\bmoisturizer\b|\bface\s+cream\b", re.I),             25.0),
-    (re.compile(r"\bshirt\b|\btee\b|\btop\b|\btank\b", re.I),                    30.0),
-    (re.compile(r"\bjeans?\b|\bdenim\b|\bpants\b", re.I),                         55.0),
-    (re.compile(r"\bdress\b|\bblouse\b|\bskirt\b", re.I),                         60.0),
-    (re.compile(r"\bjacket\b|\bcoat\b|\bhoodie\b", re.I),                         75.0),
-    (re.compile(r"\bsneaker\b|\bshoe\b|\bboot\b|\bsandal\b", re.I),               90.0),
-    (re.compile(r"\bbag\b|\bpurse\b|\bwallet\b|\btote\b|\bhandbag\b", re.I),    120.0),
+# Conservative item value for vague deals ("select styles", "sitewide").
+# Represents the lower end of what the brand actually sells — e.g. a wallet
+# at Coach rather than a full bag, a t-shirt at Nike rather than shoes.
+_BRAND_CONSERVATIVE_RAW: dict[str, float] = {
+    # Luxury fashion — accessories/entry items, not hero items
+    "coach": 75.0, "kate spade": 60.0, "michael kors": 55.0,
+    "tory burch": 65.0, "vera bradley": 30.0,
+    # Activewear — could be shorts or top, not full leggings set
+    "lululemon": 45.0, "fabletics": 35.0, "gymshark": 35.0,
+    "alo yoga": 50.0, "vuori": 40.0,
+    # Outdoor/sportswear — could be accessory, not full jacket
+    "the north face": 65.0, "patagonia": 70.0,
+    "columbia": 50.0, "eddie bauer": 50.0, "llbean": 45.0,
+    # Shoes — could be socks or sandals, not flagship shoes
+    "nike": 50.0, "adidas": 45.0, "new balance": 60.0,
+    "hoka": 80.0, "asics": 65.0, "brooks running": 70.0,
+    "saucony": 65.0, "ugg": 80.0, "timberland": 70.0,
+    "dr martens": 80.0, "allbirds": 60.0, "cole haan": 75.0,
+    # Mid fashion — basics/accessories
+    "banana republic": 40.0, "jcrew": 38.0, "ann taylor": 42.0,
+    "madewell": 45.0, "free people": 50.0, "anthropologie": 50.0,
+    "abercrombie fitch": 38.0, "gap": 28.0, "old navy": 22.0,
+    # Beauty — could be lip gloss, not full foundation kit
+    "sephora": 18.0, "ulta beauty": 15.0,
+    "mac cosmetics": 18.0, "charlotte tilbury": 28.0,
+    "fenty beauty": 20.0, "nars": 22.0,
+    # Tech — could be cable or case, not full device
+    "best buy": 50.0, "dell": 150.0,
+    "newegg": 60.0, "micro center": 80.0,
+    # Travel — conservative room/fare estimate
+    "marriott": 100.0, "hilton": 90.0, "wyndham hotels": 70.0,
+    "delta air lines": 140.0, "southwest airlines": 110.0, "jetblue": 100.0,
+}
+
+_BRAND_CONSERVATIVE_LOOKUP: dict[str, float] = {
+    _slugify(k): v for k, v in _BRAND_CONSERVATIVE_RAW.items()
+}
+
+# Category conservative fallbacks
+_CATEGORY_CONSERVATIVE_VALUE: dict[str, float] = {
+    "fashion": 28.0, "clothing": 25.0, "apparel": 25.0, "retail": 20.0,
+    "shoes": 50.0, "footwear": 50.0,
+    "beauty": 14.0, "personal_care": 12.0,
+    "tech": 60.0, "electronics": 60.0,
+    "home": 35.0, "home_goods": 30.0, "furniture": 80.0,
+    "travel": 80.0, "hotels": 80.0, "airlines": 100.0,
+}
+
+# Title keywords for inferring the value of a specific item type.
+# Used for free-item value and for anchoring percent-off estimates when the
+# title names a concrete item ("20% off sneakers" vs "20% off select styles").
+_ITEM_TYPE_HINTS: list[tuple[re.Pattern, float]] = [
+    # Food — small items (patterns handle common plurals)
+    (re.compile(r"\bfries?\b|\bchips?\b|\bside\b", re.I),                              3.5),
+    (re.compile(r"\bcoffee\b|\bteas?\b|\bespresso\b|\bamericano\b", re.I),              5.5),
+    (re.compile(r"\blattes?\b|\bcappuccino\b|\bmacchiato\b|\bfrapp", re.I),             6.5),
+    (re.compile(r"\bsmoothies?\b|\bshakes?\b|\bmilkshake\b", re.I),                    7.0),
+    (re.compile(r"\bdrinks?\b|\bbeverages?\b|\bsodas?\b|\bfountain\b", re.I),           4.0),
+    (re.compile(r"\bdonuts?\b|\bdoughnuts?\b|\bmuffins?\b|\bbagels?\b|\bpastries?\b", re.I), 3.5),
+    (re.compile(r"\bcookies?\b|\bbrownies?\b", re.I),                                  2.5),
+    (re.compile(r"\bburgers?\b|\bwhopper\b|\bbig mac\b", re.I),                        9.0),
+    (re.compile(r"\bsandwiches?\b|\bsubs?\b|\bwraps?\b|\bhoagies?\b", re.I),          10.0),
+    (re.compile(r"\btacos?\b|\bburritos?\b|\bquesadillas?\b|\bbowls?\b", re.I),        10.0),
+    (re.compile(r"\bentr[eé]es?\b|\bmeals?\b|\bcombos?\b", re.I),                     11.0),
+    (re.compile(r"\bpizzas?\b", re.I),                                                 13.0),
+    (re.compile(r"\bscoops?\b|\bice\s+cream\b|\bgelato\b", re.I),                      5.0),
+    # Beauty
+    (re.compile(r"\blipsticks?\b|\blip\s+colors?\b|\blip\s+gloss\b", re.I),           18.0),
+    (re.compile(r"\bmascaras?\b|\beyeliners?\b|\bconcealers?\b|\beyeshadows?\b", re.I),16.0),
+    (re.compile(r"\bfoundations?\b", re.I),                                            28.0),
+    (re.compile(r"\bserums?\b|\bmoisturizers?\b|\bface\s+cream\b", re.I),              25.0),
+    # Apparel — sorted from most specific to most general to avoid mis-matching
+    (re.compile(r"\bhoodies?\b|\bsweaters?\b|\bsweatshirts?\b", re.I),                55.0),
+    (re.compile(r"\bjackets?\b|\bcoats?\b|\bvests?\b|\bparkas?\b", re.I),             75.0),
+    (re.compile(r"\bjeans?\b|\bdenim\b|\bpants?\b|\btrousers?\b|\bleggings?\b", re.I),55.0),
+    (re.compile(r"\bdresses?\b|\bblouses?\b|\bskirts?\b|\bgowns?\b", re.I),           60.0),
+    (re.compile(r"\bshirts?\b|\btees?\b|\btops?\b|\btanks?\b", re.I),                 30.0),
+    # Footwear
+    (re.compile(r"\bsneakers?\b|\bshoes?\b|\bboots?\b|\bsandals?\b|\bheels?\b", re.I),90.0),
+    # Accessories / bags
+    (re.compile(r"\bhandbags?\b|\bpurses?\b|\btotes?\b", re.I),                      120.0),
+    (re.compile(r"\bwallets?\b|\bcard\s+holders?\b|\bwristlets?\b", re.I),             55.0),
+    (re.compile(r"\bbags?\b", re.I),                                                  100.0),
 ]
 
 _BOGO_RE     = re.compile(r'\bbogo\b|buy.one.get.one', re.IGNORECASE)
 _TRIAL_RE    = re.compile(r'\bfree\s+trial\b|\btrial\b|\d+\s+(?:months?|weeks?|days?)\s+free', re.IGNORECASE)
 _SITEWIDE_RE = re.compile(r'\bsitewide\b', re.IGNORECASE)
+
+# Vague deal language — signals that the offer applies broadly and the stated
+# brand item price is likely too high (e.g. "select styles" at Coach could mean
+# a wallet, not a full bag). Triggers conservative savings estimation.
+_VAGUE_RE = re.compile(
+    r'\bselect\s+(?:styles?|items?|products?)\b'
+    r'|\bsitewide\b'
+    r'|\byour\s+(?:order|purchase)\b'
+    r'|\beverything\b'
+    r'|\ball\s+(?:items?|styles?|orders?|purchases?)\b'
+    r'|\bfull[\s-]price\b'
+    r'|\bregular[\s-]price\b',
+    re.IGNORECASE
+)
 
 
 # ---------------------------------------------------------------------------
@@ -222,14 +294,43 @@ def _estimate_item_value(promo: dict) -> float:
     return _CATEGORY_ITEM_VALUE.get(cat, 30.0)
 
 
+def _infer_item_value_from_title(title: str) -> float | None:
+    """Scans the title for a specific item type and returns its estimated price.
+    Returns None if no recognized item type is found."""
+    for pattern, val in _ITEM_TYPE_HINTS:
+        if pattern.search(title):
+            return val
+    return None
+
+
 def _estimate_free_item_value(promo: dict) -> float:
     """Estimate the value of the free item being offered, using title keywords."""
     title = promo.get("promotion_title") or ""
-    for pattern, val in _FREE_ITEM_HINTS:
-        if pattern.search(title):
-            return val
+    title_val = _infer_item_value_from_title(title)
+    if title_val is not None:
+        return title_val
     # Unknown free item: use brand/category price, capped at $15
     return min(_estimate_item_value(promo), 15.0)
+
+
+def _conservative_item_value(promo: dict) -> float:
+    """Conservative item price for vague deals (select styles, sitewide, etc.)."""
+    brand_slug = _slugify(promo.get("brand") or "")
+
+    if brand_slug in _BRAND_CONSERVATIVE_LOOKUP:
+        return _BRAND_CONSERVATIVE_LOOKUP[brand_slug]
+
+    if len(brand_slug) >= 5:
+        for slug, val in _BRAND_CONSERVATIVE_LOOKUP.items():
+            if len(slug) >= 5 and brand_slug[:7] == slug[:7]:
+                return val
+
+    cat = (promo.get("category") or "").lower().strip()
+    if cat in _CATEGORY_CONSERVATIVE_VALUE:
+        return _CATEGORY_CONSERVATIVE_VALUE[cat]
+
+    # Final fallback: 50% of full estimate (unknown brand/category)
+    return _estimate_item_value(promo) * 0.5
 
 
 def _compute_estimated_savings(promo: dict) -> tuple[float, float, str]:
@@ -260,16 +361,38 @@ def _compute_estimated_savings(promo: dict) -> tuple[float, float, str]:
         free_val = _estimate_free_item_value(promo)
         return item_val, free_val, f"free item, est. ≈ ${free_val:.0f} savings"
 
-    # Percentage off
+    # Percentage off — confidence tier determines which item price to use:
+    #   Tier 1 (stated dollar off)     → already handled above as amount_off
+    #   Tier 2 (% off + specific item) → use title-inferred item price
+    #   Tier 3 (% off + brand/cat)     → use full brand/category estimate
+    #   Tier 4 (% off + vague)         → conservative estimate
     if dtype == "percentage_off":
         pct = _extract_percent(dvalue)
+        is_vague    = bool(_VAGUE_RE.search(title))
+        title_val   = _infer_item_value_from_title(title)
+
         if pct:
-            savings = round(item_val * pct / 100.0, 2)
-            return item_val, savings, f"{pct:.0f}% off ${item_val:.0f} item ≈ ${savings:.0f} savings"
-        if _SITEWIDE_RE.search(title):
-            savings = round(item_val * 0.20, 2)
-            return item_val, savings, f"sitewide sale, est. 20% off ${item_val:.0f} ≈ ${savings:.0f} savings"
-        return item_val, item_val * 0.15, "% off (no value parsed), est. 15%"
+            if title_val is not None:
+                # Tier 2: specific item type named in title
+                item_val_used = title_val
+                tier = f"specific item in title (${title_val:.0f})"
+            elif is_vague:
+                # Tier 4: vague language — use conservative estimate
+                item_val_used = _conservative_item_value(promo)
+                tier = f"vague deal, conservative est. (${item_val_used:.0f})"
+            else:
+                # Tier 3: brand/category known, item not specified
+                item_val_used = item_val
+                tier = f"brand/cat est. (${item_val_used:.0f})"
+            savings = round(item_val_used * pct / 100.0, 2)
+            return item_val, savings, f"{pct:.0f}% off, {tier} ≈ ${savings:.0f} savings"
+
+        # No parseable percentage — sitewide or unknown
+        if is_vague or _SITEWIDE_RE.search(title):
+            conservative = _conservative_item_value(promo)
+            savings = round(conservative * 0.20, 2)
+            return item_val, savings, f"vague/sitewide % off, conservative est. ${conservative:.0f} ≈ ${savings:.0f} savings"
+        return item_val, round(item_val * 0.15, 2), "% off (unparseable), est. 15% of brand/cat value"
 
     # Dollar amount off — use stated amount directly
     if dtype == "amount_off":
@@ -278,10 +401,12 @@ def _compute_estimated_savings(promo: dict) -> tuple[float, float, str]:
             return item_val, amt, f"${amt:.0f} off"
         return item_val, 8.0, "$ off (no amount parsed), est. $8"
 
-    # Sale price — hard to know original; assume ~20% savings
+    # Sale price — hard to know original; assume ~20% savings.
+    # Use conservative estimate when language is vague.
     if dtype == "sale_price":
-        savings = round(item_val * 0.20, 2)
-        return item_val, savings, f"sale price, est. 20% off ${item_val:.0f} ≈ ${savings:.0f} savings"
+        base = _conservative_item_value(promo) if _VAGUE_RE.search(title) else item_val
+        savings = round(base * 0.20, 2)
+        return item_val, savings, f"sale price, est. 20% off ${base:.0f} ≈ ${savings:.0f} savings"
 
     # Free shipping
     if dtype == "free_shipping":

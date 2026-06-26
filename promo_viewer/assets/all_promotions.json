@@ -67,10 +67,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 61.0,
+      "global_quality_score": 51.0,
       "estimated_item_value": 70.0,
-      "estimated_savings": 28.0,
-      "value_reason": "40% off $70 item ≈ $28 savings | type=12 + savings=25 = 37"
+      "estimated_savings": 15.2,
+      "value_reason": "40% off, vague deal, conservative est. ($38) ≈ $15 savings | type=12 + savings=15 = 27"
     },
     {
       "brand": "Abercrombie & Fitch",
@@ -207,10 +207,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 65.0,
+      "global_quality_score": 55.0,
       "estimated_item_value": 70.0,
-      "estimated_savings": 35.0,
-      "value_reason": "50% off $70 item ≈ $35 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 19.0,
+      "value_reason": "50% off, vague deal, conservative est. ($38) ≈ $19 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Adore Me",
@@ -280,7 +280,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 45.5,
-      "value_reason": "70% off $65 item ≈ $46 savings | type=16 + savings=25 = 41"
+      "value_reason": "70% off, brand/cat est. ($65) ≈ $46 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Adore Me",
@@ -421,10 +421,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 55.0,
+      "global_quality_score": 48.0,
       "estimated_item_value": 35.0,
-      "estimated_savings": 17.5,
-      "value_reason": "50% off $35 item ≈ $18 savings | type=16 + savings=15 = 31"
+      "estimated_savings": 10.0,
+      "value_reason": "50% off, vague deal, conservative est. ($20) ≈ $10 savings | type=16 + savings=8 = 24"
     },
     {
       "brand": "Aerie",
@@ -566,7 +566,7 @@
       "global_quality_score": 33.0,
       "estimated_item_value": 35.0,
       "estimated_savings": 5.25,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=3 = 9"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=3 = 9"
     },
     {
       "brand": "Aldi",
@@ -634,7 +634,7 @@
       "global_quality_score": 35.0,
       "estimated_item_value": 10.0,
       "estimated_savings": 3.4,
-      "value_reason": "34% off $10 item ≈ $3 savings | type=12 + savings=3 = 15"
+      "value_reason": "34% off, brand/cat est. ($10) ≈ $3 savings | type=12 + savings=3 = 15"
     },
     {
       "brand": "Aldi",
@@ -702,7 +702,7 @@
       "global_quality_score": 28.0,
       "estimated_item_value": 10.0,
       "estimated_savings": 1.0,
-      "value_reason": "10% off $10 item ≈ $1 savings | type=5 + savings=3 = 8"
+      "value_reason": "10% off, brand/cat est. ($10) ≈ $1 savings | type=5 + savings=3 = 8"
     },
     {
       "brand": "Aldi",
@@ -770,7 +770,7 @@
       "global_quality_score": 35.0,
       "estimated_item_value": 10.0,
       "estimated_savings": 3.2,
-      "value_reason": "32% off $10 item ≈ $3 savings | type=12 + savings=3 = 15"
+      "value_reason": "32% off, brand/cat est. ($10) ≈ $3 savings | type=12 + savings=3 = 15"
     },
     {
       "brand": "Aldi",
@@ -838,7 +838,7 @@
       "global_quality_score": 35.0,
       "estimated_item_value": 10.0,
       "estimated_savings": 3.7,
-      "value_reason": "37% off $10 item ≈ $4 savings | type=12 + savings=3 = 15"
+      "value_reason": "37% off, brand/cat est. ($10) ≈ $4 savings | type=12 + savings=3 = 15"
     },
     {
       "brand": "Aldi",
@@ -906,7 +906,7 @@
       "global_quality_score": 28.0,
       "estimated_item_value": 10.0,
       "estimated_savings": 1.6,
-      "value_reason": "16% off $10 item ≈ $2 savings | type=5 + savings=3 = 8"
+      "value_reason": "16% off, brand/cat est. ($10) ≈ $2 savings | type=5 + savings=3 = 8"
     },
     {
       "brand": "Aldi",
@@ -971,10 +971,10 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "global_quality_score": 35.0,
+      "global_quality_score": 57.0,
       "estimated_item_value": 10.0,
-      "estimated_savings": 3.9,
-      "value_reason": "39% off $10 item ≈ $4 savings | type=12 + savings=3 = 15"
+      "estimated_savings": 39.0,
+      "value_reason": "39% off, specific item in title ($100) ≈ $39 savings | type=12 + savings=25 = 37"
     },
     {
       "brand": "Aldo",
@@ -1043,7 +1043,7 @@
       "global_quality_score": 62.0,
       "estimated_item_value": 80.0,
       "estimated_savings": 40.0,
-      "value_reason": "50% off $80 item ≈ $40 savings | type=16 + savings=25 = 41"
+      "value_reason": "50% off, brand/cat est. ($80) ≈ $40 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "AllSaints",
@@ -1113,7 +1113,7 @@
       "global_quality_score": 38.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=8 = 14"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14"
     },
     {
       "brand": "AllSaints",
@@ -1257,7 +1257,7 @@
       "global_quality_score": 42.0,
       "estimated_item_value": 14.0,
       "estimated_savings": 7.0,
-      "value_reason": "50% off $14 item ≈ $7 savings | type=16 + savings=8 = 24"
+      "value_reason": "50% off, brand/cat est. ($14) ≈ $7 savings | type=16 + savings=8 = 24"
     },
     {
       "brand": "AMC Theatres",
@@ -1333,7 +1333,7 @@
       "global_quality_score": 48.0,
       "estimated_item_value": 14.0,
       "estimated_savings": 7.0,
-      "value_reason": "50% off $14 item ≈ $7 savings | type=16 + savings=8 = 24"
+      "value_reason": "50% off, brand/cat est. ($14) ≈ $7 savings | type=16 + savings=8 = 24"
     },
     {
       "brand": "American Eagle",
@@ -1403,7 +1403,7 @@
       "global_quality_score": 47.0,
       "estimated_item_value": 50.0,
       "estimated_savings": 12.5,
-      "value_reason": "25% off $50 item ≈ $12 savings | type=8 + savings=15 = 23"
+      "value_reason": "25% off, brand/cat est. ($50) ≈ $12 savings | type=8 + savings=15 = 23"
     },
     {
       "brand": "American Eagle",
@@ -1477,7 +1477,7 @@
       "global_quality_score": 33.0,
       "estimated_item_value": 50.0,
       "estimated_savings": 7.5,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=8 = 14"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14"
     },
     {
       "brand": "Ann Taylor",
@@ -1545,10 +1545,10 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "global_quality_score": 18.0,
+      "global_quality_score": 11.0,
       "estimated_item_value": 80.0,
-      "estimated_savings": 20.0,
-      "value_reason": "25% off $80 item ≈ $20 savings | type=8 + savings=15 = 23"
+      "estimated_savings": 10.5,
+      "value_reason": "25% off, vague deal, conservative est. ($42) ≈ $10 savings | type=8 + savings=8 = 16"
     },
     {
       "brand": "Ann Taylor",
@@ -1617,7 +1617,7 @@
       "global_quality_score": 22.0,
       "estimated_item_value": 80.0,
       "estimated_savings": 24.0,
-      "value_reason": "30% off $80 item ≈ $24 savings | type=12 + savings=15 = 27"
+      "value_reason": "30% off, brand/cat est. ($80) ≈ $24 savings | type=12 + savings=15 = 27"
     },
     {
       "brand": "Ann Taylor",
@@ -1989,7 +1989,7 @@
       "global_quality_score": 44.0,
       "estimated_item_value": 14.0,
       "estimated_savings": 14.0,
-      "value_reason": "100% off $14 item ≈ $14 savings | type=16 + savings=15 = 31"
+      "value_reason": "100% off, brand/cat est. ($14) ≈ $14 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Apple TV+",
@@ -2062,7 +2062,7 @@
       "global_quality_score": 25.0,
       "estimated_item_value": 14.0,
       "estimated_savings": 4.2,
-      "value_reason": "30% off $14 item ≈ $4 savings | type=12 + savings=3 = 15"
+      "value_reason": "30% off, brand/cat est. ($14) ≈ $4 savings | type=12 + savings=3 = 15"
     },
     {
       "brand": "Applebee's",
@@ -2210,7 +2210,7 @@
       "global_quality_score": 42.0,
       "estimated_item_value": 16.0,
       "estimated_savings": 8.0,
-      "value_reason": "50% off $16 item ≈ $8 savings | type=16 + savings=8 = 24"
+      "value_reason": "50% off, brand/cat est. ($16) ≈ $8 savings | type=16 + savings=8 = 24"
     },
     {
       "brand": "Aritzia",
@@ -2279,10 +2279,10 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "global_quality_score": 58.0,
+      "global_quality_score": 48.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 14.0,
+      "value_reason": "50% off, vague deal, conservative est. ($28) ≈ $14 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Athleta",
@@ -2353,7 +2353,7 @@
       "global_quality_score": 36.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=8 = 14"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14"
     },
     {
       "brand": "Athleta",
@@ -2493,7 +2493,7 @@
       "global_quality_score": 51.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 22.75,
-      "value_reason": "35% off $65 item ≈ $23 savings | type=12 + savings=15 = 27"
+      "value_reason": "35% off, brand/cat est. ($65) ≈ $23 savings | type=12 + savings=15 = 27"
     },
     {
       "brand": "Avis",
@@ -2631,7 +2631,7 @@
       "global_quality_score": 31.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 6.5,
-      "value_reason": "10% off $65 item ≈ $6 savings | type=5 + savings=8 = 13"
+      "value_reason": "10% off, brand/cat est. ($65) ≈ $6 savings | type=5 + savings=8 = 13"
     },
     {
       "brand": "Avis",
@@ -2769,7 +2769,7 @@
       "global_quality_score": 47.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 16.25,
-      "value_reason": "25% off $65 item ≈ $16 savings | type=8 + savings=15 = 23"
+      "value_reason": "25% off, brand/cat est. ($65) ≈ $16 savings | type=8 + savings=15 = 23"
     },
     {
       "brand": "Banana Republic",
@@ -2843,7 +2843,7 @@
       "global_quality_score": 45.0,
       "estimated_item_value": 75.0,
       "estimated_savings": 15.0,
-      "value_reason": "20% off $75 item ≈ $15 savings | type=8 + savings=15 = 23"
+      "value_reason": "20% off, brand/cat est. ($75) ≈ $15 savings | type=8 + savings=15 = 23"
     },
     {
       "brand": "Banana Republic",
@@ -2913,7 +2913,7 @@
       "global_quality_score": 62.0,
       "estimated_item_value": 75.0,
       "estimated_savings": 45.0,
-      "value_reason": "60% off $75 item ≈ $45 savings | type=16 + savings=25 = 41"
+      "value_reason": "60% off, brand/cat est. ($75) ≈ $45 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Baskin-Robbins",
@@ -3054,7 +3054,7 @@
       "global_quality_score": 34.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 6.75,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=8 = 14"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14"
     },
     {
       "brand": "Bath & Body Works",
@@ -3190,7 +3190,7 @@
       "global_quality_score": 55.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 22.5,
-      "value_reason": "50% off $45 item ≈ $22 savings | type=16 + savings=15 = 31"
+      "value_reason": "50% off, brand/cat est. ($45) ≈ $22 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "BCBG",
@@ -3332,7 +3332,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "value_reason": "50% off, brand/cat est. ($65) ≈ $32 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Bealls",
@@ -3848,10 +3848,10 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "global_quality_score": 43.0,
+      "global_quality_score": 38.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 6.5,
-      "value_reason": "10% off $65 item ≈ $6 savings | type=5 + savings=8 = 13"
+      "estimated_savings": 2.8,
+      "value_reason": "10% off, vague deal, conservative est. ($28) ≈ $3 savings | type=5 + savings=3 = 8"
     },
     {
       "brand": "Bowlero",
@@ -3921,7 +3921,7 @@
       "global_quality_score": 28.0,
       "estimated_item_value": 14.0,
       "estimated_savings": 3.5,
-      "value_reason": "25% off $14 item ≈ $4 savings | type=8 + savings=3 = 11"
+      "value_reason": "25% off, brand/cat est. ($14) ≈ $4 savings | type=8 + savings=3 = 11"
     },
     {
       "brand": "Bowlero",
@@ -4134,7 +4134,7 @@
       "global_quality_score": 17.0,
       "estimated_item_value": 14.0,
       "estimated_savings": 7.0,
-      "value_reason": "50% off $14 item ≈ $7 savings | type=16 + savings=8 = 24"
+      "value_reason": "50% off, brand/cat est. ($14) ≈ $7 savings | type=16 + savings=8 = 24"
     },
     {
       "brand": "Bowlero",
@@ -4344,7 +4344,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "value_reason": "50% off, brand/cat est. ($65) ≈ $32 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Brooklinen",
@@ -4490,7 +4490,7 @@
       "global_quality_score": 43.0,
       "estimated_item_value": 90.0,
       "estimated_savings": 13.5,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=15 = 21"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=15 = 21"
     },
     {
       "brand": "Brooklinen",
@@ -4565,7 +4565,7 @@
       "global_quality_score": 42.0,
       "estimated_item_value": 90.0,
       "estimated_savings": 13.5,
-      "value_reason": "15% off $90 item ≈ $14 savings | type=5 + savings=15 = 20"
+      "value_reason": "15% off, brand/cat est. ($90) ≈ $14 savings | type=5 + savings=15 = 20"
     },
     {
       "brand": "Brooks Running",
@@ -4633,7 +4633,7 @@
       "global_quality_score": 61.0,
       "estimated_item_value": 135.0,
       "estimated_savings": 47.25,
-      "value_reason": "35% off $135 item ≈ $47 savings | type=12 + savings=25 = 37"
+      "value_reason": "35% off, brand/cat est. ($135) ≈ $47 savings | type=12 + savings=25 = 37"
     },
     {
       "brand": "Brooks Running",
@@ -4774,7 +4774,7 @@
       "global_quality_score": 28.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 4.5,
-      "value_reason": "10% off $45 item ≈ $4 savings | type=5 + savings=3 = 8"
+      "value_reason": "10% off, brand/cat est. ($45) ≈ $4 savings | type=5 + savings=3 = 8"
     },
     {
       "brand": "Burlington",
@@ -4849,7 +4849,7 @@
       "global_quality_score": 23.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 4.5,
-      "value_reason": "10% off $45 item ≈ $4 savings | type=5 + savings=3 = 8"
+      "value_reason": "10% off, brand/cat est. ($45) ≈ $4 savings | type=5 + savings=3 = 8"
     },
     {
       "brand": "Calvin Klein",
@@ -4914,10 +4914,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 65.0,
+      "global_quality_score": 55.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 26.0,
-      "value_reason": "40% off $65 item ≈ $26 savings | type=12 + savings=25 = 37"
+      "estimated_savings": 11.2,
+      "value_reason": "40% off, vague deal, conservative est. ($28) ≈ $11 savings | type=12 + savings=15 = 27"
     },
     {
       "brand": "Calvin Klein",
@@ -4985,7 +4985,7 @@
       "global_quality_score": 47.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 13.0,
-      "value_reason": "20% off $65 item ≈ $13 savings | type=8 + savings=15 = 23"
+      "value_reason": "20% off, brand/cat est. ($65) ≈ $13 savings | type=8 + savings=15 = 23"
     },
     {
       "brand": "Calvin Klein",
@@ -5050,10 +5050,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 65.0,
+      "global_quality_score": 55.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 15.0,
+      "value_reason": "50% off, specific item in title ($30) ≈ $15 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Calvin Klein",
@@ -5120,8 +5120,8 @@
       },
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 45.5,
-      "value_reason": "70% off $65 item ≈ $46 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 38.5,
+      "value_reason": "70% off, specific item in title ($55) ≈ $38 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Calvin Klein",
@@ -5186,10 +5186,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 65.0,
+      "global_quality_score": 55.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 15.0,
+      "value_reason": "50% off, specific item in title ($30) ≈ $15 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Calvin Klein",
@@ -5256,8 +5256,8 @@
       },
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 27.5,
+      "value_reason": "50% off, specific item in title ($55) ≈ $28 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Calvin Klein",
@@ -5325,7 +5325,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 45.5,
-      "value_reason": "70% off $65 item ≈ $46 savings | type=16 + savings=25 = 41"
+      "value_reason": "70% off, brand/cat est. ($65) ≈ $46 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Calvin Klein",
@@ -5392,8 +5392,8 @@
       },
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 27.5,
+      "value_reason": "50% off, specific item in title ($55) ≈ $28 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Calvin Klein",
@@ -5458,10 +5458,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 65.0,
+      "global_quality_score": 55.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 15.0,
+      "value_reason": "50% off, specific item in title ($30) ≈ $15 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Calvin Klein",
@@ -5526,10 +5526,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 65.0,
+      "global_quality_score": 55.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 15.0,
+      "value_reason": "50% off, specific item in title ($30) ≈ $15 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Calvin Klein",
@@ -5594,10 +5594,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 65.0,
+      "global_quality_score": 55.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 15.0,
+      "value_reason": "50% off, specific item in title ($30) ≈ $15 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Calvin Klein",
@@ -5664,8 +5664,8 @@
       },
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 27.5,
+      "value_reason": "50% off, specific item in title ($55) ≈ $28 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Calvin Klein",
@@ -5733,7 +5733,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "value_reason": "50% off, brand/cat est. ($65) ≈ $32 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Calvin Klein",
@@ -5800,8 +5800,8 @@
       },
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 27.5,
+      "value_reason": "50% off, specific item in title ($55) ≈ $28 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Calvin Klein",
@@ -5868,8 +5868,8 @@
       },
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 27.5,
+      "value_reason": "50% off, specific item in title ($55) ≈ $28 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Caribou Coffee",
@@ -6237,10 +6237,10 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "global_quality_score": 57.0,
+      "global_quality_score": 47.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 26.0,
-      "value_reason": "40% off $65 item ≈ $26 savings | type=12 + savings=25 = 37"
+      "estimated_savings": 11.2,
+      "value_reason": "40% off, vague deal, conservative est. ($28) ≈ $11 savings | type=12 + savings=15 = 27"
     },
     {
       "brand": "Chico's",
@@ -6523,7 +6523,7 @@
       "global_quality_score": 61.0,
       "estimated_item_value": 200.0,
       "estimated_savings": 40.0,
-      "value_reason": "20% off $200 item ≈ $40 savings | type=8 + savings=25 = 33"
+      "value_reason": "20% off, brand/cat est. ($200) ≈ $40 savings | type=8 + savings=25 = 33"
     },
     {
       "brand": "Choice Hotels",
@@ -6593,7 +6593,7 @@
       "global_quality_score": 54.0,
       "estimated_item_value": 200.0,
       "estimated_savings": 30.0,
-      "value_reason": "15% off $200 item ≈ $30 savings | type=5 + savings=25 = 30"
+      "value_reason": "15% off, brand/cat est. ($200) ≈ $30 savings | type=5 + savings=25 = 30"
     },
     {
       "brand": "Choice Hotels",
@@ -6663,7 +6663,7 @@
       "global_quality_score": 61.0,
       "estimated_item_value": 200.0,
       "estimated_savings": 40.0,
-      "value_reason": "20% off $200 item ≈ $40 savings | type=8 + savings=25 = 33"
+      "value_reason": "20% off, brand/cat est. ($200) ≈ $40 savings | type=8 + savings=25 = 33"
     },
     {
       "brand": "Choice Hotels",
@@ -6733,7 +6733,7 @@
       "global_quality_score": 71.0,
       "estimated_item_value": 200.0,
       "estimated_savings": 80.0,
-      "value_reason": "40% off $200 item ≈ $80 savings | type=12 + savings=35 = 47"
+      "value_reason": "40% off, brand/cat est. ($200) ≈ $80 savings | type=12 + savings=35 = 47"
     },
     {
       "brand": "Church's Chicken",
@@ -7012,10 +7012,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 85.0,
+      "global_quality_score": 65.0,
       "estimated_item_value": 380.0,
-      "estimated_savings": 190.0,
-      "value_reason": "50% off $380 item ≈ $190 savings | type=16 + savings=45 = 61"
+      "estimated_savings": 37.5,
+      "value_reason": "50% off, vague deal, conservative est. ($75) ≈ $38 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Coach",
@@ -7155,7 +7155,7 @@
       "global_quality_score": 75.0,
       "estimated_item_value": 150.0,
       "estimated_savings": 75.0,
-      "value_reason": "50% off $150 item ≈ $75 savings | type=16 + savings=35 = 51"
+      "value_reason": "50% off, brand/cat est. ($150) ≈ $75 savings | type=16 + savings=35 = 51"
     },
     {
       "brand": "Cole Haan",
@@ -7224,8 +7224,8 @@
       },
       "global_quality_score": 75.0,
       "estimated_item_value": 150.0,
-      "estimated_savings": 90.0,
-      "value_reason": "60% off $150 item ≈ $90 savings | type=16 + savings=35 = 51"
+      "estimated_savings": 54.0,
+      "value_reason": "60% off, specific item in title ($90) ≈ $54 savings | type=16 + savings=35 = 51"
     },
     {
       "brand": "Cole Haan",
@@ -7508,7 +7508,7 @@
       "global_quality_score": 36.0,
       "estimated_item_value": 90.0,
       "estimated_savings": 13.5,
-      "value_reason": "15% off $90 item ≈ $14 savings | type=5 + savings=15 = 20"
+      "value_reason": "15% off, brand/cat est. ($90) ≈ $14 savings | type=5 + savings=15 = 20"
     },
     {
       "brand": "Cracker Barrel",
@@ -7581,7 +7581,7 @@
       "global_quality_score": 18.0,
       "estimated_item_value": 15.0,
       "estimated_savings": 1.5,
-      "value_reason": "10% off $15 item ≈ $2 savings | type=5 + savings=3 = 8"
+      "value_reason": "10% off, brand/cat est. ($15) ≈ $2 savings | type=5 + savings=3 = 8"
     },
     {
       "brand": "Culver's",
@@ -7651,7 +7651,7 @@
       "global_quality_score": 23.0,
       "estimated_item_value": 10.0,
       "estimated_savings": 2.5,
-      "value_reason": "25% off $10 item ≈ $2 savings | type=8 + savings=3 = 11"
+      "value_reason": "25% off, brand/cat est. ($10) ≈ $2 savings | type=8 + savings=3 = 11"
     },
     {
       "brand": "Culver's",
@@ -7800,7 +7800,7 @@
       "global_quality_score": 60.0,
       "estimated_item_value": 800.0,
       "estimated_savings": 80.0,
-      "value_reason": "10% off $800 item ≈ $80 savings | type=5 + savings=35 = 40"
+      "value_reason": "10% off, brand/cat est. ($800) ≈ $80 savings | type=5 + savings=35 = 40"
     },
     {
       "brand": "Dell",
@@ -7869,7 +7869,7 @@
       "global_quality_score": 42.0,
       "estimated_item_value": 800.0,
       "estimated_savings": 40.0,
-      "value_reason": "5% off $800 item ≈ $40 savings | type=3 + savings=25 = 28"
+      "value_reason": "5% off, brand/cat est. ($800) ≈ $40 savings | type=3 + savings=25 = 28"
     },
     {
       "brand": "Dell",
@@ -7938,7 +7938,7 @@
       "global_quality_score": 82.0,
       "estimated_item_value": 800.0,
       "estimated_savings": 160.0,
-      "value_reason": "20% off $800 item ≈ $160 savings | type=8 + savings=45 = 53"
+      "value_reason": "20% off, brand/cat est. ($800) ≈ $160 savings | type=8 + savings=45 = 53"
     },
     {
       "brand": "Dell",
@@ -8009,7 +8009,7 @@
       "global_quality_score": 87.0,
       "estimated_item_value": 800.0,
       "estimated_savings": 400.0,
-      "value_reason": "50% off $800 item ≈ $400 savings | type=16 + savings=45 = 61"
+      "value_reason": "50% off, brand/cat est. ($800) ≈ $400 savings | type=16 + savings=45 = 61"
     },
     {
       "brand": "Delta Air Lines",
@@ -8154,7 +8154,7 @@
       "global_quality_score": 43.0,
       "estimated_item_value": 320.0,
       "estimated_savings": 48.0,
-      "value_reason": "15% off $320 item ≈ $48 savings | type=5 + savings=25 = 30"
+      "value_reason": "15% off, brand/cat est. ($320) ≈ $48 savings | type=5 + savings=25 = 30"
     },
     {
       "brand": "Denny's",
@@ -8369,7 +8369,7 @@
       "global_quality_score": 55.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 15.0,
-      "value_reason": "50% off $30 item ≈ $15 savings | type=16 + savings=15 = 31"
+      "value_reason": "50% off, brand/cat est. ($30) ≈ $15 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Disney+",
@@ -8441,7 +8441,7 @@
       "global_quality_score": 51.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 12.6,
-      "value_reason": "42% off $30 item ≈ $13 savings | type=12 + savings=15 = 27"
+      "value_reason": "42% off, brand/cat est. ($30) ≈ $13 savings | type=12 + savings=15 = 27"
     },
     {
       "brand": "Disney+",
@@ -8513,7 +8513,7 @@
       "global_quality_score": 44.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 9.9,
-      "value_reason": "33% off $30 item ≈ $10 savings | type=12 + savings=8 = 20"
+      "value_reason": "33% off, brand/cat est. ($30) ≈ $10 savings | type=12 + savings=8 = 20"
     },
     {
       "brand": "Dollar Shave Club",
@@ -8582,8 +8582,8 @@
       },
       "global_quality_score": 32.0,
       "estimated_item_value": 30.0,
-      "estimated_savings": 3.0,
-      "value_reason": "10% off $30 item ≈ $3 savings | type=5 + savings=3 = 8"
+      "estimated_savings": 1.5,
+      "value_reason": "10% off, vague deal, conservative est. ($15) ≈ $2 savings | type=5 + savings=3 = 8"
     },
     {
       "brand": "Dollar Shave Club",
@@ -9145,7 +9145,7 @@
       "global_quality_score": 36.0,
       "estimated_item_value": 22.0,
       "estimated_savings": 6.6,
-      "value_reason": "30% off $22 item ≈ $7 savings | type=12 + savings=8 = 20"
+      "value_reason": "30% off, brand/cat est. ($22) ≈ $7 savings | type=12 + savings=8 = 20"
     },
     {
       "brand": "Dossier",
@@ -9290,7 +9290,7 @@
       "global_quality_score": 40.0,
       "estimated_item_value": 150.0,
       "estimated_savings": 15.0,
-      "value_reason": "10% off $150 item ≈ $15 savings | type=5 + savings=15 = 20"
+      "value_reason": "10% off, brand/cat est. ($150) ≈ $15 savings | type=5 + savings=15 = 20"
     },
     {
       "brand": "Dr. Martens",
@@ -9713,7 +9713,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 90.0,
       "estimated_savings": 45.0,
-      "value_reason": "50% off $90 item ≈ $45 savings | type=16 + savings=25 = 41"
+      "value_reason": "50% off, brand/cat est. ($90) ≈ $45 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Einstein Bros Bagels",
@@ -9920,8 +9920,8 @@
       },
       "global_quality_score": 38.0,
       "estimated_item_value": 6.0,
-      "estimated_savings": 10.0,
-      "value_reason": "birthday reward, est. free item ≈ $10 | type=18 + savings=8 = 26"
+      "estimated_savings": 6.0,
+      "value_reason": "birthday reward, est. free item ≈ $6 | type=18 + savings=8 = 26"
     },
     {
       "brand": "Einstein Bros Bagels",
@@ -10067,7 +10067,7 @@
       "global_quality_score": 33.0,
       "estimated_item_value": 60.0,
       "estimated_savings": 9.0,
-      "value_reason": "15% off $60 item ≈ $9 savings | type=5 + savings=8 = 13"
+      "value_reason": "15% off, brand/cat est. ($60) ≈ $9 savings | type=5 + savings=8 = 13"
     },
     {
       "brand": "Enterprise",
@@ -10208,7 +10208,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 31.5,
-      "value_reason": "70% off $45 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "value_reason": "70% off, brand/cat est. ($45) ≈ $32 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Exxon Mobil",
@@ -10574,7 +10574,7 @@
       "global_quality_score": 25.0,
       "estimated_item_value": 15.0,
       "estimated_savings": 3.0,
-      "value_reason": "20% off $15 item ≈ $3 savings | type=8 + savings=3 = 11"
+      "value_reason": "20% off, brand/cat est. ($15) ≈ $3 savings | type=8 + savings=3 = 11"
     },
     {
       "brand": "Fandango",
@@ -11168,7 +11168,7 @@
       "global_quality_score": 75.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 52.0,
-      "value_reason": "80% off $65 item ≈ $52 savings | type=16 + savings=35 = 51"
+      "value_reason": "80% off, brand/cat est. ($65) ≈ $52 savings | type=16 + savings=35 = 51"
     },
     {
       "brand": "Fenty Beauty",
@@ -11452,10 +11452,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 51.0,
+      "global_quality_score": 44.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 19.5,
-      "value_reason": "30% off $65 item ≈ $20 savings | type=12 + savings=15 = 27"
+      "estimated_savings": 8.4,
+      "value_reason": "30% off, vague deal, conservative est. ($28) ≈ $8 savings | type=12 + savings=8 = 20"
     },
     {
       "brand": "Forever 21",
@@ -11526,7 +11526,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "value_reason": "50% off, brand/cat est. ($65) ≈ $32 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Forever 21",
@@ -11597,7 +11597,7 @@
       "global_quality_score": 38.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=8 = 14"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14"
     },
     {
       "brand": "Fossil",
@@ -11668,7 +11668,7 @@
       "global_quality_score": 37.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
-      "value_reason": "15% off $65 item ≈ $10 savings | type=5 + savings=8 = 13"
+      "value_reason": "15% off, brand/cat est. ($65) ≈ $10 savings | type=5 + savings=8 = 13"
     },
     {
       "brand": "Fossil",
@@ -11938,7 +11938,7 @@
       "global_quality_score": 26.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 15.0,
-      "value_reason": "50% off $30 item ≈ $15 savings | type=16 + savings=15 = 31"
+      "value_reason": "50% off, brand/cat est. ($30) ≈ $15 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Gainful",
@@ -12076,7 +12076,7 @@
       "global_quality_score": 47.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 13.0,
-      "value_reason": "20% off $65 item ≈ $13 savings | type=8 + savings=15 = 23"
+      "value_reason": "20% off, brand/cat est. ($65) ≈ $13 savings | type=8 + savings=15 = 23"
     },
     {
       "brand": "Hilton",
@@ -12145,7 +12145,7 @@
       "global_quality_score": 42.0,
       "estimated_item_value": 175.0,
       "estimated_savings": 29.75,
-      "value_reason": "17% off $175 item ≈ $30 savings | type=5 + savings=25 = 30"
+      "value_reason": "17% off, brand/cat est. ($175) ≈ $30 savings | type=5 + savings=25 = 30"
     },
     {
       "brand": "Hilton",
@@ -12287,7 +12287,7 @@
       "global_quality_score": 31.0,
       "estimated_item_value": 175.0,
       "estimated_savings": 10.5,
-      "value_reason": "6% off $175 item ≈ $10 savings | type=3 + savings=8 = 11"
+      "value_reason": "6% off, brand/cat est. ($175) ≈ $10 savings | type=3 + savings=8 = 11"
     },
     {
       "brand": "Hilton",
@@ -12358,7 +12358,7 @@
       "global_quality_score": 25.0,
       "estimated_item_value": 175.0,
       "estimated_savings": 17.5,
-      "value_reason": "10% off $175 item ≈ $18 savings | type=5 + savings=15 = 20"
+      "value_reason": "10% off, brand/cat est. ($175) ≈ $18 savings | type=5 + savings=15 = 20"
     },
     {
       "brand": "Hilton",
@@ -12429,7 +12429,7 @@
       "global_quality_score": 51.0,
       "estimated_item_value": 175.0,
       "estimated_savings": 26.25,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=25 = 31"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=25 = 31"
     },
     {
       "brand": "Hollister",
@@ -12501,7 +12501,7 @@
       "global_quality_score": 38.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 6.75,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=8 = 14"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14"
     },
     {
       "brand": "Hollister",
@@ -12641,10 +12641,10 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "global_quality_score": 61.0,
+      "global_quality_score": 51.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 14.0,
+      "value_reason": "50% off, vague deal, conservative est. ($28) ≈ $14 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Hulu",
@@ -12720,7 +12720,7 @@
       "global_quality_score": 42.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 13.5,
-      "value_reason": "45% off $30 item ≈ $14 savings | type=12 + savings=15 = 27"
+      "value_reason": "45% off, brand/cat est. ($30) ≈ $14 savings | type=12 + savings=15 = 27"
     },
     {
       "brand": "Hulu",
@@ -12796,7 +12796,7 @@
       "global_quality_score": 42.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 12.3,
-      "value_reason": "41% off $30 item ≈ $12 savings | type=12 + savings=15 = 27"
+      "value_reason": "41% off, brand/cat est. ($30) ≈ $12 savings | type=12 + savings=15 = 27"
     },
     {
       "brand": "Hulu",
@@ -12951,7 +12951,7 @@
       "global_quality_score": 32.0,
       "estimated_item_value": 10.0,
       "estimated_savings": 3.0,
-      "value_reason": "30% off $10 item ≈ $3 savings | type=12 + savings=3 = 15"
+      "value_reason": "30% off, brand/cat est. ($10) ≈ $3 savings | type=12 + savings=3 = 15"
     },
     {
       "brand": "Hungryroot",
@@ -13237,7 +13237,7 @@
       "global_quality_score": 24.0,
       "estimated_item_value": 42.0,
       "estimated_savings": 4.2,
-      "value_reason": "10% off $42 item ≈ $4 savings | type=5 + savings=3 = 8"
+      "value_reason": "10% off, brand/cat est. ($42) ≈ $4 savings | type=5 + savings=3 = 8"
     },
     {
       "brand": "IL MAKIAGE",
@@ -13447,7 +13447,7 @@
       "global_quality_score": 89.0,
       "estimated_item_value": 210.0,
       "estimated_savings": 105.0,
-      "value_reason": "50% off $210 item ≈ $105 savings | type=16 + savings=45 = 61"
+      "value_reason": "50% off, brand/cat est. ($210) ≈ $105 savings | type=16 + savings=45 = 61"
     },
     {
       "brand": "JetBlue",
@@ -13722,7 +13722,7 @@
       "global_quality_score": 63.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 35.75,
-      "value_reason": "55% off $65 item ≈ $36 savings | type=16 + savings=25 = 41"
+      "value_reason": "55% off, brand/cat est. ($65) ≈ $36 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Johnston & Murphy",
@@ -14073,7 +14073,7 @@
       "global_quality_score": 54.0,
       "estimated_item_value": 280.0,
       "estimated_savings": 42.0,
-      "value_reason": "15% off $280 item ≈ $42 savings | type=5 + savings=25 = 30"
+      "value_reason": "15% off, brand/cat est. ($280) ≈ $42 savings | type=5 + savings=25 = 30"
     },
     {
       "brand": "Kate Spade",
@@ -14141,7 +14141,7 @@
       "global_quality_score": 81.0,
       "estimated_item_value": 280.0,
       "estimated_savings": 112.0,
-      "value_reason": "40% off $280 item ≈ $112 savings | type=12 + savings=45 = 57"
+      "value_reason": "40% off, brand/cat est. ($280) ≈ $112 savings | type=12 + savings=45 = 57"
     },
     {
       "brand": "Kendra Scott",
@@ -14343,7 +14343,7 @@
       "global_quality_score": 47.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 16.25,
-      "value_reason": "25% off $65 item ≈ $16 savings | type=8 + savings=15 = 23"
+      "value_reason": "25% off, brand/cat est. ($65) ≈ $16 savings | type=8 + savings=15 = 23"
     },
     {
       "brand": "Kizik",
@@ -14413,7 +14413,7 @@
       "global_quality_score": 47.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 17.55,
-      "value_reason": "27% off $65 item ≈ $18 savings | type=8 + savings=15 = 23"
+      "value_reason": "27% off, brand/cat est. ($65) ≈ $18 savings | type=8 + savings=15 = 23"
     },
     {
       "brand": "Kizik",
@@ -14483,7 +14483,7 @@
       "global_quality_score": 47.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 15.6,
-      "value_reason": "24% off $65 item ≈ $16 savings | type=8 + savings=15 = 23"
+      "value_reason": "24% off, brand/cat est. ($65) ≈ $16 savings | type=8 + savings=15 = 23"
     },
     {
       "brand": "Kizik",
@@ -14553,7 +14553,7 @@
       "global_quality_score": 61.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 27.95,
-      "value_reason": "43% off $65 item ≈ $28 savings | type=12 + savings=25 = 37"
+      "value_reason": "43% off, brand/cat est. ($65) ≈ $28 savings | type=12 + savings=25 = 37"
     },
     {
       "brand": "Kizik",
@@ -14623,7 +14623,7 @@
       "global_quality_score": 61.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 26.0,
-      "value_reason": "40% off $65 item ≈ $26 savings | type=12 + savings=25 = 37"
+      "value_reason": "40% off, brand/cat est. ($65) ≈ $26 savings | type=12 + savings=25 = 37"
     },
     {
       "brand": "Kizik",
@@ -14693,7 +14693,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "value_reason": "50% off, brand/cat est. ($65) ≈ $32 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Kizik",
@@ -14763,7 +14763,7 @@
       "global_quality_score": 47.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 18.85,
-      "value_reason": "29% off $65 item ≈ $19 savings | type=8 + savings=15 = 23"
+      "value_reason": "29% off, brand/cat est. ($65) ≈ $19 savings | type=8 + savings=15 = 23"
     },
     {
       "brand": "Krispy Kreme",
@@ -14908,7 +14908,7 @@
       "global_quality_score": 61.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 19.5,
-      "value_reason": "30% off $65 item ≈ $20 savings | type=12 + savings=15 = 27"
+      "value_reason": "30% off, brand/cat est. ($65) ≈ $20 savings | type=12 + savings=15 = 27"
     },
     {
       "brand": "Lee",
@@ -15044,7 +15044,7 @@
       "global_quality_score": 37.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
-      "value_reason": "15% off $65 item ≈ $10 savings | type=5 + savings=8 = 13"
+      "value_reason": "15% off, brand/cat est. ($65) ≈ $10 savings | type=5 + savings=8 = 13"
     },
     {
       "brand": "Lilly Pulitzer",
@@ -15176,7 +15176,7 @@
       "global_quality_score": 36.0,
       "estimated_item_value": 55.0,
       "estimated_savings": 27.5,
-      "value_reason": "50% off $55 item ≈ $28 savings | type=16 + savings=25 = 41"
+      "value_reason": "50% off, brand/cat est. ($55) ≈ $28 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "LOFT",
@@ -15240,7 +15240,7 @@
       "global_quality_score": 22.0,
       "estimated_item_value": 55.0,
       "estimated_savings": 16.5,
-      "value_reason": "30% off $55 item ≈ $16 savings | type=12 + savings=15 = 27"
+      "value_reason": "30% off, brand/cat est. ($55) ≈ $16 savings | type=12 + savings=15 = 27"
     },
     {
       "brand": "LOFT",
@@ -15380,7 +15380,7 @@
       "global_quality_score": 45.0,
       "estimated_item_value": 55.0,
       "estimated_savings": 11.0,
-      "value_reason": "20% off $55 item ≈ $11 savings | type=8 + savings=15 = 23"
+      "value_reason": "20% off, brand/cat est. ($55) ≈ $11 savings | type=8 + savings=15 = 23"
     },
     {
       "brand": "LOFT",
@@ -15451,7 +15451,7 @@
       "global_quality_score": 32.0,
       "estimated_item_value": 55.0,
       "estimated_savings": 5.5,
-      "value_reason": "10% off $55 item ≈ $6 savings | type=5 + savings=3 = 8"
+      "value_reason": "10% off, brand/cat est. ($55) ≈ $6 savings | type=5 + savings=3 = 8"
     },
     {
       "brand": "Max",
@@ -15664,10 +15664,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 65.0,
+      "global_quality_score": 55.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 26.0,
-      "value_reason": "40% off $65 item ≈ $26 savings | type=12 + savings=25 = 37"
+      "estimated_savings": 11.2,
+      "value_reason": "40% off, vague deal, conservative est. ($28) ≈ $11 savings | type=12 + savings=15 = 27"
     },
     {
       "brand": "Merrell",
@@ -15806,7 +15806,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 220.0,
       "estimated_savings": 55.0,
-      "value_reason": "25% off $220 item ≈ $55 savings | type=8 + savings=35 = 43"
+      "value_reason": "25% off, brand/cat est. ($220) ≈ $55 savings | type=8 + savings=35 = 43"
     },
     {
       "brand": "Michael Kors",
@@ -15874,7 +15874,7 @@
       "global_quality_score": 71.0,
       "estimated_item_value": 220.0,
       "estimated_savings": 88.0,
-      "value_reason": "40% off $220 item ≈ $88 savings | type=12 + savings=35 = 47"
+      "value_reason": "40% off, brand/cat est. ($220) ≈ $88 savings | type=12 + savings=35 = 47"
     },
     {
       "brand": "Nasty Gal",
@@ -15945,7 +15945,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 27.0,
-      "value_reason": "60% off $45 item ≈ $27 savings | type=16 + savings=25 = 41"
+      "value_reason": "60% off, brand/cat est. ($45) ≈ $27 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Nasty Gal",
@@ -16015,7 +16015,7 @@
       "global_quality_score": 43.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 6.75,
-      "value_reason": "15% off $45 item ≈ $7 savings | type=5 + savings=8 = 13"
+      "value_reason": "15% off, brand/cat est. ($45) ≈ $7 savings | type=5 + savings=8 = 13"
     },
     {
       "brand": "Nasty Gal",
@@ -16086,7 +16086,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 31.5,
-      "value_reason": "70% off $45 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "value_reason": "70% off, brand/cat est. ($45) ≈ $32 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Nike",
@@ -16226,10 +16226,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 51.0,
+      "global_quality_score": 61.0,
       "estimated_item_value": 45.0,
-      "estimated_savings": 18.0,
-      "value_reason": "40% off $45 item ≈ $18 savings | type=12 + savings=15 = 27"
+      "estimated_savings": 36.0,
+      "value_reason": "40% off, specific item in title ($90) ≈ $36 savings | type=12 + savings=25 = 37"
     },
     {
       "brand": "Nine West",
@@ -16295,10 +16295,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 65.0,
+      "global_quality_score": 75.0,
       "estimated_item_value": 45.0,
-      "estimated_savings": 27.0,
-      "value_reason": "60% off $45 item ≈ $27 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 54.0,
+      "value_reason": "60% off, specific item in title ($90) ≈ $54 savings | type=16 + savings=35 = 51"
     },
     {
       "brand": "Nine West",
@@ -16367,7 +16367,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 27.0,
-      "value_reason": "60% off $45 item ≈ $27 savings | type=16 + savings=25 = 41"
+      "value_reason": "60% off, brand/cat est. ($45) ≈ $27 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Nine West",
@@ -16436,7 +16436,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 27.0,
-      "value_reason": "60% off $45 item ≈ $27 savings | type=16 + savings=25 = 41"
+      "value_reason": "60% off, brand/cat est. ($45) ≈ $27 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Nine West",
@@ -16502,10 +16502,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 65.0,
+      "global_quality_score": 75.0,
       "estimated_item_value": 45.0,
-      "estimated_savings": 27.0,
-      "value_reason": "60% off $45 item ≈ $27 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 54.0,
+      "value_reason": "60% off, specific item in title ($90) ≈ $54 savings | type=16 + savings=35 = 51"
     },
     {
       "brand": "Nine West",
@@ -16574,7 +16574,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 27.0,
-      "value_reason": "60% off $45 item ≈ $27 savings | type=16 + savings=25 = 41"
+      "value_reason": "60% off, brand/cat est. ($45) ≈ $27 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Noodles & Company",
@@ -16798,7 +16798,7 @@
       "global_quality_score": 29.0,
       "estimated_item_value": 22.0,
       "estimated_savings": 3.3,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=3 = 9"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=3 = 9"
     },
     {
       "brand": "NYX Professional Makeup",
@@ -16867,7 +16867,7 @@
       "global_quality_score": 53.0,
       "estimated_item_value": 22.0,
       "estimated_savings": 11.0,
-      "value_reason": "50% off $22 item ≈ $11 savings | type=16 + savings=15 = 31"
+      "value_reason": "50% off, brand/cat est. ($22) ≈ $11 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "NYX Professional Makeup",
@@ -16936,7 +16936,7 @@
       "global_quality_score": 53.0,
       "estimated_item_value": 22.0,
       "estimated_savings": 11.0,
-      "value_reason": "50% off $22 item ≈ $11 savings | type=16 + savings=15 = 31"
+      "value_reason": "50% off, brand/cat est. ($22) ≈ $11 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Old Navy",
@@ -17005,8 +17005,8 @@
       },
       "global_quality_score": 55.0,
       "estimated_item_value": 35.0,
-      "estimated_savings": 17.5,
-      "value_reason": "50% off $35 item ≈ $18 savings | type=16 + savings=15 = 31"
+      "estimated_savings": 11.0,
+      "value_reason": "50% off, vague deal, conservative est. ($22) ≈ $11 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Old Navy",
@@ -17223,7 +17223,7 @@
       "global_quality_score": 17.0,
       "estimated_item_value": 28.0,
       "estimated_savings": 2.8,
-      "value_reason": "10% off $28 item ≈ $3 savings | type=5 + savings=3 = 8"
+      "value_reason": "10% off, brand/cat est. ($28) ≈ $3 savings | type=5 + savings=3 = 8"
     },
     {
       "brand": "PacSun",
@@ -17293,7 +17293,7 @@
       "global_quality_score": 61.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 26.0,
-      "value_reason": "40% off $65 item ≈ $26 savings | type=12 + savings=25 = 37"
+      "value_reason": "40% off, brand/cat est. ($65) ≈ $26 savings | type=12 + savings=25 = 37"
     },
     {
       "brand": "PacSun",
@@ -17363,7 +17363,7 @@
       "global_quality_score": 61.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 26.0,
-      "value_reason": "40% off $65 item ≈ $26 savings | type=12 + savings=25 = 37"
+      "value_reason": "40% off, brand/cat est. ($65) ≈ $26 savings | type=12 + savings=25 = 37"
     },
     {
       "brand": "PacSun",
@@ -18099,7 +18099,7 @@
       "global_quality_score": 42.0,
       "estimated_item_value": 90.0,
       "estimated_savings": 13.5,
-      "value_reason": "15% off $90 item ≈ $14 savings | type=5 + savings=15 = 20"
+      "value_reason": "15% off, brand/cat est. ($90) ≈ $14 savings | type=5 + savings=15 = 20"
     },
     {
       "brand": "Parachute",
@@ -18170,7 +18170,7 @@
       "global_quality_score": 37.0,
       "estimated_item_value": 90.0,
       "estimated_savings": 9.0,
-      "value_reason": "10% off $90 item ≈ $9 savings | type=5 + savings=8 = 13"
+      "value_reason": "10% off, brand/cat est. ($90) ≈ $9 savings | type=5 + savings=8 = 13"
     },
     {
       "brand": "Parachute",
@@ -18241,7 +18241,7 @@
       "global_quality_score": 75.0,
       "estimated_item_value": 90.0,
       "estimated_savings": 54.0,
-      "value_reason": "60% off $90 item ≈ $54 savings | type=16 + savings=35 = 51"
+      "value_reason": "60% off, brand/cat est. ($90) ≈ $54 savings | type=16 + savings=35 = 51"
     },
     {
       "brand": "Peet's Coffee",
@@ -18315,7 +18315,7 @@
       "global_quality_score": 32.0,
       "estimated_item_value": 6.0,
       "estimated_savings": 1.8,
-      "value_reason": "30% off $6 item ≈ $2 savings | type=12 + savings=3 = 15"
+      "value_reason": "30% off, brand/cat est. ($6) ≈ $2 savings | type=12 + savings=3 = 15"
     },
     {
       "brand": "Peet's Coffee",
@@ -18611,7 +18611,7 @@
       "global_quality_score": 11.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 6.0,
-      "value_reason": "20% off $30 item ≈ $6 savings | type=8 + savings=8 = 16"
+      "value_reason": "20% off, brand/cat est. ($30) ≈ $6 savings | type=8 + savings=8 = 16"
     },
     {
       "brand": "PetSmart",
@@ -18826,10 +18826,10 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "global_quality_score": 71.0,
+      "global_quality_score": 61.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 14.0,
+      "value_reason": "50% off, vague deal, conservative est. ($28) ≈ $14 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "PrettyLittleThing",
@@ -18967,10 +18967,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 47.0,
+      "global_quality_score": 40.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 19.5,
-      "value_reason": "30% off $65 item ≈ $20 savings | type=12 + savings=15 = 27"
+      "estimated_savings": 9.0,
+      "value_reason": "30% off, specific item in title ($30) ≈ $9 savings | type=12 + savings=8 = 20"
     },
     {
       "brand": "Princess Polly",
@@ -19111,7 +19111,7 @@
       "global_quality_score": 55.0,
       "estimated_item_value": 22.0,
       "estimated_savings": 13.2,
-      "value_reason": "60% off $22 item ≈ $13 savings | type=16 + savings=15 = 31"
+      "value_reason": "60% off, brand/cat est. ($22) ≈ $13 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Puma",
@@ -19459,7 +19459,7 @@
       "global_quality_score": 63.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 48.75,
-      "value_reason": "75% off $65 item ≈ $49 savings | type=16 + savings=25 = 41"
+      "value_reason": "75% off, brand/cat est. ($65) ≈ $49 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Rainbow Shops",
@@ -19822,7 +19822,7 @@
       "global_quality_score": 41.0,
       "estimated_item_value": 10.0,
       "estimated_savings": 2.0,
-      "value_reason": "20% off $10 item ≈ $2 savings | type=8 + savings=3 = 11"
+      "value_reason": "20% off, brand/cat est. ($10) ≈ $2 savings | type=8 + savings=3 = 11"
     },
     {
       "brand": "Red Robin",
@@ -20124,7 +20124,7 @@
       "global_quality_score": 25.0,
       "estimated_item_value": 13.0,
       "estimated_savings": 3.25,
-      "value_reason": "25% off $13 item ≈ $3 savings | type=8 + savings=3 = 11"
+      "value_reason": "25% off, brand/cat est. ($13) ≈ $3 savings | type=8 + savings=3 = 11"
     },
     {
       "brand": "Regal",
@@ -20195,7 +20195,7 @@
       "global_quality_score": 38.0,
       "estimated_item_value": 13.0,
       "estimated_savings": 6.5,
-      "value_reason": "50% off $13 item ≈ $6 savings | type=16 + savings=8 = 24"
+      "value_reason": "50% off, brand/cat est. ($13) ≈ $6 savings | type=16 + savings=8 = 24"
     },
     {
       "brand": "Regal",
@@ -20334,7 +20334,7 @@
       "global_quality_score": 38.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 6.75,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=8 = 14"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14"
     },
     {
       "brand": "REI",
@@ -20402,7 +20402,7 @@
       "global_quality_score": 38.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 6.75,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=8 = 14"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14"
     },
     {
       "brand": "REI",
@@ -20470,7 +20470,7 @@
       "global_quality_score": 38.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 6.75,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=8 = 14"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14"
     },
     {
       "brand": "REI",
@@ -20538,7 +20538,7 @@
       "global_quality_score": 38.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 6.75,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=8 = 14"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14"
     },
     {
       "brand": "REI",
@@ -20606,7 +20606,7 @@
       "global_quality_score": 38.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 6.75,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=8 = 14"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14"
     },
     {
       "brand": "REI",
@@ -20818,7 +20818,7 @@
       "global_quality_score": 43.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 6.5,
-      "value_reason": "10% off $65 item ≈ $6 savings | type=5 + savings=8 = 13"
+      "value_reason": "10% off, brand/cat est. ($65) ≈ $6 savings | type=5 + savings=8 = 13"
     },
     {
       "brand": "Revolve",
@@ -20890,7 +20890,7 @@
       "global_quality_score": 43.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
-      "value_reason": "15% off $65 item ≈ $10 savings | type=5 + savings=8 = 13"
+      "value_reason": "15% off, brand/cat est. ($65) ≈ $10 savings | type=5 + savings=8 = 13"
     },
     {
       "brand": "Ritual",
@@ -20970,10 +20970,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 44.0,
+      "global_quality_score": 39.0,
       "estimated_item_value": 30.0,
-      "estimated_savings": 10.5,
-      "value_reason": "35% off $30 item ≈ $10 savings | type=12 + savings=8 = 20"
+      "estimated_savings": 5.25,
+      "value_reason": "35% off, vague deal, conservative est. ($15) ≈ $5 savings | type=12 + savings=3 = 15"
     },
     {
       "brand": "Roxy",
@@ -21116,7 +21116,7 @@
       "global_quality_score": 37.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
-      "value_reason": "15% off $65 item ≈ $10 savings | type=5 + savings=8 = 13"
+      "value_reason": "15% off, brand/cat est. ($65) ≈ $10 savings | type=5 + savings=8 = 13"
     },
     {
       "brand": "Sally Beauty",
@@ -21339,7 +21339,7 @@
       "global_quality_score": 19.0,
       "estimated_item_value": 22.0,
       "estimated_savings": 4.4,
-      "value_reason": "20% off $22 item ≈ $4 savings | type=8 + savings=3 = 11"
+      "value_reason": "20% off, brand/cat est. ($22) ≈ $4 savings | type=8 + savings=3 = 11"
     },
     {
       "brand": "Sam Edelman",
@@ -21478,10 +21478,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 75.0,
+      "global_quality_score": 65.0,
       "estimated_item_value": 125.0,
-      "estimated_savings": 62.5,
-      "value_reason": "50% off $125 item ≈ $62 savings | type=16 + savings=35 = 51"
+      "estimated_savings": 32.5,
+      "value_reason": "50% off, vague deal, conservative est. ($65) ≈ $32 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Saucony",
@@ -21553,7 +21553,7 @@
       "global_quality_score": 38.0,
       "estimated_item_value": 125.0,
       "estimated_savings": 18.75,
-      "value_reason": "15% off $125 item ≈ $19 savings | type=5 + savings=15 = 20"
+      "value_reason": "15% off, brand/cat est. ($125) ≈ $19 savings | type=5 + savings=15 = 20"
     },
     {
       "brand": "Shake Shack",
@@ -21686,10 +21686,10 @@
         "effort_level": "high",
         "confidence": 0.0
       },
-      "global_quality_score": 18.0,
+      "global_quality_score": 25.0,
       "estimated_item_value": 13.0,
-      "estimated_savings": 10.0,
-      "value_reason": "free item, est. ≈ $10 savings | type=20 + savings=8 = 28"
+      "estimated_savings": 13.0,
+      "value_reason": "free item, est. ≈ $13 savings | type=20 + savings=15 = 35"
     },
     {
       "brand": "Shake Shack",
@@ -21835,7 +21835,7 @@
       "global_quality_score": 38.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=8 = 14"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14"
     },
     {
       "brand": "SHEIN",
@@ -21904,7 +21904,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 35.75,
-      "value_reason": "55% off $65 item ≈ $36 savings | type=16 + savings=25 = 41"
+      "value_reason": "55% off, brand/cat est. ($65) ≈ $36 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "SHEIN",
@@ -21970,10 +21970,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 65.0,
+      "global_quality_score": 55.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 35.1,
-      "value_reason": "54% off $65 item ≈ $35 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 16.2,
+      "value_reason": "54% off, specific item in title ($30) ≈ $16 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "SHEIN",
@@ -22042,7 +22042,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 33.8,
-      "value_reason": "52% off $65 item ≈ $34 savings | type=16 + savings=25 = 41"
+      "value_reason": "52% off, brand/cat est. ($65) ≈ $34 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "SHEIN",
@@ -22111,7 +22111,7 @@
       "global_quality_score": 47.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 13.65,
-      "value_reason": "21% off $65 item ≈ $14 savings | type=8 + savings=15 = 23"
+      "value_reason": "21% off, brand/cat est. ($65) ≈ $14 savings | type=8 + savings=15 = 23"
     },
     {
       "brand": "SHEIN",
@@ -22179,8 +22179,8 @@
       },
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
-      "estimated_savings": 33.15,
-      "value_reason": "51% off $65 item ≈ $33 savings | type=16 + savings=25 = 41"
+      "estimated_savings": 28.05,
+      "value_reason": "51% off, specific item in title ($55) ≈ $28 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "SHEIN",
@@ -22249,7 +22249,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 34.45,
-      "value_reason": "53% off $65 item ≈ $34 savings | type=16 + savings=25 = 41"
+      "value_reason": "53% off, brand/cat est. ($65) ≈ $34 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "SHEIN",
@@ -22318,7 +22318,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 33.15,
-      "value_reason": "51% off $65 item ≈ $33 savings | type=16 + savings=25 = 41"
+      "value_reason": "51% off, brand/cat est. ($65) ≈ $33 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Shell",
@@ -22400,7 +22400,7 @@
       "global_quality_score": 32.0,
       "estimated_item_value": 55.0,
       "estimated_savings": 8.25,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=8 = 14"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14"
     },
     {
       "brand": "Showpo",
@@ -22539,7 +22539,7 @@
       "global_quality_score": 38.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=8 = 14"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14"
     },
     {
       "brand": "Showpo",
@@ -22608,7 +22608,7 @@
       "global_quality_score": 61.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 26.0,
-      "value_reason": "40% off $65 item ≈ $26 savings | type=12 + savings=25 = 37"
+      "value_reason": "40% off, brand/cat est. ($65) ≈ $26 savings | type=12 + savings=25 = 37"
     },
     {
       "brand": "Skechers",
@@ -22758,7 +22758,7 @@
       "global_quality_score": 42.0,
       "estimated_item_value": 75.0,
       "estimated_savings": 18.75,
-      "value_reason": "25% off $75 item ≈ $19 savings | type=8 + savings=15 = 23"
+      "value_reason": "25% off, brand/cat est. ($75) ≈ $19 savings | type=8 + savings=15 = 23"
     },
     {
       "brand": "Spotify",
@@ -23107,7 +23107,7 @@
       "global_quality_score": 32.0,
       "estimated_item_value": 10.0,
       "estimated_savings": 4.0,
-      "value_reason": "40% off $10 item ≈ $4 savings | type=12 + savings=3 = 15"
+      "value_reason": "40% off, brand/cat est. ($10) ≈ $4 savings | type=12 + savings=3 = 15"
     },
     {
       "brand": "Sprouts",
@@ -23176,7 +23176,7 @@
       "global_quality_score": 36.0,
       "estimated_item_value": 10.0,
       "estimated_savings": 5.0,
-      "value_reason": "50% off $10 item ≈ $5 savings | type=16 + savings=3 = 19"
+      "value_reason": "50% off, brand/cat est. ($10) ≈ $5 savings | type=16 + savings=3 = 19"
     },
     {
       "brand": "Starbucks",
@@ -23614,7 +23614,7 @@
       "global_quality_score": 51.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 11.25,
-      "value_reason": "25% off $45 item ≈ $11 savings | type=8 + savings=15 = 23"
+      "value_reason": "25% off, brand/cat est. ($45) ≈ $11 savings | type=8 + savings=15 = 23"
     },
     {
       "brand": "Subway",
@@ -23765,7 +23765,7 @@
       "global_quality_score": 25.0,
       "estimated_item_value": 10.0,
       "estimated_savings": 1.5,
-      "value_reason": "15% off $10 item ≈ $2 savings | type=5 + savings=3 = 8"
+      "value_reason": "15% off, brand/cat est. ($10) ≈ $2 savings | type=5 + savings=3 = 8"
     },
     {
       "brand": "Sweetgreen",
@@ -24055,7 +24055,7 @@
       "global_quality_score": 57.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 26.0,
-      "value_reason": "40% off $65 item ≈ $26 savings | type=12 + savings=25 = 37"
+      "value_reason": "40% off, brand/cat est. ($65) ≈ $26 savings | type=12 + savings=25 = 37"
     },
     {
       "brand": "Talbots",
@@ -24270,7 +24270,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "value_reason": "50% off, brand/cat est. ($65) ≈ $32 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Ted Baker",
@@ -24339,7 +24339,7 @@
       "global_quality_score": 37.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
-      "value_reason": "15% off $65 item ≈ $10 savings | type=5 + savings=8 = 13"
+      "value_reason": "15% off, brand/cat est. ($65) ≈ $10 savings | type=5 + savings=8 = 13"
     },
     {
       "brand": "Ted Baker",
@@ -24551,7 +24551,7 @@
       "global_quality_score": 27.0,
       "estimated_item_value": 10.0,
       "estimated_savings": 3.0,
-      "value_reason": "30% off $10 item ≈ $3 savings | type=12 + savings=3 = 15"
+      "value_reason": "30% off, brand/cat est. ($10) ≈ $3 savings | type=12 + savings=3 = 15"
     },
     {
       "brand": "Tommy Hilfiger",
@@ -24887,7 +24887,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 27.0,
-      "value_reason": "60% off $45 item ≈ $27 savings | type=16 + savings=25 = 41"
+      "value_reason": "60% off, brand/cat est. ($45) ≈ $27 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Tommy Hilfiger",
@@ -24956,7 +24956,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 31.5,
-      "value_reason": "70% off $45 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "value_reason": "70% off, brand/cat est. ($45) ≈ $32 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Tory Burch",
@@ -25028,7 +25028,7 @@
       "global_quality_score": 63.0,
       "estimated_item_value": 260.0,
       "estimated_savings": 65.0,
-      "value_reason": "25% off $260 item ≈ $65 savings | type=8 + savings=35 = 43"
+      "value_reason": "25% off, brand/cat est. ($260) ≈ $65 savings | type=8 + savings=35 = 43"
     },
     {
       "brand": "Tuft & Needle",
@@ -25096,7 +25096,7 @@
       "global_quality_score": 32.0,
       "estimated_item_value": 90.0,
       "estimated_savings": 27.0,
-      "value_reason": "30% off $90 item ≈ $27 savings | type=12 + savings=25 = 37"
+      "value_reason": "30% off, brand/cat est. ($90) ≈ $27 savings | type=12 + savings=25 = 37"
     },
     {
       "brand": "Ulta Beauty",
@@ -25239,7 +25239,7 @@
       "global_quality_score": 71.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 32.5,
-      "value_reason": "50% off $65 item ≈ $32 savings | type=16 + savings=25 = 41"
+      "value_reason": "50% off, brand/cat est. ($65) ≈ $32 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Vera Bradley",
@@ -25376,10 +25376,10 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "global_quality_score": 51.0,
+      "global_quality_score": 44.0,
       "estimated_item_value": 60.0,
-      "estimated_savings": 18.0,
-      "value_reason": "30% off $60 item ≈ $18 savings | type=12 + savings=15 = 27"
+      "estimated_savings": 9.0,
+      "value_reason": "30% off, vague deal, conservative est. ($30) ≈ $9 savings | type=12 + savings=8 = 20"
     },
     {
       "brand": "Vince",
@@ -26130,7 +26130,7 @@
       "global_quality_score": 61.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 19.5,
-      "value_reason": "30% off $65 item ≈ $20 savings | type=12 + savings=15 = 27"
+      "value_reason": "30% off, brand/cat est. ($65) ≈ $20 savings | type=12 + savings=15 = 27"
     },
     {
       "brand": "Volcom",
@@ -26267,10 +26267,10 @@
         "effort_level": "low",
         "confidence": 0.95
       },
-      "global_quality_score": 42.0,
+      "global_quality_score": 37.0,
       "estimated_item_value": 30.0,
-      "estimated_savings": 6.0,
-      "value_reason": "20% off $30 item ≈ $6 savings | type=8 + savings=8 = 16"
+      "estimated_savings": 3.0,
+      "value_reason": "20% off, vague deal, conservative est. ($15) ≈ $3 savings | type=8 + savings=3 = 11"
     },
     {
       "brand": "Walgreens",
@@ -26338,7 +26338,7 @@
       "global_quality_score": 29.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 4.5,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=3 = 9"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=3 = 9"
     },
     {
       "brand": "Walgreens",
@@ -26406,7 +26406,7 @@
       "global_quality_score": 29.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 4.5,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=3 = 9"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=3 = 9"
     },
     {
       "brand": "Walgreens",
@@ -26549,7 +26549,7 @@
       "global_quality_score": 48.0,
       "estimated_item_value": 45.0,
       "estimated_savings": 22.5,
-      "value_reason": "50% off $45 item ≈ $22 savings | type=16 + savings=15 = 31"
+      "value_reason": "50% off, brand/cat est. ($45) ≈ $22 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Walmart",
@@ -26990,7 +26990,7 @@
       "global_quality_score": 65.0,
       "estimated_item_value": 90.0,
       "estimated_savings": 45.0,
-      "value_reason": "50% off $90 item ≈ $45 savings | type=16 + savings=25 = 41"
+      "value_reason": "50% off, brand/cat est. ($90) ≈ $45 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "West Elm",
@@ -27130,7 +27130,7 @@
       "global_quality_score": 51.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 19.5,
-      "value_reason": "30% off $65 item ≈ $20 savings | type=12 + savings=15 = 27"
+      "value_reason": "30% off, brand/cat est. ($65) ≈ $20 savings | type=12 + savings=15 = 27"
     },
     {
       "brand": "White House Black Market",
@@ -27199,7 +27199,7 @@
       "global_quality_score": 61.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 26.0,
-      "value_reason": "40% off $65 item ≈ $26 savings | type=12 + savings=25 = 37"
+      "value_reason": "40% off, brand/cat est. ($65) ≈ $26 savings | type=12 + savings=25 = 37"
     },
     {
       "brand": "White House Black Market",
@@ -27404,7 +27404,7 @@
       "global_quality_score": 63.0,
       "estimated_item_value": 90.0,
       "estimated_savings": 45.0,
-      "value_reason": "50% off $90 item ≈ $45 savings | type=16 + savings=25 = 41"
+      "value_reason": "50% off, brand/cat est. ($90) ≈ $45 savings | type=16 + savings=25 = 41"
     },
     {
       "brand": "Williams-Sonoma",
@@ -27472,7 +27472,7 @@
       "global_quality_score": 73.0,
       "estimated_item_value": 90.0,
       "estimated_savings": 67.5,
-      "value_reason": "75% off $90 item ≈ $68 savings | type=16 + savings=35 = 51"
+      "value_reason": "75% off, brand/cat est. ($90) ≈ $68 savings | type=16 + savings=35 = 51"
     },
     {
       "brand": "Windsor",
@@ -27542,7 +27542,7 @@
       "global_quality_score": 75.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 52.0,
-      "value_reason": "80% off $65 item ≈ $52 savings | type=16 + savings=35 = 51"
+      "value_reason": "80% off, brand/cat est. ($65) ≈ $52 savings | type=16 + savings=35 = 51"
     },
     {
       "brand": "Windsor",
@@ -27615,7 +27615,7 @@
       "global_quality_score": 30.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
-      "value_reason": "15% off $65 item ≈ $10 savings | type=5 + savings=8 = 13"
+      "value_reason": "15% off, brand/cat est. ($65) ≈ $10 savings | type=5 + savings=8 = 13"
     },
     {
       "brand": "Windsor",
@@ -27689,7 +27689,7 @@
       "global_quality_score": 30.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
-      "value_reason": "15% off $65 item ≈ $10 savings | type=5 + savings=8 = 13"
+      "value_reason": "15% off, brand/cat est. ($65) ≈ $10 savings | type=5 + savings=8 = 13"
     },
     {
       "brand": "Windsor",
@@ -27759,7 +27759,7 @@
       "global_quality_score": 38.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=8 = 14"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14"
     },
     {
       "brand": "Wrangler",
@@ -27829,7 +27829,7 @@
       "global_quality_score": 67.0,
       "estimated_item_value": 65.0,
       "estimated_savings": 26.0,
-      "value_reason": "40% off $65 item ≈ $26 savings | type=12 + savings=25 = 37"
+      "value_reason": "40% off, brand/cat est. ($65) ≈ $26 savings | type=12 + savings=25 = 37"
     },
     {
       "brand": "Wrangler",
@@ -27966,7 +27966,7 @@
       "global_quality_score": 29.0,
       "estimated_item_value": 120.0,
       "estimated_savings": 18.0,
-      "value_reason": "15% off $120 item ≈ $18 savings | type=5 + savings=15 = 20"
+      "value_reason": "15% off, brand/cat est. ($120) ≈ $18 savings | type=5 + savings=15 = 20"
     },
     {
       "brand": "Wyndham Hotels",
@@ -28034,7 +28034,7 @@
       "global_quality_score": 29.0,
       "estimated_item_value": 120.0,
       "estimated_savings": 18.0,
-      "value_reason": "15% off $120 item ≈ $18 savings | type=5 + savings=15 = 20"
+      "value_reason": "15% off, brand/cat est. ($120) ≈ $18 savings | type=5 + savings=15 = 20"
     },
     {
       "brand": "Wyndham Hotels",
@@ -28104,7 +28104,7 @@
       "global_quality_score": 45.0,
       "estimated_item_value": 120.0,
       "estimated_savings": 18.0,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=15 = 21"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=15 = 21"
     },
     {
       "brand": "Wyndham Hotels",
@@ -28244,7 +28244,7 @@
       "global_quality_score": 41.0,
       "estimated_item_value": 120.0,
       "estimated_savings": 18.0,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=15 = 21"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=15 = 21"
     },
     {
       "brand": "Adam from foodpanda",
@@ -28318,7 +28318,7 @@
       "global_quality_score": 43.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 18.0,
-      "value_reason": "60% off $30 item ≈ $18 savings | type=16 + savings=15 = 31"
+      "value_reason": "60% off, brand/cat est. ($30) ≈ $18 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "andSons",
@@ -28394,7 +28394,7 @@
       "global_quality_score": 42.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 7.5,
-      "value_reason": "25% off $30 item ≈ $8 savings | type=8 + savings=8 = 16"
+      "value_reason": "25% off, brand/cat est. ($30) ≈ $8 savings | type=8 + savings=8 = 16"
     },
     {
       "brand": "Apple Card",
@@ -28734,7 +28734,7 @@
       "global_quality_score": 29.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 15.0,
-      "value_reason": "50% off $30 item ≈ $15 savings | type=16 + savings=15 = 31"
+      "value_reason": "50% off, brand/cat est. ($30) ≈ $15 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Codecademy",
@@ -28810,7 +28810,7 @@
       "global_quality_score": 41.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 15.0,
-      "value_reason": "50% off $30 item ≈ $15 savings | type=16 + savings=15 = 31"
+      "value_reason": "50% off, brand/cat est. ($30) ≈ $15 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Cotton On",
@@ -28886,7 +28886,7 @@
       "global_quality_score": 26.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 6.0,
-      "value_reason": "20% off $30 item ≈ $6 savings | type=8 + savings=8 = 16"
+      "value_reason": "20% off, brand/cat est. ($30) ≈ $6 savings | type=8 + savings=8 = 16"
     },
     {
       "brand": "Cotton On",
@@ -28956,7 +28956,7 @@
       "global_quality_score": 29.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 15.0,
-      "value_reason": "50% off $30 item ≈ $15 savings | type=16 + savings=15 = 31"
+      "value_reason": "50% off, brand/cat est. ($30) ≈ $15 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "CSC GO",
@@ -29100,7 +29100,7 @@
       "global_quality_score": 14.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 4.5,
-      "value_reason": "15% off $30 item ≈ $4 savings | type=5 + savings=3 = 8"
+      "value_reason": "15% off, brand/cat est. ($30) ≈ $4 savings | type=5 + savings=3 = 8"
     },
     {
       "brand": "DoorDash",
@@ -29177,7 +29177,7 @@
       "global_quality_score": 41.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 15.0,
-      "value_reason": "50% off $30 item ≈ $15 savings | type=16 + savings=15 = 31"
+      "value_reason": "50% off, brand/cat est. ($30) ≈ $15 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "DoorDash",
@@ -29253,7 +29253,7 @@
       "global_quality_score": 18.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 3.0,
-      "value_reason": "10% off $30 item ≈ $3 savings | type=5 + savings=3 = 8"
+      "value_reason": "10% off, brand/cat est. ($30) ≈ $3 savings | type=5 + savings=3 = 8"
     },
     {
       "brand": "Flex + Portico Kirby",
@@ -29459,7 +29459,7 @@
       "global_quality_score": 28.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 6.0,
-      "value_reason": "20% off $30 item ≈ $6 savings | type=8 + savings=8 = 16"
+      "value_reason": "20% off, brand/cat est. ($30) ≈ $6 savings | type=8 + savings=8 = 16"
     },
     {
       "brand": "foodpanda",
@@ -29527,7 +29527,7 @@
       "global_quality_score": 31.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 18.0,
-      "value_reason": "60% off $30 item ≈ $18 savings | type=16 + savings=15 = 31"
+      "value_reason": "60% off, brand/cat est. ($30) ≈ $18 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "foodpanda",
@@ -29595,7 +29595,7 @@
       "global_quality_score": 41.0,
       "estimated_item_value": 10.0,
       "estimated_savings": 6.0,
-      "value_reason": "60% off $10 item ≈ $6 savings | type=16 + savings=8 = 24"
+      "value_reason": "60% off, brand/cat est. ($10) ≈ $6 savings | type=16 + savings=8 = 24"
     },
     {
       "brand": "From You Flowers",
@@ -30037,7 +30037,7 @@
       "global_quality_score": 26.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 7.5,
-      "value_reason": "25% off $30 item ≈ $8 savings | type=8 + savings=8 = 16"
+      "value_reason": "25% off, brand/cat est. ($30) ≈ $8 savings | type=8 + savings=8 = 16"
     },
     {
       "brand": "Microsoft",
@@ -30177,7 +30177,7 @@
       "global_quality_score": 26.0,
       "estimated_item_value": 35.0,
       "estimated_savings": 7.0,
-      "value_reason": "20% off $35 item ≈ $7 savings | type=8 + savings=8 = 16"
+      "value_reason": "20% off, brand/cat est. ($35) ≈ $7 savings | type=8 + savings=8 = 16"
     },
     {
       "brand": "Sephora",
@@ -30247,7 +30247,7 @@
       "global_quality_score": 6.0,
       "estimated_item_value": 35.0,
       "estimated_savings": 5.25,
-      "value_reason": "15% off $35 item ≈ $5 savings | type=5 + savings=3 = 8"
+      "value_reason": "15% off, brand/cat est. ($35) ≈ $5 savings | type=5 + savings=3 = 8"
     },
     {
       "brand": "Uber",
@@ -30327,7 +30327,7 @@
       "global_quality_score": 51.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 9.0,
-      "value_reason": "30% off $30 item ≈ $9 savings | type=12 + savings=8 = 20"
+      "value_reason": "30% off, brand/cat est. ($30) ≈ $9 savings | type=12 + savings=8 = 20"
     },
     {
       "brand": "Uber Eats",
@@ -30473,7 +30473,7 @@
       "global_quality_score": 25.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 15.0,
-      "value_reason": "50% off $30 item ≈ $15 savings | type=16 + savings=15 = 31"
+      "value_reason": "50% off, brand/cat est. ($30) ≈ $15 savings | type=16 + savings=15 = 31"
     },
     {
       "brand": "Uber Eats",
@@ -30549,7 +30549,7 @@
       "global_quality_score": 14.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 3.0,
-      "value_reason": "10% off $30 item ≈ $3 savings | type=5 + savings=3 = 8"
+      "value_reason": "10% off, brand/cat est. ($30) ≈ $3 savings | type=5 + savings=3 = 8"
     },
     {
       "brand": "Uber Eats",
@@ -30625,7 +30625,7 @@
       "global_quality_score": 26.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 9.0,
-      "value_reason": "30% off $30 item ≈ $9 savings | type=12 + savings=8 = 20"
+      "value_reason": "30% off, brand/cat est. ($30) ≈ $9 savings | type=12 + savings=8 = 20"
     },
     {
       "brand": "Viva",
@@ -30693,7 +30693,7 @@
       "global_quality_score": 13.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 3.0,
-      "value_reason": "10% off $30 item ≈ $3 savings | type=5 + savings=3 = 8"
+      "value_reason": "10% off, brand/cat est. ($30) ≈ $3 savings | type=5 + savings=3 = 8"
     },
     {
       "brand": "ZALORA",
@@ -30752,7 +30752,7 @@
       "global_quality_score": 16.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 4.5,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=3 = 9"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=3 = 9"
     },
     {
       "brand": "ZALORA Menswear",
@@ -30890,7 +30890,7 @@
       "global_quality_score": 24.0,
       "estimated_item_value": 30.0,
       "estimated_savings": 4.5,
-      "value_reason": "% off (no value parsed), est. 15% | type=6 + savings=3 = 9"
+      "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=3 = 9"
     }
   ]
 }
