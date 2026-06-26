@@ -507,6 +507,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   memberships: widget.memberships,
                   onExpanded:  () => _onBrandExpanded(g),
                   onDealTap:   _onDealTap,
+                  svc:   _svc,
+                  prefs: _prefsSvc.prefs,
                 );
               },
               childCount: groups.length,
