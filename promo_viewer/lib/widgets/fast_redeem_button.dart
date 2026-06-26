@@ -31,7 +31,7 @@ class FastRedeemButton extends StatelessWidget {
   // ── Actions ────────────────────────────────────────────────────────────────
 
   Future<void> _execute(BuildContext ctx) async {
-    InteractionService().recordFastRedeem(promoId);
+    InteractionService().recordFastRedeem(promoId, brand: brand);
     switch (fr.actionType) {
       case 'copy_code':
         await _copyCode(ctx);

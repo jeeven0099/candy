@@ -2,7 +2,10 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/promotion.dart';
+import 'interaction_service.dart';
 import 'notification_service.dart';
+import 'supabase_service.dart';
+import 'user_prefs_service.dart';
 
 class SavedDeal {
   final String id;
@@ -84,16 +87,35 @@ class SavedDealsService extends ChangeNotifier {
   }
 
   Future<void> save(Promotion promo, {DateTime? remindAt}) async {
+    final now = DateTime.now();
     _saved[promo.id] = SavedDeal(
       id: promo.id,
       brand: promo.brand,
       title: promo.title,
       endDate: promo.endDate,
-      savedAt: DateTime.now(),
+      savedAt: now,
       remindAt: remindAt,
     );
     await _persist();
     notifyListeners();
+
+    // Supabase write (fire-and-forget)
+    final uid = UserPrefsService().userId;
+    if (uid != null && SupabaseService.isLoggedIn) {
+      SupabaseService.client.from('saved_deals').upsert({
+        'user_id':          uid,
+        'promotion_id':     promo.id,
+        'brand':            promo.brand,
+        'title_snapshot':   promo.title,
+        'source_url_snapshot': promo.sourceUrl,
+        'saved_at':         now.toIso8601String(),
+        'status':           'active',
+      }, onConflict: 'user_id,promotion_id').then((_) {}, onError: (e) {
+        if (kDebugMode) debugPrint('[SavedDealsService] save: $e');
+      });
+      InteractionService().bumpBrandAffinityPublic(promo.brand, saves: 1);
+      InteractionService().bumpCategoryAffinityPublic(promo.category, saves: 1);
+    }
   }
 
   Future<void> setReminder(String id, DateTime remindAt) async {
@@ -115,6 +137,18 @@ class SavedDealsService extends ChangeNotifier {
     _saved.remove(id);
     await _persist();
     notifyListeners();
+
+    // Supabase write (fire-and-forget)
+    final uid = UserPrefsService().userId;
+    if (uid != null && SupabaseService.isLoggedIn) {
+      SupabaseService.client.from('saved_deals')
+          .update({'status': 'deleted', 'deleted_at': DateTime.now().toIso8601String()})
+          .eq('user_id', uid)
+          .eq('promotion_id', id)
+          .then((_) {}, onError: (e) {
+        if (kDebugMode) debugPrint('[SavedDealsService] unsave: $e');
+      });
+    }
   }
 
   Future<void> _persist() async {

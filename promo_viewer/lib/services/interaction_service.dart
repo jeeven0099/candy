@@ -1,18 +1,25 @@
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Tracks per-deal user interactions to power fatigue penalties and affinity boosts.
-/// Singleton — call InteractionService() anywhere after init().
+import 'supabase_service.dart';
+import 'user_prefs_service.dart';
+
+/// Tracks per-deal user interactions.
+/// Local SharedPreferences state drives fatigue/affinity in the runtime ranker.
+/// Supabase writes are fire-and-forget: they populate analytics tables and
+/// the brand/category affinity RPCs for future ML use.
 class InteractionService {
   static final InteractionService _i = InteractionService._();
   factory InteractionService() => _i;
   InteractionService._();
 
-  static const _seen     = 'ftg_s_';   // → int (seen count)
-  static const _lastSeen = 'ftg_ls_';  // → ISO date string
-  static const _click    = 'ftg_c_';   // → int (click count)
-  static const _redeem   = 'ftg_r_';   // → bool
-  static const _brandSrc = 'ftg_bs_';  // → ISO date string (last searched)
+  static const _seen     = 'ftg_s_';
+  static const _lastSeen = 'ftg_ls_';
+  static const _click    = 'ftg_c_';
+  static const _redeem   = 'ftg_r_';
+  static const _brandSrc = 'ftg_bs_';
+
+  final String _sessionId = DateTime.now().millisecondsSinceEpoch.toRadixString(16);
 
   SharedPreferences? _prefs;
 
@@ -43,18 +50,32 @@ class InteractionService {
 
   int clickCount(String id) => _prefs?.getInt('$_click$id') ?? 0;
 
-  Future<void> recordClick(String id) async {
+  Future<void> recordClick(
+    String id, {
+    String brand = '',
+    String category = '',
+  }) async {
     final p = _prefs;
     if (p == null) return;
     await p.setInt('$_click$id', (p.getInt('$_click$id') ?? 0) + 1);
+
+    _writeInteraction('deal_card_clicked',
+        promotionId: id, brand: brand, category: category);
+    if (brand.isNotEmpty) _bumpBrandAffinity(brand, clicks: 1);
+    if (category.isNotEmpty) _bumpCategoryAffinity(category, clicks: 1);
   }
 
   // ── Fast Redeem ───────────────────────────────────────────────────────────
 
   bool hasFastRedeemed(String id) => _prefs?.getBool('$_redeem$id') ?? false;
 
-  Future<void> recordFastRedeem(String id) async {
+  Future<void> recordFastRedeem(String id, {String brand = '', String category = ''}) async {
     await _prefs?.setBool('$_redeem$id', true);
+
+    _writeInteraction('fast_redeem_clicked',
+        promotionId: id, brand: brand, category: category);
+    if (brand.isNotEmpty) _bumpBrandAffinity(brand, fastRedeems: 1);
+    if (category.isNotEmpty) _bumpCategoryAffinity(category, saves: 1);
   }
 
   // ── Brand search ──────────────────────────────────────────────────────────
@@ -67,21 +88,26 @@ class InteractionService {
   }
 
   Future<void> recordBrandSearch(String brand) async {
-    await _prefs?.setString('$_brandSrc${_norm(brand)}', DateTime.now().toIso8601String());
+    await _prefs?.setString(
+        '$_brandSrc${_norm(brand)}', DateTime.now().toIso8601String());
+    _writeInteraction('search_submitted', brand: brand);
+    _bumpBrandAffinity(brand, searches: 1);
   }
 
   // ── Query search tracking ─────────────────────────────────────────────────
 
-  static const _srchPrefix = 'srch_q_';
+  static const _srchPrefix   = 'srch_q_';
   static const _srchFailedKey = 'srch_failed_list';
 
-  Future<void> recordSearch(String query, int resultCount) async {
+  Future<void> recordSearch(String query, int resultCount, {String context = ''}) async {
     final p = _prefs;
     if (p == null || query.trim().isEmpty) return;
-    final key = '$_srchPrefix${_norm(query)}';
+    final normed = _norm(query);
+
+    // Local counts
+    final key = '$_srchPrefix$normed';
     await p.setInt(key, (p.getInt(key) ?? 0) + 1);
     if (resultCount == 0) {
-      final normed = _norm(query);
       final failed = List<String>.from(p.getStringList(_srchFailedKey) ?? []);
       if (!failed.contains(normed)) {
         failed.add(normed);
@@ -89,6 +115,9 @@ class InteractionService {
         await p.setStringList(_srchFailedKey, failed);
       }
     }
+
+    // Supabase search_events
+    _writeSearchEvent(query, normed, resultCount, context: context);
   }
 
   List<String> getFailedSearches() =>
@@ -121,9 +150,7 @@ class InteractionService {
     await p.setStringList(_recentKey, raw);
   }
 
-  // ── Deal skip (not interested in this deal) ──────────────────────────────
-  // Lighter than brand-level hiding: penalises only the single promotion,
-  // not the whole brand. Persisted locally; no Supabase sync needed for beta.
+  // ── Deal skip ─────────────────────────────────────────────────────────────
 
   static const _skipDeal = 'skip_deal_';
 
@@ -131,14 +158,130 @@ class InteractionService {
 
   Future<void> skipDeal(String id) async {
     await _prefs?.setBool('$_skipDeal$id', true);
+    _writeInteraction('not_interested', promotionId: id);
   }
 
   Future<void> unskipDeal(String id) async {
     await _prefs?.remove('$_skipDeal$id');
   }
 
-  // ── Analytics events ──────────────────────────────────────────────────────
-  // Lightweight hook — wire to Firebase/Amplitude in production.
+  // ── Supabase: user_interactions ───────────────────────────────────────────
+
+  void _writeInteraction(
+    String eventType, {
+    String promotionId = '',
+    String brand = '',
+    String category = '',
+    String context = '',
+    int? rankPosition,
+    double? scoreAtEvent,
+    Map<String, dynamic>? metadata,
+  }) {
+    if (!SupabaseService.isLoggedIn) return;
+    final uid = UserPrefsService().userId;
+    if (uid == null) return;
+
+    final row = <String, dynamic>{
+      'user_id':    uid,
+      'session_id': _sessionId,
+      'event_type': eventType,
+    };
+    if (promotionId.isNotEmpty) row['promotion_id']  = promotionId;
+    if (brand.isNotEmpty)       row['brand']          = brand;
+    if (category.isNotEmpty)    row['category']       = category;
+    if (context.isNotEmpty)     row['context']        = context;
+    if (rankPosition != null)   row['rank_position']  = rankPosition;
+    if (scoreAtEvent != null)   row['score_at_event'] = scoreAtEvent;
+    if (metadata != null)       row['metadata']       = metadata;
+
+    SupabaseService.client.from('user_interactions').insert(row)
+        .then((_) {}, onError: (e) {
+      if (kDebugMode) debugPrint('[InteractionService] $eventType: $e');
+    });
+  }
+
+  // ── Supabase: search_events ───────────────────────────────────────────────
+
+  void _writeSearchEvent(
+    String query,
+    String normedQuery,
+    int resultCount, {
+    String context = '',
+  }) {
+    if (!SupabaseService.isLoggedIn) return;
+    final uid = UserPrefsService().userId;
+
+    final row = <String, dynamic>{
+      'session_id':       _sessionId,
+      'query':            query,
+      'normalized_query': normedQuery,
+      'result_count':     resultCount,
+      'no_result':        resultCount == 0,
+    };
+    if (uid != null)         row['user_id'] = uid;
+    if (context.isNotEmpty)  row['context'] = context;
+
+    SupabaseService.client.from('search_events').insert(row)
+        .then((_) {}, onError: (e) {
+      if (kDebugMode) debugPrint('[InteractionService] search_event: $e');
+    });
+  }
+
+  // ── Supabase: brand & category affinity (via RPC) ─────────────────────────
+
+  void _bumpBrandAffinity(
+    String brand, {
+    int views = 0,
+    int clicks = 0,
+    int saves = 0,
+    int fastRedeems = 0,
+    int searches = 0,
+    int ignored = 0,
+  }) {
+    if (!SupabaseService.isLoggedIn) return;
+    final uid = UserPrefsService().userId;
+    if (uid == null || brand.isEmpty) return;
+
+    SupabaseService.client.rpc('increment_brand_affinity', params: {
+      'p_user_id':      uid,
+      'p_brand':        brand,
+      'p_views':        views,
+      'p_clicks':       clicks,
+      'p_saves':        saves,
+      'p_fast_redeems': fastRedeems,
+      'p_searches':     searches,
+      'p_ignored':      ignored,
+    }).then((_) {}, onError: (e) {
+      if (kDebugMode) debugPrint('[InteractionService] brand_affinity: $e');
+    });
+  }
+
+  void _bumpCategoryAffinity(
+    String category, {
+    int views = 0,
+    int clicks = 0,
+    int saves = 0,
+    int searches = 0,
+    int ignored = 0,
+  }) {
+    if (!SupabaseService.isLoggedIn) return;
+    final uid = UserPrefsService().userId;
+    if (uid == null || category.isEmpty) return;
+
+    SupabaseService.client.rpc('increment_category_affinity', params: {
+      'p_user_id':   uid,
+      'p_category':  category,
+      'p_views':     views,
+      'p_clicks':    clicks,
+      'p_saves':     saves,
+      'p_searches':  searches,
+      'p_ignored':   ignored,
+    }).then((_) {}, onError: (e) {
+      if (kDebugMode) debugPrint('[InteractionService] category_affinity: $e');
+    });
+  }
+
+  // ── Helpers ───────────────────────────────────────────────────────────────
 
   void recordSearchEvent(String type, {Map<String, String>? params}) {
     if (kDebugMode) {
@@ -147,5 +290,13 @@ class InteractionService {
     }
   }
 
-  static String _norm(String s) => s.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]'), '_');
+  // Public so SavedDealsService can bump affinity on save/unsave
+  void bumpBrandAffinityPublic(String brand, {int saves = 0, int ignored = 0}) =>
+      _bumpBrandAffinity(brand, saves: saves, ignored: ignored);
+
+  void bumpCategoryAffinityPublic(String category, {int saves = 0, int ignored = 0}) =>
+      _bumpCategoryAffinity(category, saves: saves, ignored: ignored);
+
+  static String _norm(String s) =>
+      s.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]'), '_');
 }

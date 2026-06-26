@@ -7,7 +7,7 @@ const _kHide = 999.0;
 
 // Calibrated from 4 external reranker experiments (Ponpare, RetailRocket, Taobao, Yoochoose).
 // Cap prevents many boosts stacking into an unrealistically inflated score.
-const double kPersonalizationBoostCap = 45.0;
+const double kPersonalizationBoostCap = 60.0;
 
 // ---------------------------------------------------------------------------
 // Score breakdown (for debug overlay)
@@ -147,7 +147,7 @@ double preferenceBoost(Promotion p, UserPrefs? prefs) {
   if (prefs.favoriteBrands.any((b) {
     final bl = b.toLowerCase();
     return bl == brand || brand.contains(bl) || bl.contains(brand);
-  })) { boost += 25; }  // E1: explicit pref is strongest signal; reduced from 30
+  })) { boost += 35; }  // E1: explicit pref is strongest signal
 
   final cat = p.category.toLowerCase();
   if (cat.isNotEmpty && prefs.favoriteCategories.any((c) => c.toLowerCase() == cat)) boost += 22;  // E1+E3: raised from 20
