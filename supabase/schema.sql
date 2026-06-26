@@ -77,6 +77,8 @@ create table if not exists user_preferences (
   hidden_categories     jsonb       not null default '[]',
   hidden_brands         jsonb       not null default '[]',
   deal_type_preferences jsonb       not null default '{}',
+  birthday_month        integer,
+  birthday_day          integer,
   updated_at            timestamptz not null default now()
 );
 
