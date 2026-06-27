@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../services/auth_service.dart';
+import '../services/saved_deals_service.dart';
 import '../services/supabase_service.dart';
 import '../services/user_prefs_service.dart';
 import '../theme/candy_colors.dart';
@@ -111,6 +112,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             icon: Icons.logout,
             label: 'Sign out',
             onTap: () async {
+              SavedDealsService().clearLocal();
               await AuthService.signOut();
               UserPrefsService().clear();
               if (mounted) {

@@ -62,19 +62,38 @@ class SavedDealsService extends ChangeNotifier {
   final Map<String, SavedDeal> _saved = {};
   SharedPreferences? _prefs;
 
+  // User-scoped key so two accounts on the same device never share saves.
+  String get _userKey {
+    final uid = SupabaseService.currentUserId ?? 'guest';
+    return '${_key}_$uid';
+  }
+
   static Future<void> init() async {
-    final svc = SavedDealsService();
-    svc._prefs = await SharedPreferences.getInstance();
-    final raw = svc._prefs!.getString(_key);
+    // Only initialises SharedPreferences — data is loaded in loadForUser()
+    // once the authenticated user ID is known.
+    SavedDealsService()._prefs = await SharedPreferences.getInstance();
+  }
+
+  /// Call after login / on app start when already logged in.
+  Future<void> loadForUser(String userId) async {
+    _saved.clear();
+    final raw = _prefs?.getString('${_key}_$userId');
     if (raw != null) {
       try {
         final list = jsonDecode(raw) as List<dynamic>;
         for (final item in list) {
           final deal = SavedDeal.fromJson(item as Map<String, dynamic>);
-          svc._saved[deal.id] = deal;
+          _saved[deal.id] = deal;
         }
       } catch (_) {}
     }
+    notifyListeners();
+  }
+
+  /// Call on sign-out to wipe in-memory state immediately.
+  void clearLocal() {
+    _saved.clear();
+    notifyListeners();
   }
 
   bool isSaved(String id) => _saved.containsKey(id);
@@ -153,6 +172,6 @@ class SavedDealsService extends ChangeNotifier {
 
   Future<void> _persist() async {
     final list = _saved.values.map((d) => d.toJson()).toList();
-    await _prefs?.setString(_key, jsonEncode(list));
+    await _prefs?.setString(_userKey, jsonEncode(list));
   }
 }
