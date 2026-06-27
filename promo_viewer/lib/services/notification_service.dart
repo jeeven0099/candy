@@ -28,21 +28,21 @@ class NotificationService {
   static const _brandCooldownDays  = 7;
   static const _dealCooldownDays   = 7;
 
-  // Personalisation: minimum score to actually fire a notification.
-  // Pipeline supplies a wide candidate pool (global_quality >= 60).
-  // We re-score each candidate with user context and only notify if it
-  // clears this bar:
-  //   fav brand  → +40   (needs global >= 55 to qualify)
-  //   fav cat    → +25   (needs global >= 70 to qualify)
-  //   both       → +65   (needs global >= 30 to qualify)
-  //   neither    → +0    (needs global >= 95 — only truly exceptional deals)
-  static const _personalThreshold = 95.0;
+  // Hard quality floor — never fire a notification for a weak deal,
+  // even if it matches all personal preferences.
+  static const _kMinGlobalQuality = 60.0;
+
+  // Personalised threshold (at least one affinity signal fires): 95
+  // Unknown brand/category (no signals): 105 — must be truly exceptional
+  static const _kPersonalThreshold = 95.0;
+  static const _kUnknownThreshold  = 105.0;
 
   // SharedPreferences keys
-  static const _kNotifiedDeals        = 'notif_notified_deals_v1';      // JSON list of {id, ts}
-  static const _kNotifiedBrands       = 'notif_notified_brands_v1';     // JSON map brand→ts
-  static const _kSentToday            = 'notif_sent_today_v1';          // JSON {date, count}
-  static const _kLastSentAt           = 'notif_last_sent_at_v1';        // ISO string
+  static const _kNotifiedDeals      = 'notif_notified_deals_v1';
+  static const _kNotifiedBrands     = 'notif_notified_brands_v1';
+  static const _kSentToday          = 'notif_sent_today_v1';
+  static const _kLastSentAt         = 'notif_last_sent_at_v1';
+  static const _kNotifHistory       = 'notif_history_v1'; // capped at 50 entries
 
   FlutterLocalNotificationsPlugin? _plugin;
 
@@ -141,9 +141,12 @@ class NotificationService {
     final userPrefs = UserPrefsService().prefs;
     final svc       = InteractionService();
 
-    // Re-score every candidate with personal context, then sort best-first
+    // Attach affinity signals and re-score, then sort best-first
     final scored = rawCandidates.map((c) {
-      return (c: c, score: _personalizedScore(c, userPrefs, svc));
+      final signals = _affinitySignals(c, userPrefs, svc);
+      final score   = _scoreFromSignals(
+          (c['notify_score'] as num?)?.toDouble() ?? 0.0, signals);
+      return (c: c, signals: signals, score: score);
     }).toList()
       ..sort((a, b) => b.score.compareTo(a.score));
 
@@ -156,30 +159,51 @@ class NotificationService {
     for (final entry in scored) {
       if (todayCount + sent >= _maxPerDay) break;
 
-      // Hard threshold: only fire for deals that are genuinely personal
-      if (entry.score < _personalThreshold) break; // list is sorted — nothing below will qualify
+      final c        = entry.c;
+      final globalQ  = (c['notify_score'] as num?)?.toDouble() ?? 0.0;
+      final signals  = entry.signals;
+      final pScore   = entry.score;
 
-      final c       = entry.c;
+      // Hard quality floor — affinity cannot rescue a genuinely weak deal
+      if (globalQ < _kMinGlobalQuality) continue;
+
+      // Personalised deals get a lower bar; unknown brands need to be truly exceptional
+      final threshold = signals.isNotEmpty ? _kPersonalThreshold : _kUnknownThreshold;
+      if (pScore < threshold) continue;
+
       final promoId = c['promo_id'] as String? ?? '';
       final brand   = c['brand']   as String? ?? '';
 
       if (_isCooledDown(notifiedDeals,  promoId, _dealCooldownDays))  continue;
       if (_isCooledDown(notifiedBrands, brand,   _brandCooldownDays)) continue;
 
-      final title = c['notification_title'] as String? ?? brand;
-      final body  = _personalBody(c, userPrefs);
+      final title  = c['notification_title'] as String? ?? brand;
+      final body   = _personalBody(c, signals);
+      final reason = signals.isNotEmpty ? body : 'exceptional deal';
 
       await _sendImmediate(
         id:      promoId.hashCode & 0x7FFFFFFF,
         title:   title,
         body:    body,
         payload: promoId,
-        score:   entry.score,
+        score:   pScore,
       );
 
       notifiedDeals[promoId] = today;
       notifiedBrands[brand]  = today;
       sent++;
+
+      _appendHistory(sharedPrefs, {
+        'brand':                brand,
+        'category':             c['category'] ?? '',
+        'promo_id':             promoId,
+        'global_quality_score': globalQ,
+        'personalized_score':   pScore,
+        'trigger_signals':      signals,
+        'reason':               reason,
+        'fired_at':             now.toIso8601String(),
+      });
+
       break; // one per launch — gap enforced on next open
     }
 
@@ -191,57 +215,63 @@ class NotificationService {
     }
   }
 
-  /// Global quality score + personal affinity bonuses.
-  double _personalizedScore(
+  /// Which personal affinity signals apply to this candidate.
+  List<String> _affinitySignals(
     Map<String, dynamic> c,
     UserPrefs? prefs,
     InteractionService svc,
   ) {
-    double score = (c['notify_score'] as num?)?.toDouble() ?? 0.0;
-    if (prefs == null) return score;
+    final signals  = <String>[];
+    if (prefs == null) return signals;
 
-    final brandRaw = (c['brand'] as String? ?? '').toLowerCase();
+    final brandRaw = (c['brand']    as String? ?? '').toLowerCase();
     final catRaw   = (c['category'] as String? ?? '').toLowerCase();
 
-    // Favourite brand: strongest personal signal
     final isFavBrand = prefs.favoriteBrands.any((b) {
       final bl = b.toLowerCase();
       return bl == brandRaw || brandRaw.contains(bl) || bl.contains(brandRaw);
     });
-    if (isFavBrand) score += 40.0;
+    if (isFavBrand) signals.add('favorite_brand');
 
-    // Favourite category: broad affinity signal
     final isFavCat = catRaw.isNotEmpty &&
         prefs.favoriteCategories.any((cat) => cat.toLowerCase() == catRaw);
-    if (isFavCat) score += 25.0;
+    if (isFavCat) signals.add('favorite_category');
 
-    // Brand the user has interacted with: revealed preference
-    final brandInteracted = PromotionsService.cached.any((p) =>
+    final interacted = PromotionsService.cached.any((p) =>
         p.brand.toLowerCase() == brandRaw &&
         (svc.clickCount(p.id) > 0 || svc.hasFastRedeemed(p.id)));
-    if (brandInteracted) score += 15.0;
+    if (interacted) signals.add('brand_interaction');
 
-    return score;
+    return signals;
   }
 
-  /// Returns a notification body string, adding context about why we're notifying.
-  String _personalBody(Map<String, dynamic> c, UserPrefs? prefs) {
-    final base     = (c['notification_body'] as String? ?? c['title'] as String? ?? '');
-    final brandRaw = (c['brand'] as String? ?? '').toLowerCase();
-    final catRaw   = (c['category'] as String? ?? '').toLowerCase();
-    if (prefs == null) return base;
+  /// Base quality score + affinity bonuses.
+  double _scoreFromSignals(double base, List<String> signals) {
+    double s = base;
+    if (signals.contains('favorite_brand'))    s += 40.0;
+    if (signals.contains('favorite_category')) s += 25.0;
+    if (signals.contains('brand_interaction')) s += 15.0;
+    return s;
+  }
 
-    final isFavBrand = prefs.favoriteBrands.any((b) {
-      final bl = b.toLowerCase();
-      return bl == brandRaw || brandRaw.contains(bl) || bl.contains(brandRaw);
-    });
-    if (isFavBrand) return '$base — from a brand you love';
-
-    final isFavCat = catRaw.isNotEmpty &&
-        prefs.favoriteCategories.any((cat) => cat.toLowerCase() == catRaw);
-    if (isFavCat) return '$base — in a category you follow';
-
+  /// Notification body with personalised suffix based on active signals.
+  String _personalBody(Map<String, dynamic> c, List<String> signals) {
+    final base = c['notification_body'] as String? ?? c['title'] as String? ?? '';
+    if (signals.contains('favorite_brand'))    return '$base — from a brand you love';
+    if (signals.contains('favorite_category')) return '$base — in a category you follow';
     return base;
+  }
+
+  /// Appends a rich history entry (capped at 50) for later analysis.
+  void _appendHistory(SharedPreferences prefs, Map<String, dynamic> entry) {
+    final raw = prefs.getString(_kNotifHistory);
+    List<dynamic> history = [];
+    if (raw != null) {
+      try { history = jsonDecode(raw) as List; } catch (_) {}
+    }
+    history.add(entry);
+    if (history.length > 50) history = history.sublist(history.length - 50);
+    prefs.setString(_kNotifHistory, jsonEncode(history));
   }
 
   // ---------------------------------------------------------------------------
