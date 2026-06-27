@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart' show AuthException;
 
 import '../models/user_prefs.dart';
 import '../services/auth_service.dart';
+import '../services/saved_deals_service.dart';
 import '../services/supabase_service.dart';
 import '../services/user_prefs_service.dart';
 import '../theme/candy_colors.dart';
@@ -233,6 +234,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       if (_isSignIn) {
         await AuthService.signIn(email: email, password: pass);
         await UserPrefsService().load();
+        final uid = SupabaseService.currentUserId;
+        if (uid != null) await SavedDealsService().loadForUser(uid);
         if (mounted) _launchApp();
       } else {
         await AuthService.signUp(
@@ -294,6 +297,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     if (widget.startAtPreferences) {
       Navigator.of(context).pop();
     } else {
+      final uid = SupabaseService.currentUserId;
+      if (uid != null) await SavedDealsService().loadForUser(uid);
       _launchApp();
     }
   }

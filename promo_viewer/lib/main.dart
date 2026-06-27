@@ -27,6 +27,8 @@ void main() async {
       await SupabaseService.init();
       if (SupabaseService.isLoggedIn) {
         await UserPrefsService().load();
+        final uid = SupabaseService.currentUserId;
+        if (uid != null) await SavedDealsService().loadForUser(uid);
         _tagSentryUser();
       }
       // Fire-and-forget: process pipeline notification candidates on every launch.
