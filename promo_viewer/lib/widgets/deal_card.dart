@@ -111,141 +111,192 @@ class DealCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final days = _daysLeft;
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-        side: BorderSide(color: Candy.pink.withValues(alpha: 0.2)),
-      ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(12),
-        onTap: onTap,
-        onLongPress: () => _showScoreDebug(context),
-        child: Padding(
-          padding: const EdgeInsets.all(14),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // ── Header: logo | brand + title | heart ──
-              Row(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      child: Material(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        elevation: 0,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.07),
+                blurRadius: 16,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(16),
+            onTap: onTap,
+            onLongPress: () => _showScoreDebug(context),
+            child: Padding(
+              padding: const EdgeInsets.all(14),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BrandLogo(promo: promo, size: 48),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          promo.brand.toUpperCase(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 10,
-                            color: Candy.muted,
-                            letterSpacing: 1.0,
-                          ),
-                        ),
-                        const SizedBox(height: 3),
-                        Text(
-                          promo.title,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            height: 1.35,
-                            color: Candy.chocolate,
-                          ),
-                        ),
-                        if (promo.summary != null && promo.summary!.isNotEmpty) ...[
-                          const SizedBox(height: 3),
-                          Text(
-                            promo.summary!,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 12,
-                              height: 1.4,
-                              color: Candy.muted,
+                  // ── Header: logo | brand | badge + actions ──
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BrandLogo(promo: promo, size: 44),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              promo.brand.toUpperCase(),
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 10,
+                                color: Candy.chocolate.withValues(alpha: 0.45),
+                                letterSpacing: 1.1,
+                              ),
                             ),
+                            const SizedBox(height: 4),
+                            Text(
+                              promo.title,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w700,
+                                height: 1.3,
+                                color: Candy.chocolate,
+                              ),
+                            ),
+                            if (promo.summary != null && promo.summary!.isNotEmpty) ...[
+                              const SizedBox(height: 3),
+                              Text(
+                                promo.summary!,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  height: 1.4,
+                                  color: Candy.muted,
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      // Badge + actions stacked
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          _DiscountBadge(promo: promo),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              _HeartButton(promo: promo),
+                              _MenuButton(promo: promo),
+                            ],
                           ),
                         ],
+                      ),
+                    ],
+                  ),
+
+                  // ── Estimated savings line ──
+                  if (_showSavings) ...[
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Icon(Icons.savings_outlined,
+                            size: 13, color: const Color(0xFF2E7D32)),
+                        const SizedBox(width: 4),
+                        Text(
+                          '~\$${promo.estimatedSavings!.toStringAsFixed(0)} in savings',
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF2E7D32),
+                          ),
+                        ),
                       ],
                     ),
+                  ],
+
+                  const SizedBox(height: 10),
+
+                  // ── Tags row ──
+                  Wrap(
+                    spacing: 6,
+                    runSpacing: 4,
+                    children: [
+                      if (promo.isLocal && promo.neighborhood != null)
+                        _Tag(
+                          icon: Icons.storefront,
+                          label: 'Local · ${promo.neighborhood}',
+                          color: const Color(0xFF2E7D32),
+                          filled: true,
+                        )
+                      else if (promo.promotionType == 'online_only')
+                        _Tag(
+                          icon: Icons.language,
+                          label: 'Online',
+                          color: Candy.lavender,
+                        )
+                      else if (promo.distanceKm != null)
+                        _Tag(
+                          icon: Icons.near_me,
+                          label: LocationService.formatDistance(promo.distanceKm),
+                          color: const Color(0xFF1565C0),
+                        ),
+                      if (_isMember)
+                        _Tag(
+                          icon: Icons.verified,
+                          label: 'Exclusive',
+                          color: Candy.mint,
+                          filled: true,
+                        )
+                      else if (promo.requiresMembership)
+                        _Tag(
+                          icon: Icons.card_membership,
+                          label: (promo.membershipName != null && promo.membershipName!.isNotEmpty)
+                              ? promo.membershipName!
+                              : 'Members only',
+                          color: Candy.lavender,
+                        ),
+                      if (promo.requiresApp)
+                        _Tag(icon: Icons.smartphone, label: 'App required'),
+                      if (days != null && days <= 7)
+                        _UrgencyTag(days: days),
+                    ],
                   ),
-                  _HeartButton(promo: promo),
-                  _MenuButton(promo: promo),
+
+                  // ── Promo code ──
+                  if (promo.promoCode != null) ...[
+                    const SizedBox(height: 8),
+                    _PromoCodePill(code: promo.promoCode!),
+                  ],
+
+                  // ── Fast redeem button ──
+                  if (promo.fastRedemption != null &&
+                      promo.fastRedemption!.eligible) ...[
+                    const SizedBox(height: 12),
+                    FastRedeemButton(fr: promo.fastRedemption!, brand: promo.brand, promoId: promo.id),
+                  ],
                 ],
               ),
-
-              const SizedBox(height: 10),
-
-              // ── Tags row ──
-              Wrap(
-                spacing: 6,
-                runSpacing: 4,
-                children: [
-                  if (promo.isLocal && promo.neighborhood != null)
-                    _Tag(
-                      icon: Icons.storefront,
-                      label: 'Local · ${promo.neighborhood}',
-                      color: const Color(0xFF2E7D32),
-                      filled: true,
-                    )
-                  else if (promo.promotionType == 'online_only')
-                    _Tag(
-                      icon: Icons.language,
-                      label: 'Online',
-                      color: Candy.lavender,
-                    )
-                  else if (promo.distanceKm != null)
-                    _Tag(
-                      icon: Icons.near_me,
-                      label: LocationService.formatDistance(promo.distanceKm),
-                      color: const Color(0xFF1565C0),
-                    ),
-                  if (_isMember)
-                    _Tag(
-                      icon: Icons.verified,
-                      label: 'Exclusive',
-                      color: Candy.mint,
-                      filled: true,
-                    )
-                  else if (promo.requiresMembership)
-                    _Tag(
-                      icon: Icons.card_membership,
-                      label: (promo.membershipName != null && promo.membershipName!.isNotEmpty)
-                          ? promo.membershipName!
-                          : 'Members only',
-                      color: Candy.lavender,
-                    ),
-                  if (promo.requiresApp)
-                    _Tag(icon: Icons.smartphone, label: 'App required'),
-                  // Urgency — only show when ≤ 7 days left
-                  if (days != null && days <= 7)
-                    _UrgencyTag(days: days),
-                ],
-              ),
-
-              // ── Promo code ──
-              if (promo.promoCode != null) ...[
-                const SizedBox(height: 8),
-                _PromoCodePill(code: promo.promoCode!),
-              ],
-
-              // ── Fast redeem button ──
-              if (promo.fastRedemption != null &&
-                  promo.fastRedemption!.eligible) ...[
-                const SizedBox(height: 12),
-                FastRedeemButton(fr: promo.fastRedemption!, brand: promo.brand, promoId: promo.id),
-              ],
-            ],
+            ),
           ),
         ),
       ),
     );
   }
+
+  // Show savings line only for % off deals where we have a meaningful estimate
+  bool get _showSavings =>
+      promo.discountType == 'percentage_off' &&
+      promo.estimatedSavings != null &&
+      promo.estimatedSavings! >= 10;
 }
 
 // ── Tags ─────────────────────────────────────────────────────────────────────
@@ -318,6 +369,70 @@ class _UrgencyTag extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// ── Discount badge ────────────────────────────────────────────────────────────
+
+class _DiscountBadge extends StatelessWidget {
+  final Promotion promo;
+  const _DiscountBadge({required this.promo});
+
+  static final _pctRe = RegExp(r'(\d+(?:\.\d+)?)%');
+  static final _dolRe = RegExp(r'\$(\d+(?:\.\d+)?)');
+  static final _bogoRe = RegExp(r'\bbogo\b|buy.one.get.one', caseSensitive: false);
+
+  (String?, Color) get _labelAndColor {
+    switch (promo.discountType) {
+      case 'free_item':
+        return ('FREE', const Color(0xFF00897B));
+      case 'bogo':
+        return ('BOGO', const Color(0xFF00897B));
+      case 'percentage_off':
+        final m = _pctRe.firstMatch(promo.discountValue ?? '');
+        if (m == null) return (null, Colors.transparent);
+        final pct = double.tryParse(m.group(1)!) ?? 0;
+        final label = '${pct.toInt()}% OFF';
+        final color = pct >= 50
+            ? Candy.raspberry
+            : pct >= 25
+                ? const Color(0xFFE65100)
+                : const Color(0xFF6D4C41);
+        return (label, color);
+      case 'amount_off':
+        final m = _dolRe.firstMatch(promo.discountValue ?? '');
+        if (m == null) return (null, Colors.transparent);
+        return ('\$${(double.tryParse(m.group(1)!) ?? 0).toInt()} OFF',
+            const Color(0xFF2E7D32));
+      default:
+        // Catch BOGO in title when discount_type is generic
+        if (_bogoRe.hasMatch(promo.title)) {
+          return ('BOGO', const Color(0xFF00897B));
+        }
+        return (null, Colors.transparent);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final (label, color) = _labelAndColor;
+    if (label == null) return const SizedBox.shrink();
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Text(
+        label,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 12,
+          fontWeight: FontWeight.w800,
+          letterSpacing: 0.4,
+        ),
       ),
     );
   }
