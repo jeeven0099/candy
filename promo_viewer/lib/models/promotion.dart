@@ -44,6 +44,7 @@ class Promotion {
 
   // Pre-computed in pipeline (generate_scores.py)
   final double globalQualityScore;
+  final double? estimatedSavings;
 
   // Local neighborhood fields (local_neighborhood source only)
   final String? neighborhood;
@@ -91,6 +92,7 @@ class Promotion {
     this.birthdayRelated = false,
     this.fastRedemption,
     this.globalQualityScore = 0.0,
+    this.estimatedSavings,
     this.neighborhood,
     this.address,
     this.lat,
@@ -143,6 +145,7 @@ class Promotion {
               json['fast_redemption'] as Map<String, dynamic>)
           : null,
       globalQualityScore: ((json['global_quality_score'] ?? json['rank_base_score']) as num?)?.toDouble() ?? 0.0,
+      estimatedSavings: (json['estimated_savings'] as num?)?.toDouble(),
       neighborhood: json['neighborhood'] as String?,
       address: json['address'] as String?,
       lat: (json['lat'] as num?)?.toDouble(),

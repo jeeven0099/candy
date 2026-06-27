@@ -106,40 +106,28 @@ class ForYouScreen extends StatelessWidget {
 
   Widget _buildHeader(bool hasPrefs) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-      child: Row(
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 4),
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(
-            hasPrefs ? Icons.auto_awesome : Icons.auto_awesome_outlined,
-            size: 22,
-            color: Candy.raspberry,
+          const Text(
+            'For You',
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w800,
+              letterSpacing: -0.8,
+              color: Candy.chocolate,
+            ),
           ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'For You',
-                  style: TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: -0.5,
-                    color: Candy.chocolate,
-                  ),
-                ),
-                Text(
-                  hasPrefs
-                      ? 'Ranked by your brands & categories'
-                      : 'Set preferences to personalise your feed',
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: Candy.lavender,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
+          const SizedBox(height: 4),
+          Text(
+            hasPrefs
+                ? 'Deals picked from your favourite brands & categories'
+                : 'Save brands you love to get a personalised feed',
+            style: TextStyle(
+              fontSize: 13,
+              color: Candy.chocolate.withValues(alpha: 0.45),
+              fontWeight: FontWeight.w400,
             ),
           ),
         ],
@@ -153,22 +141,23 @@ class ForYouScreen extends StatelessWidget {
     required int count,
   }) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 8),
       child: Row(
         children: [
-          Icon(icon, size: 14, color: Candy.raspberry),
-          const SizedBox(width: 6),
+          Icon(icon, size: 15, color: Candy.raspberry),
+          const SizedBox(width: 7),
           Text(
             label,
             style: const TextStyle(
-              fontSize: 13,
+              fontSize: 15,
               fontWeight: FontWeight.w700,
               color: Candy.chocolate,
+              letterSpacing: -0.2,
             ),
           ),
-          const SizedBox(width: 6),
+          const Spacer(),
           Text(
-            '($count)',
+            '$count deals',
             style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
           ),
         ],
