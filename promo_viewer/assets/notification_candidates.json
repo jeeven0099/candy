@@ -1,76 +1,311 @@
 {
-  "generated_at": "2026-06-26T14:43:08.893896+00:00",
-  "threshold": 75.0,
-  "total": 4,
+  "generated_at": "2026-06-27T16:31:13.424006+00:00",
+  "threshold": 60.0,
+  "total": 16,
   "candidates": [
     {
-      "promo_id": "wendys_freeanysizefrywpurchase",
-      "brand": "Wendy's",
-      "title": "Free Any Size Fry w/ Purchase",
-      "notify_score": 78.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Wendy's",
-      "notification_body": "Free: Free Any Size Fry w/ Purchase",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "end_date": null,
-      "website_domain": "wendys.com",
-      "source_url": "https://www.wendys.com/offers-coupons"
-    },
-    {
-      "promo_id": "prettylittlething_50ormoreoffalmosteverything",
-      "brand": "PrettyLittleThing",
-      "title": "50% OR MORE OFF ALMOST EVERYTHING*",
+      "promo_id": "colehaan_allsaleupto50off",
+      "brand": "Cole Haan",
+      "category": "retail",
+      "title": "All Sale up to 50% Off",
       "notify_score": 75.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "PrettyLittleThing",
-      "notification_body": "50% OR MORE OFF ALMOST EVERYTHING*",
+      "notification_title": "Cole Haan",
+      "notification_body": "All Sale up to 50% Off",
       "discount_type": "percentage_off",
-      "discount_value": "50%",
+      "discount_value": "up to 50%",
+      "estimated_savings": 75.0,
       "end_date": null,
-      "website_domain": "prettylittlething.us",
-      "source_url": "https://www.prettylittlething.us/categories/womens-sale"
+      "website_domain": "colehaan.com",
+      "source_url": "https://www.colehaan.com/collections/sale"
     },
     {
-      "promo_id": "underarmour_extra50offoutletwithcodesummer",
-      "brand": "Under Armour",
-      "title": "Extra 50% Off Outlet with code SUMMER",
+      "promo_id": "colehaan_sandalsupto60off",
+      "brand": "Cole Haan",
+      "category": "retail",
+      "title": "Sandals up to 60% Off",
       "notify_score": 75.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Cole Haan",
+      "notification_body": "Sandals up to 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 54.0,
+      "end_date": null,
+      "website_domain": "colehaan.com",
+      "source_url": "https://www.colehaan.com/collections/sale"
+    },
+    {
+      "promo_id": "parachute_classicturkishcottontowels",
+      "brand": "Parachute",
+      "category": "home_goods",
+      "title": "Classic Turkish Cotton Towels",
+      "notify_score": 75.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Parachute",
+      "notification_body": "Classic Turkish Cotton Towels",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 54.0,
+      "end_date": null,
+      "website_domain": "parachutehome.com",
+      "source_url": "https://parachutehome.com/collections/all-sale"
+    },
+    {
+      "promo_id": "showpo_3080off40offbestsellers",
+      "brand": "Showpo",
+      "category": "fashion",
+      "title": "30 - 80% Off + 40% Off Best Sellers",
+      "notify_score": 75.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Showpo",
+      "notification_body": "30 - 80% Off + 40% Off Best Sellers",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 80%",
+      "estimated_savings": 52.0,
+      "end_date": null,
+      "website_domain": "showpo.com",
+      "source_url": "https://www.showpo.com/collections/sale"
+    },
+    {
+      "promo_id": "ninewest_currentlycovetinggermaniflatslidesandals",
+      "brand": "Nine West",
+      "category": "fashion",
+      "title": "Currently Coveting - Germani Flat Slide Sandals",
+      "notify_score": 73.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Nine West",
+      "notification_body": "Currently Coveting - Germani Flat Slide Sandals",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 54.0,
+      "end_date": null,
+      "website_domain": "ninewest.com",
+      "source_url": "https://ninewest.com/collections/sale"
+    },
+    {
+      "promo_id": "underarmour_semiannualeventextra50offoutletwithcodesummer",
+      "brand": "Under Armour",
+      "category": "fashion",
+      "title": "SEMI-ANNUAL EVENT: Extra 50% Off Outlet with code SUMMER",
+      "notify_score": 71.0,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Under Armour",
-      "notification_body": "Extra 50% Off Outlet with code SUMMER",
+      "notification_body": "SEMI-ANNUAL EVENT: Extra 50% Off Outlet with code SUMMER",
       "discount_type": "percentage_off",
       "discount_value": "50%",
+      "estimated_savings": 32.5,
       "end_date": null,
       "website_domain": "underarmour.com",
       "source_url": "https://www.underarmour.com/en-us/c/outlet/"
     },
     {
-      "promo_id": "microsoft_freeallaccessdigitalpassformicrosoftbuild",
-      "brand": "Microsoft",
-      "title": "Free All-Access Digital Pass for Microsoft Build",
-      "notify_score": 75.0,
+      "promo_id": "adoreme_clearance50off",
+      "brand": "Adore Me",
+      "category": "fashion",
+      "title": "Clearance | 50% OFF",
+      "notify_score": 65.0,
       "signal_groups": [
         "context",
-        "personal",
         "value"
       ],
-      "notification_title": "Microsoft",
-      "notification_body": "Free: Free All-Access Digital Pass for Microsoft Build",
-      "discount_type": "free_item",
-      "discount_value": "free",
+      "notification_title": "Adore Me",
+      "notification_body": "Clearance | 50% OFF",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 32.5,
       "end_date": null,
-      "website_domain": null,
-      "source_url": null
+      "website_domain": "adoreme.com",
+      "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
+    },
+    {
+      "promo_id": "adoreme_clearance70off",
+      "brand": "Adore Me",
+      "category": "fashion",
+      "title": "Clearance | 70% OFF",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Adore Me",
+      "notification_body": "Clearance | 70% OFF",
+      "discount_type": "percentage_off",
+      "discount_value": "70%",
+      "estimated_savings": 45.5,
+      "end_date": null,
+      "website_domain": "adoreme.com",
+      "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
+    },
+    {
+      "promo_id": "adoreme_clearance60off",
+      "brand": "Adore Me",
+      "category": "fashion",
+      "title": "Clearance | 60% OFF",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Adore Me",
+      "notification_body": "Clearance | 60% OFF",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 39.0,
+      "end_date": null,
+      "website_domain": "adoreme.com",
+      "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
+    },
+    {
+      "promo_id": "bcbg_50off",
+      "brand": "BCBG",
+      "category": "fashion",
+      "title": "50% Off",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "BCBG",
+      "notification_body": "50% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "bcbg.com",
+      "source_url": "https://bcbg.com/collections/sale"
+    },
+    {
+      "promo_id": "coach_upto50offselectstyles",
+      "brand": "Coach",
+      "category": "fashion",
+      "title": "Up to 50% off select styles",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Coach",
+      "notification_body": "Up to 50% off select styles",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 37.5,
+      "end_date": null,
+      "website_domain": "coach.com",
+      "source_url": "https://www.coach.com/content/promo"
+    },
+    {
+      "promo_id": "nastygal_newseason60off",
+      "brand": "Nasty Gal",
+      "category": "retail",
+      "title": "New Season 60% Off",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Nasty Gal",
+      "notification_body": "New Season 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 27.0,
+      "end_date": null,
+      "website_domain": "nastygal.com",
+      "source_url": "https://www.nastygal.com/categories/womens-sale"
+    },
+    {
+      "promo_id": "nastygal_summerhotlist70off",
+      "brand": "Nasty Gal",
+      "category": "retail",
+      "title": "Summer Hot List 70% Off",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Nasty Gal",
+      "notification_body": "Summer Hot List 70% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "70%",
+      "estimated_savings": 31.5,
+      "end_date": null,
+      "website_domain": "nastygal.com",
+      "source_url": "https://www.nastygal.com/categories/womens-sale"
+    },
+    {
+      "promo_id": "saucony_upto50offselectstyles",
+      "brand": "Saucony",
+      "category": "fashion",
+      "title": "Up to 50% Off Select Styles",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Saucony",
+      "notification_body": "Up to 50% Off Select Styles",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "saucony.com",
+      "source_url": "https://www.saucony.com/en/sale/"
+    },
+    {
+      "promo_id": "tedbaker_summersaleupto50offselecteditems",
+      "brand": "Ted Baker",
+      "category": "fashion",
+      "title": "SUMMER SALE: UP TO 50% OFF SELECTED ITEMS",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Ted Baker",
+      "notification_body": "SUMMER SALE: UP TO 50% OFF SELECTED ITEMS",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "tedbaker.com",
+      "source_url": "https://www.tedbaker.com/collections/sale-us"
+    },
+    {
+      "promo_id": "johnstonmurphy_endofseasonsale",
+      "brand": "Johnston & Murphy",
+      "category": "fashion",
+      "title": "End of Season Sale",
+      "notify_score": 63.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Johnston & Murphy",
+      "notification_body": "End of Season Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 55%",
+      "estimated_savings": 35.75,
+      "end_date": null,
+      "website_domain": "johnstonmurphy.com",
+      "source_url": "https://www.johnstonmurphy.com/c/sale"
     }
   ]
 }
