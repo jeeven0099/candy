@@ -68,6 +68,15 @@ class DealDetailScreen extends StatelessWidget {
                     FastRedeemButton(fr: promo.fastRedemption!, brand: promo.brand, promoId: promo.id),
                   ],
 
+                  // ── Source trust badge ────────────────────────────────────
+                  if (promo.source == 'web' && promo.verifyUrl != null) ...[
+                    const SizedBox(height: 16),
+                    _TrustSourceBadge(
+                      domain: promo.websiteDomain ?? promo.brand,
+                      url: promo.verifyUrl!,
+                    ),
+                  ],
+
                   const SizedBox(height: 24),
                   _Divider(),
                   _DetailRow(Icons.category_outlined, 'Category', _capitalize(promo.category)),
@@ -166,10 +175,6 @@ class DealDetailScreen extends StatelessWidget {
                   ],
                   _Divider(),
                   _ConfidenceBar(score: promo.confidenceScore),
-                  if (promo.verifyUrl != null) ...[
-                    const SizedBox(height: 16),
-                    _VerifySourceRow(url: promo.verifyUrl!),
-                  ],
                   const SizedBox(height: 24),
                 ],
               ),
@@ -543,9 +548,10 @@ class _Divider extends StatelessWidget {
       Divider(height: 24, color: Candy.pink.withValues(alpha: 0.15));
 }
 
-class _VerifySourceRow extends StatelessWidget {
+class _TrustSourceBadge extends StatelessWidget {
+  final String domain;
   final String url;
-  const _VerifySourceRow({required this.url});
+  const _TrustSourceBadge({required this.domain, required this.url});
 
   @override
   Widget build(BuildContext context) {
@@ -554,20 +560,37 @@ class _VerifySourceRow extends StatelessWidget {
         final uri = Uri.tryParse(url);
         if (uri != null) await launchUrl(uri, mode: LaunchMode.externalApplication);
       },
-      child: Row(
-        children: [
-          const Icon(Icons.open_in_new, size: 14, color: Candy.muted),
-          const SizedBox(width: 8),
-          const Text(
-            'Verify on brand website',
-            style: TextStyle(
-              fontSize: 12,
-              color: Candy.muted,
-              decoration: TextDecoration.underline,
-              decorationColor: Candy.muted,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+        decoration: BoxDecoration(
+          color: const Color(0xFF2E7D32).withValues(alpha: 0.06),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: const Color(0xFF2E7D32).withValues(alpha: 0.18)),
+        ),
+        child: Row(
+          children: [
+            const Icon(Icons.verified_outlined, size: 14, color: Color(0xFF2E7D32)),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                'Official source: $domain',
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Color(0xFF2E7D32),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
-          ),
-        ],
+            const Text(
+              'Verify →',
+              style: TextStyle(
+                fontSize: 11,
+                color: Color(0xFF2E7D32),
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

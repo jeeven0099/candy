@@ -283,6 +283,23 @@ class DealCard extends StatelessWidget {
                     const SizedBox(height: 12),
                     FastRedeemButton(fr: promo.fastRedemption!, brand: promo.brand, promoId: promo.id),
                   ],
+
+                  // ── Source trust line ──
+                  if (promo.source == 'web' && promo.websiteDomain != null) ...[
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Icon(Icons.verified_outlined,
+                            size: 11, color: Colors.grey.shade400),
+                        const SizedBox(width: 4),
+                        Text(
+                          'Sourced from ${promo.websiteDomain}',
+                          style: TextStyle(
+                              fontSize: 11, color: Colors.grey.shade400),
+                        ),
+                      ],
+                    ),
+                  ],
                 ],
               ),
             ),
