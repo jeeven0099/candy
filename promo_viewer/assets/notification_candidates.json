@@ -1,121 +1,26 @@
 {
-  "generated_at": "2026-06-27T16:31:13.424006+00:00",
+  "generated_at": "2026-06-29T15:04:10.839594+00:00",
   "threshold": 60.0,
-  "total": 16,
+  "total": 13,
   "candidates": [
     {
-      "promo_id": "colehaan_allsaleupto50off",
-      "brand": "Cole Haan",
-      "category": "retail",
-      "title": "All Sale up to 50% Off",
-      "notify_score": 75.0,
+      "promo_id": "jetblue_upto50offflights",
+      "brand": "JetBlue",
+      "category": "travel",
+      "title": "Up to 50% off flights",
+      "notify_score": 85.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Cole Haan",
-      "notification_body": "All Sale up to 50% Off",
+      "notification_title": "JetBlue",
+      "notification_body": "Up to 50% off flights",
       "discount_type": "percentage_off",
       "discount_value": "up to 50%",
-      "estimated_savings": 75.0,
+      "estimated_savings": 105.0,
       "end_date": null,
-      "website_domain": "colehaan.com",
-      "source_url": "https://www.colehaan.com/collections/sale"
-    },
-    {
-      "promo_id": "colehaan_sandalsupto60off",
-      "brand": "Cole Haan",
-      "category": "retail",
-      "title": "Sandals up to 60% Off",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Cole Haan",
-      "notification_body": "Sandals up to 60% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 54.0,
-      "end_date": null,
-      "website_domain": "colehaan.com",
-      "source_url": "https://www.colehaan.com/collections/sale"
-    },
-    {
-      "promo_id": "parachute_classicturkishcottontowels",
-      "brand": "Parachute",
-      "category": "home_goods",
-      "title": "Classic Turkish Cotton Towels",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Parachute",
-      "notification_body": "Classic Turkish Cotton Towels",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "estimated_savings": 54.0,
-      "end_date": null,
-      "website_domain": "parachutehome.com",
-      "source_url": "https://parachutehome.com/collections/all-sale"
-    },
-    {
-      "promo_id": "showpo_3080off40offbestsellers",
-      "brand": "Showpo",
-      "category": "fashion",
-      "title": "30 - 80% Off + 40% Off Best Sellers",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Showpo",
-      "notification_body": "30 - 80% Off + 40% Off Best Sellers",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 80%",
-      "estimated_savings": 52.0,
-      "end_date": null,
-      "website_domain": "showpo.com",
-      "source_url": "https://www.showpo.com/collections/sale"
-    },
-    {
-      "promo_id": "ninewest_currentlycovetinggermaniflatslidesandals",
-      "brand": "Nine West",
-      "category": "fashion",
-      "title": "Currently Coveting - Germani Flat Slide Sandals",
-      "notify_score": 73.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Nine West",
-      "notification_body": "Currently Coveting - Germani Flat Slide Sandals",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "estimated_savings": 54.0,
-      "end_date": null,
-      "website_domain": "ninewest.com",
-      "source_url": "https://ninewest.com/collections/sale"
-    },
-    {
-      "promo_id": "underarmour_semiannualeventextra50offoutletwithcodesummer",
-      "brand": "Under Armour",
-      "category": "fashion",
-      "title": "SEMI-ANNUAL EVENT: Extra 50% Off Outlet with code SUMMER",
-      "notify_score": 71.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Under Armour",
-      "notification_body": "SEMI-ANNUAL EVENT: Extra 50% Off Outlet with code SUMMER",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 32.5,
-      "end_date": null,
-      "website_domain": "underarmour.com",
-      "source_url": "https://www.underarmour.com/en-us/c/outlet/"
+      "website_domain": "jetblue.com",
+      "source_url": "https://www.jetblue.com/sale"
     },
     {
       "promo_id": "adoreme_clearance50off",
@@ -175,42 +80,42 @@
       "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
     },
     {
-      "promo_id": "bcbg_50off",
-      "brand": "BCBG",
+      "promo_id": "allsaints_upto50offsalefurtherreductions",
+      "brand": "AllSaints",
       "category": "fashion",
-      "title": "50% Off",
+      "title": "Up To 50% Off Sale - Further Reductions",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "BCBG",
-      "notification_body": "50% Off",
+      "notification_title": "AllSaints",
+      "notification_body": "Up To 50% Off Sale - Further Reductions",
       "discount_type": "percentage_off",
-      "discount_value": "50%",
+      "discount_value": "up to 50%",
       "estimated_savings": 32.5,
       "end_date": null,
-      "website_domain": "bcbg.com",
-      "source_url": "https://bcbg.com/collections/sale"
+      "website_domain": "allsaints.com",
+      "source_url": "https://www.allsaints.com/women/sale"
     },
     {
-      "promo_id": "coach_upto50offselectstyles",
-      "brand": "Coach",
+      "promo_id": "boxlunch_extra50offhoodiessweatersjackets",
+      "brand": "BoxLunch",
       "category": "fashion",
-      "title": "Up to 50% off select styles",
+      "title": "Extra 50% Off Hoodies, Sweaters & Jackets",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Coach",
-      "notification_body": "Up to 50% off select styles",
+      "notification_title": "BoxLunch",
+      "notification_body": "Extra 50% Off Hoodies, Sweaters & Jackets",
       "discount_type": "percentage_off",
       "discount_value": "50%",
-      "estimated_savings": 37.5,
+      "estimated_savings": 27.5,
       "end_date": null,
-      "website_domain": "coach.com",
-      "source_url": "https://www.coach.com/content/promo"
+      "website_domain": "boxlunch.com",
+      "source_url": "https://www.boxlunch.com/sale/"
     },
     {
       "promo_id": "nastygal_newseason60off",
@@ -251,23 +156,23 @@
       "source_url": "https://www.nastygal.com/categories/womens-sale"
     },
     {
-      "promo_id": "saucony_upto50offselectstyles",
-      "brand": "Saucony",
+      "promo_id": "stuartweitzman_summersaleupto50off",
+      "brand": "Stuart Weitzman",
       "category": "fashion",
-      "title": "Up to 50% Off Select Styles",
+      "title": "SUMMER SALE: Up to 50% Off",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Saucony",
-      "notification_body": "Up to 50% Off Select Styles",
+      "notification_title": "Stuart Weitzman",
+      "notification_body": "SUMMER SALE: Up to 50% Off",
       "discount_type": "percentage_off",
       "discount_value": "up to 50%",
       "estimated_savings": 32.5,
       "end_date": null,
-      "website_domain": "saucony.com",
-      "source_url": "https://www.saucony.com/en/sale/"
+      "website_domain": "stuartweitzman.com",
+      "source_url": "https://eu.stuartweitzman.com/mx/en/"
     },
     {
       "promo_id": "tedbaker_summersaleupto50offselecteditems",
@@ -282,11 +187,30 @@
       "notification_title": "Ted Baker",
       "notification_body": "SUMMER SALE: UP TO 50% OFF SELECTED ITEMS",
       "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
+      "discount_value": "UP TO 50%",
       "estimated_savings": 32.5,
       "end_date": null,
       "website_domain": "tedbaker.com",
       "source_url": "https://www.tedbaker.com/collections/sale-us"
+    },
+    {
+      "promo_id": "choicehotels_summerweekendgetaway",
+      "brand": "Choice Hotels",
+      "category": "travel",
+      "title": "Summer weekend getaway",
+      "notify_score": 64.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Choice Hotels",
+      "notification_body": "Expires today: Summer weekend getaway",
+      "discount_type": "percentage_off",
+      "discount_value": "15%",
+      "estimated_savings": 30.0,
+      "end_date": "2026-06-29",
+      "website_domain": "choicehotels.com",
+      "source_url": "https://www.choicehotels.com/deals/featured?alloy_redirect=eyJ2IjoxLCJhZCI6IjY1MTcyNToxOjB8MCw2NTE3MjU6MTowfDIsNjUxNzI1OjE6MHwxLDY2MTE5MDowOjB8MCw2NjExOTA6MDowfDIsNjYxMTkwOjA6MHwxLDY2MDAwNjoxOjB8MCw2NjAwMDY6MTowfDIsNjYwMDA2OjE6MHwxIn0%3D"
     },
     {
       "promo_id": "johnstonmurphy_endofseasonsale",
@@ -306,6 +230,25 @@
       "end_date": null,
       "website_domain": "johnstonmurphy.com",
       "source_url": "https://www.johnstonmurphy.com/c/sale"
+    },
+    {
+      "promo_id": "forever21_flashsale30offsitewide72hoursonly",
+      "brand": "Forever 21",
+      "category": "fashion",
+      "title": "FLASH SALE 🚨 30% OFF SITEWIDE 🚨 72 HOURS ONLY!",
+      "notify_score": 62.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Forever 21",
+      "notification_body": "Expires today: FLASH SALE 🚨 30% OFF SITEWIDE 🚨 72 HOURS ONLY!",
+      "discount_type": "percentage_off",
+      "discount_value": "30%",
+      "estimated_savings": 8.4,
+      "end_date": "2026-06-29T23:59:59Z",
+      "website_domain": "forever21.com",
+      "source_url": "https://www.forever21.com/collections/sale"
     }
   ]
 }
