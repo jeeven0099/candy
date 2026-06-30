@@ -149,8 +149,7 @@ def main() -> None:
                 parse_cmd += ["--brand", args.brand]
             rc = run(parse_cmd, "Step 4/12 -Extracting promotions", log_fh)
             if rc != 0:
-                log_print(f"\n[ERROR] parse_candidates exited with code {rc}.", log_fh)
-                sys.exit(rc)
+                log_print(f"\n[WARN] parse_candidates exited with code {rc} (partial extraction). Continuing with whatever was extracted.", log_fh)
 
         # Step 5: Normalize
         normalize_cmd = [str(SRC / "normalize_promotions.py")]

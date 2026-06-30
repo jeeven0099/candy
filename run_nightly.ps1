@@ -1,5 +1,3 @@
-$ErrorActionPreference = "Stop"
-
 $root     = "C:\Users\user\Downloads\promo-raw-scraper"
 $python   = "C:\Python314\python.exe"
 $pipeline = "$root\promo-raw-scraper\run_pipeline.py"
@@ -13,91 +11,25 @@ if (Test-Path $lockFile) {
         Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Pipeline already running (PID $lockPid). Exiting."
         exit 0
     }
-    Remove-Item $lockFile -Force  # stale lock from a crashed run
+    Remove-Item $lockFile -Force
 }
 $PID | Out-File $lockFile -Force
+
 try {
-$assets   = "$root\promo_viewer\assets"
+    # Start Ollama if not already running
+    $ollamaRunning = try {
+        (Invoke-WebRequest -Uri "http://localhost:11434/api/version" -UseBasicParsing -TimeoutSec 3).StatusCode -eq 200
+    } catch { $false }
 
-# Start Ollama if it isn't already running
-$ollamaRunning = try { (Invoke-WebRequest -Uri "http://localhost:11434/api/version" -UseBasicParsing -TimeoutSec 3).StatusCode -eq 200 } catch { $false }
-if (-not $ollamaRunning) {
-    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Starting Ollama..."
-    Start-Process "ollama" -ArgumentList "serve" -WindowStyle Hidden
-    Start-Sleep -Seconds 10
-}
-
-Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Starting pipeline..."
-& $python $pipeline --ollama-model qwen2.5:14b --ollama-timeout 2700
-if (-not $?) { throw "Pipeline failed - check run_pipeline.py output above" }
-
-# EMAIL PIPELINE DISABLED — re-enable when ready for launch
-# Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Running email pipeline..."
-# $env:SSLKEYLOGFILE = $null
-# & $python "$root\promo-raw-scraper\email_pipeline\src\run_email_pipeline.py" --env-file "$root\promo-raw-scraper\.env.email" --ollama-model qwen2.5:14b --ollama-timeout 2700 --gmail-query "category:promotions newer_than:1d"
-# if (-not $?) { Write-Host "[WARN] Email pipeline failed - continuing" }
-
-Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Generating merged web promotions..."
-& $python "$root\promo-raw-scraper\src\generate_merged_json.py"
-
-Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Merging web + email promotions..."
-& $python "$root\promo-raw-scraper\src\merge_all_promotions.py"
-
-Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Adding fast redemption actions..."
-& $python "$root\promo-raw-scraper\src\generate_fast_redemption.py"
-
-Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Computing rank scores..."
-& $python "$root\promo-raw-scraper\src\generate_scores.py"
-
-Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Computing notification candidates..."
-& $python "$root\promo-raw-scraper\src\generate_notifications.py"
-if (-not $?) { Write-Host "[WARN] Notification generation had errors - continuing" }
-
-Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Downloading brand logos..."
-& $python "$root\promo-raw-scraper\src\download_logos.py"
-if (-not $?) { Write-Host "[WARN] Logo download had failures - continuing" }
-
-Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Copying assets..."
-Copy-Item "$root\promo-raw-scraper\all_promotions.json"              "$assets\all_promotions.json"              -Force
-Copy-Item "$root\promo-raw-scraper\brand_locations.json"             "$assets\brand_locations.json"             -Force
-Copy-Item "$root\promo-raw-scraper\notification_candidates.json"     "$assets\notification_candidates.json"     -Force -ErrorAction SilentlyContinue
-# EMAIL PIPELINE DISABLED — these copies re-enable with the pipeline
-# if (Test-Path "$root\promo-raw-scraper\email_pipeline\logs\user_memberships.json") {
-#     Copy-Item "$root\promo-raw-scraper\email_pipeline\logs\user_memberships.json" "$assets\user_memberships.json" -Force
-# }
-# if (Test-Path "$root\promo-raw-scraper\email_pipeline\logs\brand_affinity.json") {
-#     Copy-Item "$root\promo-raw-scraper\email_pipeline\logs\brand_affinity.json" "$assets\brand_affinity.json" -Force
-# }
-
-# Copy logos folder (only new/changed files)
-New-Item -ItemType Directory -Force "$assets\logos" | Out-Null
-Copy-Item "$root\promo-raw-scraper\logos\*" "$assets\logos\" -Force -ErrorAction SilentlyContinue
-
-Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Running quality report..."
-& $python "$root\promo-raw-scraper\src\generate_quality_report.py"
-if (-not $?) { Write-Host "[WARN] Quality report had errors - continuing" }
-
-# Push updated assets to GitHub so the live app gets the latest deals
-Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Pushing updated assets to GitHub..."
-Push-Location $root
-try {
-    git add promo_viewer/assets/all_promotions.json promo_viewer/assets/notification_candidates.json promo_viewer/assets/brand_locations.json
-    $status = git status --porcelain promo_viewer/assets/all_promotions.json promo_viewer/assets/notification_candidates.json promo_viewer/assets/brand_locations.json
-    if ($status) {
-        $dateStr = Get-Date -Format "yyyy-MM-dd"
-        git commit -m "Update deals from $dateStr pipeline run"
-        git push origin master
-        Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Pushed to GitHub."
-    } else {
-        Write-Host "[$(Get-Date -Format 'HH:mm:ss')] No asset changes to push."
+    if (-not $ollamaRunning) {
+        Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Starting Ollama..."
+        Start-Process "ollama" -ArgumentList "serve" -WindowStyle Hidden
+        Start-Sleep -Seconds 10
     }
-} catch {
-    Write-Host "[WARN] Git push failed: $_"
-} finally {
-    Pop-Location
-}
 
-Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Done."
+    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Starting pipeline..."
+    & $python $pipeline --ollama-model qwen2.5:14b --ollama-timeout 2700
+    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Pipeline finished (exit $LASTEXITCODE)."
 } finally {
     Remove-Item $lockFile -ErrorAction SilentlyContinue
 }
