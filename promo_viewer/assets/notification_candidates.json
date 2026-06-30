@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-29T15:04:10.839594+00:00",
+  "generated_at": "2026-06-30T13:12:10.979107+00:00",
   "threshold": 60.0,
-  "total": 13,
+  "total": 10,
   "candidates": [
     {
       "promo_id": "jetblue_upto50offflights",
@@ -23,58 +23,77 @@
       "source_url": "https://www.jetblue.com/sale"
     },
     {
-      "promo_id": "adoreme_clearance50off",
-      "brand": "Adore Me",
+      "promo_id": "fashionnova_upto80off",
+      "brand": "Fashion Nova",
       "category": "fashion",
-      "title": "Clearance | 50% OFF",
-      "notify_score": 65.0,
+      "title": "Up to 80% Off",
+      "notify_score": 75.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Adore Me",
-      "notification_body": "Clearance | 50% OFF",
+      "notification_title": "Fashion Nova",
+      "notification_body": "Up to 80% Off",
       "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 32.5,
+      "discount_value": "up to 80%",
+      "estimated_savings": 52.0,
       "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
+      "website_domain": "fashionnova.com",
+      "source_url": "https://www.fashionnova.com/collections/sale"
     },
     {
-      "promo_id": "adoreme_clearance70off",
+      "promo_id": "ninewest_flatsandalssale",
+      "brand": "Nine West",
+      "category": "fashion",
+      "title": "Flat Sandals Sale",
+      "notify_score": 75.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Nine West",
+      "notification_body": "Flat Sandals Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "estimated_savings": 63.0,
+      "end_date": null,
+      "website_domain": "ninewest.com",
+      "source_url": "https://ninewest.com/collections/sale"
+    },
+    {
+      "promo_id": "williamssonoma_4thofjulysale",
+      "brand": "Williams-Sonoma",
+      "category": "home_goods",
+      "title": "4th Of July Sale",
+      "notify_score": 75.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Williams-Sonoma",
+      "notification_body": "4th Of July Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 75%",
+      "estimated_savings": 67.5,
+      "end_date": null,
+      "website_domain": "williams-sonoma.com",
+      "source_url": "https://www.williams-sonoma.com/shop/sale-special-offer/"
+    },
+    {
+      "promo_id": "adoreme_semiannualsaleupto70off",
       "brand": "Adore Me",
       "category": "fashion",
-      "title": "Clearance | 70% OFF",
+      "title": "SEMI-ANNUAL SALE: Up to 70% OFF",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Adore Me",
-      "notification_body": "Clearance | 70% OFF",
+      "notification_body": "SEMI-ANNUAL SALE: Up to 70% OFF",
       "discount_type": "percentage_off",
-      "discount_value": "70%",
+      "discount_value": "up to 70%",
       "estimated_savings": 45.5,
-      "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
-    },
-    {
-      "promo_id": "adoreme_clearance60off",
-      "brand": "Adore Me",
-      "category": "fashion",
-      "title": "Clearance | 60% OFF",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Adore Me",
-      "notification_body": "Clearance | 60% OFF",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "estimated_savings": 39.0,
       "end_date": null,
       "website_domain": "adoreme.com",
       "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
@@ -99,63 +118,6 @@
       "source_url": "https://www.allsaints.com/women/sale"
     },
     {
-      "promo_id": "boxlunch_extra50offhoodiessweatersjackets",
-      "brand": "BoxLunch",
-      "category": "fashion",
-      "title": "Extra 50% Off Hoodies, Sweaters & Jackets",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "BoxLunch",
-      "notification_body": "Extra 50% Off Hoodies, Sweaters & Jackets",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 27.5,
-      "end_date": null,
-      "website_domain": "boxlunch.com",
-      "source_url": "https://www.boxlunch.com/sale/"
-    },
-    {
-      "promo_id": "nastygal_newseason60off",
-      "brand": "Nasty Gal",
-      "category": "retail",
-      "title": "New Season 60% Off",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Nasty Gal",
-      "notification_body": "New Season 60% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "estimated_savings": 27.0,
-      "end_date": null,
-      "website_domain": "nastygal.com",
-      "source_url": "https://www.nastygal.com/categories/womens-sale"
-    },
-    {
-      "promo_id": "nastygal_summerhotlist70off",
-      "brand": "Nasty Gal",
-      "category": "retail",
-      "title": "Summer Hot List 70% Off",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Nasty Gal",
-      "notification_body": "Summer Hot List 70% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "70%",
-      "estimated_savings": 31.5,
-      "end_date": null,
-      "website_domain": "nastygal.com",
-      "source_url": "https://www.nastygal.com/categories/womens-sale"
-    },
-    {
       "promo_id": "stuartweitzman_summersaleupto50off",
       "brand": "Stuart Weitzman",
       "category": "fashion",
@@ -175,42 +137,23 @@
       "source_url": "https://eu.stuartweitzman.com/mx/en/"
     },
     {
-      "promo_id": "tedbaker_summersaleupto50offselecteditems",
+      "promo_id": "tedbaker_summersaleupto50offselected",
       "brand": "Ted Baker",
       "category": "fashion",
-      "title": "SUMMER SALE: UP TO 50% OFF SELECTED ITEMS",
+      "title": "SUMMER SALE: UP TO 50% OFF SELECTED",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Ted Baker",
-      "notification_body": "SUMMER SALE: UP TO 50% OFF SELECTED ITEMS",
+      "notification_body": "SUMMER SALE: UP TO 50% OFF SELECTED",
       "discount_type": "percentage_off",
-      "discount_value": "UP TO 50%",
+      "discount_value": "up to 50%",
       "estimated_savings": 32.5,
       "end_date": null,
       "website_domain": "tedbaker.com",
       "source_url": "https://www.tedbaker.com/collections/sale-us"
-    },
-    {
-      "promo_id": "choicehotels_summerweekendgetaway",
-      "brand": "Choice Hotels",
-      "category": "travel",
-      "title": "Summer weekend getaway",
-      "notify_score": 64.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Choice Hotels",
-      "notification_body": "Expires today: Summer weekend getaway",
-      "discount_type": "percentage_off",
-      "discount_value": "15%",
-      "estimated_savings": 30.0,
-      "end_date": "2026-06-29",
-      "website_domain": "choicehotels.com",
-      "source_url": "https://www.choicehotels.com/deals/featured?alloy_redirect=eyJ2IjoxLCJhZCI6IjY1MTcyNToxOjB8MCw2NTE3MjU6MTowfDIsNjUxNzI1OjE6MHwxLDY2MTE5MDowOjB8MCw2NjExOTA6MDowfDIsNjYxMTkwOjA6MHwxLDY2MDAwNjoxOjB8MCw2NjAwMDY6MTowfDIsNjYwMDA2OjE6MHwxIn0%3D"
     },
     {
       "promo_id": "johnstonmurphy_endofseasonsale",
@@ -232,23 +175,23 @@
       "source_url": "https://www.johnstonmurphy.com/c/sale"
     },
     {
-      "promo_id": "forever21_flashsale30offsitewide72hoursonly",
-      "brand": "Forever 21",
-      "category": "fashion",
-      "title": "FLASH SALE 🚨 30% OFF SITEWIDE 🚨 72 HOURS ONLY!",
-      "notify_score": 62.0,
+      "promo_id": "churchschicken_newcustomerssave25ontheirfirstcateringorderof250",
+      "brand": "Church's Chicken",
+      "category": "food",
+      "title": "New customers save $25 on their first catering order of $250+",
+      "notify_score": 61.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Forever 21",
-      "notification_body": "Expires today: FLASH SALE 🚨 30% OFF SITEWIDE 🚨 72 HOURS ONLY!",
-      "discount_type": "percentage_off",
-      "discount_value": "30%",
-      "estimated_savings": 8.4,
-      "end_date": "2026-06-29T23:59:59Z",
-      "website_domain": "forever21.com",
-      "source_url": "https://www.forever21.com/collections/sale"
+      "notification_title": "Church's Chicken",
+      "notification_body": "Expires today: New customers save $25 on their first catering order of $250+",
+      "discount_type": "amount_off",
+      "discount_value": "$25",
+      "estimated_savings": 25.0,
+      "end_date": "2026-06-30",
+      "website_domain": "churchs.com",
+      "source_url": "https://www.churchs.com/deal/"
     }
   ]
 }
