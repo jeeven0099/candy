@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-06-30T13:12:10.979107+00:00",
+  "generated_at": "2026-07-01T12:57:52.854509+00:00",
   "threshold": 60.0,
-  "total": 10,
+  "total": 12,
   "candidates": [
     {
       "promo_id": "jetblue_upto50offflights",
@@ -23,99 +23,61 @@
       "source_url": "https://www.jetblue.com/sale"
     },
     {
-      "promo_id": "fashionnova_upto80off",
+      "promo_id": "fashionnova_6080offonclearanceitems",
       "brand": "Fashion Nova",
       "category": "fashion",
-      "title": "Up to 80% Off",
+      "title": "60-80% Off on Clearance Items",
       "notify_score": 75.0,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Fashion Nova",
-      "notification_body": "Up to 80% Off",
+      "notification_body": "60-80% Off on Clearance Items",
       "discount_type": "percentage_off",
-      "discount_value": "up to 80%",
+      "discount_value": "60-80%",
       "estimated_savings": 52.0,
       "end_date": null,
       "website_domain": "fashionnova.com",
       "source_url": "https://www.fashionnova.com/collections/sale"
     },
     {
-      "promo_id": "ninewest_flatsandalssale",
-      "brand": "Nine West",
+      "promo_id": "hottopic_clearancesale",
+      "brand": "Hot Topic",
       "category": "fashion",
-      "title": "Flat Sandals Sale",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Nine West",
-      "notification_body": "Flat Sandals Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 63.0,
-      "end_date": null,
-      "website_domain": "ninewest.com",
-      "source_url": "https://ninewest.com/collections/sale"
-    },
-    {
-      "promo_id": "williamssonoma_4thofjulysale",
-      "brand": "Williams-Sonoma",
-      "category": "home_goods",
-      "title": "4th Of July Sale",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Williams-Sonoma",
-      "notification_body": "4th Of July Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 75%",
-      "estimated_savings": 67.5,
-      "end_date": null,
-      "website_domain": "williams-sonoma.com",
-      "source_url": "https://www.williams-sonoma.com/shop/sale-special-offer/"
-    },
-    {
-      "promo_id": "adoreme_semiannualsaleupto70off",
-      "brand": "Adore Me",
-      "category": "fashion",
-      "title": "SEMI-ANNUAL SALE: Up to 70% OFF",
+      "title": "Clearance Sale",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Adore Me",
-      "notification_body": "SEMI-ANNUAL SALE: Up to 70% OFF",
+      "notification_title": "Hot Topic",
+      "notification_body": "Clearance Sale",
       "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 45.5,
+      "discount_value": "Up to 50%",
+      "estimated_savings": 32.5,
       "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
+      "website_domain": "hottopic.com",
+      "source_url": "https://www.hottopic.com/sale/"
     },
     {
-      "promo_id": "allsaints_upto50offsalefurtherreductions",
-      "brand": "AllSaints",
+      "promo_id": "puma_semiannualsaleupto50off",
+      "brand": "Puma",
       "category": "fashion",
-      "title": "Up To 50% Off Sale - Further Reductions",
+      "title": "SEMI-ANNUAL SALE: UP TO 50% OFF",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "AllSaints",
-      "notification_body": "Up To 50% Off Sale - Further Reductions",
+      "notification_title": "Puma",
+      "notification_body": "SEMI-ANNUAL SALE: UP TO 50% OFF",
       "discount_type": "percentage_off",
       "discount_value": "up to 50%",
       "estimated_savings": 32.5,
       "end_date": null,
-      "website_domain": "allsaints.com",
-      "source_url": "https://www.allsaints.com/women/sale"
+      "website_domain": "us.puma.com",
+      "source_url": "https://us.puma.com/us/en/sale/all-sale"
     },
     {
       "promo_id": "stuartweitzman_summersaleupto50off",
@@ -137,23 +99,42 @@
       "source_url": "https://eu.stuartweitzman.com/mx/en/"
     },
     {
-      "promo_id": "tedbaker_summersaleupto50offselected",
-      "brand": "Ted Baker",
+      "promo_id": "whitehouseblackmarket_semiannualsaleextra50offsalestyles",
+      "brand": "White House Black Market",
       "category": "fashion",
-      "title": "SUMMER SALE: UP TO 50% OFF SELECTED",
+      "title": "Semi-Annual Sale: Extra 50% Off Sale Styles",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Ted Baker",
-      "notification_body": "SUMMER SALE: UP TO 50% OFF SELECTED",
+      "notification_title": "White House Black Market",
+      "notification_body": "Semi-Annual Sale: Extra 50% Off Sale Styles",
       "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
+      "discount_value": "50%",
       "estimated_savings": 32.5,
       "end_date": null,
-      "website_domain": "tedbaker.com",
-      "source_url": "https://www.tedbaker.com/collections/sale-us"
+      "website_domain": "whitehouseblackmarket.com",
+      "source_url": "https://www.whitehouseblackmarket.com/store/category/sale/cat210002"
+    },
+    {
+      "promo_id": "whitehouseblackmarket_50offspecificdresses",
+      "brand": "White House Black Market",
+      "category": "fashion",
+      "title": "50% Off Specific Dresses",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "White House Black Market",
+      "notification_body": "50% Off Specific Dresses",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 30.0,
+      "end_date": null,
+      "website_domain": "whitehouseblackmarket.com",
+      "source_url": "https://www.whitehouseblackmarket.com/store/category/sale/cat210002"
     },
     {
       "promo_id": "johnstonmurphy_endofseasonsale",
@@ -175,23 +156,80 @@
       "source_url": "https://www.johnstonmurphy.com/c/sale"
     },
     {
-      "promo_id": "churchschicken_newcustomerssave25ontheirfirstcateringorderof250",
-      "brand": "Church's Chicken",
+      "promo_id": "sprouts_buy1get1freeonsilverhillsorganicsproutedpowersoftwheatbread",
+      "brand": "Sprouts",
       "category": "food",
-      "title": "New customers save $25 on their first catering order of $250+",
-      "notify_score": 61.0,
+      "title": "Buy 1, get 1 free on Silver Hills Organic Sprouted Power Soft Wheat Bread",
+      "notify_score": 63.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Church's Chicken",
-      "notification_body": "Expires today: New customers save $25 on their first catering order of $250+",
-      "discount_type": "amount_off",
-      "discount_value": "$25",
-      "estimated_savings": 25.0,
-      "end_date": "2026-06-30",
-      "website_domain": "churchs.com",
-      "source_url": "https://www.churchs.com/deal/"
+      "notification_title": "Sprouts",
+      "notification_body": "Expires today: Buy 1, get 1 free on Silver Hills Organic Sprouted Power Soft Wheat Bread",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 10.0,
+      "end_date": "2026-07-01",
+      "website_domain": "sprouts.com",
+      "source_url": "https://shop.sprouts.com/store/sprouts/storefront"
+    },
+    {
+      "promo_id": "adoreme_60offselectclearanceitems",
+      "brand": "Adore Me",
+      "category": "retail",
+      "title": "60% OFF select clearance items",
+      "notify_score": 62.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Adore Me",
+      "notification_body": "60% OFF select clearance items",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 27.0,
+      "end_date": null,
+      "website_domain": "adoreme.com",
+      "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
+    },
+    {
+      "promo_id": "adoreme_70offselectclearanceitems",
+      "brand": "Adore Me",
+      "category": "retail",
+      "title": "70% OFF select clearance items",
+      "notify_score": 62.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Adore Me",
+      "notification_body": "70% OFF select clearance items",
+      "discount_type": "percentage_off",
+      "discount_value": "70%",
+      "estimated_savings": 31.5,
+      "end_date": null,
+      "website_domain": "adoreme.com",
+      "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
+    },
+    {
+      "promo_id": "williamssonoma_4thofjulysalewithupto75off",
+      "brand": "Williams-Sonoma",
+      "category": "retail",
+      "title": "4th of July Sale with up to 75% off",
+      "notify_score": 62.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Williams-Sonoma",
+      "notification_body": "4th of July Sale with up to 75% off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 75%",
+      "estimated_savings": 33.75,
+      "end_date": null,
+      "website_domain": "williams-sonoma.com",
+      "source_url": "https://www.williams-sonoma.com/shop/sale-special-offer/"
     }
   ]
 }
