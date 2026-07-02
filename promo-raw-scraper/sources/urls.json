@@ -65,8 +65,8 @@
   {
     "brand": "Burger King",
     "category": "food",
-    "url": "https://www.bk.com/offers",
-    "source_type": "offers_page",
+    "url": "https://www.bk.com/terms",
+    "source_type": "terms_page",
     "allowed_to_fetch": true
   },
   {
