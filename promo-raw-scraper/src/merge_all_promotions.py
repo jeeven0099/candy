@@ -79,6 +79,17 @@ _MIN_LOCAL_CONFIDENCE = 0.85  # stricter gate for local deals
 _NON_ENGLISH_RE = re.compile(r'[¡¿ñÑ]')
 
 
+def _is_expired(promo: dict) -> bool:
+    end_date = promo.get("end_date")
+    if not end_date:
+        return False
+    try:
+        end = datetime.strptime(end_date[:10], "%Y-%m-%d").replace(tzinfo=timezone.utc)
+        return end < datetime.now(timezone.utc)
+    except ValueError:
+        return False
+
+
 def _is_english(promo: dict) -> bool:
     title = promo.get("promotion_title") or ""
     if _NON_ENGLISH_RE.search(title):
@@ -108,6 +119,11 @@ def main() -> None:
     national = [p for p in national if (p.get("confidence_score") or 0) >= _MIN_CONFIDENCE]
     dropped_national = before - len(national)
 
+    # Drop expired national promotions (end_date is in the past)
+    before = len(national)
+    national = [p for p in national if not _is_expired(p)]
+    dropped_expired = before - len(national)
+
     # Drop low-confidence local promotions (stricter threshold already applied by scraper,
     # but enforce again here in case the file was manually edited)
     before_local = len(local)
@@ -132,6 +148,7 @@ def main() -> None:
     print(f"\nMerged {len(merged)} promotions -> {OUTPUT.name}")
     print(f"  Dropped non-English                              : {dropped_non_english}")
     print(f"  Dropped national (confidence < {_MIN_CONFIDENCE:.0%})           : {dropped_national}")
+    print(f"  Dropped expired  (end_date in the past)          : {dropped_expired}")
     print(f"  Dropped local    (confidence < {_MIN_LOCAL_CONFIDENCE:.0%})           : {dropped_local}")
     for src, count in sorted(by_source.items()):
         print(f"  {src}: {count}")
