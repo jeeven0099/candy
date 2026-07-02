@@ -214,6 +214,21 @@ def main() -> None:
                 ollama_host=args.ollama_host,
                 ollama_timeout=args.ollama_timeout,
             )
+
+            # Don't regress: if the new parse found 0 deals but the previous
+            # structured output had deals, keep the old file and warn.
+            if not promotions:
+                existing = STRUCTURED_DIR / f"{slugify(brand)}.json"
+                if existing.exists():
+                    try:
+                        old_deals = json.loads(existing.read_text(encoding="utf-8")).get("promotions", [])
+                        if old_deals:
+                            print(f"[KEPT] {brand}: new parse found 0 deals but {len(old_deals)} old deal(s) preserved")
+                            parsed_count += 1
+                            continue
+                    except Exception:
+                        pass
+
             output_path = save_promotions_json(
                 promotions=promotions,
                 brand=brand,
@@ -236,6 +251,20 @@ def main() -> None:
                     ollama_host=args.ollama_host,
                     ollama_timeout=args.ollama_timeout,
                 )
+
+                # Same don't-regress guard on retry path
+                if not promotions:
+                    existing = STRUCTURED_DIR / f"{slugify(brand)}.json"
+                    if existing.exists():
+                        try:
+                            old_deals = json.loads(existing.read_text(encoding="utf-8")).get("promotions", [])
+                            if old_deals:
+                                print(f"[KEPT] {brand}: retry found 0 deals but {len(old_deals)} old deal(s) preserved")
+                                parsed_count += 1
+                                continue
+                        except Exception:
+                            pass
+
                 output_path = save_promotions_json(
                     promotions=promotions,
                     brand=brand,
