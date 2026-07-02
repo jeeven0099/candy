@@ -142,11 +142,94 @@ class OllamaModel(LocalModelInterface):
             elif not key:
                 unique.append(p)
 
+        # Fallback: synthesize a sale deal from price pairs when the LLM found nothing
+        if not unique:
+            synthesized = self._synthesize_sale_from_price_grid(text, brand, category, source_path)
+            if synthesized:
+                return synthesized
+
         return unique
 
     # ------------------------------------------------------------------ #
     # Internals                                                            #
     # ------------------------------------------------------------------ #
+
+    def _synthesize_sale_from_price_grid(
+        self,
+        text: str,
+        brand: str,
+        category: Optional[str],
+        source_path: str,
+    ) -> List[Promotion]:
+        """
+        Fallback for sale collection pages (e.g. Zara) where the LLM finds no
+        explicit deal text but the page is a product grid with original/sale prices.
+
+        Detects adjacent price pairs in the text, computes the discount range,
+        and synthesizes one deal: "Brand Sale — up to X% off".
+        Only fires when enough pairs are found to be confident it's a real sale.
+        """
+        raw_prices = re.findall(r'\$(\d+(?:\.\d{2})?)', text)
+        prices = [float(p) for p in raw_prices if 1.0 < float(p) < 5000]
+
+        if len(prices) < 6:
+            return []
+
+        # Look for adjacent price pairs within a small window where the ratio
+        # implies a real markdown (higher price is original, lower is sale).
+        discounts: list[int] = []
+        for i in range(len(prices) - 1):
+            for j in range(i + 1, min(i + 4, len(prices))):
+                lo, hi = prices[i], prices[j]
+                if hi <= lo:
+                    lo, hi = hi, lo
+                if hi == 0:
+                    continue
+                ratio = (hi - lo) / hi
+                pct = round(ratio * 100)
+                if 10 <= pct <= 85:
+                    discounts.append(pct)
+
+        if len(discounts) < 3:
+            return []
+
+        max_disc = max(discounts)
+        min_disc = min(discounts)
+
+        if max_disc < 20:
+            return []
+
+        discount_value = f"up to {max_disc}% off"
+        title = f"{brand} Sale"
+        summary = (
+            f"{brand} has items on sale with discounts from {min_disc}% to {max_disc}% off."
+        )
+
+        return [Promotion(
+            brand=brand,
+            category=category,
+            promotion_title=title,
+            short_summary=summary,
+            promotion_type="sale",
+            discount_type="percentage_off",
+            discount_value=discount_value,
+            requires_membership=False,
+            requires_app=False,
+            purchase_required=False,
+            redemption_method="online",
+            deal_scope="online_only",
+            friction_level="low",
+            friction_reasons=[],
+            confidence_score=0.52,
+            source_type="web_page",
+            source_path=source_path,
+            extraction_status="success",
+            notes=[
+                f"Synthesized from product-grid price pairs ({len(discounts)} pairs found).",
+                f"Discount range: {min_disc}%–{max_disc}%.",
+                "No explicit deal text — inferred from sale vs. original price pairs.",
+            ],
+        )]
 
     def _coerce_data(self, data: dict) -> dict:
         """
