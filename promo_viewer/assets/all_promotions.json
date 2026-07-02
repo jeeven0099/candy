@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-01T12:57:52Z",
+  "generated_at": "2026-07-02T06:56:03Z",
   "promotion_count": 379,
   "promotions": [
     {
@@ -20188,7 +20188,7 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 11.25,
       "value_reason": "25% off, brand/cat est. ($45) ≈ $11 savings | type=8 + savings=15 = 23",
-      "global_quality_score": 49.0
+      "global_quality_score": 53.0
     },
     {
       "brand": "Saucony",
@@ -21263,7 +21263,7 @@
       "estimated_item_value": 75.0,
       "estimated_savings": 37.5,
       "value_reason": "50% off, brand/cat est. ($75) ≈ $38 savings | type=16 + savings=25 = 41",
-      "global_quality_score": 61.0
+      "global_quality_score": 65.0
     },
     {
       "brand": "Skechers",
@@ -21528,30 +21528,25 @@
       "email_date": null,
       "website_domain": "sprouts.com",
       "source_url": "https://shop.sprouts.com/store/sprouts/storefront",
-      "status": "active",
+      "status": "expired",
       "source": "web",
       "fast_redemption": {
-        "eligible": true,
-        "action_type": "open_maps",
-        "button_label": "Find Nearest Store",
-        "primary_value": "Sprouts",
-        "primary_url": "https://shop.sprouts.com/store/sprouts/storefront",
+        "eligible": false,
+        "action_type": "not_supported",
+        "button_label": "",
+        "primary_value": null,
+        "primary_url": null,
         "app_deep_link": null,
         "web_fallback_url": null,
-        "steps_after_click": [
-          "Go to the nearest store.",
-          "Mention this promotion at checkout."
-        ],
-        "eliminates_steps": [
-          "Searching for the nearest location"
-        ],
-        "effort_level": "medium",
-        "confidence": 0.7
+        "steps_after_click": [],
+        "eliminates_steps": [],
+        "effort_level": "high",
+        "confidence": 0.0
       },
       "estimated_item_value": 10.0,
       "estimated_savings": 10.0,
       "value_reason": "free item, est. ≈ $10 savings | type=20 + savings=8 = 28",
-      "global_quality_score": 63.0
+      "global_quality_score": 20.0
     },
     {
       "brand": "Sprouts",
@@ -21598,30 +21593,25 @@
       "email_date": null,
       "website_domain": "sprouts.com",
       "source_url": "https://shop.sprouts.com/store/sprouts/storefront",
-      "status": "active",
+      "status": "expired",
       "source": "web",
       "fast_redemption": {
-        "eligible": true,
-        "action_type": "open_maps",
-        "button_label": "Find Nearest Store",
-        "primary_value": "Sprouts",
-        "primary_url": "https://shop.sprouts.com/store/sprouts/storefront",
+        "eligible": false,
+        "action_type": "not_supported",
+        "button_label": "",
+        "primary_value": null,
+        "primary_url": null,
         "app_deep_link": null,
         "web_fallback_url": null,
-        "steps_after_click": [
-          "Go to the nearest store.",
-          "Mention this promotion at checkout."
-        ],
-        "eliminates_steps": [
-          "Searching for the nearest location"
-        ],
-        "effort_level": "medium",
-        "confidence": 0.7
+        "steps_after_click": [],
+        "eliminates_steps": [],
+        "effort_level": "high",
+        "confidence": 0.0
       },
       "estimated_item_value": 10.0,
       "estimated_savings": 4.0,
       "value_reason": "40% off, brand/cat est. ($10) ≈ $4 savings | type=12 + savings=3 = 15",
-      "global_quality_score": 50.0
+      "global_quality_score": 7.0
     },
     {
       "brand": "Starbucks",
@@ -24242,7 +24232,7 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 19.5,
       "value_reason": "30% off, brand/cat est. ($65) ≈ $20 savings | type=12 + savings=15 = 27",
-      "global_quality_score": 61.0
+      "global_quality_score": 65.0
     },
     {
       "brand": "Volcom",

@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-01T12:57:52.854509+00:00",
+  "generated_at": "2026-07-02T06:56:04.716196+00:00",
   "threshold": 60.0,
-  "total": 12,
+  "total": 11,
   "candidates": [
     {
       "promo_id": "jetblue_upto50offflights",
@@ -154,25 +154,6 @@
       "end_date": null,
       "website_domain": "johnstonmurphy.com",
       "source_url": "https://www.johnstonmurphy.com/c/sale"
-    },
-    {
-      "promo_id": "sprouts_buy1get1freeonsilverhillsorganicsproutedpowersoftwheatbread",
-      "brand": "Sprouts",
-      "category": "food",
-      "title": "Buy 1, get 1 free on Silver Hills Organic Sprouted Power Soft Wheat Bread",
-      "notify_score": 63.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Sprouts",
-      "notification_body": "Expires today: Buy 1, get 1 free on Silver Hills Organic Sprouted Power Soft Wheat Bread",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 10.0,
-      "end_date": "2026-07-01",
-      "website_domain": "sprouts.com",
-      "source_url": "https://shop.sprouts.com/store/sprouts/storefront"
     },
     {
       "promo_id": "adoreme_60offselectclearanceitems",
