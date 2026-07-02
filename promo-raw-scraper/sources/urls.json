@@ -304,7 +304,7 @@
   {
     "brand": "Banana Republic",
     "category": "fashion",
-    "url": "https://bananarepublic.gap.com/browse/category.do?cid=1014757",
+    "url": "https://bananarepublic.gap.com/browse/category.do?cid=2084",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -890,13 +890,6 @@
     "category": "grocery",
     "url": "https://www.wholefoodsmarket.com/sales-flyer",
     "source_type": "sales_page",
-    "allowed_to_fetch": true
-  },
-  {
-    "brand": "Trader Joe's",
-    "category": "grocery",
-    "url": "https://locations.traderjoes.com/",
-    "source_type": "locations_page",
     "allowed_to_fetch": true
   },
   {
