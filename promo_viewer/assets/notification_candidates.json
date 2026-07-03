@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-02T06:56:04.716196+00:00",
+  "generated_at": "2026-07-03T18:31:52.608262+00:00",
   "threshold": 60.0,
-  "total": 11,
+  "total": 9,
   "candidates": [
     {
       "promo_id": "jetblue_upto50offflights",
@@ -23,42 +23,80 @@
       "source_url": "https://www.jetblue.com/sale"
     },
     {
-      "promo_id": "fashionnova_6080offonclearanceitems",
-      "brand": "Fashion Nova",
+      "promo_id": "underarmour_semiannualeventextra50offoutletwithcodesummer",
+      "brand": "Under Armour",
       "category": "fashion",
-      "title": "60-80% Off on Clearance Items",
-      "notify_score": 75.0,
+      "title": "SEMI-ANNUAL EVENT: Extra 50% Off Outlet with code SUMMER",
+      "notify_score": 71.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Fashion Nova",
-      "notification_body": "60-80% Off on Clearance Items",
+      "notification_title": "Under Armour",
+      "notification_body": "SEMI-ANNUAL EVENT: Extra 50% Off Outlet with code SUMMER",
       "discount_type": "percentage_off",
-      "discount_value": "60-80%",
-      "estimated_savings": 52.0,
+      "discount_value": "50%",
+      "estimated_savings": 32.5,
       "end_date": null,
-      "website_domain": "fashionnova.com",
-      "source_url": "https://www.fashionnova.com/collections/sale"
+      "website_domain": "underarmour.com",
+      "source_url": "https://www.underarmour.com/en-us/c/outlet/"
     },
     {
-      "promo_id": "hottopic_clearancesale",
-      "brand": "Hot Topic",
+      "promo_id": "boxlunch_fourthofjulysale",
+      "brand": "BoxLunch",
       "category": "fashion",
-      "title": "Clearance Sale",
+      "title": "Fourth of July Sale!",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Hot Topic",
-      "notification_body": "Clearance Sale",
+      "notification_title": "BoxLunch",
+      "notification_body": "Fourth of July Sale!",
       "discount_type": "percentage_off",
-      "discount_value": "Up to 50%",
-      "estimated_savings": 32.5,
+      "discount_value": "Up To 60%",
+      "estimated_savings": 39.0,
       "end_date": null,
-      "website_domain": "hottopic.com",
-      "source_url": "https://www.hottopic.com/sale/"
+      "website_domain": "boxlunch.com",
+      "source_url": "https://www.boxlunch.com/sale/"
+    },
+    {
+      "promo_id": "chicos_upfpleatedshortskort64offpriceasmarked",
+      "brand": "Chico's",
+      "category": "retail",
+      "title": "UPF Pleated Short Skort: 64% Off. Price as Marked.",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Chico's",
+      "notification_body": "UPF Pleated Short Skort: 64% Off. Price as Marked.",
+      "discount_type": "percentage_off",
+      "discount_value": "64%",
+      "estimated_savings": 28.8,
+      "end_date": null,
+      "website_domain": "chicos.com",
+      "source_url": "https://www.chicos.com/store/category/sale/cat40004"
+    },
+    {
+      "promo_id": "chicos_softstripedcontrastdress60offpriceasmarked",
+      "brand": "Chico's",
+      "category": "retail",
+      "title": "Soft Striped Contrast Dress: 60% Off. Price as Marked.",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Chico's",
+      "notification_body": "Soft Striped Contrast Dress: 60% Off. Price as Marked.",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 27.0,
+      "end_date": null,
+      "website_domain": "chicos.com",
+      "source_url": "https://www.chicos.com/store/category/sale/cat40004"
     },
     {
       "promo_id": "puma_semiannualsaleupto50off",
@@ -118,99 +156,23 @@
       "source_url": "https://www.whitehouseblackmarket.com/store/category/sale/cat210002"
     },
     {
-      "promo_id": "whitehouseblackmarket_50offspecificdresses",
-      "brand": "White House Black Market",
+      "promo_id": "eddiebauer_significantdiscountsonclearanceitemsupto50off",
+      "brand": "Eddie Bauer",
       "category": "fashion",
-      "title": "50% Off Specific Dresses",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "White House Black Market",
-      "notification_body": "50% Off Specific Dresses",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 30.0,
-      "end_date": null,
-      "website_domain": "whitehouseblackmarket.com",
-      "source_url": "https://www.whitehouseblackmarket.com/store/category/sale/cat210002"
-    },
-    {
-      "promo_id": "johnstonmurphy_endofseasonsale",
-      "brand": "Johnston & Murphy",
-      "category": "fashion",
-      "title": "End of Season Sale",
-      "notify_score": 63.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Johnston & Murphy",
-      "notification_body": "End of Season Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 55%",
-      "estimated_savings": 35.75,
-      "end_date": null,
-      "website_domain": "johnstonmurphy.com",
-      "source_url": "https://www.johnstonmurphy.com/c/sale"
-    },
-    {
-      "promo_id": "adoreme_60offselectclearanceitems",
-      "brand": "Adore Me",
-      "category": "retail",
-      "title": "60% OFF select clearance items",
+      "title": "Significant discounts on clearance items, up to 50% off",
       "notify_score": 62.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Adore Me",
-      "notification_body": "60% OFF select clearance items",
+      "notification_title": "Eddie Bauer",
+      "notification_body": "Significant discounts on clearance items, up to 50% off",
       "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "estimated_savings": 27.0,
+      "discount_value": "up to 50%",
+      "estimated_savings": 45.0,
       "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
-    },
-    {
-      "promo_id": "adoreme_70offselectclearanceitems",
-      "brand": "Adore Me",
-      "category": "retail",
-      "title": "70% OFF select clearance items",
-      "notify_score": 62.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Adore Me",
-      "notification_body": "70% OFF select clearance items",
-      "discount_type": "percentage_off",
-      "discount_value": "70%",
-      "estimated_savings": 31.5,
-      "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
-    },
-    {
-      "promo_id": "williamssonoma_4thofjulysalewithupto75off",
-      "brand": "Williams-Sonoma",
-      "category": "retail",
-      "title": "4th of July Sale with up to 75% off",
-      "notify_score": 62.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Williams-Sonoma",
-      "notification_body": "4th of July Sale with up to 75% off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 75%",
-      "estimated_savings": 33.75,
-      "end_date": null,
-      "website_domain": "williams-sonoma.com",
-      "source_url": "https://www.williams-sonoma.com/shop/sale-special-offer/"
+      "website_domain": "eddiebauer.com",
+      "source_url": "https://www.eddiebauer.com/collections/clearance"
     }
   ]
 }
