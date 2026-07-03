@@ -146,6 +146,8 @@ class OllamaModel(LocalModelInterface):
         if not unique:
             synthesized = self._synthesize_sale_from_price_grid(text, brand, category, source_path)
             if synthesized:
+                dv = synthesized[0].discount_value or ""
+                print(f"[SYNTH] {brand}: LLM found 0 deals — synthesized sale deal from price grid ({dv})")
                 return synthesized
 
         return unique
