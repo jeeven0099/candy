@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-03T18:31:52.608262+00:00",
+  "generated_at": "2026-07-04T11:34:25.119080+00:00",
   "threshold": 60.0,
-  "total": 9,
+  "total": 7,
   "candidates": [
     {
       "promo_id": "jetblue_upto50offflights",
@@ -23,99 +23,80 @@
       "source_url": "https://www.jetblue.com/sale"
     },
     {
-      "promo_id": "underarmour_semiannualeventextra50offoutletwithcodesummer",
-      "brand": "Under Armour",
+      "promo_id": "tedbaker_endofseasonsaleupto80off",
+      "brand": "Ted Baker",
       "category": "fashion",
-      "title": "SEMI-ANNUAL EVENT: Extra 50% Off Outlet with code SUMMER",
-      "notify_score": 71.0,
+      "title": "End of Season Sale: Up to 80% OFF",
+      "notify_score": 75.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Under Armour",
-      "notification_body": "SEMI-ANNUAL EVENT: Extra 50% Off Outlet with code SUMMER",
+      "notification_title": "Ted Baker",
+      "notification_body": "End of Season Sale: Up to 80% OFF",
       "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 32.5,
+      "discount_value": "Up to 80%",
+      "estimated_savings": 52.0,
       "end_date": null,
-      "website_domain": "underarmour.com",
-      "source_url": "https://www.underarmour.com/en-us/c/outlet/"
+      "website_domain": "tedbaker.com",
+      "source_url": "https://www.tedbaker.com/collections/sale-us"
     },
     {
-      "promo_id": "boxlunch_fourthofjulysale",
-      "brand": "BoxLunch",
+      "promo_id": "forever21_save60",
+      "brand": "Forever 21",
       "category": "fashion",
-      "title": "Fourth of July Sale!",
+      "title": "Save 60%",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "BoxLunch",
-      "notification_body": "Fourth of July Sale!",
+      "notification_title": "Forever 21",
+      "notification_body": "Save 60%",
       "discount_type": "percentage_off",
-      "discount_value": "Up To 60%",
+      "discount_value": "up to 60%",
       "estimated_savings": 39.0,
       "end_date": null,
-      "website_domain": "boxlunch.com",
-      "source_url": "https://www.boxlunch.com/sale/"
+      "website_domain": "forever21.com",
+      "source_url": "https://www.forever21.com/collections/sale"
     },
     {
-      "promo_id": "chicos_upfpleatedshortskort64offpriceasmarked",
-      "brand": "Chico's",
-      "category": "retail",
-      "title": "UPF Pleated Short Skort: 64% Off. Price as Marked.",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Chico's",
-      "notification_body": "UPF Pleated Short Skort: 64% Off. Price as Marked.",
-      "discount_type": "percentage_off",
-      "discount_value": "64%",
-      "estimated_savings": 28.8,
-      "end_date": null,
-      "website_domain": "chicos.com",
-      "source_url": "https://www.chicos.com/store/category/sale/cat40004"
-    },
-    {
-      "promo_id": "chicos_softstripedcontrastdress60offpriceasmarked",
-      "brand": "Chico's",
-      "category": "retail",
-      "title": "Soft Striped Contrast Dress: 60% Off. Price as Marked.",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Chico's",
-      "notification_body": "Soft Striped Contrast Dress: 60% Off. Price as Marked.",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "estimated_savings": 27.0,
-      "end_date": null,
-      "website_domain": "chicos.com",
-      "source_url": "https://www.chicos.com/store/category/sale/cat40004"
-    },
-    {
-      "promo_id": "puma_semiannualsaleupto50off",
-      "brand": "Puma",
+      "promo_id": "landsend_55offswimsale",
+      "brand": "Lands' End",
       "category": "fashion",
-      "title": "SEMI-ANNUAL SALE: UP TO 50% OFF",
+      "title": "55% off Swim Sale",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Puma",
-      "notification_body": "SEMI-ANNUAL SALE: UP TO 50% OFF",
+      "notification_title": "Lands' End",
+      "notification_body": "55% off Swim Sale",
       "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 32.5,
+      "discount_value": "55%",
+      "estimated_savings": 35.75,
       "end_date": null,
-      "website_domain": "us.puma.com",
-      "source_url": "https://us.puma.com/us/en/sale/all-sale"
+      "website_domain": "landsend.com",
+      "source_url": "https://www.landsend.com/shop/sale/S-xfh-xez-y5c-xec"
+    },
+    {
+      "promo_id": "ninewest_upto70offsaleitems",
+      "brand": "Nine West",
+      "category": "fashion",
+      "title": "Up To 70% Off Sale Items",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Nine West",
+      "notification_body": "Up To 70% Off Sale Items",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "estimated_savings": 45.5,
+      "end_date": null,
+      "website_domain": "ninewest.com",
+      "source_url": "https://ninewest.com/collections/sale"
     },
     {
       "promo_id": "stuartweitzman_summersaleupto50off",
@@ -137,42 +118,23 @@
       "source_url": "https://eu.stuartweitzman.com/mx/en/"
     },
     {
-      "promo_id": "whitehouseblackmarket_semiannualsaleextra50offsalestyles",
-      "brand": "White House Black Market",
+      "promo_id": "zara_salezaraunitedstates",
+      "brand": "Zara",
       "category": "fashion",
-      "title": "Semi-Annual Sale: Extra 50% Off Sale Styles",
+      "title": "SALE | ZARA United States",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "White House Black Market",
-      "notification_body": "Semi-Annual Sale: Extra 50% Off Sale Styles",
+      "notification_title": "Zara",
+      "notification_body": "SALE | ZARA United States",
       "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 32.5,
+      "discount_value": "50% - 60%",
+      "estimated_savings": 27.5,
       "end_date": null,
-      "website_domain": "whitehouseblackmarket.com",
-      "source_url": "https://www.whitehouseblackmarket.com/store/category/sale/cat210002"
-    },
-    {
-      "promo_id": "eddiebauer_significantdiscountsonclearanceitemsupto50off",
-      "brand": "Eddie Bauer",
-      "category": "fashion",
-      "title": "Significant discounts on clearance items, up to 50% off",
-      "notify_score": 62.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Eddie Bauer",
-      "notification_body": "Significant discounts on clearance items, up to 50% off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 45.0,
-      "end_date": null,
-      "website_domain": "eddiebauer.com",
-      "source_url": "https://www.eddiebauer.com/collections/clearance"
+      "website_domain": "zara.com",
+      "source_url": "https://www.zara.com/us/en/s-woman-editorial-ou8989.html?v1=2440352"
     }
   ]
 }
