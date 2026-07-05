@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-04T11:34:25.119080+00:00",
+  "generated_at": "2026-07-05T12:41:14.092991+00:00",
   "threshold": 60.0,
-  "total": 7,
+  "total": 6,
   "candidates": [
     {
       "promo_id": "jetblue_upto50offflights",
@@ -23,42 +23,23 @@
       "source_url": "https://www.jetblue.com/sale"
     },
     {
-      "promo_id": "tedbaker_endofseasonsaleupto80off",
-      "brand": "Ted Baker",
+      "promo_id": "fashionnova_6080dedescuentoenrebajas",
+      "brand": "Fashion Nova",
       "category": "fashion",
-      "title": "End of Season Sale: Up to 80% OFF",
+      "title": "60-80% de Descuento en Rebajas!",
       "notify_score": 75.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Ted Baker",
-      "notification_body": "End of Season Sale: Up to 80% OFF",
+      "notification_title": "Fashion Nova",
+      "notification_body": "60-80% de Descuento en Rebajas!",
       "discount_type": "percentage_off",
-      "discount_value": "Up to 80%",
+      "discount_value": "60-80%",
       "estimated_savings": 52.0,
       "end_date": null,
-      "website_domain": "tedbaker.com",
-      "source_url": "https://www.tedbaker.com/collections/sale-us"
-    },
-    {
-      "promo_id": "forever21_save60",
-      "brand": "Forever 21",
-      "category": "fashion",
-      "title": "Save 60%",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Forever 21",
-      "notification_body": "Save 60%",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 39.0,
-      "end_date": null,
-      "website_domain": "forever21.com",
-      "source_url": "https://www.forever21.com/collections/sale"
+      "website_domain": "fashionnova.com",
+      "source_url": "https://www.fashionnova.com/collections/sale"
     },
     {
       "promo_id": "landsend_55offswimsale",
@@ -80,23 +61,23 @@
       "source_url": "https://www.landsend.com/shop/sale/S-xfh-xez-y5c-xec"
     },
     {
-      "promo_id": "ninewest_upto70offsaleitems",
-      "brand": "Nine West",
+      "promo_id": "shein_plussizeelegantjacquardwaistflaresleevedressautumn",
+      "brand": "SHEIN",
       "category": "fashion",
-      "title": "Up To 70% Off Sale Items",
+      "title": "Plus Size Elegant Jacquard Waist Flare Sleeve Dress, Autumn",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Nine West",
-      "notification_body": "Up To 70% Off Sale Items",
+      "notification_title": "SHEIN",
+      "notification_body": "Plus Size Elegant Jacquard Waist Flare Sleeve Dress, Autumn",
       "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 45.5,
+      "discount_value": "67%",
+      "estimated_savings": 43.55,
       "end_date": null,
-      "website_domain": "ninewest.com",
-      "source_url": "https://ninewest.com/collections/sale"
+      "website_domain": "us.shein.com",
+      "source_url": "https://us.shein.com/flash-sale.html"
     },
     {
       "promo_id": "stuartweitzman_summersaleupto50off",
@@ -118,23 +99,23 @@
       "source_url": "https://eu.stuartweitzman.com/mx/en/"
     },
     {
-      "promo_id": "zara_salezaraunitedstates",
-      "brand": "Zara",
+      "promo_id": "talbots_4thofjulycelebration",
+      "brand": "Talbots",
       "category": "fashion",
-      "title": "SALE | ZARA United States",
+      "title": "4th of July Celebration!",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Zara",
-      "notification_body": "SALE | ZARA United States",
+      "notification_title": "Talbots",
+      "notification_body": "4th of July Celebration!",
       "discount_type": "percentage_off",
-      "discount_value": "50% - 60%",
-      "estimated_savings": 27.5,
+      "discount_value": "50%",
+      "estimated_savings": 32.5,
       "end_date": null,
-      "website_domain": "zara.com",
-      "source_url": "https://www.zara.com/us/en/s-woman-editorial-ou8989.html?v1=2440352"
+      "website_domain": "talbots.com",
+      "source_url": "https://www.talbots.com/sale"
     }
   ]
 }
