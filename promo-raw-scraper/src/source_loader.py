@@ -10,10 +10,15 @@ from typing import Iterable
 class Source:
     brand: str
     category: str
-    url: str
+    urls: tuple[str, ...]   # one or more URLs; single-URL brands have len == 1
     source_type: str
     allowed_to_fetch: bool = False
     online_only: bool = False
+
+    @property
+    def url(self) -> str:
+        """Primary URL — used for logging and backward-compatible callers."""
+        return self.urls[0]
 
     @property
     def slug(self) -> str:
@@ -28,11 +33,16 @@ def load_sources(path: str | Path = 'sources/urls.json') -> list[Source]:
     data = json.loads(p.read_text(encoding='utf-8-sig'))
     sources: list[Source] = []
     for item in data:
+        # Support both "url" (single) and "urls" (array) in urls.json
+        if 'urls' in item:
+            urls = tuple(item['urls'])
+        else:
+            urls = (item['url'],)
         sources.append(
             Source(
                 brand=item['brand'],
                 category=item.get('category', 'other'),
-                url=item['url'],
+                urls=urls,
                 source_type=item.get('source_type', 'unknown'),
                 allowed_to_fetch=bool(item.get('allowed_to_fetch', False)),
                 online_only=bool(item.get('online_only', False)),

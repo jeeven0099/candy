@@ -437,7 +437,7 @@
   {
     "brand": "Bloomingdale's",
     "category": "retail",
-    "url": "https://www.bloomingdales.com/shop/sale?id=1001351",
+    "url": "https://www.bloomingdales.com/shop/sale?id=3977",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -1708,13 +1708,6 @@
     "allowed_to_fetch": true
   },
   {
-    "brand": "Denny's",
-    "category": "food",
-    "url": "https://www.dennys.com/deals/",
-    "source_type": "offers_page",
-    "allowed_to_fetch": true
-  },
-  {
     "brand": "IHOP",
     "category": "food",
     "url": "https://www.ihop.com/en/specials",
@@ -2286,16 +2279,9 @@
     "allowed_to_fetch": true
   },
   {
-    "brand": "Raising Cane's",
-    "category": "food",
-    "url": "https://www.raisingcanes.com/lto/",
-    "source_type": "offers_page",
-    "allowed_to_fetch": true
-  },
-  {
     "brand": "Little Caesars",
     "category": "food",
-    "url": "https://littlecaesars.com/en-us/promotions/",
+    "url": "https://littlecaesars.com/en-us/deals/",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -2303,13 +2289,6 @@
     "brand": "Krispy Kreme",
     "category": "food",
     "url": "https://www.krispykreme.com/promos",
-    "source_type": "offers_page",
-    "allowed_to_fetch": true
-  },
-  {
-    "brand": "Smoothie King",
-    "category": "food",
-    "url": "https://www.smoothieking.com/specials",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -2335,13 +2314,6 @@
     "allowed_to_fetch": true
   },
   {
-    "brand": "Cold Stone Creamery",
-    "category": "food",
-    "url": "https://www.coldstonecreamery.com/deals",
-    "source_type": "deals_page",
-    "allowed_to_fetch": true
-  },
-  {
     "brand": "Qdoba",
     "category": "food",
     "url": "https://www.qdoba.com/deals",
@@ -2356,23 +2328,9 @@
     "allowed_to_fetch": true
   },
   {
-    "brand": "El Pollo Loco",
-    "category": "food",
-    "url": "https://www.elpolloloco.com/deals/",
-    "source_type": "deals_page",
-    "allowed_to_fetch": true
-  },
-  {
     "brand": "Church's Chicken",
     "category": "food",
     "url": "https://www.churchs.com/deal/",
-    "source_type": "deals_page",
-    "allowed_to_fetch": true
-  },
-  {
-    "brand": "Hardee's",
-    "category": "food",
-    "url": "https://www.hardees.com/deals/",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
@@ -2386,7 +2344,7 @@
   {
     "brand": "P.F. Chang's",
     "category": "food",
-    "url": "https://www.pfchangs.com/specials/",
+    "url": "https://www.pfchangs.com/offers",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -2417,7 +2375,7 @@
   {
     "brand": "Tarte Cosmetics",
     "category": "beauty",
-    "url": "https://tartecosmetics.com/collections/tarte-sale",
+    "url": "https://tartecosmetics.com/collections/sale",
     "source_type": "sales_page",
     "allowed_to_fetch": true,
     "online_only": true
@@ -2451,14 +2409,6 @@
     "brand": "Fenty Beauty",
     "category": "beauty",
     "url": "https://www.fentybeauty.com/sale",
-    "source_type": "sales_page",
-    "allowed_to_fetch": true,
-    "online_only": true
-  },
-  {
-    "brand": "The Ordinary",
-    "category": "beauty",
-    "url": "https://theordinary.com/en-us/sale/",
     "source_type": "sales_page",
     "allowed_to_fetch": true,
     "online_only": true
@@ -2501,7 +2451,7 @@
   {
     "brand": "Steve Madden",
     "category": "fashion",
-    "url": "https://www.stevemadden.com/collections/sale",
+    "url": "https://www.stevemadden.com/pages/deals",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -2539,14 +2489,18 @@
   {
     "brand": "Hoka",
     "category": "fashion",
-    "url": "https://www.hoka.com/en-us/sale/",
+    "url": "https://www.hoka.com/en/us/sale/",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Asics",
     "category": "fashion",
-    "url": "https://www.asics.com/us/en-us/sale/",
+    "urls": [
+      "https://www.asics.com/us/en-us/womens-clearance/c/aa20",
+      "https://www.asics.com/us/en-us/mens-clearance/c/aa10106000/",
+      "https://www.asics.com/us/en-us/kids-clearance/c/aa30104000/"
+    ],
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -2560,21 +2514,14 @@
   {
     "brand": "Clarks",
     "category": "fashion",
-    "url": "https://www.clarksusa.com/en/sale",
+    "url": "https://www.clarks.com/en-us/all-sale/sale_us-c",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Sperry",
     "category": "fashion",
-    "url": "https://www.sperry.com/en-US/sale-clearance/",
-    "source_type": "sales_page",
-    "allowed_to_fetch": true
-  },
-  {
-    "brand": "Hey Dude",
-    "category": "fashion",
-    "url": "https://www.heydude.com/collections/sale",
+    "url": "https://www.sperry.com/collections/sale",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -2595,10 +2542,13 @@
   {
     "brand": "Allbirds",
     "category": "fashion",
-    "url": "https://www.allbirds.com/pages/sale",
     "source_type": "sales_page",
     "allowed_to_fetch": true,
-    "online_only": true
+    "online_only": true,
+    "urls": [
+      "https://www.allbirds.com/collections/sale-womens",
+      "https://www.allbirds.com/collections/sale-mens"
+    ]
   },
   {
     "brand": "Home Depot",
@@ -2617,7 +2567,7 @@
   {
     "brand": "Ace Hardware",
     "category": "home_improvement",
-    "url": "https://www.acehardware.com/deals",
+    "url": "https://www.acehardware.com/best-sales-and-specials",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },

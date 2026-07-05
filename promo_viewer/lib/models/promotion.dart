@@ -52,6 +52,13 @@ class Promotion {
   final double? lat;
   final double? lon;
 
+  // Synthesis metadata — only populated on synthesized deals
+  final bool synthesized;
+  final String? synthesisReason;
+  final List<String> productCategories;
+  final List<String> productKeywords;
+  final List<String> matchedProductExamples;
+
   // Set after location is resolved — not from JSON
   double? distanceKm;
 
@@ -97,6 +104,11 @@ class Promotion {
     this.address,
     this.lat,
     this.lon,
+    this.synthesized = false,
+    this.synthesisReason,
+    this.productCategories = const [],
+    this.productKeywords = const [],
+    this.matchedProductExamples = const [],
   });
 
   factory Promotion.fromJson(Map<String, dynamic> json) {
@@ -150,6 +162,11 @@ class Promotion {
       address: json['address'] as String?,
       lat: (json['lat'] as num?)?.toDouble(),
       lon: (json['lon'] as num?)?.toDouble(),
+      synthesized: json['synthesized'] as bool? ?? false,
+      synthesisReason: json['synthesis_reason'] as String?,
+      productCategories: (json['product_categories'] as List?)?.whereType<String>().toList() ?? [],
+      productKeywords: (json['product_keywords'] as List?)?.whereType<String>().toList() ?? [],
+      matchedProductExamples: (json['matched_product_examples'] as List?)?.whereType<String>().toList() ?? [],
     );
   }
 

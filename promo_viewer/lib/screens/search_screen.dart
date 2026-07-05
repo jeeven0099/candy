@@ -154,7 +154,7 @@ class _SearchScreenState extends State<SearchScreen> {
     // If the query directly names a hidden brand, bypass the filter so explicit
     // search intent is respected. The UI will show a notice.
     final promos = _hiddenBrandsMatchingQuery.isNotEmpty ? widget.all : _visiblePromos;
-    return runSearch(promos, _debouncedQ, _opts);
+    return runSearch(promos, _debouncedQ, opts: _opts, svc: _svc, prefs: _prefsSvc.prefs);
   }
 
   List<BrandGroup> _getContextGroups() {
@@ -274,7 +274,7 @@ class _SearchScreenState extends State<SearchScreen> {
     _lastTrackedQ = q;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      final results = runSearch(_visiblePromos, q, _opts);
+      final results = runSearch(_visiblePromos, q, opts: _opts, svc: _svc, prefs: _prefsSvc.prefs);
       _svc.recordRecentSearch(q);
       _svc.recordSearch(q, results.length);
       _writeSearchEvent(q, results);

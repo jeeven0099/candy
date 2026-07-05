@@ -104,6 +104,53 @@ def detect_bad_page(title: str | None, text: str, final_url: str | None) -> str 
     return None
 
 
+def _fetch_one_url(
+    url: str,
+    *,
+    requests_only: bool = False,
+    pw_session: PlaywrightSession | None = None,
+) -> tuple[str, str, str | None, str | None] | None:
+    """
+    Fetch a single URL and return (text, html, title, og_image) on success, else None.
+    Handles Playwright fallback transparently.
+    """
+    fetch = fetch_page(url)
+    fetch_method = 'requests'
+    html: str = fetch.html or ''
+    text = title = og_image = ''
+
+    if fetch.ok and html:
+        text  = clean_visible_text(html)
+        title = extract_title(html)
+        og_image = extract_og_image(html)
+
+    # Try Playwright when requests blocks or returns too little content
+    needs_pw = (
+        (not fetch.ok and fetch.error in _PLAYWRIGHT_RETRY_ERRORS)
+        or (fetch.ok and len(text) < 100)
+        or (fetch.ok and html and detect_bad_page(title, text, fetch.final_url))
+    )
+    if needs_pw:
+        if requests_only:
+            return None   # caller will queue for pass 2
+        result = _try_playwright(url, session=pw_session)
+        if result:
+            fetch, text, title = result
+            html = fetch.html
+            og_image = extract_og_image(html)
+            fetch_method = 'playwright'
+            print(f'    -> Playwright got {len(text)} chars')
+        else:
+            return None
+
+    if not text or len(text) < 100:
+        return None
+    if detect_bad_page(title, text, fetch.final_url):
+        return None
+
+    return text, html, title, og_image
+
+
 def process_source(source, dry_run: bool = False, *,
                    requests_only: bool = False,
                    pw_session: PlaywrightSession | None = None) -> dict:
@@ -112,141 +159,133 @@ def process_source(source, dry_run: bool = False, *,
     base_name = f'{source.slug}_{stamp}'
 
     if dry_run:
-        return {
-            'brand': source.brand,
-            'url': source.url,
-            'status': 'dry_run',
-            'scraped_at': scraped_at,
-        }
+        return {'brand': source.brand, 'url': source.url,
+                'status': 'dry_run', 'scraped_at': scraped_at}
 
-    fetch = fetch_page(source.url)
-    fetch_method = 'requests'
+    # ── Multi-URL brands: fetch each page, combine text separated by section headers ──
+    if len(source.urls) > 1:
+        sections: list[str] = []
+        combined_html = ''
+        og_image: str | None = None
+        title: str | None = None
+        failed_urls: list[str] = []
 
-    # For errors where a real browser may succeed, try Playwright before giving up
-    if not fetch.ok and fetch.error in _PLAYWRIGHT_RETRY_ERRORS:
-        if requests_only:
+        for url in source.urls:
+            result = _fetch_one_url(url, requests_only=requests_only, pw_session=pw_session)
+            if result is None:
+                if requests_only:
+                    # At least one URL needs Playwright — queue the whole brand
+                    return {'brand': source.brand, 'category': source.category,
+                            'url': source.url, 'status': 'needs_playwright',
+                            'scraped_at': scraped_at}
+                failed_urls.append(url)
+                continue
+            url_text, url_html, url_title, url_og = result
+            sections.append(f'=== {url} ===\n{url_text}')
+            combined_html += url_html
+            if not og_image:
+                og_image = url_og
+            if not title:
+                title = url_title
+
+        if not sections:
             return {'brand': source.brand, 'category': source.category,
-                    'url': source.url, 'status': 'needs_playwright', 'scraped_at': scraped_at}
-        print(f'    -> requests failed ({fetch.error}), trying Playwright fallback...')
-        result = _try_playwright(source.url, session=pw_session)
-        if result:
-            fetch, text, title = result
+                    'url': source.url, 'status': 'failed',
+                    'scraped_at': scraped_at,
+                    'error': f'all {len(source.urls)} URLs failed'}
+
+        if failed_urls:
+            print(f'    -> {len(failed_urls)}/{len(source.urls)} URLs failed: {failed_urls}')
+
+        text = '\n\n'.join(sections)
+        html = combined_html
+        fetch_method = 'multi_url'
+
+    else:
+        # ── Single-URL brand: original logic ──────────────────────────────────
+        fetch = fetch_page(source.url)
+        fetch_method = 'requests'
+        og_image: str | None = None
+
+        if not fetch.ok and fetch.error in _PLAYWRIGHT_RETRY_ERRORS:
+            if requests_only:
+                return {'brand': source.brand, 'category': source.category,
+                        'url': source.url, 'status': 'needs_playwright', 'scraped_at': scraped_at}
+            print(f'    -> requests failed ({fetch.error}), trying Playwright fallback...')
+            result = _try_playwright(source.url, session=pw_session)
+            if result:
+                fetch, text, title = result
+                html = fetch.html
+                og_image = extract_og_image(html)
+                fetch_method = 'playwright'
+                print(f'    -> Playwright got {len(text)} chars')
+            else:
+                print(f'    -> Playwright also failed')
+                return {'brand': source.brand, 'category': source.category,
+                        'url': source.url, 'status': 'failed',
+                        'http_status': fetch.status_code, 'scraped_at': scraped_at,
+                        'error': fetch.error, 'final_url': fetch.final_url}
+
+        if not fetch.ok or not fetch.html:
+            return {'brand': source.brand, 'category': source.category,
+                    'url': source.url, 'status': 'failed',
+                    'http_status': fetch.status_code, 'scraped_at': scraped_at,
+                    'error': fetch.error, 'final_url': fetch.final_url}
+
+        if fetch_method == 'requests':
             html = fetch.html
+            text = clean_visible_text(html)
+            title = extract_title(html)
             og_image = extract_og_image(html)
-            fetch_method = 'playwright'
-            print(f'    -> Playwright got {len(text)} chars')
-        else:
-            print(f'    -> Playwright also failed')
-            return {
-                'brand': source.brand,
-                'category': source.category,
-                'url': source.url,
-                'status': 'failed',
-                'http_status': fetch.status_code,
-                'scraped_at': scraped_at,
-                'error': fetch.error,
-                'final_url': fetch.final_url,
-            }
 
-    if not fetch.ok or not fetch.html:
-        return {
-            'brand': source.brand,
-            'category': source.category,
-            'url': source.url,
-            'status': 'failed',
-            'http_status': fetch.status_code,
-            'scraped_at': scraped_at,
-            'error': fetch.error,
-            'final_url': fetch.final_url,
-        }
-
-    og_image: str | None = None
-
-    if fetch_method == 'requests':
-        html = fetch.html
-        text = clean_visible_text(html)
-        title = extract_title(html)
-        og_image = extract_og_image(html)
-
-    bad_page_reason = detect_bad_page(title, text, fetch.final_url)
-    if bad_page_reason:
-        # In pass 1 (requests_only), queue for stealth Playwright rather than hard-fail
-        if requests_only and fetch_method == 'requests':
+        bad_page_reason = detect_bad_page(title, text, fetch.final_url)
+        if bad_page_reason:
+            if requests_only and fetch_method == 'requests':
+                return {'brand': source.brand, 'category': source.category,
+                        'url': source.url, 'status': 'needs_playwright', 'scraped_at': scraped_at}
             return {'brand': source.brand, 'category': source.category,
-                    'url': source.url, 'status': 'needs_playwright', 'scraped_at': scraped_at}
-        return {
-            'brand': source.brand,
-            'category': source.category,
-            'url': source.url,
-            'status': 'failed',
-            'http_status': fetch.status_code,
-            'scraped_at': scraped_at,
-            'error': f'blocked_or_error_page:{bad_page_reason}',
-            'text_length': len(text),
-            'title': title,
-            'final_url': fetch.final_url,
-        }
+                    'url': source.url, 'status': 'failed',
+                    'http_status': fetch.status_code, 'scraped_at': scraped_at,
+                    'error': f'blocked_or_error_page:{bad_page_reason}',
+                    'text_length': len(text), 'title': title, 'final_url': fetch.final_url}
 
-    if len(text) < 100:
-        if requests_only:
-            return {'brand': source.brand, 'category': source.category,
-                    'url': source.url, 'status': 'needs_playwright', 'scraped_at': scraped_at}
-        print(f'    -> requests got {len(text)} chars, trying Playwright fallback...')
-        result = _try_playwright(source.url, session=pw_session)
-        if result:
-            fetch, text, title = result
-            html = fetch.html
-            og_image = extract_og_image(html)
-            fetch_method = 'playwright'
-            print(f'    -> Playwright got {len(text)} chars')
-        else:
-            print(f'    -> Playwright also failed')
-            return {
-                'brand': source.brand,
-                'category': source.category,
-                'url': source.url,
-                'status': 'failed',
-                'http_status': fetch.status_code,
-                'scraped_at': scraped_at,
-                'error': 'clean_text_too_short',
-                'text_length': len(text),
-                'final_url': fetch.final_url,
-            }
+        if len(text) < 100:
+            if requests_only:
+                return {'brand': source.brand, 'category': source.category,
+                        'url': source.url, 'status': 'needs_playwright', 'scraped_at': scraped_at}
+            print(f'    -> requests got {len(text)} chars, trying Playwright fallback...')
+            result = _try_playwright(source.url, session=pw_session)
+            if result:
+                fetch, text, title = result
+                html = fetch.html
+                og_image = extract_og_image(html)
+                fetch_method = 'playwright'
+                print(f'    -> Playwright got {len(text)} chars')
+            else:
+                print(f'    -> Playwright also failed')
+                return {'brand': source.brand, 'category': source.category,
+                        'url': source.url, 'status': 'failed',
+                        'http_status': fetch.status_code, 'scraped_at': scraped_at,
+                        'error': 'clean_text_too_short', 'text_length': len(text),
+                        'final_url': fetch.final_url}
 
+    # ── Common write path ─────────────────────────────────────────────────────
     content_hash = sha256_text(text)
     if hash_exists_for_brand(source.slug, content_hash, RAW_TEXT_DIR):
-        # Touch the existing raw file so prune_stale_normalized sees it was verified today.
         existing = sorted(RAW_TEXT_DIR.glob(f'{source.slug}_*.txt'))
         if existing:
             existing[-1].touch()
-        return {
-            'brand': source.brand,
-            'category': source.category,
-            'url': source.url,
-            'status': 'skipped_duplicate_hash',
-            'http_status': fetch.status_code,
-            'content_hash': content_hash,
-            'scraped_at': scraped_at,
-            'text_length': len(text),
-            'html_length': len(html),
-            'final_url': fetch.final_url,
-        }
+        return {'brand': source.brand, 'category': source.category,
+                'url': source.url, 'status': 'skipped_duplicate_hash',
+                'content_hash': content_hash, 'scraped_at': scraped_at,
+                'text_length': len(text), 'html_length': len(html)}
 
     similar, ratio = is_similar_to_last(source.slug, text, RAW_TEXT_DIR)
     if similar:
-        return {
-            'brand': source.brand,
-            'category': source.category,
-            'url': source.url,
-            'status': 'skipped_similar',
-            'http_status': fetch.status_code,
-            'content_hash': content_hash,
-            'similarity': ratio,
-            'scraped_at': scraped_at,
-            'text_length': len(text),
-            'html_length': len(html),
-            'final_url': fetch.final_url,
-        }
+        return {'brand': source.brand, 'category': source.category,
+                'url': source.url, 'status': 'skipped_similar',
+                'content_hash': content_hash, 'similarity': ratio,
+                'scraped_at': scraped_at, 'text_length': len(text), 'html_length': len(html)}
 
     RAW_HTML_DIR.mkdir(parents=True, exist_ok=True)
     RAW_TEXT_DIR.mkdir(parents=True, exist_ok=True)
@@ -259,29 +298,24 @@ def process_source(source, dry_run: bool = False, *,
     text_path.write_text(text, encoding='utf-8')
 
     meta = {
-        'brand': source.brand,
-        'category': source.category,
-        'url': source.url,
-        'final_url': fetch.final_url,
+        'brand':       source.brand,
+        'category':    source.category,
+        'url':         source.url,
+        'urls':        list(source.urls),
         'source_type': source.source_type,
-        'scraped_at': scraped_at,
-        'http_status': fetch.status_code,
+        'scraped_at':  scraped_at,
         'fetch_method': fetch_method,
         'content_hash': content_hash,
-        'title': title,
-        'og_image': og_image,
+        'title':       title,
+        'og_image':    og_image,
         'text_length': len(text),
         'html_length': len(html),
-        'html_path': str(html_path.relative_to(ROOT)),
-        'text_path': str(text_path.relative_to(ROOT)),
+        'html_path':   str(html_path.relative_to(ROOT)),
+        'text_path':   str(text_path.relative_to(ROOT)),
     }
     meta_path.write_text(json.dumps(meta, indent=2, ensure_ascii=False), encoding='utf-8')
 
-    return {
-        **meta,
-        'status': 'success',
-        'error': None,
-    }
+    return {**meta, 'status': 'success', 'error': None}
 
 
 def main() -> None:

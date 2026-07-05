@@ -531,6 +531,29 @@ String _norm(String s) =>
     }
   }
 
+  // ── Synthesized product keyword match ────────────────────────────────────
+  // Only checked when the query isn't already a brand match (tiers 1–4)
+  if (tier == 0 || tier > 4) {
+    for (final kw in p.productKeywords) {
+      final nkw = _norm(kw);
+      if (nkw == q) {
+        score += 75; if (tier == 0 || tier > 5) tier = 5; break;
+      } else if (nkw.contains(q) || q.contains(nkw)) {
+        score += 55; if (tier == 0 || tier > 6) tier = 6; break;
+      }
+    }
+  }
+
+  // ── Synthesized product category match ───────────────────────────────────
+  if (tier == 0 || tier > 6) {
+    for (final cat in p.productCategories) {
+      final ncat = _norm(cat);
+      if (ncat == q || ncat.contains(q) || q.contains(ncat)) {
+        score += 50; if (tier == 0 || tier > 7) tier = 7; break;
+      }
+    }
+  }
+
   // ── Taxonomy match ────────────────────────────────────────────────────────
   if (tier == 0) {
     for (final entry in kSearchTaxonomy.entries) {
@@ -539,7 +562,7 @@ String _norm(String s) =>
       final brands  = entry.value['brands']!;
       final isMatch = _norm(key) == q || aliases.any((a) => _norm(a) == q);
       if (isMatch && brands.any((b) => _norm(b) == brand)) {
-        score += 60; tier = 5; break;
+        score += 60; tier = 8; break;
       }
     }
   }
@@ -548,11 +571,11 @@ String _norm(String s) =>
   final titleNorm = _norm(p.title);
   if (titleNorm.contains(q)) {
     score += 50;
-    if (tier == 0) tier = 5;
+    if (tier == 0) tier = 8;
   }
   if (p.summary != null && _norm(p.summary!).contains(q)) {
     score += 35;
-    if (tier == 0) tier = 6;
+    if (tier == 0) tier = 9;
   }
   // Promo code exact
   if (p.promoCode != null && _norm(p.promoCode!) == q) {
@@ -564,7 +587,7 @@ String _norm(String s) =>
       if (_norm(entry.key) == brand) {
         for (final tag in entry.value) {
           if (_norm(tag).contains(q) || q.contains(_norm(tag))) {
-            score += 35; tier = 6; break;
+            score += 35; tier = 9; break;
           }
         }
         break;
@@ -573,7 +596,7 @@ String _norm(String s) =>
   }
   if (_norm(p.category).contains(q)) {
     score += 20;
-    if (tier == 0) tier = 7;
+    if (tier == 0) tier = 9;
   }
 
   if (tier == 0) return (score: 0, tier: 0);
@@ -624,9 +647,11 @@ class BrandGroup {
 
 List<BrandGroup> runSearch(
   List<Promotion> all,
-  String query, [
+  String query, {
   SearchOptions opts = const SearchOptions(),
-]) {
+  InteractionService? svc,
+  UserPrefs? prefs,
+}) {
   if (query.trim().isEmpty) return [];
 
   final scored = <Promotion, ({double score, int tier})>{};
@@ -651,19 +676,41 @@ List<BrandGroup> runSearch(
     brandMap.putIfAbsent(e.key.brand, () => []).add(e);
   }
 
+  // Inferred category weights — computed once across all matched deals
+  final allMatchedDeals = scored.keys.toList();
+  final inferredWeights = svc != null
+      ? inferCategoryWeights(prefs?.favoriteBrands ?? [], allMatchedDeals)
+      : <String, double>{};
+
   final groups = brandMap.entries.map((e) {
     final entries = List.of(e.value)
       ..sort((a, b) => b.value.score.compareTo(a.value.score));
     final best = entries.first.value;
+    final deals = entries.map((x) => x.key).toList();
+
+    // Blend match score with personalized brand score so favorites surface first
+    // among results that match the query equally well.
+    double finalScore = best.score;
+    if (svc != null) {
+      final brandCategory = deals.first.category;
+      final personalBonus = brandLevelScore(
+        e.key, brandCategory, deals, svc,
+        prefs: prefs,
+        inferredCategoryWeights: inferredWeights,
+      );
+      // Weight: match relevance dominates (×1), personalization is a tiebreaker (×0.4)
+      finalScore = best.score + personalBonus * 0.4;
+    }
+
     final contexts = <String>{};
-    for (final p in entries.map((x) => x.key)) {
+    for (final p in deals) {
       contexts.addAll(dealContextLabels(p));
     }
     return BrandGroup(
       brand:     e.key,
-      deals:     entries.map((x) => x.key).toList(),
+      deals:     deals,
       bestTier:  best.tier,
-      bestScore: best.score,
+      bestScore: finalScore,
       contexts:  contexts.toList(),
     );
   }).toList()
