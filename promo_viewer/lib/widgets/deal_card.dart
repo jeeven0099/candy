@@ -186,18 +186,11 @@ class DealCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      // Badge + actions stacked
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          _DiscountBadge(promo: promo),
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              _HeartButton(promo: promo),
-                              _MenuButton(promo: promo),
-                            ],
-                          ),
+                          _HeartButton(promo: promo),
+                          _MenuButton(promo: promo),
                         ],
                       ),
                     ],
@@ -411,70 +404,6 @@ class _UrgencyTag extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-// ── Discount badge ────────────────────────────────────────────────────────────
-
-class _DiscountBadge extends StatelessWidget {
-  final Promotion promo;
-  const _DiscountBadge({required this.promo});
-
-  static final _pctRe = RegExp(r'(\d+(?:\.\d+)?)%');
-  static final _dolRe = RegExp(r'\$(\d+(?:\.\d+)?)');
-  static final _bogoRe = RegExp(r'\bbogo\b|buy.one.get.one', caseSensitive: false);
-
-  (String?, Color) get _labelAndColor {
-    switch (promo.discountType) {
-      case 'free_item':
-        return ('FREE', const Color(0xFF00897B));
-      case 'bogo':
-        return ('BOGO', const Color(0xFF00897B));
-      case 'percentage_off':
-        final m = _pctRe.firstMatch(promo.discountValue ?? '');
-        if (m == null) return (null, Colors.transparent);
-        final pct = double.tryParse(m.group(1)!) ?? 0;
-        final label = '${pct.toInt()}% OFF';
-        final color = pct >= 50
-            ? Candy.raspberry
-            : pct >= 25
-                ? const Color(0xFFE65100)
-                : const Color(0xFF6D4C41);
-        return (label, color);
-      case 'amount_off':
-        final m = _dolRe.firstMatch(promo.discountValue ?? '');
-        if (m == null) return (null, Colors.transparent);
-        return ('\$${(double.tryParse(m.group(1)!) ?? 0).toInt()} OFF',
-            const Color(0xFF2E7D32));
-      default:
-        // Catch BOGO in title when discount_type is generic
-        if (_bogoRe.hasMatch(promo.title)) {
-          return ('BOGO', const Color(0xFF00897B));
-        }
-        return (null, Colors.transparent);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final (label, color) = _labelAndColor;
-    if (label == null) return const SizedBox.shrink();
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Text(
-        label,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 12,
-          fontWeight: FontWeight.w800,
-          letterSpacing: 0.4,
-        ),
       ),
     );
   }

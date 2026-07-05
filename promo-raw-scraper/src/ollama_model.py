@@ -100,7 +100,15 @@ class OllamaModel(LocalModelInterface):
     ) -> List[Promotion]:
         prompt = self._build_prompt(text, brand, category, source_path)
         raw_response = self._call_ollama(prompt)
-        items = self._extract_promotions_list(raw_response)
+
+        # Non-fatal: a bad LLM response (wrong key, malformed schema) should
+        # never crash the pipeline — treat it as 0 deals and let the synthesizer
+        # attempt a fallback below.
+        try:
+            items = self._extract_promotions_list(raw_response)
+        except ValueError as exc:
+            print(f"[WARN] {brand}: LLM response unparseable — {exc!s:.200}")
+            items = []
 
         promotions: List[Promotion] = []
         errors: List[str] = []
@@ -125,10 +133,11 @@ class OllamaModel(LocalModelInterface):
                 )
 
         if errors and not promotions:
-            raise ValueError(
-                f"All {len(errors)} promotion(s) from Ollama failed Pydantic validation.\n"
-                + "\n".join(errors)
-                + f"\nRaw LLM response (first 800 chars): {raw_response[:800]}"
+            # All items failed validation — warn but don't crash; synthesizer
+            # will attempt a fallback on the raw text below.
+            print(
+                f"[WARN] {brand}: all {len(errors)} LLM item(s) failed Pydantic validation "
+                f"(first error: {errors[0][:200]})"
             )
 
         # Deduplicate by promotion_title — keep first occurrence
@@ -755,6 +764,18 @@ class OllamaModel(LocalModelInterface):
             k in parsed for k in ("promotion_type", "discount_type", "extraction_status")
         ):
             return [parsed]
+
+        # {"products"/"items"/"deals"/... : [...]} — LLM used wrong key name
+        # (e.g. J.Crew → "products", Nordstrom → "items").
+        # Return whatever list we find; Pydantic validation will filter bad items.
+        _ALT_KEYS = ("products", "items", "deals", "offers", "data", "results", "coupons", "sales")
+        if isinstance(parsed, dict):
+            for key in _ALT_KEYS:
+                val = parsed.get(key)
+                if isinstance(val, list):
+                    return [i for i in val if isinstance(i, dict)]
+            # Dict with no recognised list key — treat as no deals found
+            return []
 
         raise ValueError(
             f"Could not extract a promotions list from Ollama response.\n"
