@@ -156,6 +156,227 @@ class OllamaModel(LocalModelInterface):
     # Internals                                                            #
     # ------------------------------------------------------------------ #
 
+    # Taxonomy: keywords → (category_label, extracted_keywords_for_search)
+    # Each tuple: (trigger_words, category_label, search_keywords)
+    # trigger_words: if any appear in product text → assign this category
+    # search_keywords: individual terms stored in product_keywords for exact search matching
+    _TAXONOMY: list[tuple[list[str], str, list[str]]] = [
+        (
+            ["jacket", "coat", "blazer", "bomber", "parka", "anorak", "windbreaker", "vest", "gilet", "outerwear"],
+            "outerwear",
+            ["jacket", "coat", "blazer", "bomber", "parka"],
+        ),
+        (
+            ["pants", "trousers", "chinos", "leggings", "joggers", "shorts", "bottoms"],
+            "bottoms",
+            ["pants", "trousers", "leggings", "joggers", "shorts"],
+        ),
+        (
+            ["jeans", "denim"],
+            "denim",
+            ["jeans", "denim"],
+        ),
+        (
+            ["dress", "gown", "midi", "maxi", "minidress"],
+            "dresses",
+            ["dress", "gown"],
+        ),
+        (
+            ["skirt"],
+            "skirts",
+            ["skirt"],
+        ),
+        (
+            ["shirt", "tee", "t-shirt", "blouse", "top", "polo"],
+            "tops",
+            ["shirt", "tee", "blouse", "top", "polo"],
+        ),
+        (
+            ["hoodie", "sweatshirt", "sweater", "cardigan", "knit", "pullover"],
+            "sweaters",
+            ["hoodie", "sweatshirt", "sweater", "cardigan"],
+        ),
+        (
+            ["shoes", "sneakers", "boots", "sandals", "heels", "loafers", "flats", "mules", "espadrilles", "footwear"],
+            "shoes",
+            ["shoes", "sneakers", "boots", "sandals", "heels"],
+        ),
+        (
+            ["bag", "handbag", "purse", "tote", "wallet", "crossbody", "clutch", "satchel", "backpack"],
+            "bags",
+            ["bag", "handbag", "purse", "tote", "wallet", "crossbody"],
+        ),
+        (
+            ["belt", "hat", "cap", "scarf", "sunglasses", "jewelry", "necklace", "bracelet", "earrings", "ring", "watch", "accessories"],
+            "accessories",
+            ["belt", "hat", "scarf", "sunglasses", "jewelry", "watch"],
+        ),
+        (
+            ["bra", "underwear", "lingerie", "socks", "intimates"],
+            "intimates",
+            ["bra", "underwear", "lingerie", "socks"],
+        ),
+        (
+            ["swimwear", "swim", "bikini", "one-piece", "boardshort", "trunks"],
+            "swimwear",
+            ["swimwear", "bikini", "swim trunks"],
+        ),
+        (
+            ["perfume", "fragrance", "cologne", "scent", "eau de"],
+            "fragrance",
+            ["perfume", "fragrance", "cologne"],
+        ),
+        (
+            ["makeup", "lipstick", "mascara", "foundation", "concealer", "blush", "eyeshadow"],
+            "makeup",
+            ["makeup", "lipstick", "mascara", "foundation"],
+        ),
+        (
+            ["skincare", "moisturizer", "cleanser", "serum", "sunscreen", "toner", "retinol"],
+            "skincare",
+            ["skincare", "moisturizer", "cleanser", "serum"],
+        ),
+        (
+            ["suit", "tuxedo", "blazer set"],
+            "suits",
+            ["suit", "tuxedo"],
+        ),
+        (
+            ["luggage", "suitcase", "duffle", "travel bag"],
+            "luggage",
+            ["luggage", "suitcase"],
+        ),
+    ]
+
+    # Words to strip when extracting dynamic product-type tokens from product lines.
+    # These are descriptors (colors, materials, fit, pattern) that don't identify the product.
+    _KEYWORD_NOISE: frozenset[str] = frozenset({
+        # colors
+        "red","blue","black","white","green","yellow","purple","pink","orange",
+        "gray","grey","brown","beige","navy","cream","ivory","tan","taupe",
+        "olive","coral","teal","mint","khaki","gold","silver","nude","rose",
+        "lilac","lavender","burgundy","maroon","mustard","charcoal","ecru",
+        # materials
+        "cotton","linen","polyester","nylon","leather","faux","silk","wool",
+        "cashmere","canvas","suede","velvet","mesh","jersey","satin","chiffon",
+        "tweed","fleece","flannel","modal","synthetic","organic","recycled",
+        "blend","mixed","knit","woven","ribbed","terry","denim","chambray",
+        # fit / style descriptors
+        "slim","regular","relaxed","straight","loose","fitted","oversized",
+        "cropped","long","short","high","low","mid","wide","flared","tapered",
+        "skinny","bootcut","classic","essential","basic","lightweight","heavy",
+        "stretch","comfort","plus","petite","tall","asymmetric","wrap",
+        # patterns
+        "striped","plaid","floral","solid","print","printed","pattern",
+        "graphic","logo","embroidered","tie","dye","checkered","abstract",
+        "leopard","animal","geometric","tropical","vintage","washed",
+        # generic qualifiers
+        "new","sale","clearance","original","limited","edition","collection",
+        "and","the","with","for","from","into","fit","cut","leg","neck",
+        "sleeve","collar","zip","button","pocket","lined","unlined","padded",
+        "size","small","medium","large","extra","one","piece","set",
+    })
+
+    # Patterns that indicate a line is NOT a product name
+    _SKIP_LINE_RE  = re.compile(
+        r'(cookie|privacy|cart|checkout|log\s*in|sign\s*in|menu|filter|sort|'
+        r'view|search|copyright|terms|policy|newsletter|subscribe|javascript|'
+        r'wishlist|account|share|follow|©|all rights)',
+        re.IGNORECASE,
+    )
+    _PRICE_LINE_RE = re.compile(r'^\s*[\$\-\+]?\s*\d[\d\.,]*\s*%?\s*$')
+    _SIZE_ONLY_RE  = re.compile(r'^(XS|S|M|L|XL|XXL|XXXL|\d+|one\s+size)$', re.IGNORECASE)
+    _STRIP_SIZE_RE = re.compile(r'\b(xs|s|m|l|xl|xxl|xxxl|one\s+size)\b', re.IGNORECASE)
+
+    def _extract_product_lines(self, text: str) -> list[str]:
+        """Return cleaned product name lines from the raw text (near price lines)."""
+        lines = text.splitlines()
+
+        price_line_idx: set[int] = set()
+        for i, line in enumerate(lines):
+            if re.search(r'\$\s*\d+', line) or re.search(r'-\d+%', line):
+                price_line_idx.add(i)
+
+        names: list[str] = []
+        seen: set[str] = set()
+        for i, line in enumerate(lines):
+            if not any(abs(i - pi) <= 5 for pi in price_line_idx):
+                continue
+            raw = line.strip()
+            if len(raw) < 4:
+                continue
+            if self._PRICE_LINE_RE.match(raw):
+                continue
+            if self._SKIP_LINE_RE.search(raw):
+                continue
+            if self._SIZE_ONLY_RE.match(raw):
+                continue
+            if raw.startswith('$') or ('%' in raw and len(raw) < 8):
+                continue
+            norm = self._STRIP_SIZE_RE.sub('', raw.lower())
+            norm = re.sub(r'\s+', ' ', norm).strip(' ,.-')
+            if len(norm) < 3 or norm in seen:
+                continue
+            seen.add(norm)
+            names.append(norm)
+        return names[:30]
+
+    def _classify_products(self, product_lines: list[str]) -> tuple[list[str], list[str]]:
+        """
+        Returns (product_categories, product_keywords).
+
+        product_categories: deduplicated category labels (e.g. ["outerwear", "bottoms"])
+        product_keywords:   individual search terms drawn from matched taxonomy entries
+                            plus meaningful words from product names not covered by taxonomy
+        """
+        combined = ' '.join(product_lines).lower()
+
+        categories: list[str] = []
+        keywords: list[str] = []
+        seen_cats: set[str] = set()
+        seen_kw: set[str] = set()
+
+        for triggers, label, search_kws in self._TAXONOMY:
+            if label in seen_cats:
+                continue
+            if any(t in combined for t in triggers):
+                categories.append(label)
+                seen_cats.add(label)
+                for kw in search_kws:
+                    if kw not in seen_kw:
+                        keywords.append(kw)
+                        seen_kw.add(kw)
+
+        # Dynamic extraction: pull individual words + bigrams from every product line,
+        # stripping noise words so only meaningful product-type tokens remain.
+        # This means any product name (tank top, cargo shorts, slip dress…) that
+        # appears in the raw text becomes a searchable keyword automatically.
+        for line in product_lines:
+            tokens = [
+                w for w in re.split(r'[\s\-/]+', line.lower())
+                if len(w) >= 3 and w not in self._KEYWORD_NOISE
+            ]
+
+            # Individual tokens
+            for tok in tokens:
+                if tok not in seen_kw:
+                    keywords.append(tok)
+                    seen_kw.add(tok)
+
+            # Bigrams (adjacent token pairs — "tank top", "cargo shorts", etc.)
+            for i in range(len(tokens) - 1):
+                bigram = f"{tokens[i]} {tokens[i + 1]}"
+                if bigram not in seen_kw:
+                    keywords.append(bigram)
+                    seen_kw.add(bigram)
+
+            # Full product name phrase (for longer exact/contains matching)
+            if 4 <= len(line) <= 60 and line not in seen_kw:
+                keywords.append(line)
+                seen_kw.add(line)
+
+        return categories, keywords[:80]  # cap to avoid bloat
+
     def _synthesize_sale_from_price_grid(
         self,
         text: str,
@@ -171,7 +392,7 @@ class OllamaModel(LocalModelInterface):
         and synthesizes one deal: "Brand Sale — up to X% off".
         Only fires when enough pairs are found to be confident it's a real sale.
         """
-        raw_prices = re.findall(r'\$(\d+(?:\.\d{2})?)', text)
+        raw_prices = re.findall(r'\$\s*(\d+(?:\.\d{2})?)', text)
         prices = [float(p) for p in raw_prices if 1.0 < float(p) < 5000]
 
         if len(prices) < 6:
@@ -201,11 +422,26 @@ class OllamaModel(LocalModelInterface):
         if max_disc < 20:
             return []
 
+        product_lines = self._extract_product_lines(text)
+        product_cats, product_kws = self._classify_products(product_lines)
+
+        # Cap matched_product_examples to 10 original-case lines
+        matched_examples = []
+        seen_ex: set[str] = set()
+        for line in product_lines:
+            if len(matched_examples) >= 10:
+                break
+            orig = line.strip()
+            upper = orig.upper()
+            if upper not in seen_ex and len(orig) >= 4:
+                matched_examples.append(upper)
+                seen_ex.add(upper)
+
         discount_value = f"up to {max_disc}% off"
         title = f"{brand} Sale"
-        summary = (
-            f"{brand} has items on sale with discounts from {min_disc}% to {max_disc}% off."
-        )
+        summary = f"{brand} has items on sale with discounts from {min_disc}% to {max_disc}% off."
+        if product_cats:
+            summary += f" On sale: {', '.join(product_cats)}."
 
         return [Promotion(
             brand=brand,
@@ -222,7 +458,7 @@ class OllamaModel(LocalModelInterface):
             deal_scope="online_only",
             friction_level="low",
             friction_reasons=[],
-            confidence_score=0.52,
+            confidence_score=0.65,
             source_type="web_page",
             source_path=source_path,
             extraction_status="success",
@@ -231,6 +467,11 @@ class OllamaModel(LocalModelInterface):
                 f"Discount range: {min_disc}%–{max_disc}%.",
                 "No explicit deal text — inferred from sale vs. original price pairs.",
             ],
+            synthesized=True,
+            synthesis_reason="price_grid_markdown",
+            product_categories=product_cats,
+            product_keywords=product_kws,
+            matched_product_examples=matched_examples,
         )]
 
     def _coerce_data(self, data: dict) -> dict:
@@ -313,6 +554,28 @@ class OllamaModel(LocalModelInterface):
             val = data.get(_field)
             if isinstance(val, str) and val.strip().lower() in {"null", "none", "n/a", ""}:
                 data[_field] = None
+
+        # Fix year hallucination in date fields: LLM sometimes writes a past year
+        # (e.g. 2023-07-05 instead of 2026-07-05), which causes the expiry filter
+        # to silently drop valid deals. Bump any past-year date to the current year.
+        import datetime as _dt
+        _today = _dt.date.today()
+        _date_re = re.compile(r'^(\d{4})(-\d{2}-\d{2})$')
+        for _field in ("start_date", "end_date"):
+            val = data.get(_field)
+            if not isinstance(val, str):
+                continue
+            m = _date_re.match(val.strip())
+            if not m:
+                continue
+            year = int(m.group(1))
+            rest = m.group(2)
+            if year < _today.year:
+                # Bump to current year; if that date is still in the past, bump to next year
+                candidate = _dt.date(year=_today.year, month=int(rest[1:3]), day=int(rest[4:6]))
+                if candidate < _today:
+                    candidate = candidate.replace(year=_today.year + 1)
+                data[_field] = candidate.isoformat()
 
         return data
 

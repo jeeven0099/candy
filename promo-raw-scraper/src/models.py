@@ -137,6 +137,13 @@ class Promotion(BaseModel):
     extraction_status: ExtractionStatus = "success"
     notes: List[str] = Field(default_factory=list)
 
+    # Synthesis metadata — only populated by the price-grid synthesizer
+    synthesized: bool = False
+    synthesis_reason: Optional[str] = None
+    product_categories: List[str] = Field(default_factory=list)
+    product_keywords: List[str] = Field(default_factory=list)
+    matched_product_examples: List[str] = Field(default_factory=list)
+
     # Email-only fields
     visibility: Optional[EmailVisibility] = None
     sender_email: Optional[str] = None

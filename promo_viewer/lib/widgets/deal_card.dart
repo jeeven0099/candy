@@ -284,6 +284,29 @@ class DealCard extends StatelessWidget {
                     FastRedeemButton(fr: promo.fastRedemption!, brand: promo.brand, promoId: promo.id),
                   ],
 
+                  // ── Synthesized category note ──
+                  if (_onSaleCategories.isNotEmpty) ...[
+                    const SizedBox(height: 8),
+                    Wrap(
+                      spacing: 5,
+                      runSpacing: 4,
+                      children: [
+                        Icon(Icons.local_offer_outlined, size: 11, color: Colors.teal.shade400),
+                        ..._onSaleCategories.map((cat) => Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: Colors.teal.shade50,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Text(
+                            cat,
+                            style: TextStyle(fontSize: 10, color: Colors.teal.shade700, fontWeight: FontWeight.w500),
+                          ),
+                        )),
+                      ],
+                    ),
+                  ],
+
                   // ── Source trust line ──
                   if (promo.source == 'web' && promo.websiteDomain != null) ...[
                     const SizedBox(height: 10),
@@ -314,6 +337,8 @@ class DealCard extends StatelessWidget {
       promo.discountType == 'percentage_off' &&
       promo.estimatedSavings != null &&
       promo.estimatedSavings! >= 10;
+
+  List<String> get _onSaleCategories => promo.productCategories;
 }
 
 // ── Tags ─────────────────────────────────────────────────────────────────────
