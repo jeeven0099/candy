@@ -159,6 +159,28 @@ class OllamaModel(LocalModelInterface):
                 print(f"[SYNTH] {brand}: LLM found 0 deals — synthesized sale deal from price grid ({dv})")
                 return synthesized
 
+        # Collapse product-grid deals: if the LLM returned many individual sale items
+        # (each with a product name as title and no promo code/membership), it has
+        # mistaken a collection page for individual deals. Replace with one synthesized card.
+        if len(unique) >= 5:
+            grid_deals = [
+                p for p in unique
+                if p.promotion_type in ("sale",)
+                and p.discount_type in ("percentage_off", "sale_price", "amount_off")
+                and not p.requires_membership
+                and not p.requires_app
+                and not p.promo_code
+            ]
+            if len(grid_deals) >= 5 and len(grid_deals) / len(unique) >= 0.8:
+                synthesized = self._synthesize_sale_from_price_grid(text, brand, category, source_path)
+                if synthesized:
+                    dv = synthesized[0].discount_value or ""
+                    print(
+                        f"[SYNTH] {brand}: LLM returned {len(grid_deals)} product-grid deals — "
+                        f"collapsed into one synthesized card ({dv})"
+                    )
+                    return synthesized
+
         return unique
 
     # ------------------------------------------------------------------ #
@@ -699,6 +721,10 @@ class OllamaModel(LocalModelInterface):
             "- Do NOT extract third-party credit card or bank partnership promotions (e.g. 'Free shipping with the Chase Sapphire Card'). "
             "Only extract promotions offered directly by the brand.\n"
             "- Do NOT extract promotions whose title or description is not in English. Skip any deal written in Spanish, French, or any other non-English language.\n"
+            "- If the page is a product collection or sale grid (many individual products listed with prices), "
+            "return ONE deal card summarizing the overall sale (e.g. 'Zara Sale — up to 50% off') rather than "
+            "individual cards per product. List specific product names only in matched_product_examples, "
+            "not as separate deals.\n"
             "- Do NOT extract sweepstakes, contests, or raffles. A chance to win a prize is not a deal "
             "(e.g. 'MINIONS & MONSTERS Sweepstakes' should be skipped entirely).\n"
             "- Do NOT extract plain movie or event ticket sales offered at full price. A listing like "
