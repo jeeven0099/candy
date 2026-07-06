@@ -52,6 +52,9 @@ class Promotion {
   final double? lat;
   final double? lon;
 
+  // Gender targeting — null means not fashion or gender-neutral
+  final String? targetGender; // "women" | "men" | "kids" | "unisex"
+
   // Synthesis metadata — only populated on synthesized deals
   final bool synthesized;
   final String? synthesisReason;
@@ -104,6 +107,7 @@ class Promotion {
     this.address,
     this.lat,
     this.lon,
+    this.targetGender,
     this.synthesized = false,
     this.synthesisReason,
     this.productCategories = const [],
@@ -162,6 +166,7 @@ class Promotion {
       address: json['address'] as String?,
       lat: (json['lat'] as num?)?.toDouble(),
       lon: (json['lon'] as num?)?.toDouble(),
+      targetGender: json['target_gender'] as String?,
       synthesized: json['synthesized'] as bool? ?? false,
       synthesisReason: json['synthesis_reason'] as String?,
       productCategories: (json['product_categories'] as List?)?.whereType<String>().toList() ?? [],
