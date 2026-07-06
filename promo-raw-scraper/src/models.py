@@ -137,6 +137,8 @@ class Promotion(BaseModel):
     extraction_status: ExtractionStatus = "success"
     notes: List[str] = Field(default_factory=list)
 
+    target_gender: Optional[Literal["women", "men", "kids", "unisex"]] = None
+
     # Synthesis metadata — only populated by the price-grid synthesizer
     synthesized: bool = False
     synthesis_reason: Optional[str] = None

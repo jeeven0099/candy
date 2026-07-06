@@ -50,7 +50,8 @@ Return a JSON object with a "promotions" array. Each item in the array has EXACT
   "source_type": "one of: web_page | email | unknown",
   "source_path": "string",
   "extraction_status": "one of: success | no_offer_found | failed",
-  "notes": "array of strings (observations, caveats, ambiguities)"
+  "notes": "array of strings (observations, caveats, ambiguities)",
+  "target_gender": "one of: women | men | kids | unisex — or null if not a fashion/apparel deal. Use 'unisex' when the page covers both men and women equally."
     }
   ]
 }
@@ -66,6 +67,18 @@ _VALID_FRICTION_LEVELS = {"low", "medium", "high", "unknown"}
 _VALID_EXTRACTION_STATUSES = {"success", "no_offer_found", "failed"}
 _VALID_SOURCE_TYPES = {"web_page", "email", "unknown"}
 _VALID_MEMBERSHIP_COSTS = {"free", "unknown"}
+_VALID_TARGET_GENDERS = {"women", "men", "kids", "unisex"}
+
+_GENDER_WOMEN_TOKENS = frozenset([
+    "women", "woman", "womens", "womenswear", "her", "ladies", "lady", "girls", "girl",
+])
+_GENDER_MEN_TOKENS = frozenset([
+    "mens", "menswear", "him", "guys", "guy", "boys", "boy",
+])
+_GENDER_MEN_EXACT = frozenset(["men", "man"])  # exact-only to avoid matching inside "women"
+_GENDER_KIDS_TOKENS = frozenset([
+    "kids", "kid", "children", "child", "baby", "babies", "toddler", "infant", "infants",
+])
 _ARRAY_FIELDS = {"valid_days", "redemption_steps", "friction_reasons", "notes"}
 _BOOL_FIELDS = {
     "requires_membership", "requires_app", "requires_account_login",
@@ -408,6 +421,28 @@ class OllamaModel(LocalModelInterface):
 
         return categories, keywords[:80]  # cap to avoid bloat
 
+    def _detect_gender(self, product_lines: list[str], text: str) -> str | None:
+        """Infer target_gender from product lines and page text. Returns None for non-fashion."""
+        sample = " ".join(product_lines[:60]).lower() + " " + text[:2000].lower()
+        tokens = set(re.split(r'[\s\-/\']+', sample))
+
+        has_women = bool(tokens & _GENDER_WOMEN_TOKENS)
+        has_men = bool(
+            (tokens & _GENDER_MEN_TOKENS)
+            or any(t in _GENDER_MEN_EXACT for t in tokens)
+        )
+        has_kids = bool(tokens & _GENDER_KIDS_TOKENS)
+
+        if has_kids and not has_women and not has_men:
+            return "kids"
+        if has_women and has_men:
+            return "unisex"
+        if has_women:
+            return "women"
+        if has_men:
+            return "men"
+        return None
+
     def _synthesize_sale_from_price_grid(
         self,
         text: str,
@@ -455,6 +490,7 @@ class OllamaModel(LocalModelInterface):
 
         product_lines = self._extract_product_lines(text)
         product_cats, product_kws = self._classify_products(product_lines)
+        target_gender = self._detect_gender(product_lines, text)
 
         # Cap matched_product_examples to 10 original-case lines
         matched_examples = []
@@ -503,6 +539,7 @@ class OllamaModel(LocalModelInterface):
             product_categories=product_cats,
             product_keywords=product_kws,
             matched_product_examples=matched_examples,
+            target_gender=target_gender,
         )]
 
     def _coerce_data(self, data: dict) -> dict:
@@ -575,6 +612,10 @@ class OllamaModel(LocalModelInterface):
                 data["membership_cost"] = "unknown"
             else:
                 data["membership_cost"] = str(mc).lower()
+
+        tg = data.get("target_gender")
+        if tg is not None:
+            data["target_gender"] = str(tg).lower() if str(tg).lower() in _VALID_TARGET_GENDERS else None
 
         # timezone: non-optional field — default if LLM returned null or empty
         if not data.get("timezone"):
