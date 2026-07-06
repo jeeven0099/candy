@@ -604,7 +604,7 @@
     "category": "fashion",
     "url": "https://www.shoecarnival.com/content/coupons-promotions",
     "source_type": "sales_page",
-    "allowed_to_fetch": false
+    "allowed_to_fetch": true
   },
   {
     "brand": "T.J.Maxx",
@@ -2487,8 +2487,7 @@
     "category": "fashion",
     "url": "https://www.reebok.com/collections/sale?current=1e",
     "source_type": "sales_page",
-    "allowed_to_fetch": false,
-    "disabled_reason": "Bot protection — returns login wall"
+    "allowed_to_fetch": true
   },
   {
     "brand": "Hoka",
