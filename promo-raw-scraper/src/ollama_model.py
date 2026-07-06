@@ -56,7 +56,7 @@ Return a JSON object with a "promotions" array. Each item in the array has EXACT
 }
 """
 
-_MAX_TEXT_CHARS = 6000
+_MAX_TEXT_CHARS = 30_000
 
 _VALID_PROMOTION_TYPES = {"reward", "app_offer", "sale", "coupon", "birthday_reward", "membership_benefit", "unknown"}
 _VALID_DISCOUNT_TYPES = {"percentage_off", "amount_off", "free_item", "free_shipping", "points", "sale_price", "unknown"}
@@ -726,7 +726,7 @@ class OllamaModel(LocalModelInterface):
             "messages": [{"role": "user", "content": prompt}],
             "stream": False,
             "format": "json",
-            "options": {"num_predict": 8192},
+            "options": {"num_predict": 8192, "num_ctx": 32768},
         }
 
         try:
