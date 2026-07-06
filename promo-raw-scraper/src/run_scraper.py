@@ -124,10 +124,14 @@ def _fetch_one_url(
         title = extract_title(html)
         og_image = extract_og_image(html)
 
-    # Try Playwright when requests blocks or returns too little content
+    # Try Playwright when requests blocks or returns too little content.
+    # The JS-SPA check catches pages where the server returns a React/Next.js shell
+    # (large HTML from JS bundles, almost no visible text) — e.g. Uniqlo, Zara.
+    _is_js_spa = fetch.ok and len(html) > 500_000 and len(text) < 3_000
     needs_pw = (
         (not fetch.ok and fetch.error in _PLAYWRIGHT_RETRY_ERRORS)
         or (fetch.ok and len(text) < 100)
+        or _is_js_spa
         or (fetch.ok and html and detect_bad_page(title, text, fetch.final_url))
     )
     if needs_pw:
@@ -249,11 +253,13 @@ def process_source(source, dry_run: bool = False, *,
                     'error': f'blocked_or_error_page:{bad_page_reason}',
                     'text_length': len(text), 'title': title, 'final_url': fetch.final_url}
 
-        if len(text) < 100:
+        _is_js_spa = len(html) > 500_000 and len(text) < 3_000
+        if len(text) < 100 or _is_js_spa:
             if requests_only:
                 return {'brand': source.brand, 'category': source.category,
                         'url': source.url, 'status': 'needs_playwright', 'scraped_at': scraped_at}
-            print(f'    -> requests got {len(text)} chars, trying Playwright fallback...')
+            reason = 'JS SPA detected' if _is_js_spa else f'{len(text)} chars'
+            print(f'    -> requests got thin text ({reason}), trying Playwright fallback...')
             result = _try_playwright(source.url, session=pw_session)
             if result:
                 fetch, text, title = result
