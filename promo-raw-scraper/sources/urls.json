@@ -234,7 +234,11 @@
   {
     "brand": "Uniqlo",
     "category": "fashion",
-    "url": "https://www.uniqlo.com/us/en/special-feature/sale",
+    "urls": [
+      "https://www.uniqlo.com/us/en/feature/sale/men",
+      "https://www.uniqlo.com/us/en/feature/sale/women",
+      "https://www.uniqlo.com/us/en/feature/sale/kids"
+    ],
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -2603,7 +2607,7 @@
   {
     "brand": "Adorama",
     "category": "tech",
-    "url": "https://www.adorama.com/alm/specials",
+    "url": "https://www.adorama.com/g/deals",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   }
