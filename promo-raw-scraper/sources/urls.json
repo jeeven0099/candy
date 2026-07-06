@@ -164,14 +164,14 @@
   {
     "brand": "Kohl's",
     "category": "retail",
-    "url": "https://www.kohls.com/sale/",
+    "url": "https://www.kohls.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Macy's",
     "category": "retail",
-    "url": "https://www.macys.com/shop/sale",
+    "url": "https://www.macys.com/shop/sale?id=3536",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -185,8 +185,8 @@
   {
     "brand": "Adidas",
     "category": "fashion",
-    "url": "https://www.adidas.com/us/adiclub",
-    "source_type": "rewards_page",
+    "url": "https://www.adidas.com/us/sale",
+    "source_type": "sales_page",
     "allowed_to_fetch": false
   },
   {
@@ -518,7 +518,7 @@
   {
     "brand": "Vans",
     "category": "fashion",
-    "url": "https://www.vans.com/en-us/sale",
+    "url": "https://www.vans.com/en-us/c/sale-5410?f=Gender,Women&icn=subnav",
     "source_type": "sales_page",
     "allowed_to_fetch": false
   },
@@ -574,7 +574,7 @@
   {
     "brand": "Lululemon",
     "category": "fashion",
-    "url": "https://shop.lululemon.com/c/sale",
+    "url": "https://shop.lululemon.com/c/we-made-too-much/n18mhd",
     "source_type": "sales_page",
     "allowed_to_fetch": false
   },
@@ -602,7 +602,7 @@
   {
     "brand": "Shoe Carnival",
     "category": "fashion",
-    "url": "https://www.shoecarnival.com/sale",
+    "url": "https://www.shoecarnival.com/content/coupons-promotions",
     "source_type": "sales_page",
     "allowed_to_fetch": false
   },
@@ -829,7 +829,7 @@
   {
     "brand": "Sephora",
     "category": "beauty",
-    "url": "https://www.sephora.com/beauty/beauty-offers",
+    "url": "https://www.sephora.com/sale",
     "source_type": "offers_page",
     "allowed_to_fetch": false
   },
@@ -1369,7 +1369,7 @@
   {
     "brand": "Gymshark",
     "category": "fashion",
-    "url": "https://www.gymshark.com/collections/sale",
+    "url": "https://row.gymshark.com/collections/outlet",
     "source_type": "sales_page",
     "allowed_to_fetch": false,
     "online_only": true,
@@ -1829,7 +1829,7 @@
   {
     "brand": "Biggby Coffee",
     "category": "coffee",
-    "url": "https://www.biggby.com/deals/",
+    "url": "https://biggby.com/",
     "source_type": "offers_page",
     "allowed_to_fetch": false,
     "disabled_reason": "No public deals page found"
@@ -2403,7 +2403,7 @@
   {
     "brand": "Charlotte Tilbury",
     "category": "beauty",
-    "url": "https://www.charlottetilbury.com/us/collections/deals-and-offers",
+    "url": "https://www.charlottetilbury.com/us/content/charlotte-tilbury-promos",
     "source_type": "offers_page",
     "allowed_to_fetch": false,
     "online_only": true,
@@ -2485,7 +2485,7 @@
   {
     "brand": "Reebok",
     "category": "fashion",
-    "url": "https://www.reebok.com/en-us/sale",
+    "url": "https://www.reebok.com/collections/sale?current=1e",
     "source_type": "sales_page",
     "allowed_to_fetch": false,
     "disabled_reason": "Bot protection — returns login wall"
@@ -2557,7 +2557,7 @@
   {
     "brand": "Home Depot",
     "category": "home_improvement",
-    "url": "https://www.homedepot.com/c/Savings_Center",
+    "url": "https://www.homedepot.com/SpecialBuy/SpecialBuyOfTheDay",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
