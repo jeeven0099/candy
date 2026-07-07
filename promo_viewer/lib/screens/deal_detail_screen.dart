@@ -43,7 +43,11 @@ class DealDetailScreen extends StatelessWidget {
         ),
         actions: [_DetailSaveButton(promo: promo)],
       ),
-      body: ListView(
+      body: Align(
+        alignment: Alignment.topCenter,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 720),
+          child: ListView(
         padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
         children: [
           _HeroCard(promo: promo),
@@ -76,6 +80,8 @@ class DealDetailScreen extends StatelessWidget {
           ],
           const SizedBox(height: 4),
         ],
+          ),
+        ),
       ),
     );
   }
@@ -217,7 +223,7 @@ class _ShopNowButton extends StatelessWidget {
       style: FilledButton.styleFrom(
         backgroundColor: Candy.raspberry,
         minimumSize: const Size(double.infinity, 50),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       ),
       child: const Text(
         'Shop Now',
@@ -296,8 +302,8 @@ class _TrustCard extends StatelessWidget {
               'View source →',
               style: TextStyle(
                 fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: Color(0xFF2E7D32),
+                fontWeight: FontWeight.w500,
+                color: Color(0xFF2A5F3A),
               ),
             ),
           ],
@@ -723,14 +729,14 @@ class _StepRow extends StatelessWidget {
             width: 22,
             height: 22,
             decoration: const BoxDecoration(
-              color: Candy.raspberry,
+              color: Candy.border,
               shape: BoxShape.circle,
             ),
             child: Center(
               child: Text(
                 '$index',
                 style: const TextStyle(
-                  color: Colors.white,
+                  color: Candy.chocolate,
                   fontSize: 11,
                   fontWeight: FontWeight.w700,
                 ),
