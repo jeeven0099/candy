@@ -1200,7 +1200,7 @@
   {
     "brand": "The Container Store",
     "category": "home_goods",
-    "url": "https://www.containerstore.com/sale/",
+    "url": "https://www.containerstore.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -1361,7 +1361,7 @@
   {
     "brand": "ASOS",
     "category": "fashion",
-    "url": "https://www.asos.com/sale/",
+    "url": "https://www.asos.com/us/women/sale/",
     "source_type": "sales_page",
     "allowed_to_fetch": true,
     "online_only": true
@@ -1380,13 +1380,14 @@
     "category": "fashion",
     "url": "https://www.fabletics.com/pages/deals",
     "source_type": "deals_page",
-    "allowed_to_fetch": true,
-    "online_only": true
+    "allowed_to_fetch": false,
+    "online_only": true,
+    "disabled_reason": "All URLs blocked or 404"
   },
   {
     "brand": "ThredUp",
     "category": "fashion",
-    "url": "https://www.thredup.com/sale",
+    "url": "https://www.thredup.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": true,
     "online_only": true
@@ -1667,7 +1668,8 @@
     "category": "food",
     "url": "https://www.dairyqueen.com/en-us/promotions/",
     "source_type": "offers_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false,
+    "disabled_reason": "All deal URLs 404, homepage blocked"
   },
   {
     "brand": "Arby's",
@@ -1910,7 +1912,8 @@
     "category": "pharmacy",
     "url": "https://www.gnc.com/c/promotions-specials",
     "source_type": "offers_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false,
+    "disabled_reason": "All URLs blocked or 404"
   },
   {
     "brand": "Vitamin Shoppe",
@@ -2273,7 +2276,8 @@
     "category": "fashion",
     "url": "https://www.tumi.com/c/sale/",
     "source_type": "sales_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false,
+    "disabled_reason": "307 redirect loop — bot detection"
   },
   {
     "brand": "Panda Express",
@@ -2320,8 +2324,8 @@
   {
     "brand": "Qdoba",
     "category": "food",
-    "url": "https://www.qdoba.com/deals",
-    "source_type": "deals_page",
+    "url": "https://www.qdoba.com/rewards",
+    "source_type": "rewards_page",
     "allowed_to_fetch": true
   },
   {
@@ -2565,7 +2569,8 @@
     "category": "home_improvement",
     "url": "https://www.lowes.com/l/deals.html",
     "source_type": "deals_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false,
+    "disabled_reason": "All deal URLs 403, homepage too thin"
   },
   {
     "brand": "Ace Hardware",
@@ -2601,7 +2606,8 @@
     "category": "tech",
     "url": "https://www.bhphotovideo.com/find/promotions.jsp",
     "source_type": "offers_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false,
+    "disabled_reason": "All deal URLs 404, homepage blocked"
   },
   {
     "brand": "Adorama",
