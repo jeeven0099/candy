@@ -88,6 +88,8 @@ def main() -> None:
     parser.add_argument("--force", action="store_true", help="Re-parse all brands even if content is unchanged")
     parser.add_argument("--from-step", type=int, default=1, metavar="N",
                         help="Resume from step N, skipping steps 1..N-1 (use after a crash). Default: 1")
+    parser.add_argument("--failed-only", action="store_true",
+                        help="In step 4, skip brands that already have a structured output (re-parse only failed/missing)")
     parser.add_argument("--gc-interval", type=int, default=10,
                         help="gc.collect() every N LLM-processed brands in step 4 (0 = off). Default: 10")
     parser.add_argument("--ollama-restart-interval", type=int, default=25,
@@ -156,6 +158,8 @@ def main() -> None:
                 ]
                 if args.force:
                     parse_cmd.append("--force")
+                if args.failed_only:
+                    parse_cmd.append("--failed-only")
                 if args.brand:
                     parse_cmd += ["--brand", args.brand]
                 rc = run(parse_cmd, "Step 4/12 -Extracting promotions", log_fh)
