@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-05T12:41:14.092991+00:00",
+  "generated_at": "2026-07-07T22:10:57.897855+00:00",
   "threshold": 60.0,
-  "total": 6,
+  "total": 10,
   "candidates": [
     {
       "promo_id": "jetblue_upto50offflights",
@@ -20,7 +20,7 @@
       "estimated_savings": 105.0,
       "end_date": null,
       "website_domain": "jetblue.com",
-      "source_url": "https://www.jetblue.com/sale"
+      "source_url": null
     },
     {
       "promo_id": "fashionnova_6080dedescuentoenrebajas",
@@ -39,7 +39,64 @@
       "estimated_savings": 52.0,
       "end_date": null,
       "website_domain": "fashionnova.com",
-      "source_url": "https://www.fashionnova.com/collections/sale"
+      "source_url": null
+    },
+    {
+      "promo_id": "princesspolly_80offsale",
+      "brand": "Princess Polly",
+      "category": "fashion",
+      "title": "80% Off Sale",
+      "notify_score": 75.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Princess Polly",
+      "notification_body": "80% Off Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 80%",
+      "estimated_savings": 52.0,
+      "end_date": null,
+      "website_domain": "us.princesspolly.com",
+      "source_url": "https://us.princesspolly.com/collections/sale"
+    },
+    {
+      "promo_id": "windsor_womenssaleclothingupto80off",
+      "brand": "Windsor",
+      "category": "fashion",
+      "title": "Women's Sale Clothing | Up to 80% Off",
+      "notify_score": 75.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Windsor",
+      "notification_body": "Women's Sale Clothing | Up to 80% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 80%",
+      "estimated_savings": 52.0,
+      "end_date": null,
+      "website_domain": "windsorstore.com",
+      "source_url": "https://www.windsorstore.com/collections/sale"
+    },
+    {
+      "promo_id": "windsor_newinsale80off",
+      "brand": "Windsor",
+      "category": "fashion",
+      "title": "New In Sale: 80% Off",
+      "notify_score": 75.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Windsor",
+      "notification_body": "New In Sale: 80% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 80%",
+      "estimated_savings": 52.0,
+      "end_date": null,
+      "website_domain": "windsorstore.com",
+      "source_url": "https://www.windsorstore.com/collections/sale"
     },
     {
       "promo_id": "landsend_55offswimsale",
@@ -61,6 +118,25 @@
       "source_url": "https://www.landsend.com/shop/sale/S-xfh-xez-y5c-xec"
     },
     {
+      "promo_id": "pacsun_upto50offfreeshipping",
+      "brand": "PacSun",
+      "category": "fashion",
+      "title": "UP TO 50% OFF & FREE SHIPPING",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "PacSun",
+      "notification_body": "UP TO 50% OFF & FREE SHIPPING",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "pacsun.com",
+      "source_url": "https://www.pacsun.com/sale/"
+    },
+    {
       "promo_id": "shein_plussizeelegantjacquardwaistflaresleevedressautumn",
       "brand": "SHEIN",
       "category": "fashion",
@@ -77,7 +153,7 @@
       "estimated_savings": 43.55,
       "end_date": null,
       "website_domain": "us.shein.com",
-      "source_url": "https://us.shein.com/flash-sale.html"
+      "source_url": null
     },
     {
       "promo_id": "stuartweitzman_summersaleupto50off",
@@ -96,7 +172,7 @@
       "estimated_savings": 32.5,
       "end_date": null,
       "website_domain": "stuartweitzman.com",
-      "source_url": "https://eu.stuartweitzman.com/mx/en/"
+      "source_url": null
     },
     {
       "promo_id": "talbots_4thofjulycelebration",
