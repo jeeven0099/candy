@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-07T22:10:57Z",
-  "promotion_count": 450,
+  "generated_at": "2026-07-07T23:04:19Z",
+  "promotion_count": 452,
   "promotions": [
     {
       "brand": "Abercrombie & Fitch",
@@ -5433,7 +5433,7 @@
     },
     {
       "brand": "Burlington",
-      "category": "retail",
+      "category": null,
       "promotion_title": "GET 20% OFF YOUR 1ST PURCHASE WITH BURLINGTON CREDIT CARD",
       "short_summary": "Get a 20% discount on your first purchase when you open and use the Burlington Credit Card.",
       "promotion_type": "app_offer",
@@ -5493,7 +5493,6 @@
       "sender_email": null,
       "email_subject": null,
       "email_date": null,
-      "website_domain": "burlington.com",
       "og_image_url": "https://cdn.sanity.io/images/k5c6l842/production/efea89471c344f736be75d60d4c757cccc2c7fd0-1200x630.png",
       "source_url": "https://www.burlington.com/deals/",
       "status": "active",
@@ -5517,14 +5516,14 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "estimated_item_value": 45.0,
-      "estimated_savings": 9.0,
-      "value_reason": "20% off, brand/cat est. ($45) ≈ $9 savings | type=8 + savings=8 = 16",
+      "estimated_item_value": 30.0,
+      "estimated_savings": 6.0,
+      "value_reason": "20% off, brand/cat est. ($30) ≈ $6 savings | type=8 + savings=8 = 16",
       "global_quality_score": 35.0
     },
     {
       "brand": "Burlington",
-      "category": "retail",
+      "category": null,
       "promotion_title": "Rewards Program: Burlington",
       "short_summary": "Earn a reward of 5% back on every purchase made with the Burlington Credit Card.",
       "promotion_type": "reward",
@@ -5580,7 +5579,6 @@
       "sender_email": null,
       "email_subject": null,
       "email_date": null,
-      "website_domain": "burlington.com",
       "og_image_url": "https://cdn.sanity.io/images/k5c6l842/production/efea89471c344f736be75d60d4c757cccc2c7fd0-1200x630.png",
       "source_url": "https://www.burlington.com/deals/",
       "status": "probably_active",
@@ -5603,14 +5601,14 @@
         "effort_level": "low",
         "confidence": 0.85
       },
-      "estimated_item_value": 45.0,
+      "estimated_item_value": 30.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
       "global_quality_score": 19.0
     },
     {
       "brand": "Burlington",
-      "category": "retail",
+      "category": null,
       "promotion_title": "DIGITAL EXCLUSIVE OFFER: 20% OFF FIRST PURCHASE WITH BURLINGTON CREDIT CARD",
       "short_summary": "Get a 20% discount on your first purchase when you open and use the Burlington Credit Card.",
       "promotion_type": "app_offer",
@@ -5669,7 +5667,6 @@
       "sender_email": null,
       "email_subject": null,
       "email_date": null,
-      "website_domain": "burlington.com",
       "og_image_url": "https://cdn.sanity.io/images/k5c6l842/production/efea89471c344f736be75d60d4c757cccc2c7fd0-1200x630.png",
       "source_url": "https://www.burlington.com/deals/",
       "status": "active",
@@ -5693,9 +5690,9 @@
         "effort_level": "medium",
         "confidence": 0.8
       },
-      "estimated_item_value": 45.0,
-      "estimated_savings": 9.0,
-      "value_reason": "20% off, brand/cat est. ($45) ≈ $9 savings | type=8 + savings=8 = 16",
+      "estimated_item_value": 30.0,
+      "estimated_savings": 6.0,
+      "value_reason": "20% off, brand/cat est. ($30) ≈ $6 savings | type=8 + savings=8 = 16",
       "global_quality_score": 35.0
     },
     {
@@ -32747,6 +32744,115 @@
       "estimated_savings": 26.0,
       "value_reason": "40% off, brand/cat est. ($65) ≈ $26 savings | type=12 + savings=25 = 37",
       "global_quality_score": 61.0
+    },
+    {
+      "brand": "DUER",
+      "category": "retail",
+      "promotion_title": "Bring a Friend and Get Discounts",
+      "promotion_type": "deal",
+      "discount_type": "percentage_off",
+      "discount_value": "20% off",
+      "deal_scope": "in_store_only",
+      "status": "active",
+      "confidence_score": 0.95,
+      "redemption_method": "in_store",
+      "requires_membership": false,
+      "requires_app": false,
+      "purchase_required": true,
+      "valid_days": [
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "time_start": null,
+      "time_end": null,
+      "end_date": null,
+      "description": "Bringing a friend new to DUER gets them 20% off, and you'll get 25% off for your next purchase within 30 days.",
+      "source": "local_neighborhood",
+      "source_url": "https://shopduer.com/pages/san-francisco",
+      "website_domain": "shopduer.com",
+      "neighborhood": "Hayes Valley",
+      "city": "San Francisco",
+      "address": "567 Hayes St., San Francisco, CA 94102",
+      "lat": 37.7762,
+      "lon": -122.4232,
+      "checked_at": "2026-07-07T22:59:37Z",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_maps",
+        "button_label": "Find Nearest Store",
+        "primary_value": "DUER",
+        "primary_url": "https://shopduer.com/pages/san-francisco",
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Go to the nearest store.",
+          "Mention this promotion at checkout."
+        ],
+        "eliminates_steps": [
+          "Searching for the nearest location"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.7
+      },
+      "estimated_item_value": 45.0,
+      "estimated_savings": 9.0,
+      "value_reason": "20% off, brand/cat est. ($45) ≈ $9 savings | type=8 + savings=8 = 16",
+      "global_quality_score": 41.0
+    },
+    {
+      "brand": "Rivian",
+      "category": "retail",
+      "promotion_title": "1.99% APR Financing",
+      "promotion_type": "deal",
+      "discount_type": "other",
+      "discount_value": null,
+      "deal_scope": "in_store_only",
+      "status": "active",
+      "confidence_score": 0.95,
+      "redemption_method": "in_store",
+      "requires_membership": false,
+      "requires_app": false,
+      "purchase_required": true,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "end_date": "2026-07-31",
+      "description": "Available July 1-31, 2026 on the purchase of eligible new 2026 R1 Tri and Dual with Performance Upgrade and Large or Max Battery vehicles.",
+      "source": "local_neighborhood",
+      "source_url": "https://rivian.com",
+      "website_domain": "rivian.com",
+      "neighborhood": "Hayes Valley",
+      "city": "San Francisco",
+      "address": "340 Fell St, San Francisco, CA 94102",
+      "lat": 37.7762,
+      "lon": -122.4232,
+      "checked_at": "2026-07-07T23:03:16Z",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_maps",
+        "button_label": "Find Nearest Store",
+        "primary_value": "Rivian",
+        "primary_url": "https://rivian.com",
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Go to the nearest store.",
+          "Mention this promotion at checkout."
+        ],
+        "eliminates_steps": [
+          "Searching for the nearest location"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.7
+      },
+      "estimated_item_value": 45.0,
+      "estimated_savings": 5.0,
+      "value_reason": "unknown deal type, est. $5 savings | type=5 + savings=3 = 8",
+      "global_quality_score": 32.0
     }
   ]
 }
