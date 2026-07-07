@@ -292,10 +292,10 @@ class _FeedScreenState extends State<FeedScreen> {
               ),
               selectedColor: Colors.black87,
               backgroundColor: isPromoted
-                  ? Colors.deepPurple.withValues(alpha: 0.07)
+                  ? Colors.deepPurple.withValues(alpha: 0.05)
                   : Colors.grey.shade100,
               side: isPromoted && !selected
-                  ? BorderSide(color: Colors.deepPurple.withValues(alpha: 0.25))
+                  ? BorderSide(color: Colors.deepPurple.withValues(alpha: 0.15), width: 0.8)
                   : BorderSide.none,
               shape: const StadiumBorder(),
               showCheckmark: false,

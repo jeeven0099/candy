@@ -286,10 +286,10 @@ class _OnlineScreenState extends State<OnlineScreen> {
               ),
               selectedColor: Candy.raspberry,
               backgroundColor: isPromoted
-                  ? Candy.raspberry.withValues(alpha: 0.08)
+                  ? Candy.raspberry.withValues(alpha: 0.06)
                   : Colors.grey.shade100,
               side: isPromoted && !selected
-                  ? BorderSide(color: Candy.raspberry.withValues(alpha: 0.3))
+                  ? BorderSide(color: Candy.raspberry.withValues(alpha: 0.18), width: 0.8)
                   : BorderSide.none,
               shape: const StadiumBorder(),
               showCheckmark: false,
