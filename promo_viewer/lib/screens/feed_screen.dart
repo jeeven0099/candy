@@ -1,14 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import '../models/promotion.dart';
+import '../services/category_prefs_service.dart';
 import '../services/location_service.dart';
 import '../services/promotions_service.dart';
 import '../widgets/deal_card.dart';
 import 'deal_detail_screen.dart';
-
-const _categories = [
-  'All', 'Food', 'Coffee', 'Retail', 'Fashion', 'Beauty',
-  'Tech', 'Home', 'Travel', 'Automotive', 'Grocery',
-];
 
 const _categoryMap = {
   'Food':       ['food', 'fast_food', 'restaurant'],
@@ -42,6 +40,8 @@ class _FeedScreenState extends State<FeedScreen> {
   bool _activeOnly = true;
   _SortMode _sortMode = _SortMode.relevance;
   final _searchController = TextEditingController();
+  final _catSvc = CategoryPrefsService();
+  Timer? _searchDebounce;
 
   @override
   void initState() {
@@ -52,12 +52,12 @@ class _FeedScreenState extends State<FeedScreen> {
   @override
   void dispose() {
     _searchController.dispose();
+    _searchDebounce?.cancel();
     super.dispose();
   }
 
   Future<void> _loadData() async {
     final promos = await PromotionsService.load();
-    promos.sort((a, b) => b.confidenceScore.compareTo(a.confidenceScore));
     setState(() {
       _all = promos;
       _loading = false;
@@ -103,9 +103,7 @@ class _FeedScreenState extends State<FeedScreen> {
       if (p.confidenceScore < 0.75) return false;
       if (!p.isValidToday) return false;
       if (p.discountType == 'unknown') return false;
-      if (cats != null && !cats.contains(p.category.toLowerCase())) {
-        return false;
-      }
+      if (cats != null && !cats.contains(p.category.toLowerCase())) return false;
       if (q.isNotEmpty &&
           !p.brand.toLowerCase().contains(q) &&
           !p.title.toLowerCase().contains(q)) {
@@ -122,9 +120,52 @@ class _FeedScreenState extends State<FeedScreen> {
         final db = b.distanceKm ?? double.infinity;
         return da.compareTo(db);
       });
+    } else {
+      // Relevance + category affinity boost
+      result.sort((a, b) {
+        final sa = a.globalQualityScore + _catSvc.affinityBoost(a.category);
+        final sb = b.globalQualityScore + _catSvc.affinityBoost(b.category);
+        return sb.compareTo(sa);
+      });
     }
 
     setState(() => _filtered = result);
+  }
+
+  void _onQueryChanged(String v) {
+    _query = v;
+    _applyFilters();
+    _searchDebounce?.cancel();
+    if (v.trim().length >= 3) {
+      _searchDebounce = Timer(const Duration(milliseconds: 1200), () {
+        _inferAndRecordCategory(v.trim());
+      });
+    }
+  }
+
+  void _inferAndRecordCategory(String query) {
+    final keyword = _catSvc.resolveQueryToCategory(query);
+    if (keyword != null) {
+      _catSvc.recordCategoryInterest(keyword, weight: 2).then((_) {
+        if (mounted) setState(() {});
+      });
+      return;
+    }
+    // Infer from dominant category in current results
+    if (_filtered.isEmpty) return;
+    final counts = <String, int>{};
+    for (final p in _filtered.take(10)) {
+      counts[p.category] = (counts[p.category] ?? 0) + 1;
+    }
+    final top = counts.entries.reduce((a, b) => a.value > b.value ? a : b);
+    if (top.value / _filtered.take(10).length >= 0.5) {
+      final label = _catSvc.rawCategoryToLabel(top.key);
+      if (label != null) {
+        _catSvc.recordCategoryInterest(label, weight: 2).then((_) {
+          if (mounted) setState(() {});
+        });
+      }
+    }
   }
 
   @override
@@ -204,10 +245,7 @@ class _FeedScreenState extends State<FeedScreen> {
                   },
                 ),
             ],
-            onChanged: (v) {
-              _query = v;
-              _applyFilters();
-            },
+            onChanged: _onQueryChanged,
             elevation: const WidgetStatePropertyAll(0),
             backgroundColor: WidgetStatePropertyAll(Colors.grey.shade100),
             shape: WidgetStatePropertyAll(
@@ -223,15 +261,17 @@ class _FeedScreenState extends State<FeedScreen> {
   }
 
   Widget _buildCategoryChips() {
+    final categories = _catSvc.getOrderedCategories();
     return SizedBox(
       height: 44,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 12),
-        itemCount: _categories.length,
+        itemCount: categories.length,
         itemBuilder: (context, i) {
-          final cat = _categories[i];
+          final cat = categories[i];
           final selected = cat == _selectedCategory;
+          final isPromoted = cat != 'All' && _catSvc.isPromoted(cat);
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
             child: ChoiceChip(
@@ -244,11 +284,19 @@ class _FeedScreenState extends State<FeedScreen> {
               labelStyle: TextStyle(
                 fontSize: 13,
                 fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
-                color: selected ? Colors.white : Colors.black87,
+                color: selected
+                    ? Colors.white
+                    : isPromoted
+                        ? Colors.deepPurple
+                        : Colors.black87,
               ),
               selectedColor: Colors.black87,
-              backgroundColor: Colors.grey.shade100,
-              side: BorderSide.none,
+              backgroundColor: isPromoted
+                  ? Colors.deepPurple.withValues(alpha: 0.07)
+                  : Colors.grey.shade100,
+              side: isPromoted && !selected
+                  ? BorderSide(color: Colors.deepPurple.withValues(alpha: 0.25))
+                  : BorderSide.none,
               shape: const StadiumBorder(),
               showCheckmark: false,
             ),
@@ -299,18 +347,25 @@ class _FeedScreenState extends State<FeedScreen> {
           final promo = _filtered[i - 1];
           return DealCard(
             promo: promo,
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => DealDetailScreen(promo: promo),
-              ),
-            ),
+            onTap: () {
+              // Bump local category affinity on deal click
+              final label = _catSvc.rawCategoryToLabel(promo.category);
+              if (label != null) {
+                _catSvc.recordCategoryInterest(label, weight: 1);
+              }
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),
+              ).then((_) { if (mounted) setState(() {}); });
+            },
           );
         },
       ),
     );
   }
 }
+
+// ---------------------------------------------------------------------------
 
 class _SortButton extends StatelessWidget {
   final String label;
@@ -378,11 +433,8 @@ class _NearMeButton extends StatelessWidget {
                 ),
               )
             else
-              Icon(
-                Icons.near_me,
-                size: 13,
-                color: active ? Colors.white : Colors.black54,
-              ),
+              Icon(Icons.near_me, size: 13,
+                  color: active ? Colors.white : Colors.black54),
             const SizedBox(width: 5),
             Text(
               'Near me',

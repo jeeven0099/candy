@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import '../models/promotion.dart';
+import '../services/category_prefs_service.dart';
 import '../services/interaction_service.dart';
 import '../theme/candy_colors.dart';
 import '../utils/deal_grouper.dart';
@@ -8,11 +11,6 @@ import '../utils/format_utils.dart';
 import '../widgets/deal_card.dart';
 import '../widgets/grocery_group_card.dart';
 import 'deal_detail_screen.dart';
-
-const _categories = [
-  'All', 'Food', 'Coffee', 'Retail', 'Fashion', 'Beauty',
-  'Tech', 'Home', 'Travel', 'Automotive', 'Grocery',
-];
 
 const _categoryMap = {
   'Food':       ['food', 'fast_food', 'restaurant'],
@@ -51,11 +49,14 @@ class _OnlineScreenState extends State<OnlineScreen> {
   bool _showAll = false;
   final _searchController = TextEditingController();
   final _svc = InteractionService();
+  final _catSvc = CategoryPrefsService();
   final _markedSeen = <String>{};
+  Timer? _searchDebounce;
 
   @override
   void dispose() {
     _searchController.dispose();
+    _searchDebounce?.cancel();
     super.dispose();
   }
 
@@ -80,6 +81,9 @@ class _OnlineScreenState extends State<OnlineScreen> {
     return p.rankScore(isMember: _hasMembership(p)) >= 65;
   }
 
+  double _boostedScore(Promotion p) =>
+      p.rankScore(isMember: _hasMembership(p)) + _catSvc.affinityBoost(p.category);
+
   List<Promotion> get _filtered {
     final cats = _selectedCategory == 'All' ? null : _categoryMap[_selectedCategory];
     final q = _query.toLowerCase();
@@ -100,11 +104,9 @@ class _OnlineScreenState extends State<OnlineScreen> {
       }
       return true;
     }).toList()
-      ..sort((a, b) => b.rankScore(isMember: _hasMembership(b))
-            .compareTo(a.rankScore(isMember: _hasMembership(a))));
+      ..sort((a, b) => _boostedScore(b).compareTo(_boostedScore(a)));
   }
 
-  // Search bypasses cap. Browsing shows curated top 10 with personalized scoring.
   List<Promotion> _toDisplay(List<Promotion> base) {
     if (_query.isNotEmpty || _showAll) return base;
     final quality = base.where(_isQualityDeal).toList();
@@ -119,6 +121,46 @@ class _OnlineScreenState extends State<OnlineScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) _svc.recordSeen(newIds);
     });
+  }
+
+  void _onQueryChanged(String v) {
+    setState(() {
+      _query = v;
+      _showAll = false;
+    });
+    _searchDebounce?.cancel();
+    if (v.trim().length >= 3) {
+      _searchDebounce = Timer(const Duration(milliseconds: 1200), () {
+        _inferAndRecordCategory(v.trim());
+      });
+    }
+  }
+
+  void _inferAndRecordCategory(String query) {
+    // Keyword match first — works even before results are visible
+    final keyword = _catSvc.resolveQueryToCategory(query);
+    if (keyword != null) {
+      _catSvc.recordCategoryInterest(keyword, weight: 2).then((_) {
+        if (mounted) setState(() {});
+      });
+      return;
+    }
+    // Fall back to dominant category of current results
+    final results = _filtered;
+    if (results.isEmpty) return;
+    final counts = <String, int>{};
+    for (final p in results.take(10)) {
+      counts[p.category] = (counts[p.category] ?? 0) + 1;
+    }
+    final top = counts.entries.reduce((a, b) => a.value > b.value ? a : b);
+    if (top.value / results.take(10).length >= 0.5) {
+      final label = _catSvc.rawCategoryToLabel(top.key);
+      if (label != null) {
+        _catSvc.recordCategoryInterest(label, weight: 2).then((_) {
+          if (mounted) setState(() {});
+        });
+      }
+    }
   }
 
   @override
@@ -199,7 +241,7 @@ class _OnlineScreenState extends State<OnlineScreen> {
                   },
                 ),
             ],
-            onChanged: (v) => setState(() => _query = v),
+            onChanged: _onQueryChanged,
             elevation: const WidgetStatePropertyAll(0),
             backgroundColor: const WidgetStatePropertyAll(Colors.white),
             shape: WidgetStatePropertyAll(
@@ -213,15 +255,17 @@ class _OnlineScreenState extends State<OnlineScreen> {
   }
 
   Widget _buildCategoryChips() {
+    final categories = _catSvc.getOrderedCategories();
     return SizedBox(
       height: 44,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 12),
-        itemCount: _categories.length,
+        itemCount: categories.length,
         itemBuilder: (context, i) {
-          final cat = _categories[i];
+          final cat = categories[i];
           final selected = cat == _selectedCategory;
+          final isPromoted = cat != 'All' && _catSvc.isPromoted(cat);
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
             child: ChoiceChip(
@@ -234,11 +278,19 @@ class _OnlineScreenState extends State<OnlineScreen> {
               labelStyle: TextStyle(
                 fontSize: 13,
                 fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
-                color: selected ? Colors.white : Colors.black87,
+                color: selected
+                    ? Colors.white
+                    : isPromoted
+                        ? Candy.raspberry
+                        : Colors.black87,
               ),
               selectedColor: Candy.raspberry,
-              backgroundColor: Colors.grey.shade100,
-              side: BorderSide.none,
+              backgroundColor: isPromoted
+                  ? Candy.raspberry.withValues(alpha: 0.08)
+                  : Colors.grey.shade100,
+              side: isPromoted && !selected
+                  ? BorderSide(color: Candy.raspberry.withValues(alpha: 0.3))
+                  : BorderSide.none,
               shape: const StadiumBorder(),
               showCheckmark: false,
             ),
@@ -308,6 +360,11 @@ class _OnlineScreenState extends State<OnlineScreen> {
             memberships: widget.memberships,
             onTap: () {
               _svc.recordClick(promo.id, brand: promo.brand, category: promo.category);
+              // Bump local category affinity on deal click
+              final label = _catSvc.rawCategoryToLabel(promo.category);
+              if (label != null) {
+                _catSvc.recordCategoryInterest(label, weight: 1);
+              }
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),
