@@ -86,6 +86,12 @@ def main() -> None:
     parser.add_argument("--neighborhood-limit", type=int, default=30,
                         help="Max local businesses to check for deals per run (default: 30)")
     parser.add_argument("--force", action="store_true", help="Re-parse all brands even if content is unchanged")
+    parser.add_argument("--from-step", type=int, default=1, metavar="N",
+                        help="Resume from step N, skipping steps 1..N-1 (use after a crash). Default: 1")
+    parser.add_argument("--gc-interval", type=int, default=10,
+                        help="gc.collect() every N LLM-processed brands in step 4 (0 = off). Default: 10")
+    parser.add_argument("--ollama-restart-interval", type=int, default=25,
+                        help="Unload Ollama model every N brands to free VRAM (0 = off). Default: 25")
     args = parser.parse_args()
 
     LOGS_DIR.mkdir(parents=True, exist_ok=True)
@@ -104,7 +110,7 @@ def main() -> None:
         log_print(f"Log: {log_path}", log_fh)
 
         # Step 1: Scrape
-        if not args.skip_scrape:
+        if args.from_step <= 1 and not args.skip_scrape:
             scrape_cmd = [str(SRC / "run_scraper.py"), "--keep-raw", "1"]
             if args.brand:
                 scrape_cmd += ["--brand", args.brand]
@@ -119,37 +125,42 @@ def main() -> None:
                 sys.exit(rc)
 
         # Step 2: Inspect
-        rc = run([str(SRC / "inspect_raw_data.py")], "Step 2/12 -Inspecting raw text files", log_fh)
-        if rc != 0:
-            log_print(f"\n[ERROR] inspect_raw_data exited with code {rc}. Aborting.", log_fh)
-            sys.exit(rc)
+        if args.from_step <= 2:
+            rc = run([str(SRC / "inspect_raw_data.py")], "Step 2/12 -Inspecting raw text files", log_fh)
+            if rc != 0:
+                log_print(f"\n[ERROR] inspect_raw_data exited with code {rc}. Aborting.", log_fh)
+                sys.exit(rc)
 
         # Step 3: List candidates
-        rc = run([str(SRC / "list_text_candidates.py")], "Step 3/12 -Building candidate list", log_fh)
-        if rc != 0:
-            log_print(f"\n[ERROR] list_text_candidates exited with code {rc}. Aborting.", log_fh)
-            sys.exit(rc)
-
-        # Step 4: Parse (skipped if Ollama is not running)
-        if not check_ollama(args.ollama_host):
-            log_print(f"\n[WARN] Ollama not reachable at {args.ollama_host} -skipping Step 4 (parse).", log_fh)
-            log_print(f"       Start Ollama and re-run with --skip-scrape to parse without re-scraping.", log_fh)
-        else:
-            parse_cmd = [
-                str(SRC / "parse_candidates.py"),
-                "--model", "ollama",
-                "--limit", str(args.parse_limit),
-                "--ollama-model", args.ollama_model,
-                "--ollama-host", args.ollama_host,
-                "--ollama-timeout", str(args.ollama_timeout),
-            ]
-            if args.force:
-                parse_cmd.append("--force")
-            if args.brand:
-                parse_cmd += ["--brand", args.brand]
-            rc = run(parse_cmd, "Step 4/12 -Extracting promotions", log_fh)
+        if args.from_step <= 3:
+            rc = run([str(SRC / "list_text_candidates.py")], "Step 3/12 -Building candidate list", log_fh)
             if rc != 0:
-                log_print(f"\n[WARN] parse_candidates exited with code {rc} (partial extraction). Continuing with whatever was extracted.", log_fh)
+                log_print(f"\n[ERROR] list_text_candidates exited with code {rc}. Aborting.", log_fh)
+                sys.exit(rc)
+
+        # Step 4: Parse (skipped if Ollama is not running or --from-step > 4)
+        if args.from_step <= 4:
+            if not check_ollama(args.ollama_host):
+                log_print(f"\n[WARN] Ollama not reachable at {args.ollama_host} -skipping Step 4 (parse).", log_fh)
+                log_print(f"       Start Ollama and re-run with --skip-scrape to parse without re-scraping.", log_fh)
+            else:
+                parse_cmd = [
+                    str(SRC / "parse_candidates.py"),
+                    "--model", "ollama",
+                    "--limit", str(args.parse_limit),
+                    "--ollama-model", args.ollama_model,
+                    "--ollama-host", args.ollama_host,
+                    "--ollama-timeout", str(args.ollama_timeout),
+                    "--gc-interval", str(args.gc_interval),
+                    "--ollama-restart-interval", str(args.ollama_restart_interval),
+                ]
+                if args.force:
+                    parse_cmd.append("--force")
+                if args.brand:
+                    parse_cmd += ["--brand", args.brand]
+                rc = run(parse_cmd, "Step 4/12 -Extracting promotions", log_fh)
+                if rc != 0:
+                    log_print(f"\n[WARN] parse_candidates exited with code {rc} (partial extraction). Continuing with whatever was extracted.", log_fh)
 
         # Step 5: Normalize
         normalize_cmd = [str(SRC / "normalize_promotions.py")]

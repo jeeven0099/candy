@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import gc
 import json
 import time
 from pathlib import Path
@@ -111,6 +112,19 @@ def select_candidates(rows: List[Dict[str, str]], limit: int) -> List[Dict[str, 
     return usable_rows[:limit]
 
 
+def _unload_ollama_model(host: str, model: str) -> None:
+    """POST keep_alive=0 to unload the model from VRAM between batches."""
+    try:
+        import requests as _req
+        _req.post(
+            f"{host}/api/generate",
+            json={"model": model, "keep_alive": 0},
+            timeout=30,
+        )
+    except Exception:
+        pass
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Parse candidate local text files into structured promotion JSON."
@@ -160,6 +174,18 @@ def main() -> None:
         default=None,
         help="Only parse candidates whose brand name contains this substring (case-insensitive).",
     )
+    parser.add_argument(
+        "--gc-interval",
+        type=int,
+        default=10,
+        help="Call gc.collect() every N LLM-processed brands (0 = disabled). Default: 10",
+    )
+    parser.add_argument(
+        "--ollama-restart-interval",
+        type=int,
+        default=25,
+        help="Unload Ollama model every N brands to free VRAM (0 = disabled). Default: 25",
+    )
 
     args = parser.parse_args()
 
@@ -176,6 +202,7 @@ def main() -> None:
     parsed_count = 0
     skipped_count = 0
     failed_count = 0
+    llm_calls = 0
 
     for row in candidates:
         brand = row_brand(row)
@@ -203,6 +230,16 @@ def main() -> None:
                         continue
                 except Exception:
                     pass  # unreadable existing file — fall through and re-parse
+
+        # Proactive memory relief before each LLM call batch
+        llm_calls += 1
+        if args.gc_interval and llm_calls % args.gc_interval == 0:
+            gc.collect()
+            print(f"[GC] gc.collect() before brand #{llm_calls}")
+        if args.ollama_restart_interval and llm_calls % args.ollama_restart_interval == 0:
+            print(f"[OLLAMA] Unloading model before brand #{llm_calls} (memory relief)...")
+            _unload_ollama_model(args.ollama_host, args.ollama_model)
+            time.sleep(3)
 
         try:
             promotions = parse_text_file(
