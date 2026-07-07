@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-07T23:04:20.214678+00:00",
+  "generated_at": "2026-07-07T23:47:59.439879+00:00",
   "threshold": 60.0,
-  "total": 10,
+  "total": 7,
   "candidates": [
     {
       "promo_id": "jetblue_upto50offflights",
@@ -21,44 +21,6 @@
       "end_date": null,
       "website_domain": "jetblue.com",
       "source_url": null
-    },
-    {
-      "promo_id": "fashionnova_6080dedescuentoenrebajas",
-      "brand": "Fashion Nova",
-      "category": "fashion",
-      "title": "60-80% de Descuento en Rebajas!",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fashion Nova",
-      "notification_body": "60-80% de Descuento en Rebajas!",
-      "discount_type": "percentage_off",
-      "discount_value": "60-80%",
-      "estimated_savings": 52.0,
-      "end_date": null,
-      "website_domain": "fashionnova.com",
-      "source_url": null
-    },
-    {
-      "promo_id": "princesspolly_80offsale",
-      "brand": "Princess Polly",
-      "category": "fashion",
-      "title": "80% Off Sale",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Princess Polly",
-      "notification_body": "80% Off Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 80%",
-      "estimated_savings": 52.0,
-      "end_date": null,
-      "website_domain": "us.princesspolly.com",
-      "source_url": "https://us.princesspolly.com/collections/sale"
     },
     {
       "promo_id": "windsor_womenssaleclothingupto80off",
@@ -135,25 +97,6 @@
       "end_date": null,
       "website_domain": "pacsun.com",
       "source_url": "https://www.pacsun.com/sale/"
-    },
-    {
-      "promo_id": "shein_plussizeelegantjacquardwaistflaresleevedressautumn",
-      "brand": "SHEIN",
-      "category": "fashion",
-      "title": "Plus Size Elegant Jacquard Waist Flare Sleeve Dress, Autumn",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "SHEIN",
-      "notification_body": "Plus Size Elegant Jacquard Waist Flare Sleeve Dress, Autumn",
-      "discount_type": "percentage_off",
-      "discount_value": "67%",
-      "estimated_savings": 43.55,
-      "end_date": null,
-      "website_domain": "us.shein.com",
-      "source_url": null
     },
     {
       "promo_id": "stuartweitzman_summersaleupto50off",
