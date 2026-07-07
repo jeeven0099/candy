@@ -454,24 +454,12 @@
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
-  {
-    "brand": "Saks OFF 5TH",
-    "category": "retail",
-    "url": "https://www.saksoff5th.com/c/sale",
-    "source_type": "sales_page",
-    "allowed_to_fetch": true
-  },
-  {
-    "brand": "Neiman Marcus",
-    "category": "retail",
-    "url": "https://www.neimanmarcus.com/c/sale-cat46520739",
-    "source_type": "sales_page",
-    "allowed_to_fetch": true
-  },
+
+  
   {
     "brand": "DSW",
     "category": "fashion",
-    "url": "https://www.dsw.com/en/us/category/sale/N-1z141jr",
+    "url": "https://www.dsw.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": false
   },
@@ -513,7 +501,7 @@
   {
     "brand": "Skechers",
     "category": "fashion",
-    "url": "https://www.skechers.com/sale/",
+    "url": "https://www.skechers.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -576,35 +564,35 @@
   {
     "brand": "REI",
     "category": "retail",
-    "url": "https://www.rei.com/h/deals",
+    "url": "https://www.rei.com/",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Lululemon",
     "category": "fashion",
-    "url": "https://shop.lululemon.com/c/we-made-too-much/n18mhd",
+    "url": "https://shop.lululemon.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": false
   },
   {
     "brand": "Eddie Bauer",
     "category": "fashion",
-    "url": "https://www.eddiebauer.com/c/sale",
+    "url": "https://www.eddiebauer.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Lands' End",
     "category": "fashion",
-    "url": "https://www.landsend.com/shop/sale/S-xfh-xez-y5c-xec",
+    "url": "https://www.landsend.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "L.L.Bean",
     "category": "fashion",
-    "url": "https://www.llbean.com/llb/shop/32?page=sale",
+    "url": "https://www.llbean.com/?nav=pdp-32",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -618,7 +606,7 @@
   {
     "brand": "T.J.Maxx",
     "category": "retail",
-    "url": "https://tjmaxx.tjx.com/store/shop/clearance/_/N-2409280082",
+    "url": "https://tjmaxx.tjx.com/store/index.jsp?cid=Marshalls:ReferringDomains:1:Global_Header_Banner_Desktop:0720",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -629,17 +617,11 @@
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
-  {
-    "brand": "Burlington",
-    "category": "retail",
-    "url": "https://www.burlington.com/deals/",
-    "source_type": "deals_page",
-    "allowed_to_fetch": true
-  },
+
   {
     "brand": "Fashion Nova",
     "category": "fashion",
-    "url": "https://www.fashionnova.com/collections/sale",
+    "url": "https://www.fashionnova.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": true,
     "online_only": true
@@ -669,7 +651,7 @@
   {
     "brand": "Nasty Gal",
     "category": "fashion",
-    "url": "https://www.nastygal.com/categories/womens-sale",
+    "url": "https://www.nastygal.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -680,45 +662,39 @@
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
-  {
-    "brand": "Francesca's",
-    "category": "fashion",
-    "url": "https://francescas.com/category/sale",
-    "source_type": "sales_page",
-    "allowed_to_fetch": true
-  },
+  
   {
     "brand": "Windsor",
     "category": "fashion",
-    "url": "https://www.windsorstore.com/collections/sale",
+    "url": "https://www.windsorstore.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Lee",
     "category": "fashion",
-    "url": "https://www.lee.com/shop/sale",
+    "url": "https://www.lee.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Wrangler",
     "category": "fashion",
-    "url": "https://www.wrangler.com/shop/sale",
+    "url": "https://www.wrangler.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Lucky Brand",
     "category": "fashion",
-    "url": "https://www.luckybrand.com/clearance",
+    "url": "https://www.luckybrand.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Tillys",
     "category": "fashion",
-    "url": "https://www.tillys.com/sale/",
+    "url": "https://www.tillys.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": false
   },
@@ -782,14 +758,14 @@
   {
     "brand": "Rainbow Shops",
     "category": "fashion",
-    "url": "https://www.rainbowshops.com/pages/r-sale",
+    "url": "https://www.rainbowshops.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "ModCloth",
     "category": "fashion",
-    "url": "https://modcloth.com/collections/sale",
+    "url": "https://modcloth.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -877,13 +853,7 @@
     "source_type": "rewards_page",
     "allowed_to_fetch": true
   },
-  {
-    "brand": "Rite Aid",
-    "category": "pharmacy",
-    "url": "https://www.riteaid.com/pharmacy/rxrewards",
-    "source_type": "rewards_page",
-    "allowed_to_fetch": true
-  },
+
   {
     "brand": "H-E-B",
     "category": "grocery",
@@ -957,7 +927,7 @@
   {
     "brand": "Petco",
     "category": "pets",
-    "url": "https://www.petco.com/shop/en/petcostore/c/vital-care",
+    "url": "https://www.petco.com/",
     "source_type": "rewards_page",
     "allowed_to_fetch": false
   },
@@ -985,17 +955,11 @@
   {
     "brand": "Delta Air Lines",
     "category": "travel",
-    "url": "https://www.delta.com/us/en/skymiles/overview",
+    "url": "https://www.delta.com/",
     "source_type": "rewards_page",
     "allowed_to_fetch": true
   },
-  {
-    "brand": "United Airlines",
-    "category": "travel",
-    "url": "https://www.united.com/en/us/fly/mileageplus/awards/travel.html",
-    "source_type": "rewards_page",
-    "allowed_to_fetch": false
-  },
+
   {
     "brand": "American Airlines",
     "category": "travel",
@@ -1017,13 +981,7 @@
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
-  {
-    "brand": "Spirit Airlines",
-    "category": "travel",
-    "url": "https://www.spirit.com/en/flight-deal-finder",
-    "source_type": "deals_page",
-    "allowed_to_fetch": true
-  },
+  
   {
     "brand": "Frontier Airlines",
     "category": "travel",
@@ -1045,31 +1003,25 @@
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
-  {
-    "brand": "IHG Hotels & Resorts",
-    "category": "travel",
-    "url": "https://www.ihg.com/content/us/en/deals",
-    "source_type": "deals_page",
-    "allowed_to_fetch": false
-  },
+  
   {
     "brand": "Hyatt",
     "category": "travel",
-    "url": "https://www.hyatt.com/promotions/en-US/",
+    "url": "https://world.hyatt.com/content/gp/en/offers.html",
     "source_type": "offers_page",
     "allowed_to_fetch": false
   },
   {
     "brand": "Wyndham Hotels",
     "category": "travel",
-    "url": "https://www.wyndhamhotels.com/hotel-deals",
+    "url": "https://www.wyndhamhotels.com/",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Best Western",
     "category": "travel",
-    "url": "https://www.bestwestern.com/en_US/special-offers.html",
+    "url": "https://www.bestwestern.com/en_US/offers/hotel-discounts.html",
     "source_type": "offers_page",
     "allowed_to_fetch": false
   },
