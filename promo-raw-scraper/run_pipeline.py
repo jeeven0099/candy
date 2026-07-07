@@ -89,7 +89,7 @@ def main() -> None:
     parser.add_argument("--from-step", type=int, default=1, metavar="N",
                         help="Resume from step N, skipping steps 1..N-1 (use after a crash). Default: 1")
     parser.add_argument("--failed-only", action="store_true",
-                        help="In step 4, skip brands that already have a structured output (re-parse only failed/missing)")
+                        help="In step 4, skip brands already attempted (success or failure); only process brands with no output at all")
     parser.add_argument("--gc-interval", type=int, default=10,
                         help="gc.collect() every N LLM-processed brands in step 4 (0 = off). Default: 10")
     parser.add_argument("--ollama-restart-interval", type=int, default=25,
