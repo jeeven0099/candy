@@ -1254,18 +1254,11 @@
     "allowed_to_fetch": false,
     "online_only": true
   },
-  {
-    "brand": "HelloFresh",
-    "category": "food",
-    "url": "https://www.hellofresh.com/plans",
-    "source_type": "offers_page",
-    "allowed_to_fetch": true,
-    "online_only": true
-  },
+ 
   {
     "brand": "Factor",
     "category": "food",
-    "url": "https://www.factormeals.com/plans",
+    "url": "https://www.factor75.com/",
     "source_type": "offers_page",
     "allowed_to_fetch": true,
     "online_only": true
@@ -1273,7 +1266,7 @@
   {
     "brand": "Blue Apron",
     "category": "food",
-    "url": "https://www.blueapron.com/pricing",
+    "url": "https://www.blueapron.com/",
     "source_type": "offers_page",
     "allowed_to_fetch": false,
     "online_only": true,
@@ -1282,7 +1275,7 @@
   {
     "brand": "Green Chef",
     "category": "food",
-    "url": "https://www.greenchef.com/plans",
+    "url": "https://www.greenchef.com/",
     "source_type": "offers_page",
     "allowed_to_fetch": true,
     "online_only": true
