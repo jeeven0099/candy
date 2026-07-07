@@ -161,7 +161,9 @@ class _HeroCard extends StatelessWidget {
           ],
           const SizedBox(height: 10),
           _HeroEligSummary(promo: promo),
-          if (promo.verifyUrl != null) ...[
+          // Show Shop Now only when there is no sticky FastRedeemButton at the bottom
+          if (promo.verifyUrl != null &&
+              (promo.fastRedemption == null || !promo.fastRedemption!.eligible)) ...[
             const SizedBox(height: 16),
             _ShopNowButton(url: promo.verifyUrl!),
           ],
