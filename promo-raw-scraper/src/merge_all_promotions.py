@@ -102,26 +102,18 @@ def _is_english(promo: dict) -> bool:
     if _NON_ENGLISH_RE.search(combined):
         return False
 
-    if not _LANGDETECT_AVAILABLE:
+    if not _LANGDETECT_AVAILABLE or len(combined) < 15:
         return True
 
     try:
-        # Check title alone first with a lower bar — catches "60-80% de Descuento en
-        # Rebajas!" even when the LLM wrote an English summary that dilutes the signal.
-        if len(title) >= 10:
-            title_langs = _detect_langs(title)
-            top = title_langs[0]
-            if top.lang != "en" and top.prob >= 0.85:
-                return False
-
-        # Full combined check for anything that slips through.
-        if len(combined) >= 15:
-            langs = _detect_langs(combined)
-            top = langs[0]
-            # Only reject if confidently non-English. Short ambiguous strings
-            # (e.g. "40% off") often score 0.5-0.7 for random languages — keep those.
-            if top.lang != "en" and top.prob >= 0.90:
-                return False
+        # Repeat the title so a Spanish title can't be rescued by an English LLM summary.
+        # e.g. "60-80% de Descuento en Rebajas!" × 2 outweighs "Up to 80% off in sale items."
+        # Lowercase everything — ALL-CAPS English promo text looks like German to langdetect.
+        text = f"{title} {title} {desc}".lower().strip()
+        langs = _detect_langs(text)
+        top = langs[0]
+        if top.lang != "en" and top.prob >= 0.90:
+            return False
     except Exception:
         pass  # uncertain — keep rather than silently drop
 
