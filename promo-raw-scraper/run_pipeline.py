@@ -9,13 +9,11 @@ Steps:
   5.  normalize_promotions.py         -clean + deduplicate -> normalized_outputs/{brand}.json
   6.  generate_review_csv.py          -human-readable review -> logs/promotion_review.csv
   7.  generate_merged_json.py         -single merged JSON -> merged_promotions.json
-  8.  scrape_neighborhood_directory.py-scrape local business directories -> local_business_candidates.json
-  9.  scrape_local_deal_pages.py      -check local business sites for deals -> local_promotions.json
- 10.  merge_all_promotions.py         -web + email + local -> all_promotions.json
- 11.  generate_fast_redemption.py     -add fast_redemption to all_promotions.json
- 12.  generate_scores.py              -add rank_base_score to all_promotions.json
- 13.  generate_notifications.py       -notification_candidates.json -> Flutter assets
- 14.  copy to promo_viewer/assets/all_promotions.json
+  8.  merge_all_promotions.py         -web + email -> all_promotions.json
+  9.  generate_fast_redemption.py     -add fast_redemption to all_promotions.json
+ 10.  generate_scores.py              -add rank_base_score to all_promotions.json
+ 11.  generate_notifications.py       -notification_candidates.json -> Flutter assets
+ 12.  copy to promo_viewer/assets/all_promotions.json
 
 All output is written to logs/pipeline_<timestamp>.log in addition to the terminal.
 """
@@ -81,10 +79,6 @@ def main() -> None:
     parser.add_argument("--ollama-host", type=str, default="http://localhost:11434")
     parser.add_argument("--ollama-timeout", type=int, default=3600)
     parser.add_argument("--skip-scrape", action="store_true", help="Skip step 1 (use existing raw text)")
-    parser.add_argument("--skip-neighborhood", action="store_true",
-                        help="Skip steps 8-9 (neighborhood directory + local deal scraping)")
-    parser.add_argument("--neighborhood-limit", type=int, default=30,
-                        help="Max local businesses to check for deals per run (default: 30)")
     parser.add_argument("--force", action="store_true", help="Re-parse all brands even if content is unchanged")
     parser.add_argument("--from-step", type=int, default=1, metavar="N",
                         help="Resume from step N, skipping steps 1..N-1 (use after a crash). Default: 1")
@@ -121,21 +115,21 @@ def main() -> None:
             if args.scrape_limit:
                 scrape_cmd += ["--limit", str(args.scrape_limit)]
 
-            rc = run(scrape_cmd, "Step 1/12 -Scraping brand pages", log_fh)
+            rc = run(scrape_cmd, "Step 1/13 -Scraping brand pages", log_fh)
             if rc != 0:
                 log_print(f"\n[ERROR] Scraper exited with code {rc}. Aborting.", log_fh)
                 sys.exit(rc)
 
         # Step 2: Inspect
         if args.from_step <= 2:
-            rc = run([str(SRC / "inspect_raw_data.py")], "Step 2/12 -Inspecting raw text files", log_fh)
+            rc = run([str(SRC / "inspect_raw_data.py")], "Step 2/13 -Inspecting raw text files", log_fh)
             if rc != 0:
                 log_print(f"\n[ERROR] inspect_raw_data exited with code {rc}. Aborting.", log_fh)
                 sys.exit(rc)
 
         # Step 3: List candidates
         if args.from_step <= 3:
-            rc = run([str(SRC / "list_text_candidates.py")], "Step 3/12 -Building candidate list", log_fh)
+            rc = run([str(SRC / "list_text_candidates.py")], "Step 3/13 -Building candidate list", log_fh)
             if rc != 0:
                 log_print(f"\n[ERROR] list_text_candidates exited with code {rc}. Aborting.", log_fh)
                 sys.exit(rc)
@@ -162,7 +156,7 @@ def main() -> None:
                     parse_cmd.append("--failed-only")
                 if args.brand:
                     parse_cmd += ["--brand", args.brand]
-                rc = run(parse_cmd, "Step 4/12 -Extracting promotions", log_fh)
+                rc = run(parse_cmd, "Step 4/13 -Extracting promotions", log_fh)
                 if rc != 0:
                     log_print(f"\n[WARN] parse_candidates exited with code {rc} (partial extraction). Continuing with whatever was extracted.", log_fh)
 
@@ -170,7 +164,7 @@ def main() -> None:
         normalize_cmd = [str(SRC / "normalize_promotions.py")]
         if args.brand:
             normalize_cmd += ["--brand", args.brand]
-        rc = run(normalize_cmd, "Step 5/12 -Normalizing promotions", log_fh)
+        rc = run(normalize_cmd, "Step 5/13 -Normalizing promotions", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] normalize_promotions exited with code {rc}.", log_fh)
             sys.exit(rc)
@@ -179,82 +173,49 @@ def main() -> None:
         review_cmd = [str(SRC / "generate_review_csv.py")]
         if args.brand:
             review_cmd += ["--brand", args.brand]
-        rc = run(review_cmd, "Step 6/12 -Generating promotion review CSV", log_fh)
+        rc = run(review_cmd, "Step 6/13 -Generating promotion review CSV", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] generate_review_csv exited with code {rc}.", log_fh)
             sys.exit(rc)
 
         # Step 7: Merged JSON
-        rc = run([str(SRC / "generate_merged_json.py")], "Step 7/14 -Generating merged promotions JSON", log_fh)
+        rc = run([str(SRC / "generate_merged_json.py")], "Step 7/13 -Generating merged promotions JSON", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] generate_merged_json exited with code {rc}.", log_fh)
             sys.exit(rc)
 
-        # Steps 8-9: Neighborhood local deal pipeline (optional, skippable)
-        if args.skip_neighborhood:
-            log_print("\n[SKIP] Neighborhood pipeline skipped (--skip-neighborhood)", log_fh)
-        elif not check_ollama(args.ollama_host):
-            log_print(f"\n[WARN] Ollama not reachable - skipping neighborhood pipeline (steps 8-9)", log_fh)
-        else:
-            rc = run(
-                [
-                    str(SRC / "scrape_neighborhood_directory.py"),
-                    "--ollama-host", args.ollama_host,
-                    "--ollama-model", args.ollama_model,
-                    "--ollama-timeout", str(args.ollama_timeout),
-                ],
-                "Step 8/14 -Scraping neighborhood business directories",
-                log_fh,
-            )
-            if rc != 0:
-                log_print(f"\n[WARN] scrape_neighborhood_directory exited with code {rc} - continuing.", log_fh)
-
-            rc = run(
-                [
-                    str(SRC / "scrape_local_deal_pages.py"),
-                    "--ollama-host", args.ollama_host,
-                    "--ollama-model", args.ollama_model,
-                    "--ollama-timeout", str(args.ollama_timeout),
-                    "--limit", str(args.neighborhood_limit),
-                ],
-                "Step 9/14 -Checking local business pages for deals",
-                log_fh,
-            )
-            if rc != 0:
-                log_print(f"\n[WARN] scrape_local_deal_pages exited with code {rc} - continuing.", log_fh)
-
-        # Step 10: Merge web + email + local into all_promotions.json
-        rc = run([str(SRC / "merge_all_promotions.py")], "Step 10/14 -Merging web + email + local promotions", log_fh)
+        # Step 8: Merge web + email into all_promotions.json
+        rc = run([str(SRC / "merge_all_promotions.py")], "Step 8/13 -Merging promotions", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] merge_all_promotions exited with code {rc}.", log_fh)
             sys.exit(rc)
 
-        # Step 11: Add fast_redemption to all_promotions.json
-        rc = run([str(SRC / "generate_fast_redemption.py")], "Step 11/14 -Generating fast redemption data", log_fh)
+        # Step 9: Add fast_redemption to all_promotions.json
+        rc = run([str(SRC / "generate_fast_redemption.py")], "Step 9/13 -Generating fast redemption data", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] generate_fast_redemption exited with code {rc}.", log_fh)
             sys.exit(rc)
 
-        # Step 12: Add rank_base_score to all_promotions.json
-        rc = run([str(SRC / "generate_scores.py")], "Step 12/14 -Computing rank scores", log_fh)
+        # Step 10: Add rank_base_score to all_promotions.json
+        rc = run([str(SRC / "generate_scores.py")], "Step 10/13 -Computing rank scores", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] generate_scores exited with code {rc}.", log_fh)
             sys.exit(rc)
 
-        # Step 13: Compute notification candidates
-        rc = run([str(SRC / "generate_notifications.py")], "Step 13/14 -Computing notification candidates", log_fh)
+        # Step 11: Compute notification candidates
+        rc = run([str(SRC / "generate_notifications.py")], "Step 11/13 -Computing notification candidates", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] generate_notifications exited with code {rc}.", log_fh)
             sys.exit(rc)
 
-        # Step 14: Copy to Flutter app assets
+        # Step 12: Copy to Flutter app assets
         import shutil
         assets_dest = Path(__file__).resolve().parents[1] / "promo_viewer" / "assets" / "all_promotions.json"
         src_file = Path(__file__).resolve().parent / "all_promotions.json"
         if src_file.exists():
             shutil.copy2(src_file, assets_dest)
             size_kb = assets_dest.stat().st_size // 1024
-            log_print(f"\n[Step 14/14] Copied all_promotions.json to app assets ({size_kb} KB)", log_fh)
+            log_print(f"\n[Step 12/13] Copied all_promotions.json to app assets ({size_kb} KB)", log_fh)
         else:
             log_print(f"\n[ERROR] all_promotions.json not found at {src_file}", log_fh)
             sys.exit(1)
@@ -275,9 +236,9 @@ def main() -> None:
             )
             if commit_result.returncode == 0:
                 subprocess.run(["git", "push", "origin", "master"], cwd=repo_root, check=True)
-                log_print(f"\n[Step 15/15] Assets pushed to GitHub.", log_fh)
+                log_print(f"\n[Step 13/13] Assets pushed to GitHub.", log_fh)
             else:
-                log_print(f"\n[Step 15/15] No asset changes to push.", log_fh)
+                log_print(f"\n[Step 13/13] No asset changes to push.", log_fh)
         except Exception as e:
             log_print(f"\n[Step 15/15] Git push failed (non-fatal): {e}", log_fh)
 
