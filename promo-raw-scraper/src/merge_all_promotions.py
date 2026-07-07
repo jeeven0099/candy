@@ -13,6 +13,14 @@ from __future__ import annotations
 import json
 import re
 from datetime import datetime, timezone
+
+try:
+    from langdetect import detect_langs as _detect_langs
+    from langdetect.detector_factory import DetectorFactory as _DetectorFactory
+    _DetectorFactory.seed = 0  # make detection deterministic
+    _LANGDETECT_AVAILABLE = True
+except ImportError:
+    _LANGDETECT_AVAILABLE = False
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -74,14 +82,8 @@ def merge_national(web: list[dict], email: list[dict]) -> list[dict]:
 _MIN_CONFIDENCE = 0.65
 _MIN_LOCAL_CONFIDENCE = 0.85  # stricter gate for local deals
 
-# Characters that unambiguously indicate non-English text in a deal title.
-# ¡ ¿ are Spanish-only punctuation; ñ is essentially absent from English.
+# Fast character-level pre-check before running langdetect.
 _NON_ENGLISH_RE = re.compile(r'[¡¿ñÑ]')
-# Common Spanish deal words that never appear in English promotional copy.
-_SPANISH_WORDS_RE = re.compile(
-    r'\b(descuento|rebajas?|oferta|precio|gratis|ahorra|compra|env[íi]o|c[óo]digo|promoci[óo]n)\b',
-    re.IGNORECASE,
-)
 
 
 def _is_expired(promo: dict) -> bool:
@@ -98,12 +100,24 @@ def _is_expired(promo: dict) -> bool:
 def _is_english(promo: dict) -> bool:
     title = promo.get("promotion_title") or ""
     desc = promo.get("short_summary") or promo.get("description") or ""
-    for text in (title, desc):
-        if _NON_ENGLISH_RE.search(text):
-            return False
-        if _SPANISH_WORDS_RE.search(text):
-            return False
-    return True
+    combined = f"{title} {desc}".strip()
+
+    # Fast path: unambiguous non-English characters.
+    if _NON_ENGLISH_RE.search(combined):
+        return False
+
+    # Skip detection on very short strings — not enough signal, assume English.
+    if not _LANGDETECT_AVAILABLE or len(combined) < 15:
+        return True
+
+    try:
+        langs = _detect_langs(combined)
+        top = langs[0]
+        # Only reject if confidently non-English. Short ambiguous strings
+        # (e.g. "40% off") often score 0.5-0.7 for random languages — keep those.
+        return not (top.lang != "en" and top.prob >= 0.90)
+    except Exception:
+        return True  # uncertain — keep rather than silently drop
 
 
 def main() -> None:
