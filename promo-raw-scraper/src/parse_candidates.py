@@ -175,6 +175,11 @@ def main() -> None:
         help="Only parse candidates whose brand name contains this substring (case-insensitive).",
     )
     parser.add_argument(
+        "--failed-only",
+        action="store_true",
+        help="Skip any brand that already has a structured_outputs/{brand}.json (re-parse only failed/missing).",
+    )
+    parser.add_argument(
         "--gc-interval",
         type=int,
         default=10,
@@ -213,6 +218,14 @@ def main() -> None:
         if input_path is None or not input_path.exists():
             skipped_count += 1
             continue
+
+        # --failed-only: skip any brand that already has a successful output, regardless of source age.
+        if args.failed_only:
+            existing = STRUCTURED_DIR / f"{slugify(brand)}.json"
+            if existing.exists():
+                print(f"[SKIP] {brand}: already parsed (--failed-only)")
+                skipped_count += 1
+                continue
 
         # Skip if the existing structured output was already parsed from this same raw text file.
         # A different filename means a fresh scrape came in — re-parse regardless of --force.
