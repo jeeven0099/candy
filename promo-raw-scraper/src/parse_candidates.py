@@ -177,7 +177,7 @@ def main() -> None:
     parser.add_argument(
         "--failed-only",
         action="store_true",
-        help="Skip any brand that already has a structured_outputs/{brand}.json (re-parse only failed/missing).",
+        help="Skip brands already attempted this run (success or failure). Only processes brands with no output at all.",
     )
     parser.add_argument(
         "--gc-interval",
@@ -219,11 +219,13 @@ def main() -> None:
             skipped_count += 1
             continue
 
-        # --failed-only: skip any brand that already has a successful output, regardless of source age.
+        # --failed-only: skip any brand already attempted this run (success or failure).
+        # Only processes brands with no output at all — i.e. never attempted.
         if args.failed_only:
-            existing = STRUCTURED_DIR / f"{slugify(brand)}.json"
-            if existing.exists():
-                print(f"[SKIP] {brand}: already parsed (--failed-only)")
+            slug = slugify(brand)
+            if (STRUCTURED_DIR / f"{slug}.json").exists() or \
+               (STRUCTURED_DIR / "failed" / f"{slug}.json").exists():
+                print(f"[SKIP] {brand}: already attempted (--failed-only)")
                 skipped_count += 1
                 continue
 
