@@ -13,8 +13,6 @@ class FastRedeemButton extends StatelessWidget {
 
   // ── Styling ────────────────────────────────────────────────────────────────
 
-  Color get _color => Candy.raspberry;
-
   IconData get _icon {
     switch (fr.actionType) {
       case 'copy_code':               return Icons.copy;
@@ -255,17 +253,17 @@ class FastRedeemButton extends StatelessWidget {
                         Container(
                           width: 22,
                           height: 22,
-                          decoration: BoxDecoration(
-                            color: _color.withValues(alpha: 0.12),
+                          decoration: const BoxDecoration(
+                            color: Candy.border,
                             shape: BoxShape.circle,
                           ),
                           child: Center(
                             child: Text(
                               '${e.key + 1}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 11,
                                 fontWeight: FontWeight.w700,
-                                color: _color,
+                                color: Candy.chocolate,
                               ),
                             ),
                           ),
