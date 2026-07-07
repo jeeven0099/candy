@@ -19,6 +19,9 @@ class DealDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Candy.cream,
+      bottomNavigationBar: promo.verifyUrl != null
+          ? _ShopNowBar(url: promo.verifyUrl!)
+          : null,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -61,6 +64,10 @@ class DealDetailScreen extends StatelessWidget {
                     ),
                   ),
 
+                  // ── Requirements chips ───────────────────────────────────
+                  const SizedBox(height: 14),
+                  _RequirementsChips(promo: promo),
+
                   // ── Fast redeem if eligible ──────────────────────────────
                   if (promo.fastRedemption != null &&
                       promo.fastRedemption!.eligible) ...[
@@ -75,6 +82,8 @@ class DealDetailScreen extends StatelessWidget {
                       domain: promo.websiteDomain ?? promo.brand,
                       url: promo.verifyUrl!,
                     ),
+                    const SizedBox(height: 6),
+                    _LastCheckedBadge(),
                   ],
 
                   const SizedBox(height: 24),
@@ -99,54 +108,15 @@ class DealDetailScreen extends StatelessWidget {
                     _PromoCodeBox(code: promo.promoCode!),
                     _Divider(),
                   ],
-                  _SectionHeader('Can I use this?'),
-                  const SizedBox(height: 8),
-                  _RequirementRow(
-                    label: 'Requires membership',
-                    value: promo.requiresMembership
-                        ? (promo.membershipName ?? 'Members only')
-                        : 'No',
-                    met: !promo.requiresMembership,
-                  ),
-                  if (promo.requiresMembership &&
-                      promo.membershipCost != null &&
-                      promo.membershipCost!.isNotEmpty)
-                    _RequirementRow(
-                      label: 'Membership cost',
-                      value: _formatMembershipCost(promo.membershipCost),
-                      met: _isMembershipFree(promo.membershipCost),
-                    ),
-                  _RequirementRow(
-                    label: 'Requires app',
-                    value: promo.requiresApp ? 'Yes' : 'No',
-                    met: !promo.requiresApp,
-                  ),
-                  _RequirementRow(
-                    label: 'Purchase required',
-                    value: promo.purchaseRequired ? 'Yes' : 'No',
-                    met: !promo.purchaseRequired,
-                  ),
-                  _RequirementRow(
-                    label: 'Redemption',
-                    value: _formatRedemption(promo.redemptionMethod),
-                    met: true,
-                  ),
-                  if (promo.minimumSpend != null)
-                    _RequirementRow(
-                      label: 'Minimum spend',
-                      value: promo.minimumSpend!,
-                      met: true,
-                    ),
                   if (promo.redemptionSteps.isNotEmpty) ...[
-                    _Divider(),
                     _SectionHeader('How to redeem'),
                     const SizedBox(height: 8),
                     ...promo.redemptionSteps.asMap().entries.map(
                       (e) => _StepRow(index: e.key + 1, text: e.value),
                     ),
+                    _Divider(),
                   ],
                   if (promo.validDays.isNotEmpty || promo.timeStart != null) ...[
-                    _Divider(),
                     _SectionHeader('When'),
                     const SizedBox(height: 8),
                     if (promo.validDays.isNotEmpty)
@@ -159,9 +129,9 @@ class DealDetailScreen extends StatelessWidget {
                         promoTz: promo.promotionTimezone,
                       ),
                     ],
+                    _Divider(),
                   ],
                   if (promo.termsText != null && promo.termsText!.isNotEmpty) ...[
-                    _Divider(),
                     _SectionHeader('Terms'),
                     const SizedBox(height: 4),
                     Text(
@@ -172,9 +142,9 @@ class DealDetailScreen extends StatelessWidget {
                         height: 1.5,
                       ),
                     ),
+                    _Divider(),
                   ],
-                  _Divider(),
-                  _ConfidenceBar(score: promo.confidenceScore),
+                  _DealQualityRow(score: promo.confidenceScore),
                   const SizedBox(height: 24),
                 ],
               ),
@@ -183,19 +153,6 @@ class DealDetailScreen extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  String _formatMembershipCost(String? cost) {
-    if (cost == null || cost.isEmpty) return 'Unknown';
-    final c = cost.toLowerCase();
-    if (c.contains('free')) return 'Free to join';
-    if (c.contains('paid')) return 'Paid';
-    return cost;
-  }
-
-  bool _isMembershipFree(String? cost) {
-    if (cost == null) return false;
-    return cost.toLowerCase().contains('free');
   }
 
   String _capitalize(String s) =>
@@ -342,6 +299,95 @@ class _BigValueBadge extends StatelessWidget {
   }
 }
 
+class _RequirementsChips extends StatelessWidget {
+  final Promotion promo;
+  const _RequirementsChips({required this.promo});
+
+  static const _neutral = Color(0xFF546E7A);
+  static const _orange  = Color(0xFFF57F17);
+
+  @override
+  Widget build(BuildContext context) {
+    final chips = <Widget>[];
+
+    if (!promo.requiresMembership) {
+      chips.add(_ReqChip('No membership', Candy.mint, positive: true));
+    } else {
+      chips.add(_ReqChip(promo.membershipName ?? 'Members only', _orange, positive: false));
+      if (promo.membershipCost != null && promo.membershipCost!.isNotEmpty) {
+        final cost = promo.membershipCost!.toLowerCase();
+        final label = cost.contains('free') ? 'Free to join' : 'Paid membership';
+        final isFree = cost.contains('free');
+        chips.add(_ReqChip(label, isFree ? Candy.mint : _orange, positive: isFree));
+      }
+    }
+
+    if (!promo.requiresApp) {
+      chips.add(_ReqChip('No app needed', Candy.mint, positive: true));
+    } else {
+      chips.add(_ReqChip('App required', _orange, positive: false));
+    }
+
+    if (promo.purchaseRequired) {
+      chips.add(_ReqChip('Purchase required', _orange, positive: false));
+    }
+
+    const redemptionLabels = {
+      'online':       'Online',
+      'in_store':     'In store',
+      'in_app':       'In app',
+      'show_code':    'Promo code',
+      'scan_barcode': 'Scan barcode',
+    };
+    final redeemLabel = redemptionLabels[promo.redemptionMethod];
+    if (redeemLabel != null) {
+      chips.add(_ReqChip(redeemLabel, _neutral));
+    }
+
+    return Wrap(spacing: 8, runSpacing: 8, children: chips);
+  }
+}
+
+class _ReqChip extends StatelessWidget {
+  final String label;
+  final Color color;
+  final bool? positive;
+  const _ReqChip(this.label, this.color, {this.positive});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: color.withValues(alpha: 0.25)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (positive != null) ...[
+            Icon(
+              positive! ? Icons.check : Icons.close,
+              size: 12,
+              color: color,
+            ),
+            const SizedBox(width: 4),
+          ],
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: color,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _DetailRow extends StatelessWidget {
   final IconData icon;
   final String label;
@@ -379,34 +425,6 @@ class _SectionHeader extends StatelessWidget {
         fontWeight: FontWeight.w700,
         letterSpacing: -0.2,
         color: Candy.chocolate,
-      ),
-    );
-  }
-}
-
-class _RequirementRow extends StatelessWidget {
-  final String label;
-  final String value;
-  final bool met;
-  const _RequirementRow({required this.label, required this.value, required this.met});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: Row(
-        children: [
-          Icon(
-            met ? Icons.check_circle_outline : Icons.info_outline,
-            size: 16,
-            color: met ? Candy.mint : const Color(0xFFF57F17),
-          ),
-          const SizedBox(width: 10),
-          Text(label, style: const TextStyle(fontSize: 14, color: Candy.muted)),
-          const Spacer(),
-          Text(value, style: const TextStyle(
-            fontSize: 14, fontWeight: FontWeight.w600, color: Candy.chocolate)),
-        ],
       ),
     );
   }
@@ -506,38 +524,97 @@ class _TimeRow extends StatelessWidget {
   }
 }
 
-class _ConfidenceBar extends StatelessWidget {
+class _DealQualityRow extends StatelessWidget {
   final double score;
-  const _ConfidenceBar({required this.score});
+  const _DealQualityRow({required this.score});
+
+  String get _label {
+    if (score >= 0.8) return 'High';
+    if (score >= 0.6) return 'Medium';
+    return 'Low';
+  }
+
+  Color get _color {
+    if (score >= 0.8) return Candy.mint;
+    if (score >= 0.6) return Colors.orange;
+    return Colors.red;
+  }
 
   @override
   Widget build(BuildContext context) {
-    final pct = (score * 100).round();
-    final color = score >= 0.8
-        ? Candy.mint
-        : score >= 0.6
-            ? Colors.orange
-            : Colors.red;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
       children: [
-        Row(children: [
-          const Text('Confidence', style: TextStyle(fontSize: 12, color: Candy.muted)),
-          const Spacer(),
-          Text('$pct%', style: TextStyle(
-            fontSize: 12, fontWeight: FontWeight.w600, color: color)),
-        ]),
-        const SizedBox(height: 6),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(4),
-          child: LinearProgressIndicator(
-            value: score,
-            minHeight: 5,
-            backgroundColor: Candy.pink.withValues(alpha: 0.1),
-            valueColor: AlwaysStoppedAnimation(color),
+        const Text(
+          'Deal confidence',
+          style: TextStyle(fontSize: 13, color: Candy.muted),
+        ),
+        const Spacer(),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+          decoration: BoxDecoration(
+            color: _color.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: _color.withValues(alpha: 0.25)),
+          ),
+          child: Text(
+            _label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w600,
+              color: _color,
+            ),
           ),
         ),
       ],
+    );
+  }
+}
+
+class _LastCheckedBadge extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final now = DateTime.now();
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    final label = 'Last checked ${months[now.month - 1]} ${now.day}';
+    return Row(
+      children: [
+        const Icon(Icons.update, size: 13, color: Candy.muted),
+        const SizedBox(width: 4),
+        Text(label, style: const TextStyle(fontSize: 12, color: Candy.muted)),
+      ],
+    );
+  }
+}
+
+class _ShopNowBar extends StatelessWidget {
+  final String url;
+  const _ShopNowBar({required this.url});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
+        child: FilledButton(
+          onPressed: () async {
+            final uri = Uri.tryParse(url);
+            if (uri != null) await launchUrl(uri, mode: LaunchMode.externalApplication);
+          },
+          style: FilledButton.styleFrom(
+            backgroundColor: Candy.raspberry,
+            minimumSize: const Size(double.infinity, 52),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+          ),
+          child: const Text(
+            'Shop Now',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -582,7 +659,7 @@ class _TrustSourceBadge extends StatelessWidget {
               ),
             ),
             const Text(
-              'Verify →',
+              'View source →',
               style: TextStyle(
                 fontSize: 11,
                 color: Color(0xFF2E7D32),
