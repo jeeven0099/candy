@@ -66,7 +66,7 @@
     "brand": "Burger King",
     "category": "food",
     "url": "https://www.bk.com/terms",
-    "source_type": "terms_page",
+    "source_type": "offers_page",
     "allowed_to_fetch": true
   },
   {
@@ -83,13 +83,7 @@
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
-  {
-    "brand": "Papa Johns",
-    "category": "food",
-    "url": "https://www.papajohns.com/rewards/",
-    "source_type": "rewards_page",
-    "allowed_to_fetch": true
-  },
+
   {
     "brand": "Pizza Hut",
     "category": "food",
@@ -97,13 +91,7 @@
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
-  {
-    "brand": "Panera Bread",
-    "category": "food",
-    "url": "https://www.panerabread.com/en-us/mypanera.html",
-    "source_type": "rewards_page",
-    "allowed_to_fetch": true
-  },
+
   {
     "brand": "Sweetgreen",
     "category": "food",
@@ -143,28 +131,28 @@
   {
     "brand": "Target",
     "category": "retail",
-    "url": "https://www.target.com/circle",
-    "source_type": "rewards_page",
+    "url": "https://www.target.com/c/top-deals/-/N-4xw74",
+    "source_type": "offers_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Walmart",
     "category": "retail",
-    "url": "https://www.walmart.com/plus",
-    "source_type": "membership_page",
+    "url": "https://www.walmart.com/",
+    "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Best Buy",
     "category": "tech",
-    "url": "https://www.bestbuy.com/site/misc/my-best-buy/pcmcat309300050007.c",
+    "url": "https://www.bestbuy.com/site/misc/deal-of-the-day/pcmcat248000050016.c?id=pcmcat248000050016",
     "source_type": "rewards_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Kohl's",
     "category": "retail",
-    "url": "https://www.kohls.com/",
+    "url": "https://www.kohls.com/catalog/sale.jsp?CN=Promotions:Clearance+Promotions:Sale&BL=y&cc=sale-HZ1-saleclearance",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -178,8 +166,15 @@
   {
     "brand": "Nike",
     "category": "fashion",
-    "url": "https://www.nike.com/membership",
-    "source_type": "membership_page",
+    "url": "https://www.nike.com/w/womens-sale-3yaepz5e1x6",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Nike",
+    "category": "fashion",
+    "url": "https://www.nike.com/w/mens-sale-3yaepznik1",
+    "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
@@ -192,22 +187,29 @@
   {
     "brand": "Old Navy",
     "category": "fashion",
-    "url": "https://oldnavy.gap.com/browse/category.do?cid=26190",
+    "url": "https://oldnavy.gap.com/browse/todays-deals/for-fam?cid=3033029&nav=meganav%3AToday%E2%80%99s%20Deals!%3ASale%3AShop%20All%20Sale",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Gap",
     "category": "fashion",
-    "url": "https://www.gap.com/browse/category.do?cid=65289",
+    "url": "https://www.gap.com/browse/women/sale?cid=65179&nav=meganav%3ASale%3AShop+Sale%3AWomen#pageId=0&department=136",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Gap",
+    "category": "fashion",
+    "url": "https://www.gap.com/browse/men/sale?cid=65289&nav=meganav%3AMen%3ACategories%3ASale#pageId=0&department=75",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "JCPenney",
     "category": "retail",
-    "url": "https://www.jcpenney.com/m/rewards",
-    "source_type": "rewards_page",
+    "url": "https://www.jcpenney.com/g/shops/shop-all-products?s1_deals_and_promotions=SALE&id=cat1007450013",
+    "source_type": "sales_page",
     "allowed_to_fetch": true
   },
   {
@@ -266,7 +268,7 @@
   {
     "brand": "American Eagle",
     "category": "fashion",
-    "url": "https://www.ae.com/us/en/c/ae/sale/cat4840004",
+    "url": "https://www.ae.com/us/en?redirectedFrom=plp/us/en/c/ae/sale/cat4840004",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -301,14 +303,14 @@
   {
     "brand": "Express",
     "category": "fashion",
-    "url": "https://www.express.com/sale",
+    "url": "https://www.express.com/exp/clothing-sales?ICID=N_HEADER_SALE",
     "source_type": "sales_page",
     "allowed_to_fetch": false
   },
   {
     "brand": "Banana Republic",
     "category": "fashion",
-    "url": "https://bananarepublic.gap.com/browse/category.do?cid=2084",
+    "url": "https://bananarepublic.gap.com/browse/sale?cid=1014329&nav=meganav%3ASALE%3A%3A",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -331,12 +333,19 @@
     "category": "fashion",
     "url": "https://www.madewell.com/womens/sale",
     "source_type": "sales_page",
-    "allowed_to_fetch": false
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Madewell",
+    "category": "fashion",
+    "url": "https://www.madewell.com/sale/mens/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
   },
   {
     "brand": "Ann Taylor",
     "category": "fashion",
-    "url": "https://www.anntaylor.com/sale/cata000013/",
+    "url": "https://www.anntaylor.com/sale/all-sale/cata000055/",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -2375,7 +2384,7 @@
   {
     "brand": "Urban Decay",
     "category": "beauty",
-    "url": "https://www.urbandecay.com/sale",
+    "url": "https://www.urbandecay.com/offers.html",
     "source_type": "sales_page",
     "allowed_to_fetch": true,
     "online_only": true
