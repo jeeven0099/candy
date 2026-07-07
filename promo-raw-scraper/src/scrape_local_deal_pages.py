@@ -194,6 +194,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Scrape local business websites for deals")
     parser.add_argument("--ollama-host", default="http://localhost:11434")
     parser.add_argument("--ollama-model", default="qwen2.5:14b")
+    parser.add_argument("--ollama-timeout", type=int, default=600)
     parser.add_argument("--candidates", type=Path, default=CANDIDATES_FILE)
     parser.add_argument("--output", type=Path, default=OUTPUT_FILE)
     parser.add_argument("--limit", type=int, default=30, help="Max businesses to check per run")
@@ -283,7 +284,7 @@ def main() -> None:
             text=text,
         )
 
-        result = call_ollama(prompt, args.ollama_host, args.ollama_model)
+        result = call_ollama(prompt, args.ollama_host, args.ollama_model, timeout=args.ollama_timeout)
         if not result:
             print("  [SKIP] LLM extraction failed")
             continue

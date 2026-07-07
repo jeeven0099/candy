@@ -94,7 +94,7 @@ def call_ollama(prompt: str, host: str, model: str, timeout: int = 120) -> str |
 def extract_businesses(
     url: str, html: str,
     neighborhood: str, city: str, state: str,
-    host: str, model: str,
+    host: str, model: str, timeout: int = 600,
 ) -> list[dict]:
     text = html_to_text(html)[:_MAX_TEXT]
     if len(text.strip()) < 50:
@@ -103,7 +103,7 @@ def extract_businesses(
     prompt = _EXTRACT_PROMPT.format(
         url=url, neighborhood=neighborhood, city=city, state=state, text=text
     )
-    response = call_ollama(prompt, host, model)
+    response = call_ollama(prompt, host, model, timeout=timeout)
     if not response:
         return []
 
@@ -162,6 +162,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Scrape neighborhood business directories")
     parser.add_argument("--ollama-host", default="http://localhost:11434")
     parser.add_argument("--ollama-model", default="qwen2.5:14b")
+    parser.add_argument("--ollama-timeout", type=int, default=600)
     parser.add_argument("--sources", type=Path, default=SOURCES_FILE)
     parser.add_argument("--output", type=Path, default=OUTPUT_FILE)
     args = parser.parse_args()
@@ -203,7 +204,7 @@ def main() -> None:
                 continue
 
             time.sleep(1.5)
-            businesses = extract_businesses(dir_url, html, nbhd, city, state, args.ollama_host, args.ollama_model)
+            businesses = extract_businesses(dir_url, html, nbhd, city, state, args.ollama_host, args.ollama_model, args.ollama_timeout)
             print(f"  Extracted {len(businesses)} business(es)")
 
             for b in businesses:
