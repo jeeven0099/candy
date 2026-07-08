@@ -39,6 +39,12 @@ def clean_visible_text(html: str) -> str:
         for tag in soup.find_all(tag_name):
             tag.decompose()
 
+    # Inline image alt text so deal banners with descriptive alts aren't silently dropped.
+    for img in soup.find_all('img', alt=True):
+        alt = img.get('alt', '').strip()
+        if len(alt) > 5:  # skip generic "logo", "img" etc.
+            img.replace_with(alt)
+
     text = soup.get_text('\n')
     lines = []
     seen = set()
