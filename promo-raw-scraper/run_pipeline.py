@@ -222,7 +222,8 @@ def main() -> None:
 
         write_run_summary(log_path, log_fh)
 
-        # Step 15: Publish updated assets to GitHub so all users get fresh data
+        # Step 13: Publish updated assets to GitHub — also triggers deploy_web.yml
+        # which rebuilds the Flutter web app with fresh bundled data.
         repo_root = Path(__file__).resolve().parents[1]
         assets_to_push = [
             "promo_viewer/assets/all_promotions.json",
@@ -231,7 +232,7 @@ def main() -> None:
         try:
             subprocess.run(["git", "add"] + assets_to_push, cwd=repo_root, check=True)
             commit_result = subprocess.run(
-                ["git", "commit", "-m", f"chore: update promotions {ts} [skip ci]"],
+                ["git", "commit", "-m", f"chore: update promotions {ts}"],
                 cwd=repo_root, capture_output=True, text=True,
             )
             if commit_result.returncode == 0:
