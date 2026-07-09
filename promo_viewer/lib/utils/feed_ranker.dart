@@ -5,9 +5,86 @@ import '../services/saved_deals_service.dart';
 
 const _kHide = 999.0;
 
-// Calibrated from 4 external reranker experiments (Ponpare, RetailRocket, Taobao, Yoochoose).
-// Cap prevents many boosts stacking into an unrealistically inflated score.
-const double kPersonalizationBoostCap = 60.0;
+// Fix 4: 70% objective / 30% personalization.
+// Reduced from 60 → 40 so deal quality drives ranking, preferences reorder the top.
+const double kPersonalizationBoostCap = 40.0;
+
+// ── Fix 1: Category quality floors ───────────────────────────────────────────
+// Higher-investment categories need a stronger deal to feel interesting.
+const _kCategoryFloors = <String, double>{
+  'fashion':          60.0,
+  'beauty':           60.0,
+  'food':             70.0,
+  'coffee':           70.0,
+  'tech':             75.0,
+  'home_goods':       75.0,
+  'home_improvement': 75.0,
+  'travel':           80.0,
+};
+
+bool _isFreeOrBogo(Promotion p) {
+  final d = p.discountType.toLowerCase();
+  return d == 'free_item' || d.contains('bogo');
+}
+
+/// Fix 1+3: A deal must pass this gate before personalization boosts apply.
+/// Category preference reorders good deals — it does not rescue weak ones.
+bool isFeedWorthy(Promotion p, {Set<String> favBrands = const {}}) {
+  // Free items and BOGO are always interesting regardless of category
+  if (_isFreeOrBogo(p) && p.globalQualityScore >= 50) return true;
+  // Favourite-brand deals get a lower floor (user has shown explicit intent)
+  if (favBrands.contains(p.brand.toLowerCase()) && p.globalQualityScore >= 60) return true;
+  // Category-specific floor
+  final floor = _kCategoryFloors[p.category.toLowerCase()] ?? 60.0;
+  if (p.globalQualityScore < floor) return false;
+  // Points-only deals need a higher score unless from a favourite brand
+  if (p.discountType.toLowerCase() == 'points' &&
+      p.globalQualityScore < 75 &&
+      !favBrands.contains(p.brand.toLowerCase())) {
+    return false;
+  }
+  return true;
+}
+
+/// Fix 2: Penalty for uninspiring deal types so they rank low in For You.
+/// These deals still appear in Search — this only affects feed position.
+double _weakDealPenalty(Promotion p) {
+  double penalty = 0;
+  final dtype = p.discountType.toLowerCase();
+  final ptype = p.promotionType.toLowerCase();
+  final title = p.title.toLowerCase();
+  if (dtype == 'free_shipping')                                   penalty += 20;
+  if (dtype == 'points')                                          penalty += 15;
+  if (ptype == 'app_offer' && dtype == 'unknown')                 penalty += 18;
+  if (title.contains('select style'))                             penalty += 12;
+  if (title.contains('newsletter') || title.contains('sign up')) penalty += 20;
+  if (title.contains('limited time') && dtype == 'unknown')      penalty += 10;
+  return penalty;
+}
+
+/// Fix 5: Per-category click-through rate from seen/click history.
+/// Returns category → multiplier (0.5–1.0). Low engagement dampens category boost.
+Map<String, double> _categoryEngagement(
+    List<Promotion> candidates, InteractionService svc) {
+  final catSeen    = <String, int>{};
+  final catClicked = <String, int>{};
+  for (final p in candidates) {
+    final cat  = p.category.toLowerCase();
+    if (cat.isEmpty) continue;
+    final seen = svc.seenCount(p.id);
+    if (seen == 0) continue;
+    catSeen[cat]    = (catSeen[cat]    ?? 0) + seen;
+    catClicked[cat] = (catClicked[cat] ?? 0) + (svc.clickCount(p.id) > 0 ? 1 : 0);
+  }
+  final result = <String, double>{};
+  catSeen.forEach((cat, seen) {
+    if (seen < 5) return; // not enough data to dampen yet
+    final ctr = (catClicked[cat] ?? 0) / seen;
+    // ctr 0% → 0.5×, ctr ≥ 20% → 1.0× (full boost)
+    result[cat] = (ctr * 5.0).clamp(0.5, 1.0);
+  });
+  return result;
+}
 
 // ---------------------------------------------------------------------------
 // Score breakdown (for debug overlay)
@@ -142,12 +219,8 @@ double preferenceBoost(Promotion p, UserPrefs? prefs) {
 
   if (p.birthdayRelated && _isBirthdayMonth(prefs)) boost += 60;
 
-  // Flexible brand match: "Starbucks" matches "Starbucks Coffee" and vice versa.
   final brand = p.brand.toLowerCase();
-  if (prefs.favoriteBrands.any((b) {
-    final bl = b.toLowerCase();
-    return bl == brand || brand.contains(bl) || bl.contains(brand);
-  })) { boost += 35; }  // E1: explicit pref is strongest signal
+  if (prefs.favoriteBrands.any((b) => b.toLowerCase() == brand)) { boost += 35; }  // E1: explicit pref is strongest signal
 
   final cat = p.category.toLowerCase();
   if (cat.isNotEmpty && prefs.favoriteCategories.any((c) => c.toLowerCase() == cat)) boost += 22;  // E1+E3: raised from 20
@@ -265,6 +338,7 @@ double brandLevelScore(
   InteractionService svc, {
   UserPrefs? prefs,
   Map<String, double>? inferredCategoryWeights,
+  Map<String, double>? categoryEngagement,
 }) {
   double score = 0;
 
@@ -284,23 +358,21 @@ double brandLevelScore(
   // Onboarding preferences (slightly weaker than max behavioral affinity)
   if (prefs != null) {
     final bl = brand.toLowerCase();
-    if (prefs.favoriteBrands.any((b) {
-      final bfl = b.toLowerCase();
-      return bfl == bl || bl.contains(bfl) || bfl.contains(bl);
-    })) { score += 30; }
+    if (prefs.favoriteBrands.any((b) => b.toLowerCase() == bl)) { score += 30; }
 
     final cl = category.toLowerCase();
     if (cl.isNotEmpty) {
+      // Fix 5: dampen category boost when user consistently ignores this category
+      final engagement = categoryEngagement?[cl] ?? 1.0;
+
       // Flat boost for explicit category selection
-      if (prefs.favoriteCategories.any((c) => c.toLowerCase() == cl)) score += 20;
+      if (prefs.favoriteCategories.any((c) => c.toLowerCase() == cl)) {
+        score += 20 * engagement;
+      }
 
       // Inferred boost from brand concentration in this category (max +10).
-      // Stacks on top of explicit selection, so fashion with 4/5 brands gets
-      // +20 + 8 = +28, while food with 1/5 brands gets +20 + 2 = +22.
-      // Also fires for categories the user did NOT explicitly pick but their
-      // brand choices imply they care about.
       final inferredWeight = inferredCategoryWeights?[cl] ?? 0.0;
-      if (inferredWeight > 0) score += inferredWeight * 10.0;
+      if (inferredWeight > 0) score += inferredWeight * 10.0 * engagement;
     }
   }
 
@@ -332,6 +404,7 @@ double dealQualityScore(
   if (penalty >= _kHide) return -_kHide;
 
   double score = p.globalQualityScore;
+  score -= _weakDealPenalty(p); // Fix 2: downrank uninspiring deal types
 
   // Distance bonus
   if (distanceKm != null) {
@@ -404,13 +477,20 @@ List<Promotion> selectTopDeals(
   int limit = 10,
   int maxPerBrand = 2,
 }) {
-  final isBday = _isBirthdayMonth(prefs);
+  final isBday  = _isBirthdayMonth(prefs);
   final hasBday = prefs?.birthdayMonth != null;
+
+  // Fix 1+3: build favourite-brand set once for feed-worthy checks
+  final favBrands = {
+    for (final b in prefs?.favoriteBrands ?? <String>[]) b.toLowerCase()
+  };
 
   // Group active, non-suppressed deals by brand
   final brandMap = <String, List<Promotion>>{};
   for (final p in candidates) {
     if (p.birthdayRelated && hasBday && !isBday) continue;
+    // Fix 1+3: gate — personalization boosts reorder good deals, not rescue weak ones
+    if (!isFeedWorthy(p, favBrands: favBrands)) continue;
     final dScore = dealQualityScore(p, svc,
         distanceKm: getDistance?.call(p),
         isMember: getIsMember?.call(p) ?? false,
@@ -421,12 +501,15 @@ List<Promotion> selectTopDeals(
 
   // Level 1: sort brands by brand-level score
   final inferredWeights = inferCategoryWeights(prefs?.favoriteBrands ?? [], candidates);
+  final catEngagement   = _categoryEngagement(candidates, svc); // Fix 5
   final brands = brandMap.keys.toList();
   brands.sort((a, b) {
     final sa = brandLevelScore(a, brandMap[a]!.first.category, brandMap[a]!, svc,
-        prefs: prefs, inferredCategoryWeights: inferredWeights);
+        prefs: prefs, inferredCategoryWeights: inferredWeights,
+        categoryEngagement: catEngagement);
     final sb = brandLevelScore(b, brandMap[b]!.first.category, brandMap[b]!, svc,
-        prefs: prefs, inferredCategoryWeights: inferredWeights);
+        prefs: prefs, inferredCategoryWeights: inferredWeights,
+        categoryEngagement: catEngagement);
     return sb.compareTo(sa);
   });
 

@@ -285,7 +285,10 @@ class _SearchScreenState extends State<SearchScreen> {
         _svc.recordSearchEvent('search_submitted',
             params: {'query': q, 'chip': _ctx.name, 'result_count': '${results.length}'});
         for (final g in results) {
-          if (g.bestTier <= 4) _svc.recordBrandSearch(g.brand);
+          // Only record when the query is an exact brand name match (tier 1).
+          // Prefix/substring matches (tiers 2–4) are too loose — "apple" would
+          // record Applebee's, "del" would record Dell, etc.
+          if (g.bestTier == 1) _svc.recordBrandSearch(g.brand);
         }
         final promos = results.expand((g) => g.deals).toList();
         ImpressionService().recordImpressions(promos, context: 'search_${_ctx.name}');

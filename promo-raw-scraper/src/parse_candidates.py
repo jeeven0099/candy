@@ -4,6 +4,7 @@ import argparse
 import csv
 import gc
 import json
+import re
 import time
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -13,6 +14,22 @@ from structured_parser import parse_text_file, save_failed_output, save_promotio
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 STRUCTURED_DIR = PROJECT_ROOT / "structured_outputs"
+LOGS_DIR = PROJECT_ROOT / "logs"
+
+_FAIL_RETRY_RE = re.compile(r'^\[(?:FAILED|RETRY)\] (.+?):', re.MULTILINE)
+
+
+def _brands_with_failures() -> set[str]:
+    """Return lowercase brand names that ever appeared as [FAILED] or [RETRY] in any pipeline log."""
+    tainted: set[str] = set()
+    for log in LOGS_DIR.glob("pipeline_*.log"):
+        try:
+            text = log.read_text(encoding="utf-8", errors="replace")
+            for m in _FAIL_RETRY_RE.finditer(text):
+                tainted.add(m.group(1).strip().lower())
+        except Exception:
+            pass
+    return tainted
 
 
 def safe_int(value: object, default: int = 0) -> int:
@@ -180,6 +197,11 @@ def main() -> None:
         help="Skip brands already attempted this run (success or failure). Only processes brands with no output at all.",
     )
     parser.add_argument(
+        "--clean-only",
+        action="store_true",
+        help="Only parse brands that have never had a [FAILED] or [RETRY] in any past pipeline log. Useful for benchmarking clean LLM timing.",
+    )
+    parser.add_argument(
         "--gc-interval",
         type=int,
         default=10,
@@ -204,10 +226,15 @@ def main() -> None:
         rows = [r for r in rows if args.brand.lower() in row_brand(r).lower()]
     candidates = select_candidates(rows, limit=args.limit)
 
+    _tainted_brands: set[str] = _brands_with_failures() if args.clean_only else set()
+    if args.clean_only:
+        print(f"[INFO] --clean-only: {len(_tainted_brands)} brands excluded due to prior FAILED/RETRY history")
+
     parsed_count = 0
     skipped_count = 0
     failed_count = 0
     llm_calls = 0
+    parse_durations: list[float] = []
 
     for row in candidates:
         brand = row_brand(row)
@@ -218,6 +245,13 @@ def main() -> None:
         if input_path is None or not input_path.exists():
             skipped_count += 1
             continue
+
+        # --clean-only: skip any brand that ever had a [FAILED] or [RETRY] in past logs.
+        if args.clean_only:
+            if brand.lower() in _tainted_brands:
+                print(f"[SKIP] {brand}: has prior FAILED/RETRY history (--clean-only)")
+                skipped_count += 1
+                continue
 
         # --failed-only: skip any brand already attempted this run (success or failure).
         # Only processes brands with no output at all — i.e. never attempted.
@@ -257,6 +291,12 @@ def main() -> None:
             time.sleep(3)
 
         try:
+            input_chars = len(input_path.read_text(encoding="utf-8", errors="replace"))
+        except Exception:
+            input_chars = 0
+
+        t0 = time.time()
+        try:
             promotions = parse_text_file(
                 input_path=input_path,
                 brand=brand,
@@ -266,6 +306,8 @@ def main() -> None:
                 ollama_host=args.ollama_host,
                 ollama_timeout=args.ollama_timeout,
             )
+            elapsed = time.time() - t0
+            parse_durations.append(elapsed)
 
             # Don't regress: if the new parse found 0 deals but the previous
             # structured output had deals, keep the old file and warn.
@@ -275,7 +317,7 @@ def main() -> None:
                     try:
                         old_deals = json.loads(existing.read_text(encoding="utf-8")).get("promotions", [])
                         if old_deals:
-                            print(f"[KEPT] {brand}: new parse found 0 deals but {len(old_deals)} old deal(s) preserved")
+                            print(f"[KEPT] {brand}: new parse found 0 deals but {len(old_deals)} old deal(s) preserved ({elapsed:.0f}s, {input_chars}c)")
                             parsed_count += 1
                             continue
                     except Exception:
@@ -286,13 +328,28 @@ def main() -> None:
                 brand=brand,
                 input_path=input_path,
             )
-            print(f"[OK] {brand} ({len(promotions)} deals): {output_path}")
+            print(f"[OK] {brand} ({len(promotions)} deals, {elapsed:.0f}s, {input_chars}c): {output_path}")
             parsed_count += 1
 
         except Exception as e:
-            # Retry once after a short pause before giving up
-            print(f"[RETRY] {brand}: first attempt failed ({type(e).__name__}), retrying...")
+            elapsed = time.time() - t0
+            is_timeout = 'timed out' in str(e).lower()
+            if is_timeout:
+                # Timeouts won't resolve on retry with the same input — fail fast.
+                failed_count += 1
+                failed_path = save_failed_output(
+                    raw_data=dict(row),
+                    brand=brand,
+                    input_path=input_path,
+                    error=e,
+                )
+                print(f"[FAILED] {brand}: timeout after {elapsed:.0f}s ({input_chars}c), skipping retry — {failed_path}")
+                continue
+
+            # Non-timeout failures (JSON parse errors, etc.) — retry once
+            print(f"[RETRY] {brand}: first attempt failed after {elapsed:.0f}s ({input_chars}c, {type(e).__name__}), retrying...")
             time.sleep(5)
+            t0 = time.time()
             try:
                 promotions = parse_text_file(
                     input_path=input_path,
@@ -303,6 +360,8 @@ def main() -> None:
                     ollama_host=args.ollama_host,
                     ollama_timeout=args.ollama_timeout,
                 )
+                elapsed = time.time() - t0
+                parse_durations.append(elapsed)
 
                 # Same don't-regress guard on retry path
                 if not promotions:
@@ -311,7 +370,7 @@ def main() -> None:
                         try:
                             old_deals = json.loads(existing.read_text(encoding="utf-8")).get("promotions", [])
                             if old_deals:
-                                print(f"[KEPT] {brand}: retry found 0 deals but {len(old_deals)} old deal(s) preserved")
+                                print(f"[KEPT] {brand}: retry found 0 deals but {len(old_deals)} old deal(s) preserved ({elapsed:.0f}s)")
                                 parsed_count += 1
                                 continue
                         except Exception:
@@ -322,9 +381,10 @@ def main() -> None:
                     brand=brand,
                     input_path=input_path,
                 )
-                print(f"[OK] {brand} ({len(promotions)} deals) [retry]: {output_path}")
+                print(f"[OK] {brand} ({len(promotions)} deals, {elapsed:.0f}s, {input_chars}c) [retry]: {output_path}")
                 parsed_count += 1
             except Exception as e2:
+                elapsed = time.time() - t0
                 failed_count += 1
                 failed_path = save_failed_output(
                     raw_data=dict(row),
@@ -332,13 +392,16 @@ def main() -> None:
                     input_path=input_path,
                     error=e2,
                 )
-                print(f"[FAILED] {brand}: {failed_path}")
+                print(f"[FAILED] {brand} after {elapsed:.0f}s ({input_chars}c): {failed_path}")
 
     print()
     print("Summary")
     print(f"Parsed:  {parsed_count}")
     print(f"Skipped: {skipped_count}")
     print(f"Failed:  {failed_count}")
+    if parse_durations:
+        avg = sum(parse_durations) / len(parse_durations)
+        print(f"LLM timing: avg {avg:.0f}s  min {min(parse_durations):.0f}s  max {max(parse_durations):.0f}s  (n={len(parse_durations)})")
 
 
 if __name__ == "__main__":
