@@ -88,12 +88,8 @@ class _NearMeScreenState extends State<NearMeScreen> {
         (memberName.isNotEmpty && (m.contains(memberName) || memberName.contains(m))));
   }
 
-  bool _isQualityDeal(Promotion p) {
-    if (p.confidenceScore < 0.75) return false;
-    if (p.discountType == 'unknown') return false;
-    if (p.discountType == 'points') return false;
-    return p.rankScore(distanceKm: p.distanceKm, isMember: _hasMembership(p)) >= 65;
-  }
+  double _dScore(Promotion p) =>
+      dealQualityScore(p, _svc, distanceKm: p.distanceKm, isMember: _hasMembership(p));
 
   List<Promotion> get _filtered {
     if (widget.position == null) return [];
@@ -122,33 +118,32 @@ class _NearMeScreenState extends State<NearMeScreen> {
       }
       return true;
     }).toList()
-      ..sort((a, b) => b.rankScore(distanceKm: b.distanceKm, isMember: _hasMembership(b))
-          .compareTo(a.rankScore(distanceKm: a.distanceKm, isMember: _hasMembership(a))));
+      ..sort((a, b) => _dScore(b).compareTo(_dScore(a)));
   }
 
-  // Search bypasses cap; browsing shows curated top 10 with personalized scoring.
+  // Search bypasses cap; browsing shows curated top 10.
   // Local deals (source == local_neighborhood) are capped at 3; nationals fill the rest.
+  // Both use dealQualityScore — distance bonus (+30 for <0.5 mi) keeps proximity primary.
   List<Promotion> _toDisplay(List<Promotion> base) {
     if (_query.isNotEmpty || _showAll) return base;
 
-    final local = base.where((p) => p.isLocal && p.confidenceScore >= 0.85 && _isQualityDeal(p)).toList()
-      ..sort((a, b) => b.rankScore(distanceKm: b.distanceKm, isMember: _hasMembership(b))
-          .compareTo(a.rankScore(distanceKm: a.distanceKm, isMember: _hasMembership(a))));
+    final local = base
+        .where((p) => p.isLocal && p.confidenceScore >= 0.85 && isFeedWorthy(p))
+        .toList()
+      ..sort((a, b) => _dScore(b).compareTo(_dScore(a)));
     final topLocal = local.take(3).toList();
 
     final nationalLimit = 10 - topLocal.length;
-    final national = base.where((p) => !p.isLocal).toList();
     final topNational = selectTopDeals(
-      national.where(_isQualityDeal).toList(), _svc,
+      base.where((p) => !p.isLocal && isFeedWorthy(p)).toList(),
+      _svc,
       getDistance: (p) => p.distanceKm,
       getIsMember: _hasMembership,
       limit: nationalLimit,
     );
 
-    final combined = [...topLocal, ...topNational]
-      ..sort((a, b) => b.rankScore(distanceKm: b.distanceKm, isMember: _hasMembership(b))
-          .compareTo(a.rankScore(distanceKm: a.distanceKm, isMember: _hasMembership(a))));
-    return combined;
+    return [...topLocal, ...topNational]
+      ..sort((a, b) => _dScore(b).compareTo(_dScore(a)));
   }
 
   void _maybeMarkSeen(List<Promotion> promos) {

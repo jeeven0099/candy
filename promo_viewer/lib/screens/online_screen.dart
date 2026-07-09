@@ -69,20 +69,9 @@ class _OnlineScreenState extends State<OnlineScreen> {
         (memberName.isNotEmpty && (m.contains(memberName) || memberName.contains(m))));
   }
 
-  bool _isQualityDeal(Promotion p) {
-    if (p.confidenceScore < 0.75) return false;
-    if (p.discountType == 'unknown') return false;
-    if (p.discountType == 'points') return false;
-    if (p.discountType == 'free_shipping') return false;
-    if (p.requiresMembership) {
-      final cost = (p.membershipCost ?? '').toLowerCase();
-      if (cost.contains('paid') && !_hasMembership(p)) return false;
-    }
-    return p.rankScore(isMember: _hasMembership(p)) >= 65;
-  }
-
-  double _boostedScore(Promotion p) =>
-      p.rankScore(isMember: _hasMembership(p)) + _catSvc.affinityBoost(p.category);
+  double _dScore(Promotion p) =>
+      dealQualityScore(p, _svc, isMember: _hasMembership(p))
+      + _catSvc.affinityBoost(p.category);
 
   List<Promotion> get _filtered {
     final cats = _selectedCategory == 'All' ? null : _categoryMap[_selectedCategory];
@@ -104,13 +93,16 @@ class _OnlineScreenState extends State<OnlineScreen> {
       }
       return true;
     }).toList()
-      ..sort((a, b) => _boostedScore(b).compareTo(_boostedScore(a)));
+      ..sort((a, b) => _dScore(b).compareTo(_dScore(a)));
   }
 
   List<Promotion> _toDisplay(List<Promotion> base) {
     if (_query.isNotEmpty || _showAll) return base;
-    final quality = base.where(_isQualityDeal).toList();
-    return selectTopDeals(quality, _svc, getIsMember: _hasMembership);
+    return selectTopDeals(
+      base.where(isFeedWorthy).toList(),
+      _svc,
+      getIsMember: _hasMembership,
+    );
   }
 
   void _maybeMarkSeen(List<Promotion> promos) {
