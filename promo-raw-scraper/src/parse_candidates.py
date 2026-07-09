@@ -19,6 +19,23 @@ LOGS_DIR = PROJECT_ROOT / "logs"
 _FAIL_RETRY_RE = re.compile(r'^\[(?:FAILED|RETRY)\] (.+?):', re.MULTILINE)
 
 
+def _is_rate_limit_error(e: Exception) -> bool:
+    """Return True if the exception is a cloud provider rate limit / quota error."""
+    cls = type(e).__name__
+    msg = str(e).lower()
+    # Groq: groq.RateLimitError
+    # Gemini: google.api_core.exceptions.ResourceExhausted, or status 429
+    return (
+        cls == "RateLimitError"
+        or "rate_limit" in cls.lower()
+        or "resourceexhausted" in cls.lower()
+        or "429" in msg
+        or "quota" in msg
+        or "rate limit" in msg
+        or "resource exhausted" in msg
+    )
+
+
 def _brands_with_failures() -> set[str]:
     """Return lowercase brand names that ever appeared as [FAILED] or [RETRY] in any pipeline log."""
     tainted: set[str] = set()
@@ -262,6 +279,10 @@ def main() -> None:
     llm_calls = 0
     parse_durations: list[float] = []
 
+    # Track the active model; falls back to "ollama" if cloud quota is exhausted
+    current_model = args.model
+    cloud_quota_hit = False
+
     for row in candidates:
         brand = row_brand(row)
         category = row_category(row)
@@ -311,7 +332,7 @@ def main() -> None:
         if args.gc_interval and llm_calls % args.gc_interval == 0:
             gc.collect()
             print(f"[GC] gc.collect() before brand #{llm_calls}")
-        if args.model == "ollama" and args.ollama_restart_interval and llm_calls % args.ollama_restart_interval == 0:
+        if current_model == "ollama" and args.ollama_restart_interval and llm_calls % args.ollama_restart_interval == 0:
             print(f"[OLLAMA] Unloading model before brand #{llm_calls} (memory relief)...")
             _unload_ollama_model(args.ollama_host, args.ollama_model)
             time.sleep(3)
@@ -321,13 +342,12 @@ def main() -> None:
         except Exception:
             input_chars = 0
 
-        t0 = time.time()
-        try:
-            promotions = parse_text_file(
+        def _call_parse(model_type: str) -> list:
+            return parse_text_file(
                 input_path=input_path,
                 brand=brand,
                 category=category,
-                model_type=args.model,
+                model_type=model_type,
                 ollama_model=args.ollama_model,
                 ollama_host=args.ollama_host,
                 ollama_timeout=args.ollama_timeout,
@@ -337,33 +357,53 @@ def main() -> None:
                 groq_api_key=args.groq_api_key,
                 cloud_timeout=args.cloud_timeout,
             )
+
+        def _save_ok(promotions: list, elapsed: float, suffix: str = "") -> None:
+            existing = STRUCTURED_DIR / f"{slugify(brand)}.json"
+            if not promotions and existing.exists():
+                try:
+                    old_deals = json.loads(existing.read_text(encoding="utf-8")).get("promotions", [])
+                    if old_deals:
+                        print(f"[KEPT] {brand}: new parse found 0 deals but {len(old_deals)} old deal(s) preserved ({elapsed:.0f}s, {input_chars}c){suffix}")
+                        return
+                except Exception:
+                    pass
+            output_path = save_promotions_json(promotions=promotions, brand=brand, input_path=input_path)
+            print(f"[OK] {brand} ({len(promotions)} deals, {elapsed:.0f}s, {input_chars}c){suffix}: {output_path}")
+
+        t0 = time.time()
+        try:
+            promotions = _call_parse(current_model)
             elapsed = time.time() - t0
             parse_durations.append(elapsed)
-
-            # Don't regress: if the new parse found 0 deals but the previous
-            # structured output had deals, keep the old file and warn.
-            if not promotions:
-                existing = STRUCTURED_DIR / f"{slugify(brand)}.json"
-                if existing.exists():
-                    try:
-                        old_deals = json.loads(existing.read_text(encoding="utf-8")).get("promotions", [])
-                        if old_deals:
-                            print(f"[KEPT] {brand}: new parse found 0 deals but {len(old_deals)} old deal(s) preserved ({elapsed:.0f}s, {input_chars}c)")
-                            parsed_count += 1
-                            continue
-                    except Exception:
-                        pass
-
-            output_path = save_promotions_json(
-                promotions=promotions,
-                brand=brand,
-                input_path=input_path,
-            )
-            print(f"[OK] {brand} ({len(promotions)} deals, {elapsed:.0f}s, {input_chars}c): {output_path}")
+            _save_ok(promotions, elapsed, f" [{current_model}]" if cloud_quota_hit else "")
             parsed_count += 1
 
         except Exception as e:
             elapsed = time.time() - t0
+
+            # ── Rate limit: fall back this brand and all subsequent ones to local ──
+            if _is_rate_limit_error(e) and current_model != "ollama":
+                cloud_quota_hit = True
+                current_model = "ollama"
+                print(
+                    f"[RATE-LIMIT] {current_model} quota hit on {brand} after {elapsed:.0f}s — "
+                    f"falling back to local Ollama for this and all remaining brands."
+                )
+                t0 = time.time()
+                try:
+                    promotions = _call_parse("ollama")
+                    elapsed = time.time() - t0
+                    parse_durations.append(elapsed)
+                    _save_ok(promotions, elapsed, " [ollama-fallback]")
+                    parsed_count += 1
+                except Exception as e2:
+                    elapsed = time.time() - t0
+                    failed_count += 1
+                    failed_path = save_failed_output(raw_data=dict(row), brand=brand, input_path=input_path, error=e2)
+                    print(f"[FAILED] {brand} (ollama fallback) after {elapsed:.0f}s ({input_chars}c): {failed_path}")
+                continue
+
             is_timeout = 'timed out' in str(e).lower()
             if is_timeout:
                 # Timeouts won't resolve on retry with the same input — fail fast.
@@ -377,42 +417,15 @@ def main() -> None:
                 print(f"[FAILED] {brand}: timeout after {elapsed:.0f}s ({input_chars}c), skipping retry — {failed_path}")
                 continue
 
-            # Non-timeout failures (JSON parse errors, etc.) — retry once
+            # Non-timeout failures (JSON parse errors, etc.) — retry once with same model
             print(f"[RETRY] {brand}: first attempt failed after {elapsed:.0f}s ({input_chars}c, {type(e).__name__}), retrying...")
             time.sleep(5)
             t0 = time.time()
             try:
-                promotions = parse_text_file(
-                    input_path=input_path,
-                    brand=brand,
-                    category=category,
-                    model_type=args.model,
-                    ollama_model=args.ollama_model,
-                    ollama_host=args.ollama_host,
-                    ollama_timeout=args.ollama_timeout,
-                )
+                promotions = _call_parse(current_model)
                 elapsed = time.time() - t0
                 parse_durations.append(elapsed)
-
-                # Same don't-regress guard on retry path
-                if not promotions:
-                    existing = STRUCTURED_DIR / f"{slugify(brand)}.json"
-                    if existing.exists():
-                        try:
-                            old_deals = json.loads(existing.read_text(encoding="utf-8")).get("promotions", [])
-                            if old_deals:
-                                print(f"[KEPT] {brand}: retry found 0 deals but {len(old_deals)} old deal(s) preserved ({elapsed:.0f}s)")
-                                parsed_count += 1
-                                continue
-                        except Exception:
-                            pass
-
-                output_path = save_promotions_json(
-                    promotions=promotions,
-                    brand=brand,
-                    input_path=input_path,
-                )
-                print(f"[OK] {brand} ({len(promotions)} deals, {elapsed:.0f}s, {input_chars}c) [retry]: {output_path}")
+                _save_ok(promotions, elapsed, " [retry]")
                 parsed_count += 1
             except Exception as e2:
                 elapsed = time.time() - t0
@@ -430,6 +443,8 @@ def main() -> None:
     print(f"Parsed:  {parsed_count}")
     print(f"Skipped: {skipped_count}")
     print(f"Failed:  {failed_count}")
+    if cloud_quota_hit:
+        print(f"Note:    Cloud quota was hit mid-run — remaining brands were processed by local Ollama.")
     if parse_durations:
         avg = sum(parse_durations) / len(parse_durations)
         print(f"LLM timing: avg {avg:.0f}s  min {min(parse_durations):.0f}s  max {max(parse_durations):.0f}s  (n={len(parse_durations)})")
