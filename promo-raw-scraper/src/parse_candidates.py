@@ -12,6 +12,12 @@ from typing import Dict, List, Optional
 
 from structured_parser import parse_text_file, save_failed_output, save_promotions_json, slugify
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).resolve().parents[1] / ".env")
+except ImportError:
+    pass
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 STRUCTURED_DIR = PROJECT_ROOT / "structured_outputs"

@@ -27,6 +27,13 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Load API keys from .env file if present (overrides nothing already set in the environment)
+try:
+    from dotenv import load_dotenv
+    load_dotenv(Path(__file__).resolve().parent / ".env")
+except ImportError:
+    pass
+
 SRC = Path(__file__).resolve().parent / "src"
 LOGS_DIR = Path(__file__).resolve().parent / "logs"
 
