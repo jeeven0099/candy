@@ -5,15 +5,16 @@ import '../services/saved_deals_service.dart';
 
 const _kHide = 999.0;
 
-// Fix 4: 70% objective / 30% personalization.
-// Reduced from 60 → 40 so deal quality drives ranking, preferences reorder the top.
-const double kPersonalizationBoostCap = 40.0;
+// Beta: quality drives ranking, personalization reorders the top.
+// Lowered from 40 → 35 so the feed feels deal-quality-first for new users
+// who have little interaction history.
+const double kPersonalizationBoostCap = 35.0;
 
-// ── Fix 1: Category quality floors ───────────────────────────────────────────
-// Higher-investment categories need a stronger deal to feel interesting.
+// ── Category quality floors (beta) ────────────────────────────────────────────
+// Raised fashion/beauty 60 → 65. Food/coffee/tech/home/travel unchanged.
 const _kCategoryFloors = <String, double>{
-  'fashion':          60.0,
-  'beauty':           60.0,
+  'fashion':          65.0,
+  'beauty':           65.0,
   'food':             70.0,
   'coffee':           70.0,
   'tech':             75.0,
@@ -27,15 +28,70 @@ bool _isFreeOrBogo(Promotion p) {
   return d == 'free_item' || d.contains('bogo');
 }
 
-/// Fix 1+3: A deal must pass this gate before personalization boosts apply.
+/// True when a promotion is a loyalty/rewards-program deal rather than an
+/// immediate discount, coupon, or sale.
+bool isRewardProgram(Promotion p) =>
+    p.promotionType == 'reward' || p.promotionType == 'membership_benefit';
+
+/// Clear and concrete value without requiring program knowledge:
+/// free items ("Free Drink", "Free Fries") or dollar-denominated rewards
+/// ("$5 reward", "Earn $10 back").
+bool _hasImmediateValue(Promotion p) {
+  if (p.discountType == 'free_item') return true;
+  return RegExp(r'\$\d').hasMatch(p.title);
+}
+
+/// Returns true when a reward-program deal is allowed in the For You feed.
+/// Evaluated inside [selectTopDeals] so all of the brand's deals are available
+/// for the "prior interaction" criterion.
+bool _rewardPassesForYou(
+  Promotion p,
+  InteractionService svc,
+  Set<String> favBrands,
+  UserPrefs? prefs,
+  List<Promotion> allBrandDeals,
+) {
+  // 1. Clear immediate value — free item or specific dollar amount
+  if (_hasImmediateValue(p)) return true;
+  // 2. Favorite brand — explicit user preference
+  if (favBrands.contains(p.brand.toLowerCase())) return true;
+  // 3. Prior interaction with this brand or any of its deals
+  if (svc.isBrandRecentlySearched(p.brand)) return true;
+  for (final d in allBrandDeals) {
+    if (svc.clickCount(d.id) > 0 ||
+        svc.hasFastRedeemed(d.id) ||
+        SavedDealsService().get(d.id) != null) return true;
+  }
+  // 4. Birthday reward during the user's birthday month
+  if (p.birthdayRelated && _isBirthdayMonth(prefs)) {
+    return true;
+  }
+  // 5. Very high quality score — strong standalone offer
+  if (p.globalQualityScore >= 80) {
+    return true;
+  }
+  return false;
+}
+
+/// True when a deal has an explicit ≥ 30% percentage discount.
+/// These always belong in For You at a lower quality bar.
+bool _isStrongDiscount(Promotion p) {
+  if (p.discountType.toLowerCase() != 'percentage_off') return false;
+  final match = RegExp(r'(\d+)').firstMatch(p.discountValue ?? '');
+  return match != null && (int.tryParse(match.group(1)!) ?? 0) >= 30;
+}
+
+/// Beta gate: a deal must pass before personalization boosts apply.
 /// Category preference reorders good deals — it does not rescue weak ones.
 bool isFeedWorthy(Promotion p, {Set<String> favBrands = const {}}) {
-  // Free items and BOGO are always interesting regardless of category
-  if (_isFreeOrBogo(p) && p.globalQualityScore >= 50) return true;
-  // Favourite-brand deals get a lower floor (user has shown explicit intent)
-  if (favBrands.contains(p.brand.toLowerCase()) && p.globalQualityScore >= 60) return true;
-  // Category-specific floor
-  final floor = _kCategoryFloors[p.category.toLowerCase()] ?? 60.0;
+  // Free items / BOGO — always compelling; very permissive bar
+  if (_isFreeOrBogo(p) && p.globalQualityScore >= 45) return true;
+  // Explicit ≥ 30% off — strong discount, slightly lower bar than default
+  if (_isStrongDiscount(p) && p.globalQualityScore >= 55) return true;
+  // Favourite-brand deals — user has stated explicit intent; lower floor
+  if (favBrands.contains(p.brand.toLowerCase()) && p.globalQualityScore >= 50) return true;
+  // Category-specific floor (default raised 60 → 65 for beta quality bar)
+  final floor = _kCategoryFloors[p.category.toLowerCase()] ?? 65.0;
   if (p.globalQualityScore < floor) return false;
   // Points-only deals need a higher score unless from a favourite brand
   if (p.discountType.toLowerCase() == 'points' &&
@@ -46,19 +102,20 @@ bool isFeedWorthy(Promotion p, {Set<String> favBrands = const {}}) {
   return true;
 }
 
-/// Fix 2: Penalty for uninspiring deal types so they rank low in For You.
+/// Penalty for uninspiring deal types so they rank low in For You.
 /// These deals still appear in Search — this only affects feed position.
+/// Beta: values raised to push weak deals further down relative to strong discounts.
 double _weakDealPenalty(Promotion p) {
   double penalty = 0;
   final dtype = p.discountType.toLowerCase();
   final ptype = p.promotionType.toLowerCase();
   final title = p.title.toLowerCase();
-  if (dtype == 'free_shipping')                                   penalty += 20;
-  if (dtype == 'points')                                          penalty += 15;
-  if (ptype == 'app_offer' && dtype == 'unknown')                 penalty += 18;
-  if (title.contains('select style'))                             penalty += 12;
-  if (title.contains('newsletter') || title.contains('sign up')) penalty += 20;
-  if (title.contains('limited time') && dtype == 'unknown')      penalty += 10;
+  if (dtype == 'free_shipping')                                   penalty += 25;
+  if (dtype == 'points')                                          penalty += 20;
+  if (ptype == 'app_offer' && dtype == 'unknown')                 penalty += 22;
+  if (title.contains('select style'))                             penalty += 15;
+  if (title.contains('newsletter') || title.contains('sign up')) penalty += 25;
+  if (title.contains('limited time') && dtype == 'unknown')      penalty += 15;
   return penalty;
 }
 
@@ -513,12 +570,27 @@ List<Promotion> selectTopDeals(
     return sb.compareTo(sa);
   });
 
-  // Level 2: from each brand (in order), take best deals by deal quality
+  // Level 2: from each brand (in order), take best deals by deal quality.
+  // Reward-program deals are suppressed in For You unless they meet one of:
+  //   1. clear immediate value (free item or $-amount reward)
+  //   2. favorite brand
+  //   3. prior interaction with this brand/its deals
+  //   4. birthday reward during birthday month
+  //   5. very high quality score (≥ 80)
+  // When both regular and reward deals exist, the reward deal is always hidden.
   final result = <Promotion>[];
   for (final brand in brands) {
     if (result.length >= limit) break;
     final deals = brandMap[brand]!;
-    deals.sort((a, b) {
+
+    final regularDeals = deals.where((d) => !isRewardProgram(d)).toList();
+    final eligible = regularDeals.isNotEmpty
+        ? regularDeals
+        : deals.where((d) => _rewardPassesForYou(
+              d, svc, favBrands, prefs, deals)).toList();
+    if (eligible.isEmpty) continue;
+
+    eligible.sort((a, b) {
       final sa = dealQualityScore(a, svc, distanceKm: getDistance?.call(a),
           isMember: getIsMember?.call(a) ?? false, prefs: prefs);
       final sb = dealQualityScore(b, svc, distanceKm: getDistance?.call(b),
@@ -526,7 +598,7 @@ List<Promotion> selectTopDeals(
       return sb.compareTo(sa);
     });
     int taken = 0;
-    for (final p in deals) {
+    for (final p in eligible) {
       if (taken >= maxPerBrand || result.length >= limit) break;
       result.add(p);
       taken++;

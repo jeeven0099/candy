@@ -113,7 +113,7 @@ class GeminiModel(LocalModelInterface):
     Gemini backend via Google AI Studio.
     Free tier: 15 requests/min, 1 500 requests/day.
     Recommended model: gemini-2.0-flash
-    Install: pip install google-generativeai
+    Install: pip install google-genai
     """
 
     def __init__(
@@ -139,27 +139,28 @@ class GeminiModel(LocalModelInterface):
         source_path: str,
     ) -> List[Promotion]:
         try:
-            import google.generativeai as genai
+            import httpx
+            from google import genai
+            from google.genai import types as genai_types
+            from google.genai._api_client import HttpOptions
         except ImportError:
             raise ImportError(
-                "google-generativeai not installed. "
-                "Run: pip install google-generativeai"
+                "google-genai not installed. "
+                "Run: pip install google-genai"
             )
 
         helper = _make_helper()
         prompt = helper._build_prompt(text, brand, category, source_path)
 
-        genai.configure(api_key=self.api_key)
-        model = genai.GenerativeModel(
-            self.model_name,
-            generation_config=genai.GenerationConfig(
+        http_options = HttpOptions(httpxClient=httpx.Client(verify=False))
+        client = genai.Client(api_key=self.api_key, http_options=http_options)
+        response = client.models.generate_content(
+            model=self.model_name,
+            contents=prompt,
+            config=genai_types.GenerateContentConfig(
                 response_mime_type="application/json",
                 max_output_tokens=8192,
             ),
-        )
-        response = model.generate_content(
-            prompt,
-            request_options={"timeout": self.timeout},
         )
         raw = response.text or ""
         return _finish_parsing(helper, raw, brand, category, source_path, text)
@@ -202,10 +203,16 @@ class GroqModel(LocalModelInterface):
                 "groq not installed. Run: pip install groq"
             )
 
-        helper = _make_helper()
-        prompt = helper._build_prompt(text, brand, category, source_path)
+        import httpx
 
-        client = Groq(api_key=self.api_key)
+        helper = _make_helper()
+        # Groq free tier: ~12K TPM. Prompt template overhead is ~2-3K tokens,
+        # so cap text at 6000 chars to stay well under the limit.
+        safe_text = text[:6000] if len(text) > 6000 else text
+        prompt = helper._build_prompt(safe_text, brand, category, source_path)
+
+        http_client = httpx.Client(verify=False)
+        client = Groq(api_key=self.api_key, http_client=http_client)
         response = client.chat.completions.create(
             model=self.model_name,
             messages=[{"role": "user", "content": prompt}],
