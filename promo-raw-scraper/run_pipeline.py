@@ -106,8 +106,8 @@ def main() -> None:
                         help="In step 4, only parse brands with no prior FAILED/RETRY history. Faster for benchmarking clean LLM timing.")
     parser.add_argument("--gc-interval", type=int, default=10,
                         help="gc.collect() every N LLM-processed brands in step 4 (0 = off). Default: 10")
-    parser.add_argument("--ollama-restart-interval", type=int, default=25,
-                        help="Unload Ollama model every N brands to free VRAM (0 = off). Default: 25")
+    parser.add_argument("--ollama-restart-interval", type=int, default=0,
+                        help="Unload Ollama model every N brands to free VRAM (0 = off). Default: 0 (disabled)")
     args = parser.parse_args()
 
     LOGS_DIR.mkdir(parents=True, exist_ok=True)
