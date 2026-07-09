@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
 
 class Candy {
-  // Primary action — deep berry, not neon pink
-  static const raspberry  = Color(0xFFB8325A);
-  static const berry      = Color(0xFFB8325A); // alias
+  // Primary action
+  static const raspberry  = Color(0xFFA72D52);
+  static const berry      = Color(0xFFA72D52); // alias
 
-  // Positive / success — deeper, less neon
-  static const mint       = Color(0xFF22A06B);
+  // Positive / success
+  static const mint       = Color(0xFF168A5B);
 
-  // Accent — promo codes, online tags
-  static const lavender   = Color(0xFFA78BFA);
+  // Deal accent — promo codes, online tags, points
+  static const orange     = Color(0xFFEA7A1A);
+  static const lavender   = orange; // alias kept for existing references
 
   // Backgrounds
-  static const cream      = Color(0xFFF8F7F4); // page background
+  static const cream      = Color(0xFFFAFAFA); // page background
   static const surface    = Color(0xFFFFFFFF); // card surface
 
-  // Light warm tint — used for chip/badge backgrounds and dividers
-  static const pink       = Color(0xFFF0E8E3);
+  // Chip / badge backgrounds and dividers
+  static const pink       = Color(0xFFF4F4F5);
 
   // Text
-  static const chocolate  = Color(0xFF1F1F1F); // primary text
-  static const muted      = Color(0xFF6F625F); // secondary / label text
+  static const chocolate  = Color(0xFF18181B); // primary text
+  static const muted      = Color(0xFF71717A); // secondary / label text
 
   // Structural
-  static const border     = Color(0xFFECE7E3); // very subtle borders
+  static const border     = Color(0xFFE4E4E7); // very subtle borders
 }
