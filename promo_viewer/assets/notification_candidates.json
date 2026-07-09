@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-09T20:14:33.927479+00:00",
+  "generated_at": "2026-07-09T20:49:14.690171+00:00",
   "threshold": 60.0,
   "total": 13,
   "candidates": [
@@ -96,7 +96,7 @@
       "estimated_savings": 32.5,
       "end_date": null,
       "website_domain": "underarmour.com",
-      "source_url": "https://www.underarmour.com/en-us/c/outlet/"
+      "source_url": null
     },
     {
       "promo_id": "chicos_buyonegetone50offjewelry",
@@ -115,7 +115,7 @@
       "estimated_savings": 32.5,
       "end_date": null,
       "website_domain": "chicos.com",
-      "source_url": "https://www.chicos.com/store/category/sale/cat40004/"
+      "source_url": null
     },
     {
       "promo_id": "johnstonmurphy_endofseasonsale",
@@ -153,7 +153,7 @@
       "estimated_savings": 32.5,
       "end_date": null,
       "website_domain": "pacsun.com",
-      "source_url": "https://www.pacsun.com/sale/"
+      "source_url": null
     },
     {
       "promo_id": "pacsun_lastchancesavingsupto70offallmarkdowns",
@@ -172,7 +172,7 @@
       "estimated_savings": 45.5,
       "end_date": null,
       "website_domain": "pacsun.com",
-      "source_url": "https://www.pacsun.com/sale/"
+      "source_url": null
     },
     {
       "promo_id": "shein_plussizeelegantjacquardwaistflaresleevedressautumn",
@@ -229,7 +229,7 @@
       "estimated_savings": 45.5,
       "end_date": null,
       "website_domain": "whitehouseblackmarket.com",
-      "source_url": "https://www.whitehouseblackmarket.com/store/category/sale/cat210002/"
+      "source_url": null
     },
     {
       "promo_id": "whitehouseblackmarket_50offsummermusthaves",
@@ -248,7 +248,7 @@
       "estimated_savings": 32.5,
       "end_date": null,
       "website_domain": "whitehouseblackmarket.com",
-      "source_url": "https://www.whitehouseblackmarket.com/store/category/sale/cat210002/"
+      "source_url": null
     }
   ]
 }
