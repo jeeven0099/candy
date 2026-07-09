@@ -371,7 +371,7 @@ def main() -> None:
     parser.add_argument("--ollama-host", default="http://localhost:11434")
     parser.add_argument("--ollama-timeout", type=int, default=3600)
     parser.add_argument("--gc-interval", type=int, default=10)
-    parser.add_argument("--ollama-restart-interval", type=int, default=25)
+    parser.add_argument("--ollama-restart-interval", type=int, default=0)
 
     # Gemini
     parser.add_argument("--gemini-model", default="gemini-2.0-flash")
