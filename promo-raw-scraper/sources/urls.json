@@ -11,14 +11,14 @@
     "category": "coffee",
     "url": "https://www.dunkindonuts.com/en/dunkinrewards",
     "source_type": "rewards_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false
   },
   {
     "brand": "Dutch Bros",
     "category": "coffee",
     "url": "https://www.dutchbros.com/rewards/",
     "source_type": "rewards_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false
   },
   {
     "brand": "Peet's Coffee",
@@ -67,7 +67,7 @@
     "category": "food",
     "url": "https://www.bk.com/terms",
     "source_type": "offers_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false
   },
   {
     "brand": "Subway",
@@ -83,7 +83,6 @@
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
-
   {
     "brand": "Pizza Hut",
     "category": "food",
@@ -91,13 +90,12 @@
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
-
   {
     "brand": "Sweetgreen",
     "category": "food",
     "url": "https://www.sweetgreen.com/sweet-rewards",
     "source_type": "rewards_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false
   },
   {
     "brand": "Shake Shack",
@@ -326,7 +324,7 @@
     "category": "fashion",
     "url": "https://www.jcrew.com/sale",
     "source_type": "sales_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false
   },
   {
     "brand": "Madewell",
@@ -454,8 +452,6 @@
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
-
-  
   {
     "brand": "DSW",
     "category": "fashion",
@@ -617,7 +613,6 @@
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
-
   {
     "brand": "Fashion Nova",
     "category": "fashion",
@@ -631,7 +626,7 @@
     "category": "fashion",
     "url": "https://us.princesspolly.com/collections/sale",
     "source_type": "sales_page",
-    "allowed_to_fetch": true,
+    "allowed_to_fetch": false,
     "online_only": true
   },
   {
@@ -662,7 +657,6 @@
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
-  
   {
     "brand": "Windsor",
     "category": "fashion",
@@ -696,7 +690,7 @@
     "category": "fashion",
     "url": "https://www.tillys.com/",
     "source_type": "sales_page",
-    "allowed_to_fetch": false
+    "allowed_to_fetch": true
   },
   {
     "brand": "Dr. Martens",
@@ -853,7 +847,6 @@
     "source_type": "rewards_page",
     "allowed_to_fetch": true
   },
-
   {
     "brand": "H-E-B",
     "category": "grocery",
@@ -959,7 +952,6 @@
     "source_type": "rewards_page",
     "allowed_to_fetch": true
   },
-
   {
     "brand": "American Airlines",
     "category": "travel",
@@ -981,7 +973,6 @@
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
-  
   {
     "brand": "Frontier Airlines",
     "category": "travel",
@@ -1003,7 +994,6 @@
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
-  
   {
     "brand": "Hyatt",
     "category": "travel",
@@ -1079,7 +1069,7 @@
     "category": "tech",
     "url": "https://www.dell.com/en-us/shop/deals",
     "source_type": "deals_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false
   },
   {
     "brand": "HP",
@@ -1163,7 +1153,7 @@
     "category": "home_goods",
     "url": "https://www.containerstore.com/",
     "source_type": "sales_page",
-    "allowed_to_fetch": true
+    "allowed_to_fetch": false
   },
   {
     "brand": "AutoZone",
@@ -1254,7 +1244,6 @@
     "allowed_to_fetch": false,
     "online_only": true
   },
- 
   {
     "brand": "Factor",
     "category": "food",
@@ -1405,7 +1394,7 @@
   {
     "brand": "ColourPop",
     "category": "beauty",
-    "url": "https://colourpop.com/collections/sale",
+    "url": "https://colourpop.com/",
     "source_type": "sales_page",
     "allowed_to_fetch": true,
     "online_only": true
@@ -1956,7 +1945,7 @@
     "category": "entertainment",
     "url": "https://www.fandango.com/offers",
     "source_type": "offers_page",
-    "allowed_to_fetch": true,
+    "allowed_to_fetch": false,
     "online_only": true
   },
   {

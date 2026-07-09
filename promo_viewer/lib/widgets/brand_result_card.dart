@@ -158,10 +158,7 @@ class _BrandResultCardState extends State<BrandResultCard> {
     String catName  = '';
     if (prefs != null) {
       final bl = brand.toLowerCase();
-      isFavBrand = prefs.favoriteBrands.any((b) {
-        final bfl = b.toLowerCase();
-        return bfl == bl || bl.contains(bfl) || bfl.contains(bl);
-      });
+      isFavBrand = prefs.favoriteBrands.any((b) => b.toLowerCase() == bl);
       catName = deals.first.category;
       final cl = catName.toLowerCase();
       isFavCat = cl.isNotEmpty &&
@@ -202,8 +199,8 @@ class _BrandResultCardState extends State<BrandResultCard> {
       (
         icon:   Icons.search,
         text:   recentSearch
-            ? 'You searched for $brand this session'
-            : 'You haven\'t searched $brand this session',
+            ? 'You searched for $brand recently'
+            : 'You haven\'t searched for $brand recently',
         active: recentSearch,
       ),
       (

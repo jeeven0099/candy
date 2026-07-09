@@ -227,10 +227,7 @@ class NotificationService {
     final brandRaw = (c['brand']    as String? ?? '').toLowerCase();
     final catRaw   = (c['category'] as String? ?? '').toLowerCase();
 
-    final isFavBrand = prefs.favoriteBrands.any((b) {
-      final bl = b.toLowerCase();
-      return bl == brandRaw || brandRaw.contains(bl) || bl.contains(brandRaw);
-    });
+    final isFavBrand = prefs.favoriteBrands.any((b) => b.toLowerCase() == brandRaw);
     if (isFavBrand) signals.add('favorite_brand');
 
     final isFavCat = catRaw.isNotEmpty &&

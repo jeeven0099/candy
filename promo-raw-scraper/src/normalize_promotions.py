@@ -308,6 +308,22 @@ def fix_requires_membership_type(promo: dict) -> dict:
     return promo
 
 
+def fix_free_loyalty_membership(promo: dict) -> dict:
+    """Set membership_cost to 'free' for loyalty/rewards programs when LLM left it unknown.
+
+    Brand loyalty programs and app rewards programs are virtually always free to join.
+    The LLM often leaves membership_cost as 'unknown' when the page doesn't state the
+    cost explicitly — but for 'reward' type promos this is almost never a paid program.
+    """
+    if not promo.get("requires_membership"):
+        return promo
+    if promo.get("membership_cost") != "unknown":
+        return promo
+    if promo.get("promotion_type") == "reward":
+        promo["membership_cost"] = "free"
+    return promo
+
+
 def fix_subscription_pricing(promo: dict) -> dict:
     """Promote unknown-typed promos that mention a recurring price to sale_price."""
     if promo.get("discount_type") != "unknown":
@@ -613,6 +629,7 @@ def normalize_file(
         promo = fix_subscription_pricing(promo)
         promo = fix_unknown_type_from_title(promo)
         promo = fix_third_party_membership(promo)
+        promo = fix_free_loyalty_membership(promo)
         promo = fix_requires_membership_type(promo)
         promo = fix_rewards_program_title(promo)
         promo = fix_promotion_title(promo, canonical_brand)

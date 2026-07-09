@@ -13,6 +13,15 @@ NOISE_PHRASES = [
     'skip to main content',
 ]
 
+# Legal boilerplate detection: long lines (>400 chars) that contain any legal signal word
+# are almost certainly T&C clauses. Real deal content is rarely more than 150 chars per line.
+_LEGAL_SIGNALS = re.compile(
+    r'\b(redeemable|transferable|prohibited|liability|pursuant|void\b|indemnif|arbitration'
+    r'|sublicense|warranties|governing\s+law|jurisdiction|severab)\b',
+    re.IGNORECASE,
+)
+_LEGAL_LINE_MIN_LEN = 400
+
 
 def extract_title(html: str) -> str | None:
     soup = BeautifulSoup(html, 'lxml')
@@ -54,6 +63,8 @@ def clean_visible_text(html: str) -> str:
             continue
         lower = line.lower()
         if any(phrase in lower for phrase in NOISE_PHRASES) and len(line) < 120:
+            continue
+        if len(line) > _LEGAL_LINE_MIN_LEN and _LEGAL_SIGNALS.search(line):
             continue
         if line in seen:
             continue
