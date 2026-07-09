@@ -160,7 +160,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--model",
-        choices=["rule_based", "ollama"],
+        choices=["rule_based", "ollama", "gemini", "groq"],
         default="rule_based",
         help="Extraction backend. Default: rule_based",
     )
@@ -179,6 +179,32 @@ def main() -> None:
         type=int,
         default=3600,
         help="Seconds before an Ollama request times out. Default: 3600",
+    )
+    parser.add_argument(
+        "--gemini-model",
+        default="gemini-2.0-flash",
+        help="Gemini model name (only used when --model gemini). Default: gemini-2.0-flash",
+    )
+    parser.add_argument(
+        "--gemini-api-key",
+        default=None,
+        help="Google AI Studio API key (falls back to GEMINI_API_KEY env var).",
+    )
+    parser.add_argument(
+        "--groq-model",
+        default="llama-3.3-70b-versatile",
+        help="Groq model name (only used when --model groq). Default: llama-3.3-70b-versatile",
+    )
+    parser.add_argument(
+        "--groq-api-key",
+        default=None,
+        help="Groq API key (falls back to GROQ_API_KEY env var).",
+    )
+    parser.add_argument(
+        "--cloud-timeout",
+        type=int,
+        default=120,
+        help="Seconds before a cloud model request times out. Default: 120",
     )
     parser.add_argument(
         "--force",
@@ -285,7 +311,7 @@ def main() -> None:
         if args.gc_interval and llm_calls % args.gc_interval == 0:
             gc.collect()
             print(f"[GC] gc.collect() before brand #{llm_calls}")
-        if args.ollama_restart_interval and llm_calls % args.ollama_restart_interval == 0:
+        if args.model == "ollama" and args.ollama_restart_interval and llm_calls % args.ollama_restart_interval == 0:
             print(f"[OLLAMA] Unloading model before brand #{llm_calls} (memory relief)...")
             _unload_ollama_model(args.ollama_host, args.ollama_model)
             time.sleep(3)
@@ -305,6 +331,11 @@ def main() -> None:
                 ollama_model=args.ollama_model,
                 ollama_host=args.ollama_host,
                 ollama_timeout=args.ollama_timeout,
+                gemini_model=args.gemini_model,
+                gemini_api_key=args.gemini_api_key,
+                groq_model=args.groq_model,
+                groq_api_key=args.groq_api_key,
+                cloud_timeout=args.cloud_timeout,
             )
             elapsed = time.time() - t0
             parse_durations.append(elapsed)
