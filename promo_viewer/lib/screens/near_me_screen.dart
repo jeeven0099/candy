@@ -223,57 +223,57 @@ class _NearMeScreenState extends State<NearMeScreen> {
             children: [
               const Icon(Icons.near_me, size: 22),
               const SizedBox(width: 8),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Near Me',
-                    style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: -0.5,
-                      color: Candy.chocolate,
-                    ),
-                  ),
-                  Text(
-                    widget.position != null
-                        ? LocationService.cityName(
-                            widget.position!.latitude,
-                            widget.position!.longitude,
-                          )
-                        : 'Sweet deals nearby',
-                    style: const TextStyle(
-                      fontSize: 12,
-                      color: Candy.lavender,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
+              const Text(
+                'Near Me',
+                style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.w700,
+                  letterSpacing: -0.5,
+                  color: Candy.chocolate,
+                ),
               ),
               const Spacer(),
-              if (widget.locating)
-                const Row(
-                  children: [
-                    SizedBox(
-                      width: 14,
-                      height: 14,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    ),
-                    SizedBox(width: 6),
-                    Text('Locating…', style: TextStyle(fontSize: 12, color: Colors.grey)),
-                  ],
-                )
-              else if (widget.position == null)
-                Text('Location unavailable',
-                    style: TextStyle(fontSize: 12, color: Colors.grey.shade500))
-              else if (updated != null)
+              if (updated != null)
                 Text(
                   formatLastUpdated(updated),
                   style: TextStyle(fontSize: 11, color: Colors.grey.shade400),
                 ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 10),
+          // Location pill — city confirmation above the search bar
+          Row(
+            children: [
+              Icon(Icons.location_on, size: 14,
+                  color: widget.position != null ? Candy.mint : Colors.grey.shade400),
+              const SizedBox(width: 4),
+              Text(
+                widget.locating
+                    ? 'Locating…'
+                    : widget.position != null
+                        ? LocationService.cityName(
+                            widget.position!.latitude,
+                            widget.position!.longitude,
+                          )
+                        : 'Location unavailable',
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                  color: widget.position != null ? Candy.chocolate : Colors.grey.shade400,
+                ),
+              ),
+              if (widget.locating) ...[
+                const SizedBox(width: 6),
+                SizedBox(
+                  width: 11,
+                  height: 11,
+                  child: CircularProgressIndicator(strokeWidth: 1.5,
+                      color: Colors.grey.shade400),
+                ),
+              ],
+            ],
+          ),
+          const SizedBox(height: 10),
           SearchBar(
             controller: _searchController,
             hintText: 'Search nearby deals…',
