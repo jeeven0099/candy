@@ -90,6 +90,12 @@ def main() -> None:
                         help="Groq API key (falls back to GROQ_API_KEY env var)")
     parser.add_argument("--cloud-timeout", type=int, default=120,
                         help="Seconds before a cloud model request times out. Default: 120")
+    parser.add_argument("--parallel", action="store_true",
+                        help="Run Groq, Gemini, and Ollama concurrently in step 4, each on a designated brand slice")
+    parser.add_argument("--groq-brands", type=int, default=25,
+                        help="In --parallel mode: top N brands assigned to Groq. Default: 25")
+    parser.add_argument("--gemini-brands", type=int, default=25,
+                        help="In --parallel mode: next N brands assigned to Gemini. Default: 25")
     parser.add_argument("--skip-scrape", action="store_true", help="Skip step 1 (use existing raw text)")
     parser.add_argument("--force", action="store_true", help="Re-parse all brands even if content is unchanged")
     parser.add_argument("--from-step", type=int, default=1, metavar="N",
@@ -150,9 +156,9 @@ def main() -> None:
 
         # Step 4: Parse
         if args.from_step <= 4:
-            is_cloud = args.model in ("gemini", "groq")
+            needs_ollama = args.model == "ollama" or args.parallel
             skip_step4 = False
-            if not is_cloud and not check_ollama(args.ollama_host):
+            if needs_ollama and not check_ollama(args.ollama_host):
                 log_print(f"\n[WARN] Ollama not reachable at {args.ollama_host} -skipping Step 4 (parse).", log_fh)
                 log_print(f"       Start Ollama and re-run with --skip-scrape to parse without re-scraping.", log_fh)
                 skip_step4 = True
@@ -160,30 +166,31 @@ def main() -> None:
             if not skip_step4:
                 parse_cmd = [
                     str(SRC / "parse_candidates.py"),
-                    "--model", args.model,
                     "--limit", str(args.parse_limit),
                     "--gc-interval", str(args.gc_interval),
+                    "--ollama-model", args.ollama_model,
+                    "--ollama-host", args.ollama_host,
+                    "--ollama-timeout", str(args.ollama_timeout),
+                    "--ollama-restart-interval", str(args.ollama_restart_interval),
+                    "--gemini-model", args.gemini_model,
+                    "--groq-model", args.groq_model,
+                    "--cloud-timeout", str(args.cloud_timeout),
                 ]
-                if args.model == "ollama":
+                if args.parallel:
                     parse_cmd += [
-                        "--ollama-model", args.ollama_model,
-                        "--ollama-host", args.ollama_host,
-                        "--ollama-timeout", str(args.ollama_timeout),
-                        "--ollama-restart-interval", str(args.ollama_restart_interval),
-                    ]
-                elif args.model == "gemini":
-                    parse_cmd += [
-                        "--gemini-model", args.gemini_model,
-                        "--cloud-timeout", str(args.cloud_timeout),
+                        "--parallel",
+                        "--groq-brands", str(args.groq_brands),
+                        "--gemini-brands", str(args.gemini_brands),
                     ]
                     if args.gemini_api_key:
                         parse_cmd += ["--gemini-api-key", args.gemini_api_key]
-                elif args.model == "groq":
-                    parse_cmd += [
-                        "--groq-model", args.groq_model,
-                        "--cloud-timeout", str(args.cloud_timeout),
-                    ]
                     if args.groq_api_key:
+                        parse_cmd += ["--groq-api-key", args.groq_api_key]
+                else:
+                    parse_cmd += ["--model", args.model]
+                    if args.model == "gemini" and args.gemini_api_key:
+                        parse_cmd += ["--gemini-api-key", args.gemini_api_key]
+                    if args.model == "groq" and args.groq_api_key:
                         parse_cmd += ["--groq-api-key", args.groq_api_key]
                 if args.force:
                     parse_cmd.append("--force")
