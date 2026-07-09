@@ -658,46 +658,6 @@ def normalize_file(
     }
 
 
-# ---------------------------------------------------------------------------
-# Stale file pruning
-# ---------------------------------------------------------------------------
-
-def prune_stale_normalized(output_dir: Path, max_age_days: int = 30) -> int:
-    """Remove normalized output files whose source scrape is older than max_age_days.
-
-    Brands that are scraped daily but whose content hasn't changed (skipped_duplicate_hash
-    or skipped_similar) keep old source_path timestamps. Before pruning, check whether a
-    recent raw text file exists for the brand — if so, the brand is actively being scraped
-    and should not be removed.
-    """
-    now = datetime.now(timezone.utc)
-    removed = 0
-    for path in sorted(output_dir.glob("*.json")):
-        try:
-            data = json.loads(path.read_text(encoding="utf-8", errors="replace"))
-            source_path = data.get("source_path", "")
-            age = _scrape_age_days(source_path, now)
-            if age is None or age <= max_age_days:
-                continue
-
-            # The embedded source_path is stale, but brands whose content hasn't changed
-            # (skipped_duplicate_hash) get their raw file touched on each successful scrape.
-            # Check the raw file's mtime rather than its filename timestamp.
-            slug = path.stem  # e.g. "nike" or "chick_fil_a"
-            recent_files = sorted(RAW_TEXT_DIR.glob(f"{slug}_*.txt"))
-            if recent_files:
-                mtime = datetime.fromtimestamp(recent_files[-1].stat().st_mtime, tz=timezone.utc)
-                mtime_age = (now - mtime).total_seconds() / 86400
-                if mtime_age <= max_age_days:
-                    continue  # raw file touched recently = brand was verified today
-
-            path.unlink()
-            removed += 1
-            print(f"  [PRUNED] {path.stem} — scrape is {age:.0f} days old (no recent raw file found)")
-        except Exception:
-            pass
-    return removed
-
 
 # ---------------------------------------------------------------------------
 # Main
@@ -710,8 +670,6 @@ def main() -> None:
     parser.add_argument("--brand", type=str, default=None, help="Filter by brand substring")
     parser.add_argument("--input-dir", type=str, default=None, help="Override input directory")
     parser.add_argument("--output-dir", type=str, default=None, help="Override output directory")
-    parser.add_argument("--stale-days", type=int, default=30,
-                        help="Remove normalized files older than this many days (default: 30)")
     args = parser.parse_args()
 
     input_dir = Path(args.input_dir) if args.input_dir else STRUCTURED_DIR
@@ -750,10 +708,6 @@ def main() -> None:
             failed += 1
 
     print(f"\nDone: {ok} normalized, {skipped} skipped, {failed} failed -> {output_dir}/")
-
-    pruned = prune_stale_normalized(output_dir, max_age_days=args.stale_days)
-    if pruned:
-        print(f"Pruned {pruned} stale normalized file(s) (>{args.stale_days} days old)")
 
 
 if __name__ == "__main__":
