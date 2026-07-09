@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-09T18:59:05.558505+00:00",
+  "generated_at": "2026-07-09T19:10:31.133025+00:00",
   "threshold": 60.0,
-  "total": 12,
+  "total": 13,
   "candidates": [
     {
       "promo_id": "jetblue_upto50offflights",
@@ -20,6 +20,25 @@
       "estimated_savings": 105.0,
       "end_date": null,
       "website_domain": "jetblue.com",
+      "source_url": null
+    },
+    {
+      "promo_id": "fashionnova_6080dedescuentoenrebajas",
+      "brand": "Fashion Nova",
+      "category": "fashion",
+      "title": "60-80% de Descuento en Rebajas!",
+      "notify_score": 75.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Fashion Nova",
+      "notification_body": "60-80% de Descuento en Rebajas!",
+      "discount_type": "percentage_off",
+      "discount_value": "60-80%",
+      "estimated_savings": 52.0,
+      "end_date": null,
+      "website_domain": "fashionnova.com",
       "source_url": null
     },
     {
