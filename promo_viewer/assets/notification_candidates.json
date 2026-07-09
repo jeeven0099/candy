@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-07T23:58:46.326289+00:00",
+  "generated_at": "2026-07-09T18:51:42.292314+00:00",
   "threshold": 60.0,
-  "total": 9,
+  "total": 12,
   "candidates": [
     {
       "promo_id": "jetblue_upto50offflights",
@@ -39,80 +39,118 @@
       "estimated_savings": 52.0,
       "end_date": null,
       "website_domain": "us.princesspolly.com",
-      "source_url": "https://us.princesspolly.com/collections/sale"
+      "source_url": null
     },
     {
-      "promo_id": "windsor_womenssaleclothingupto80off",
+      "promo_id": "windsor_dreamcometruesale",
       "brand": "Windsor",
       "category": "fashion",
-      "title": "Women's Sale Clothing | Up to 80% Off",
+      "title": "Dream Come True Sale",
       "notify_score": 75.0,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Windsor",
-      "notification_body": "Women's Sale Clothing | Up to 80% Off",
+      "notification_body": "Dream Come True Sale",
       "discount_type": "percentage_off",
       "discount_value": "up to 80%",
       "estimated_savings": 52.0,
       "end_date": null,
       "website_domain": "windsorstore.com",
-      "source_url": "https://www.windsorstore.com/collections/sale"
+      "source_url": "https://www.windsorstore.com/"
     },
     {
-      "promo_id": "windsor_newinsale80off",
-      "brand": "Windsor",
+      "promo_id": "underarmour_extra50offoutlet",
+      "brand": "Under Armour",
       "category": "fashion",
-      "title": "New In Sale: 80% Off",
-      "notify_score": 75.0,
+      "title": "Extra 50% Off Outlet",
+      "notify_score": 71.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Windsor",
-      "notification_body": "New In Sale: 80% Off",
+      "notification_title": "Under Armour",
+      "notification_body": "Extra 50% Off Outlet",
       "discount_type": "percentage_off",
-      "discount_value": "up to 80%",
-      "estimated_savings": 52.0,
+      "discount_value": "50%",
+      "estimated_savings": 32.5,
       "end_date": null,
-      "website_domain": "windsorstore.com",
-      "source_url": "https://www.windsorstore.com/collections/sale"
+      "website_domain": "underarmour.com",
+      "source_url": "https://www.underarmour.com/en-us/c/outlet/"
     },
     {
-      "promo_id": "landsend_55offswimsale",
-      "brand": "Lands' End",
+      "promo_id": "chicos_buyonegetone50offjewelry",
+      "brand": "Chico's",
       "category": "fashion",
-      "title": "55% off Swim Sale",
+      "title": "Buy One, Get One 50% Off Jewelry",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Lands' End",
-      "notification_body": "55% off Swim Sale",
+      "notification_title": "Chico's",
+      "notification_body": "Buy One, Get One 50% Off Jewelry",
       "discount_type": "percentage_off",
-      "discount_value": "55%",
-      "estimated_savings": 35.75,
+      "discount_value": "50%",
+      "estimated_savings": 32.5,
       "end_date": null,
-      "website_domain": "landsend.com",
-      "source_url": "https://www.landsend.com/shop/sale/S-xfh-xez-y5c-xec"
+      "website_domain": "chicos.com",
+      "source_url": "https://www.chicos.com/store/category/sale/cat40004/"
     },
     {
-      "promo_id": "pacsun_upto50offfreeshipping",
+      "promo_id": "johnstonmurphy_endofseasonsale",
+      "brand": "Johnston & Murphy",
+      "category": "fashion",
+      "title": "End of Season Sale",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Johnston & Murphy",
+      "notification_body": "End of Season Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 55%",
+      "estimated_savings": 35.75,
+      "end_date": null,
+      "website_domain": "johnstonmurphy.com",
+      "source_url": "https://www.johnstonmurphy.com/c/sale"
+    },
+    {
+      "promo_id": "pacsun_upto50offfreeshippingsitwide",
       "brand": "PacSun",
       "category": "fashion",
-      "title": "UP TO 50% OFF & FREE SHIPPING",
+      "title": "UP TO 50% OFF + FREE SHIPPING SITWIDE",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "PacSun",
-      "notification_body": "UP TO 50% OFF & FREE SHIPPING",
+      "notification_body": "UP TO 50% OFF + FREE SHIPPING SITWIDE",
       "discount_type": "percentage_off",
-      "discount_value": "50%",
+      "discount_value": "up to 50%",
       "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "pacsun.com",
+      "source_url": "https://www.pacsun.com/sale/"
+    },
+    {
+      "promo_id": "pacsun_lastchancesavingsupto70offallmarkdowns",
+      "brand": "PacSun",
+      "category": "fashion",
+      "title": "LAST CHANCE SAVINGS UP TO 70% OFF ALL MARKDOWNS",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "PacSun",
+      "notification_body": "LAST CHANCE SAVINGS UP TO 70% OFF ALL MARKDOWNS",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "estimated_savings": 45.5,
       "end_date": null,
       "website_domain": "pacsun.com",
       "source_url": "https://www.pacsun.com/sale/"
@@ -137,25 +175,6 @@
       "source_url": null
     },
     {
-      "promo_id": "stuartweitzman_summersaleupto50off",
-      "brand": "Stuart Weitzman",
-      "category": "fashion",
-      "title": "SUMMER SALE: Up to 50% Off",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Stuart Weitzman",
-      "notification_body": "SUMMER SALE: Up to 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 32.5,
-      "end_date": null,
-      "website_domain": "stuartweitzman.com",
-      "source_url": null
-    },
-    {
       "promo_id": "talbots_4thofjulycelebration",
       "brand": "Talbots",
       "category": "fashion",
@@ -173,6 +192,44 @@
       "end_date": null,
       "website_domain": "talbots.com",
       "source_url": "https://www.talbots.com/sale"
+    },
+    {
+      "promo_id": "whitehouseblackmarket_semiannualsaleupto70offsalestyles",
+      "brand": "White House Black Market",
+      "category": "fashion",
+      "title": "Semi-Annual Sale: Up to 70% Off Sale Styles",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "White House Black Market",
+      "notification_body": "Semi-Annual Sale: Up to 70% Off Sale Styles",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "estimated_savings": 45.5,
+      "end_date": null,
+      "website_domain": "whitehouseblackmarket.com",
+      "source_url": "https://www.whitehouseblackmarket.com/store/category/sale/cat210002/"
+    },
+    {
+      "promo_id": "whitehouseblackmarket_50offsummermusthaves",
+      "brand": "White House Black Market",
+      "category": "fashion",
+      "title": "50% Off Summer Must-Haves",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "White House Black Market",
+      "notification_body": "50% Off Summer Must-Haves",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "whitehouseblackmarket.com",
+      "source_url": "https://www.whitehouseblackmarket.com/store/category/sale/cat210002/"
     }
   ]
 }
