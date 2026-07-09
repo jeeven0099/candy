@@ -383,7 +383,9 @@ class OllamaModel(LocalModelInterface):
         for triggers, label, search_kws in self._TAXONOMY:
             if label in seen_cats:
                 continue
-            if any(t in combined for t in triggers):
+            # Use word-boundary matching so "top" doesn't fire inside "laptop"
+            # or "dress" inside "address", etc.
+            if any(re.search(r'\b' + re.escape(t) + r'\b', combined) for t in triggers):
                 categories.append(label)
                 seen_cats.add(label)
                 for kw in search_kws:
