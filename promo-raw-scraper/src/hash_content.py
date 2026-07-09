@@ -6,7 +6,7 @@ from pathlib import Path
 
 # Pages whose visible text differs by less than this fraction are treated as
 # unchanged — avoids re-parsing when only timestamps or counters updated.
-SIMILARITY_THRESHOLD = 0.995
+SIMILARITY_THRESHOLD = 0.92
 
 
 def sha256_text(text: str) -> str:
