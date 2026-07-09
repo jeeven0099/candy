@@ -27,12 +27,24 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 
+import os as _os
+
+def _load_env_file(env_path: Path) -> None:
+    if not env_path.exists():
+        return
+    for raw in env_path.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        k, _, v = line.partition("=")
+        _os.environ.setdefault(k.strip(), v.strip())
+
 # Load API keys from .env file if present (overrides nothing already set in the environment)
 try:
     from dotenv import load_dotenv
     load_dotenv(Path(__file__).resolve().parent / ".env")
 except ImportError:
-    pass
+    _load_env_file(Path(__file__).resolve().parent / ".env")
 
 SRC = Path(__file__).resolve().parent / "src"
 LOGS_DIR = Path(__file__).resolve().parent / "logs"
@@ -54,7 +66,8 @@ def run(cmd: list[str], label: str, log_fh) -> int:
         bufsize=1,
     )
     for line in process.stdout:
-        print(line, end="")
+        sys.stdout.buffer.write(line.encode("utf-8", errors="replace"))
+        sys.stdout.buffer.flush()
         log_fh.write(line)
         log_fh.flush()
     process.wait()
@@ -111,6 +124,8 @@ def main() -> None:
                         help="In step 4, skip brands already attempted (success or failure); only process brands with no output at all")
     parser.add_argument("--clean-only", action="store_true",
                         help="In step 4, only parse brands with no prior FAILED/RETRY history. Faster for benchmarking clean LLM timing.")
+    parser.add_argument("--never-extracted", action="store_true",
+                        help="In step 4, only process brands that have never produced a structured output")
     parser.add_argument("--gc-interval", type=int, default=10,
                         help="gc.collect() every N LLM-processed brands in step 4 (0 = off). Default: 10")
     parser.add_argument("--ollama-restart-interval", type=int, default=0,
@@ -205,6 +220,8 @@ def main() -> None:
                     parse_cmd.append("--failed-only")
                 if args.clean_only:
                     parse_cmd.append("--clean-only")
+                if args.never_extracted:
+                    parse_cmd.append("--never-extracted")
                 if args.brand:
                     parse_cmd += ["--brand", args.brand]
                 rc = run(parse_cmd, "Step 4/13 -Extracting promotions", log_fh)

@@ -12,11 +12,23 @@ from typing import Dict, List, Optional
 
 from structured_parser import parse_text_file, save_failed_output, save_promotions_json, slugify
 
+import os as _os
+
+def _load_env_file(env_path: Path) -> None:
+    if not env_path.exists():
+        return
+    for raw in env_path.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        k, _, v = line.partition("=")
+        _os.environ.setdefault(k.strip(), v.strip())
+
 try:
     from dotenv import load_dotenv
     load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 except ImportError:
-    pass
+    _load_env_file(Path(__file__).resolve().parents[1] / ".env")
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -348,8 +360,10 @@ def _worker(
                     _unload_ollama_model(args.ollama_host, args.ollama_model)
                     time.sleep(3)
             elif rpm_sleep > 0:
-                # Respect cloud RPM limit between successful extractions
                 time.sleep(rpm_sleep)
+        elif result == "quota" and rpm_sleep > 0:
+            # After a quota hit, still sleep so the next brand doesn't immediately hit the same limit
+            time.sleep(rpm_sleep)
 
     with print_lock:
         print(f"[{label}] Done — {llm_calls} brand(s) extracted", flush=True)
@@ -412,6 +426,8 @@ def main() -> None:
     parser.add_argument("--brand", type=str, default=None)
     parser.add_argument("--failed-only", action="store_true")
     parser.add_argument("--clean-only", action="store_true")
+    parser.add_argument("--never-extracted", action="store_true",
+                        help="Only process brands with no existing structured output")
 
     args = parser.parse_args()
 
@@ -422,6 +438,8 @@ def main() -> None:
     rows = load_rows(csv_path)
     if args.brand:
         rows = [r for r in rows if args.brand.lower() in row_brand(r).lower()]
+    if args.never_extracted:
+        rows = [r for r in rows if not (STRUCTURED_DIR / f"{slugify(row_brand(r))}.json").exists()]
     candidates = select_candidates(rows, limit=args.limit)
 
     tainted_brands: set[str] = _brands_with_failures() if args.clean_only else set()
