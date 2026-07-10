@@ -336,6 +336,7 @@ class _SearchScreenState extends State<SearchScreen> {
           children: [
             _buildHeader(),
             _buildContextChips(),
+            if (_ctx == SearchContext.nearMe) _buildNearMeLocationRow(),
             const Divider(height: 1),
             Expanded(child: _buildBody(hasQuery, results)),
           ],
@@ -398,6 +399,39 @@ class _SearchScreenState extends State<SearchScreen> {
               EdgeInsets.symmetric(horizontal: 16),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNearMeLocationRow() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 6, 16, 4),
+      child: Row(
+        children: [
+          Icon(Icons.location_on, size: 14,
+              color: _position != null ? Candy.mint : Colors.grey.shade400),
+          const SizedBox(width: 4),
+          Text(
+            _locating
+                ? 'Locating…'
+                : _position != null
+                    ? LocationService.cityName(_position!.latitude, _position!.longitude)
+                    : 'Location unavailable',
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
+              color: _position != null ? Candy.chocolate : Colors.grey.shade400,
+            ),
+          ),
+          if (_locating) ...[
+            const SizedBox(width: 6),
+            SizedBox(
+              width: 11, height: 11,
+              child: CircularProgressIndicator(
+                  strokeWidth: 1.5, color: Colors.grey.shade400),
+            ),
+          ],
         ],
       ),
     );
