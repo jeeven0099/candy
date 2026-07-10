@@ -30,7 +30,7 @@ try {
     Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Starting pipeline..."
     & $python $pipeline `
         --ollama-model qwen2.5:14b --ollama-timeout 2700 `
-        --parallel --groq-brands 25 --gemini-brands 25 `
+        --parallel --groq-brands 25 --gemini-brands 30 `
         --clean-only
     Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Pipeline finished (exit $LASTEXITCODE)."
 } finally {
