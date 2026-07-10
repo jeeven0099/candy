@@ -466,7 +466,7 @@ def main() -> None:
 
         # RPM compliance sleeps (fires only after a successful extraction)
         # Groq free: 30 RPM → 2s gap keeps well under limit
-        # Gemini free: 15 RPM → 4s gap keeps well under limit
+        # Gemini 2.5 Flash free: 10 RPM → 7s gap keeps safely under limit
         threads = [
             threading.Thread(
                 target=_worker,
@@ -477,7 +477,7 @@ def main() -> None:
             threading.Thread(
                 target=_worker,
                 args=(gemini_slice, "gemini", args, tainted_brands,
-                      counters, lock, print_lock, 4.0, "Gemini"),
+                      counters, lock, print_lock, 7.0, "Gemini"),
                 daemon=True,
             ),
             threading.Thread(
