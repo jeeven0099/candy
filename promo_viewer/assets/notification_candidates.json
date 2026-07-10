@@ -1,45 +1,64 @@
 {
-  "generated_at": "2026-07-09T20:49:14.690171+00:00",
+  "generated_at": "2026-07-10T18:05:47.842358+00:00",
   "threshold": 60.0,
-  "total": 13,
+  "total": 18,
   "candidates": [
     {
-      "promo_id": "jetblue_upto50offflights",
-      "brand": "JetBlue",
-      "category": "travel",
-      "title": "Up to 50% off flights",
-      "notify_score": 85.0,
+      "promo_id": "colehaan_allsaleupto50offnewmarkdownsadded",
+      "brand": "Cole Haan",
+      "category": "fashion",
+      "title": "All Sale up to 50% Off - New Markdowns Added",
+      "notify_score": 75.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "JetBlue",
-      "notification_body": "Up to 50% off flights",
+      "notification_title": "Cole Haan",
+      "notification_body": "All Sale up to 50% Off - New Markdowns Added",
       "discount_type": "percentage_off",
       "discount_value": "up to 50%",
-      "estimated_savings": 105.0,
+      "estimated_savings": 75.0,
       "end_date": null,
-      "website_domain": "jetblue.com",
-      "source_url": null
+      "website_domain": "colehaan.com",
+      "source_url": "https://www.colehaan.com/collections/sale"
     },
     {
-      "promo_id": "fashionnova_6080dedescuentoenrebajas",
+      "promo_id": "colehaan_sandalsupto60off",
+      "brand": "Cole Haan",
+      "category": "fashion",
+      "title": "Sandals up to 60% Off",
+      "notify_score": 75.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Cole Haan",
+      "notification_body": "Sandals up to 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 54.0,
+      "end_date": null,
+      "website_domain": "colehaan.com",
+      "source_url": "https://www.colehaan.com/collections/sale"
+    },
+    {
+      "promo_id": "fashionnova_upto80offsale",
       "brand": "Fashion Nova",
       "category": "fashion",
-      "title": "60-80% de Descuento en Rebajas!",
+      "title": "Up to 80% OFF SALE",
       "notify_score": 75.0,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Fashion Nova",
-      "notification_body": "60-80% de Descuento en Rebajas!",
+      "notification_body": "Up to 80% OFF SALE",
       "discount_type": "percentage_off",
-      "discount_value": "60-80%",
+      "discount_value": "Up to 80%",
       "estimated_savings": 52.0,
       "end_date": null,
       "website_domain": "fashionnova.com",
-      "source_url": null
+      "source_url": "https://www.fashionnova.com/"
     },
     {
       "promo_id": "princesspolly_80offsale",
@@ -59,6 +78,25 @@
       "end_date": null,
       "website_domain": "us.princesspolly.com",
       "source_url": null
+    },
+    {
+      "promo_id": "target_upto60offindoorfurniture",
+      "brand": "Target",
+      "category": "home",
+      "title": "Up to 60% off indoor furniture",
+      "notify_score": 75.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Target",
+      "notification_body": "Up to 60% off indoor furniture",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 54.0,
+      "end_date": null,
+      "website_domain": "target.com",
+      "source_url": "https://www.target.com/c/top-deals/-/N-4xw74"
     },
     {
       "promo_id": "windsor_dreamcometruesale",
@@ -99,6 +137,44 @@
       "source_url": null
     },
     {
+      "promo_id": "aritzia_deepermarkdownssummersale",
+      "brand": "Aritzia",
+      "category": "fashion",
+      "title": "Deeper Markdowns Summer Sale",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Aritzia",
+      "notification_body": "Deeper Markdowns Summer Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "30-50%",
+      "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "aritzia.com",
+      "source_url": "https://www.aritzia.com/us/en/sale"
+    },
+    {
+      "promo_id": "bcbg_50offsaleitems",
+      "brand": "BCBG",
+      "category": "fashion",
+      "title": "50% Off Sale Items",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "BCBG",
+      "notification_body": "50% Off Sale Items",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "bcbg.com",
+      "source_url": "https://bcbg.com/collections/sale"
+    },
+    {
       "promo_id": "chicos_buyonegetone50offjewelry",
       "brand": "Chico's",
       "category": "fashion",
@@ -116,6 +192,44 @@
       "end_date": null,
       "website_domain": "chicos.com",
       "source_url": null
+    },
+    {
+      "promo_id": "clubmonaco_shopallsaleupto70off",
+      "brand": "Club Monaco",
+      "category": "fashion",
+      "title": "Shop All Sale: Up to 70% OFF",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Club Monaco",
+      "notification_body": "Shop All Sale: Up to 70% OFF",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "estimated_savings": 45.5,
+      "end_date": null,
+      "website_domain": "clubmonaco.com",
+      "source_url": "https://www.clubmonaco.com/collections/sale"
+    },
+    {
+      "promo_id": "coach_upto50offselectstyles",
+      "brand": "Coach",
+      "category": "fashion",
+      "title": "Up to 50% off select styles",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Coach",
+      "notification_body": "Up to 50% off select styles",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 37.5,
+      "end_date": null,
+      "website_domain": "coach.com",
+      "source_url": "https://www.coach.com/content/promo"
     },
     {
       "promo_id": "johnstonmurphy_endofseasonsale",
@@ -175,25 +289,6 @@
       "source_url": null
     },
     {
-      "promo_id": "shein_plussizeelegantjacquardwaistflaresleevedressautumn",
-      "brand": "SHEIN",
-      "category": "fashion",
-      "title": "Plus Size Elegant Jacquard Waist Flare Sleeve Dress, Autumn",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "SHEIN",
-      "notification_body": "Plus Size Elegant Jacquard Waist Flare Sleeve Dress, Autumn",
-      "discount_type": "percentage_off",
-      "discount_value": "67%",
-      "estimated_savings": 43.55,
-      "end_date": null,
-      "website_domain": "us.shein.com",
-      "source_url": null
-    },
-    {
       "promo_id": "talbots_4thofjulycelebration",
       "brand": "Talbots",
       "category": "fashion",
@@ -213,42 +308,42 @@
       "source_url": "https://www.talbots.com/sale"
     },
     {
-      "promo_id": "whitehouseblackmarket_semiannualsaleupto70offsalestyles",
-      "brand": "White House Black Market",
+      "promo_id": "tillys_clearanceupto60off",
+      "brand": "Tillys",
       "category": "fashion",
-      "title": "Semi-Annual Sale: Up to 70% Off Sale Styles",
-      "notify_score": 65.0,
+      "title": "Clearance up to 60% Off*",
+      "notify_score": 61.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "White House Black Market",
-      "notification_body": "Semi-Annual Sale: Up to 70% Off Sale Styles",
+      "notification_title": "Tillys",
+      "notification_body": "Clearance up to 60% Off*",
       "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 45.5,
+      "discount_value": "up to 60%",
+      "estimated_savings": 39.0,
       "end_date": null,
-      "website_domain": "whitehouseblackmarket.com",
-      "source_url": null
+      "website_domain": "tillys.com",
+      "source_url": "https://www.tillys.com/"
     },
     {
-      "promo_id": "whitehouseblackmarket_50offsummermusthaves",
-      "brand": "White House Black Market",
+      "promo_id": "tillys_rsqjeansbuyonegetone50off",
+      "brand": "Tillys",
       "category": "fashion",
-      "title": "50% Off Summer Must-Haves",
-      "notify_score": 65.0,
+      "title": "RSQ Jeans - Buy One, Get One 50% Off*",
+      "notify_score": 61.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "White House Black Market",
-      "notification_body": "50% Off Summer Must-Haves",
+      "notification_title": "Tillys",
+      "notification_body": "RSQ Jeans - Buy One, Get One 50% Off*",
       "discount_type": "percentage_off",
       "discount_value": "50%",
-      "estimated_savings": 32.5,
+      "estimated_savings": 27.5,
       "end_date": null,
-      "website_domain": "whitehouseblackmarket.com",
-      "source_url": null
+      "website_domain": "tillys.com",
+      "source_url": "https://www.tillys.com/"
     }
   ]
 }
