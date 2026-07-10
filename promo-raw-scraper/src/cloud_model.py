@@ -111,14 +111,14 @@ def _finish_parsing(
 class GeminiModel(LocalModelInterface):
     """
     Gemini backend via Google AI Studio.
-    Free tier: 15 requests/min, 1 500 requests/day.
-    Recommended model: gemini-2.0-flash
+    Free tier: high RPM, generous daily allowance on Flash tier.
+    Recommended model: gemini-2.5-flash
     Install: pip install google-genai
     """
 
     def __init__(
         self,
-        model_name: str = "gemini-2.0-flash",
+        model_name: str = "gemini-2.5-flash",
         api_key: Optional[str] = None,
         timeout: int = 120,
     ) -> None:
