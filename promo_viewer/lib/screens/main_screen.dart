@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../models/promotion.dart';
 import '../theme/candy_colors.dart';
+import '../services/interaction_service.dart';
 import '../services/notification_service.dart';
 import '../services/promotions_service.dart';
 import '../services/user_memberships_service.dart';
@@ -22,9 +23,11 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   List<Promotion> _all = [];
   bool _loading = true;
+  bool _error = false;
   Set<String> _memberships = {};
   DateTime? _lastUpdated;
   int _tab = 0;
+  final _svc = InteractionService();
 
   @override
   void initState() {
@@ -44,21 +47,27 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Future<void> _loadData() async {
-    final results = await Future.wait([
-      PromotionsService.load(),
-      UserMembershipsService.load(),
-    ]);
-    final promos      = results[0] as List<Promotion>;
-    final memberships = results[1] as Set<String>;
-    if (mounted) {
-      setState(() {
-        _all          = promos;
-        _memberships  = memberships;
-        _loading      = false;
-        _lastUpdated  = DateTime.now();
-      });
+    try {
+      final results = await Future.wait([
+        PromotionsService.load(),
+        UserMembershipsService.load(),
+      ]);
+      final promos      = results[0] as List<Promotion>;
+      final memberships = results[1] as Set<String>;
+      if (mounted) {
+        setState(() {
+          _all          = promos;
+          _memberships  = memberships;
+          _loading      = false;
+          _error        = false;
+          _lastUpdated  = DateTime.now();
+        });
+      }
+      _svc.recordSessionStart();
+      _handlePendingNotification(promos);
+    } catch (_) {
+      if (mounted) setState(() { _loading = false; _error = true; });
     }
-    _handlePendingNotification(promos);
   }
 
   void _handlePendingNotification(List<Promotion> promos) {
@@ -79,6 +88,29 @@ class _MainScreenState extends State<MainScreen> {
     if (_loading) {
       return const Scaffold(
         body: Center(child: CircularProgressIndicator()),
+      );
+    }
+    if (_error) {
+      return Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.wifi_off_rounded, size: 48, color: Colors.grey),
+              const SizedBox(height: 16),
+              const Text('Could not load deals',
+                  style: TextStyle(fontSize: 16, color: Colors.black54)),
+              const SizedBox(height: 12),
+              FilledButton(
+                onPressed: () {
+                  setState(() { _loading = true; _error = false; });
+                  _loadData();
+                },
+                child: const Text('Retry'),
+              ),
+            ],
+          ),
+        ),
       );
     }
 
@@ -111,7 +143,10 @@ class _MainScreenState extends State<MainScreen> {
       ),
       bottomNavigationBar: _GlassNavBar(
         selectedIndex: _tab,
-        onDestinationSelected: (i) => setState(() => _tab = i),
+        onDestinationSelected: (i) {
+          setState(() => _tab = i);
+          _svc.recordTabSwitch(i, const ['Deals', 'Saved', 'Profile'][i]);
+        },
       ),
     );
   }

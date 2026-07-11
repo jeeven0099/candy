@@ -288,7 +288,33 @@ class InteractionService {
       final extra = params?.entries.map((e) => '${e.key}=${e.value}').join(', ') ?? '';
       debugPrint('[Search:$type]${extra.isEmpty ? '' : ' $extra'}');
     }
+    _writeInteraction(
+      type,
+      brand: params?['brand'] ?? '',
+      context: params?['chip'] ?? '',
+      metadata: params != null ? Map<String, dynamic>.from(params) : null,
+    );
   }
+
+  // ── High-level action trackers ────────────────────────────────────────────
+
+  void recordSessionStart() => _writeInteraction('session_start');
+
+  void recordTabSwitch(int tabIndex, String tabName) =>
+      _writeInteraction('tab_switched',
+          context: tabName, metadata: {'tab_index': tabIndex});
+
+  void recordShopNow(String promoId, {String brand = ''}) =>
+      _writeInteraction('shop_now_tapped', promotionId: promoId, brand: brand);
+
+  void recordVerifyTap(String promoId, {String brand = ''}) =>
+      _writeInteraction('verify_tapped', promotionId: promoId, brand: brand);
+
+  void recordPromoCodeCopy(String promoId, {String brand = '', String code = ''}) =>
+      _writeInteraction('promo_code_copied',
+          promotionId: promoId,
+          brand: brand,
+          metadata: code.isNotEmpty ? {'code': code} : null);
 
   // Public so SavedDealsService can bump affinity on save/unsave
   void bumpBrandAffinityPublic(String brand, {int saves = 0, int ignored = 0}) =>

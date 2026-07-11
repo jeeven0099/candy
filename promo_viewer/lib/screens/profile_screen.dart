@@ -190,7 +190,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 title: const Text('Privacy & Data'),
                 content: const Text(
                   'Candy does not share your personal data with third parties. '
-                  'Search history and saved deals are stored locally on your device.',
+                  'Your search history, saved deals, and interaction data are stored '
+                  'on our secure servers to improve your recommendations. '
+                  'You can delete your account and all associated data at any time.',
                 ),
                 actions: [
                   TextButton(

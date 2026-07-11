@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../models/fast_redemption.dart';
 import '../models/promotion.dart';
+import '../services/interaction_service.dart';
 import '../services/location_service.dart';
 import '../services/saved_deals_service.dart';
 import '../services/timezone_service.dart';
@@ -57,11 +58,13 @@ class DealDetailScreen extends StatelessWidget {
               domain: promo.websiteDomain ?? promo.brand,
               url: promo.verifyUrl!,
               score: promo.confidenceScore,
+              promoId: promo.id,
+              brand: promo.brand,
             ),
             const SizedBox(height: 12),
           ],
           if (promo.promoCode != null) ...[
-            _PromoCodeCard(code: promo.promoCode!),
+            _PromoCodeCard(code: promo.promoCode!, promoId: promo.id, brand: promo.brand),
             const SizedBox(height: 12),
           ],
           _EligibilityCard(promo: promo),
@@ -171,7 +174,7 @@ class _HeroCard extends StatelessWidget {
           if (promo.verifyUrl != null &&
               (promo.fastRedemption == null || !promo.fastRedemption!.eligible)) ...[
             const SizedBox(height: 16),
-            _ShopNowButton(url: promo.verifyUrl!),
+            _ShopNowButton(url: promo.verifyUrl!, promoId: promo.id, brand: promo.brand),
           ],
         ],
       ),
@@ -211,12 +214,15 @@ class _HeroEligSummary extends StatelessWidget {
 
 class _ShopNowButton extends StatelessWidget {
   final String url;
-  const _ShopNowButton({required this.url});
+  final String promoId;
+  final String brand;
+  const _ShopNowButton({required this.url, required this.promoId, required this.brand});
 
   @override
   Widget build(BuildContext context) {
     return FilledButton(
       onPressed: () async {
+        InteractionService().recordShopNow(promoId, brand: brand);
         final uri = Uri.tryParse(url);
         if (uri != null) await launchUrl(uri, mode: LaunchMode.externalApplication);
       },
@@ -241,7 +247,15 @@ class _TrustCard extends StatelessWidget {
   final String domain;
   final String url;
   final double score;
-  const _TrustCard({required this.domain, required this.url, required this.score});
+  final String promoId;
+  final String brand;
+  const _TrustCard({
+    required this.domain,
+    required this.url,
+    required this.score,
+    required this.promoId,
+    required this.brand,
+  });
 
   String get _confidenceLabel {
     if (score >= 0.8) return 'High confidence';
@@ -257,6 +271,7 @@ class _TrustCard extends StatelessWidget {
     return _Card(
       child: GestureDetector(
         onTap: () async {
+          InteractionService().recordVerifyTap(promoId, brand: brand);
           final uri = Uri.tryParse(url);
           if (uri != null) await launchUrl(uri, mode: LaunchMode.externalApplication);
         },
@@ -319,7 +334,9 @@ class _TrustCard extends StatelessWidget {
 
 class _PromoCodeCard extends StatelessWidget {
   final String code;
-  const _PromoCodeCard({required this.code});
+  final String promoId;
+  final String brand;
+  const _PromoCodeCard({required this.code, required this.promoId, required this.brand});
 
   @override
   Widget build(BuildContext context) {
@@ -332,7 +349,7 @@ class _PromoCodeCard extends StatelessWidget {
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: Candy.chocolate),
           ),
           const SizedBox(height: 10),
-          _PromoCodeBox(code: code),
+          _PromoCodeBox(code: code, promoId: promoId, brand: brand),
         ],
       ),
     );
@@ -819,13 +836,16 @@ class _TimeRow extends StatelessWidget {
 
 class _PromoCodeBox extends StatelessWidget {
   final String code;
-  const _PromoCodeBox({required this.code});
+  final String promoId;
+  final String brand;
+  const _PromoCodeBox({required this.code, required this.promoId, required this.brand});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Clipboard.setData(ClipboardData(text: code));
+        InteractionService().recordPromoCodeCopy(promoId, brand: brand, code: code);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Copied "$code"'),

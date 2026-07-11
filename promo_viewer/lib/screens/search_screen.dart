@@ -279,8 +279,7 @@ class _SearchScreenState extends State<SearchScreen> {
       if (!mounted) return;
       final results = runSearch(_visiblePromos, q, opts: _opts, svc: _svc, prefs: _prefsSvc.prefs);
       _svc.recordRecentSearch(q);
-      _svc.recordSearch(q, results.length);
-      _writeSearchEvent(q, results);
+      _svc.recordSearch(q, results.length, context: _ctx.name);
       if (results.isEmpty) {
         _svc.recordSearchEvent('search_no_results',
             params: {'query': q, 'chip': _ctx.name});
@@ -299,22 +298,6 @@ class _SearchScreenState extends State<SearchScreen> {
         ImpressionService().recordImpressions(promos, context: 'search_${_ctx.name}');
       }
     });
-  }
-
-  Future<void> _writeSearchEvent(String q, List<BrandGroup> results) async {
-    if (!SupabaseService.isLoggedIn) return;
-    final userId = _prefsSvc.userId;
-    if (userId == null) return;
-    try {
-      await SupabaseService.client.from('search_events').insert({
-        'user_id':          userId,
-        'query':            q,
-        'normalized_query': q.toLowerCase().trim(),
-        'context':          _ctx.name,
-        'result_count':     results.length,
-        'no_result':        results.isEmpty,
-      });
-    } catch (_) {}
   }
 
   void _onBrandExpanded(BrandGroup g) {
