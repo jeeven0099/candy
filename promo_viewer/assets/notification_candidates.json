@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-07-10T18:05:47.842358+00:00",
+  "generated_at": "2026-07-11T09:33:00.070417+00:00",
   "threshold": 60.0,
   "total": 18,
   "candidates": [
     {
       "promo_id": "colehaan_allsaleupto50offnewmarkdownsadded",
       "brand": "Cole Haan",
-      "category": "fashion",
+      "category": "retail",
       "title": "All Sale up to 50% Off - New Markdowns Added",
       "notify_score": 75.0,
       "signal_groups": [
@@ -25,7 +25,7 @@
     {
       "promo_id": "colehaan_sandalsupto60off",
       "brand": "Cole Haan",
-      "category": "fashion",
+      "category": "retail",
       "title": "Sandals up to 60% Off",
       "notify_score": 75.0,
       "signal_groups": [
@@ -59,25 +59,6 @@
       "end_date": null,
       "website_domain": "fashionnova.com",
       "source_url": "https://www.fashionnova.com/"
-    },
-    {
-      "promo_id": "princesspolly_80offsale",
-      "brand": "Princess Polly",
-      "category": "fashion",
-      "title": "80% Off Sale",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Princess Polly",
-      "notification_body": "80% Off Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 80%",
-      "estimated_savings": 52.0,
-      "end_date": null,
-      "website_domain": "us.princesspolly.com",
-      "source_url": null
     },
     {
       "promo_id": "target_upto60offindoorfurniture",
@@ -116,6 +97,25 @@
       "end_date": null,
       "website_domain": "windsorstore.com",
       "source_url": "https://www.windsorstore.com/"
+    },
+    {
+      "promo_id": "zaraman_sizelastchancesale",
+      "brand": "Zara Man",
+      "category": "fashion",
+      "title": "Size Last Chance SALE",
+      "notify_score": 75.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Zara Man",
+      "notification_body": "Size Last Chance SALE",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 82%",
+      "estimated_savings": 53.3,
+      "end_date": null,
+      "website_domain": "zara.com",
+      "source_url": "https://www.zara.com/us/en/s-man-sale-l10847.html"
     },
     {
       "promo_id": "underarmour_extra50offoutlet",
@@ -175,25 +175,6 @@
       "source_url": "https://bcbg.com/collections/sale"
     },
     {
-      "promo_id": "chicos_buyonegetone50offjewelry",
-      "brand": "Chico's",
-      "category": "fashion",
-      "title": "Buy One, Get One 50% Off Jewelry",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Chico's",
-      "notification_body": "Buy One, Get One 50% Off Jewelry",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 32.5,
-      "end_date": null,
-      "website_domain": "chicos.com",
-      "source_url": null
-    },
-    {
       "promo_id": "clubmonaco_shopallsaleupto70off",
       "brand": "Club Monaco",
       "category": "fashion",
@@ -232,6 +213,25 @@
       "source_url": "https://www.coach.com/content/promo"
     },
     {
+      "promo_id": "colehaan_sneakersupto50off",
+      "brand": "Cole Haan",
+      "category": "retail",
+      "title": "Sneakers up to 50% Off",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Cole Haan",
+      "notification_body": "Sneakers up to 50% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 45.0,
+      "end_date": null,
+      "website_domain": "colehaan.com",
+      "source_url": "https://www.colehaan.com/collections/sale"
+    },
+    {
       "promo_id": "johnstonmurphy_endofseasonsale",
       "brand": "Johnston & Murphy",
       "category": "fashion",
@@ -251,44 +251,6 @@
       "source_url": "https://www.johnstonmurphy.com/c/sale"
     },
     {
-      "promo_id": "pacsun_upto50offfreeshippingsitwide",
-      "brand": "PacSun",
-      "category": "fashion",
-      "title": "UP TO 50% OFF + FREE SHIPPING SITWIDE",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "PacSun",
-      "notification_body": "UP TO 50% OFF + FREE SHIPPING SITWIDE",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 32.5,
-      "end_date": null,
-      "website_domain": "pacsun.com",
-      "source_url": null
-    },
-    {
-      "promo_id": "pacsun_lastchancesavingsupto70offallmarkdowns",
-      "brand": "PacSun",
-      "category": "fashion",
-      "title": "LAST CHANCE SAVINGS UP TO 70% OFF ALL MARKDOWNS",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "PacSun",
-      "notification_body": "LAST CHANCE SAVINGS UP TO 70% OFF ALL MARKDOWNS",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 45.5,
-      "end_date": null,
-      "website_domain": "pacsun.com",
-      "source_url": null
-    },
-    {
       "promo_id": "talbots_4thofjulycelebration",
       "brand": "Talbots",
       "category": "fashion",
@@ -306,6 +268,44 @@
       "end_date": null,
       "website_domain": "talbots.com",
       "source_url": "https://www.talbots.com/sale"
+    },
+    {
+      "promo_id": "tedbaker_upto50offselectedstyles",
+      "brand": "Ted Baker",
+      "category": "fashion",
+      "title": "UP TO 50% OFF SELECTED STYLES",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Ted Baker",
+      "notification_body": "UP TO 50% OFF SELECTED STYLES",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "tedbaker.com",
+      "source_url": "https://www.tedbaker.com/collections/sale-us"
+    },
+    {
+      "promo_id": "nordstromrack_extra25offclearance",
+      "brand": "Nordstrom Rack",
+      "category": "retail",
+      "title": "EXTRA 25% OFF CLEARANCE!",
+      "notify_score": 61.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Nordstrom Rack",
+      "notification_body": "EXTRA 25% OFF CLEARANCE!",
+      "discount_type": "percentage_off",
+      "discount_value": "25%",
+      "estimated_savings": 11.25,
+      "end_date": "2026-07-12",
+      "website_domain": "nordstromrack.com",
+      "source_url": "https://www.nordstromrack.com/c/sales"
     },
     {
       "promo_id": "tillys_clearanceupto60off",
