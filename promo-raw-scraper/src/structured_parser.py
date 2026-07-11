@@ -26,8 +26,6 @@ def get_model(
     ollama_model: str = "llama3.1:8b",
     ollama_host: str = "http://localhost:11434",
     ollama_timeout: int = 600,
-    gemini_model: str = "gemini-2.0-flash",
-    gemini_api_key: Optional[str] = None,
     groq_model: str = "llama-3.3-70b-versatile",
     groq_api_key: Optional[str] = None,
     cloud_timeout: int = 120,
@@ -38,13 +36,6 @@ def get_model(
             model_name=ollama_model,
             host=ollama_host,
             timeout=ollama_timeout,
-        )
-    if model_type == "gemini":
-        from cloud_model import GeminiModel
-        return GeminiModel(
-            model_name=gemini_model,
-            api_key=gemini_api_key,
-            timeout=cloud_timeout,
         )
     if model_type == "groq":
         from cloud_model import GroqModel
@@ -64,8 +55,6 @@ def parse_text_file(
     ollama_model: str = "llama3.1:8b",
     ollama_host: str = "http://localhost:11434",
     ollama_timeout: int = 600,
-    gemini_model: str = "gemini-2.0-flash",
-    gemini_api_key: Optional[str] = None,
     groq_model: str = "llama-3.3-70b-versatile",
     groq_api_key: Optional[str] = None,
     cloud_timeout: int = 120,
@@ -77,8 +66,6 @@ def parse_text_file(
         ollama_model=ollama_model,
         ollama_host=ollama_host,
         ollama_timeout=ollama_timeout,
-        gemini_model=gemini_model,
-        gemini_api_key=gemini_api_key,
         groq_model=groq_model,
         groq_api_key=groq_api_key,
         cloud_timeout=cloud_timeout,

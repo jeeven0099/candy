@@ -239,8 +239,6 @@ def _process_brand(
             ollama_model=args.ollama_model,
             ollama_host=args.ollama_host,
             ollama_timeout=args.ollama_timeout,
-            gemini_model=args.gemini_model,
-            gemini_api_key=args.gemini_api_key,
             groq_model=args.groq_model,
             groq_api_key=args.groq_api_key,
             cloud_timeout=args.cloud_timeout,
@@ -381,7 +379,7 @@ def main() -> None:
                         help="Total candidates to consider across all workers. Default: 10")
     parser.add_argument(
         "--model",
-        choices=["rule_based", "ollama", "gemini", "groq"],
+        choices=["rule_based", "ollama", "groq"],
         default="rule_based",
         help="Extraction backend for single-model (non-parallel) mode. Default: rule_based",
     )
@@ -392,10 +390,6 @@ def main() -> None:
     parser.add_argument("--ollama-timeout", type=int, default=3600)
     parser.add_argument("--gc-interval", type=int, default=10)
     parser.add_argument("--ollama-restart-interval", type=int, default=0)
-
-    # Gemini
-    parser.add_argument("--gemini-model", default="gemini-2.0-flash")
-    parser.add_argument("--gemini-api-key", default=None)
 
     # Groq
     parser.add_argument("--groq-model", default="llama-3.3-70b-versatile")
@@ -408,17 +402,13 @@ def main() -> None:
     parser.add_argument(
         "--parallel", action="store_true",
         help=(
-            "Run Groq, Gemini, and Ollama concurrently, each on a designated slice of brands. "
-            "Brands are sorted by richness; Groq gets the top N, Gemini the next M, Ollama the rest."
+            "Run Groq and Ollama concurrently, each on a designated slice of brands. "
+            "Brands are sorted by richness; Groq gets the top N, Ollama the rest."
         ),
     )
     parser.add_argument(
         "--groq-brands", type=int, default=25,
         help="In --parallel mode: number of top brands assigned to Groq. Default: 25",
-    )
-    parser.add_argument(
-        "--gemini-brands", type=int, default=25,
-        help="In --parallel mode: number of brands assigned to Gemini (after Groq's slice). Default: 25",
     )
 
     # Filters
@@ -450,34 +440,23 @@ def main() -> None:
     lock       = threading.Lock()
     print_lock = threading.Lock()
 
-    # ── Parallel mode: three concurrent workers ───────────────────────────────
+    # ── Parallel mode: two concurrent workers ─────────────────────────────────
     if args.parallel:
         g  = args.groq_brands
-        ge = args.gemini_brands
         groq_slice   = candidates[:g]
-        gemini_slice = candidates[g : g + ge]
-        ollama_slice = candidates[g + ge :]
+        ollama_slice = candidates[g:]
 
         print(
             f"[PARALLEL] Groq={len(groq_slice)} brands  "
-            f"Gemini={len(gemini_slice)} brands  "
             f"Ollama={len(ollama_slice)} brands"
         )
 
-        # RPM compliance sleeps (fires only after a successful extraction)
-        # Groq free: 30 RPM → 2s gap keeps well under limit
-        # Gemini 2.5 Flash free: 10 RPM → 10s gap keeps safely under limit
+        # RPM compliance sleep: Groq free tier 30 RPM → 2s gap keeps well under limit
         threads = [
             threading.Thread(
                 target=_worker,
                 args=(groq_slice, "groq", args, tainted_brands,
                       counters, lock, print_lock, 2.0, "Groq"),
-                daemon=True,
-            ),
-            threading.Thread(
-                target=_worker,
-                args=(gemini_slice, "gemini", args, tainted_brands,
-                      counters, lock, print_lock, 10.0, "Gemini"),
                 daemon=True,
             ),
             threading.Thread(
@@ -562,7 +541,6 @@ def main() -> None:
                     model_type=mt,
                     ollama_model=args.ollama_model, ollama_host=args.ollama_host,
                     ollama_timeout=args.ollama_timeout,
-                    gemini_model=args.gemini_model, gemini_api_key=args.gemini_api_key,
                     groq_model=args.groq_model, groq_api_key=args.groq_api_key,
                     cloud_timeout=args.cloud_timeout,
                 )
