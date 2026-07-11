@@ -28,7 +28,7 @@ class _Cat {
 }
 
 const _kCategories = [
-  _Cat('food', '🍔', 'Food & Coffee',
+  _Cat('food', '🍔', 'Food & Beverages',
       'Eating out, coffee runs, quick meals',
       ['Starbucks', 'Chipotle', "McDonald's", 'Dunkin']),
   _Cat('grocery', '🛒', 'Groceries & Essentials',
