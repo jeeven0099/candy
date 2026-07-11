@@ -368,7 +368,7 @@ class _SearchScreenState extends State<SearchScreen> {
           const SizedBox(height: 10),
           SearchBar(
             controller: _controller,
-            hintText: 'Search burgers, jeans, coffee, Coach…',
+            hintText: 'What are you shopping for?',
             leading: const Icon(Icons.search, size: 20),
             trailing: [
               if (_query.isNotEmpty)
