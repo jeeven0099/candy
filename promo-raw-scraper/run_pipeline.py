@@ -95,15 +95,11 @@ def main() -> None:
     parser.add_argument("--category", type=str, default=None, help="Filter by category")
     parser.add_argument("--scrape-limit", type=int, default=None, help="Max brands to scrape")
     parser.add_argument("--parse-limit", type=int, default=999, help="Max brands to parse. Default: 999 (all)")
-    parser.add_argument("--model", choices=["ollama", "gemini", "groq"], default="ollama",
+    parser.add_argument("--model", choices=["ollama", "groq"], default="ollama",
                         help="Extraction backend for step 4. Default: ollama")
     parser.add_argument("--ollama-model", type=str, default="qwen2.5:14b")
     parser.add_argument("--ollama-host", type=str, default="http://localhost:11434")
     parser.add_argument("--ollama-timeout", type=int, default=3600)
-    parser.add_argument("--gemini-model", type=str, default="gemini-2.0-flash",
-                        help="Gemini model name (used when --model gemini)")
-    parser.add_argument("--gemini-api-key", type=str, default=None,
-                        help="Google AI Studio API key (falls back to GEMINI_API_KEY env var)")
     parser.add_argument("--groq-model", type=str, default="llama-3.3-70b-versatile",
                         help="Groq model name (used when --model groq)")
     parser.add_argument("--groq-api-key", type=str, default=None,
@@ -111,11 +107,9 @@ def main() -> None:
     parser.add_argument("--cloud-timeout", type=int, default=120,
                         help="Seconds before a cloud model request times out. Default: 120")
     parser.add_argument("--parallel", action="store_true",
-                        help="Run Groq, Gemini, and Ollama concurrently in step 4, each on a designated brand slice")
+                        help="Run Groq and Ollama concurrently in step 4, each on a designated brand slice")
     parser.add_argument("--groq-brands", type=int, default=25,
                         help="In --parallel mode: top N brands assigned to Groq. Default: 25")
-    parser.add_argument("--gemini-brands", type=int, default=25,
-                        help="In --parallel mode: next N brands assigned to Gemini. Default: 25")
     parser.add_argument("--skip-scrape", action="store_true", help="Skip step 1 (use existing raw text)")
     parser.add_argument("--force", action="store_true", help="Re-parse all brands even if content is unchanged")
     parser.add_argument("--from-step", type=int, default=1, metavar="N",
@@ -194,7 +188,6 @@ def main() -> None:
                     "--ollama-host", args.ollama_host,
                     "--ollama-timeout", str(args.ollama_timeout),
                     "--ollama-restart-interval", str(args.ollama_restart_interval),
-                    "--gemini-model", args.gemini_model,
                     "--groq-model", args.groq_model,
                     "--cloud-timeout", str(args.cloud_timeout),
                 ]
@@ -202,16 +195,11 @@ def main() -> None:
                     parse_cmd += [
                         "--parallel",
                         "--groq-brands", str(args.groq_brands),
-                        "--gemini-brands", str(args.gemini_brands),
                     ]
-                    if args.gemini_api_key:
-                        parse_cmd += ["--gemini-api-key", args.gemini_api_key]
                     if args.groq_api_key:
                         parse_cmd += ["--groq-api-key", args.groq_api_key]
                 else:
                     parse_cmd += ["--model", args.model]
-                    if args.model == "gemini" and args.gemini_api_key:
-                        parse_cmd += ["--gemini-api-key", args.gemini_api_key]
                     if args.model == "groq" and args.groq_api_key:
                         parse_cmd += ["--groq-api-key", args.groq_api_key]
                 if args.force:
