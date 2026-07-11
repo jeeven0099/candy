@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-11T09:32:59Z",
+  "generated_at": "2026-07-11T15:26:39Z",
   "promotion_count": 521,
   "promotions": [
     {
@@ -27220,7 +27220,7 @@
       "email_subject": null,
       "email_date": null,
       "website_domain": "us.princesspolly.com",
-      "source_url": "https://us.princesspolly.com/collections/sale",
+      "source_url": "https://us.princesspolly.com/",
       "status": "online_only",
       "source": "web",
       "fast_redemption": {
@@ -27228,7 +27228,7 @@
         "action_type": "open_url",
         "button_label": "Shop Now",
         "primary_value": null,
-        "primary_url": "https://us.princesspolly.com/collections/sale",
+        "primary_url": "https://us.princesspolly.com/",
         "app_deep_link": null,
         "web_fallback_url": null,
         "steps_after_click": [
@@ -27292,7 +27292,7 @@
       "email_subject": null,
       "email_date": null,
       "website_domain": "us.princesspolly.com",
-      "source_url": "https://us.princesspolly.com/collections/sale",
+      "source_url": "https://us.princesspolly.com/",
       "status": "online_only",
       "source": "web",
       "fast_redemption": {
@@ -27300,7 +27300,7 @@
         "action_type": "open_url",
         "button_label": "Shop Now",
         "primary_value": null,
-        "primary_url": "https://us.princesspolly.com/collections/sale",
+        "primary_url": "https://us.princesspolly.com/",
         "app_deep_link": null,
         "web_fallback_url": null,
         "steps_after_click": [
@@ -27364,7 +27364,7 @@
       "email_subject": null,
       "email_date": null,
       "website_domain": "us.princesspolly.com",
-      "source_url": "https://us.princesspolly.com/collections/sale",
+      "source_url": "https://us.princesspolly.com/",
       "status": "online_only",
       "source": "web",
       "fast_redemption": {
@@ -27372,7 +27372,7 @@
         "action_type": "open_url",
         "button_label": "Shop Now",
         "primary_value": null,
-        "primary_url": "https://us.princesspolly.com/collections/sale",
+        "primary_url": "https://us.princesspolly.com/",
         "app_deep_link": null,
         "web_fallback_url": null,
         "steps_after_click": [
