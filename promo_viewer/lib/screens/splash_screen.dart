@@ -328,23 +328,29 @@ class _SplashDealCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Logo
+          // Logo — local asset first, network fallback
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: Image.network(
-              'https://icon.horse/icon/${card.logoDomain}',
+            child: Image.asset(
+              'assets/logos/${card.logoDomain}.png',
               width: 36,
               height: 36,
               fit: BoxFit.contain,
-              errorBuilder: (_, _, _) => Container(
+              errorBuilder: (_, _, _) => Image.network(
+                'https://icon.horse/icon/${card.logoDomain}',
                 width: 36,
                 height: 36,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(8),
+                fit: BoxFit.contain,
+                errorBuilder: (_, _, _) => Container(
+                  width: 36,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Icon(Icons.storefront_outlined,
+                      size: 18, color: Colors.grey),
                 ),
-                child: const Icon(Icons.storefront_outlined,
-                    size: 18, color: Colors.grey),
               ),
             ),
           ),
