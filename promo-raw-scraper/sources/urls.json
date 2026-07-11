@@ -2558,5 +2558,20 @@
     "url": "https://www.adorama.com/g/deals",
     "source_type": "deals_page",
     "allowed_to_fetch": true
+  },
+  {
+    "brand": "Mejuri",
+    "category": "fashion",
+    "url": "https://www.mejuri.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Hey Harper",
+    "category": "fashion",
+    "url": "https://www.heyharper.com/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true,
+    "online_only": true
   }
 ]
