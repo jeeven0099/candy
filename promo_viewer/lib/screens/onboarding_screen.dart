@@ -580,18 +580,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           badgeHighlight: count == _kMaxCats,
         ),
         Expanded(
-          child: ListView.separated(
-            padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
+          child: GridView.builder(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              childAspectRatio: 0.88,
+            ),
             itemCount: _kCategories.length,
-            separatorBuilder: (context, i) => const SizedBox(height: 10),
             itemBuilder: (context, i) {
               final cat      = _kCategories[i];
               final sel      = _selectedCats.contains(cat.slug);
               final disabled = !sel && count >= _kMaxCats;
-              return _CatCard(
-                emoji: cat.emoji, title: cat.title,
-                subtitle: cat.subtitle, examples: cat.examples,
-                selected: sel, disabled: disabled,
+              return _CatGridTile(
+                emoji: cat.emoji,
+                title: cat.title,
+                selected: sel,
+                disabled: disabled,
                 onTap: disabled ? null : () => _toggleCat(cat.slug),
               );
             },
@@ -887,18 +893,16 @@ class _StepDots extends StatelessWidget {
   }
 }
 
-class _CatCard extends StatelessWidget {
-  final String       emoji;
-  final String       title;
-  final String       subtitle;
-  final List<String> examples;
-  final bool         selected;
-  final bool         disabled;
+class _CatGridTile extends StatelessWidget {
+  final String        emoji;
+  final String        title;
+  final bool          selected;
+  final bool          disabled;
   final VoidCallback? onTap;
 
-  const _CatCard({
-    required this.emoji, required this.title, required this.subtitle,
-    required this.examples, required this.selected, required this.disabled,
+  const _CatGridTile({
+    required this.emoji, required this.title,
+    required this.selected, required this.disabled,
     required this.onTap,
   });
 
@@ -908,39 +912,71 @@ class _CatCard extends StatelessWidget {
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         decoration: BoxDecoration(
           color: selected
-              ? Candy.raspberry.withValues(alpha: 0.08)
+              ? Candy.raspberry.withValues(alpha: 0.06)
               : disabled ? Colors.grey.shade50 : Colors.white,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-              color: selected ? Candy.raspberry : Colors.grey.shade200,
-              width: selected ? 1.5 : 1),
+            color: selected ? Candy.raspberry
+                : disabled ? Colors.grey.shade100 : Colors.grey.shade200,
+            width: selected ? 2.0 : 1.0,
+          ),
         ),
-        child: Row(children: [
-          Text(emoji, style: const TextStyle(fontSize: 26)),
-          const SizedBox(width: 14),
-          Expanded(child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title, style: TextStyle(
-                fontSize: 15, fontWeight: FontWeight.w600,
-                color: disabled ? Colors.grey.shade400 : Candy.chocolate,
-              )),
-              const SizedBox(height: 2),
-              Text(examples.join(', '),
-                style: TextStyle(fontSize: 12,
-                  color: disabled ? Colors.grey.shade300 : Colors.grey.shade500)),
-            ],
-          )),
-          if (selected)
-            const Icon(Icons.check_circle, color: Candy.raspberry, size: 20)
-          else
-            Icon(Icons.circle_outlined,
-                color: disabled ? Colors.grey.shade200 : Colors.grey.shade300,
-                size: 20),
-        ]),
+        child: Opacity(
+          opacity: disabled ? 0.38 : 1.0,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Container(
+                      width: 54, height: 54,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade100,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Center(
+                        child: Text(emoji,
+                            style: const TextStyle(fontSize: 28)),
+                      ),
+                    ),
+                    if (selected)
+                      Positioned(
+                        right: -6, top: -6,
+                        child: Container(
+                          width: 18, height: 18,
+                          decoration: const BoxDecoration(
+                            color: Candy.raspberry,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(Icons.check,
+                              color: Colors.white, size: 12),
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 7),
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight:
+                        selected ? FontWeight.w600 : FontWeight.w500,
+                    color:
+                        selected ? Candy.raspberry : Candy.chocolate,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
