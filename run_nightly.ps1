@@ -27,12 +27,18 @@ try {
         Start-Sleep -Seconds 10
     }
 
-    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Starting pipeline..."
+    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Starting pipeline (main pass)..."
     & $python $pipeline `
-        --ollama-model qwen2.5:14b --ollama-timeout 2700 `
-        --parallel --groq-brands 25 --gemini-brands 30 `
+        --ollama-model qwen2.5:14b --ollama-timeout 3200 `
+        --parallel --groq-brands 25 `
         --clean-only
-    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Pipeline finished (exit $LASTEXITCODE)."
+    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Main pass finished (exit $LASTEXITCODE)."
+
+    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Starting failed-brand retry pass..."
+    & $python $pipeline `
+        --skip-scrape --from-step 4 `
+        --ollama-model qwen2.5:14b --ollama-timeout 3200
+    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Retry pass finished (exit $LASTEXITCODE)."
 } finally {
     Remove-Item $lockFile -ErrorAction SilentlyContinue
 }

@@ -624,8 +624,8 @@
   {
     "brand": "Princess Polly",
     "category": "fashion",
-    "url": "https://us.princesspolly.com/collections/sale",
-    "source_type": "sales_page",
+    "url": "https://us.princesspolly.com/",
+    "source_type": "home_page",
     "allowed_to_fetch": false,
     "online_only": true
   },
