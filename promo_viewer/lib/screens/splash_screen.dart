@@ -56,6 +56,8 @@ class _SplashScreenState extends State<SplashScreen>
   late final AnimationController _ctrl;
   late final Animation<double> _logoScale;
   late final Animation<double> _shineAnim;
+  late final List<Animation<double>> _letterFade;
+  late final List<Animation<double>> _letterSlide;
   late final Animation<double> _searchFade;
   late final List<Animation<double>> _cardFade;
   late final List<Animation<double>> _cardSlide; // 0 → 1, maps to 24px → 0px
@@ -78,6 +80,20 @@ class _SplashScreenState extends State<SplashScreen>
       CurvedAnimation(
           parent: _ctrl,
           curve: Interval(_t(750), _t(1150), curve: Curves.easeInOut)));
+
+    // Letters stagger 120 ms apart, each taking 200 ms to appear
+    const letterStarts = [300, 420, 540, 660, 780];
+    const letterEnds   = [500, 620, 740, 860, 980];
+    _letterFade  = List.generate(5, (i) =>
+        Tween<double>(begin: 0.0, end: 1.0).animate(
+            CurvedAnimation(parent: _ctrl,
+                curve: Interval(_t(letterStarts[i]), _t(letterEnds[i]),
+                    curve: Curves.easeOut))));
+    _letterSlide = List.generate(5, (i) =>
+        Tween<double>(begin: 1.0, end: 0.0).animate(
+            CurvedAnimation(parent: _ctrl,
+                curve: Interval(_t(letterStarts[i]), _t(letterEnds[i]),
+                    curve: Curves.easeOut))));
 
     _searchFade = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
@@ -146,6 +162,20 @@ class _SplashScreenState extends State<SplashScreen>
     super.dispose();
   }
 
+  Widget _letter(int i, String char, Color color, double size) {
+    return Transform.translate(
+      offset: Offset(0, _letterSlide[i].value * 10),
+      child: Text(
+        char,
+        style: TextStyle(
+          fontFamily: 'Allura',
+          fontSize: size,
+          color: color.withValues(alpha: _letterFade[i].value),
+        ),
+      ),
+    );
+  }
+
   String get _typedText {
     const text = _kTypedQuery;
     final v = _ctrl.value;
@@ -203,25 +233,17 @@ class _SplashScreenState extends State<SplashScreen>
                                 ],
                               ).createShader(bounds);
                             },
-                            child: RichText(
-                              text: const TextSpan(children: [
-                                TextSpan(
-                                  text: 'C',
-                                  style: TextStyle(
-                                    fontFamily: 'Allura',
-                                    fontSize: 58,
-                                    color: Candy.raspberry,
-                                  ),
-                                ),
-                                TextSpan(
-                                  text: 'andy',
-                                  style: TextStyle(
-                                    fontFamily: 'Allura',
-                                    fontSize: 54,
-                                    color: Candy.chocolate,
-                                  ),
-                                ),
-                              ]),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.baseline,
+                              textBaseline: TextBaseline.alphabetic,
+                              children: [
+                                _letter(0, 'C', Candy.raspberry, 58),
+                                _letter(1, 'a', Candy.chocolate, 54),
+                                _letter(2, 'n', Candy.chocolate, 54),
+                                _letter(3, 'd', Candy.chocolate, 54),
+                                _letter(4, 'y', Candy.chocolate, 54),
+                              ],
                             ),
                           ),
                           const SizedBox(height: 6),
