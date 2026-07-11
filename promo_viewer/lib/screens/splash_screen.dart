@@ -28,16 +28,17 @@ const _kDemoCards = [
 const _kTypedQuery  = 'running shoes';
 const _kBrandCount  = 347;
 
-// Animation timeline (ms in a 1 800 ms window)
-//  0– 400  logo scale 0.95 → 1.00
-//  700– 900  search bar fade in
-//  1 000–1 300  query auto-types
-//  1 300–1 500  card 1 slides up
-//  1 400–1 600  card 2 slides up
-//  1 500–1 700  card 3 slides up
-//  1 900  navigate away (+ 100 ms buffer past end of animation)
+// Animation timeline (ms in a 2 100 ms window)
+//  0– 700  logo scale 0.95 → 1.00
+//  750–1 150  shine sweep across wordmark
+//  1 000–1 200  search bar fade in
+//  1 300–1 600  query auto-types
+//  1 600–1 800  card 1 slides up
+//  1 700–1 900  card 2 slides up
+//  1 800–2 100  card 3 slides up
+//  2 200  navigate away
 
-const _kDur = 1800;
+const _kDur = 2100;
 
 double _t(int ms) => ms / _kDur;
 
@@ -54,6 +55,7 @@ class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
   late final AnimationController _ctrl;
   late final Animation<double> _logoScale;
+  late final Animation<double> _shineAnim;
   late final Animation<double> _searchFade;
   late final List<Animation<double>> _cardFade;
   late final List<Animation<double>> _cardSlide; // 0 → 1, maps to 24px → 0px
@@ -70,15 +72,20 @@ class _SplashScreenState extends State<SplashScreen>
     _logoScale = Tween<double>(begin: 0.95, end: 1.0).animate(
       CurvedAnimation(
           parent: _ctrl,
-          curve: Interval(_t(0), _t(400), curve: Curves.easeOut)));
+          curve: Interval(_t(0), _t(700), curve: Curves.easeOut)));
+
+    _shineAnim = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+          parent: _ctrl,
+          curve: Interval(_t(750), _t(1150), curve: Curves.easeInOut)));
 
     _searchFade = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
           parent: _ctrl,
-          curve: Interval(_t(700), _t(900), curve: Curves.easeOut)));
+          curve: Interval(_t(1000), _t(1200), curve: Curves.easeOut)));
 
-    final starts = [_t(1300), _t(1400), _t(1500)];
-    final ends   = [_t(1500), _t(1600), _t(1700)];
+    final starts = [_t(1600), _t(1700), _t(1800)];
+    final ends   = [_t(1800), _t(1900), _t(2100)];
     _cardFade  = List.generate(3, (i) =>
         Tween<double>(begin: 0.0, end: 1.0).animate(
             CurvedAnimation(parent: _ctrl,
@@ -109,7 +116,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     NotificationService().processNotificationCandidates();
 
-    final remaining = 1900 - t.elapsedMilliseconds;
+    final remaining = 2200 - t.elapsedMilliseconds;
     if (remaining > 0) await Future.delayed(Duration(milliseconds: remaining));
     if (!mounted) return;
 
@@ -142,9 +149,9 @@ class _SplashScreenState extends State<SplashScreen>
   String get _typedText {
     const text = _kTypedQuery;
     final v = _ctrl.value;
-    if (v <= _t(1000)) return '';
-    if (v >= _t(1300)) return text;
-    final progress = (v - _t(1000)) / (_t(1300) - _t(1000));
+    if (v <= _t(1300)) return '';
+    if (v >= _t(1600)) return text;
+    final progress = (v - _t(1300)) / (_t(1600) - _t(1300));
     return text.substring(0, (text.length * progress).round().clamp(0, text.length));
   }
 
@@ -176,13 +183,47 @@ class _SplashScreenState extends State<SplashScreen>
                             height: 88,
                           ),
                           const SizedBox(height: 14),
-                          const Text(
-                            'Candy',
-                            style: TextStyle(
-                              fontSize: 36,
-                              fontWeight: FontWeight.w700,
-                              color: Candy.chocolate,
-                              letterSpacing: -1.0,
+                          ShaderMask(
+                            blendMode: BlendMode.srcATop,
+                            shaderCallback: (bounds) {
+                              // Sweep from -30% to 130% of word width
+                              final center = -0.3 + _shineAnim.value * 1.6;
+                              return LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  Colors.transparent,
+                                  Colors.white.withValues(alpha: 0.55),
+                                  Colors.transparent,
+                                ],
+                                stops: [
+                                  (center - 0.15).clamp(0.0, 1.0),
+                                  center.clamp(0.0, 1.0),
+                                  (center + 0.15).clamp(0.0, 1.0),
+                                ],
+                              ).createShader(bounds);
+                            },
+                            child: RichText(
+                              text: const TextSpan(children: [
+                                TextSpan(
+                                  text: 'C',
+                                  style: TextStyle(
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.w800,
+                                    color: Candy.raspberry,
+                                    letterSpacing: -0.5,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: 'andy',
+                                  style: TextStyle(
+                                    fontSize: 36,
+                                    fontWeight: FontWeight.w800,
+                                    color: Candy.chocolate,
+                                    letterSpacing: -0.5,
+                                  ),
+                                ),
+                              ]),
                             ),
                           ),
                           const SizedBox(height: 6),
