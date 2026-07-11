@@ -208,19 +208,17 @@ class _SplashScreenState extends State<SplashScreen>
                                 TextSpan(
                                   text: 'C',
                                   style: TextStyle(
-                                    fontSize: 40,
-                                    fontWeight: FontWeight.w800,
+                                    fontFamily: 'Allura',
+                                    fontSize: 58,
                                     color: Candy.raspberry,
-                                    letterSpacing: -0.5,
                                   ),
                                 ),
                                 TextSpan(
                                   text: 'andy',
                                   style: TextStyle(
-                                    fontSize: 36,
-                                    fontWeight: FontWeight.w800,
+                                    fontFamily: 'Allura',
+                                    fontSize: 54,
                                     color: Candy.chocolate,
-                                    letterSpacing: -0.5,
                                   ),
                                 ),
                               ]),
