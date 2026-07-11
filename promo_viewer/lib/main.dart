@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'screens/main_screen.dart';
-import 'screens/onboarding_screen.dart';
-import 'services/interaction_service.dart';
+import 'screens/splash_screen.dart';
 import 'services/notification_service.dart';
-import 'services/saved_deals_service.dart';
-import 'services/supabase_service.dart';
-import 'services/timezone_service.dart';
-import 'services/user_prefs_service.dart';
 import 'theme/candy_colors.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -20,29 +14,10 @@ void main() async {
     },
     appRunner: () async {
       WidgetsFlutterBinding.ensureInitialized();
-      await TimezoneService.init();
       await NotificationService.init(navigatorKey: navigatorKey);
-      await SavedDealsService.init();
-      await InteractionService.init();
-      await SupabaseService.init();
-      if (SupabaseService.isLoggedIn) {
-        await UserPrefsService().load();
-        final uid = SupabaseService.currentUserId;
-        if (uid != null) await SavedDealsService().loadForUser(uid);
-        _tagSentryUser();
-      }
-      // Fire-and-forget: process pipeline notification candidates on every launch.
-      // Rate limits and quiet hours are enforced inside the method.
-      NotificationService().processNotificationCandidates();
       runApp(const PromoViewerApp());
     },
   );
-}
-
-void _tagSentryUser() {
-  final user = SupabaseService.currentUser;
-  if (user == null) return;
-  Sentry.configureScope((scope) => scope.setUser(SentryUser(id: user.id, email: user.email)));
 }
 
 class PromoViewerApp extends StatelessWidget {
@@ -78,14 +53,14 @@ class PromoViewerApp extends StatelessWidget {
           labelTextStyle: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.selected)) {
               return const TextStyle(
-                color: Candy.raspberry, fontWeight: FontWeight.w600, fontSize: 12);
+                  color: Candy.raspberry, fontWeight: FontWeight.w600, fontSize: 12);
             }
             return TextStyle(
-              color: Candy.chocolate.withValues(alpha: 0.45), fontSize: 12);
+                color: Candy.chocolate.withValues(alpha: 0.45), fontSize: 12);
           }),
         ),
       ),
-      home: SupabaseService.isLoggedIn ? const MainScreen() : const OnboardingScreen(),
+      home: const SplashScreen(),
     );
   }
 }

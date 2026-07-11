@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../models/promotion.dart';
@@ -113,22 +115,10 @@ class DealCard extends StatelessWidget {
     final days = _daysLeft;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-      child: Material(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        elevation: 0,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.07),
-                blurRadius: 16,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
+      child: _LiquidGlassCard(
+        child: Material(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(16),
           child: InkWell(
             borderRadius: BorderRadius.circular(16),
             onTap: onTap,
@@ -635,6 +625,53 @@ class _ReportSheet extends StatelessWidget {
             onTap: () => onSubmit(t.slug),
           )),
         ],
+      ),
+    );
+  }
+}
+
+// ── Liquid glass card surface ─────────────────────────────────────────────────
+
+class _LiquidGlassCard extends StatelessWidget {
+  final Widget child;
+  const _LiquidGlassCard({required this.child});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 20,
+            offset: const Offset(0, 6),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.white.withValues(alpha: 0.96),
+                  Colors.white.withValues(alpha: 0.82),
+                ],
+              ),
+              border: Border.all(
+                color: Colors.white.withValues(alpha: 0.72),
+                width: 1.0,
+              ),
+            ),
+            child: child,
+          ),
+        ),
       ),
     );
   }
