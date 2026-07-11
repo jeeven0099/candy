@@ -51,7 +51,9 @@ Return a JSON object with a "promotions" array. Each item in the array has EXACT
   "source_path": "string",
   "extraction_status": "one of: success | no_offer_found | failed",
   "notes": "array of strings (observations, caveats, ambiguities)",
-  "target_gender": "one of: women | men | kids | unisex — or null if not a fashion/apparel deal. Use 'unisex' when the page covers both men and women equally."
+  "target_gender": "one of: women | men | kids | unisex — or null if not a fashion/apparel deal. Use 'unisex' when the page covers both men and women equally.",
+  "product_keywords": "array of strings (1-6 specific product types this deal applies to, e.g. ['sneakers', 'running shoes', 'hoodies', 'jeans']. Only include when the deal text explicitly names item types. Leave empty [] for sitewide deals, rewards programs, or deals with no item restriction.)",
+  "product_categories": "array of strings (broad categories this deal covers, chosen from: footwear, clothing, accessories, beauty, food, electronics, home, fitness, travel, other. Leave empty [] for sitewide deals or reward programs.)"
     }
   ]
 }
@@ -79,7 +81,7 @@ _GENDER_MEN_EXACT = frozenset(["men", "man"])  # exact-only to avoid matching in
 _GENDER_KIDS_TOKENS = frozenset([
     "kids", "kid", "children", "child", "baby", "babies", "toddler", "infant", "infants",
 ])
-_ARRAY_FIELDS = {"valid_days", "redemption_steps", "friction_reasons", "notes"}
+_ARRAY_FIELDS = {"valid_days", "redemption_steps", "friction_reasons", "notes", "product_keywords", "product_categories"}
 _BOOL_FIELDS = {
     "requires_membership", "requires_app", "requires_account_login",
     "new_user_only", "birthday_related", "purchase_required",
@@ -716,6 +718,17 @@ class OllamaModel(LocalModelInterface):
             score = data.get("confidence_score", 0.0)
             data["confidence_score"] = min(float(score), 0.75)
 
+        # Rule 6: derive product_keywords/categories from title+summary when LLM left them empty.
+        # Taxonomy matching on clean structured text (not raw HTML) produces reliable keywords.
+        if not data.get("product_keywords"):
+            title_text = data.get("promotion_title") or ""
+            summary_text = data.get("short_summary") or ""
+            cats, kws = self._classify_products([title_text, summary_text])
+            if kws:
+                data["product_keywords"] = kws
+            if cats and not data.get("product_categories"):
+                data["product_categories"] = cats
+
         return data
 
     def _build_prompt(
@@ -780,7 +793,12 @@ class OllamaModel(LocalModelInterface):
             "what a paid membership plan already includes (e.g. 'A-List: Extra Weekly Opportunity' "
             "describes a feature of the A-List subscription), that is NOT a promotional deal — skip it. "
             "Only extract when there is a distinct limited-time or new promotional offer on top of the "
-            "membership's normal benefits.\n\n"
+            "membership's normal benefits.\n"
+            "- product_keywords: list specific item types the deal applies to (e.g. ['sneakers', 'boots', 'hoodies', 'jeans']). "
+            "Only use when the deal text names particular item types — not for sitewide or category-wide deals. "
+            "Leave empty [] for deals like '20% off everything', 'free shipping', or rewards programs.\n"
+            "- product_categories: broad bucket(s) for the deal. Choose from: footwear, clothing, accessories, "
+            "beauty, food, electronics, home, fitness, travel, other. Leave empty [] for sitewide deals.\n\n"
             "If no promotions are found, return {\"promotions\": []}.\n"
             "Respond with ONLY the JSON object. No explanation, no markdown, no code fences.\n\n"
             "--- RAW TEXT START ---\n"
