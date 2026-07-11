@@ -197,9 +197,9 @@ class _SplashScreenState extends State<SplashScreen>
                                   Colors.transparent,
                                 ],
                                 stops: [
-                                  (center - 0.15).clamp(0.0, 1.0),
-                                  center.clamp(0.0, 1.0),
-                                  (center + 0.15).clamp(0.0, 1.0),
+                                  center - 0.15,
+                                  center,
+                                  center + 0.15,
                                 ],
                               ).createShader(bounds);
                             },
