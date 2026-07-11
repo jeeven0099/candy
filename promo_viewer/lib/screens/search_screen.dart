@@ -216,7 +216,7 @@ class _SearchScreenState extends State<SearchScreen> {
     _query = q;
     _debouncedQ = q;
     setState(() {});
-    _trackSearch(q);
+    _trackSearch(q, recordAffinity: false);
   }
 
   void _clearQuery() {
@@ -269,7 +269,10 @@ class _SearchScreenState extends State<SearchScreen> {
 
   // ── Analytics ─────────────────────────────────────────────────────────────
 
-  void _trackSearch(String q) {
+  // recordAffinity=false when the query was set programmatically (chip tap,
+  // related-search suggestion). Only manually typed queries should write the
+  // brand-search affinity signal — tapping a suggestion is browsing, not searching.
+  void _trackSearch(String q, {bool recordAffinity = true}) {
     if (q == _lastTrackedQ) return;
     _lastTrackedQ = q;
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -284,11 +287,13 @@ class _SearchScreenState extends State<SearchScreen> {
       } else {
         _svc.recordSearchEvent('search_submitted',
             params: {'query': q, 'chip': _ctx.name, 'result_count': '${results.length}'});
-        for (final g in results) {
-          // Only record when the query is an exact brand name match (tier 1).
-          // Prefix/substring matches (tiers 2–4) are too loose — "apple" would
-          // record Applebee's, "del" would record Dell, etc.
-          if (g.bestTier == 1) _svc.recordBrandSearch(g.brand);
+        if (recordAffinity) {
+          for (final g in results) {
+            // Only record when the query is an exact brand name match (tier 1).
+            // Prefix/substring matches (tiers 2–4) are too loose — "apple" would
+            // record Applebee's, "del" would record Dell, etc.
+            if (g.bestTier == 1) _svc.recordBrandSearch(g.brand);
+          }
         }
         final promos = results.expand((g) => g.deals).toList();
         ImpressionService().recordImpressions(promos, context: 'search_${_ctx.name}');
