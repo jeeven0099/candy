@@ -54,6 +54,97 @@ const _kCategories = [
       ['Best Buy', 'Amazon', 'Apple', 'Dell']),
 ];
 
+// ── Brand → domain map (for logo lookup) ─────────────────────────────────────
+
+const _kBrandDomains = <String, String>{
+  // food
+  'Starbucks':       'starbucks.com',
+  'Dunkin':          'dunkindonuts.com',
+  'Chipotle':        'chipotle.com',
+  "McDonald's":      'mcdonalds.com',
+  'Chick-fil-A':     'chick-fil-a.com',
+  'Taco Bell':       'tacobell.com',
+  'Wingstop':        'wingstop.com',
+  'Panera Bread':    'panerabread.com',
+  "Domino's":        'dominos.com',
+  'Shake Shack':     'shakeshack.com',
+  // grocery
+  'Kroger':          'kroger.com',
+  'Whole Foods Market': 'wholefoods.com',
+  'Costco':          'costco.com',
+  'Target':          'target.com',
+  'Walmart':         'walmart.com',
+  'Aldi':            'aldi.us',
+  'Publix':          'publix.com',
+  "Trader Joe's":    'traderjoes.com',
+  'CVS':             'cvs.com',
+  'Walgreens':       'walgreens.com',
+  // fashion
+  'Nike':            'nike.com',
+  'H&M':             'hm.com',
+  'Lululemon':       'lululemon.com',
+  'Old Navy':        'oldnavy.com',
+  'Zara':            'zara.com',
+  'Uniqlo':          'uniqlo.com',
+  'American Eagle':  'ae.com',
+  'Gap':             'gap.com',
+  'Adidas':          'adidas.com',
+  'Steve Madden':    'stevemadden.com',
+  // luxury
+  'Coach':           'coach.com',
+  'Kate Spade':      'katespade.com',
+  'Michael Kors':    'michaelkors.com',
+  'Tory Burch':      'toryburch.com',
+  'Kendra Scott':    'kendrascott.com',
+  'Tumi':            'tumi.com',
+  'Vera Bradley':    'verabradley.com',
+  'Rebecca Minkoff': 'rebeccaminkoff.com',
+  'Ralph Lauren':    'ralphlauren.com',
+  'Calvin Klein':    'calvinklein.us',
+  // beauty
+  'Ulta Beauty':     'ulta.com',
+  'Sephora':         'sephora.com',
+  'Bath & Body Works': 'bathandbodyworks.com',
+  'e.l.f. Cosmetics':  'elfcosmetics.com',
+  'ColourPop':       'colourpop.com',
+  'Fenty Beauty':    'fentybeauty.com',
+  'The Ordinary':    'theordinary.com',
+  'NYX Professional Makeup': 'nyxcosmetics.com',
+  'Tarte Cosmetics': 'tartecosmetics.com',
+  'Clinique':        'clinique.com',
+  // entertainment
+  'AMC Theatres':    'amctheatres.com',
+  'Regal Cinemas':   'regmovies.com',
+  'Main Event':      'mainevent.com',
+  "Dave & Buster's": 'daveandbusters.com',
+  'Topgolf':         'topgolf.com',
+  'Bowlero':         'bowlero.com',
+  'Spotify':         'spotify.com',
+  'Disney+':         'disneyplus.com',
+  'Hulu':            'hulu.com',
+  'Netflix':         'netflix.com',
+  // home
+  'IKEA':            'ikea.com',
+  'Home Depot':      'homedepot.com',
+  "Lowe's":          'lowes.com',
+  'Wayfair':         'wayfair.com',
+  'Crate & Barrel':  'crateandbarrel.com',
+  'West Elm':        'westelm.com',
+  'Pottery Barn':    'potterybarn.com',
+  'Bed Bath & Beyond': 'bedbathandbeyond.com',
+  // tech
+  'Amazon':          'amazon.com',
+  'Best Buy':        'bestbuy.com',
+  'Apple':           'apple.com',
+  'Dell':            'dell.com',
+  'Microsoft':       'microsoft.com',
+  'GameStop':        'gamestop.com',
+  'B&H Photo':       'bhphotovideo.com',
+  'Adorama':         'adorama.com',
+  'Samsung':         'samsung.com',
+  'Newegg':          'newegg.com',
+};
+
 // ── Brands per category ───────────────────────────────────────────────────────
 
 const _kBrandsByCategory = <String, List<String>>{
@@ -538,34 +629,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           child: brands.isEmpty
               ? Center(child: Text('Select categories first to see brands here.',
                   style: TextStyle(color: Colors.grey.shade500)))
-              : SingleChildScrollView(
-                  padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-                  child: Wrap(
-                    spacing: 8, runSpacing: 8,
-                    children: brands.map((b) {
-                      final sel      = _selectedBrands.contains(b);
-                      final disabled = !sel && count >= _kMaxBrands;
-                      return FilterChip(
-                        label: Text(b),
-                        selected: sel,
-                        onSelected: disabled ? null : (_) => _toggleBrand(b),
-                        selectedColor: Candy.raspberry.withValues(alpha: 0.12),
-                        disabledColor: Colors.grey.shade100,
-                        checkmarkColor: Candy.raspberry,
-                        side: BorderSide(
-                          color: sel ? Candy.raspberry
-                              : disabled ? Colors.grey.shade200
-                              : Colors.grey.shade300),
-                        labelStyle: TextStyle(fontSize: 13,
-                          color: sel ? Candy.raspberry
-                              : disabled ? Colors.grey.shade400 : Candy.chocolate,
-                          fontWeight: sel ? FontWeight.w600 : FontWeight.normal),
-                        backgroundColor: Colors.white,
-                        shape: const StadiumBorder(),
-                        showCheckmark: true,
-                      );
-                    }).toList(),
+              : GridView.builder(
+                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    childAspectRatio: 0.88,
                   ),
+                  itemCount: brands.length,
+                  itemBuilder: (context, i) {
+                    final b        = brands[i];
+                    final sel      = _selectedBrands.contains(b);
+                    final disabled = !sel && count >= _kMaxBrands;
+                    return _BrandLogoTile(
+                      key: ValueKey(b),
+                      brandName: b,
+                      domain: _kBrandDomains[b],
+                      selected: sel,
+                      disabled: disabled,
+                      onTap: disabled ? null : () => _toggleBrand(b),
+                    );
+                  },
                 ),
         ),
         _BottomActions(
@@ -906,6 +991,177 @@ class _SimpleCard extends StatelessWidget {
           else
             Icon(Icons.circle_outlined, color: Colors.grey.shade300, size: 20),
         ]),
+      ),
+    );
+  }
+}
+
+class _BrandLogoTile extends StatefulWidget {
+  final String brandName;
+  final String? domain;
+  final bool selected;
+  final bool disabled;
+  final VoidCallback? onTap;
+
+  const _BrandLogoTile({
+    super.key,
+    required this.brandName,
+    required this.domain,
+    required this.selected,
+    required this.disabled,
+    required this.onTap,
+  });
+
+  @override
+  State<_BrandLogoTile> createState() => _BrandLogoTileState();
+}
+
+class _BrandLogoTileState extends State<_BrandLogoTile> {
+  int _attempt = 0; // 0=local asset  1=icon.horse  2=Google favicon  3=initials
+
+  String get _initials {
+    final words = widget.brandName.trim().split(RegExp(r'\s+'));
+    if (words.length >= 2) return (words[0][0] + words[1][0]).toUpperCase();
+    return widget.brandName
+        .substring(0, widget.brandName.length.clamp(0, 2))
+        .toUpperCase();
+  }
+
+  Color get _avatarColor {
+    const colors = [
+      Candy.raspberry, Candy.mint, Candy.lavender, Candy.pink,
+      Color(0xFF1565C0), Color(0xFFE65100),
+    ];
+    return colors[widget.brandName.hashCode.abs() % colors.length];
+  }
+
+  void _nextAttempt() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) setState(() => _attempt++);
+    });
+  }
+
+  Widget _shimmer(double size) => Container(
+        width: size, height: size,
+        decoration: BoxDecoration(
+          color: Colors.grey.shade200,
+          borderRadius: BorderRadius.circular(size * 0.2),
+        ),
+      );
+
+  Widget _initials_(double size) => Container(
+        width: size, height: size,
+        decoration: BoxDecoration(
+          color: _avatarColor.withValues(alpha: 0.12),
+          borderRadius: BorderRadius.circular(size * 0.2),
+        ),
+        child: Center(
+          child: Text(_initials,
+              style: TextStyle(
+                color: _avatarColor,
+                fontWeight: FontWeight.w700,
+                fontSize: size * 0.35,
+              )),
+        ),
+      );
+
+  Widget _logo(double size) {
+    final domain = widget.domain;
+    if (domain == null || _attempt >= 3) return _initials_(size);
+
+    if (_attempt == 0) {
+      return Image.asset(
+        'assets/logos/$domain.png',
+        width: size, height: size, fit: BoxFit.contain,
+        errorBuilder: (_, _, _) {
+          _nextAttempt();
+          return _shimmer(size);
+        },
+      );
+    }
+
+    final url = _attempt == 1
+        ? 'https://icon.horse/icon/$domain'
+        : 'https://www.google.com/s2/favicons?domain=$domain&sz=128';
+    return Image.network(
+      url,
+      width: size, height: size, fit: BoxFit.contain,
+      errorBuilder: (_, _, _) {
+        _nextAttempt();
+        return _attempt < 3 ? _shimmer(size) : _initials_(size);
+      },
+      loadingBuilder: (_, child, loading) =>
+          loading == null ? child : _shimmer(size),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
+        decoration: BoxDecoration(
+          color: widget.selected
+              ? Candy.raspberry.withValues(alpha: 0.06)
+              : widget.disabled
+                  ? Colors.grey.shade50
+                  : Colors.white,
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(
+            color: widget.selected
+                ? Candy.raspberry
+                : widget.disabled
+                    ? Colors.grey.shade100
+                    : Colors.grey.shade200,
+            width: widget.selected ? 2.0 : 1.0,
+          ),
+        ),
+        child: Opacity(
+          opacity: widget.disabled ? 0.38 : 1.0,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    _logo(54),
+                    if (widget.selected)
+                      Positioned(
+                        right: -6,
+                        top: -6,
+                        child: Container(
+                          width: 18, height: 18,
+                          decoration: const BoxDecoration(
+                            color: Candy.raspberry,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(Icons.check,
+                              color: Colors.white, size: 12),
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 7),
+                Text(
+                  widget.brandName,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: widget.selected
+                        ? FontWeight.w600
+                        : FontWeight.w500,
+                    color: widget.selected ? Candy.raspberry : Candy.chocolate,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
