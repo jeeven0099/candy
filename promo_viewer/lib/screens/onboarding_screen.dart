@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart' show AuthException;
 
 import '../models/user_prefs.dart';
 import '../services/auth_service.dart';
+import '../services/interaction_service.dart';
 import '../services/saved_deals_service.dart';
 import '../services/supabase_service.dart';
 import '../services/user_prefs_service.dart';
@@ -301,8 +302,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     super.dispose();
   }
 
+  static const _kPageNames = ['auth', 'categories', 'brands', 'deal_types', 'radius'];
+
   void _goToPage(int p) {
     setState(() => _error = null);
+    InteractionService().recordSearchEvent('onboarding_page_viewed',
+        params: {'page': p < _kPageNames.length ? _kPageNames[p] : '$p'});
     _pageCtrl.animateToPage(p,
         duration: const Duration(milliseconds: 350), curve: Curves.easeInOut);
   }
@@ -636,12 +641,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ? Center(child: Text('Select categories first to see brands here.',
                   style: TextStyle(color: Colors.grey.shade500)))
               : GridView.builder(
-                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
-                    childAspectRatio: 0.88,
+                    crossAxisCount: 5,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                    childAspectRatio: 1.0,
                   ),
                   itemCount: brands.length,
                   itemBuilder: (context, i) {
@@ -1155,47 +1160,32 @@ class _BrandLogoTileState extends State<_BrandLogoTile> {
         ),
         child: Opacity(
           opacity: widget.disabled ? 0.38 : 1.0,
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Stack(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final logoSize = constraints.maxWidth * 0.62;
+              return Center(
+                child: Stack(
                   clipBehavior: Clip.none,
                   children: [
-                    _logo(54),
+                    _logo(logoSize),
                     if (widget.selected)
                       Positioned(
-                        right: -6,
-                        top: -6,
+                        right: -5,
+                        top: -5,
                         child: Container(
-                          width: 18, height: 18,
+                          width: 16, height: 16,
                           decoration: const BoxDecoration(
                             color: Candy.raspberry,
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(Icons.check,
-                              color: Colors.white, size: 12),
+                              color: Colors.white, size: 10),
                         ),
                       ),
                   ],
                 ),
-                const SizedBox(height: 7),
-                Text(
-                  widget.brandName,
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontWeight: widget.selected
-                        ? FontWeight.w600
-                        : FontWeight.w500,
-                    color: widget.selected ? Candy.raspberry : Candy.chocolate,
-                  ),
-                ),
-              ],
-            ),
+              );
+            },
           ),
         ),
       ),
