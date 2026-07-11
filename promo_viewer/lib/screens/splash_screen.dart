@@ -327,7 +327,7 @@ class _FakeSearchBar extends StatelessWidget {
               color: isEmpty ? const Color(0xFFCCCCCC) : const Color(0xFF999999)),
           const SizedBox(width: 10),
           Text(
-            isEmpty ? 'Search brands or products…' : query,
+            isEmpty ? 'What are you shopping for?' : query,
             style: TextStyle(
               fontSize: 15,
               color: isEmpty ? const Color(0xFFCCCCCC) : Candy.chocolate,
