@@ -15,9 +15,9 @@ import 'deal_detail_screen.dart';
 const _kRadiusKey = 'near_me_radius_mi';
 const _kRadiusOptions = [1, 3, 5, 10, 25];
 
-const _kCategories = ['All', 'Food & Coffee', 'Grocery', 'Retail', 'Beauty', 'Entertainment'];
+const _kCategories = ['All', 'Food & Beverages', 'Grocery', 'Retail', 'Beauty', 'Entertainment'];
 const _kCategoryMap = <String, List<String>>{
-  'Food & Coffee': ['food', 'fast_food', 'restaurant', 'coffee'],
+  'Food & Beverages': ['food', 'fast_food', 'restaurant', 'coffee'],
   'Grocery':       ['grocery', 'supermarket'],
   'Retail':        ['retail', 'fashion', 'clothing', 'apparel'],
   'Beauty':        ['beauty', 'personal_care'],
