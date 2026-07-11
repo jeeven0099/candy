@@ -163,15 +163,22 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Widget _letter(int i, String char, Color color, double size) {
+    final paintColor = color.withValues(alpha: _letterFade[i].value);
+    final style = TextStyle(fontFamily: 'Allura', fontSize: size);
     return Transform.translate(
       offset: Offset(0, _letterSlide[i].value * 10),
-      child: Text(
-        char,
-        style: TextStyle(
-          fontFamily: 'Allura',
-          fontSize: size,
-          color: color.withValues(alpha: _letterFade[i].value),
-        ),
+      // Stack a stroke pass under the fill to fatten Allura's thin strokes
+      child: Stack(
+        children: [
+          Text(char, style: style.copyWith(
+            foreground: Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 1.8
+              ..strokeJoin = StrokeJoin.round
+              ..color = paintColor,
+          )),
+          Text(char, style: style.copyWith(color: paintColor)),
+        ],
       ),
     );
   }
