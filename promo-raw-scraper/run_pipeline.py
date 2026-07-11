@@ -136,9 +136,9 @@ def main() -> None:
     ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     log_path = LOGS_DIR / f"pipeline_{ts}.log"
 
-    # Keep only the 14 most recent pipeline logs
+    # Keep only the 45 most recent pipeline logs
     existing_logs = sorted(LOGS_DIR.glob("pipeline_*.log"))
-    for old in existing_logs[:-14]:
+    for old in existing_logs[:-45]:
         old.unlink(missing_ok=True)
 
     start = time.time()
