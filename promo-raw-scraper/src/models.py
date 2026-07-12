@@ -143,7 +143,8 @@ class Promotion(BaseModel):
     synthesized: bool = False
     synthesis_reason: Optional[str] = None
     product_categories: List[str] = Field(default_factory=list)
-    product_keywords: List[str] = Field(default_factory=list)
+    product_keywords_explicit: List[str] = Field(default_factory=list)
+    product_keywords_contextual: List[str] = Field(default_factory=list)
     matched_product_examples: List[str] = Field(default_factory=list)
 
     # Email-only fields

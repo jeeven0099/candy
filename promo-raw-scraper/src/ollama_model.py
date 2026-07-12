@@ -52,8 +52,9 @@ Return a JSON object with a "promotions" array. Each item in the array has EXACT
   "extraction_status": "one of: success | no_offer_found | failed",
   "notes": "array of strings (observations, caveats, ambiguities)",
   "target_gender": "one of: women | men | kids | unisex — or null if not a fashion/apparel deal. Use 'unisex' when the page covers both men and women equally.",
-  "product_keywords": "array of strings (every product type this deal applies to or that the brand sells — e.g. ['sneakers', 'running shoes', 'hoodies', 'jeans', 'cargo pants', 'puffer jacket']. Extract from the deal text AND the page content. For sitewide deals, list all product types visible on the page. No fixed limit — include everything you can identify. Leave empty [] only for pure rewards/points programs with no purchasable products.)",
-  "product_categories": "array of strings (broad categories this deal covers, chosen from: footwear, clothing, accessories, beauty, food, electronics, home, fitness, travel, other. Leave empty [] only for pure rewards programs.)"
+  "product_keywords_explicit": "array of strings (max 10) — product types this deal DIRECTLY targets. Fill from the deal title, summary, or the sale grid / offer container immediately associated with this specific deal. E.g. '20% off running shoes' → ['running shoes', 'sneakers']. Use specific product-type nouns only — not colors, genders, fit descriptors, or promo words like 'sale', 'new', 'summer'. Leave [] for truly sitewide deals or rewards programs.",
+  "product_keywords_contextual": "array of strings (max 25) — ONLY for sitewide or brand-wide deals: product types visible in product cards or grids on this page. Require at least 3 distinct product examples to support each term. Do NOT draw from: nav menus, footer links, SEO metadata, image alt text, breadcrumbs, recommended articles, or legal text. Leave [] when product_keywords_explicit is non-empty or for rewards programs.",
+  "product_categories": "array of strings (max 5) — broad buckets this deal covers, chosen from: footwear, clothing, accessories, beauty, food, electronics, home, fitness, travel, other. Leave [] only for pure rewards programs."
     }
   ]
 }
@@ -81,7 +82,7 @@ _GENDER_MEN_EXACT = frozenset(["men", "man"])  # exact-only to avoid matching in
 _GENDER_KIDS_TOKENS = frozenset([
     "kids", "kid", "children", "child", "baby", "babies", "toddler", "infant", "infants",
 ])
-_ARRAY_FIELDS = {"valid_days", "redemption_steps", "friction_reasons", "notes", "product_keywords", "product_categories"}
+_ARRAY_FIELDS = {"valid_days", "redemption_steps", "friction_reasons", "notes", "product_keywords_explicit", "product_keywords_contextual", "product_categories"}
 _BOOL_FIELDS = {
     "requires_membership", "requires_app", "requires_account_login",
     "new_user_only", "birthday_related", "purchase_required",
@@ -547,8 +548,9 @@ class OllamaModel(LocalModelInterface):
             ],
             synthesized=True,
             synthesis_reason="price_grid_markdown",
-            product_categories=product_cats,
-            product_keywords=product_kws,
+            product_categories=product_cats[:5],
+            product_keywords_explicit=[],
+            product_keywords_contextual=product_kws[:25],
             matched_product_examples=matched_examples,
             target_gender=target_gender,
         )]
@@ -725,16 +727,16 @@ class OllamaModel(LocalModelInterface):
             score = data.get("confidence_score", 0.0)
             data["confidence_score"] = min(float(score), 0.75)
 
-        # Rule 6: derive product_keywords/categories from title+summary when LLM left them empty.
-        # Taxonomy matching on clean structured text (not raw HTML) produces reliable keywords.
-        if not data.get("product_keywords"):
+        # Rule 6: taxonomy fallback for explicit keywords when LLM left them empty.
+        # Only runs on deal title+summary (structured text) so taxonomy_only avoids garbage n-grams.
+        if not data.get("product_keywords_explicit"):
             title_text = data.get("promotion_title") or ""
             summary_text = data.get("short_summary") or ""
             cats, kws = self._classify_products([title_text, summary_text], taxonomy_only=True)
             if kws:
-                data["product_keywords"] = kws
+                data["product_keywords_explicit"] = kws[:10]
             if cats and not data.get("product_categories"):
-                data["product_categories"] = cats
+                data["product_categories"] = cats[:5]
 
         return data
 
@@ -801,12 +803,14 @@ class OllamaModel(LocalModelInterface):
             "describes a feature of the A-List subscription), that is NOT a promotional deal — skip it. "
             "Only extract when there is a distinct limited-time or new promotional offer on top of the "
             "membership's normal benefits.\n"
-            "- product_keywords: extract every product type you can identify from the deal text AND the full page content. "
-            "For sitewide deals, list all types of products visible on the page (e.g. a shoe brand with '20% off everything' "
-            "should still get ['sneakers', 'boots', 'sandals', 'loafers']). No limit on the number of keywords — more is better. "
-            "Leave empty [] only for pure rewards/points programs with no purchasable products.\n"
-            "- product_categories: broad bucket(s). Choose from: footwear, clothing, accessories, "
-            "beauty, food, electronics, home, fitness, travel, other. Leave empty [] only for pure rewards programs.\n\n"
+            "- product_keywords_explicit (max 10): specific product-type nouns the deal DIRECTLY covers — from the deal title, "
+            "summary, or the offer container/sale grid for this deal. '20% off running shoes' → ['running shoes', 'sneakers']. "
+            "Exclude colors, genders, fit words, and promo words ('sale', 'new', 'limited'). Leave [] for sitewide deals.\n"
+            "- product_keywords_contextual (max 25): ONLY fill for sitewide/brand-wide deals (when explicit is []). "
+            "Extract product types from product cards and grids on the page. Need 3+ distinct examples to support each term. "
+            "Do NOT use: nav, footer, SEO tags, breadcrumbs, alt text, recommended articles, or legal text.\n"
+            "- product_categories (max 5): broad buckets from: footwear, clothing, accessories, beauty, food, "
+            "electronics, home, fitness, travel, other. Leave [] only for pure rewards programs.\n\n"
             "If no promotions are found, return {\"promotions\": []}.\n"
             "Respond with ONLY the JSON object. No explanation, no markdown, no code fences.\n\n"
             "--- RAW TEXT START ---\n"
