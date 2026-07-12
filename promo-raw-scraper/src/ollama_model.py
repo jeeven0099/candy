@@ -52,8 +52,8 @@ Return a JSON object with a "promotions" array. Each item in the array has EXACT
   "extraction_status": "one of: success | no_offer_found | failed",
   "notes": "array of strings (observations, caveats, ambiguities)",
   "target_gender": "one of: women | men | kids | unisex — or null if not a fashion/apparel deal. Use 'unisex' when the page covers both men and women equally.",
-  "product_keywords": "array of strings (1-6 specific product types this deal applies to, e.g. ['sneakers', 'running shoes', 'hoodies', 'jeans']. Only include when the deal text explicitly names item types. Leave empty [] for sitewide deals, rewards programs, or deals with no item restriction.)",
-  "product_categories": "array of strings (broad categories this deal covers, chosen from: footwear, clothing, accessories, beauty, food, electronics, home, fitness, travel, other. Leave empty [] for sitewide deals or reward programs.)"
+  "product_keywords": "array of strings (every product type this deal applies to or that the brand sells — e.g. ['sneakers', 'running shoes', 'hoodies', 'jeans', 'cargo pants', 'puffer jacket']. Extract from the deal text AND the page content. For sitewide deals, list all product types visible on the page. No fixed limit — include everything you can identify. Leave empty [] only for pure rewards/points programs with no purchasable products.)",
+  "product_categories": "array of strings (broad categories this deal covers, chosen from: footwear, clothing, accessories, beauty, food, electronics, home, fitness, travel, other. Leave empty [] only for pure rewards programs.)"
     }
   ]
 }
@@ -801,11 +801,12 @@ class OllamaModel(LocalModelInterface):
             "describes a feature of the A-List subscription), that is NOT a promotional deal — skip it. "
             "Only extract when there is a distinct limited-time or new promotional offer on top of the "
             "membership's normal benefits.\n"
-            "- product_keywords: list specific item types the deal applies to (e.g. ['sneakers', 'boots', 'hoodies', 'jeans']). "
-            "Only use when the deal text names particular item types — not for sitewide or category-wide deals. "
-            "Leave empty [] for deals like '20% off everything', 'free shipping', or rewards programs.\n"
-            "- product_categories: broad bucket(s) for the deal. Choose from: footwear, clothing, accessories, "
-            "beauty, food, electronics, home, fitness, travel, other. Leave empty [] for sitewide deals.\n\n"
+            "- product_keywords: extract every product type you can identify from the deal text AND the full page content. "
+            "For sitewide deals, list all types of products visible on the page (e.g. a shoe brand with '20% off everything' "
+            "should still get ['sneakers', 'boots', 'sandals', 'loafers']). No limit on the number of keywords — more is better. "
+            "Leave empty [] only for pure rewards/points programs with no purchasable products.\n"
+            "- product_categories: broad bucket(s). Choose from: footwear, clothing, accessories, "
+            "beauty, food, electronics, home, fitness, travel, other. Leave empty [] only for pure rewards programs.\n\n"
             "If no promotions are found, return {\"promotions\": []}.\n"
             "Respond with ONLY the JSON object. No explanation, no markdown, no code fences.\n\n"
             "--- RAW TEXT START ---\n"
