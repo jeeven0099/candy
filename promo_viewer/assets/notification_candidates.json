@@ -1,46 +1,8 @@
 {
-  "generated_at": "2026-07-11T15:26:39.483264+00:00",
+  "generated_at": "2026-07-12T10:52:53.655958+00:00",
   "threshold": 60.0,
-  "total": 18,
+  "total": 14,
   "candidates": [
-    {
-      "promo_id": "colehaan_allsaleupto50offnewmarkdownsadded",
-      "brand": "Cole Haan",
-      "category": "retail",
-      "title": "All Sale up to 50% Off - New Markdowns Added",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Cole Haan",
-      "notification_body": "All Sale up to 50% Off - New Markdowns Added",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 75.0,
-      "end_date": null,
-      "website_domain": "colehaan.com",
-      "source_url": "https://www.colehaan.com/collections/sale"
-    },
-    {
-      "promo_id": "colehaan_sandalsupto60off",
-      "brand": "Cole Haan",
-      "category": "retail",
-      "title": "Sandals up to 60% Off",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Cole Haan",
-      "notification_body": "Sandals up to 60% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 54.0,
-      "end_date": null,
-      "website_domain": "colehaan.com",
-      "source_url": "https://www.colehaan.com/collections/sale"
-    },
     {
       "promo_id": "fashionnova_upto80offsale",
       "brand": "Fashion Nova",
@@ -99,44 +61,6 @@
       "source_url": "https://www.windsorstore.com/"
     },
     {
-      "promo_id": "zaraman_sizelastchancesale",
-      "brand": "Zara Man",
-      "category": "fashion",
-      "title": "Size Last Chance SALE",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Zara Man",
-      "notification_body": "Size Last Chance SALE",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 82%",
-      "estimated_savings": 53.3,
-      "end_date": null,
-      "website_domain": "zara.com",
-      "source_url": "https://www.zara.com/us/en/s-man-sale-l10847.html"
-    },
-    {
-      "promo_id": "underarmour_extra50offoutlet",
-      "brand": "Under Armour",
-      "category": "fashion",
-      "title": "Extra 50% Off Outlet",
-      "notify_score": 71.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Under Armour",
-      "notification_body": "Extra 50% Off Outlet",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 32.5,
-      "end_date": null,
-      "website_domain": "underarmour.com",
-      "source_url": null
-    },
-    {
       "promo_id": "aritzia_deepermarkdownssummersale",
       "brand": "Aritzia",
       "category": "fashion",
@@ -175,6 +99,25 @@
       "source_url": "https://bcbg.com/collections/sale"
     },
     {
+      "promo_id": "cider_summerclearance",
+      "brand": "Cider",
+      "category": "fashion",
+      "title": "Summer Clearance",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Cider",
+      "notification_body": "Summer Clearance",
+      "discount_type": "percentage_off",
+      "discount_value": "70%",
+      "estimated_savings": 45.5,
+      "end_date": null,
+      "website_domain": "shopcider.com",
+      "source_url": "https://shopcider.com/collections/all"
+    },
+    {
       "promo_id": "clubmonaco_shopallsaleupto70off",
       "brand": "Club Monaco",
       "category": "fashion",
@@ -211,25 +154,6 @@
       "end_date": null,
       "website_domain": "coach.com",
       "source_url": "https://www.coach.com/content/promo"
-    },
-    {
-      "promo_id": "colehaan_sneakersupto50off",
-      "brand": "Cole Haan",
-      "category": "retail",
-      "title": "Sneakers up to 50% Off",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Cole Haan",
-      "notification_body": "Sneakers up to 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 45.0,
-      "end_date": null,
-      "website_domain": "colehaan.com",
-      "source_url": "https://www.colehaan.com/collections/sale"
     },
     {
       "promo_id": "johnstonmurphy_endofseasonsale",
@@ -289,23 +213,23 @@
       "source_url": "https://www.tedbaker.com/collections/sale-us"
     },
     {
-      "promo_id": "nordstromrack_extra25offclearance",
-      "brand": "Nordstrom Rack",
-      "category": "retail",
-      "title": "EXTRA 25% OFF CLEARANCE!",
-      "notify_score": 61.0,
+      "promo_id": "vineyardvines_upto65offallsalestyles",
+      "brand": "Vineyard Vines",
+      "category": "fashion",
+      "title": "Up to 65% off all sale styles*",
+      "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Nordstrom Rack",
-      "notification_body": "EXTRA 25% OFF CLEARANCE!",
+      "notification_title": "Vineyard Vines",
+      "notification_body": "Up to 65% off all sale styles*",
       "discount_type": "percentage_off",
-      "discount_value": "25%",
-      "estimated_savings": 11.25,
-      "end_date": "2026-07-12",
-      "website_domain": "nordstromrack.com",
-      "source_url": "https://www.nordstromrack.com/c/sales"
+      "discount_value": "up to 65%",
+      "estimated_savings": 42.25,
+      "end_date": null,
+      "website_domain": "vineyardvines.com",
+      "source_url": "https://www.vineyardvines.com/category/Sale"
     },
     {
       "promo_id": "tillys_clearanceupto60off",
