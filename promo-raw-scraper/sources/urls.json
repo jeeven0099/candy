@@ -2447,7 +2447,7 @@
     "brand": "Asics",
     "category": "fashion",
     "urls": [
-      "https://www.asics.com/us/en-us/womens-clearance/c/aa20",
+      "https://www.asics.com/us/en-us/womens-clearance/c/aa20106000/",
       "https://www.asics.com/us/en-us/mens-clearance/c/aa10106000/",
       "https://www.asics.com/us/en-us/kids-clearance/c/aa30104000/"
     ],
@@ -2562,7 +2562,7 @@
   {
     "brand": "Mejuri",
     "category": "fashion",
-    "url": "https://www.mejuri.com/sale",
+    "url": "https://mejuri.com/collections/shop-all",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
