@@ -531,25 +531,38 @@ String _norm(String s) =>
     }
   }
 
-  // ── Synthesized product keyword match ────────────────────────────────────
-  // Only checked when the query isn't already a brand match (tiers 1–4)
+  // ── Explicit product keyword match (deal directly covers this item) ────────
+  // Tier 5: highest trust — from deal title/summary or offer container.
   if (tier == 0 || tier > 4) {
-    for (final kw in p.productKeywords) {
+    for (final kw in p.productKeywordsExplicit) {
       final nkw = _norm(kw);
       if (nkw == q) {
-        score += 75; if (tier == 0 || tier > 5) tier = 5; break;
+        score += 80; if (tier == 0 || tier > 5) tier = 5; break;
       } else if (nkw.contains(q) || q.contains(nkw)) {
-        score += 55; if (tier == 0 || tier > 6) tier = 6; break;
+        score += 70; if (tier == 0 || tier > 5) tier = 5; break;
       }
     }
   }
 
-  // ── Synthesized product category match ───────────────────────────────────
+  // ── Contextual product keyword match (page-level, sitewide deals) ─────────
+  // Tier 6: lower trust — deal may cover this product type but didn't say so.
+  if (tier == 0 || tier > 5) {
+    for (final kw in p.productKeywordsContextual) {
+      final nkw = _norm(kw);
+      if (nkw == q) {
+        score += 35; if (tier == 0 || tier > 6) tier = 6; break;
+      } else if (nkw.contains(q) || q.contains(nkw)) {
+        score += 25; if (tier == 0 || tier > 6) tier = 6; break;
+      }
+    }
+  }
+
+  // ── Product category match ────────────────────────────────────────────────
   if (tier == 0 || tier > 6) {
     for (final cat in p.productCategories) {
       final ncat = _norm(cat);
       if (ncat == q || ncat.contains(q) || q.contains(ncat)) {
-        score += 50; if (tier == 0 || tier > 7) tier = 7; break;
+        score += 25; if (tier == 0 || tier > 7) tier = 7; break;
       }
     }
   }

@@ -59,7 +59,8 @@ class Promotion {
   final bool synthesized;
   final String? synthesisReason;
   final List<String> productCategories;
-  final List<String> productKeywords;
+  final List<String> productKeywordsExplicit;
+  final List<String> productKeywordsContextual;
   final List<String> matchedProductExamples;
 
   // Set after location is resolved — not from JSON
@@ -111,7 +112,8 @@ class Promotion {
     this.synthesized = false,
     this.synthesisReason,
     this.productCategories = const [],
-    this.productKeywords = const [],
+    this.productKeywordsExplicit = const [],
+    this.productKeywordsContextual = const [],
     this.matchedProductExamples = const [],
   });
 
@@ -170,7 +172,10 @@ class Promotion {
       synthesized: json['synthesized'] as bool? ?? false,
       synthesisReason: json['synthesis_reason'] as String?,
       productCategories: (json['product_categories'] as List?)?.whereType<String>().toList() ?? [],
-      productKeywords: (json['product_keywords'] as List?)?.whereType<String>().toList() ?? [],
+      productKeywordsExplicit: (json['product_keywords_explicit'] as List?)?.whereType<String>().toList()
+          ?? (json['product_keywords'] as List?)?.whereType<String>().toList()
+          ?? [],
+      productKeywordsContextual: (json['product_keywords_contextual'] as List?)?.whereType<String>().toList() ?? [],
       matchedProductExamples: (json['matched_product_examples'] as List?)?.whereType<String>().toList() ?? [],
     );
   }
