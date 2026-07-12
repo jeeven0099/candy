@@ -367,13 +367,16 @@ class OllamaModel(LocalModelInterface):
             names.append(norm)
         return names[:30]
 
-    def _classify_products(self, product_lines: list[str]) -> tuple[list[str], list[str]]:
+    def _classify_products(self, product_lines: list[str], *, taxonomy_only: bool = False) -> tuple[list[str], list[str]]:
         """
         Returns (product_categories, product_keywords).
 
         product_categories: deduplicated category labels (e.g. ["outerwear", "bottoms"])
         product_keywords:   individual search terms drawn from matched taxonomy entries
                             plus meaningful words from product names not covered by taxonomy
+
+        taxonomy_only=True: skip dynamic n-gram extraction (use when input is deal text,
+                            not raw product name lines — avoids generating garbage tokens).
         """
         combined = ' '.join(product_lines).lower()
 
@@ -399,6 +402,10 @@ class OllamaModel(LocalModelInterface):
         # stripping noise words so only meaningful product-type tokens remain.
         # This means any product name (tank top, cargo shorts, slip dress…) that
         # appears in the raw text becomes a searchable keyword automatically.
+        # Skipped when taxonomy_only=True (deal title/summary text as input).
+        if taxonomy_only:
+            return categories, keywords[:80]
+
         for line in product_lines:
             tokens = [
                 w for w in re.split(r'[\s\-/]+', line.lower())
@@ -723,7 +730,7 @@ class OllamaModel(LocalModelInterface):
         if not data.get("product_keywords"):
             title_text = data.get("promotion_title") or ""
             summary_text = data.get("short_summary") or ""
-            cats, kws = self._classify_products([title_text, summary_text])
+            cats, kws = self._classify_products([title_text, summary_text], taxonomy_only=True)
             if kws:
                 data["product_keywords"] = kws
             if cats and not data.get("product_categories"):
