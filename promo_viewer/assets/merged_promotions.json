@@ -53,7 +53,16 @@
       ],
       "website_domain": "abercrombie.com",
       "og_image_url": "https://img.abercrombie.com/is/image/anf/AnF_Facebook_1200x630.jpg",
-      "status": "online_only"
+      "status": "online_only",
+      "product_keywords_contextual": [
+        "shorts",
+        "swim",
+        "styles"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing"
+      ]
     },
     {
       "brand": "Abercrombie & Fitch",
@@ -104,7 +113,16 @@
       ],
       "website_domain": "abercrombie.com",
       "og_image_url": "https://img.abercrombie.com/is/image/anf/AnF_Facebook_1200x630.jpg",
-      "status": "online_only"
+      "status": "online_only",
+      "product_keywords_contextual": [
+        "shorts",
+        "swim",
+        "styles"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing"
+      ]
     },
     {
       "brand": "Abercrombie & Fitch",
@@ -157,7 +175,16 @@
       ],
       "website_domain": "abercrombie.com",
       "og_image_url": "https://img.abercrombie.com/is/image/anf/AnF_Facebook_1200x630.jpg",
-      "status": "online_only"
+      "status": "online_only",
+      "product_keywords_contextual": [
+        "shorts",
+        "swim",
+        "styles"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing"
+      ]
     },
     {
       "brand": "Aldi",
@@ -353,7 +380,37 @@
       "notes": [],
       "website_domain": "amazon.com",
       "og_image_url": "https://m.media-amazon.com/images/G/01/highvelocityevents/og_image/logo._CB664182991_.png",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Baby Bottle Washer",
+        "Smart TV",
+        "Bathroom Mirror",
+        "Car Seat",
+        "Ride on Toys",
+        "Exercise Bike",
+        "Platform Bed Frame",
+        "Double Stroller",
+        "Ping Pong Table",
+        "Standing Desk",
+        "Inflatable Bounce House",
+        "Cocktail Machine",
+        "Dresser",
+        "Drawing Tablet",
+        "Mini PC Computer",
+        "Laptops",
+        "Cell Phones",
+        "Appliances",
+        "Musical Instruments",
+        "Gaming Console"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "electronics",
+        "home",
+        "baby",
+        "sports",
+        "toys"
+      ]
     },
     {
       "brand": "Amazon",
@@ -393,7 +450,37 @@
       "notes": [],
       "website_domain": "amazon.com",
       "og_image_url": "https://m.media-amazon.com/images/G/01/highvelocityevents/og_image/logo._CB664182991_.png",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Baby Bottle Washer",
+        "Smart TV",
+        "Bathroom Mirror",
+        "Car Seat",
+        "Ride on Toys",
+        "Exercise Bike",
+        "Platform Bed Frame",
+        "Double Stroller",
+        "Ping Pong Table",
+        "Standing Desk",
+        "Inflatable Bounce House",
+        "Cocktail Machine",
+        "Dresser",
+        "Drawing Tablet",
+        "Mini PC Computer",
+        "Laptops",
+        "Cell Phones",
+        "Appliances",
+        "Musical Instruments",
+        "Gaming Console"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "electronics",
+        "home",
+        "baby",
+        "sports",
+        "toys"
+      ]
     },
     {
       "brand": "Amazon",
@@ -433,7 +520,37 @@
       "notes": [],
       "website_domain": "amazon.com",
       "og_image_url": "https://m.media-amazon.com/images/G/01/highvelocityevents/og_image/logo._CB664182991_.png",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Baby Bottle Washer",
+        "Smart TV",
+        "Bathroom Mirror",
+        "Car Seat",
+        "Ride on Toys",
+        "Exercise Bike",
+        "Platform Bed Frame",
+        "Double Stroller",
+        "Ping Pong Table",
+        "Standing Desk",
+        "Inflatable Bounce House",
+        "Cocktail Machine",
+        "Dresser",
+        "Drawing Tablet",
+        "Mini PC Computer",
+        "Laptops",
+        "Cell Phones",
+        "Appliances",
+        "Musical Instruments",
+        "Gaming Console"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "electronics",
+        "home",
+        "baby",
+        "sports",
+        "toys"
+      ]
     },
     {
       "brand": "Amazon",
@@ -473,7 +590,37 @@
       "notes": [],
       "website_domain": "amazon.com",
       "og_image_url": "https://m.media-amazon.com/images/G/01/highvelocityevents/og_image/logo._CB664182991_.png",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Baby Bottle Washer",
+        "Smart TV",
+        "Bathroom Mirror",
+        "Car Seat",
+        "Ride on Toys",
+        "Exercise Bike",
+        "Platform Bed Frame",
+        "Double Stroller",
+        "Ping Pong Table",
+        "Standing Desk",
+        "Inflatable Bounce House",
+        "Cocktail Machine",
+        "Dresser",
+        "Drawing Tablet",
+        "Mini PC Computer",
+        "Laptops",
+        "Cell Phones",
+        "Appliances",
+        "Musical Instruments",
+        "Gaming Console"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "electronics",
+        "home",
+        "baby",
+        "sports",
+        "toys"
+      ]
     },
     {
       "brand": "Amazon",
@@ -513,7 +660,37 @@
       "notes": [],
       "website_domain": "amazon.com",
       "og_image_url": "https://m.media-amazon.com/images/G/01/highvelocityevents/og_image/logo._CB664182991_.png",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Baby Bottle Washer",
+        "Smart TV",
+        "Bathroom Mirror",
+        "Car Seat",
+        "Ride on Toys",
+        "Exercise Bike",
+        "Platform Bed Frame",
+        "Double Stroller",
+        "Ping Pong Table",
+        "Standing Desk",
+        "Inflatable Bounce House",
+        "Cocktail Machine",
+        "Dresser",
+        "Drawing Tablet",
+        "Mini PC Computer",
+        "Laptops",
+        "Cell Phones",
+        "Appliances",
+        "Musical Instruments",
+        "Gaming Console"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "electronics",
+        "home",
+        "baby",
+        "sports",
+        "toys"
+      ]
     },
     {
       "brand": "Amazon",
@@ -553,7 +730,37 @@
       "notes": [],
       "website_domain": "amazon.com",
       "og_image_url": "https://m.media-amazon.com/images/G/01/highvelocityevents/og_image/logo._CB664182991_.png",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Baby Bottle Washer",
+        "Smart TV",
+        "Bathroom Mirror",
+        "Car Seat",
+        "Ride on Toys",
+        "Exercise Bike",
+        "Platform Bed Frame",
+        "Double Stroller",
+        "Ping Pong Table",
+        "Standing Desk",
+        "Inflatable Bounce House",
+        "Cocktail Machine",
+        "Dresser",
+        "Drawing Tablet",
+        "Mini PC Computer",
+        "Laptops",
+        "Cell Phones",
+        "Appliances",
+        "Musical Instruments",
+        "Gaming Console"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "electronics",
+        "home",
+        "baby",
+        "sports",
+        "toys"
+      ]
     },
     {
       "brand": "Amazon",
@@ -593,7 +800,37 @@
       "notes": [],
       "website_domain": "amazon.com",
       "og_image_url": "https://m.media-amazon.com/images/G/01/highvelocityevents/og_image/logo._CB664182991_.png",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Baby Bottle Washer",
+        "Smart TV",
+        "Bathroom Mirror",
+        "Car Seat",
+        "Ride on Toys",
+        "Exercise Bike",
+        "Platform Bed Frame",
+        "Double Stroller",
+        "Ping Pong Table",
+        "Standing Desk",
+        "Inflatable Bounce House",
+        "Cocktail Machine",
+        "Dresser",
+        "Drawing Tablet",
+        "Mini PC Computer",
+        "Laptops",
+        "Cell Phones",
+        "Appliances",
+        "Musical Instruments",
+        "Gaming Console"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "electronics",
+        "home",
+        "baby",
+        "sports",
+        "toys"
+      ]
     },
     {
       "brand": "American Eagle",
@@ -633,7 +870,22 @@
       "notes": [],
       "website_domain": "ae.com",
       "og_image_url": "https://s7d2.scene7.com/is/image/aeo/aeo_social",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Jeans",
+        "Clothes",
+        "Accessories",
+        "Tops",
+        "Bottoms",
+        "Dresses",
+        "Shorts",
+        "T-Shirt"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "American Eagle",
@@ -673,7 +925,22 @@
       "notes": [],
       "website_domain": "ae.com",
       "og_image_url": "https://s7d2.scene7.com/is/image/aeo/aeo_social",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Jeans",
+        "Clothes",
+        "Accessories",
+        "Tops",
+        "Bottoms",
+        "Dresses",
+        "Shorts",
+        "T-Shirt"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Ann Taylor",
@@ -713,7 +980,27 @@
       "notes": [],
       "website_domain": "anntaylor.com",
       "og_image_url": "https://assets.anntaylor.com/image/upload/w_750/AN/ATmeta",
-      "status": "expired"
+      "status": "expired",
+      "product_keywords_contextual": [
+        "Dresses",
+        "Pants",
+        "Shirts",
+        "Sweaters",
+        "Suits",
+        "Jackets",
+        "Skirts",
+        "Shoes",
+        "Swim",
+        "Tops",
+        "Denim",
+        "Accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories",
+        "footwear"
+      ]
     },
     {
       "brand": "Ann Taylor",
@@ -753,7 +1040,27 @@
       "notes": [],
       "website_domain": "anntaylor.com",
       "og_image_url": "https://assets.anntaylor.com/image/upload/w_750/AN/ATmeta",
-      "status": "expired"
+      "status": "expired",
+      "product_keywords_contextual": [
+        "Dresses",
+        "Pants",
+        "Shirts",
+        "Sweaters",
+        "Suits",
+        "Jackets",
+        "Skirts",
+        "Shoes",
+        "Swim",
+        "Tops",
+        "Denim",
+        "Accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories",
+        "footwear"
+      ]
     },
     {
       "brand": "Ann Taylor",
@@ -793,7 +1100,27 @@
       "notes": [],
       "website_domain": "anntaylor.com",
       "og_image_url": "https://assets.anntaylor.com/image/upload/w_750/AN/ATmeta",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Dresses",
+        "Pants",
+        "Shirts",
+        "Sweaters",
+        "Suits",
+        "Jackets",
+        "Skirts",
+        "Shoes",
+        "Swim",
+        "Tops",
+        "Denim",
+        "Accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories",
+        "footwear"
+      ]
     },
     {
       "brand": "Ann Taylor",
@@ -833,7 +1160,27 @@
       "notes": [],
       "website_domain": "anntaylor.com",
       "og_image_url": "https://assets.anntaylor.com/image/upload/w_750/AN/ATmeta",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Dresses",
+        "Pants",
+        "Shirts",
+        "Sweaters",
+        "Suits",
+        "Jackets",
+        "Skirts",
+        "Shoes",
+        "Swim",
+        "Tops",
+        "Denim",
+        "Accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories",
+        "footwear"
+      ]
     },
     {
       "brand": "Ann Taylor",
@@ -873,7 +1220,27 @@
       "notes": [],
       "website_domain": "anntaylor.com",
       "og_image_url": "https://assets.anntaylor.com/image/upload/w_750/AN/ATmeta",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Dresses",
+        "Pants",
+        "Shirts",
+        "Sweaters",
+        "Suits",
+        "Jackets",
+        "Skirts",
+        "Shoes",
+        "Swim",
+        "Tops",
+        "Denim",
+        "Accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories",
+        "footwear"
+      ]
     },
     {
       "brand": "Anthropologie",
@@ -1039,7 +1406,25 @@
         "Requires sign in for rewards members."
       ],
       "website_domain": "athleta.gap.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "tank",
+        "tee",
+        "short",
+        "pant",
+        "jacket",
+        "bra",
+        "dress",
+        "jumpsuit",
+        "hoodie",
+        "tights",
+        "bag"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Athleta",
@@ -1081,7 +1466,25 @@
         "Check exclusions for specific items."
       ],
       "website_domain": "athleta.gap.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "tank",
+        "tee",
+        "short",
+        "pant",
+        "jacket",
+        "bra",
+        "dress",
+        "jumpsuit",
+        "hoodie",
+        "tights",
+        "bag"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Athleta",
@@ -1123,7 +1526,25 @@
         "Varying discounts available."
       ],
       "website_domain": "athleta.gap.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "tank",
+        "tee",
+        "short",
+        "pant",
+        "jacket",
+        "bra",
+        "dress",
+        "jumpsuit",
+        "hoodie",
+        "tights",
+        "bag"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Athleta",
@@ -1165,7 +1586,25 @@
         "Varying discounts available."
       ],
       "website_domain": "athleta.gap.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "tank",
+        "tee",
+        "short",
+        "pant",
+        "jacket",
+        "bra",
+        "dress",
+        "jumpsuit",
+        "hoodie",
+        "tights",
+        "bag"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Avis",
@@ -1207,7 +1646,18 @@
       ],
       "website_domain": "avis.com",
       "og_image_url": "https://www.avis.com/content/dam/avis/na/us/common/offers/avis-car-rental-social-brand-1200x630.jpg",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [
+        "car",
+        "vehicle",
+        "rental car",
+        "coupon",
+        "discount codes"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Avis",
@@ -1247,7 +1697,18 @@
       "notes": [],
       "website_domain": "avis.com",
       "og_image_url": "https://www.avis.com/content/dam/avis/na/us/common/offers/avis-car-rental-social-brand-1200x630.jpg",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [
+        "car",
+        "vehicle",
+        "rental car",
+        "coupon",
+        "discount codes"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Avis",
@@ -1287,7 +1748,18 @@
       "notes": [],
       "website_domain": "avis.com",
       "og_image_url": "https://www.avis.com/content/dam/avis/na/us/common/offers/avis-car-rental-social-brand-1200x630.jpg",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [
+        "car",
+        "vehicle",
+        "rental car",
+        "coupon",
+        "discount codes"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Avis",
@@ -1329,7 +1801,18 @@
       ],
       "website_domain": "avis.com",
       "og_image_url": "https://www.avis.com/content/dam/avis/na/us/common/offers/avis-car-rental-social-brand-1200x630.jpg",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [
+        "car",
+        "vehicle",
+        "rental car",
+        "coupon",
+        "discount codes"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Avis",
@@ -1369,7 +1852,18 @@
       "notes": [],
       "website_domain": "avis.com",
       "og_image_url": "https://www.avis.com/content/dam/avis/na/us/common/offers/avis-car-rental-social-brand-1200x630.jpg",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [
+        "car",
+        "vehicle",
+        "rental car",
+        "coupon",
+        "discount codes"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Avis",
@@ -1411,7 +1905,18 @@
       ],
       "website_domain": "avis.com",
       "og_image_url": "https://www.avis.com/content/dam/avis/na/us/common/offers/avis-car-rental-social-brand-1200x630.jpg",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [
+        "car",
+        "vehicle",
+        "rental car",
+        "coupon",
+        "discount codes"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Avis",
@@ -1451,7 +1956,18 @@
       "notes": [],
       "website_domain": "avis.com",
       "og_image_url": "https://www.avis.com/content/dam/avis/na/us/common/offers/avis-car-rental-social-brand-1200x630.jpg",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [
+        "car",
+        "vehicle",
+        "rental car",
+        "coupon",
+        "discount codes"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Banana Republic",
@@ -1577,7 +2093,26 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "bathandbodyworks.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Wallflowers",
+        "candles",
+        "hand soaps",
+        "sanitizers",
+        "body care",
+        "hair care",
+        "room sprays",
+        "fragrance refills",
+        "pocketbac sanitizers",
+        "gift sets",
+        "gift boxes",
+        "gift cards"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "beauty",
+        "home"
+      ]
     },
     {
       "brand": "Bath & Body Works",
@@ -1618,7 +2153,26 @@
         "No specific discounts mentioned, but describes benefits of joining the program."
       ],
       "website_domain": "bathandbodyworks.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Wallflowers",
+        "candles",
+        "hand soaps",
+        "sanitizers",
+        "body care",
+        "hair care",
+        "room sprays",
+        "fragrance refills",
+        "pocketbac sanitizers",
+        "gift sets",
+        "gift boxes",
+        "gift cards"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "beauty",
+        "home"
+      ]
     },
     {
       "brand": "Best Buy",
@@ -1945,7 +2499,42 @@
       "notes": [],
       "website_domain": "burlington.com",
       "og_image_url": "https://cdn.sanity.io/images/k5c6l842/production/efea89471c344f736be75d60d4c757cccc2c7fd0-1200x630.png",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "skirt",
+        "pants",
+        "top",
+        "sandals",
+        "outdoor cups",
+        "outdoor plates",
+        "caftan",
+        "dress",
+        "jacket",
+        "jeans",
+        "flannel",
+        "tote",
+        "laundry basket",
+        "storage bins",
+        "keyboard",
+        "mouse",
+        "water tumblers",
+        "food storage container",
+        "bedding set",
+        "luggage",
+        "shampoo",
+        "conditioner",
+        "hair styling set",
+        "lip butter",
+        "cosmetic bag"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "footwear",
+        "accessories",
+        "beauty",
+        "home"
+      ]
     },
     {
       "brand": "Burlington",
@@ -1987,7 +2576,42 @@
       ],
       "website_domain": "burlington.com",
       "og_image_url": "https://cdn.sanity.io/images/k5c6l842/production/efea89471c344f736be75d60d4c757cccc2c7fd0-1200x630.png",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "skirt",
+        "pants",
+        "top",
+        "sandals",
+        "outdoor cups",
+        "outdoor plates",
+        "caftan",
+        "dress",
+        "jacket",
+        "jeans",
+        "flannel",
+        "tote",
+        "laundry basket",
+        "storage bins",
+        "keyboard",
+        "mouse",
+        "water tumblers",
+        "food storage container",
+        "bedding set",
+        "luggage",
+        "shampoo",
+        "conditioner",
+        "hair styling set",
+        "lip butter",
+        "cosmetic bag"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "footwear",
+        "accessories",
+        "beauty",
+        "home"
+      ]
     },
     {
       "brand": "Chick-fil-A",
@@ -2076,7 +2700,21 @@
       "notes": [],
       "website_domain": "chicos.com",
       "og_image_url": "https://www.chicos.com/chs/images/chs_logo_seo.avif",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [
+        "dresses",
+        "crops",
+        "capris",
+        "jeans",
+        "shorts",
+        "jewelry",
+        "skirts"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Chico's",
@@ -2118,7 +2756,21 @@
       "notes": [],
       "website_domain": "chicos.com",
       "og_image_url": "https://www.chicos.com/chs/images/chs_logo_seo.avif",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [
+        "dresses",
+        "crops",
+        "capris",
+        "jeans",
+        "shorts",
+        "jewelry",
+        "skirts"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Chico's",
@@ -2160,7 +2812,21 @@
       "notes": [],
       "website_domain": "chicos.com",
       "og_image_url": "https://www.chicos.com/chs/images/chs_logo_seo.avif",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [
+        "dresses",
+        "crops",
+        "capris",
+        "jeans",
+        "shorts",
+        "jewelry",
+        "skirts"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Chico's",
@@ -2204,7 +2870,21 @@
       ],
       "website_domain": "chicos.com",
       "og_image_url": "https://www.chicos.com/chs/images/chs_logo_seo.avif",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "dresses",
+        "crops",
+        "capris",
+        "jeans",
+        "shorts",
+        "jewelry",
+        "skirts"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Chipotle",
@@ -2256,7 +2936,24 @@
         "Offer is available to new users only."
       ],
       "website_domain": "chipotle.com",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [
+        "Chips",
+        "Guac",
+        "Tortilla Chips",
+        "Quesadilla",
+        "Burrito",
+        "Drinks",
+        "Salsa",
+        "Guacamole",
+        "Fountain Drink",
+        "Entree",
+        "Kids Meal"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Chipotle",
@@ -2306,7 +3003,24 @@
         "Monthly reward drops are a part of the regular Chipotle Rewards program."
       ],
       "website_domain": "chipotle.com",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [
+        "Chips",
+        "Guac",
+        "Tortilla Chips",
+        "Quesadilla",
+        "Burrito",
+        "Drinks",
+        "Salsa",
+        "Guacamole",
+        "Fountain Drink",
+        "Entree",
+        "Kids Meal"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Chipotle",
@@ -2356,7 +3070,24 @@
         "Available exclusively to Chipotle Rewards members."
       ],
       "website_domain": "chipotle.com",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [
+        "Chips",
+        "Guac",
+        "Tortilla Chips",
+        "Quesadilla",
+        "Burrito",
+        "Drinks",
+        "Salsa",
+        "Guacamole",
+        "Fountain Drink",
+        "Entree",
+        "Kids Meal"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Chipotle",
@@ -2405,7 +3136,24 @@
         "Exclusive for college students."
       ],
       "website_domain": "chipotle.com",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [
+        "Chips",
+        "Guac",
+        "Tortilla Chips",
+        "Quesadilla",
+        "Burrito",
+        "Drinks",
+        "Salsa",
+        "Guacamole",
+        "Fountain Drink",
+        "Entree",
+        "Kids Meal"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Choice Hotels",
@@ -2447,7 +3195,20 @@
       ],
       "website_domain": "choicehotels.com",
       "og_image_url": "https://www.choicehotels.com/assets/b4fcc845d6d3a43287c85bd6765f707e-ch-logo.png",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [
+        "hotels",
+        "stays",
+        "nights",
+        "cruises",
+        "gift cards",
+        "rooms",
+        "cruise"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Choice Hotels",
@@ -2490,7 +3251,20 @@
       "notes": [],
       "website_domain": "choicehotels.com",
       "og_image_url": "https://www.choicehotels.com/assets/b4fcc845d6d3a43287c85bd6765f707e-ch-logo.png",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [
+        "hotels",
+        "stays",
+        "nights",
+        "cruises",
+        "gift cards",
+        "rooms",
+        "cruise"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Choice Hotels",
@@ -2533,7 +3307,20 @@
       "notes": [],
       "website_domain": "choicehotels.com",
       "og_image_url": "https://www.choicehotels.com/assets/b4fcc845d6d3a43287c85bd6765f707e-ch-logo.png",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [
+        "hotels",
+        "stays",
+        "nights",
+        "cruises",
+        "gift cards",
+        "rooms",
+        "cruise"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Cinemark",
@@ -2654,7 +3441,40 @@
         "Specific discounts for each category are listed but no exact discount values provided."
       ],
       "website_domain": "colehaan.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Shoes",
+        "Bags",
+        "Sandals",
+        "Sneakers",
+        "Ballet Flats",
+        "Backpacks",
+        "Belts",
+        "Dress Shoes",
+        "Dress Sneakers",
+        "Drivers",
+        "Duffles",
+        "Espadrilles",
+        "Footbed Sandals",
+        "Hats",
+        "Heels",
+        "Hosiery Socks",
+        "Loafers",
+        "Mary Janes",
+        "Mules",
+        "Oxfords",
+        "Polo Shirts",
+        "Satchels",
+        "Shoulder Bag",
+        "Slings",
+        "Slip On"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "footwear",
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Columbia",
@@ -2739,7 +3559,21 @@
       "notes": [],
       "website_domain": "dell.com",
       "og_image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/logos/dell-technologies/stacked/digital/delltech-logo-stk-blue-rgb.png?wid=1200&hei=630",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Laptops",
+        "Desktops",
+        "Monitors",
+        "PC Accessories",
+        "Gaming PCs",
+        "Workstations",
+        "AI PCs",
+        "Keyboards"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "electronics"
+      ]
     },
     {
       "brand": "Dell",
@@ -2780,7 +3614,21 @@
       "notes": [],
       "website_domain": "dell.com",
       "og_image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/logos/dell-technologies/stacked/digital/delltech-logo-stk-blue-rgb.png?wid=1200&hei=630",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [
+        "Laptops",
+        "Desktops",
+        "Monitors",
+        "PC Accessories",
+        "Gaming PCs",
+        "Workstations",
+        "AI PCs",
+        "Keyboards"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "electronics"
+      ]
     },
     {
       "brand": "Dell",
@@ -2821,7 +3669,21 @@
       "notes": [],
       "website_domain": "dell.com",
       "og_image_url": "https://i.dell.com/is/image/DellContent/content/dam/images/logos/dell-technologies/stacked/digital/delltech-logo-stk-blue-rgb.png?wid=1200&hei=630",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [
+        "Laptops",
+        "Desktops",
+        "Monitors",
+        "PC Accessories",
+        "Gaming PCs",
+        "Workstations",
+        "AI PCs",
+        "Keyboards"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "electronics"
+      ]
     },
     {
       "brand": "Delta Air Lines",
@@ -3692,7 +4554,36 @@
       ],
       "website_domain": "fashionnova.com",
       "og_image_url": "https://cdn.shopify.com/s/files/1/0293/9277/files/Social.jpg?v=1645551262",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "dresses",
+        "jumpsuits",
+        "rompers",
+        "tops",
+        "shorts",
+        "shoes",
+        "handbags",
+        "bangles",
+        "clutch",
+        "blazer",
+        "vest",
+        "jumpsuit",
+        "bodysuit",
+        "bralette",
+        "briefs",
+        "shapewear",
+        "crop top",
+        "leggings",
+        "sports bra",
+        "socks",
+        "heels"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories",
+        "footwear"
+      ]
     },
     {
       "brand": "Fashion Nova",
@@ -3743,7 +4634,36 @@
       ],
       "website_domain": "fashionnova.com",
       "og_image_url": "https://cdn.shopify.com/s/files/1/0293/9277/files/Social.jpg?v=1645551262",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "dresses",
+        "jumpsuits",
+        "rompers",
+        "tops",
+        "shorts",
+        "shoes",
+        "handbags",
+        "bangles",
+        "clutch",
+        "blazer",
+        "vest",
+        "jumpsuit",
+        "bodysuit",
+        "bralette",
+        "briefs",
+        "shapewear",
+        "crop top",
+        "leggings",
+        "sports bra",
+        "socks",
+        "heels"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories",
+        "footwear"
+      ]
     },
     {
       "brand": "Forever 21",
@@ -4291,7 +5211,26 @@
       ],
       "website_domain": "hilton.com",
       "og_image_url": "https://www.hilton.com/im/en/CUNHIHH/25375125/hhr-tulum-lobby-sh1509.jpg?impolicy=crop&cw=3216&ch=2144&gravity=NorthWest&xposition=0&yposition=0",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "hotel",
+        "suite",
+        "room",
+        "getaway",
+        "package",
+        "credit",
+        "pizzas",
+        "tapas",
+        "bikes",
+        "experiences",
+        "attractions",
+        "events",
+        "rental car"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Hilton",
@@ -4335,7 +5274,26 @@
       ],
       "website_domain": "hilton.com",
       "og_image_url": "https://www.hilton.com/im/en/CUNHIHH/25375125/hhr-tulum-lobby-sh1509.jpg?impolicy=crop&cw=3216&ch=2144&gravity=NorthWest&xposition=0&yposition=0",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "hotel",
+        "suite",
+        "room",
+        "getaway",
+        "package",
+        "credit",
+        "pizzas",
+        "tapas",
+        "bikes",
+        "experiences",
+        "attractions",
+        "events",
+        "rental car"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Hilton",
@@ -4377,7 +5335,26 @@
       ],
       "website_domain": "hilton.com",
       "og_image_url": "https://www.hilton.com/im/en/CUNHIHH/25375125/hhr-tulum-lobby-sh1509.jpg?impolicy=crop&cw=3216&ch=2144&gravity=NorthWest&xposition=0&yposition=0",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "hotel",
+        "suite",
+        "room",
+        "getaway",
+        "package",
+        "credit",
+        "pizzas",
+        "tapas",
+        "bikes",
+        "experiences",
+        "attractions",
+        "events",
+        "rental car"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Hilton",
@@ -4419,7 +5396,26 @@
       ],
       "website_domain": "hilton.com",
       "og_image_url": "https://www.hilton.com/im/en/CUNHIHH/25375125/hhr-tulum-lobby-sh1509.jpg?impolicy=crop&cw=3216&ch=2144&gravity=NorthWest&xposition=0&yposition=0",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "hotel",
+        "suite",
+        "room",
+        "getaway",
+        "package",
+        "credit",
+        "pizzas",
+        "tapas",
+        "bikes",
+        "experiences",
+        "attractions",
+        "events",
+        "rental car"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Hilton",
@@ -4461,7 +5457,26 @@
       ],
       "website_domain": "hilton.com",
       "og_image_url": "https://www.hilton.com/im/en/CUNHIHH/25375125/hhr-tulum-lobby-sh1509.jpg?impolicy=crop&cw=3216&ch=2144&gravity=NorthWest&xposition=0&yposition=0",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "hotel",
+        "suite",
+        "room",
+        "getaway",
+        "package",
+        "credit",
+        "pizzas",
+        "tapas",
+        "bikes",
+        "experiences",
+        "attractions",
+        "events",
+        "rental car"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Hilton",
@@ -4503,7 +5518,26 @@
       ],
       "website_domain": "hilton.com",
       "og_image_url": "https://www.hilton.com/im/en/CUNHIHH/25375125/hhr-tulum-lobby-sh1509.jpg?impolicy=crop&cw=3216&ch=2144&gravity=NorthWest&xposition=0&yposition=0",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "hotel",
+        "suite",
+        "room",
+        "getaway",
+        "package",
+        "credit",
+        "pizzas",
+        "tapas",
+        "bikes",
+        "experiences",
+        "attractions",
+        "events",
+        "rental car"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Hollister",
@@ -4669,7 +5703,22 @@
       ],
       "website_domain": "hulu.com",
       "og_image_url": "https://assetshuluimcom-a.akamaihd.net/h3o/facebook_share_thumb_default_hulu.jpg",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "TV",
+        "movies",
+        "shows",
+        "series",
+        "originals",
+        "live sports",
+        "news",
+        "events"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "entertainment",
+        "electronics"
+      ]
     },
     {
       "brand": "Hulu",
@@ -4711,7 +5760,22 @@
       ],
       "website_domain": "hulu.com",
       "og_image_url": "https://assetshuluimcom-a.akamaihd.net/h3o/facebook_share_thumb_default_hulu.jpg",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "TV",
+        "movies",
+        "shows",
+        "series",
+        "originals",
+        "live sports",
+        "news",
+        "events"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "entertainment",
+        "electronics"
+      ]
     },
     {
       "brand": "Hulu",
@@ -4755,7 +5819,22 @@
       ],
       "website_domain": "hulu.com",
       "og_image_url": "https://assetshuluimcom-a.akamaihd.net/h3o/facebook_share_thumb_default_hulu.jpg",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "TV",
+        "movies",
+        "shows",
+        "series",
+        "originals",
+        "live sports",
+        "news",
+        "events"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "entertainment",
+        "electronics"
+      ]
     },
     {
       "brand": "Hulu",
@@ -4797,7 +5876,22 @@
       ],
       "website_domain": "hulu.com",
       "og_image_url": "https://assetshuluimcom-a.akamaihd.net/h3o/facebook_share_thumb_default_hulu.jpg",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "TV",
+        "movies",
+        "shows",
+        "series",
+        "originals",
+        "live sports",
+        "news",
+        "events"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "entertainment",
+        "electronics"
+      ]
     },
     {
       "brand": "IKEA",
@@ -5139,7 +6233,20 @@
         "Limited time offer applies only to Ground Shipping"
       ],
       "website_domain": "johnstonmurphy.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "loafer shoes",
+        "button-up shirts",
+        "sandals",
+        "belts",
+        "jeans"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "footwear",
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Johnston & Murphy",
@@ -5188,7 +6295,20 @@
         "Shipping applies to ground shipping only"
       ],
       "website_domain": "johnstonmurphy.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "loafer shoes",
+        "button-up shirts",
+        "sandals",
+        "belts",
+        "jeans"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "footwear",
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Journeys",
@@ -5644,7 +6764,38 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "llbean.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "shirts",
+        "swim trunks",
+        "sandals",
+        "pants",
+        "blouse",
+        "jeans",
+        "dress",
+        "tote bag",
+        "sweater",
+        "boots",
+        "slippers",
+        "tents",
+        "backpacks",
+        "sleeping bags",
+        "kayaks",
+        "canoes",
+        "furniture",
+        "bedding",
+        "luggage",
+        "rain jackets",
+        "swimwear"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "footwear",
+        "home",
+        "outdoor gear",
+        "accessories"
+      ]
     },
     {
       "brand": "L.L.Bean",
@@ -5683,7 +6834,38 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "llbean.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "shirts",
+        "swim trunks",
+        "sandals",
+        "pants",
+        "blouse",
+        "jeans",
+        "dress",
+        "tote bag",
+        "sweater",
+        "boots",
+        "slippers",
+        "tents",
+        "backpacks",
+        "sleeping bags",
+        "kayaks",
+        "canoes",
+        "furniture",
+        "bedding",
+        "luggage",
+        "rain jackets",
+        "swimwear"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "footwear",
+        "home",
+        "outdoor gear",
+        "accessories"
+      ]
     },
     {
       "brand": "L.L.Bean",
@@ -5726,7 +6908,38 @@
         "The 10% off promotion is inferred based on common practices, not explicitly stated in the text."
       ],
       "website_domain": "llbean.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "shirts",
+        "swim trunks",
+        "sandals",
+        "pants",
+        "blouse",
+        "jeans",
+        "dress",
+        "tote bag",
+        "sweater",
+        "boots",
+        "slippers",
+        "tents",
+        "backpacks",
+        "sleeping bags",
+        "kayaks",
+        "canoes",
+        "furniture",
+        "bedding",
+        "luggage",
+        "rain jackets",
+        "swimwear"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "footwear",
+        "home",
+        "outdoor gear",
+        "accessories"
+      ]
     },
     {
       "brand": "L.L.Bean",
@@ -5769,7 +6982,38 @@
         "The $25 off promotion is inferred based on common practices, not explicitly stated in the text."
       ],
       "website_domain": "llbean.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "shirts",
+        "swim trunks",
+        "sandals",
+        "pants",
+        "blouse",
+        "jeans",
+        "dress",
+        "tote bag",
+        "sweater",
+        "boots",
+        "slippers",
+        "tents",
+        "backpacks",
+        "sleeping bags",
+        "kayaks",
+        "canoes",
+        "furniture",
+        "bedding",
+        "luggage",
+        "rain jackets",
+        "swimwear"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "footwear",
+        "home",
+        "outdoor gear",
+        "accessories"
+      ]
     },
     {
       "brand": "L.L.Bean",
@@ -5812,7 +7056,38 @@
         "The 10% off promotion is inferred based on common practices, not explicitly stated in the text."
       ],
       "website_domain": "llbean.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "shirts",
+        "swim trunks",
+        "sandals",
+        "pants",
+        "blouse",
+        "jeans",
+        "dress",
+        "tote bag",
+        "sweater",
+        "boots",
+        "slippers",
+        "tents",
+        "backpacks",
+        "sleeping bags",
+        "kayaks",
+        "canoes",
+        "furniture",
+        "bedding",
+        "luggage",
+        "rain jackets",
+        "swimwear"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "footwear",
+        "home",
+        "outdoor gear",
+        "accessories"
+      ]
     },
     {
       "brand": "L.L.Bean",
@@ -5855,7 +7130,38 @@
         "The $25 off promotion is inferred based on common practices, not explicitly stated in the text."
       ],
       "website_domain": "llbean.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "shirts",
+        "swim trunks",
+        "sandals",
+        "pants",
+        "blouse",
+        "jeans",
+        "dress",
+        "tote bag",
+        "sweater",
+        "boots",
+        "slippers",
+        "tents",
+        "backpacks",
+        "sleeping bags",
+        "kayaks",
+        "canoes",
+        "furniture",
+        "bedding",
+        "luggage",
+        "rain jackets",
+        "swimwear"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "footwear",
+        "home",
+        "outdoor gear",
+        "accessories"
+      ]
     },
     {
       "brand": "L.L.Bean",
@@ -5898,7 +7204,38 @@
         "The $10 off promotion is inferred based on common practices, not explicitly stated in the text."
       ],
       "website_domain": "llbean.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "shirts",
+        "swim trunks",
+        "sandals",
+        "pants",
+        "blouse",
+        "jeans",
+        "dress",
+        "tote bag",
+        "sweater",
+        "boots",
+        "slippers",
+        "tents",
+        "backpacks",
+        "sleeping bags",
+        "kayaks",
+        "canoes",
+        "furniture",
+        "bedding",
+        "luggage",
+        "rain jackets",
+        "swimwear"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "footwear",
+        "home",
+        "outdoor gear",
+        "accessories"
+      ]
     },
     {
       "brand": "Lee",
@@ -6109,7 +7446,22 @@
       "notes": [],
       "website_domain": "loft.com",
       "og_image_url": "https://assets.loft.com/image/upload/w_750/LO/LOFTmeta",
-      "status": "expired"
+      "status": "expired",
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "shirts",
+        "sweaters",
+        "tops",
+        "shorts",
+        "accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "LOFT",
@@ -6153,7 +7505,22 @@
       "notes": [],
       "website_domain": "loft.com",
       "og_image_url": "https://assets.loft.com/image/upload/w_750/LO/LOFTmeta",
-      "status": "expired"
+      "status": "expired",
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "shirts",
+        "sweaters",
+        "tops",
+        "shorts",
+        "accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "LOFT",
@@ -6193,7 +7560,22 @@
       "notes": [],
       "website_domain": "loft.com",
       "og_image_url": "https://assets.loft.com/image/upload/w_750/LO/LOFTmeta",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "shirts",
+        "sweaters",
+        "tops",
+        "shorts",
+        "accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "LOFT",
@@ -6236,7 +7618,22 @@
       "notes": [],
       "website_domain": "loft.com",
       "og_image_url": "https://assets.loft.com/image/upload/w_750/LO/LOFTmeta",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "shirts",
+        "sweaters",
+        "tops",
+        "shorts",
+        "accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "LOFT",
@@ -6277,7 +7674,22 @@
       "notes": [],
       "website_domain": "loft.com",
       "og_image_url": "https://assets.loft.com/image/upload/w_750/LO/LOFTmeta",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "shirts",
+        "sweaters",
+        "tops",
+        "shorts",
+        "accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "LOFT",
@@ -6318,7 +7730,22 @@
       "notes": [],
       "website_domain": "loft.com",
       "og_image_url": "https://assets.loft.com/image/upload/w_750/LO/LOFTmeta",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "shirts",
+        "sweaters",
+        "tops",
+        "shorts",
+        "accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "McDonald's",
@@ -6462,7 +7889,35 @@
       ],
       "website_domain": "merrell.com",
       "og_image_url": "https://thekit.wolverineworldwide.com/match/media_lookup/JSF24606-012_SW/?preset=dw-large",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Boots",
+        "Shoes",
+        "Clothing",
+        "Accessories",
+        "Barefoot",
+        "Sandals",
+        "Slip-Ons",
+        "Sneakers",
+        "Mary Janes",
+        "Hoodies",
+        "Jackets",
+        "Pants",
+        "Pullovers",
+        "Shorts",
+        "Sweaters",
+        "Tights",
+        "Socks",
+        "Bags",
+        "Hats",
+        "Laces"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "footwear",
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Merrell",
@@ -6506,7 +7961,35 @@
       ],
       "website_domain": "merrell.com",
       "og_image_url": "https://thekit.wolverineworldwide.com/match/media_lookup/JSF24606-012_SW/?preset=dw-large",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Boots",
+        "Shoes",
+        "Clothing",
+        "Accessories",
+        "Barefoot",
+        "Sandals",
+        "Slip-Ons",
+        "Sneakers",
+        "Mary Janes",
+        "Hoodies",
+        "Jackets",
+        "Pants",
+        "Pullovers",
+        "Shorts",
+        "Sweaters",
+        "Tights",
+        "Socks",
+        "Bags",
+        "Hats",
+        "Laces"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "footwear",
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Microsoft",
@@ -6546,7 +8029,24 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "microsoft.com",
-      "status": "expired"
+      "status": "expired",
+      "product_keywords_contextual": [
+        "Laptops",
+        "Consoles",
+        "Surface Pro",
+        "Surface Laptop",
+        "Xbox Series X",
+        "Xbox Series S",
+        "Xbox Wireless Controller",
+        "Tablet",
+        "PC",
+        "Mouse",
+        "Protection Plan"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "electronics"
+      ]
     },
     {
       "brand": "Microsoft",
@@ -6587,7 +8087,24 @@
         "Promotion is only for new users with a college email."
       ],
       "website_domain": "microsoft.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Laptops",
+        "Consoles",
+        "Surface Pro",
+        "Surface Laptop",
+        "Xbox Series X",
+        "Xbox Series S",
+        "Xbox Wireless Controller",
+        "Tablet",
+        "PC",
+        "Mouse",
+        "Protection Plan"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "electronics"
+      ]
     },
     {
       "brand": "Microsoft",
@@ -6627,7 +8144,24 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "microsoft.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Laptops",
+        "Consoles",
+        "Surface Pro",
+        "Surface Laptop",
+        "Xbox Series X",
+        "Xbox Series S",
+        "Xbox Wireless Controller",
+        "Tablet",
+        "PC",
+        "Mouse",
+        "Protection Plan"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "electronics"
+      ]
     },
     {
       "brand": "Microsoft",
@@ -6670,7 +8204,24 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "microsoft.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Laptops",
+        "Consoles",
+        "Surface Pro",
+        "Surface Laptop",
+        "Xbox Series X",
+        "Xbox Series S",
+        "Xbox Wireless Controller",
+        "Tablet",
+        "PC",
+        "Mouse",
+        "Protection Plan"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "electronics"
+      ]
     },
     {
       "brand": "Microsoft",
@@ -6710,7 +8261,24 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "microsoft.com",
-      "status": "expired"
+      "status": "expired",
+      "product_keywords_contextual": [
+        "Laptops",
+        "Consoles",
+        "Surface Pro",
+        "Surface Laptop",
+        "Xbox Series X",
+        "Xbox Series S",
+        "Xbox Wireless Controller",
+        "Tablet",
+        "PC",
+        "Mouse",
+        "Protection Plan"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "electronics"
+      ]
     },
     {
       "brand": "ModCloth",
@@ -7297,7 +8865,34 @@
       ],
       "website_domain": "ninewest.com",
       "og_image_url": "http://ninewest.com/cdn/shop/files/NineWest_240x40_600x_97caa2cd-72b5-4258-b752-34dbaccf57c3.jpg?v=1610814761",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Sandals",
+        "Heels",
+        "Pumps",
+        "Flats",
+        "Boots",
+        "Booties",
+        "Mules",
+        "Wedges",
+        "Loafers",
+        "Ballets",
+        "Mary Janes",
+        "Handbags",
+        "Crossbody",
+        "Totes",
+        "Backpacks",
+        "Satchels",
+        "Shoulder Bags",
+        "Clutches",
+        "Wallets",
+        "Watches"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "footwear",
+        "accessories"
+      ]
     },
     {
       "brand": "Nine West",
@@ -7337,7 +8932,34 @@
       "notes": [],
       "website_domain": "ninewest.com",
       "og_image_url": "http://ninewest.com/cdn/shop/files/NineWest_240x40_600x_97caa2cd-72b5-4258-b752-34dbaccf57c3.jpg?v=1610814761",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Sandals",
+        "Heels",
+        "Pumps",
+        "Flats",
+        "Boots",
+        "Booties",
+        "Mules",
+        "Wedges",
+        "Loafers",
+        "Ballets",
+        "Mary Janes",
+        "Handbags",
+        "Crossbody",
+        "Totes",
+        "Backpacks",
+        "Satchels",
+        "Shoulder Bags",
+        "Clutches",
+        "Wallets",
+        "Watches"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "footwear",
+        "accessories"
+      ]
     },
     {
       "brand": "Old Navy",
@@ -7580,7 +9202,40 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "pacsun.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Graphics",
+        "Tees",
+        "Hoodies",
+        "Fleece",
+        "Sweaters",
+        "Jackets",
+        "Tank Tops",
+        "Jerseys",
+        "Joggers",
+        "Sweatpants",
+        "Jeans",
+        "Pants",
+        "Shorts",
+        "Boardshorts",
+        "Swim Trunks",
+        "Shoes",
+        "Sneakers",
+        "Hats",
+        "Beanies",
+        "Backpacks",
+        "Sling Bags",
+        "Socks",
+        "Boxers",
+        "Sunglasses",
+        "Belts"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "footwear",
+        "accessories"
+      ]
     },
     {
       "brand": "PacSun",
@@ -7619,7 +9274,40 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "pacsun.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Graphics",
+        "Tees",
+        "Hoodies",
+        "Fleece",
+        "Sweaters",
+        "Jackets",
+        "Tank Tops",
+        "Jerseys",
+        "Joggers",
+        "Sweatpants",
+        "Jeans",
+        "Pants",
+        "Shorts",
+        "Boardshorts",
+        "Swim Trunks",
+        "Shoes",
+        "Sneakers",
+        "Hats",
+        "Beanies",
+        "Backpacks",
+        "Sling Bags",
+        "Socks",
+        "Boxers",
+        "Sunglasses",
+        "Belts"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "footwear",
+        "accessories"
+      ]
     },
     {
       "brand": "PacSun",
@@ -7658,7 +9346,40 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "pacsun.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Graphics",
+        "Tees",
+        "Hoodies",
+        "Fleece",
+        "Sweaters",
+        "Jackets",
+        "Tank Tops",
+        "Jerseys",
+        "Joggers",
+        "Sweatpants",
+        "Jeans",
+        "Pants",
+        "Shorts",
+        "Boardshorts",
+        "Swim Trunks",
+        "Shoes",
+        "Sneakers",
+        "Hats",
+        "Beanies",
+        "Backpacks",
+        "Sling Bags",
+        "Socks",
+        "Boxers",
+        "Sunglasses",
+        "Belts"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "footwear",
+        "accessories"
+      ]
     },
     {
       "brand": "Panera Bread",
@@ -7704,7 +9425,12 @@
       ],
       "website_domain": "panerabread.com",
       "og_image_url": "https://www.panerabread.com/en-us/mypanera/meet-mypanera.thumb.800.480.20260518.png",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Panera Bread",
@@ -7750,7 +9476,12 @@
       ],
       "website_domain": "panerabread.com",
       "og_image_url": "https://www.panerabread.com/en-us/mypanera/meet-mypanera.thumb.800.480.20260518.png",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Panera Bread",
@@ -7801,7 +9532,12 @@
       ],
       "website_domain": "panerabread.com",
       "og_image_url": "https://www.panerabread.com/en-us/mypanera/meet-mypanera.thumb.800.480.20260518.png",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Peet's Coffee",
@@ -7843,7 +9579,23 @@
       ],
       "website_domain": "peets.com",
       "og_image_url": "https://cdn.shopify.com/s/files/1/0319/0764/3436/files/Peet_s-Logo-Social_29ea83ae-ba4e-4961-a2bd-21ab98c2225c.png?v=1612399636",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Coffee",
+        "Espresso Capsules",
+        "Mug",
+        "Syrup",
+        "Sauce",
+        "Baked goods",
+        "Tea",
+        "Coffee beans",
+        "Ultra Coffee Concentrate",
+        "Equipment"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Peet's Coffee",
@@ -7885,7 +9637,23 @@
       ],
       "website_domain": "peets.com",
       "og_image_url": "https://cdn.shopify.com/s/files/1/0319/0764/3436/files/Peet_s-Logo-Social_29ea83ae-ba4e-4961-a2bd-21ab98c2225c.png?v=1612399636",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Coffee",
+        "Espresso Capsules",
+        "Mug",
+        "Syrup",
+        "Sauce",
+        "Baked goods",
+        "Tea",
+        "Coffee beans",
+        "Ultra Coffee Concentrate",
+        "Equipment"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Peet's Coffee",
@@ -7928,7 +9696,23 @@
       ],
       "website_domain": "peets.com",
       "og_image_url": "https://cdn.shopify.com/s/files/1/0319/0764/3436/files/Peet_s-Logo-Social_29ea83ae-ba4e-4961-a2bd-21ab98c2225c.png?v=1612399636",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Coffee",
+        "Espresso Capsules",
+        "Mug",
+        "Syrup",
+        "Sauce",
+        "Baked goods",
+        "Tea",
+        "Coffee beans",
+        "Ultra Coffee Concentrate",
+        "Equipment"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Peet's Coffee",
@@ -7970,7 +9754,23 @@
       ],
       "website_domain": "peets.com",
       "og_image_url": "https://cdn.shopify.com/s/files/1/0319/0764/3436/files/Peet_s-Logo-Social_29ea83ae-ba4e-4961-a2bd-21ab98c2225c.png?v=1612399636",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Coffee",
+        "Espresso Capsules",
+        "Mug",
+        "Syrup",
+        "Sauce",
+        "Baked goods",
+        "Tea",
+        "Coffee beans",
+        "Ultra Coffee Concentrate",
+        "Equipment"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "PetSmart",
@@ -8020,7 +9820,20 @@
         "This is a limited-time reward program, not a sale or discount."
       ],
       "website_domain": "petsmart.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "pet food",
+        "treats",
+        "pet supplies",
+        "accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food",
+        "accessories",
+        "home",
+        "other"
+      ]
     },
     {
       "brand": "PetSmart",
@@ -8068,7 +9881,20 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "petsmart.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "pet food",
+        "treats",
+        "pet supplies",
+        "accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food",
+        "accessories",
+        "home",
+        "other"
+      ]
     },
     {
       "brand": "PetSmart",
@@ -8116,7 +9942,20 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "petsmart.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "pet food",
+        "treats",
+        "pet supplies",
+        "accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food",
+        "accessories",
+        "home",
+        "other"
+      ]
     },
     {
       "brand": "Pizza Hut",
@@ -8336,7 +10175,34 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "us.princesspolly.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "dresses",
+        "tops",
+        "skirts",
+        "shorts",
+        "pants",
+        "rompers",
+        "corsets",
+        "bodysuits",
+        "jumpsuits",
+        "jackets",
+        "blazers",
+        "cardigans",
+        "sweaters",
+        "hoodies",
+        "shoes",
+        "boots",
+        "sandals",
+        "heels",
+        "flats"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories",
+        "footwear"
+      ]
     },
     {
       "brand": "Princess Polly",
@@ -8377,7 +10243,34 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "us.princesspolly.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "dresses",
+        "tops",
+        "skirts",
+        "shorts",
+        "pants",
+        "rompers",
+        "corsets",
+        "bodysuits",
+        "jumpsuits",
+        "jackets",
+        "blazers",
+        "cardigans",
+        "sweaters",
+        "hoodies",
+        "shoes",
+        "boots",
+        "sandals",
+        "heels",
+        "flats"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories",
+        "footwear"
+      ]
     },
     {
       "brand": "Puma",
@@ -8670,7 +10563,22 @@
       ],
       "website_domain": "rainbowshops.com",
       "og_image_url": "http://www.rainbowshops.com/cdn/shop/files/og-image_01b3bc38-ebdc-4581-aa92-90279d2858fd.jpg?v=1627396621",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [
+        "bras",
+        "shapewear",
+        "underwear",
+        "socks",
+        "sandals",
+        "swimwear",
+        "denim"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "footwear",
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Rainbow Shops",
@@ -8710,7 +10618,22 @@
       "notes": [],
       "website_domain": "rainbowshops.com",
       "og_image_url": "http://www.rainbowshops.com/cdn/shop/files/og-image_01b3bc38-ebdc-4581-aa92-90279d2858fd.jpg?v=1627396621",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [
+        "bras",
+        "shapewear",
+        "underwear",
+        "socks",
+        "sandals",
+        "swimwear",
+        "denim"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "footwear",
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Rainbow Shops",
@@ -8750,7 +10673,22 @@
       "notes": [],
       "website_domain": "rainbowshops.com",
       "og_image_url": "http://www.rainbowshops.com/cdn/shop/files/og-image_01b3bc38-ebdc-4581-aa92-90279d2858fd.jpg?v=1627396621",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [
+        "bras",
+        "shapewear",
+        "underwear",
+        "socks",
+        "sandals",
+        "swimwear",
+        "denim"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "footwear",
+        "clothing",
+        "accessories"
+      ]
     },
     {
       "brand": "Roxy",
@@ -8876,7 +10814,12 @@
         "Program is ongoing"
       ],
       "website_domain": "sallybeauty.com",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "beauty"
+      ]
     },
     {
       "brand": "Sally Beauty",
@@ -8920,7 +10863,12 @@
         "Program is ongoing"
       ],
       "website_domain": "sallybeauty.com",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "beauty"
+      ]
     },
     {
       "brand": "Sally Beauty",
@@ -8964,7 +10912,12 @@
         "Offer is for new cardholders only"
       ],
       "website_domain": "sallybeauty.com",
-      "status": "needs_review"
+      "status": "needs_review",
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "beauty"
+      ]
     },
     {
       "brand": "Shake Shack",
@@ -9723,7 +11676,24 @@
       ],
       "website_domain": "starbucks.com",
       "og_image_url": "https://www.starbucks.com/weblx/images/social/summary_square.png",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "coffee",
+        "tea",
+        "bakery item",
+        "snacks",
+        "latte",
+        "cold brew",
+        "breakfast",
+        "sandwich",
+        "protein box",
+        "packaged coffee",
+        "merchandise"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Starbucks",
@@ -9768,7 +11738,24 @@
       ],
       "website_domain": "starbucks.com",
       "og_image_url": "https://www.starbucks.com/weblx/images/social/summary_square.png",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "coffee",
+        "tea",
+        "bakery item",
+        "snacks",
+        "latte",
+        "cold brew",
+        "breakfast",
+        "sandwich",
+        "protein box",
+        "packaged coffee",
+        "merchandise"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Starbucks",
@@ -9813,7 +11800,24 @@
       ],
       "website_domain": "starbucks.com",
       "og_image_url": "https://www.starbucks.com/weblx/images/social/summary_square.png",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "coffee",
+        "tea",
+        "bakery item",
+        "snacks",
+        "latte",
+        "cold brew",
+        "breakfast",
+        "sandwich",
+        "protein box",
+        "packaged coffee",
+        "merchandise"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Starbucks",
@@ -9858,7 +11862,24 @@
       ],
       "website_domain": "starbucks.com",
       "og_image_url": "https://www.starbucks.com/weblx/images/social/summary_square.png",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "coffee",
+        "tea",
+        "bakery item",
+        "snacks",
+        "latte",
+        "cold brew",
+        "breakfast",
+        "sandwich",
+        "protein box",
+        "packaged coffee",
+        "merchandise"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Starbucks",
@@ -9903,7 +11924,24 @@
       ],
       "website_domain": "starbucks.com",
       "og_image_url": "https://www.starbucks.com/weblx/images/social/summary_square.png",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "coffee",
+        "tea",
+        "bakery item",
+        "snacks",
+        "latte",
+        "cold brew",
+        "breakfast",
+        "sandwich",
+        "protein box",
+        "packaged coffee",
+        "merchandise"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Subway",
@@ -10027,7 +12065,12 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "sweetgreen.com",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Sweetgreen",
@@ -10078,7 +12121,12 @@
         "This promotion is likely tied to specific new restaurant openings and not available at all locations."
       ],
       "website_domain": "sweetgreen.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Sweetgreen",
@@ -10127,7 +12175,12 @@
         "Promo codes must be obtained through official Sweetgreen channels."
       ],
       "website_domain": "sweetgreen.com",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Taco Bell",
@@ -10757,7 +12810,23 @@
         "Promotion is clearly stated in the raw text."
       ],
       "website_domain": "algreens.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "prescriptions",
+        "grocery",
+        "pet store purchases",
+        "veterinary purchases",
+        "pharmacy purchases",
+        "health and wellness products",
+        "gym membership"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "pharmacy",
+        "beauty",
+        "health",
+        "food"
+      ]
     },
     {
       "brand": "Walgreens",
@@ -10798,7 +12867,23 @@
         "Promotion is clearly stated in the raw text."
       ],
       "website_domain": "algreens.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "prescriptions",
+        "grocery",
+        "pet store purchases",
+        "veterinary purchases",
+        "pharmacy purchases",
+        "health and wellness products",
+        "gym membership"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "pharmacy",
+        "beauty",
+        "health",
+        "food"
+      ]
     },
     {
       "brand": "Walgreens",
@@ -10842,7 +12927,23 @@
         "Promotion is clearly stated in the raw text."
       ],
       "website_domain": "algreens.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "prescriptions",
+        "grocery",
+        "pet store purchases",
+        "veterinary purchases",
+        "pharmacy purchases",
+        "health and wellness products",
+        "gym membership"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "pharmacy",
+        "beauty",
+        "health",
+        "food"
+      ]
     },
     {
       "brand": "Walmart",
@@ -10987,7 +13088,36 @@
         "Up to 60% off on selected items."
       ],
       "website_domain": "ayfair.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "coffee table",
+        "end table",
+        "accent chair",
+        "area rugs",
+        "bathroom vanities",
+        "mattresses",
+        "kitchen furniture",
+        "bedroom furniture",
+        "outdoor furniture",
+        "lighting",
+        "bedding",
+        "throw pillow",
+        "nightstand",
+        "table lamp",
+        "sconce",
+        "writing desk",
+        "coat rack",
+        "dining table",
+        "console table",
+        "upholstered chair",
+        "sofa",
+        "loveseat",
+        "ottoman"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "Wayfair",
@@ -11032,7 +13162,36 @@
         "Up to 40% off on select furniture items."
       ],
       "website_domain": "ayfair.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "coffee table",
+        "end table",
+        "accent chair",
+        "area rugs",
+        "bathroom vanities",
+        "mattresses",
+        "kitchen furniture",
+        "bedroom furniture",
+        "outdoor furniture",
+        "lighting",
+        "bedding",
+        "throw pillow",
+        "nightstand",
+        "table lamp",
+        "sconce",
+        "writing desk",
+        "coat rack",
+        "dining table",
+        "console table",
+        "upholstered chair",
+        "sofa",
+        "loveseat",
+        "ottoman"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "Wayfair",
@@ -11077,7 +13236,36 @@
         "Limited time offer for Beckner Upholstered Barrel Chair."
       ],
       "website_domain": "ayfair.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "coffee table",
+        "end table",
+        "accent chair",
+        "area rugs",
+        "bathroom vanities",
+        "mattresses",
+        "kitchen furniture",
+        "bedroom furniture",
+        "outdoor furniture",
+        "lighting",
+        "bedding",
+        "throw pillow",
+        "nightstand",
+        "table lamp",
+        "sconce",
+        "writing desk",
+        "coat rack",
+        "dining table",
+        "console table",
+        "upholstered chair",
+        "sofa",
+        "loveseat",
+        "ottoman"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "Wayfair",
@@ -11122,7 +13310,36 @@
         "Limited time offer for Kars Nail-head Upholstered Push Back Recliner With Storage Pocket."
       ],
       "website_domain": "ayfair.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "coffee table",
+        "end table",
+        "accent chair",
+        "area rugs",
+        "bathroom vanities",
+        "mattresses",
+        "kitchen furniture",
+        "bedroom furniture",
+        "outdoor furniture",
+        "lighting",
+        "bedding",
+        "throw pillow",
+        "nightstand",
+        "table lamp",
+        "sconce",
+        "writing desk",
+        "coat rack",
+        "dining table",
+        "console table",
+        "upholstered chair",
+        "sofa",
+        "loveseat",
+        "ottoman"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "Wayfair",
@@ -11167,7 +13384,36 @@
         "Limited time offer for Ahlea 78.75'' W Linen Blend Sofa."
       ],
       "website_domain": "ayfair.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "coffee table",
+        "end table",
+        "accent chair",
+        "area rugs",
+        "bathroom vanities",
+        "mattresses",
+        "kitchen furniture",
+        "bedroom furniture",
+        "outdoor furniture",
+        "lighting",
+        "bedding",
+        "throw pillow",
+        "nightstand",
+        "table lamp",
+        "sconce",
+        "writing desk",
+        "coat rack",
+        "dining table",
+        "console table",
+        "upholstered chair",
+        "sofa",
+        "loveseat",
+        "ottoman"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "Wayfair",
@@ -11212,7 +13458,36 @@
         "Limited time offer for Lourdez Upholstered Loveseat."
       ],
       "website_domain": "ayfair.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "coffee table",
+        "end table",
+        "accent chair",
+        "area rugs",
+        "bathroom vanities",
+        "mattresses",
+        "kitchen furniture",
+        "bedroom furniture",
+        "outdoor furniture",
+        "lighting",
+        "bedding",
+        "throw pillow",
+        "nightstand",
+        "table lamp",
+        "sconce",
+        "writing desk",
+        "coat rack",
+        "dining table",
+        "console table",
+        "upholstered chair",
+        "sofa",
+        "loveseat",
+        "ottoman"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "Wendy's",
@@ -11251,7 +13526,12 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "endys.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Wendy's",
@@ -11290,7 +13570,12 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "endys.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Wendy's",
@@ -11331,7 +13616,12 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "endys.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Wendy's",
@@ -11372,7 +13662,12 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "endys.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "West Elm",
@@ -11413,7 +13708,30 @@
         "Discount value is not explicitly stated, but ranges up to 50% off."
       ],
       "website_domain": "estelm.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "sofas",
+        "sectionals",
+        "loveseats",
+        "furniture",
+        "rugs",
+        "bedding",
+        "lighting",
+        "pillows",
+        "throws",
+        "window treatments",
+        "art",
+        "mirrors",
+        "kitchen",
+        "dining",
+        "storage",
+        "organization",
+        "coffee table"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "West Elm",
@@ -11455,7 +13773,30 @@
         "Rewards program promotion, not a specific discount or sale."
       ],
       "website_domain": "estelm.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "sofas",
+        "sectionals",
+        "loveseats",
+        "furniture",
+        "rugs",
+        "bedding",
+        "lighting",
+        "pillows",
+        "throws",
+        "window treatments",
+        "art",
+        "mirrors",
+        "kitchen",
+        "dining",
+        "storage",
+        "organization",
+        "coffee table"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "White House Black Market",
@@ -11500,7 +13841,18 @@
       ],
       "website_domain": "hitehouseblackmarket.com",
       "og_image_url": "https://www.whitehouseblackmarket.com/whbm/images/whbm_logo_seo.avif",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "dresses",
+        "jumpsuits",
+        "skirts",
+        "blouses",
+        "shirts"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing"
+      ]
     },
     {
       "brand": "White House Black Market",
@@ -11541,7 +13893,18 @@
       "notes": [],
       "website_domain": "hitehouseblackmarket.com",
       "og_image_url": "https://www.whitehouseblackmarket.com/whbm/images/whbm_logo_seo.avif",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "dresses",
+        "jumpsuits",
+        "skirts",
+        "blouses",
+        "shirts"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing"
+      ]
     },
     {
       "brand": "White House Black Market",
@@ -11584,7 +13947,18 @@
       "notes": [],
       "website_domain": "hitehouseblackmarket.com",
       "og_image_url": "https://www.whitehouseblackmarket.com/whbm/images/whbm_logo_seo.avif",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "dresses",
+        "jumpsuits",
+        "skirts",
+        "blouses",
+        "shirts"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing"
+      ]
     },
     {
       "brand": "Williams-Sonoma",
@@ -11626,7 +14000,39 @@
         "No specific start or end date provided"
       ],
       "website_domain": "illiams-sonoma.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "fry pans",
+        "saucepan",
+        "stockpots",
+        "roasters",
+        "cocottes",
+        "risotto pans",
+        "knives",
+        "knives sets",
+        "toasters",
+        "toaster ovens",
+        "waffle makers",
+        "stand mixers",
+        "immersion blenders",
+        "espresso makers",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor",
+        "garden",
+        "furniture"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home",
+        "food"
+      ]
     },
     {
       "brand": "Williams-Sonoma",
@@ -11668,7 +14074,39 @@
         "No specific start or end date provided"
       ],
       "website_domain": "illiams-sonoma.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "fry pans",
+        "saucepan",
+        "stockpots",
+        "roasters",
+        "cocottes",
+        "risotto pans",
+        "knives",
+        "knives sets",
+        "toasters",
+        "toaster ovens",
+        "waffle makers",
+        "stand mixers",
+        "immersion blenders",
+        "espresso makers",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor",
+        "garden",
+        "furniture"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home",
+        "food"
+      ]
     },
     {
       "brand": "Williams-Sonoma",
@@ -11710,7 +14148,39 @@
         "No specific start or end date provided"
       ],
       "website_domain": "illiams-sonoma.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "fry pans",
+        "saucepan",
+        "stockpots",
+        "roasters",
+        "cocottes",
+        "risotto pans",
+        "knives",
+        "knives sets",
+        "toasters",
+        "toaster ovens",
+        "waffle makers",
+        "stand mixers",
+        "immersion blenders",
+        "espresso makers",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor",
+        "garden",
+        "furniture"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home",
+        "food"
+      ]
     },
     {
       "brand": "Williams-Sonoma",
@@ -11752,7 +14222,39 @@
         "No specific start or end date provided"
       ],
       "website_domain": "illiams-sonoma.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "fry pans",
+        "saucepan",
+        "stockpots",
+        "roasters",
+        "cocottes",
+        "risotto pans",
+        "knives",
+        "knives sets",
+        "toasters",
+        "toaster ovens",
+        "waffle makers",
+        "stand mixers",
+        "immersion blenders",
+        "espresso makers",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor",
+        "garden",
+        "furniture"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home",
+        "food"
+      ]
     },
     {
       "brand": "Williams-Sonoma",
@@ -11794,7 +14296,39 @@
         "No specific start or end date provided"
       ],
       "website_domain": "illiams-sonoma.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "fry pans",
+        "saucepan",
+        "stockpots",
+        "roasters",
+        "cocottes",
+        "risotto pans",
+        "knives",
+        "knives sets",
+        "toasters",
+        "toaster ovens",
+        "waffle makers",
+        "stand mixers",
+        "immersion blenders",
+        "espresso makers",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor",
+        "garden",
+        "furniture"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home",
+        "food"
+      ]
     },
     {
       "brand": "Williams-Sonoma",
@@ -11836,7 +14370,39 @@
         "No specific start or end date provided"
       ],
       "website_domain": "illiams-sonoma.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "fry pans",
+        "saucepan",
+        "stockpots",
+        "roasters",
+        "cocottes",
+        "risotto pans",
+        "knives",
+        "knives sets",
+        "toasters",
+        "toaster ovens",
+        "waffle makers",
+        "stand mixers",
+        "immersion blenders",
+        "espresso makers",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor",
+        "garden",
+        "furniture"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home",
+        "food"
+      ]
     },
     {
       "brand": "Williams-Sonoma",
@@ -11878,7 +14444,39 @@
         "No specific start or end date provided"
       ],
       "website_domain": "illiams-sonoma.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "fry pans",
+        "saucepan",
+        "stockpots",
+        "roasters",
+        "cocottes",
+        "risotto pans",
+        "knives",
+        "knives sets",
+        "toasters",
+        "toaster ovens",
+        "waffle makers",
+        "stand mixers",
+        "immersion blenders",
+        "espresso makers",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor",
+        "garden",
+        "furniture"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home",
+        "food"
+      ]
     },
     {
       "brand": "Williams-Sonoma",
@@ -11920,7 +14518,39 @@
         "Specific deadline mentioned"
       ],
       "website_domain": "illiams-sonoma.com",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "fry pans",
+        "saucepan",
+        "stockpots",
+        "roasters",
+        "cocottes",
+        "risotto pans",
+        "knives",
+        "knives sets",
+        "toasters",
+        "toaster ovens",
+        "waffle makers",
+        "stand mixers",
+        "immersion blenders",
+        "espresso makers",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor",
+        "garden",
+        "furniture"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home",
+        "food"
+      ]
     },
     {
       "brand": "Windsor",
@@ -12101,7 +14731,12 @@
       ],
       "website_domain": "ingstop.com",
       "og_image_url": "https://www.wingstop.com/assets/images/wingstop-logo-green-padded.svg",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Wingstop",
@@ -12146,7 +14781,12 @@
       ],
       "website_domain": "ingstop.com",
       "og_image_url": "https://www.wingstop.com/assets/images/wingstop-logo-green-padded.svg",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Wingstop",
@@ -12188,7 +14828,12 @@
       ],
       "website_domain": "ingstop.com",
       "og_image_url": "https://www.wingstop.com/assets/images/wingstop-logo-green-padded.svg",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Wrangler",
@@ -12229,7 +14874,18 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "rangler.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Jeans",
+        "Apparel",
+        "Shirts",
+        "Shorts",
+        "Tops"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing"
+      ]
     },
     {
       "brand": "Wrangler",
@@ -12269,7 +14925,18 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "rangler.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Jeans",
+        "Apparel",
+        "Shirts",
+        "Shorts",
+        "Tops"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing"
+      ]
     },
     {
       "brand": "Wrangler",
@@ -12309,7 +14976,18 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "rangler.com",
-      "status": "probably_active"
+      "status": "probably_active",
+      "product_keywords_contextual": [
+        "Jeans",
+        "Apparel",
+        "Shirts",
+        "Shorts",
+        "Tops"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing"
+      ]
     },
     {
       "brand": "Wyndham Hotels",
@@ -12348,7 +15026,20 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "yndhamhotels.com",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [
+        "Hotel Rooms",
+        "Flights",
+        "Cruises",
+        "Car Rentals",
+        "Tours",
+        "Activities",
+        "Transfers"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Wyndham Hotels",
@@ -12387,7 +15078,20 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "yndhamhotels.com",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [
+        "Hotel Rooms",
+        "Flights",
+        "Cruises",
+        "Car Rentals",
+        "Tours",
+        "Activities",
+        "Transfers"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Wyndham Hotels",
@@ -12426,7 +15130,20 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "yndhamhotels.com",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [
+        "Hotel Rooms",
+        "Flights",
+        "Cruises",
+        "Car Rentals",
+        "Tours",
+        "Activities",
+        "Transfers"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Wyndham Hotels",
@@ -12467,7 +15184,20 @@
         "Details of the special offer are not provided."
       ],
       "website_domain": "yndhamhotels.com",
-      "status": "low_confidence"
+      "status": "low_confidence",
+      "product_keywords_contextual": [
+        "Hotel Rooms",
+        "Flights",
+        "Cruises",
+        "Car Rentals",
+        "Tours",
+        "Activities",
+        "Transfers"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Wyndham Hotels",
@@ -12506,7 +15236,20 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "yndhamhotels.com",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [
+        "Hotel Rooms",
+        "Flights",
+        "Cruises",
+        "Car Rentals",
+        "Tours",
+        "Activities",
+        "Transfers"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Wyndham Hotels",
@@ -12545,7 +15288,20 @@
       "extraction_status": "success",
       "notes": [],
       "website_domain": "yndhamhotels.com",
-      "status": "active"
+      "status": "active",
+      "product_keywords_contextual": [
+        "Hotel Rooms",
+        "Flights",
+        "Cruises",
+        "Car Rentals",
+        "Tours",
+        "Activities",
+        "Transfers"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Wyndham Hotels",
@@ -12586,7 +15342,20 @@
         "Details of the promotion are not provided."
       ],
       "website_domain": "yndhamhotels.com",
-      "status": "low_confidence"
+      "status": "low_confidence",
+      "product_keywords_contextual": [
+        "Hotel Rooms",
+        "Flights",
+        "Cruises",
+        "Car Rentals",
+        "Tours",
+        "Activities",
+        "Transfers"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     }
   ]
 }
