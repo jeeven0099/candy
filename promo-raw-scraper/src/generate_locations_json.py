@@ -19,7 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 LOCATIONS_DIR = ROOT / "locations"
 NORMALIZED_DIR = ROOT / "normalized_outputs"
-OUTPUT_FILE = ROOT / "brand_locations.json"
+OUTPUT_FILE = ROOT.parent / "promo_viewer" / "assets" / "brand_locations.json"
 
 
 def _brands_with_promotions() -> set[str]:
