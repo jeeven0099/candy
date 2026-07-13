@@ -2573,5 +2573,562 @@
     "source_type": "offers_page",
     "allowed_to_fetch": true,
     "online_only": true
+  },
+
+  {
+    "brand": "ASUS",
+    "category": "tech",
+    "url": "https://www.asus.com/us/special-offers/",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Acer",
+    "category": "tech",
+    "url": "https://store.acer.com/en-us/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "MSI",
+    "category": "tech",
+    "url": "https://www.msi.com/Landing/sales",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Razer",
+    "category": "tech",
+    "url": "https://www.razer.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Logitech",
+    "category": "tech",
+    "url": "https://www.logitech.com/en-us/promo/deals.html",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Corsair",
+    "category": "tech",
+    "url": "https://www.corsair.com/us/en/clearance",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "SteelSeries",
+    "category": "tech",
+    "url": "https://steelseries.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "HyperX",
+    "category": "tech",
+    "url": "https://hyperx.com/collections/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Alienware",
+    "category": "tech",
+    "url": "https://www.dell.com/en-us/shop/dell-deals/alienware-deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Sony",
+    "category": "tech",
+    "url": "https://electronics.sony.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "LG",
+    "category": "tech",
+    "url": "https://www.lg.com/us/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Canon",
+    "category": "tech",
+    "url": "https://www.usa.canon.com/cameras/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Nikon",
+    "category": "tech",
+    "url": "https://www.nikonusa.com/photography/nikon-store/promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "DJI",
+    "category": "tech",
+    "url": "https://store.dji.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Bose",
+    "category": "tech",
+    "url": "https://www.bose.com/en_us/sale/sales.html",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Sonos",
+    "category": "tech",
+    "url": "https://www.sonos.com/en-us/shop/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "JBL",
+    "category": "tech",
+    "url": "https://www.jbl.com/deals.html",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Anker",
+    "category": "tech",
+    "url": "https://www.anker.com/pages/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Belkin",
+    "category": "tech",
+    "url": "https://www.belkin.com/deals/",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Western Digital",
+    "category": "tech",
+    "url": "https://www.westerndigital.com/en-us/c/promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "SanDisk",
+    "category": "tech",
+    "url": "https://www.westerndigital.com/en-us/c/sandisk-promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+
+  {
+    "brand": "Trader Joe's",
+    "category": "grocery",
+    "url": "https://www.traderjoes.com/home/products/product-introduction",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Lidl",
+    "category": "grocery",
+    "url": "https://www.lidl.com/en-us/p/special-buys/c/specialbuys",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Meijer",
+    "category": "grocery",
+    "url": "https://www.meijer.com/shopping/weekly-ad.html",
+    "source_type": "weekly_ad",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Giant Eagle",
+    "category": "grocery",
+    "url": "https://www.gianteagle.com/save/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Hy-Vee",
+    "category": "grocery",
+    "url": "https://www.hy-vee.com/weekly-sales-ad/",
+    "source_type": "weekly_ad",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Fresh Market",
+    "category": "grocery",
+    "url": "https://www.thefreshmarket.com/weekly-specials",
+    "source_type": "weekly_ad",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Jewel-Osco",
+    "category": "grocery",
+    "url": "https://www.jewelosco.com/weeklyad/",
+    "source_type": "weekly_ad",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Harris Teeter",
+    "category": "grocery",
+    "url": "https://www.harristeeter.com/weeklyad/",
+    "source_type": "weekly_ad",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "ShopRite",
+    "category": "grocery",
+    "url": "https://www.shoprite.com/promotions/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Ralphs",
+    "category": "grocery",
+    "url": "https://www.ralphs.com/weeklyad/",
+    "source_type": "weekly_ad",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Mariano's",
+    "category": "grocery",
+    "url": "https://www.marianos.com/weeklyad/",
+    "source_type": "weekly_ad",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Price Chopper",
+    "category": "grocery",
+    "url": "https://www.pricechopper.com/savings/weekly-ad/",
+    "source_type": "weekly_ad",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Ingles",
+    "category": "grocery",
+    "url": "https://www.ingles-markets.com/weekly-ad",
+    "source_type": "weekly_ad",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Food 4 Less",
+    "category": "grocery",
+    "url": "https://www.food4less.com/weeklyad/",
+    "source_type": "weekly_ad",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Tractor Supply",
+    "category": "grocery",
+    "url": "https://www.tractorsupply.com/tsc/content/weekly-ad",
+    "source_type": "weekly_ad",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Save Mart",
+    "category": "grocery",
+    "url": "https://www.savemart.com/weekly-ads",
+    "source_type": "weekly_ad",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Lucky Supermarkets",
+    "category": "grocery",
+    "url": "https://www.luckysupermarkets.com/weeklyad/",
+    "source_type": "weekly_ad",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "WinCo Foods",
+    "category": "grocery",
+    "url": "https://www.wincofoods.com/promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+
+  {
+    "brand": "At Home",
+    "category": "home_goods",
+    "url": "https://www.athome.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "World Market",
+    "category": "home_goods",
+    "url": "https://www.worldmarket.com/category/clearance.do",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Ashley Furniture",
+    "category": "home_goods",
+    "url": "https://www.ashleyfurniture.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Rooms To Go",
+    "category": "home_goods",
+    "url": "https://www.roomstogo.com/content/clearance",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Ethan Allen",
+    "category": "home_goods",
+    "url": "https://www.ethanallen.com/sale-furniture-and-home-decor/c/Sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Article",
+    "category": "home_goods",
+    "url": "https://www.article.com/on-sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Joybird",
+    "category": "home_goods",
+    "url": "https://joybird.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "La-Z-Boy",
+    "category": "home_goods",
+    "url": "https://www.la-z-boy.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Herman Miller",
+    "category": "home_goods",
+    "url": "https://store.hermanmiller.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Design Within Reach",
+    "category": "home_goods",
+    "url": "https://www.dwr.com/category/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Overstock",
+    "category": "home_goods",
+    "url": "https://www.overstock.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Blu Dot",
+    "category": "home_goods",
+    "url": "https://www.bludot.com/sale.html",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Burrow",
+    "category": "home_goods",
+    "url": "https://burrow.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Lovesac",
+    "category": "home_goods",
+    "url": "https://www.lovesac.com/pages/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Casper",
+    "category": "home_goods",
+    "url": "https://casper.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Purple",
+    "category": "home_goods",
+    "url": "https://purple.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Tempur-Pedic",
+    "category": "home_goods",
+    "url": "https://www.tempurpedic.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Saatva",
+    "category": "home_goods",
+    "url": "https://www.saatva.com/promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Sur La Table",
+    "category": "home_goods",
+    "url": "https://www.surlatable.com/category/cat-6070003/Sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Bed Bath & Beyond",
+    "category": "home_goods",
+    "url": "https://www.bedbathandbeyond.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+
+  {
+    "brand": "True Value",
+    "category": "home_improvement",
+    "url": "https://www.truevalue.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Harbor Freight",
+    "category": "home_improvement",
+    "url": "https://www.harborfreight.com/coupons",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Floor & Decor",
+    "category": "home_improvement",
+    "url": "https://www.flooranddecor.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Sherwin-Williams",
+    "category": "home_improvement",
+    "url": "https://www.sherwin-williams.com/en-us/promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Benjamin Moore",
+    "category": "home_improvement",
+    "url": "https://www.benjaminmoore.com/en-us/rebates-promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Behr",
+    "category": "home_improvement",
+    "url": "https://www.behr.com/consumer/promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Milwaukee Tool",
+    "category": "home_improvement",
+    "url": "https://www.milwaukeetool.com/Promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "DeWalt",
+    "category": "home_improvement",
+    "url": "https://www.dewalt.com/promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Makita",
+    "category": "home_improvement",
+    "url": "https://www.makitatools.com/promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Bosch Tools",
+    "category": "home_improvement",
+    "url": "https://www.boschtools.com/us/en/promotions/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Ryobi",
+    "category": "home_improvement",
+    "url": "https://www.ryobitools.com/promo/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Craftsman",
+    "category": "home_improvement",
+    "url": "https://www.craftsman.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Ridgid",
+    "category": "home_improvement",
+    "url": "https://www.ridgid.com/us/en/rebates",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Black+Decker",
+    "category": "home_improvement",
+    "url": "https://www.blackanddecker.com/specials",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Stihl",
+    "category": "home_improvement",
+    "url": "https://www.stihlusa.com/promotions/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Toro",
+    "category": "home_improvement",
+    "url": "https://www.toro.com/en/current-promotions",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "John Deere",
+    "category": "home_improvement",
+    "url": "https://www.deere.com/en/finance/promotions/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Northern Tool",
+    "category": "home_improvement",
+    "url": "https://www.northerntool.com/shop/tools/category_deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Rockler",
+    "category": "home_improvement",
+    "url": "https://www.rockler.com/promotions/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Build.com",
+    "category": "home_improvement",
+    "url": "https://www.build.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
   }
 ]
