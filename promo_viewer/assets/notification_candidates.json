@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-12T13:56:16.471387+00:00",
+  "generated_at": "2026-07-13T09:02:57.451595+00:00",
   "threshold": 60.0,
-  "total": 14,
+  "total": 10,
   "candidates": [
     {
       "promo_id": "fashionnova_upto80offsale",
@@ -23,80 +23,23 @@
       "source_url": "https://www.fashionnova.com/"
     },
     {
-      "promo_id": "target_upto60offindoorfurniture",
-      "brand": "Target",
-      "category": "home",
-      "title": "Up to 60% off indoor furniture",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Target",
-      "notification_body": "Up to 60% off indoor furniture",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 54.0,
-      "end_date": null,
-      "website_domain": "target.com",
-      "source_url": "https://www.target.com/c/top-deals/-/N-4xw74"
-    },
-    {
-      "promo_id": "windsor_dreamcometruesale",
-      "brand": "Windsor",
+      "promo_id": "boxlunch_upto50offsale",
+      "brand": "BoxLunch",
       "category": "fashion",
-      "title": "Dream Come True Sale",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Windsor",
-      "notification_body": "Dream Come True Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 80%",
-      "estimated_savings": 52.0,
-      "end_date": null,
-      "website_domain": "windsorstore.com",
-      "source_url": "https://www.windsorstore.com/"
-    },
-    {
-      "promo_id": "aritzia_deepermarkdownssummersale",
-      "brand": "Aritzia",
-      "category": "fashion",
-      "title": "Deeper Markdowns Summer Sale",
+      "title": "Up To 50% Off Sale",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Aritzia",
-      "notification_body": "Deeper Markdowns Summer Sale",
+      "notification_title": "BoxLunch",
+      "notification_body": "Up To 50% Off Sale",
       "discount_type": "percentage_off",
-      "discount_value": "30-50%",
+      "discount_value": "up to 50%",
       "estimated_savings": 32.5,
       "end_date": null,
-      "website_domain": "aritzia.com",
-      "source_url": "https://www.aritzia.com/us/en/sale"
-    },
-    {
-      "promo_id": "bcbg_50offsaleitems",
-      "brand": "BCBG",
-      "category": "fashion",
-      "title": "50% Off Sale Items",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "BCBG",
-      "notification_body": "50% Off Sale Items",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 32.5,
-      "end_date": null,
-      "website_domain": "bcbg.com",
-      "source_url": "https://bcbg.com/collections/sale"
+      "website_domain": "boxlunch.com",
+      "source_url": "https://www.boxlunch.com/sale/"
     },
     {
       "promo_id": "cider_summerclearance",
@@ -194,42 +137,23 @@
       "source_url": "https://www.talbots.com/sale"
     },
     {
-      "promo_id": "tedbaker_upto50offselectedstyles",
-      "brand": "Ted Baker",
-      "category": "fashion",
-      "title": "UP TO 50% OFF SELECTED STYLES",
-      "notify_score": 65.0,
+      "promo_id": "dillards_thesummerclearanceevent",
+      "brand": "Dillard's",
+      "category": "retail",
+      "title": "The Summer Clearance Event",
+      "notify_score": 61.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Ted Baker",
-      "notification_body": "UP TO 50% OFF SELECTED STYLES",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 32.5,
-      "end_date": null,
-      "website_domain": "tedbaker.com",
-      "source_url": "https://www.tedbaker.com/collections/sale-us"
-    },
-    {
-      "promo_id": "vineyardvines_upto65offallsalestyles",
-      "brand": "Vineyard Vines",
-      "category": "fashion",
-      "title": "Up to 65% off all sale styles*",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Vineyard Vines",
-      "notification_body": "Up to 65% off all sale styles*",
+      "notification_title": "Dillard's",
+      "notification_body": "The Summer Clearance Event",
       "discount_type": "percentage_off",
       "discount_value": "up to 65%",
-      "estimated_savings": 42.25,
+      "estimated_savings": 29.25,
       "end_date": null,
-      "website_domain": "vineyardvines.com",
-      "source_url": "https://www.vineyardvines.com/category/Sale"
+      "website_domain": "dillards.com",
+      "source_url": "https://www.dillards.com/c/sale-clearance"
     },
     {
       "promo_id": "tillys_clearanceupto60off",
