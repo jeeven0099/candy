@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-13T13:49:23.518636+00:00",
+  "generated_at": "2026-07-14T12:10:36.010753+00:00",
   "threshold": 60.0,
-  "total": 10,
+  "total": 13,
   "candidates": [
     {
       "promo_id": "fashionnova_upto80offsale",
@@ -21,6 +21,25 @@
       "end_date": null,
       "website_domain": "fashionnova.com",
       "source_url": "https://www.fashionnova.com/"
+    },
+    {
+      "promo_id": "lillypulitzer_thelillysaleupto65off",
+      "brand": "Lilly Pulitzer",
+      "category": "fashion",
+      "title": "The Lilly Sale: Up to 65% Off",
+      "notify_score": 73.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Lilly Pulitzer",
+      "notification_body": "The Lilly Sale: Up to 65% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 65%",
+      "estimated_savings": 42.25,
+      "end_date": "2026-07-16",
+      "website_domain": "lillypulitzer.com",
+      "source_url": "https://www.lillypulitzer.com/sale/"
     },
     {
       "promo_id": "boxlunch_upto50offsale",
@@ -137,6 +156,63 @@
       "source_url": "https://www.talbots.com/sale"
     },
     {
+      "promo_id": "tedbaker_saleupto50offselectedstyles",
+      "brand": "Ted Baker",
+      "category": "fashion",
+      "title": "SALE: UP TO 50% OFF SELECTED STYLES",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Ted Baker",
+      "notification_body": "SALE: UP TO 50% OFF SELECTED STYLES",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "tedbaker.com",
+      "source_url": "https://www.tedbaker.com/collections/sale-us"
+    },
+    {
+      "promo_id": "whitehouseblackmarket_50offsummermusthaves",
+      "brand": "White House Black Market",
+      "category": "fashion",
+      "title": "50% Off Summer Must-Haves",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "White House Black Market",
+      "notification_body": "50% Off Summer Must-Haves",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "whitehouseblackmarket.com",
+      "source_url": "https://www.whitehouseblackmarket.com/store/category/sale/cat210002/"
+    },
+    {
+      "promo_id": "zaraman_lastchancesale",
+      "brand": "Zara Man",
+      "category": "fashion",
+      "title": "Last Chance Sale",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Zara Man",
+      "notification_body": "Last Chance Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "estimated_savings": 45.5,
+      "end_date": null,
+      "website_domain": "zara.com",
+      "source_url": "https://www.zara.com/us/en/s-man-sale-l10847.html"
+    },
+    {
       "promo_id": "dillards_thesummerclearanceevent",
       "brand": "Dillard's",
       "category": "retail",
@@ -156,36 +232,17 @@
       "source_url": "https://www.dillards.com/c/sale-clearance"
     },
     {
-      "promo_id": "tillys_clearanceupto60off",
-      "brand": "Tillys",
-      "category": "fashion",
-      "title": "Clearance up to 60% Off*",
-      "notify_score": 61.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Tillys",
-      "notification_body": "Clearance up to 60% Off*",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 39.0,
-      "end_date": null,
-      "website_domain": "tillys.com",
-      "source_url": "https://www.tillys.com/"
-    },
-    {
       "promo_id": "tillys_rsqjeansbuyonegetone50off",
       "brand": "Tillys",
-      "category": "fashion",
-      "title": "RSQ Jeans - Buy One, Get One 50% Off*",
+      "category": "retail",
+      "title": "RSQ Jeans - Buy One, Get One 50% Off",
       "notify_score": 61.0,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Tillys",
-      "notification_body": "RSQ Jeans - Buy One, Get One 50% Off*",
+      "notification_body": "RSQ Jeans - Buy One, Get One 50% Off",
       "discount_type": "percentage_off",
       "discount_value": "50%",
       "estimated_savings": 27.5,
