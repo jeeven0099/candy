@@ -34,6 +34,7 @@ SRC  = Path(__file__).resolve().parent
 
 RAW_TEXT_DIR   = ROOT / "raw_text"
 QUEUE_FILE     = ROOT / "keyword_backfill_queue.json"
+KEYWORD_STORE  = ROOT / "keyword_store.json"
 ASSETS_DIR     = ROOT.parent / "promo_viewer" / "assets"
 ALL_PROMOS     = ASSETS_DIR / "all_promotions.json"
 MERGED_PROMOS  = ASSETS_DIR / "merged_promotions.json"
@@ -250,6 +251,15 @@ def main() -> None:
             kw_data = call_groq_keywords(client, brand, cat, text)
             kws = kw_data["product_keywords"]
             cats = kw_data["product_categories"]
+
+            # Persist to keyword store so nightly pipeline re-applies after re-extraction
+            store = json.loads(KEYWORD_STORE.read_text(encoding="utf-8")) if KEYWORD_STORE.exists() else {}
+            store[brand] = {
+                "contextual": kws,
+                "categories": cats,
+                "updated_at": datetime.now(timezone.utc).isoformat(),
+            }
+            KEYWORD_STORE.write_text(json.dumps(store, indent=2, ensure_ascii=False), encoding="utf-8")
 
             n = patch_promotions_file(ALL_PROMOS, brand, kws, cats)
             patch_promotions_file(MERGED_PROMOS, brand, kws, cats)

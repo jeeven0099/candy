@@ -39,6 +39,10 @@ try {
         --skip-scrape --from-step 4 `
         --ollama-model qwen2.5:14b --ollama-timeout 3200
     Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Retry pass finished (exit $LASTEXITCODE)."
+
+    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Applying keyword store patches..."
+    & $python "$root\promo-raw-scraper\src\apply_keyword_store.py"
+    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Keyword store applied (exit $LASTEXITCODE)."
 } finally {
     Remove-Item $lockFile -ErrorAction SilentlyContinue
 }
