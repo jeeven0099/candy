@@ -2578,14 +2578,14 @@
   {
     "brand": "ASUS",
     "category": "tech",
-    "url": "https://www.asus.com/us/special-offers/",
+    "url": "https://www.asus.com/us/store/",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Acer",
     "category": "tech",
-    "url": "https://store.acer.com/en-us/deals",
+    "url": "https://store.acer.com/en-us/sale",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
@@ -2599,21 +2599,21 @@
   {
     "brand": "Razer",
     "category": "tech",
-    "url": "https://www.razer.com/deals",
+    "url": "https://www.razer.com/",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Logitech",
     "category": "tech",
-    "url": "https://www.logitech.com/en-us/promo/deals.html",
+    "url": "https://www.logitech.com/en-us/shop/deals",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Corsair",
     "category": "tech",
-    "url": "https://www.corsair.com/us/en/clearance",
+    "url": "https://www.corsair.com/us/en/s/special-offers",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -2627,7 +2627,7 @@
   {
     "brand": "HyperX",
     "category": "tech",
-    "url": "https://hyperx.com/collections/deals",
+    "url": "https://hyperx.com/collections/sale",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
@@ -2641,7 +2641,7 @@
   {
     "brand": "Sony",
     "category": "tech",
-    "url": "https://electronics.sony.com/deals",
+    "url": "https://electronics.sony.com/c/1?query=:relevance:snaAllCategories:1:snaSupportedUserGroups:customergroup:isVisibleOnPLP:true:offersAndSales:on_sale:offersAndSales:free_with_purchase",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
@@ -2655,14 +2655,14 @@
   {
     "brand": "Canon",
     "category": "tech",
-    "url": "https://www.usa.canon.com/cameras/deals",
+    "url": "https://www.usa.canon.com/shop/deals",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Nikon",
     "category": "tech",
-    "url": "https://www.nikonusa.com/photography/nikon-store/promotions",
+    "url": "https://www.nikonusa.com/cameras-on-sale",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -2690,7 +2690,7 @@
   {
     "brand": "JBL",
     "category": "tech",
-    "url": "https://www.jbl.com/deals.html",
+    "url": "https://www.jbl.com/sale/",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
@@ -2704,7 +2704,7 @@
   {
     "brand": "Belkin",
     "category": "tech",
-    "url": "https://www.belkin.com/deals/",
+    "url": "https://www.belkin.com/sale/",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
@@ -2994,7 +2994,7 @@
   {
     "brand": "True Value",
     "category": "home_improvement",
-    "url": "https://www.truevalue.com/sale",
+    "url": "https://www.truevalue.com/global/deals/",
     "source_type": "sales_page",
     "allowed_to_fetch": true
   },
@@ -3008,7 +3008,7 @@
   {
     "brand": "Floor & Decor",
     "category": "home_improvement",
-    "url": "https://www.flooranddecor.com/deals",
+    "url": "https://www.flooranddecor.com/",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
@@ -3022,14 +3022,14 @@
   {
     "brand": "Benjamin Moore",
     "category": "home_improvement",
-    "url": "https://www.benjaminmoore.com/en-us/rebates-promotions",
+    "url": "https://www.benjaminmoore.com/en-us",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Behr",
     "category": "home_improvement",
-    "url": "https://www.behr.com/consumer/promotions",
+    "url": "https://www.behr.com/special-offers",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -3050,7 +3050,7 @@
   {
     "brand": "Makita",
     "category": "home_improvement",
-    "url": "https://www.makitatools.com/promotions",
+    "url": "https://makitatools.com/promos",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -3064,14 +3064,21 @@
   {
     "brand": "Ryobi",
     "category": "home_improvement",
-    "url": "https://www.ryobitools.com/promo/",
+    "url": "https://www.ryobitools.com/pages/ryobi-days",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Craftsman",
     "category": "home_improvement",
-    "url": "https://www.craftsman.com/deals",
+    "url": "https://www.craftsman.com/en-us/promotions/lowes-promotions",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Craftsman",
+    "category": "home_improvement",
+    "url": "https://www.craftsman.com/en-us/promotions/ace-hardware-promotions",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
@@ -3092,21 +3099,21 @@
   {
     "brand": "Stihl",
     "category": "home_improvement",
-    "url": "https://www.stihlusa.com/promotions/",
+    "url": "https://www.stihlusa.com/en/discover/all-deals",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "Toro",
     "category": "home_improvement",
-    "url": "https://www.toro.com/en/current-promotions",
+    "url": "https://www.toro.com/en",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
   {
     "brand": "John Deere",
     "category": "home_improvement",
-    "url": "https://www.deere.com/en/finance/promotions/",
+    "url": "https://www.deere.com/en-us/",
     "source_type": "offers_page",
     "allowed_to_fetch": true
   },
@@ -3120,7 +3127,7 @@
   {
     "brand": "Rockler",
     "category": "home_improvement",
-    "url": "https://www.rockler.com/promotions/deals",
+    "url": "https://www.rockler.com/",
     "source_type": "deals_page",
     "allowed_to_fetch": true
   },
