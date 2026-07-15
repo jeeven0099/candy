@@ -1,8 +1,27 @@
 {
-  "generated_at": "2026-07-15T11:11:44.126800+00:00",
+  "generated_at": "2026-07-15T21:26:53.990734+00:00",
   "threshold": 60.0,
-  "total": 9,
+  "total": 10,
   "candidates": [
+    {
+      "promo_id": "nikon_upto50offonsaleitems",
+      "brand": "Nikon",
+      "category": "tech",
+      "title": "Up to 50% off on Sale Items",
+      "notify_score": 83.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Nikon",
+      "notification_body": "Up to 50% off on Sale Items",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 125.0,
+      "end_date": null,
+      "website_domain": "nikonusa.com",
+      "source_url": "https://www.nikonusa.com/cameras-on-sale"
+    },
     {
       "promo_id": "bludot_modernfurnitureonsale",
       "brand": "Blu Dot",
