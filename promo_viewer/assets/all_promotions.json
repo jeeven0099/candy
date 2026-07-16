@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-16T14:34:05Z",
-  "promotion_count": 564,
+  "generated_at": "2026-07-16T19:07:55Z",
+  "promotion_count": 569,
   "promotions": [
     {
       "brand": "Abercrombie & Fitch",
@@ -12041,8 +12041,8 @@
     {
       "brand": "Design Within Reach",
       "category": "home_goods",
-      "promotion_title": "The Home Office Sale - Save Up To 25%",
-      "short_summary": "Up to 40% off on various furniture products.",
+      "promotion_title": "THE HOME OFFICE SALE - SAVE UP TO 25%",
+      "short_summary": "Save up to 40% off on various furniture items.",
       "promotion_type": "sale",
       "discount_type": "percentage_off",
       "discount_value": "up to 40%",
@@ -12061,20 +12061,19 @@
       "timezone": "America/New_York",
       "redemption_method": "online",
       "redemption_steps": [
-        "Visit the website",
-        "Select desired products",
-        "Apply discount"
+        "Visit the Design Within Reach website",
+        "Add items to cart"
       ],
       "promo_code": null,
-      "terms_text": "Save up to 40% off on various furniture products.",
+      "terms_text": "Up to 40% off on various furniture items.",
       "minimum_spend": null,
-      "purchase_required": true,
+      "purchase_required": false,
       "deal_scope": "brand_level",
       "friction_level": "low",
       "friction_reasons": [],
       "confidence_score": 1.0,
       "source_type": "web_page",
-      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\design_within_reach_20260715T020619Z.txt",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\design_within_reach_20260716T020517Z.txt",
       "extraction_status": "success",
       "notes": [],
       "target_gender": null,
@@ -12085,10 +12084,9 @@
       ],
       "product_keywords_explicit": [
         "furniture",
-        "sofas",
-        "sectionals",
+        "sofas + sectionals",
         "rugs",
-        "lounge chairs"
+        "lounge chairs + ottomans"
       ],
       "product_keywords_contextual": [],
       "matched_product_examples": [],
@@ -12097,6 +12095,7 @@
       "email_subject": null,
       "email_date": null,
       "website_domain": "dwr.com",
+      "source_url": "https://www.dwr.com/category/sale",
       "status": "probably_active",
       "source": "web",
       "fast_redemption": {
@@ -12104,7 +12103,7 @@
         "action_type": "open_url",
         "button_label": "Shop Now",
         "primary_value": null,
-        "primary_url": "https://www.dwr.com",
+        "primary_url": "https://www.dwr.com/category/sale",
         "app_deep_link": null,
         "web_fallback_url": null,
         "steps_after_click": [
@@ -15977,16 +15976,16 @@
       "brand": "Fossil",
       "category": "fashion",
       "promotion_title": "Get 15% Off* Full-Price Styles",
-      "short_summary": "Sign up to receive 15% off full-price styles.",
-      "promotion_type": "sale",
+      "short_summary": "Sign up to get 15% off full-price styles.",
+      "promotion_type": "membership_benefit",
       "discount_type": "percentage_off",
       "discount_value": "15%",
-      "requires_membership": false,
+      "requires_membership": true,
       "membership_name": null,
-      "membership_cost": null,
+      "membership_cost": "unknown",
       "requires_app": false,
       "requires_account_login": true,
-      "new_user_only": false,
+      "new_user_only": true,
       "birthday_related": false,
       "start_date": null,
       "end_date": null,
@@ -15996,24 +15995,23 @@
       "timezone": "America/New_York",
       "redemption_method": "online",
       "redemption_steps": [
-        "Sign up for an account",
-        "Apply discount at checkout"
+        "Sign up to receive the offer code via email",
+        "Apply promo code at checkout"
       ],
-      "promo_code": null,
-      "terms_text": "*15% off full-price styles.",
+      "promo_code": "*",
+      "terms_text": "Offer is only for new signups.",
       "minimum_spend": null,
       "purchase_required": false,
       "deal_scope": "brand_level",
       "friction_level": "low",
-      "friction_reasons": [
-        "Requires account login"
-      ],
-      "confidence_score": 0.9,
+      "friction_reasons": [],
+      "confidence_score": 0.95,
       "source_type": "web_page",
-      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\fossil_20260714T020231Z.txt",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\fossil_20260716T020240Z.txt",
       "extraction_status": "success",
       "notes": [
-        "Promotion applies to full-price styles"
+        "The '*' in the discount value indicates it is a placeholder for an actual code sent via email.",
+        "Terms and conditions apply"
       ],
       "target_gender": null,
       "synthesized": false,
@@ -16026,7 +16024,11 @@
         "watches",
         "bags",
         "wallets",
-        "jewelry"
+        "jewelry",
+        "watch straps",
+        "belts",
+        "gifts",
+        "sunglasses"
       ],
       "matched_product_examples": [],
       "visibility": null,
@@ -16034,39 +16036,41 @@
       "email_subject": null,
       "email_date": null,
       "website_domain": "fossil.com",
+      "source_url": "https://www.fossil.com/en-us/sale/",
       "status": "probably_active",
       "source": "web",
       "fast_redemption": {
         "eligible": true,
-        "action_type": "open_url",
-        "button_label": "Shop Now",
-        "primary_value": null,
-        "primary_url": "https://www.fossil.com",
+        "action_type": "copy_code_and_open_url",
+        "button_label": "Copy Code & Shop",
+        "primary_value": "*",
+        "primary_url": "https://www.fossil.com/en-us/sale/",
         "app_deep_link": null,
         "web_fallback_url": null,
         "steps_after_click": [
-          "Browse the sale.",
-          "Discount applies automatically at checkout."
+          "Paste code \"*\" at checkout.",
+          "Confirm the discount is applied before paying."
         ],
         "eliminates_steps": [
+          "Manually copying the promo code",
           "Searching for the brand website"
         ],
         "effort_level": "low",
-        "confidence": 0.85
+        "confidence": 0.95
       },
       "estimated_item_value": 65.0,
       "estimated_savings": 4.2,
       "value_reason": "15% off, vague deal, conservative est. ($28) ≈ $4 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 32.0
+      "global_quality_score": 30.0
     },
     {
       "brand": "Fossil",
       "category": "fashion",
-      "promotion_title": "Free Shipping On All Orders Over $75+",
-      "short_summary": "Receive free shipping on all orders over $75.",
+      "promotion_title": "Free Shipping On All Orders $75+",
+      "short_summary": "Receive free shipping on orders over $75.",
       "promotion_type": "app_offer",
       "discount_type": "free_shipping",
-      "discount_value": null,
+      "discount_value": "free",
       "requires_membership": false,
       "membership_name": null,
       "membership_cost": null,
@@ -16083,18 +16087,18 @@
       "redemption_method": "online",
       "redemption_steps": [
         "Add items to cart",
-        "Meet minimum spend of $75"
+        "Check out"
       ],
       "promo_code": null,
-      "terms_text": "Free shipping on all orders over $75.",
-      "minimum_spend": "$75+",
+      "terms_text": "Free shipping on orders over $75.",
+      "minimum_spend": "$75",
       "purchase_required": true,
       "deal_scope": "brand_level",
       "friction_level": "low",
       "friction_reasons": [],
-      "confidence_score": 0.9,
+      "confidence_score": 0.95,
       "source_type": "web_page",
-      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\fossil_20260714T020231Z.txt",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\fossil_20260716T020240Z.txt",
       "extraction_status": "success",
       "notes": [],
       "target_gender": null,
@@ -16108,7 +16112,11 @@
         "watches",
         "bags",
         "wallets",
-        "jewelry"
+        "jewelry",
+        "watch straps",
+        "belts",
+        "gifts",
+        "sunglasses"
       ],
       "matched_product_examples": [],
       "visibility": null,
@@ -16116,6 +16124,7 @@
       "email_subject": null,
       "email_date": null,
       "website_domain": "fossil.com",
+      "source_url": "https://www.fossil.com/en-us/sale/",
       "status": "probably_active",
       "source": "web",
       "fast_redemption": {
@@ -16123,7 +16132,7 @@
         "action_type": "open_url",
         "button_label": "Shop Now",
         "primary_value": null,
-        "primary_url": "https://www.fossil.com",
+        "primary_url": "https://www.fossil.com/en-us/sale/",
         "app_deep_link": null,
         "web_fallback_url": null,
         "steps_after_click": [
@@ -21907,6 +21916,294 @@
       "estimated_savings": 4.0,
       "value_reason": "birthday reward, est. free item ≈ $4 | type=18 + savings=3 = 21",
       "global_quality_score": 51.0
+    },
+    {
+      "brand": "Kroger",
+      "category": "food",
+      "promotion_title": "$20 off Your First Pickup or Delivery Order of $75 or more",
+      "short_summary": "Save $20 on your first pickup or delivery order of $75+.",
+      "promotion_type": "app_offer",
+      "discount_type": "amount_off",
+      "discount_value": "$20",
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": true,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": "2026-07-21",
+      "valid_days": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Sign in to the Kroger app.",
+        "Place an order of $75 or more for pickup or delivery."
+      ],
+      "promo_code": null,
+      "terms_text": "$20 off Your First Pickup or Delivery Order of $75 or more. Exp. Jul. 21",
+      "minimum_spend": "$75",
+      "purchase_required": true,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [],
+      "confidence_score": 0.98,
+      "source_type": "web_page",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\kroger_20260716T021248Z.txt",
+      "extraction_status": "success",
+      "notes": [],
+      "target_gender": null,
+      "synthesized": false,
+      "synthesis_reason": null,
+      "product_categories": [
+        "food"
+      ],
+      "product_keywords_explicit": [],
+      "product_keywords_contextual": [
+        "Grocery",
+        "Fresh Produce",
+        "Meat",
+        "Seafood",
+        "Deli"
+      ],
+      "matched_product_examples": [],
+      "visibility": null,
+      "sender_email": null,
+      "email_subject": null,
+      "email_date": null,
+      "website_domain": "kroger.com",
+      "og_image_url": "https://www.kroger.com/android-chrome-512x512.png",
+      "source_url": "https://www.kroger.com/savings/",
+      "status": "active",
+      "source": "web",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_app",
+        "button_label": "Open Kroger App",
+        "primary_value": null,
+        "primary_url": "https://www.kroger.com/savings/",
+        "app_deep_link": null,
+        "web_fallback_url": "https://www.kroger.com/savings/",
+        "steps_after_click": [
+          "Go to Offers or Deals in the app.",
+          "Activate the deal and add qualifying items.",
+          "Complete your order in-app."
+        ],
+        "eliminates_steps": [
+          "Searching for the offer manually in the app"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.8
+      },
+      "estimated_item_value": 10.0,
+      "estimated_savings": 20.0,
+      "value_reason": "$20 off | type=10 + savings=15 = 25",
+      "global_quality_score": 42.0
+    },
+    {
+      "brand": "Kroger",
+      "category": "retail",
+      "promotion_title": "Rewards Program: Kroger",
+      "short_summary": "Earn 4X points on all Private Selection items until July 21.",
+      "promotion_type": "reward",
+      "discount_type": "points",
+      "discount_value": null,
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": "2026-07-14",
+      "end_date": "2026-07-21",
+      "valid_days": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Sign in to the Kroger app.",
+        "Purchase Private Selection items before 7/21."
+      ],
+      "promo_code": null,
+      "terms_text": "Get 4x POINTS on Private Selection Items",
+      "minimum_spend": null,
+      "purchase_required": true,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [],
+      "confidence_score": 0.95,
+      "source_type": "web_page",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\kroger_20260716T021248Z.txt",
+      "extraction_status": "success",
+      "notes": [],
+      "target_gender": null,
+      "synthesized": false,
+      "synthesis_reason": null,
+      "product_categories": [
+        "retail"
+      ],
+      "product_keywords_explicit": [
+        "Private Selection"
+      ],
+      "product_keywords_contextual": [
+        "Grocery",
+        "Fresh Produce",
+        "Meat",
+        "Seafood",
+        "Deli"
+      ],
+      "matched_product_examples": [],
+      "visibility": null,
+      "sender_email": null,
+      "email_subject": null,
+      "email_date": null,
+      "website_domain": "kroger.com",
+      "og_image_url": "https://www.kroger.com/android-chrome-512x512.png",
+      "source_url": "https://www.kroger.com/savings/",
+      "status": "active",
+      "source": "web",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_app",
+        "button_label": "Open Kroger App",
+        "primary_value": null,
+        "primary_url": "https://www.kroger.com/savings/",
+        "app_deep_link": null,
+        "web_fallback_url": "https://www.kroger.com/savings/",
+        "steps_after_click": [
+          "Find this promotion in the app.",
+          "Add qualifying items to your cart.",
+          "Complete checkout in-app."
+        ],
+        "eliminates_steps": [
+          "Searching for the offer manually in the app"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.8
+      },
+      "estimated_item_value": 45.0,
+      "estimated_savings": 2.0,
+      "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
+      "global_quality_score": 27.0
+    },
+    {
+      "brand": "Kroger",
+      "category": "grocery",
+      "promotion_title": "Digital Coupons for Pickups and Deliveries",
+      "short_summary": "Various coupons available exclusively for pickup or delivery orders.",
+      "promotion_type": "coupon",
+      "discount_type": "amount_off",
+      "discount_value": null,
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": true,
+      "requires_account_login": true,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": "2026-07-15",
+      "end_date": "2026-07-28",
+      "valid_days": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "in_app",
+      "redemption_steps": [
+        "Sign in to the Kroger app.",
+        "Clip coupons for pickup or delivery orders."
+      ],
+      "promo_code": null,
+      "terms_text": "Digital Coupons make it easy to save money, every time you shop!",
+      "minimum_spend": null,
+      "purchase_required": true,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [],
+      "confidence_score": 0.9,
+      "source_type": "web_page",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\kroger_20260716T021248Z.txt",
+      "extraction_status": "success",
+      "notes": [],
+      "target_gender": null,
+      "synthesized": false,
+      "synthesis_reason": null,
+      "product_categories": [
+        "grocery"
+      ],
+      "product_keywords_explicit": [
+        "Welch's",
+        "Brawny",
+        "Angel Soft"
+      ],
+      "product_keywords_contextual": [
+        "Grocery",
+        "Fresh Produce",
+        "Meat",
+        "Seafood",
+        "Deli"
+      ],
+      "matched_product_examples": [],
+      "visibility": null,
+      "sender_email": null,
+      "email_subject": null,
+      "email_date": null,
+      "website_domain": "kroger.com",
+      "og_image_url": "https://www.kroger.com/android-chrome-512x512.png",
+      "source_url": "https://www.kroger.com/savings/",
+      "status": "active",
+      "source": "web",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_app",
+        "button_label": "Open Kroger App",
+        "primary_value": null,
+        "primary_url": "https://www.kroger.com/savings/",
+        "app_deep_link": null,
+        "web_fallback_url": "https://www.kroger.com/savings/",
+        "steps_after_click": [
+          "Find this promotion in the app.",
+          "Add qualifying items to your cart.",
+          "Complete checkout in-app."
+        ],
+        "eliminates_steps": [
+          "Searching for the offer manually in the app"
+        ],
+        "effort_level": "medium",
+        "confidence": 0.8
+      },
+      "estimated_item_value": 5.0,
+      "estimated_savings": 8.0,
+      "value_reason": "$ off (no amount parsed), est. $8 | type=8 + savings=8 = 16",
+      "global_quality_score": 37.0
     },
     {
       "brand": "L.L.Bean",
@@ -29306,8 +29603,94 @@
     {
       "brand": "PacSun",
       "category": "fashion",
-      "promotion_title": "Extra 20% Off All Markdowns",
-      "short_summary": "EXTRA 20% OFF ALL MARKDOWNS",
+      "promotion_title": "THE STOCK UP SALE: STARTING AT $10 | $15 | $20 + FREE SHIPPING",
+      "short_summary": "Site-wide sale with free shipping.",
+      "promotion_type": "sale",
+      "discount_type": "free_shipping",
+      "discount_value": null,
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": false,
+      "requires_account_login": false,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/Los_Angeles",
+      "redemption_method": "online",
+      "redemption_steps": [
+        "Shop online"
+      ],
+      "promo_code": null,
+      "terms_text": "STYLES STARTING AT $10 + FREE SHIP",
+      "minimum_spend": null,
+      "purchase_required": false,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [],
+      "confidence_score": 0.95,
+      "source_type": "web_page",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\pacsun_20260716T020047Z.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Free shipping applies site-wide"
+      ],
+      "target_gender": null,
+      "synthesized": false,
+      "synthesis_reason": null,
+      "product_categories": [
+        "clothing",
+        "footwear",
+        "accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_keywords_contextual": [
+        "Tops",
+        "Bottoms",
+        "Shoes & Sneakers",
+        "Hats & Beanies"
+      ],
+      "matched_product_examples": [],
+      "visibility": null,
+      "sender_email": null,
+      "email_subject": null,
+      "email_date": null,
+      "website_domain": "pacsun.com",
+      "source_url": "https://www.pacsun.com/sale/",
+      "status": "probably_active",
+      "source": "web",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_url",
+        "button_label": "Shop Now",
+        "primary_value": null,
+        "primary_url": "https://www.pacsun.com/sale/",
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Browse the sale.",
+          "Discount applies automatically at checkout."
+        ],
+        "eliminates_steps": [
+          "Searching for the brand website"
+        ],
+        "effort_level": "low",
+        "confidence": 0.85
+      },
+      "estimated_item_value": 65.0,
+      "estimated_savings": 5.0,
+      "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
+      "global_quality_score": 32.0
+    },
+    {
+      "brand": "PacSun",
+      "category": "fashion",
+      "promotion_title": "LIMITED TIME: EXTRA 20% OFF ALL MARKDOWNS",
+      "short_summary": "Extra 20% off all markdowns.",
       "promotion_type": "sale",
       "discount_type": "percentage_off",
       "discount_value": "20%",
@@ -29326,34 +29709,37 @@
       "timezone": "America/Los_Angeles",
       "redemption_method": "online",
       "redemption_steps": [
-        "Add markdown items to cart"
+        "Shop online"
       ],
       "promo_code": null,
-      "terms_text": "EXTRA 20% OFF ALL MARKDOWNS",
+      "terms_text": "Exclusions & restrictions apply.",
       "minimum_spend": null,
-      "purchase_required": true,
+      "purchase_required": false,
       "deal_scope": "brand_level",
       "friction_level": "low",
       "friction_reasons": [],
-      "confidence_score": 1.0,
+      "confidence_score": 0.95,
       "source_type": "web_page",
-      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\pacsun_20260715T020116Z.txt",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\pacsun_20260716T020047Z.txt",
       "extraction_status": "success",
       "notes": [
-        "Promotion applies to all markdown items."
+        "Extra 20% off applies to markdowns only"
       ],
       "target_gender": null,
       "synthesized": false,
       "synthesis_reason": null,
       "product_categories": [
-        "footwear",
         "clothing",
+        "footwear",
         "accessories"
       ],
       "product_keywords_explicit": [],
       "product_keywords_contextual": [
-        "clothing",
-        "accessories"
+        "Graphics & Tees",
+        "Shirts",
+        "Hoodies & Fleece",
+        "Sweaters",
+        "Jackets"
       ],
       "matched_product_examples": [],
       "visibility": null,
@@ -29361,6 +29747,7 @@
       "email_subject": null,
       "email_date": null,
       "website_domain": "pacsun.com",
+      "source_url": "https://www.pacsun.com/sale/",
       "status": "probably_active",
       "source": "web",
       "fast_redemption": {
@@ -29368,7 +29755,7 @@
         "action_type": "open_url",
         "button_label": "Shop Now",
         "primary_value": null,
-        "primary_url": "https://www.pacsun.com",
+        "primary_url": "https://www.pacsun.com/sale/",
         "app_deep_link": null,
         "web_fallback_url": null,
         "steps_after_click": [
@@ -29389,9 +29776,9 @@
     {
       "brand": "PacSun",
       "category": "fashion",
-      "promotion_title": "App Exclusive 20% Off",
-      "short_summary": "EXTRA 20% OFF IN APP W/ CODE: APP20",
-      "promotion_type": "app_offer",
+      "promotion_title": "APP EXCLUSIVE! EXTRA 20% OFF YOUR ORDER W/ CODE: APP20",
+      "short_summary": "Extra 20% off with app code.",
+      "promotion_type": "sale",
       "discount_type": "percentage_off",
       "discount_value": "20%",
       "requires_membership": false,
@@ -29409,36 +29796,39 @@
       "timezone": "America/Los_Angeles",
       "redemption_method": "in_app",
       "redemption_steps": [
-        "Use code APP20"
+        "Use code APP20 in app checkout"
       ],
       "promo_code": "APP20",
-      "terms_text": "EXTRA 20% OFF IN APP W/ CODE: APP20",
+      "terms_text": "Exclusions & restrictions apply.",
       "minimum_spend": null,
-      "purchase_required": true,
+      "purchase_required": false,
       "deal_scope": "brand_level",
       "friction_level": "medium",
       "friction_reasons": [
         "Requires app"
       ],
-      "confidence_score": 1.0,
+      "confidence_score": 0.95,
       "source_type": "web_page",
-      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\pacsun_20260715T020116Z.txt",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\pacsun_20260716T020047Z.txt",
       "extraction_status": "success",
       "notes": [
-        "Promotion is exclusive to the PacSun app and requires a promo code."
+        "Extra 20% off via app, code required"
       ],
       "target_gender": null,
       "synthesized": false,
       "synthesis_reason": null,
       "product_categories": [
-        "footwear",
         "clothing",
+        "footwear",
         "accessories"
       ],
       "product_keywords_explicit": [],
       "product_keywords_contextual": [
-        "clothing",
-        "accessories"
+        "Graphics & Tees",
+        "Shirts",
+        "Hoodies & Fleece",
+        "Sweaters",
+        "Jackets"
       ],
       "matched_product_examples": [],
       "visibility": null,
@@ -29446,6 +29836,7 @@
       "email_subject": null,
       "email_date": null,
       "website_domain": "pacsun.com",
+      "source_url": "https://www.pacsun.com/sale/",
       "status": "probably_active",
       "source": "web",
       "fast_redemption": {
@@ -29453,9 +29844,9 @@
         "action_type": "open_app",
         "button_label": "Open PacSun App",
         "primary_value": null,
-        "primary_url": "https://www.pacsun.com",
+        "primary_url": "https://www.pacsun.com/sale/",
         "app_deep_link": null,
-        "web_fallback_url": "https://www.pacsun.com",
+        "web_fallback_url": "https://www.pacsun.com/sale/",
         "steps_after_click": [
           "Find this promotion in the app.",
           "Add qualifying items to your cart.",
@@ -29468,9 +29859,9 @@
         "confidence": 0.8
       },
       "estimated_item_value": 65.0,
-      "estimated_savings": 13.0,
-      "value_reason": "20% off, brand/cat est. ($65) ≈ $13 savings | type=8 + savings=15 = 23",
-      "global_quality_score": 40.0
+      "estimated_savings": 5.6,
+      "value_reason": "20% off, vague deal, conservative est. ($28) ≈ $6 savings | type=8 + savings=3 = 11",
+      "global_quality_score": 28.0
     },
     {
       "brand": "Panera Bread",
@@ -33574,6 +33965,94 @@
       "estimated_savings": 9.75,
       "value_reason": "15% off, brand/cat est. ($65) ≈ $10 savings | type=5 + savings=8 = 13",
       "global_quality_score": 37.0
+    },
+    {
+      "brand": "Ryobi",
+      "category": "home_improvement",
+      "promotion_title": "FREE TOOL WITH SELECT PURCHASE - SHOP RYOBI DAYS NOW >>",
+      "short_summary": "Free tool with select purchase.",
+      "promotion_type": "sale",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": false,
+      "requires_account_login": false,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "online",
+      "redemption_steps": [
+        "Select a purchase",
+        "Receive free tool"
+      ],
+      "promo_code": null,
+      "terms_text": "Free tool with select purchase.",
+      "minimum_spend": null,
+      "purchase_required": true,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [],
+      "confidence_score": 1.0,
+      "source_type": "web_page",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\ryobi_20260716T020534Z.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Free tool with purchase is a recurring promotion and not tied to specific dates"
+      ],
+      "target_gender": null,
+      "synthesized": false,
+      "synthesis_reason": null,
+      "product_categories": [
+        "home"
+      ],
+      "product_keywords_explicit": [],
+      "product_keywords_contextual": [
+        "string trimmer/edger kit",
+        "hedge trimmer",
+        "blower",
+        "angle grinder",
+        "random orbit sander",
+        "circular saw",
+        "multi-tool"
+      ],
+      "matched_product_examples": [],
+      "visibility": null,
+      "sender_email": null,
+      "email_subject": null,
+      "email_date": null,
+      "website_domain": "ryobitools.com",
+      "source_url": "https://www.ryobitools.com/pages/ryobi-days",
+      "status": "probably_active",
+      "source": "web",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_url",
+        "button_label": "Shop Now",
+        "primary_value": null,
+        "primary_url": "https://www.ryobitools.com/pages/ryobi-days",
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Browse the sale.",
+          "Discount applies automatically at checkout."
+        ],
+        "eliminates_steps": [
+          "Searching for the brand website"
+        ],
+        "effort_level": "low",
+        "confidence": 0.85
+      },
+      "estimated_item_value": 30.0,
+      "estimated_savings": 15.0,
+      "value_reason": "free item, est. ≈ $15 savings | type=20 + savings=15 = 35",
+      "global_quality_score": 59.0
     },
     {
       "brand": "Safeway",
