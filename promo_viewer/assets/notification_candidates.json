@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-16T19:07:56.275168+00:00",
+  "generated_at": "2026-07-17T14:32:04.470585+00:00",
   "threshold": 60.0,
-  "total": 15,
+  "total": 11,
   "candidates": [
     {
       "promo_id": "nikon_upto50offonsaleitems",
@@ -137,25 +137,6 @@
       "source_url": "https://www.landsend.com/"
     },
     {
-      "promo_id": "lillypulitzer_finalhoursthelillysaleupto65off",
-      "brand": "Lilly Pulitzer",
-      "category": "fashion",
-      "title": "Final Hours! The Lilly Sale: Up to 65% Off",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Lilly Pulitzer",
-      "notification_body": "Final Hours! The Lilly Sale: Up to 65% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 65%",
-      "estimated_savings": 42.25,
-      "end_date": null,
-      "website_domain": "lillypulitzer.com",
-      "source_url": "https://www.lillypulitzer.com/sale/"
-    },
-    {
       "promo_id": "luckybrand_upto75offclearance",
       "brand": "Lucky Brand",
       "category": "retail",
@@ -211,63 +192,6 @@
       "end_date": null,
       "website_domain": "talbots.com",
       "source_url": "https://www.talbots.com/sale"
-    },
-    {
-      "promo_id": "tedbaker_saleupto50offselectedstyles",
-      "brand": "Ted Baker",
-      "category": "fashion",
-      "title": "SALE: UP TO 50% OFF SELECTED STYLES",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Ted Baker",
-      "notification_body": "SALE: UP TO 50% OFF SELECTED STYLES",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 32.5,
-      "end_date": null,
-      "website_domain": "tedbaker.com",
-      "source_url": "https://www.tedbaker.com/collections/sale-us"
-    },
-    {
-      "promo_id": "verabradley_endofseasonsale50offmore",
-      "brand": "Vera Bradley",
-      "category": "fashion",
-      "title": "END OF SEASON SALE. 50% OFF & MORE!",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Vera Bradley",
-      "notification_body": "END OF SEASON SALE. 50% OFF & MORE!",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 30.0,
-      "end_date": null,
-      "website_domain": "verabradley.com",
-      "source_url": "https://www.verabradley.com/collections/sale"
-    },
-    {
-      "promo_id": "amctheatres_moanarealdmagnet",
-      "brand": "AMC Theatres",
-      "category": "entertainment",
-      "title": "Moana RealD Magnet",
-      "notify_score": 61.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "AMC Theatres",
-      "notification_body": "Free: Moana RealD Magnet",
-      "discount_type": "free_item",
-      "discount_value": "free magnet",
-      "estimated_savings": 14.0,
-      "end_date": "2026-07-19",
-      "website_domain": "amctheatres.com",
-      "source_url": "https://www.amctheatres.com/offers"
     },
     {
       "promo_id": "tillys_rsqjeansbuyonegetone50off",
