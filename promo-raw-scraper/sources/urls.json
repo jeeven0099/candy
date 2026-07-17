@@ -2637,5 +2637,1125 @@
     "url": "https://www.microcenter.com/site/deals/",
     "source_type": "deals_page",
     "allowed_to_fetch": true
+  },
+  {
+    "brand": "PlayStation Store",
+    "category": "gaming",
+    "url": "https://direct.playstation.com/en-us/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Xbox",
+    "category": "gaming",
+    "url": "https://www.xbox.com/en-US/promotions/sales/sales-and-specials",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Nintendo",
+    "category": "gaming",
+    "url": "https://www.nintendo.com/store/sales-and-deals/",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Humble Bundle",
+    "category": "gaming",
+    "url": "https://www.humblebundle.com/",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Green Man Gaming",
+    "category": "gaming",
+    "url": "https://www.greenmangaming.com/sale/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "GOG",
+    "category": "gaming",
+    "url": "https://www.gog.com/en/games?discounted=true",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Fanatical",
+    "category": "gaming",
+    "url": "https://www.fanatical.com/en/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Turtle Beach",
+    "category": "gaming",
+    "url": "https://www.turtlebeach.com/collections/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Secretlab",
+    "category": "gaming",
+    "url": "https://secretlab.co/pages/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Elgato",
+    "category": "gaming",
+    "url": "https://www.elgato.com/us/en/s/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Astro Gaming",
+    "category": "gaming",
+    "url": "https://www.astrogaming.com/en-us/deals.html",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "PowerA",
+    "category": "gaming",
+    "url": "https://www.powera.com/sales/",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "8BitDo",
+    "category": "gaming",
+    "url": "https://www.8bitdo.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "DXRacer",
+    "category": "gaming",
+    "url": "https://www.dxracer.com/collections/all-products/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Cooler Master",
+    "category": "gaming",
+    "url": "https://www.coolermaster.com/catalog/promotions/",
+    "source_type": "promotions_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "NZXT",
+    "category": "gaming",
+    "url": "https://nzxt.com/category/sales",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Scuf Gaming",
+    "category": "gaming",
+    "url": "https://www.scufgaming.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Glorious",
+    "category": "gaming",
+    "url": "https://www.pcgamingrace.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "KontrolFreek",
+    "category": "gaming",
+    "url": "https://www.kontrolfreek.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Chewy",
+    "category": "pets",
+    "url": "https://www.chewy.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "1800PetMeds",
+    "category": "pets",
+    "url": "https://www.1800petmeds.com/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "The Farmer's Dog",
+    "category": "pets",
+    "url": "https://www.thefarmersdog.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Ollie",
+    "category": "pets",
+    "url": "https://www.myollie.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "BarkBox",
+    "category": "pets",
+    "url": "https://www.barkbox.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Purina",
+    "category": "pets",
+    "url": "https://www.purina.com/coupons",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Hill's Pet Nutrition",
+    "category": "pets",
+    "url": "https://www.hillspet.com/dog-food/coupons",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Blue Buffalo",
+    "category": "pets",
+    "url": "https://www.bluebuffalo.com/coupons",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Zesty Paws",
+    "category": "pets",
+    "url": "https://www.zestypaws.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Litter-Robot",
+    "category": "pets",
+    "url": "https://www.litter-robot.com/promotions",
+    "source_type": "promotions_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "PetPlate",
+    "category": "pets",
+    "url": "https://www.petplate.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Nom Nom",
+    "category": "pets",
+    "url": "https://www.nomnomnow.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Wellness Pet Food",
+    "category": "pets",
+    "url": "https://www.wellnesspetfood.com/promotions",
+    "source_type": "promotions_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Taste of the Wild",
+    "category": "pets",
+    "url": "https://www.tasteofthewildpetfood.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Instinct Pet Food",
+    "category": "pets",
+    "url": "https://www.instinctpetfood.com/pages/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "PetSafe",
+    "category": "pets",
+    "url": "https://www.petsafe.com/promotions",
+    "source_type": "promotions_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Nylabone",
+    "category": "pets",
+    "url": "https://www.nylabone.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Furbo",
+    "category": "pets",
+    "url": "https://shopus.furbo.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "BP",
+    "category": "gas",
+    "url": "https://www.bpme-rewards.com/",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Chevron",
+    "category": "gas",
+    "url": "https://www.chevronwithtechron.com/station",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Casey's",
+    "category": "gas",
+    "url": "https://www.caseys.com/coupons",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Sheetz",
+    "category": "gas",
+    "url": "https://www.sheetz.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Murphy USA",
+    "category": "gas",
+    "url": "https://www.murphyusa.com/savings",
+    "source_type": "savings_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Circle K",
+    "category": "gas",
+    "url": "https://www.circlek.com/fuel-savings",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Kwik Trip",
+    "category": "gas",
+    "url": "https://www.kwiktrip.com/savings",
+    "source_type": "savings_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Love's Travel Stops",
+    "category": "gas",
+    "url": "https://www.loves.com/en/fuel-savings",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Speedway",
+    "category": "gas",
+    "url": "https://www.speedway.com/Deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Wawa",
+    "category": "gas",
+    "url": "https://www.wawa.com/about/rewards",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Sunoco",
+    "category": "gas",
+    "url": "https://www.sunoco.com/savings",
+    "source_type": "savings_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Pilot Flying J",
+    "category": "gas",
+    "url": "https://www.pilotflyingj.com/fuel-savings",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "RaceTrac",
+    "category": "gas",
+    "url": "https://www.racetrac.com/rewards/",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Maverik",
+    "category": "gas",
+    "url": "https://www.maverik.com/savings",
+    "source_type": "savings_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "7-Eleven",
+    "category": "gas",
+    "url": "https://www.7-eleven.com/7rewards",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "GetGo",
+    "category": "gas",
+    "url": "https://www.getgocafe.com/rewards",
+    "source_type": "rewards_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Holiday Stationstores",
+    "category": "gas",
+    "url": "https://www.holidaystationstores.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Cenex",
+    "category": "gas",
+    "url": "https://www.cenex.com/savings/",
+    "source_type": "savings_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Rite Aid",
+    "category": "pharmacy",
+    "url": "https://www.riteaid.com/shop/events-promotions/weekly-deals",
+    "source_type": "weekly_ad",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "iHerb",
+    "category": "pharmacy",
+    "url": "https://www.iherb.com/promotions",
+    "source_type": "promotions_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Swanson Vitamins",
+    "category": "pharmacy",
+    "url": "https://www.swansonvitamins.com/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "MyProtein",
+    "category": "pharmacy",
+    "url": "https://www.myprotein.com/sale.list",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Bodybuilding.com",
+    "category": "pharmacy",
+    "url": "https://www.bodybuilding.com/store/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Nature's Bounty",
+    "category": "pharmacy",
+    "url": "https://www.naturesbounty.com/pages/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Optimum Nutrition",
+    "category": "pharmacy",
+    "url": "https://www.optimumnutrition.com/en-us/sales",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Garden of Life",
+    "category": "pharmacy",
+    "url": "https://www.gardenoflife.com/collections/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "NOW Foods",
+    "category": "pharmacy",
+    "url": "https://www.nowfoods.com/pages/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Hims",
+    "category": "pharmacy",
+    "url": "https://www.forhims.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Hers",
+    "category": "pharmacy",
+    "url": "https://www.forhers.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Noom",
+    "category": "pharmacy",
+    "url": "https://www.noom.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Care/of",
+    "category": "pharmacy",
+    "url": "https://www.careof.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Roman (Ro)",
+    "category": "pharmacy",
+    "url": "https://ro.co/men",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Nurx",
+    "category": "pharmacy",
+    "url": "https://www.nurx.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Life Extension",
+    "category": "pharmacy",
+    "url": "https://www.lifeextension.com/vitamins-supplements/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Transparent Labs",
+    "category": "pharmacy",
+    "url": "https://www.transparentlabs.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Peloton",
+    "category": "health",
+    "url": "https://www.onepeloton.com/promotions",
+    "source_type": "promotions_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "NordicTrack",
+    "category": "health",
+    "url": "https://www.nordictrack.com/learn/promotions",
+    "source_type": "promotions_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Bowflex",
+    "category": "health",
+    "url": "https://www.bowflex.com/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "WW (Weight Watchers)",
+    "category": "health",
+    "url": "https://www.weightwatchers.com/us/plans",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Calm",
+    "category": "health",
+    "url": "https://www.calm.com/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Headspace",
+    "category": "health",
+    "url": "https://www.headspace.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Vital Proteins",
+    "category": "health",
+    "url": "https://www.vitalproteins.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Goli Nutrition",
+    "category": "health",
+    "url": "https://goli.com/pages/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Momentous",
+    "category": "health",
+    "url": "https://www.livemomentous.com/pages/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "BODi",
+    "category": "health",
+    "url": "https://www.beachbodyondemand.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "MyFitnessPal",
+    "category": "health",
+    "url": "https://www.myfitnesspal.com/premium",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "WHOOP",
+    "category": "health",
+    "url": "https://www.whoop.com/us/en/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Oura Ring",
+    "category": "health",
+    "url": "https://ouraring.com/product/rings",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Tonal",
+    "category": "health",
+    "url": "https://www.tonal.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Hydrow",
+    "category": "health",
+    "url": "https://hydrow.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Jiffy Lube",
+    "category": "auto_parts",
+    "url": "https://www.jiffylube.com/specials",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Midas",
+    "category": "auto_parts",
+    "url": "https://www.midas.com/coupons",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Firestone",
+    "category": "auto_parts",
+    "url": "https://www.firestonecompleteautocare.com/coupons",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Meineke",
+    "category": "auto_parts",
+    "url": "https://www.meineke.com/coupons",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Goodyear Auto Service",
+    "category": "auto_parts",
+    "url": "https://www.goodyear.com/en-US/tires/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Discount Tire",
+    "category": "auto_parts",
+    "url": "https://www.discounttire.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Tire Rack",
+    "category": "auto_parts",
+    "url": "https://www.tirerack.com/promotions",
+    "source_type": "promotions_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Mavis Discount Tire",
+    "category": "auto_parts",
+    "url": "https://www.mavistire.com/coupons",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Safelite",
+    "category": "auto_parts",
+    "url": "https://www.safelite.com/coupon",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Valvoline",
+    "category": "auto_parts",
+    "url": "https://www.valvoline.com/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Monro",
+    "category": "auto_parts",
+    "url": "https://www.monro.com/coupons",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Take 5 Oil Change",
+    "category": "auto_parts",
+    "url": "https://www.take5oilchange.com/coupons",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Christian Brothers Automotive",
+    "category": "auto_parts",
+    "url": "https://www.cbac.com/coupons",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Les Schwab",
+    "category": "auto_parts",
+    "url": "https://www.lesschwab.com/promotions",
+    "source_type": "promotions_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Big O Tires",
+    "category": "auto_parts",
+    "url": "https://www.bigotires.com/coupons",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Topgolf",
+    "category": "entertainment",
+    "url": "https://topgolf.com/us/offers/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Main Event",
+    "category": "entertainment",
+    "url": "https://www.mainevent.com/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Universal Studios",
+    "category": "entertainment",
+    "url": "https://www.universalstudioshollywood.com/web/en/us/tickets-packages/deals-packages",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "SeaWorld",
+    "category": "entertainment",
+    "url": "https://seaworld.com/deals/",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Legoland",
+    "category": "entertainment",
+    "url": "https://www.legoland.com/deals-packages/",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Busch Gardens",
+    "category": "entertainment",
+    "url": "https://buschgardens.com/deals/",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Cedar Point",
+    "category": "entertainment",
+    "url": "https://www.cedarpoint.com/tickets-passes/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Dollywood",
+    "category": "entertainment",
+    "url": "https://www.dollywood.com/themepark/Deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Great Wolf Lodge",
+    "category": "entertainment",
+    "url": "https://www.greatwolf.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Sky Zone",
+    "category": "entertainment",
+    "url": "https://www.skyzone.com/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Chuck E. Cheese",
+    "category": "entertainment",
+    "url": "https://www.chuckecheese.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Round1 Entertainment",
+    "category": "entertainment",
+    "url": "https://www.round1usa.com/en/specials/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Knott's Berry Farm",
+    "category": "entertainment",
+    "url": "https://www.knotts.com/tickets-packages/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Lucky Strike",
+    "category": "entertainment",
+    "url": "https://bowluckystrike.com/specials/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Pinstripes",
+    "category": "entertainment",
+    "url": "https://www.pinstripes.com/offers/",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "SiriusXM",
+    "category": "subscription",
+    "url": "https://www.siriusxm.com/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "ESPN+",
+    "category": "subscription",
+    "url": "https://espnplus.com/subscribe",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Discovery+",
+    "category": "subscription",
+    "url": "https://www.discoveryplus.com/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Crunchyroll",
+    "category": "subscription",
+    "url": "https://www.crunchyroll.com/premium",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Starz",
+    "category": "subscription",
+    "url": "https://www.starz.com/us/en/subscribe",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "AMC+",
+    "category": "subscription",
+    "url": "https://amcplus.com/subscribe",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Shudder",
+    "category": "subscription",
+    "url": "https://www.shudder.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Sling TV",
+    "category": "subscription",
+    "url": "https://www.sling.com/subscribe",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Philo",
+    "category": "subscription",
+    "url": "https://www.philo.com/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "YouTube TV",
+    "category": "subscription",
+    "url": "https://tv.youtube.com/welcome/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Adobe Creative Cloud",
+    "category": "subscription",
+    "url": "https://www.adobe.com/creativecloud/plans.html",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Duolingo",
+    "category": "subscription",
+    "url": "https://www.duolingo.com/plus",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Audible",
+    "category": "subscription",
+    "url": "https://www.audible.com/ep/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "BritBox",
+    "category": "subscription",
+    "url": "https://www.britbox.com/us/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "United Airlines",
+    "category": "travel",
+    "url": "https://www.united.com/ual/en/us/fly/travel/deals.html",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Alaska Airlines",
+    "category": "travel",
+    "url": "https://www.alaskaair.com/content/deals/",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Budget",
+    "category": "travel",
+    "url": "https://www.budget.com/en/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "National Car Rental",
+    "category": "travel",
+    "url": "https://www.nationalcar.com/en/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Alamo",
+    "category": "travel",
+    "url": "https://www.alamo.com/en/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "IHG Hotels",
+    "category": "travel",
+    "url": "https://www.ihg.com/content/us/en/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Radisson Hotels",
+    "category": "travel",
+    "url": "https://www.radissonhotels.com/en-us/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Extended Stay America",
+    "category": "travel",
+    "url": "https://www.extendedstayamerica.com/special-offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "VRBO",
+    "category": "travel",
+    "url": "https://www.vrbo.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Airbnb",
+    "category": "travel",
+    "url": "https://www.airbnb.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Kylie Cosmetics",
+    "category": "beauty",
+    "url": "https://www.kyliecosmetics.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Rare Beauty",
+    "category": "beauty",
+    "url": "https://www.rarebeauty.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Morphe",
+    "category": "beauty",
+    "url": "https://www.morphe.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Milk Makeup",
+    "category": "beauty",
+    "url": "https://www.milkmakeup.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Nespresso",
+    "category": "coffee",
+    "url": "https://www.nespresso.com/us/en/promotions",
+    "source_type": "promotions_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Keurig",
+    "category": "coffee",
+    "url": "https://www.keurig.com/deals",
+    "source_type": "deals_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Death Wish Coffee",
+    "category": "coffee",
+    "url": "https://www.deathwishcoffee.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Trade Coffee",
+    "category": "coffee",
+    "url": "https://www.drinktrade.com/pages/promotions",
+    "source_type": "promotions_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Lavazza",
+    "category": "coffee",
+    "url": "https://www.lavazza.com/en/us/promotions.html",
+    "source_type": "promotions_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Atlas Coffee Club",
+    "category": "coffee",
+    "url": "https://atlascoffeeclub.com/pages/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Chamberlain Coffee",
+    "category": "coffee",
+    "url": "https://chamberlaincoffee.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Blue Bottle Coffee",
+    "category": "coffee",
+    "url": "https://bluebottlecoffee.com/us/eng/store",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Bulletproof Coffee",
+    "category": "coffee",
+    "url": "https://www.bulletproof.com/pages/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Copper Cow Coffee",
+    "category": "coffee",
+    "url": "https://www.coppercowcoffee.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Folgers",
+    "category": "coffee",
+    "url": "https://www.folgerscoffee.com/coupons",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Nescafe",
+    "category": "coffee",
+    "url": "https://www.nescafe.com/us/offers",
+    "source_type": "offers_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Tim Hortons",
+    "category": "coffee",
+    "url": "https://www.timhortons.com/us/en/",
+    "source_type": "home_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Stone Street Coffee",
+    "category": "coffee",
+    "url": "https://stonestreetcoffee.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
+  },
+  {
+    "brand": "Nguyen Coffee Supply",
+    "category": "coffee",
+    "url": "https://nguyencoffeesupply.com/collections/sale",
+    "source_type": "sales_page",
+    "allowed_to_fetch": true
   }
 ]
