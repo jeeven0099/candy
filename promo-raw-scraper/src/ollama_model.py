@@ -196,8 +196,11 @@ class OllamaModel(LocalModelInterface):
         if synthesized:
             dv = synthesized[0].discount_value or ""
             if unique:
-                print(f"[SYNTH] {brand}: supplementing {len(unique)} LLM deal(s) with price-grid card ({dv})")
-                unique.extend(synthesized)
+                if self._synth_overlaps_llm(unique, synthesized[0]):
+                    print(f"[SYNTH] {brand}: price-grid card ({dv}) skipped — LLM already has overlapping sale deal")
+                else:
+                    print(f"[SYNTH] {brand}: supplementing {len(unique)} LLM deal(s) with price-grid card ({dv})")
+                    unique.extend(synthesized)
             else:
                 print(f"[SYNTH] {brand}: LLM found 0 deals — synthesized sale deal from price grid ({dv})")
                 return synthesized
@@ -460,6 +463,11 @@ class OllamaModel(LocalModelInterface):
             return "men"
         return None
 
+    # Text signals that identify which price is original vs. sale in a pair.
+    # Checked in the 80 chars immediately before each price in the pair.
+    _SALE_BEFORE_SIGNALS = ("now", "sale price", "our price", "today only", "special price", "you pay")
+    _ORIG_BEFORE_SIGNALS = ("was", "reg.", "regular", "original", "compare at", "msrp", "list", "retail", "valued at")
+
     def _synthesize_sale_from_price_grid(
         self,
         text: str,
@@ -468,14 +476,24 @@ class OllamaModel(LocalModelInterface):
         source_path: str,
     ) -> List[Promotion]:
         """
-        Fallback synthesizer for pages where the LLM found no explicit deal text.
+        Synthesize a sale card from price-pair evidence in a product grid.
 
-        Two tiers:
-          1. Price-pair detected  — computes discount range, emits "[Brand] Sale — up to X% off"
-          2. Products only        — emits a generic "[Brand] Sale" with items as keywords,
-                                   no discount value. Fires even with a single product found.
+        Emits a "[Brand] Sale — up to X% off" card when at least 3 adjacent
+        price pairs show a genuine markdown, or 2 pairs that are close together
+        (within 500 chars) indicating they are in the same grid section.
 
-        Always returns [] if the page has neither price signals nor any product names.
+        Price direction: pairs where the first price is higher than the second
+        are accepted as (original → sale). Reverse layout (sale first, original
+        second) is only accepted when nearby text carries a directional signal
+        ("was", "now", "reg.", etc.) — blindly swapping would combine unrelated
+        adjacent prices into false pairs.
+
+        Discount display: the single maximum detected percentage is used only
+        when at least two pairs are within 5 pp of it. Otherwise the 90th
+        percentile is used to avoid one outlier pair inflating the headline.
+
+        Confidence is evidence-based (pair count + variance penalty) rather
+        than a fixed 0.65.
         """
         # Extract products first — used for keywords in both tiers
         product_lines = self._extract_product_lines(text)
@@ -493,12 +511,6 @@ class OllamaModel(LocalModelInterface):
                 matched_examples.append(upper)
                 seen_ex.add(upper)
 
-        # Tier 1: detect price-pair markdowns.
-        # Match dollar-prefixed and bare 2-decimal prices in document order, then only
-        # pair adjacent prices where the text between them contains ≤20 alphabetic
-        # characters. This allows short labels ("Was", "Regular", "Save") but rejects
-        # product names that separate different grid items — preventing cross-product
-        # inflation like pairing a $42 bag against a $249 dress three rows away.
         # Dollar amounts handle comma-separated thousands (e.g. $2,999.00 → 2999.0).
         # Bare prices require exactly two decimal places to avoid matching ratings/counts.
         _price_re = re.compile(
@@ -507,45 +519,118 @@ class OllamaModel(LocalModelInterface):
         price_matches = list(_price_re.finditer(text))
 
         discounts: list[int] = []
+        pair_positions: list[int] = []  # char offset of first price in each accepted pair
+
         for i in range(len(price_matches) - 1):
             m_i, m_j = price_matches[i], price_matches[i + 1]
             between = text[m_i.end():m_j.start()]
-            # Skip price-range UI ("$100 - $300"), savings-amount labels, and
-            # navigation/filter text that separates unrelated prices.
+
+            # Skip price-range UI ("$100 - $300"), savings labels, nav/filter text.
             between_stripped = between.strip()
             if between_stripped in ("-", "–", "to"):
                 continue
             between_lower = between.lower()
             if any(kw in between_lower for kw in ("save", "refine", "filter", "rebate")):
                 continue
+            # A product name between two prices means they belong to different items.
             if sum(c.isalpha() for c in between) > 20:
-                continue  # product name between prices → different items, not a pair
+                continue
+
             v_i = float((m_i.group(1) or m_i.group(2)).replace(",", ""))
             v_j = float((m_j.group(1) or m_j.group(2)).replace(",", ""))
             if not (1.0 < v_i < 5000 and 1.0 < v_j < 5000):
                 continue
-            lo, hi = min(v_i, v_j), max(v_i, v_j)
-            if hi == 0:
+            if v_i == v_j:
                 continue
-            ratio = (hi - lo) / hi
+
+            # Determine price direction.
+            # Standard layout (original → sale): first price is higher — accept freely.
+            # Reverse layout (sale → original): second price is higher — require a nearby
+            # directional text signal; otherwise skip to avoid pairing unrelated prices.
+            if v_i > v_j:
+                original, sale = v_i, v_j
+            else:
+                pre_i = text[max(0, m_i.start() - 80): m_i.start()].lower()
+                pre_j = text[max(0, m_j.start() - 80): m_j.start()].lower()
+                has_signal = (
+                    any(sig in pre_i for sig in self._SALE_BEFORE_SIGNALS)
+                    or any(sig in pre_j for sig in self._ORIG_BEFORE_SIGNALS)
+                )
+                if not has_signal:
+                    continue
+                original, sale = v_j, v_i
+
+            ratio = (original - sale) / original
             pct = round(ratio * 100)
             if 10 <= pct <= 85:
                 discounts.append(pct)
+                pair_positions.append(m_i.start())
 
-        # Need at least one price pair with a real markdown (≥20%) to synthesize a deal.
-        # Product types don't need to match — a mix of shoes, chairs, and food items all
-        # qualifying is fine. What matters is that prices are actually dropping.
-        valid_discounts = [d for d in discounts if d >= 20]
+        # Only count pairs with a real markdown (≥20%).
+        valid_idx = [i for i, d in enumerate(discounts) if d >= 20]
+        valid_discounts = [discounts[i] for i in valid_idx]
+        valid_positions = [pair_positions[i] for i in valid_idx]
+
         if not valid_discounts:
             return []
 
-        max_disc = max(valid_discounts)
-        min_disc = min(valid_discounts)
-        discount_value = f"up to {max_disc}% off"
+        n_pairs = len(valid_discounts)
+
+        # Minimum evidence threshold: require 3+ pairs, OR 2 pairs in the same
+        # grid section (within 500 chars of each other).
+        if n_pairs < 2:
+            return []
+        if n_pairs == 2:
+            span = valid_positions[-1] - valid_positions[0]
+            if span > 500:
+                return []  # two isolated pairs — not enough evidence
+
+        # Robust discount headline: use max only when ≥2 pairs are within 5 pp of it.
+        # Otherwise fall back to the 90th-percentile value to avoid one outlier
+        # (e.g. a savings-amount false pair) inflating the "up to X% off" claim.
+        sorted_d = sorted(valid_discounts)
+        max_d = sorted_d[-1]
+        near_max = [d for d in sorted_d if d >= max_d - 5]
+        if len(near_max) >= 2:
+            display_max = max_d
+        else:
+            p90_idx = max(0, int(0.9 * (len(sorted_d) - 1)))
+            display_max = sorted_d[p90_idx]
+
+        min_disc = sorted_d[0]
+
+        # Evidence-based confidence: more pairs = more certainty; high variance = penalty.
+        if n_pairs < 3:
+            conf = 0.52
+        elif n_pairs <= 4:
+            conf = 0.60
+        elif n_pairs <= 9:
+            conf = 0.68
+        else:
+            conf = 0.75
+        variance = sorted_d[-1] - sorted_d[0]
+        if variance > 40:
+            conf -= 0.08
+        elif variance > 25:
+            conf -= 0.04
+        conf = round(max(0.40, min(0.75, conf)), 2)
+
+        discount_value = f"up to {display_max}% off"
         title = f"{brand} Sale"
-        summary = f"{brand} has items on sale with discounts from {min_disc}% to {max_disc}% off."
+        summary = f"{brand} has items on sale with discounts from {min_disc}% to {display_max}% off."
         if product_cats:
             summary += f" On sale: {', '.join(product_cats)}."
+
+        notes = [
+            f"Synthesized from product-grid price pairs ({n_pairs} qualifying pairs found).",
+            f"Discount range: {min_disc}%–{display_max}% (max detected: {max_d}%, pairs: {n_pairs}).",
+            "No explicit deal text — inferred from sale vs. original price pairs.",
+        ]
+        if display_max < max_d:
+            notes.append(
+                f"Headline capped at {display_max}% (p90) — max of {max_d}% lacked supporting pairs."
+            )
+
         return [Promotion(
             brand=brand,
             category=category,
@@ -561,15 +646,11 @@ class OllamaModel(LocalModelInterface):
             deal_scope="online_only",
             friction_level="low",
             friction_reasons=[],
-            confidence_score=0.65,
+            confidence_score=conf,
             source_type="web_page",
             source_path=source_path,
             extraction_status="success",
-            notes=[
-                f"Synthesized from product-grid price pairs ({len(valid_discounts)} qualifying pairs found).",
-                f"Discount range: {min_disc}%–{max_disc}%.",
-                "No explicit deal text — inferred from sale vs. original price pairs.",
-            ],
+            notes=notes,
             synthesized=True,
             synthesis_reason="price_grid_markdown",
             product_categories=product_cats[:5],
@@ -578,6 +659,33 @@ class OllamaModel(LocalModelInterface):
             matched_product_examples=matched_examples,
             target_gender=target_gender,
         )]
+
+    def _extract_pct_from_string(self, s: str) -> Optional[int]:
+        """Pull the first integer percentage from a string like 'up to 50% off'."""
+        m = re.search(r'(\d+)\s*%', s)
+        return int(m.group(1)) if m else None
+
+    def _synth_overlaps_llm(self, existing: List[Promotion], synth: Promotion) -> bool:
+        """
+        Return True if the synthesized sale card is redundant given existing LLM deals.
+
+        Overlap is declared when an LLM deal is already a sale/percentage and its
+        discount is within 15 pp of the synthesized card, OR when both cards are
+        broad sitewide sales with no specific product-keyword focus.
+        """
+        for p in existing:
+            if p.promotion_type != "sale":
+                continue
+            if p.discount_type not in ("percentage_off", "sale_price", "amount_off"):
+                continue
+            synth_pct = self._extract_pct_from_string(synth.discount_value or "")
+            exist_pct = self._extract_pct_from_string(p.discount_value or "")
+            if synth_pct and exist_pct and abs(synth_pct - exist_pct) <= 15:
+                return True
+            # Both are sitewide with no specific product focus — synthesized card adds nothing
+            if not p.product_keywords_explicit and not synth.product_keywords_explicit:
+                return True
+        return False
 
     def _coerce_data(self, data: dict) -> dict:
         """
