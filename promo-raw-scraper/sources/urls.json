@@ -2680,97 +2680,61 @@
         "source_type":  "deals_page",
         "allowed_to_fetch":  true
     },
-    {
-        "brand":  "Fanatical",
-        "category":  "gaming",
-        "url":  "https://www.fanatical.com/en/sale",
-        "source_type":  "sales_page",
-        "allowed_to_fetch":  true
-    },
+
     {
         "brand":  "Turtle Beach",
         "category":  "gaming",
-        "url":  "https://www.turtlebeach.com/collections/deals",
+        "url":  "https://www.turtlebeach.com/collections/all-sales",
         "source_type":  "deals_page",
         "allowed_to_fetch":  true
     },
     {
         "brand":  "Secretlab",
         "category":  "gaming",
-        "url":  "https://secretlab.co/pages/sale",
+        "url":  "https://secretlab.co/collections/promotions",
         "source_type":  "sales_page",
         "allowed_to_fetch":  true
     },
-    {
-        "brand":  "Elgato",
-        "category":  "gaming",
-        "url":  "https://www.elgato.com/us/en/s/deals",
-        "source_type":  "deals_page",
-        "allowed_to_fetch":  true
-    },
+  
     {
         "brand":  "Astro Gaming",
         "category":  "gaming",
-        "url":  "https://www.astrogaming.com/en-us/deals.html",
+        "url":  "https://www.logitechg.com/en-us/shop/gaming-deals",
         "source_type":  "deals_page",
         "allowed_to_fetch":  true
     },
     {
         "brand":  "PowerA",
         "category":  "gaming",
-        "url":  "https://www.powera.com/sales/",
+        "url":  "https://www.powera.com/c/deal-drop/?srt=relevance&flt=1389-deal%20drop&rslt=24&r=1",
         "source_type":  "sales_page",
         "allowed_to_fetch":  true
     },
-    {
-        "brand":  "8BitDo",
-        "category":  "gaming",
-        "url":  "https://www.8bitdo.com/",
-        "source_type":  "home_page",
-        "allowed_to_fetch":  true
-    },
+
     {
         "brand":  "DXRacer",
         "category":  "gaming",
-        "url":  "https://www.dxracer.com/collections/all-products/sale",
+        "url":  "https://www.dxracer.com/collections/promotions",
         "source_type":  "sales_page",
         "allowed_to_fetch":  true
     },
-    {
-        "brand":  "Cooler Master",
-        "category":  "gaming",
-        "url":  "https://www.coolermaster.com/catalog/promotions/",
-        "source_type":  "promotions_page",
-        "allowed_to_fetch":  true
-    },
+
     {
         "brand":  "NZXT",
         "category":  "gaming",
-        "url":  "https://nzxt.com/category/sales",
+        "url":  "https://nzxt.com/collections/deals",
         "source_type":  "sales_page",
         "allowed_to_fetch":  true
     },
-    {
-        "brand":  "Scuf Gaming",
-        "category":  "gaming",
-        "url":  "https://www.scufgaming.com/sale",
-        "source_type":  "sales_page",
-        "allowed_to_fetch":  true
-    },
+
     {
         "brand":  "Glorious",
         "category":  "gaming",
-        "url":  "https://www.pcgamingrace.com/collections/sale",
+        "url":  "https://www.gloriousgaming.com/collections/glorious-deals",
         "source_type":  "sales_page",
         "allowed_to_fetch":  true
     },
-    {
-        "brand":  "KontrolFreek",
-        "category":  "gaming",
-        "url":  "https://www.kontrolfreek.com/collections/sale",
-        "source_type":  "sales_page",
-        "allowed_to_fetch":  true
-    },
+ 
     {
         "brand":  "Chewy",
         "category":  "pets",
