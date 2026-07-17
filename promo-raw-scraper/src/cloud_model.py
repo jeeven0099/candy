@@ -77,16 +77,8 @@ def _finish_parsing(
         elif not key:
             unique.append(p)
 
-    # Fallback: synthesize from price grid when LLM found nothing
-    if not unique:
-        synthesized = helper._synthesize_sale_from_price_grid(text, brand, category, source_path)
-        if synthesized:
-            dv = synthesized[0].discount_value or ""
-            print(f"[SYNTH] {brand}: cloud model found 0 deals — synthesized from price grid ({dv})")
-            return synthesized
-
-    # Collapse product-grid deals when LLM returned many individual sale items
-    if len(unique) >= 5:
+    # Collapse product-grid deals when LLM returned multiple individual sale items
+    if len(unique) >= 2:
         grid_deals = [
             p for p in unique
             if p.promotion_type in ("sale",)
@@ -95,7 +87,7 @@ def _finish_parsing(
             and not p.requires_app
             and not p.promo_code
         ]
-        if len(grid_deals) >= 5 and len(grid_deals) / len(unique) >= 0.8:
+        if len(grid_deals) >= 2 and len(grid_deals) / len(unique) >= 0.8:
             synthesized = helper._synthesize_sale_from_price_grid(text, brand, category, source_path)
             if synthesized:
                 dv = synthesized[0].discount_value or ""
@@ -104,6 +96,18 @@ def _finish_parsing(
                     f"collapsed into one synthesized card ({dv})"
                 )
                 return synthesized
+
+    # Always try the synthesizer — even when the LLM found deals it may have missed
+    # additional price-grid discounts. Added alongside LLM deals; dedup handles overlap.
+    synthesized = helper._synthesize_sale_from_price_grid(text, brand, category, source_path)
+    if synthesized:
+        dv = synthesized[0].discount_value or ""
+        if unique:
+            print(f"[SYNTH] {brand}: supplementing {len(unique)} LLM deal(s) with price-grid card ({dv})")
+            unique.extend(synthesized)
+        else:
+            print(f"[SYNTH] {brand}: cloud model found 0 deals — synthesized from price grid ({dv})")
+            return synthesized
 
     return unique
 

@@ -34,11 +34,24 @@ try {
         --clean-only
     Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Main pass finished (exit $LASTEXITCODE)."
 
-    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Starting failed-brand retry pass..."
-    & $python $pipeline `
-        --skip-scrape --from-step 4 `
-        --ollama-model qwen2.5:14b --ollama-timeout 3200
-    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Retry pass finished (exit $LASTEXITCODE)."
+    # Retry pass runs every 3 days only
+    $retryStampFile = "$root\promo-raw-scraper\.last_retry_date"
+    $daysSinceRetry = 999
+    if (Test-Path $retryStampFile) {
+        $lastRetry = [datetime]::Parse((Get-Content $retryStampFile))
+        $daysSinceRetry = ([datetime]::Today - $lastRetry.Date).Days
+    }
+
+    if ($daysSinceRetry -ge 3) {
+        Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Starting failed-brand retry pass (last ran $daysSinceRetry day(s) ago)..."
+        & $python $pipeline `
+            --skip-scrape --from-step 4 `
+            --ollama-model qwen2.5:14b --ollama-timeout 3200
+        Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Retry pass finished (exit $LASTEXITCODE)."
+        [datetime]::Today.ToString("yyyy-MM-dd") | Out-File $retryStampFile -Force
+    } else {
+        Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Skipping retry pass (last ran $daysSinceRetry day(s) ago, runs every 3 days)."
+    }
 
     Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Applying keyword store patches..."
     & $python "$root\promo-raw-scraper\src\apply_keyword_store.py"
