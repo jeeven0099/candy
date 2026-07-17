@@ -167,18 +167,10 @@ class OllamaModel(LocalModelInterface):
             elif not key:
                 unique.append(p)
 
-        # Fallback: synthesize a sale deal from price pairs when the LLM found nothing
-        if not unique:
-            synthesized = self._synthesize_sale_from_price_grid(text, brand, category, source_path)
-            if synthesized:
-                dv = synthesized[0].discount_value or ""
-                print(f"[SYNTH] {brand}: LLM found 0 deals — synthesized sale deal from price grid ({dv})")
-                return synthesized
-
-        # Collapse product-grid deals: if the LLM returned many individual sale items
+        # Collapse product-grid deals: if the LLM returned multiple individual sale items
         # (each with a product name as title and no promo code/membership), it has
         # mistaken a collection page for individual deals. Replace with one synthesized card.
-        if len(unique) >= 5:
+        if len(unique) >= 2:
             grid_deals = [
                 p for p in unique
                 if p.promotion_type in ("sale",)
@@ -187,7 +179,7 @@ class OllamaModel(LocalModelInterface):
                 and not p.requires_app
                 and not p.promo_code
             ]
-            if len(grid_deals) >= 5 and len(grid_deals) / len(unique) >= 0.8:
+            if len(grid_deals) >= 2 and len(grid_deals) / len(unique) >= 0.8:
                 synthesized = self._synthesize_sale_from_price_grid(text, brand, category, source_path)
                 if synthesized:
                     dv = synthesized[0].discount_value or ""
@@ -196,6 +188,19 @@ class OllamaModel(LocalModelInterface):
                         f"collapsed into one synthesized card ({dv})"
                     )
                     return synthesized
+
+        # Always try the synthesizer — even when the LLM found deals it may have missed
+        # additional price-grid discounts. The synthesized card is added alongside LLM deals,
+        # not instead of them. Normalizer dedup removes any title-level overlap.
+        synthesized = self._synthesize_sale_from_price_grid(text, brand, category, source_path)
+        if synthesized:
+            dv = synthesized[0].discount_value or ""
+            if unique:
+                print(f"[SYNTH] {brand}: supplementing {len(unique)} LLM deal(s) with price-grid card ({dv})")
+                unique.extend(synthesized)
+            else:
+                print(f"[SYNTH] {brand}: LLM found 0 deals — synthesized sale deal from price grid ({dv})")
+                return synthesized
 
         return unique
 
@@ -463,21 +468,45 @@ class OllamaModel(LocalModelInterface):
         source_path: str,
     ) -> List[Promotion]:
         """
-        Fallback for sale collection pages (e.g. Zara) where the LLM finds no
-        explicit deal text but the page is a product grid with original/sale prices.
+        Fallback synthesizer for pages where the LLM found no explicit deal text.
 
-        Detects adjacent price pairs in the text, computes the discount range,
-        and synthesizes one deal: "Brand Sale — up to X% off".
-        Only fires when enough pairs are found to be confident it's a real sale.
+        Two tiers:
+          1. Price-pair detected  — computes discount range, emits "[Brand] Sale — up to X% off"
+          2. Products only        — emits a generic "[Brand] Sale" with items as keywords,
+                                   no discount value. Fires even with a single product found.
+
+        Always returns [] if the page has neither price signals nor any product names.
         """
-        raw_prices = re.findall(r'\$\s*(\d+(?:\.\d{2})?)', text)
+        # Extract products first — used for keywords in both tiers
+        product_lines = self._extract_product_lines(text)
+        product_cats, product_kws = self._classify_products(product_lines)
+        target_gender = self._detect_gender(product_lines, text)
+
+        matched_examples: list[str] = []
+        seen_ex: set[str] = set()
+        for line in product_lines:
+            if len(matched_examples) >= 10:
+                break
+            orig = line.strip()
+            upper = orig.upper()
+            if upper not in seen_ex and len(orig) >= 4:
+                matched_examples.append(upper)
+                seen_ex.add(upper)
+
+        # Tier 1: detect price-pair markdowns.
+        # Match dollar-prefixed prices (e.g. $77, $77.00) AND bare prices with exactly
+        # two decimal places (e.g. 109.95) — product grids often omit the $ after the first
+        # item. finditer preserves document order and avoids double-counting since a
+        # $77.00 match advances past the digits before the bare pattern can re-match them.
+        raw_prices = [
+            m.group(1) or m.group(2)
+            for m in re.finditer(
+                r'\$\s*(\d+(?:\.\d{2})?)|(?<![.\d])(\d+\.\d{2})(?![.\d])',
+                text,
+            )
+        ]
         prices = [float(p) for p in raw_prices if 1.0 < float(p) < 5000]
 
-        if len(prices) < 6:
-            return []
-
-        # Look for adjacent price pairs within a small window where the ratio
-        # implies a real markdown (higher price is original, lower is sale).
         discounts: list[int] = []
         for i in range(len(prices) - 1):
             for j in range(i + 1, min(i + 4, len(prices))):
@@ -491,37 +520,20 @@ class OllamaModel(LocalModelInterface):
                 if 10 <= pct <= 85:
                     discounts.append(pct)
 
-        if len(discounts) < 3:
+        # Need at least one price pair with a real markdown (≥20%) to synthesize a deal.
+        # Product types don't need to match — a mix of shoes, chairs, and food items all
+        # qualifying is fine. What matters is that prices are actually dropping.
+        valid_discounts = [d for d in discounts if d >= 20]
+        if not valid_discounts:
             return []
 
-        max_disc = max(discounts)
-        min_disc = min(discounts)
-
-        if max_disc < 20:
-            return []
-
-        product_lines = self._extract_product_lines(text)
-        product_cats, product_kws = self._classify_products(product_lines)
-        target_gender = self._detect_gender(product_lines, text)
-
-        # Cap matched_product_examples to 10 original-case lines
-        matched_examples = []
-        seen_ex: set[str] = set()
-        for line in product_lines:
-            if len(matched_examples) >= 10:
-                break
-            orig = line.strip()
-            upper = orig.upper()
-            if upper not in seen_ex and len(orig) >= 4:
-                matched_examples.append(upper)
-                seen_ex.add(upper)
-
+        max_disc = max(valid_discounts)
+        min_disc = min(valid_discounts)
         discount_value = f"up to {max_disc}% off"
         title = f"{brand} Sale"
         summary = f"{brand} has items on sale with discounts from {min_disc}% to {max_disc}% off."
         if product_cats:
             summary += f" On sale: {', '.join(product_cats)}."
-
         return [Promotion(
             brand=brand,
             category=category,
@@ -542,7 +554,7 @@ class OllamaModel(LocalModelInterface):
             source_path=source_path,
             extraction_status="success",
             notes=[
-                f"Synthesized from product-grid price pairs ({len(discounts)} pairs found).",
+                f"Synthesized from product-grid price pairs ({len(valid_discounts)} qualifying pairs found).",
                 f"Discount range: {min_disc}%–{max_disc}%.",
                 "No explicit deal text — inferred from sale vs. original price pairs.",
             ],

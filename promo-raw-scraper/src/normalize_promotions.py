@@ -439,8 +439,16 @@ def fix_confidence(promo: dict) -> dict:
         score = min(score, 0.4)
     if promo.get("discount_type") == "unknown" and promo.get("promotion_type") == "unknown":
         score -= 0.2
-    # Unknown discount type = LLM couldn't identify a concrete deal — cap below quality threshold
-    if promo.get("discount_type") == "unknown":
+    # Grocery/food weekly-ad price drops are inherently imprecise (many items, no single
+    # discount type) but are still valid deals — value is in the product keywords.
+    _grocery_weekly = (
+        promo.get("category") in ("grocery", "food")
+        and promo.get("promotion_type") == "sale"
+    )
+    # Unknown discount type = LLM couldn't identify a concrete deal — cap below quality threshold.
+    # Exempt: grocery weekly-ad sales (inherently imprecise — many items, no single discount type).
+    _is_synthesized = bool(promo.get("synthesized"))
+    if promo.get("discount_type") == "unknown" and not _grocery_weekly:
         score = min(score, 0.6)
     # Gift card deals are not savings on products — cap below quality threshold
     combined = " ".join(filter(None, [
@@ -456,7 +464,7 @@ def fix_confidence(promo: dict) -> dict:
         score -= 0.1
     if not promo.get("discount_value") and promo.get("discount_type") not in (
         "free_item", "free_shipping", "points"
-    ):
+    ) and not _grocery_weekly:
         score -= 0.05
 
     promo["confidence_score"] = round(max(0.0, min(1.0, score)), 3)
