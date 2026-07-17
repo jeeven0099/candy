@@ -1,8 +1,10 @@
 """
 download_logos.py — download and cache brand logos locally.
 
-Reads all_promotions.json, fetches a logo for each unique root domain,
-saves to logos/{root_domain}.png. Skips already-downloaded valid logos.
+Primary source: sources/urls.json (covers all brands, including those not
+yet scraped). Secondary source: all_promotions.json (adds any extra domains
+from email/local sources). Saves to promo_viewer/assets/logos/{domain}.png
+so logos are bundled with the Flutter app. Skips already-downloaded valid logos.
 """
 from __future__ import annotations
 
@@ -10,12 +12,18 @@ import json
 import sys
 import time
 from pathlib import Path
+from urllib.parse import urlparse
 
+import urllib3
 import requests
 
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
 ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = ROOT.parent
 ALL_PROMOS = ROOT / "all_promotions.json"
-LOGOS_DIR = ROOT / "logos"
+SOURCES_FILE = ROOT / "sources" / "urls.json"
+LOGOS_DIR = REPO_ROOT / "promo_viewer" / "assets" / "logos"
 
 HEADERS = {
     "User-Agent": (
@@ -31,12 +39,16 @@ _DOMAIN_OVERRIDES: dict[str, str] = {
 }
 
 _SOURCES = [
-    "https://icon.horse/icon/{domain}",
-    "https://{domain}/apple-touch-icon.png",
-    "https://www.{domain}/apple-touch-icon.png",
-    # Google's high-res favicon API used by Google Search — returns PNG
-    "https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://{domain}&size=256",
-    "https://www.google.com/s2/favicons?domain={domain}&sz=128",
+    # Clearbit — high-quality brand logos, most reliable
+    ("https://logo.clearbit.com/{domain}", 200),
+    # Apple touch icon — high res when present
+    ("https://{domain}/apple-touch-icon.png", 500),
+    ("https://www.{domain}/apple-touch-icon.png", 500),
+    # icon.horse — logo aggregator
+    ("https://icon.horse/icon/{domain}", 500),
+    # Google high-res favicon — favicons are small so lower threshold
+    ("https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://{domain}&size=256", 100),
+    ("https://www.google.com/s2/favicons?domain={domain}&sz=128", 100),
 ]
 
 # Valid image magic bytes — ICO intentionally excluded (Flutter Web can't decode it)
@@ -61,34 +73,54 @@ def root_domain(domain: str) -> str:
 
 
 def fetch_logo(domain: str) -> bytes | None:
-    for url_tpl in _SOURCES:
+    for url_tpl, min_size in _SOURCES:
         url = url_tpl.format(domain=domain)
         try:
-            r = requests.get(url, headers=HEADERS, timeout=12, allow_redirects=True)
-            if r.status_code == 200 and len(r.content) >= 500 and is_valid_image(r.content):
+            r = requests.get(url, headers=HEADERS, timeout=12, allow_redirects=True, verify=False)
+            if r.status_code == 200 and len(r.content) >= min_size and is_valid_image(r.content):
                 return r.content
         except Exception:
             pass
-        time.sleep(0.3)
+        time.sleep(0.2)
     return None
+
+
+def _domain_from_url(url: str) -> str:
+    """Extract root domain from a full URL string."""
+    try:
+        host = urlparse(url).netloc.lower().lstrip("www.")
+        return root_domain(host)
+    except Exception:
+        return ""
 
 
 def main() -> None:
     LOGOS_DIR.mkdir(exist_ok=True)
 
-    raw = ALL_PROMOS.read_text(encoding="utf-8")
-    data = json.loads(raw)
-    promos = data.get("promotions", []) if isinstance(data, dict) else data
-
-    # Collect unique root domains
     domains: dict[str, str] = {}  # root_domain -> brand name (for display)
-    for p in promos:
-        domain = (p.get("website_domain") or "").strip()
-        if not domain:
-            continue
-        rd = root_domain(domain)
-        if rd not in domains:
-            domains[rd] = p.get("brand", rd)
+
+    # Primary: urls.json — covers every brand including unscraped ones
+    if SOURCES_FILE.exists():
+        sources = json.loads(SOURCES_FILE.read_text(encoding="utf-8-sig"))
+        for entry in sources:
+            if not entry.get("allowed_to_fetch", True):
+                continue
+            rd = _domain_from_url(entry.get("url", ""))
+            if rd and rd not in domains:
+                domains[rd] = entry.get("brand", rd)
+
+    # Secondary: all_promotions.json — adds domains from email/local sources
+    if ALL_PROMOS.exists():
+        raw = ALL_PROMOS.read_text(encoding="utf-8")
+        data = json.loads(raw)
+        promos = data.get("promotions", []) if isinstance(data, dict) else data
+        for p in promos:
+            domain = (p.get("website_domain") or "").strip()
+            if not domain:
+                continue
+            rd = root_domain(domain)
+            if rd and rd not in domains:
+                domains[rd] = p.get("brand", rd)
 
     # Delete any existing files that are not valid images (icon.horse HTML responses)
     invalid_deleted = 0
