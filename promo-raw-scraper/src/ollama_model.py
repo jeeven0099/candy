@@ -494,31 +494,43 @@ class OllamaModel(LocalModelInterface):
                 seen_ex.add(upper)
 
         # Tier 1: detect price-pair markdowns.
-        # Match dollar-prefixed prices (e.g. $77, $77.00) AND bare prices with exactly
-        # two decimal places (e.g. 109.95) — product grids often omit the $ after the first
-        # item. finditer preserves document order and avoids double-counting since a
-        # $77.00 match advances past the digits before the bare pattern can re-match them.
-        raw_prices = [
-            m.group(1) or m.group(2)
-            for m in re.finditer(
-                r'\$\s*(\d+(?:\.\d{2})?)|(?<![.\d])(\d+\.\d{2})(?![.\d])',
-                text,
-            )
-        ]
-        prices = [float(p) for p in raw_prices if 1.0 < float(p) < 5000]
+        # Match dollar-prefixed and bare 2-decimal prices in document order, then only
+        # pair adjacent prices where the text between them contains ≤20 alphabetic
+        # characters. This allows short labels ("Was", "Regular", "Save") but rejects
+        # product names that separate different grid items — preventing cross-product
+        # inflation like pairing a $42 bag against a $249 dress three rows away.
+        # Dollar amounts handle comma-separated thousands (e.g. $2,999.00 → 2999.0).
+        # Bare prices require exactly two decimal places to avoid matching ratings/counts.
+        _price_re = re.compile(
+            r'\$\s*(\d[\d,]*(?:\.\d{2})?)|(?<![.\d])(\d+\.\d{2})(?![.\d])'
+        )
+        price_matches = list(_price_re.finditer(text))
 
         discounts: list[int] = []
-        for i in range(len(prices) - 1):
-            for j in range(i + 1, min(i + 4, len(prices))):
-                lo, hi = prices[i], prices[j]
-                if hi <= lo:
-                    lo, hi = hi, lo
-                if hi == 0:
-                    continue
-                ratio = (hi - lo) / hi
-                pct = round(ratio * 100)
-                if 10 <= pct <= 85:
-                    discounts.append(pct)
+        for i in range(len(price_matches) - 1):
+            m_i, m_j = price_matches[i], price_matches[i + 1]
+            between = text[m_i.end():m_j.start()]
+            # Skip price-range UI ("$100 - $300"), savings-amount labels, and
+            # navigation/filter text that separates unrelated prices.
+            between_stripped = between.strip()
+            if between_stripped in ("-", "–", "to"):
+                continue
+            between_lower = between.lower()
+            if any(kw in between_lower for kw in ("save", "refine", "filter", "rebate")):
+                continue
+            if sum(c.isalpha() for c in between) > 20:
+                continue  # product name between prices → different items, not a pair
+            v_i = float((m_i.group(1) or m_i.group(2)).replace(",", ""))
+            v_j = float((m_j.group(1) or m_j.group(2)).replace(",", ""))
+            if not (1.0 < v_i < 5000 and 1.0 < v_j < 5000):
+                continue
+            lo, hi = min(v_i, v_j), max(v_i, v_j)
+            if hi == 0:
+                continue
+            ratio = (hi - lo) / hi
+            pct = round(ratio * 100)
+            if 10 <= pct <= 85:
+                discounts.append(pct)
 
         # Need at least one price pair with a real markdown (≥20%) to synthesize a deal.
         # Product types don't need to match — a mix of shoes, chairs, and food items all
