@@ -106,7 +106,7 @@ def _extract_domain(url: str) -> str:
 def load_brand_lookup(sources_file: Path) -> Dict[str, Dict[str, str]]:
     if not sources_file.exists():
         return {}
-    sources = json.loads(sources_file.read_text(encoding="utf-8"))
+    sources = json.loads(sources_file.read_text(encoding="utf-8-sig"))
     lookup: Dict[str, Dict[str, str]] = {}
     for entry in sources:
         brand = entry.get("brand", "")
