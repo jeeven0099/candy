@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-17T14:32:04.470585+00:00",
+  "generated_at": "2026-07-19T15:37:04.176736+00:00",
   "threshold": 60.0,
-  "total": 11,
+  "total": 16,
   "candidates": [
     {
       "promo_id": "nikon_upto50offonsaleitems",
@@ -23,6 +23,63 @@
       "source_url": "https://www.nikonusa.com/cameras-on-sale"
     },
     {
+      "promo_id": "urbanoutfitters_buyonegetonefreestandardclothpregamehoodies",
+      "brand": "Urban Outfitters",
+      "category": "retail",
+      "title": "Buy One, Get One FREE Standard Cloth Pregame Hoodies",
+      "notify_score": 79.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Urban Outfitters",
+      "notification_body": "Free: Buy One, Get One FREE Standard Cloth Pregame Hoodies",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 55.0,
+      "end_date": null,
+      "website_domain": "urbanoutfitters.com",
+      "source_url": "https://www.urbanoutfitters.com/sale"
+    },
+    {
+      "promo_id": "boxlunch_semiannualsale",
+      "brand": "BoxLunch",
+      "category": "fashion",
+      "title": "Semi-Annual Sale!",
+      "notify_score": 71.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "BoxLunch",
+      "notification_body": "Semi-Annual Sale!",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "estimated_savings": 45.5,
+      "end_date": null,
+      "website_domain": "boxlunch.com",
+      "source_url": "https://www.boxlunch.com/sale/"
+    },
+    {
+      "promo_id": "americaneagle_3050offeverythingincludingjeans",
+      "brand": "American Eagle",
+      "category": "fashion",
+      "title": "30-50% off everything, including jeans!",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "American Eagle",
+      "notification_body": "30-50% off everything, including jeans!",
+      "discount_type": "percentage_off",
+      "discount_value": "30-50%",
+      "estimated_savings": 27.5,
+      "end_date": null,
+      "website_domain": "ae.com",
+      "source_url": "https://www.ae.com/us/en?redirectedFrom=plp/us/en/c/ae/sale/cat4840004"
+    },
+    {
       "promo_id": "bludot_modernfurnitureonsale",
       "brand": "Blu Dot",
       "category": "home_goods",
@@ -40,25 +97,6 @@
       "end_date": null,
       "website_domain": "bludot.com",
       "source_url": "https://www.bludot.com/sale.html"
-    },
-    {
-      "promo_id": "cider_summerclearance",
-      "brand": "Cider",
-      "category": "fashion",
-      "title": "Summer Clearance",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Cider",
-      "notification_body": "Summer Clearance",
-      "discount_type": "percentage_off",
-      "discount_value": "70%",
-      "estimated_savings": 45.5,
-      "end_date": null,
-      "website_domain": "shopcider.com",
-      "source_url": null
     },
     {
       "promo_id": "clubmonaco_shopallsaleupto70off",
@@ -156,61 +194,118 @@
       "source_url": "https://www.luckybrand.com/"
     },
     {
-      "promo_id": "ninewest_summercybersaleextra50offselect",
-      "brand": "Nine West",
+      "promo_id": "michaelkors_upto60offselectstyles",
+      "brand": "Michael Kors",
       "category": "fashion",
-      "title": "Summer Cyber Sale - Extra 50% Off Select",
+      "title": "Up To 60% Off Select Styles",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Nine West",
-      "notification_body": "Summer Cyber Sale - Extra 50% Off Select",
+      "notification_title": "Michael Kors",
+      "notification_body": "Up To 60% Off Select Styles",
       "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 32.5,
+      "discount_value": "up to 60%",
+      "estimated_savings": 33.0,
       "end_date": null,
-      "website_domain": "ninewest.com",
-      "source_url": "https://ninewest.com/collections/sale"
+      "website_domain": "michaelkors.com",
+      "source_url": "https://www.michaelkors.com/sale"
     },
     {
-      "promo_id": "talbots_4thofjulycelebration",
-      "brand": "Talbots",
+      "promo_id": "ragbone_extra30offsale",
+      "brand": "Rag & Bone",
       "category": "fashion",
-      "title": "4th of July Celebration!",
+      "title": "Extra 30% Off Sale",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Talbots",
-      "notification_body": "4th of July Celebration!",
+      "notification_title": "Rag & Bone",
+      "notification_body": "Extra 30% Off Sale",
       "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 32.5,
-      "end_date": null,
-      "website_domain": "talbots.com",
-      "source_url": "https://www.talbots.com/sale"
+      "discount_value": "30%",
+      "estimated_savings": 19.5,
+      "end_date": "2026-07-20",
+      "website_domain": "rag-bone.com",
+      "source_url": "https://www.rag-bone.com/sale"
     },
     {
-      "promo_id": "tillys_rsqjeansbuyonegetone50off",
+      "promo_id": "tillys_clearanceupto60off",
       "brand": "Tillys",
-      "category": "retail",
-      "title": "RSQ Jeans - Buy One, Get One 50% Off",
-      "notify_score": 61.0,
+      "category": "fashion",
+      "title": "Clearance up to 60% Off",
+      "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Tillys",
-      "notification_body": "RSQ Jeans - Buy One, Get One 50% Off",
+      "notification_body": "Clearance up to 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 39.0,
+      "end_date": null,
+      "website_domain": "tillys.com",
+      "source_url": "https://www.tillys.com/"
+    },
+    {
+      "promo_id": "tillys_rsqjeansbuyonegetone50off",
+      "brand": "Tillys",
+      "category": "fashion",
+      "title": "RSQ Jeans - Buy One, Get One 50% Off*",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Tillys",
+      "notification_body": "RSQ Jeans - Buy One, Get One 50% Off*",
       "discount_type": "percentage_off",
       "discount_value": "50%",
       "estimated_savings": 27.5,
       "end_date": null,
       "website_domain": "tillys.com",
       "source_url": "https://www.tillys.com/"
+    },
+    {
+      "promo_id": "tillys_womensshortsbuyonegetone50off",
+      "brand": "Tillys",
+      "category": "fashion",
+      "title": "Women's Shorts Buy One, Get One 50% Off*",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Tillys",
+      "notification_body": "Women's Shorts Buy One, Get One 50% Off*",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "tillys.com",
+      "source_url": "https://www.tillys.com/"
+    },
+    {
+      "promo_id": "dsw_upto60offclearanceonlineonly",
+      "brand": "DSW",
+      "category": "retail",
+      "title": "Up to 60% off clearance online only!",
+      "notify_score": 63.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "DSW",
+      "notification_body": "Up to 60% off clearance online only!",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 48.0,
+      "end_date": null,
+      "website_domain": "dsw.com",
+      "source_url": "https://www.dsw.com/"
     }
   ]
 }
