@@ -1,16 +1,16 @@
 """
-run_keyword_backfill.py — Incremental Groq keyword backfill for existing promotions.
+run_keyword_backfill.py — Incremental keyword backfill for existing promotions.
 
 Each run:
   1. Loads/builds a queue of brands that lack new-schema keywords.
   2. Takes the next --batch brands from the queue.
-  3. Calls Groq with a lightweight keyword-only prompt per brand.
+  3. Calls Groq or Ollama with a lightweight keyword-only prompt per brand.
   4. Patches product_keywords_explicit / product_keywords_contextual / product_categories
      directly into all_promotions.json (and merged_promotions.json if present).
   5. Saves progress to keyword_backfill_queue.json.
 
 Usage:
-  python run_keyword_backfill.py [--batch 10] [--rebuild-queue]
+  python run_keyword_backfill.py [--batch 10] [--rebuild-queue] [--ollama] [--ollama-model MODEL]
 """
 
 from __future__ import annotations
@@ -39,7 +39,9 @@ ASSETS_DIR     = ROOT.parent / "promo_viewer" / "assets"
 ALL_PROMOS     = ASSETS_DIR / "all_promotions.json"
 MERGED_PROMOS  = ASSETS_DIR / "merged_promotions.json"
 
-GROQ_MODEL = "llama-3.3-70b-versatile"
+GROQ_MODEL   = "llama-3.3-70b-versatile"
+OLLAMA_MODEL = "qwen2.5:14b"
+OLLAMA_HOST  = "http://localhost:11434"
 
 # ── Env ───────────────────────────────────────────────────────────────────────
 
@@ -162,6 +164,37 @@ def call_groq_keywords(
     except Exception as exc:
         raise exc
 
+
+def call_ollama_keywords(
+    brand: str,
+    category: str,
+    text: str,
+    model: str = OLLAMA_MODEL,
+) -> Optional[dict]:
+    """Call local Ollama with a keyword-only prompt. Returns dict or raises on error."""
+    import requests as _requests
+    safe_text = text[:5000]
+    prompt = _KEYWORD_PROMPT.format(
+        brand=brand,
+        category=category or "retail",
+        text=safe_text,
+    )
+    payload = {
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "stream": False,
+        "format": "json",
+        "options": {"num_predict": 512, "num_ctx": 8192},
+    }
+    response = _requests.post(f"{OLLAMA_HOST}/api/chat", json=payload, timeout=120, verify=False)
+    response.raise_for_status()
+    raw = response.json().get("message", {}).get("content", "")
+    data = json.loads(raw)
+    return {
+        "product_keywords": [s for s in data.get("product_keywords", []) if isinstance(s, str)],
+        "product_categories": [s for s in data.get("product_categories", []) if isinstance(s, str)],
+    }
+
 # ── Promotions patching ───────────────────────────────────────────────────────
 
 def patch_promotions_file(path: Path, brand: str, keywords: list[str], categories: list[str]) -> int:
@@ -196,15 +229,18 @@ def patch_promotions_file(path: Path, brand: str, keywords: list[str], categorie
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Incremental Groq keyword backfill.")
+    parser = argparse.ArgumentParser(description="Incremental keyword backfill (Groq or Ollama).")
     parser.add_argument("--batch", type=int, default=10, help="Brands to process per run (default: 10)")
     parser.add_argument("--rebuild-queue", action="store_true", help="Rebuild queue from scratch")
+    parser.add_argument("--ollama", action="store_true", help="Use local Ollama instead of Groq")
+    parser.add_argument("--ollama-model", default=OLLAMA_MODEL, help=f"Ollama model to use (default: {OLLAMA_MODEL})")
     args = parser.parse_args()
 
+    use_ollama = args.ollama
     api_key = os.environ.get("GROQ_API_KEY", "")
-    if not api_key:
-        print("ERROR: GROQ_API_KEY not set.")
-        return
+    if not use_ollama and not api_key:
+        print("No GROQ_API_KEY set — falling back to Ollama.")
+        use_ollama = True
 
     # Load promotions
     if not ALL_PROMOS.exists():
@@ -226,10 +262,12 @@ def main() -> None:
     print(f"Backfill batch: {len(batch)} brands ({len(pending)} total pending)")
     print(f"Queue: {len(q['done'])} done, {len(q['failed'])} failed\n")
 
-    client = Groq(
+    client = None if use_ollama else Groq(
         api_key=api_key,
         http_client=httpx.Client(verify=False),
     )
+    backend = f"Ollama ({args.ollama_model})" if use_ollama else f"Groq ({GROQ_MODEL})"
+    print(f"Backend: {backend}\n")
 
     results = {"done": 0, "failed": 0, "no_text": 0, "quota_hit": False}
 
@@ -248,7 +286,10 @@ def main() -> None:
 
         print(f"  [{i+1}/{len(batch)}] {brand} ...", end=" ", flush=True)
         try:
-            kw_data = call_groq_keywords(client, brand, cat, text)
+            if use_ollama:
+                kw_data = call_ollama_keywords(brand, cat, text, model=args.ollama_model)
+            else:
+                kw_data = call_groq_keywords(client, brand, cat, text)
             kws = kw_data["product_keywords"]
             cats = kw_data["product_categories"]
 
@@ -281,12 +322,12 @@ def main() -> None:
             q["failed"].append(brand)
             results["failed"] += 1
 
-        if i < len(batch) - 1:
-            time.sleep(2)  # small delay between Groq calls
+        if i < len(batch) - 1 and not use_ollama:
+            time.sleep(2)  # rate limit buffer for Groq
 
     save_queue(q)
 
-    print(f"\n── Summary ─────────────────────────────────")
+    print("\n-- Summary ----------------------------------")
     print(f"  Done:     {results['done']}")
     print(f"  Failed:   {results['failed']}")
     print(f"  No text:  {results['no_text']}")
