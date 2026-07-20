@@ -337,7 +337,35 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 22.0
+      "global_quality_score": 22.0,
+      "product_keywords_contextual": [
+        "Grills",
+        "Smokers",
+        "Lawn Mowers",
+        "Outdoor Power Equipment",
+        "Patio Furniture",
+        "Tools",
+        "Ladders",
+        "Drinkware",
+        "Hedge Trimmer",
+        "String Trimmer",
+        "Drill",
+        "Impact Driver",
+        "Circular Saw",
+        "Batteries",
+        "Chargers",
+        "Tool Box",
+        "Tumbler",
+        "Travel Mug",
+        "Canopy",
+        "Umbrella",
+        "Folding Chair",
+        "Water Heater",
+        "Electric Water Heater",
+        "Fungus Control",
+        "Fertilizer"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Ace Hardware",
@@ -414,7 +442,35 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 28.0
+      "global_quality_score": 28.0,
+      "product_keywords_contextual": [
+        "Grills",
+        "Smokers",
+        "Lawn Mowers",
+        "Outdoor Power Equipment",
+        "Patio Furniture",
+        "Tools",
+        "Ladders",
+        "Drinkware",
+        "Hedge Trimmer",
+        "String Trimmer",
+        "Drill",
+        "Impact Driver",
+        "Circular Saw",
+        "Batteries",
+        "Chargers",
+        "Tool Box",
+        "Tumbler",
+        "Travel Mug",
+        "Canopy",
+        "Umbrella",
+        "Folding Chair",
+        "Water Heater",
+        "Electric Water Heater",
+        "Fungus Control",
+        "Fertilizer"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Acer",
@@ -669,7 +725,33 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "running shoes",
+        "walking shoes",
+        "slides",
+        "sandals",
+        "low profile",
+        "soccer cleats",
+        "basketball shoes",
+        "workout shoes",
+        "golf shoes",
+        "shorts",
+        "pants",
+        "shirts",
+        "tops",
+        "graphic tees",
+        "jerseys",
+        "sweatpants",
+        "tracksuits",
+        "swimwear",
+        "hoodies",
+        "sweatshirts",
+        "jackets",
+        "socks",
+        "hats",
+        "beanies",
+        "bags"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -1258,7 +1340,28 @@
       "estimated_item_value": 35.0,
       "estimated_savings": 24.5,
       "value_reason": "70% off, brand/cat est. ($35) ≈ $24 savings | type=16 + savings=15 = 31",
-      "global_quality_score": 55.0
+      "global_quality_score": 55.0,
+      "product_keywords_contextual": [
+        "bras",
+        "bralettes",
+        "undies",
+        "swimsuits",
+        "activewear",
+        "pajamas",
+        "shorts",
+        "leggings",
+        "hoodies",
+        "t-shirts",
+        "tanks",
+        "sweaters",
+        "cardigans",
+        "joggers",
+        "sweatpants",
+        "sports bras",
+        "workout tops",
+        "coverups"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Aldi",
@@ -1535,7 +1638,26 @@
       "estimated_item_value": 80.0,
       "estimated_savings": 40.0,
       "value_reason": "50% off, brand/cat est. ($80) ≈ $40 savings | type=16 + savings=25 = 41",
-      "global_quality_score": 62.0
+      "global_quality_score": 62.0,
+      "product_keywords_contextual": [
+        "slipper",
+        "ring",
+        "satchel bag",
+        "bucket bag",
+        "shoulder bag",
+        "crossbody bag",
+        "ballerina",
+        "heeled sandal",
+        "gladiator sandal",
+        "thong sandal",
+        "wedge sandal",
+        "slide sandal",
+        "loafer",
+        "oxford shoe",
+        "ankle boot",
+        "low top sneaker"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Allbirds",
@@ -2629,7 +2751,26 @@
       "estimated_item_value": 80.0,
       "estimated_savings": 21.0,
       "value_reason": "50% off, vague deal, conservative est. ($42) ≈ $21 savings | type=16 + savings=15 = 31",
-      "global_quality_score": 39.0
+      "global_quality_score": 39.0,
+      "product_keywords_contextual": [
+        "Dresses",
+        "Pants",
+        "Shirts",
+        "Sweaters",
+        "Suits",
+        "Tops",
+        "Jackets",
+        "Skirts",
+        "Shoes",
+        "Swim",
+        "Accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories",
+        "footwear"
+      ]
     },
     {
       "brand": "Ann Taylor",
@@ -2697,7 +2838,26 @@
       "estimated_item_value": 80.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 14.0
+      "global_quality_score": 14.0,
+      "product_keywords_contextual": [
+        "Dresses",
+        "Pants",
+        "Shirts",
+        "Sweaters",
+        "Suits",
+        "Tops",
+        "Jackets",
+        "Skirts",
+        "Shoes",
+        "Swim",
+        "Accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories",
+        "footwear"
+      ]
     },
     {
       "brand": "Ann Taylor",
@@ -2766,7 +2926,26 @@
       "estimated_item_value": 80.0,
       "estimated_savings": 15.0,
       "value_reason": "birthday reward, est. free item ≈ $15 | type=18 + savings=15 = 33",
-      "global_quality_score": 41.0
+      "global_quality_score": 41.0,
+      "product_keywords_contextual": [
+        "Dresses",
+        "Pants",
+        "Shirts",
+        "Sweaters",
+        "Suits",
+        "Tops",
+        "Jackets",
+        "Skirts",
+        "Shoes",
+        "Swim",
+        "Accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "accessories",
+        "footwear"
+      ]
     },
     {
       "brand": "Anthropologie",
@@ -3109,7 +3288,19 @@
       "estimated_item_value": 14.0,
       "estimated_savings": 5.0,
       "value_reason": "free trial, nominal value ≈ $5 | type=8 + savings=3 = 11",
-      "global_quality_score": 28.0
+      "global_quality_score": 28.0,
+      "product_keywords_contextual": [
+        "Apple TV",
+        "iPhone",
+        "iPad",
+        "Mac",
+        "Apple Vision Pro",
+        "smart TV",
+        "streaming device",
+        "Apple TV 4K",
+        "AirPlay"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Apple TV+",
@@ -3187,7 +3378,19 @@
       "estimated_item_value": 14.0,
       "estimated_savings": 2.8,
       "value_reason": "sale price, est. 20% off $14 ≈ $3 savings | type=6 + savings=3 = 9",
-      "global_quality_score": 26.0
+      "global_quality_score": 26.0,
+      "product_keywords_contextual": [
+        "Apple TV",
+        "iPhone",
+        "iPad",
+        "Mac",
+        "Apple Vision Pro",
+        "smart TV",
+        "streaming device",
+        "Apple TV 4K",
+        "AirPlay"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Apple TV+",
@@ -3265,7 +3468,19 @@
       "estimated_item_value": 14.0,
       "estimated_savings": 4.2,
       "value_reason": "30% off, brand/cat est. ($14) ≈ $4 savings | type=12 + savings=3 = 15",
-      "global_quality_score": 32.0
+      "global_quality_score": 32.0,
+      "product_keywords_contextual": [
+        "Apple TV",
+        "iPhone",
+        "iPad",
+        "Mac",
+        "Apple Vision Pro",
+        "smart TV",
+        "streaming device",
+        "Apple TV 4K",
+        "AirPlay"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Applebee's",
@@ -3347,7 +3562,19 @@
       "estimated_item_value": 16.0,
       "estimated_savings": 8.0,
       "value_reason": "50% off, brand/cat est. ($16) ≈ $8 savings | type=16 + savings=8 = 24",
-      "global_quality_score": 44.0
+      "global_quality_score": 44.0,
+      "product_keywords_contextual": [
+        "Chicken Wonton Tacos",
+        "Classic Combo",
+        "Mozzarella Sticks",
+        "America’s Favorite Boneless Wings",
+        "Southwest Chicken Irresist-A-Bowl",
+        "Quesadilla Chicken Salad",
+        "Perfect Margarita",
+        "Shark Bowl",
+        "Bahama Mama"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Applebee's",
@@ -3427,7 +3654,19 @@
       "estimated_item_value": 16.0,
       "estimated_savings": 15.0,
       "value_reason": "birthday reward, est. free item ≈ $15 | type=18 + savings=15 = 33",
-      "global_quality_score": 41.0
+      "global_quality_score": 41.0,
+      "product_keywords_contextual": [
+        "Chicken Wonton Tacos",
+        "Classic Combo",
+        "Mozzarella Sticks",
+        "America’s Favorite Boneless Wings",
+        "Southwest Chicken Irresist-A-Bowl",
+        "Quesadilla Chicken Salad",
+        "Perfect Margarita",
+        "Shark Bowl",
+        "Bahama Mama"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Arby's",
@@ -3508,7 +3747,9 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 2.0,
       "value_reason": "20% off, brand/cat est. ($10) ≈ $2 savings | type=8 + savings=3 = 11",
-      "global_quality_score": 23.0
+      "global_quality_score": 23.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Aritzia",
@@ -5420,7 +5661,13 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 22.75,
       "value_reason": "35% off, brand/cat est. ($65) ≈ $23 savings | type=12 + savings=15 = 27",
-      "global_quality_score": 51.0
+      "global_quality_score": 51.0,
+      "product_keywords_contextual": [
+        "car",
+        "rental car",
+        "vehicle"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Avis",
@@ -5495,7 +5742,13 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 6.5,
       "value_reason": "10% off, brand/cat est. ($65) ≈ $6 savings | type=5 + savings=8 = 13",
-      "global_quality_score": 37.0
+      "global_quality_score": 37.0,
+      "product_keywords_contextual": [
+        "car",
+        "rental car",
+        "vehicle"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Avis",
@@ -5570,7 +5823,13 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 15.0,
       "value_reason": "free item, est. ≈ $15 savings | type=20 + savings=15 = 35",
-      "global_quality_score": 59.0
+      "global_quality_score": 59.0,
+      "product_keywords_contextual": [
+        "car",
+        "rental car",
+        "vehicle"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Avis",
@@ -5645,7 +5904,13 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 16.25,
       "value_reason": "25% off, brand/cat est. ($65) ≈ $16 savings | type=8 + savings=15 = 23",
-      "global_quality_score": 47.0
+      "global_quality_score": 47.0,
+      "product_keywords_contextual": [
+        "car",
+        "rental car",
+        "vehicle"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Avis",
@@ -5720,7 +5985,13 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 10.0,
       "value_reason": "$10 off | type=10 + savings=8 = 18",
-      "global_quality_score": 38.0
+      "global_quality_score": 38.0,
+      "product_keywords_contextual": [
+        "car",
+        "rental car",
+        "vehicle"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Banana Republic",
@@ -6933,7 +7204,9 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 25.0
+      "global_quality_score": 25.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Bed Bath & Beyond",
@@ -7675,7 +7948,21 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "Backpacks",
+        "Sneakers",
+        "Swimwear",
+        "Dorm",
+        "Fragrances",
+        "Sunglasses",
+        "Towels",
+        "Dresses",
+        "Bra",
+        "Foundation",
+        "Shorts",
+        "Sandals",
+        "Tops"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -7866,7 +8153,9 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 10.0,
       "value_reason": "free item, est. ≈ $10 savings | type=20 + savings=8 = 28",
-      "global_quality_score": 46.0
+      "global_quality_score": 46.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Benihana",
@@ -7942,7 +8231,9 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 10.0,
       "value_reason": "birthday reward, est. free item ≈ $10 | type=18 + savings=8 = 26",
-      "global_quality_score": 45.0
+      "global_quality_score": 45.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Best Buy",
@@ -8176,7 +8467,25 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "washer",
+        "dryer",
+        "LED TV",
+        "doorbell",
+        "indoor camera",
+        "mesh Wi-Fi system",
+        "ice maker",
+        "Chromebook Laptop",
+        "refrigerator",
+        "gas range",
+        "air fryer oven",
+        "digital wall clock",
+        "lawn mower",
+        "tower fan",
+        "robotic lawn mower",
+        "massage chair",
+        "elliptical trainer"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -9437,7 +9746,9 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 19.6,
       "value_reason": "70% off, vague deal, conservative est. ($28) ≈ $20 savings | type=16 + savings=15 = 31",
-      "global_quality_score": 55.0
+      "global_quality_score": 55.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Boohoo",
@@ -9514,7 +9825,9 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 28.0
+      "global_quality_score": 28.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Bowlero",
@@ -9561,7 +9874,25 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "bowling balls",
+        "shoes",
+        "arcade games",
+        "air hockey",
+        "claw machines",
+        "pinball machines",
+        "racing games",
+        "food",
+        "drinks",
+        "pizza",
+        "nachos",
+        "chicken tenders",
+        "pretzels",
+        "beer",
+        "margaritas",
+        "lemonades",
+        "soda"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -9734,7 +10065,25 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "bowling balls",
+        "shoes",
+        "arcade games",
+        "air hockey",
+        "claw machines",
+        "pinball machines",
+        "racing games",
+        "food",
+        "drinks",
+        "pizza",
+        "nachos",
+        "chicken tenders",
+        "pretzels",
+        "beer",
+        "margaritas",
+        "lemonades",
+        "soda"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -9812,7 +10161,25 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "bowling balls",
+        "shoes",
+        "arcade games",
+        "air hockey",
+        "claw machines",
+        "pinball machines",
+        "racing games",
+        "food",
+        "drinks",
+        "pizza",
+        "nachos",
+        "chicken tenders",
+        "pretzels",
+        "beer",
+        "margaritas",
+        "lemonades",
+        "soda"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -9893,7 +10260,25 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "bowling balls",
+        "shoes",
+        "arcade games",
+        "air hockey",
+        "claw machines",
+        "pinball machines",
+        "racing games",
+        "food",
+        "drinks",
+        "pizza",
+        "nachos",
+        "chicken tenders",
+        "pretzels",
+        "beer",
+        "margaritas",
+        "lemonades",
+        "soda"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -9974,7 +10359,25 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "bowling balls",
+        "shoes",
+        "arcade games",
+        "air hockey",
+        "claw machines",
+        "pinball machines",
+        "racing games",
+        "food",
+        "drinks",
+        "pizza",
+        "nachos",
+        "chicken tenders",
+        "pretzels",
+        "beer",
+        "margaritas",
+        "lemonades",
+        "soda"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -10052,7 +10455,25 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "bowling balls",
+        "shoes",
+        "arcade games",
+        "air hockey",
+        "claw machines",
+        "pinball machines",
+        "racing games",
+        "food",
+        "drinks",
+        "pizza",
+        "nachos",
+        "chicken tenders",
+        "pretzels",
+        "beer",
+        "margaritas",
+        "lemonades",
+        "soda"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -10908,7 +11329,13 @@
       "estimated_item_value": 15.0,
       "estimated_savings": 19.99,
       "value_reason": "$20 off | type=10 + savings=15 = 25",
-      "global_quality_score": 45.0
+      "global_quality_score": 45.0,
+      "product_keywords_contextual": [
+        "entrees",
+        "sides",
+        "drinks"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Burger King",
@@ -10985,7 +11412,15 @@
       "estimated_item_value": 8.0,
       "estimated_savings": 8.0,
       "value_reason": "free item, est. ≈ $8 savings | type=20 + savings=8 = 28",
-      "global_quality_score": 31.0
+      "global_quality_score": 31.0,
+      "product_keywords_contextual": [
+        "Whopper",
+        "Chicken Sandwich",
+        "Crown Nuggets",
+        "Fries",
+        "Shake"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Burger King",
@@ -11064,7 +11499,15 @@
       "estimated_item_value": 8.0,
       "estimated_savings": 1.6,
       "value_reason": "sale price, est. 20% off $8 ≈ $2 savings | type=6 + savings=3 = 9",
-      "global_quality_score": 18.0
+      "global_quality_score": 18.0,
+      "product_keywords_contextual": [
+        "Whopper",
+        "Chicken Sandwich",
+        "Crown Nuggets",
+        "Fries",
+        "Shake"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Burger King",
@@ -11138,7 +11581,15 @@
       "estimated_item_value": 8.0,
       "estimated_savings": 3.5,
       "value_reason": "free item, est. ≈ $4 savings | type=20 + savings=3 = 23",
-      "global_quality_score": 37.0
+      "global_quality_score": 37.0,
+      "product_keywords_contextual": [
+        "Whopper",
+        "Chicken Sandwich",
+        "Crown Nuggets",
+        "Fries",
+        "Shake"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Burlington",
@@ -11223,7 +11674,35 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 25.0
+      "global_quality_score": 25.0,
+      "product_keywords_contextual": [
+        "sandals",
+        "skirts",
+        "pants",
+        "tops",
+        "dresses",
+        "jackets",
+        "jeans",
+        "totes",
+        "laundry basket",
+        "storage bins",
+        "keyboard",
+        "mouse",
+        "water tumblers",
+        "food storage container",
+        "bedding set",
+        "luggage",
+        "shampoo",
+        "conditioner",
+        "hair styling set",
+        "lip butter",
+        "cosmetic bag",
+        "supplements",
+        "pimple patches",
+        "cleansing facial wipes",
+        "nail polish"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Canon",
@@ -11569,7 +12048,25 @@
       "estimated_item_value": 6.0,
       "estimated_savings": 4.0,
       "value_reason": "free item, est. ≈ $4 savings | type=20 + savings=3 = 23",
-      "global_quality_score": 41.0
+      "global_quality_score": 41.0,
+      "product_keywords_contextual": [
+        "coffee",
+        "bagels",
+        "bakery items",
+        "whip",
+        "espresso",
+        "tea",
+        "beans",
+        "mugs",
+        "merch",
+        "growler",
+        "canteen",
+        "lunch items",
+        "egg sandwich",
+        "burrito",
+        "soufflé"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Caribou Coffee",
@@ -11654,7 +12151,25 @@
       "estimated_item_value": 6.0,
       "estimated_savings": 4.0,
       "value_reason": "birthday reward, est. free item ≈ $4 | type=18 + savings=3 = 21",
-      "global_quality_score": 39.0
+      "global_quality_score": 39.0,
+      "product_keywords_contextual": [
+        "coffee",
+        "bagels",
+        "bakery items",
+        "whip",
+        "espresso",
+        "tea",
+        "beans",
+        "mugs",
+        "merch",
+        "growler",
+        "canteen",
+        "lunch items",
+        "egg sandwich",
+        "burrito",
+        "soufflé"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Caribou Coffee",
@@ -11730,7 +12245,25 @@
       "estimated_item_value": 6.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 30.0
+      "global_quality_score": 30.0,
+      "product_keywords_contextual": [
+        "coffee",
+        "bagels",
+        "bakery items",
+        "whip",
+        "espresso",
+        "tea",
+        "beans",
+        "mugs",
+        "merch",
+        "growler",
+        "canteen",
+        "lunch items",
+        "egg sandwich",
+        "burrito",
+        "soufflé"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Casper",
@@ -11776,7 +12309,24 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "mattresses",
+        "bundles",
+        "pillows",
+        "furniture",
+        "bedding",
+        "accessories",
+        "sheet set",
+        "mattress protector",
+        "duvet",
+        "adjustable base",
+        "bed frame",
+        "headboard",
+        "dog bed",
+        "blanket robe",
+        "mattress topper",
+        "weighted blanket"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -11855,7 +12405,10 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "season passes",
+        "tickets"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -11967,7 +12520,19 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 18.0
+      "global_quality_score": 18.0,
+      "product_keywords_contextual": [
+        "sides",
+        "desserts",
+        "entrees",
+        "milkshakes",
+        "Icedream",
+        "cone",
+        "Waffle Potato Fries",
+        "Chick-n-Strips",
+        "Nuggets"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Chick-fil-A",
@@ -12045,7 +12610,19 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 10.0,
       "value_reason": "birthday reward, est. free item ≈ $10 | type=18 + savings=8 = 26",
-      "global_quality_score": 41.0
+      "global_quality_score": 41.0,
+      "product_keywords_contextual": [
+        "sides",
+        "desserts",
+        "entrees",
+        "milkshakes",
+        "Icedream",
+        "cone",
+        "Waffle Potato Fries",
+        "Chick-n-Strips",
+        "Nuggets"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Chico's",
@@ -12444,7 +13021,15 @@
       "estimated_item_value": 16.0,
       "estimated_savings": 5.0,
       "value_reason": "unknown deal type, est. $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 24.0
+      "global_quality_score": 24.0,
+      "product_keywords_contextual": [
+        "burgers",
+        "chicken tenders",
+        "fajitas",
+        "margaritas",
+        "pepper"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Chili's",
@@ -12530,7 +13115,15 @@
       "estimated_item_value": 16.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 26.0
+      "global_quality_score": 26.0,
+      "product_keywords_contextual": [
+        "burgers",
+        "chicken tenders",
+        "fajitas",
+        "margaritas",
+        "pepper"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Chipotle",
@@ -12610,7 +13203,23 @@
       "estimated_item_value": 12.0,
       "estimated_savings": 3.5,
       "value_reason": "free item, est. ≈ $4 savings | type=20 + savings=3 = 23",
-      "global_quality_score": 35.0
+      "global_quality_score": 35.0,
+      "product_keywords_contextual": [
+        "Chips",
+        "Guac",
+        "Tortilla Chips",
+        "Quesadilla",
+        "Drinks",
+        "Burrito",
+        "Queso",
+        "Fountain Drink",
+        "Entree Burrito",
+        "Kids Meal",
+        "Tortilla",
+        "Salsa",
+        "Guacamole"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Chipotle",
@@ -12690,7 +13299,23 @@
       "estimated_item_value": 12.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 18.0
+      "global_quality_score": 18.0,
+      "product_keywords_contextual": [
+        "Chips",
+        "Guac",
+        "Tortilla Chips",
+        "Quesadilla",
+        "Drinks",
+        "Burrito",
+        "Queso",
+        "Fountain Drink",
+        "Entree Burrito",
+        "Kids Meal",
+        "Tortilla",
+        "Salsa",
+        "Guacamole"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Chipotle",
@@ -12773,7 +13398,23 @@
       "estimated_item_value": 12.0,
       "estimated_savings": 3.5,
       "value_reason": "birthday reward, est. free item ≈ $4 | type=18 + savings=3 = 21",
-      "global_quality_score": 33.0
+      "global_quality_score": 33.0,
+      "product_keywords_contextual": [
+        "Chips",
+        "Guac",
+        "Tortilla Chips",
+        "Quesadilla",
+        "Drinks",
+        "Burrito",
+        "Queso",
+        "Fountain Drink",
+        "Entree Burrito",
+        "Kids Meal",
+        "Tortilla",
+        "Salsa",
+        "Guacamole"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Choice Hotels",
@@ -12819,7 +13460,15 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "hotels",
+        "stays",
+        "nights",
+        "rooms",
+        "cruises",
+        "gift cards",
+        "points"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -12899,7 +13548,15 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "hotels",
+        "stays",
+        "nights",
+        "rooms",
+        "cruises",
+        "gift cards",
+        "points"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -13052,7 +13709,18 @@
         "food"
       ],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "Fried Chicken",
+        "Tenders",
+        "Honey-Butter Biscuits",
+        "French Fries",
+        "Coleslaw",
+        "Corn",
+        "Mashed Potatoes",
+        "Churchie Sauce",
+        "Blueberry Cheesecake Fried Pie",
+        "Fried Pie"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -13286,7 +13954,12 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "Clothing",
+        "Shoes",
+        "Bags",
+        "Accessories"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -13405,7 +14078,14 @@
       "estimated_item_value": 13.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 26.0
+      "global_quality_score": 26.0,
+      "product_keywords_contextual": [
+        "tickets",
+        "movies",
+        "concessions",
+        "snacks"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Cinemark",
@@ -13490,7 +14170,14 @@
       "estimated_item_value": 13.0,
       "estimated_savings": 3.25,
       "value_reason": "25% off, brand/cat est. ($13) ≈ $3 savings | type=8 + savings=3 = 11",
-      "global_quality_score": 29.0
+      "global_quality_score": 29.0,
+      "product_keywords_contextual": [
+        "tickets",
+        "movies",
+        "concessions",
+        "snacks"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Clarks",
@@ -13539,7 +14226,13 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "Sandals",
+        "Shoes",
+        "Boots",
+        "Flip Flops",
+        "Sneakers"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -13764,7 +14457,11 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 45.5,
       "value_reason": "70% off, brand/cat est. ($65) ≈ $46 savings | type=16 + savings=25 = 41",
-      "global_quality_score": 65.0
+      "global_quality_score": 65.0,
+      "product_keywords_contextual": [
+        "Cashmere"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Club Monaco",
@@ -13839,7 +14536,11 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 28.0
+      "global_quality_score": 28.0,
+      "product_keywords_contextual": [
+        "Cashmere"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Coach",
@@ -13913,7 +14614,13 @@
       "estimated_item_value": 380.0,
       "estimated_savings": 37.5,
       "value_reason": "50% off, vague deal, conservative est. ($75) ≈ $38 savings | type=16 + savings=25 = 41",
-      "global_quality_score": 65.0
+      "global_quality_score": 65.0,
+      "product_keywords_contextual": [
+        "bags",
+        "accessories",
+        "ready-to-wear"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Coach",
@@ -13989,7 +14696,13 @@
       "estimated_item_value": 380.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 22.0
+      "global_quality_score": 22.0,
+      "product_keywords_contextual": [
+        "bags",
+        "accessories",
+        "ready-to-wear"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Cole Haan",
@@ -14592,7 +15305,28 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "jackets",
+        "shirts",
+        "fleece",
+        "insulated",
+        "graphic t shirts",
+        "t shirts",
+        "shorts",
+        "pants",
+        "vests",
+        "button up shirts",
+        "shoes",
+        "sweatshirts",
+        "hoodies",
+        "hats",
+        "headwear",
+        "sherpa",
+        "dresses",
+        "boots",
+        "parkas",
+        "ski pants"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -15473,7 +16207,16 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 2.5,
       "value_reason": "25% off, brand/cat est. ($10) ≈ $2 savings | type=8 + savings=3 = 11",
-      "global_quality_score": 29.0
+      "global_quality_score": 29.0,
+      "product_keywords_contextual": [
+        "Concrete Mixer",
+        "ButterBurger",
+        "cheese curds",
+        "chicken tenders",
+        "Crinkle Cut Fries",
+        "cone"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Culver's",
@@ -15549,7 +16292,16 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 10.0,
       "value_reason": "birthday reward, est. free item ≈ $10 | type=18 + savings=8 = 26",
-      "global_quality_score": 45.0
+      "global_quality_score": 45.0,
+      "product_keywords_contextual": [
+        "Concrete Mixer",
+        "ButterBurger",
+        "cheese curds",
+        "chicken tenders",
+        "Crinkle Cut Fries",
+        "cone"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "CVS",
@@ -15623,7 +16375,13 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 15.0,
       "value_reason": "birthday reward, est. free item ≈ $15 | type=18 + savings=15 = 33",
-      "global_quality_score": 48.0
+      "global_quality_score": 48.0,
+      "product_keywords_contextual": [
+        "first aid",
+        "vitamins",
+        "personal care"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Del Taco",
@@ -15707,7 +16465,12 @@
       "estimated_item_value": 8.0,
       "estimated_savings": 1.6,
       "value_reason": "20% off, brand/cat est. ($8) ≈ $2 savings | type=8 + savings=3 = 11",
-      "global_quality_score": 26.0
+      "global_quality_score": 26.0,
+      "product_keywords_contextual": [
+        "tacos",
+        "carnitas"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Del Taco",
@@ -15789,7 +16552,12 @@
       "estimated_item_value": 8.0,
       "estimated_savings": 8.0,
       "value_reason": "$ off (no amount parsed), est. $8 | type=8 + savings=8 = 16",
-      "global_quality_score": 36.0
+      "global_quality_score": 36.0,
+      "product_keywords_contextual": [
+        "tacos",
+        "carnitas"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Dell",
@@ -16228,7 +16996,19 @@
       "estimated_item_value": 320.0,
       "estimated_savings": 48.0,
       "value_reason": "15% off, brand/cat est. ($320) ≈ $48 savings | type=5 + savings=25 = 30",
-      "global_quality_score": 43.0
+      "global_quality_score": 43.0,
+      "product_keywords_contextual": [
+        "flights",
+        "plane tickets",
+        "hotels",
+        "cars",
+        "gift cards",
+        "credit cards",
+        "vacation packages",
+        "cruises",
+        "travel products"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Denny's",
@@ -16295,7 +17075,33 @@
       "estimated_item_value": 13.0,
       "estimated_savings": 13.0,
       "value_reason": "free item, est. ≈ $13 savings | type=20 + savings=15 = 35",
-      "global_quality_score": 37.0
+      "global_quality_score": 37.0,
+      "product_keywords_contextual": [
+        "breakfast",
+        "eggs",
+        "hash browns",
+        "toast",
+        "pancakes",
+        "brioche french toast",
+        "biscuit & gravy",
+        "bacon",
+        "sausage",
+        "scrambled eggs",
+        "chicken tenders",
+        "wavy-cut fries",
+        "burger patty",
+        "lettuce",
+        "tomato",
+        "red onion",
+        "pickles",
+        "sourdough bread",
+        "mayo",
+        "dinner bread"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Denny's",
@@ -16359,7 +17165,33 @@
       "estimated_item_value": 13.0,
       "estimated_savings": 5.0,
       "value_reason": "unknown deal type, est. $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 12.0
+      "global_quality_score": 12.0,
+      "product_keywords_contextual": [
+        "breakfast",
+        "eggs",
+        "hash browns",
+        "toast",
+        "pancakes",
+        "brioche french toast",
+        "biscuit & gravy",
+        "bacon",
+        "sausage",
+        "scrambled eggs",
+        "chicken tenders",
+        "wavy-cut fries",
+        "burger patty",
+        "lettuce",
+        "tomato",
+        "red onion",
+        "pickles",
+        "sourdough bread",
+        "mayo",
+        "dinner bread"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Design Within Reach",
@@ -16898,7 +17730,13 @@
         "other"
       ],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "tires",
+        "wheels",
+        "Kumho Solus Majesty 9 TA91 tire",
+        "Road Hugger GTP AS02",
+        "Range Finder GT-e"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -17292,7 +18130,23 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "Movies",
+        "TV Shows",
+        "Documentaries",
+        "Game Shows",
+        "Comedy",
+        "Animation",
+        "Musicals",
+        "Fantasy",
+        "Action",
+        "Adventure",
+        "Science Fiction",
+        "Horror",
+        "Thriller",
+        "Series",
+        "Sports"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -17372,7 +18226,23 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "Movies",
+        "TV Shows",
+        "Documentaries",
+        "Game Shows",
+        "Comedy",
+        "Animation",
+        "Musicals",
+        "Fantasy",
+        "Action",
+        "Adventure",
+        "Science Fiction",
+        "Horror",
+        "Thriller",
+        "Series",
+        "Sports"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -17452,7 +18322,23 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "Movies",
+        "TV Shows",
+        "Documentaries",
+        "Game Shows",
+        "Comedy",
+        "Animation",
+        "Musicals",
+        "Fantasy",
+        "Action",
+        "Adventure",
+        "Science Fiction",
+        "Horror",
+        "Thriller",
+        "Series",
+        "Sports"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -17532,7 +18418,23 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "Movies",
+        "TV Shows",
+        "Documentaries",
+        "Game Shows",
+        "Comedy",
+        "Animation",
+        "Musicals",
+        "Fantasy",
+        "Action",
+        "Adventure",
+        "Science Fiction",
+        "Horror",
+        "Thriller",
+        "Series",
+        "Sports"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -17645,7 +18547,17 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 5.0,
       "value_reason": "unknown deal type, est. $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 29.0
+      "global_quality_score": 29.0,
+      "product_keywords_contextual": [
+        "pizza",
+        "crust",
+        "toppings",
+        "wings",
+        "chicken",
+        "desserts",
+        "bread bites"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Domino's",
@@ -17725,7 +18637,17 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 5.0,
       "value_reason": "unknown deal type, est. $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 29.0
+      "global_quality_score": 29.0,
+      "product_keywords_contextual": [
+        "pizza",
+        "crust",
+        "toppings",
+        "wings",
+        "chicken",
+        "desserts",
+        "bread bites"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Domino's",
@@ -17805,7 +18727,17 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 5.0,
       "value_reason": "unknown deal type, est. $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 29.0
+      "global_quality_score": 29.0,
+      "product_keywords_contextual": [
+        "pizza",
+        "crust",
+        "toppings",
+        "wings",
+        "chicken",
+        "desserts",
+        "bread bites"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Domino's",
@@ -17885,7 +18817,17 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 5.0,
       "value_reason": "unknown deal type, est. $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 29.0
+      "global_quality_score": 29.0,
+      "product_keywords_contextual": [
+        "pizza",
+        "crust",
+        "toppings",
+        "wings",
+        "chicken",
+        "desserts",
+        "bread bites"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Domino's",
@@ -17965,7 +18907,17 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 5.0,
       "value_reason": "unknown deal type, est. $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 29.0
+      "global_quality_score": 29.0,
+      "product_keywords_contextual": [
+        "pizza",
+        "crust",
+        "toppings",
+        "wings",
+        "chicken",
+        "desserts",
+        "bread bites"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Dossier",
@@ -18299,7 +19251,34 @@
       "estimated_item_value": 150.0,
       "estimated_savings": 60.0,
       "value_reason": "40% off, brand/cat est. ($150) ≈ $60 savings | type=12 + savings=35 = 47",
-      "global_quality_score": 57.0
+      "global_quality_score": 57.0,
+      "product_keywords_contextual": [
+        "Boots",
+        "Shoes",
+        "Sandals",
+        "Backpacks",
+        "Chelsea Boots",
+        "High Boots",
+        "Laceless Boots",
+        "Lace Up Boots",
+        "Lace Up Shoes",
+        "Loafers",
+        "Mary Jane Shoes",
+        "Mules",
+        "Oxford Shoes",
+        "Satchels",
+        "Slides",
+        "Socks",
+        "Strap Sandals",
+        "Velcro Shoes",
+        "Bags"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "footwear",
+        "accessories",
+        "clothing"
+      ]
     },
     {
       "brand": "Dr. Martens",
@@ -18367,7 +19346,34 @@
       "estimated_item_value": 150.0,
       "estimated_savings": 15.0,
       "value_reason": "10% off, brand/cat est. ($150) ≈ $15 savings | type=5 + savings=15 = 20",
-      "global_quality_score": 30.0
+      "global_quality_score": 30.0,
+      "product_keywords_contextual": [
+        "Boots",
+        "Shoes",
+        "Sandals",
+        "Backpacks",
+        "Chelsea Boots",
+        "High Boots",
+        "Laceless Boots",
+        "Lace Up Boots",
+        "Lace Up Shoes",
+        "Loafers",
+        "Mary Jane Shoes",
+        "Mules",
+        "Oxford Shoes",
+        "Satchels",
+        "Slides",
+        "Socks",
+        "Strap Sandals",
+        "Velcro Shoes",
+        "Bags"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "footwear",
+        "accessories",
+        "clothing"
+      ]
     },
     {
       "brand": "DSW",
@@ -18881,7 +19887,30 @@
       "estimated_item_value": 5.0,
       "estimated_savings": 5.0,
       "value_reason": "birthday reward, est. free item ≈ $5 | type=18 + savings=3 = 21",
-      "global_quality_score": 33.0
+      "global_quality_score": 33.0,
+      "product_keywords_contextual": [
+        "MUNCHKINS® Donut Hole Treats",
+        "Hash Browns",
+        "Cold Foam drink topping",
+        "Espresso Shot",
+        "Coffee Milk",
+        "Lemonade drink add-in",
+        "Hot Coffee",
+        "Iced Coffee",
+        "Tea",
+        "Donut",
+        "Dunkin’ Refresher",
+        "Hot Chocolate",
+        "Chai Latte",
+        "Matcha Latte",
+        "muffin",
+        "Iced Loaf slice",
+        "breakfast sandwich",
+        "Wake-Up Wrap®",
+        "Stuffed Bagel Minis",
+        "Croissant Stuffers"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Dutch Bros",
@@ -18967,7 +19996,16 @@
       "estimated_item_value": 5.5,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 18.0
+      "global_quality_score": 18.0,
+      "product_keywords_contextual": [
+        "coffee",
+        "drinks",
+        "milk",
+        "whipped cream",
+        "lemonade",
+        "iced coffee"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Dutch Bros",
@@ -19052,7 +20090,16 @@
       "estimated_item_value": 5.5,
       "estimated_savings": 4.0,
       "value_reason": "birthday reward, est. free item ≈ $4 | type=18 + savings=3 = 21",
-      "global_quality_score": 36.0
+      "global_quality_score": 36.0,
+      "product_keywords_contextual": [
+        "coffee",
+        "drinks",
+        "milk",
+        "whipped cream",
+        "lemonade",
+        "iced coffee"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "e.l.f. Cosmetics",
@@ -19128,7 +20175,18 @@
       "estimated_item_value": 12.0,
       "estimated_savings": 12.0,
       "value_reason": "free item, est. ≈ $12 savings | type=20 + savings=15 = 35",
-      "global_quality_score": 61.0
+      "global_quality_score": 61.0,
+      "product_keywords_contextual": [
+        "Lip Whip",
+        "Moisturizing Shampoo",
+        "Styling Cream",
+        "Styling Spray",
+        "Conditioner",
+        "Hair Treatment Oil",
+        "Skin Tint",
+        "Lip Cheek Whip"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "e.l.f. Cosmetics",
@@ -19203,7 +20261,18 @@
       "estimated_item_value": 12.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 28.0
+      "global_quality_score": 28.0,
+      "product_keywords_contextual": [
+        "Lip Whip",
+        "Moisturizing Shampoo",
+        "Styling Cream",
+        "Styling Spray",
+        "Conditioner",
+        "Hair Treatment Oil",
+        "Skin Tint",
+        "Lip Cheek Whip"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "e.l.f. Cosmetics",
@@ -19278,7 +20347,18 @@
       "estimated_item_value": 12.0,
       "estimated_savings": 4.0,
       "value_reason": "$4 off | type=8 + savings=3 = 11",
-      "global_quality_score": 31.0
+      "global_quality_score": 31.0,
+      "product_keywords_contextual": [
+        "Lip Whip",
+        "Moisturizing Shampoo",
+        "Styling Cream",
+        "Styling Spray",
+        "Conditioner",
+        "Hair Treatment Oil",
+        "Skin Tint",
+        "Lip Cheek Whip"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Eddie Bauer",
@@ -19437,7 +20517,13 @@
       "estimated_item_value": 6.0,
       "estimated_savings": 3.5,
       "value_reason": "free item, est. ≈ $4 savings | type=20 + savings=3 = 23",
-      "global_quality_score": 37.0
+      "global_quality_score": 37.0,
+      "product_keywords_contextual": [
+        "bagels",
+        "coffee",
+        "egg sandwich"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Einstein Bros Bagels",
@@ -19516,7 +20602,13 @@
       "estimated_item_value": 6.0,
       "estimated_savings": 0.01,
       "value_reason": "$0 off | type=8 + savings=0 = 8",
-      "global_quality_score": 28.0
+      "global_quality_score": 28.0,
+      "product_keywords_contextual": [
+        "bagels",
+        "coffee",
+        "egg sandwich"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Einstein Bros Bagels",
@@ -19599,7 +20691,13 @@
       "estimated_item_value": 6.0,
       "estimated_savings": 6.0,
       "value_reason": "birthday reward, est. free item ≈ $6 | type=18 + savings=8 = 26",
-      "global_quality_score": 42.0
+      "global_quality_score": 42.0,
+      "product_keywords_contextual": [
+        "bagels",
+        "coffee",
+        "egg sandwich"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Enterprise",
@@ -19675,7 +20773,16 @@
       "estimated_item_value": 60.0,
       "estimated_savings": 9.0,
       "value_reason": "15% off, brand/cat est. ($60) ≈ $9 savings | type=5 + savings=8 = 13",
-      "global_quality_score": 33.0
+      "global_quality_score": 33.0,
+      "product_keywords_contextual": [
+        "Cars",
+        "SUVs",
+        "Trucks",
+        "Vans",
+        "Moving Trucks",
+        "Exotic Cars"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Enterprise",
@@ -19751,7 +20858,16 @@
       "estimated_item_value": 60.0,
       "estimated_savings": 3.0,
       "value_reason": "$3 off | type=8 + savings=3 = 11",
-      "global_quality_score": 35.0
+      "global_quality_score": 35.0,
+      "product_keywords_contextual": [
+        "Cars",
+        "SUVs",
+        "Trucks",
+        "Vans",
+        "Moving Trucks",
+        "Exotic Cars"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Everlane",
@@ -20685,7 +21801,17 @@
       "estimated_item_value": 55.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 19.0
+      "global_quality_score": 19.0,
+      "product_keywords_contextual": [
+        "gas",
+        "premium gas",
+        "snacks",
+        "drinks",
+        "car washes",
+        "candy bars",
+        "chips"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Factor",
@@ -20991,7 +22117,14 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "shoes",
+        "sandals",
+        "boots",
+        "socks",
+        "bags",
+        "insoles"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -21389,7 +22522,17 @@
       "estimated_item_value": 15.0,
       "estimated_savings": 5.0,
       "value_reason": "$5 off | type=8 + savings=3 = 11",
-      "global_quality_score": 41.0
+      "global_quality_score": 41.0,
+      "product_keywords_contextual": [
+        "gift cards",
+        "posters",
+        "tickets",
+        "concessions vessel",
+        "pin set",
+        "popcorn bucket",
+        "toys"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Fandango",
@@ -21465,7 +22608,17 @@
       "estimated_item_value": 15.0,
       "estimated_savings": 7.5,
       "value_reason": "BOGO, est. 50% of $15 order ≈ $8 savings | type=18 + savings=8 = 26",
-      "global_quality_score": 60.0
+      "global_quality_score": 60.0,
+      "product_keywords_contextual": [
+        "gift cards",
+        "posters",
+        "tickets",
+        "concessions vessel",
+        "pin set",
+        "popcorn bucket",
+        "toys"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Fandango",
@@ -21539,7 +22692,17 @@
       "estimated_item_value": 15.0,
       "estimated_savings": 3.0,
       "value_reason": "20% off, brand/cat est. ($15) ≈ $3 savings | type=8 + savings=3 = 11",
-      "global_quality_score": 35.0
+      "global_quality_score": 35.0,
+      "product_keywords_contextual": [
+        "gift cards",
+        "posters",
+        "tickets",
+        "concessions vessel",
+        "pin set",
+        "popcorn bucket",
+        "toys"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Fandango",
@@ -21613,7 +22776,17 @@
       "estimated_item_value": 15.0,
       "estimated_savings": 10.0,
       "value_reason": "$10 off | type=10 + savings=8 = 18",
-      "global_quality_score": 42.0
+      "global_quality_score": 42.0,
+      "product_keywords_contextual": [
+        "gift cards",
+        "posters",
+        "tickets",
+        "concessions vessel",
+        "pin set",
+        "popcorn bucket",
+        "toys"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Fandango",
@@ -21687,7 +22860,17 @@
       "estimated_item_value": 15.0,
       "estimated_savings": 3.0,
       "value_reason": "sale price, est. 20% off $15 ≈ $3 savings | type=6 + savings=3 = 9",
-      "global_quality_score": 31.0
+      "global_quality_score": 31.0,
+      "product_keywords_contextual": [
+        "gift cards",
+        "posters",
+        "tickets",
+        "concessions vessel",
+        "pin set",
+        "popcorn bucket",
+        "toys"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Fandango",
@@ -21761,7 +22944,17 @@
       "estimated_item_value": 15.0,
       "estimated_savings": 3.0,
       "value_reason": "sale price, est. 20% off $15 ≈ $3 savings | type=6 + savings=3 = 9",
-      "global_quality_score": 31.0
+      "global_quality_score": 31.0,
+      "product_keywords_contextual": [
+        "gift cards",
+        "posters",
+        "tickets",
+        "concessions vessel",
+        "pin set",
+        "popcorn bucket",
+        "toys"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Fandango",
@@ -21835,7 +23028,17 @@
       "estimated_item_value": 15.0,
       "estimated_savings": 3.0,
       "value_reason": "sale price, est. 20% off $15 ≈ $3 savings | type=6 + savings=3 = 9",
-      "global_quality_score": 31.0
+      "global_quality_score": 31.0,
+      "product_keywords_contextual": [
+        "gift cards",
+        "posters",
+        "tickets",
+        "concessions vessel",
+        "pin set",
+        "popcorn bucket",
+        "toys"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Fandango",
@@ -21909,7 +23112,17 @@
       "estimated_item_value": 15.0,
       "estimated_savings": 3.0,
       "value_reason": "sale price, est. 20% off $15 ≈ $3 savings | type=6 + savings=3 = 9",
-      "global_quality_score": 31.0
+      "global_quality_score": 31.0,
+      "product_keywords_contextual": [
+        "gift cards",
+        "posters",
+        "tickets",
+        "concessions vessel",
+        "pin set",
+        "popcorn bucket",
+        "toys"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Fandango",
@@ -21983,7 +23196,17 @@
       "estimated_item_value": 15.0,
       "estimated_savings": 15.0,
       "value_reason": "$15 off | type=10 + savings=15 = 25",
-      "global_quality_score": 49.0
+      "global_quality_score": 49.0,
+      "product_keywords_contextual": [
+        "gift cards",
+        "posters",
+        "tickets",
+        "concessions vessel",
+        "pin set",
+        "popcorn bucket",
+        "toys"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Fashion Nova",
@@ -23167,7 +24390,12 @@
       "estimated_item_value": 13.0,
       "estimated_savings": 5.0,
       "value_reason": "unknown deal type, est. $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 25.0
+      "global_quality_score": 25.0,
+      "product_keywords_contextual": [
+        "milkshake",
+        "burger"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Floor & Decor",
@@ -24257,7 +25485,12 @@
       "estimated_item_value": 100.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 11.0
+      "global_quality_score": 11.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "travel"
+      ]
     },
     {
       "brand": "Function of Beauty",
@@ -24332,7 +25565,13 @@
       "estimated_item_value": 22.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 28.0
+      "global_quality_score": 28.0,
+      "product_keywords_contextual": [
+        "haircare",
+        "leave-in treatment",
+        "custom repair"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Furbo",
@@ -24562,7 +25801,25 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 7.5,
       "value_reason": "25% off, brand/cat est. ($30) ≈ $8 savings | type=8 + savings=8 = 16",
-      "global_quality_score": 26.0
+      "global_quality_score": 26.0,
+      "product_keywords_contextual": [
+        "protein",
+        "supplements",
+        "flavor packets",
+        "collagen",
+        "whey protein",
+        "pre-workout",
+        "hydration",
+        "greens",
+        "protein powder",
+        "creatin"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food",
+        "supplements",
+        "fitness"
+      ]
     },
     {
       "brand": "Gainful",
@@ -24627,7 +25884,25 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 18.0
+      "global_quality_score": 18.0,
+      "product_keywords_contextual": [
+        "protein",
+        "supplements",
+        "flavor packets",
+        "collagen",
+        "whey protein",
+        "pre-workout",
+        "hydration",
+        "greens",
+        "protein powder",
+        "creatin"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food",
+        "supplements",
+        "fitness"
+      ]
     },
     {
       "brand": "GameStop",
@@ -25472,7 +26747,16 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 15.0,
       "value_reason": "50% off, brand/cat est. ($30) ≈ $15 savings | type=16 + savings=15 = 31",
-      "global_quality_score": 41.0
+      "global_quality_score": 41.0,
+      "product_keywords_contextual": [
+        "creatina",
+        "evening primrose oil",
+        "fish oil",
+        "magnesium",
+        "oil",
+        "omega"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "GNC",
@@ -25546,7 +26830,16 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 11.0
+      "global_quality_score": 11.0,
+      "product_keywords_contextual": [
+        "creatina",
+        "evening primrose oil",
+        "fish oil",
+        "magnesium",
+        "oil",
+        "omega"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Goli Nutrition",
@@ -26018,7 +27311,20 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 5.0,
       "value_reason": "50% off, brand/cat est. ($10) ≈ $5 savings | type=16 + savings=3 = 19",
-      "global_quality_score": 39.0
+      "global_quality_score": 39.0,
+      "product_keywords_contextual": [
+        "meal kits",
+        "organic produce",
+        "proteins",
+        "seafood",
+        "vegetables",
+        "veggies",
+        "protein-packed breakfasts",
+        "egg bites",
+        "superfood granola",
+        "smoothies"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Guess",
@@ -26095,7 +27401,12 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 13.0,
       "value_reason": "20% off, brand/cat est. ($65) ≈ $13 savings | type=8 + savings=15 = 23",
-      "global_quality_score": 45.0
+      "global_quality_score": 45.0,
+      "product_keywords_contextual": [
+        "clothing",
+        "accessories"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Harbor Freight",
@@ -26816,7 +28127,21 @@
       "estimated_item_value": 175.0,
       "estimated_savings": 29.75,
       "value_reason": "17% off, brand/cat est. ($175) ≈ $30 savings | type=5 + savings=25 = 30",
-      "global_quality_score": 54.0
+      "global_quality_score": 54.0,
+      "product_keywords_contextual": [
+        "hotel",
+        "suite",
+        "room",
+        "vacation",
+        "getaway",
+        "package",
+        "credits",
+        "points",
+        "parking",
+        "breakfast",
+        "rental car"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Hilton",
@@ -26893,7 +28218,21 @@
       "estimated_item_value": 175.0,
       "estimated_savings": 149.0,
       "value_reason": "$149 off | type=15 + savings=45 = 60",
-      "global_quality_score": 76.0
+      "global_quality_score": 76.0,
+      "product_keywords_contextual": [
+        "hotel",
+        "suite",
+        "room",
+        "vacation",
+        "getaway",
+        "package",
+        "credits",
+        "points",
+        "parking",
+        "breakfast",
+        "rental car"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Hilton",
@@ -26968,7 +28307,21 @@
       "estimated_item_value": 175.0,
       "estimated_savings": 10.5,
       "value_reason": "6% off, brand/cat est. ($175) ≈ $10 savings | type=3 + savings=8 = 11",
-      "global_quality_score": 35.0
+      "global_quality_score": 35.0,
+      "product_keywords_contextual": [
+        "hotel",
+        "suite",
+        "room",
+        "vacation",
+        "getaway",
+        "package",
+        "credits",
+        "points",
+        "parking",
+        "breakfast",
+        "rental car"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Hilton",
@@ -27043,7 +28396,21 @@
       "estimated_item_value": 175.0,
       "estimated_savings": 17.5,
       "value_reason": "10% off, brand/cat est. ($175) ≈ $18 savings | type=5 + savings=15 = 20",
-      "global_quality_score": 29.0
+      "global_quality_score": 29.0,
+      "product_keywords_contextual": [
+        "hotel",
+        "suite",
+        "room",
+        "vacation",
+        "getaway",
+        "package",
+        "credits",
+        "points",
+        "parking",
+        "breakfast",
+        "rental car"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Hilton",
@@ -27118,7 +28485,21 @@
       "estimated_item_value": 175.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 28.0
+      "global_quality_score": 28.0,
+      "product_keywords_contextual": [
+        "hotel",
+        "suite",
+        "room",
+        "vacation",
+        "getaway",
+        "package",
+        "credits",
+        "points",
+        "parking",
+        "breakfast",
+        "rental car"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Hilton",
@@ -27193,7 +28574,21 @@
       "estimated_item_value": 175.0,
       "estimated_savings": 26.25,
       "value_reason": "15% off, brand/cat est. ($175) ≈ $26 savings | type=5 + savings=25 = 30",
-      "global_quality_score": 50.0
+      "global_quality_score": 50.0,
+      "product_keywords_contextual": [
+        "hotel",
+        "suite",
+        "room",
+        "vacation",
+        "getaway",
+        "package",
+        "credits",
+        "points",
+        "parking",
+        "breakfast",
+        "rental car"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Hilton",
@@ -27268,7 +28663,21 @@
       "estimated_item_value": 175.0,
       "estimated_savings": 35.0,
       "value_reason": "20% off, brand/cat est. ($175) ≈ $35 savings | type=8 + savings=25 = 33",
-      "global_quality_score": 57.0
+      "global_quality_score": 57.0,
+      "product_keywords_contextual": [
+        "hotel",
+        "suite",
+        "room",
+        "vacation",
+        "getaway",
+        "package",
+        "credits",
+        "points",
+        "parking",
+        "breakfast",
+        "rental car"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Hilton",
@@ -27343,7 +28752,21 @@
       "estimated_item_value": 175.0,
       "estimated_savings": 35.0,
       "value_reason": "20% off, brand/cat est. ($175) ≈ $35 savings | type=8 + savings=25 = 33",
-      "global_quality_score": 53.0
+      "global_quality_score": 53.0,
+      "product_keywords_contextual": [
+        "hotel",
+        "suite",
+        "room",
+        "vacation",
+        "getaway",
+        "package",
+        "credits",
+        "points",
+        "parking",
+        "breakfast",
+        "rental car"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Hilton",
@@ -27418,7 +28841,21 @@
       "estimated_item_value": 175.0,
       "estimated_savings": 35.0,
       "value_reason": "20% off, brand/cat est. ($175) ≈ $35 savings | type=8 + savings=25 = 33",
-      "global_quality_score": 45.0
+      "global_quality_score": 45.0,
+      "product_keywords_contextual": [
+        "hotel",
+        "suite",
+        "room",
+        "vacation",
+        "getaway",
+        "package",
+        "credits",
+        "points",
+        "parking",
+        "breakfast",
+        "rental car"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Hollister",
@@ -27498,7 +28935,11 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 26.0
+      "global_quality_score": 26.0,
+      "product_keywords_contextual": [
+        "bags"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Hollister",
@@ -27580,7 +29021,11 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 6.75,
       "value_reason": "15% off, brand/cat est. ($45) ≈ $7 savings | type=5 + savings=8 = 13",
-      "global_quality_score": 25.0
+      "global_quality_score": 25.0,
+      "product_keywords_contextual": [
+        "bags"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Hot Topic",
@@ -27827,7 +29272,25 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 12.3,
       "value_reason": "41% off, brand/cat est. ($30) ≈ $12 savings | type=12 + savings=15 = 27",
-      "global_quality_score": 44.0
+      "global_quality_score": 44.0,
+      "product_keywords_contextual": [
+        "TV",
+        "Movies",
+        "Subscriptions",
+        "Original Series",
+        "Shows",
+        "Live TV",
+        "Sports",
+        "News",
+        "Events",
+        "Channels",
+        "Disney+",
+        "ESPN+",
+        "HBO Max",
+        "Hulu Originals",
+        "Streaming library"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Hulu",
@@ -27905,7 +29368,25 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 13.5,
       "value_reason": "45% off, brand/cat est. ($30) ≈ $14 savings | type=12 + savings=15 = 27",
-      "global_quality_score": 44.0
+      "global_quality_score": 44.0,
+      "product_keywords_contextual": [
+        "TV",
+        "Movies",
+        "Subscriptions",
+        "Original Series",
+        "Shows",
+        "Live TV",
+        "Sports",
+        "News",
+        "Events",
+        "Channels",
+        "Disney+",
+        "ESPN+",
+        "HBO Max",
+        "Hulu Originals",
+        "Streaming library"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Hulu",
@@ -27983,7 +29464,25 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 14.1,
       "value_reason": "47% off, brand/cat est. ($30) ≈ $14 savings | type=12 + savings=15 = 27",
-      "global_quality_score": 44.0
+      "global_quality_score": 44.0,
+      "product_keywords_contextual": [
+        "TV",
+        "Movies",
+        "Subscriptions",
+        "Original Series",
+        "Shows",
+        "Live TV",
+        "Sports",
+        "News",
+        "Events",
+        "Channels",
+        "Disney+",
+        "ESPN+",
+        "HBO Max",
+        "Hulu Originals",
+        "Streaming library"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Hungryroot",
@@ -28057,7 +29556,31 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 3.0,
       "value_reason": "30% off, brand/cat est. ($10) ≈ $3 savings | type=12 + savings=3 = 15",
-      "global_quality_score": 39.0
+      "global_quality_score": 39.0,
+      "product_keywords_contextual": [
+        "chicken",
+        "salmon",
+        "oats",
+        "rice",
+        "sandwich",
+        "eggs",
+        "strawberries",
+        "tacos",
+        "hummus",
+        "muffins",
+        "popcorn",
+        "cheese",
+        "granola",
+        "juice",
+        "yogurt",
+        "crisps",
+        "pasta",
+        "milk",
+        "coffee",
+        "ketchup",
+        "eggs"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Hungryroot",
@@ -28131,7 +29654,31 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 10.0,
       "value_reason": "free item, est. ≈ $10 savings | type=20 + savings=8 = 28",
-      "global_quality_score": 48.0
+      "global_quality_score": 48.0,
+      "product_keywords_contextual": [
+        "chicken",
+        "salmon",
+        "oats",
+        "rice",
+        "sandwich",
+        "eggs",
+        "strawberries",
+        "tacos",
+        "hummus",
+        "muffins",
+        "popcorn",
+        "cheese",
+        "granola",
+        "juice",
+        "yogurt",
+        "crisps",
+        "pasta",
+        "milk",
+        "coffee",
+        "ketchup",
+        "eggs"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Hungryroot",
@@ -28205,7 +29752,31 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 28.0
+      "global_quality_score": 28.0,
+      "product_keywords_contextual": [
+        "chicken",
+        "salmon",
+        "oats",
+        "rice",
+        "sandwich",
+        "eggs",
+        "strawberries",
+        "tacos",
+        "hummus",
+        "muffins",
+        "popcorn",
+        "cheese",
+        "granola",
+        "juice",
+        "yogurt",
+        "crisps",
+        "pasta",
+        "milk",
+        "coffee",
+        "ketchup",
+        "eggs"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "HyperX",
@@ -28534,7 +30105,17 @@
       "estimated_item_value": 14.0,
       "estimated_savings": 1.0,
       "value_reason": "$1 off | type=8 + savings=3 = 11",
-      "global_quality_score": 25.0
+      "global_quality_score": 25.0,
+      "product_keywords_contextual": [
+        "pancakes",
+        "breakfeast",
+        "chocolate pancakes",
+        "blt",
+        "appetizers",
+        "burrito",
+        "bow"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "IKEA",
@@ -29314,7 +30895,22 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
       "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14",
-      "global_quality_score": 35.0
+      "global_quality_score": 35.0,
+      "product_keywords_contextual": [
+        "T-shirt",
+        "top",
+        "dress",
+        "shirts",
+        "swim",
+        "intimates",
+        "footwear",
+        "scrunchie",
+        "sweater",
+        "jeans",
+        "jacket",
+        "coat"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "J.Crew",
@@ -29386,7 +30982,22 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 26.0,
       "value_reason": "40% off, brand/cat est. ($65) ≈ $26 savings | type=12 + savings=25 = 37",
-      "global_quality_score": 67.0
+      "global_quality_score": 67.0,
+      "product_keywords_contextual": [
+        "T-shirt",
+        "top",
+        "dress",
+        "shirts",
+        "swim",
+        "intimates",
+        "footwear",
+        "scrunchie",
+        "sweater",
+        "jeans",
+        "jacket",
+        "coat"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "JCPenney",
@@ -29462,7 +31073,17 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 6.75,
       "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14",
-      "global_quality_score": 41.0
+      "global_quality_score": 41.0,
+      "product_keywords_contextual": [
+        "shoes",
+        "handbags",
+        "accessories",
+        "jewelry",
+        "intimates",
+        "toys",
+        "games"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "JetBlue",
@@ -29536,7 +31157,13 @@
       "estimated_item_value": 210.0,
       "estimated_savings": 105.0,
       "value_reason": "50% off, brand/cat est. ($210) ≈ $105 savings | type=16 + savings=45 = 61",
-      "global_quality_score": 85.0
+      "global_quality_score": 85.0,
+      "product_keywords_contextual": [
+        "flights",
+        "hotel",
+        "points"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Jiffy Lube",
@@ -29998,7 +31625,24 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "Gator™ XUV",
+        "8245R Tractor",
+        "compact tractors",
+        "Z530M mower",
+        "X354 mower",
+        "cattle trailer",
+        "precision upgrades for planters",
+        "8RX Tractor",
+        "250 P-Tier Excavator",
+        "oil",
+        "coolant",
+        "filters",
+        "batteries",
+        "lubricants",
+        "grease gun",
+        "Wheeled Feller Buncher"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -30106,7 +31750,15 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 35.75,
       "value_reason": "55% off, brand/cat est. ($65) ≈ $36 savings | type=16 + savings=25 = 41",
-      "global_quality_score": 65.0
+      "global_quality_score": 65.0,
+      "product_keywords_contextual": [
+        "loafer shoes",
+        "button-up shirts",
+        "sandals",
+        "belts",
+        "jeans"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Johnston & Murphy",
@@ -30184,7 +31836,15 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 26.0
+      "global_quality_score": 26.0,
+      "product_keywords_contextual": [
+        "loafer shoes",
+        "button-up shirts",
+        "sandals",
+        "belts",
+        "jeans"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Johnston & Murphy",
@@ -30262,7 +31922,15 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 28.0
+      "global_quality_score": 28.0,
+      "product_keywords_contextual": [
+        "loafer shoes",
+        "button-up shirts",
+        "sandals",
+        "belts",
+        "jeans"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Journeys",
@@ -30342,7 +32010,12 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 10.0,
       "value_reason": "$10 off | type=10 + savings=8 = 18",
-      "global_quality_score": 36.0
+      "global_quality_score": 36.0,
+      "product_keywords_contextual": [
+        "shoes",
+        "accessories"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Joybird",
@@ -30653,7 +32326,14 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "necklaces",
+        "bracelets",
+        "earrings",
+        "rings",
+        "charms",
+        "sunglasses"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -30963,7 +32643,20 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 13.5,
       "value_reason": "30% off, brand/cat est. ($45) ≈ $14 savings | type=12 + savings=15 = 27",
-      "global_quality_score": 43.0
+      "global_quality_score": 43.0,
+      "product_keywords_contextual": [
+        "clothing",
+        "shoes",
+        "bedding",
+        "toys",
+        "handbags",
+        "jewelry",
+        "home goods",
+        "kitchen tools",
+        "activewear",
+        "beauty products"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Kohl's",
@@ -31039,7 +32732,20 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 22.5,
       "value_reason": "50% off, brand/cat est. ($45) ≈ $22 savings | type=16 + savings=15 = 31",
-      "global_quality_score": 52.0
+      "global_quality_score": 52.0,
+      "product_keywords_contextual": [
+        "clothing",
+        "shoes",
+        "bedding",
+        "toys",
+        "handbags",
+        "jewelry",
+        "home goods",
+        "kitchen tools",
+        "activewear",
+        "beauty products"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Kohl's",
@@ -31115,7 +32821,20 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 31.5,
       "value_reason": "70% off, brand/cat est. ($45) ≈ $32 savings | type=16 + savings=25 = 41",
-      "global_quality_score": 62.0
+      "global_quality_score": 62.0,
+      "product_keywords_contextual": [
+        "clothing",
+        "shoes",
+        "bedding",
+        "toys",
+        "handbags",
+        "jewelry",
+        "home goods",
+        "kitchen tools",
+        "activewear",
+        "beauty products"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Krispy Kreme",
@@ -32744,7 +34463,13 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "jeans",
+        "shorts",
+        "tees",
+        "shirts",
+        "pants"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -32824,7 +34549,13 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "jeans",
+        "shorts",
+        "tees",
+        "shirts",
+        "pants"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -33730,7 +35461,12 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 3.0,
       "value_reason": "$3 off | type=8 + savings=3 = 11",
-      "global_quality_score": 37.0
+      "global_quality_score": 37.0,
+      "product_keywords_contextual": [
+        "pizza",
+        "gift cards"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Little Caesars",
@@ -33818,7 +35554,12 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 2.0,
       "value_reason": "20% off, brand/cat est. ($10) ≈ $2 savings | type=8 + savings=3 = 11",
-      "global_quality_score": 24.0
+      "global_quality_score": 24.0,
+      "product_keywords_contextual": [
+        "pizza",
+        "gift cards"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "LOFT",
@@ -33894,7 +35635,17 @@
       "estimated_item_value": 55.0,
       "estimated_savings": 15.0,
       "value_reason": "50% off, specific item in title ($30) ≈ $15 savings | type=16 + savings=15 = 31",
-      "global_quality_score": 55.0
+      "global_quality_score": 55.0,
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "tops",
+        "shirts",
+        "sweaters",
+        "shorts"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "LOFT",
@@ -33969,7 +35720,17 @@
       "estimated_item_value": 55.0,
       "estimated_savings": 33.0,
       "value_reason": "60% off, brand/cat est. ($55) ≈ $33 savings | type=16 + savings=25 = 41",
-      "global_quality_score": 65.0
+      "global_quality_score": 65.0,
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "tops",
+        "shirts",
+        "sweaters",
+        "shorts"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "LOFT",
@@ -34044,7 +35805,17 @@
       "estimated_item_value": 55.0,
       "estimated_savings": 11.0,
       "value_reason": "sale price, est. 20% off $55 ≈ $11 savings | type=6 + savings=15 = 21",
-      "global_quality_score": 45.0
+      "global_quality_score": 45.0,
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "tops",
+        "shirts",
+        "sweaters",
+        "shorts"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "LOFT",
@@ -34120,7 +35891,17 @@
       "estimated_item_value": 55.0,
       "estimated_savings": 27.5,
       "value_reason": "50% off, brand/cat est. ($55) ≈ $28 savings | type=16 + savings=25 = 41",
-      "global_quality_score": 75.0
+      "global_quality_score": 75.0,
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "tops",
+        "shirts",
+        "sweaters",
+        "shorts"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "LOFT",
@@ -34196,7 +35977,17 @@
       "estimated_item_value": 55.0,
       "estimated_savings": 6.0,
       "value_reason": "30% off, vague deal, conservative est. ($20) ≈ $6 savings | type=12 + savings=8 = 20",
-      "global_quality_score": 54.0
+      "global_quality_score": 54.0,
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "tops",
+        "shirts",
+        "sweaters",
+        "shorts"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "LOFT",
@@ -34271,7 +36062,17 @@
       "estimated_item_value": 55.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 28.0
+      "global_quality_score": 28.0,
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "tops",
+        "shirts",
+        "sweaters",
+        "shorts"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "LOFT",
@@ -34348,7 +36149,17 @@
       "estimated_item_value": 55.0,
       "estimated_savings": 11.0,
       "value_reason": "20% off, brand/cat est. ($55) ≈ $11 savings | type=8 + savings=15 = 23",
-      "global_quality_score": 33.0
+      "global_quality_score": 33.0,
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "tops",
+        "shirts",
+        "sweaters",
+        "shorts"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "LOFT",
@@ -34423,7 +36234,17 @@
       "estimated_item_value": 55.0,
       "estimated_savings": 5.5,
       "value_reason": "10% off, brand/cat est. ($55) ≈ $6 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 32.0
+      "global_quality_score": 32.0,
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "tops",
+        "shirts",
+        "sweaters",
+        "shorts"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "LOFT",
@@ -34500,7 +36321,17 @@
       "estimated_item_value": 55.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 26.0
+      "global_quality_score": 26.0,
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "tops",
+        "shirts",
+        "sweaters",
+        "shorts"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "LOFT",
@@ -34575,7 +36406,17 @@
       "estimated_item_value": 55.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 28.0
+      "global_quality_score": 28.0,
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "tops",
+        "shirts",
+        "sweaters",
+        "shorts"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "LOFT",
@@ -34650,7 +36491,17 @@
       "estimated_item_value": 55.0,
       "estimated_savings": 15.0,
       "value_reason": "birthday reward, est. free item ≈ $15 | type=18 + savings=15 = 33",
-      "global_quality_score": 55.0
+      "global_quality_score": 55.0,
+      "product_keywords_contextual": [
+        "pants",
+        "jeans",
+        "dresses",
+        "tops",
+        "shirts",
+        "sweaters",
+        "shorts"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Logitech",
@@ -36698,7 +38549,21 @@
       "estimated_item_value": 8.0,
       "estimated_savings": 10.0,
       "value_reason": "free item, est. ≈ $10 savings | type=20 + savings=8 = 28",
-      "global_quality_score": 29.0
+      "global_quality_score": 29.0,
+      "product_keywords_contextual": [
+        "Snack Wrap",
+        "McDouble",
+        "chicken McNuggets",
+        "sausage McMuffin",
+        "hash browns",
+        "fries",
+        "McChicken",
+        "sausage burrito",
+        "sausage biscuit",
+        "soft drink",
+        "Premium Roast Coffee"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Mejuri",
@@ -38189,7 +40054,17 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 48.75,
       "value_reason": "75% off, brand/cat est. ($65) ≈ $49 savings | type=16 + savings=25 = 41",
-      "global_quality_score": 65.0
+      "global_quality_score": 65.0,
+      "product_keywords_contextual": [
+        "dresses",
+        "blouses",
+        "skirts",
+        "tops",
+        "shoes",
+        "accessories",
+        "necklace"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "ModCloth",
@@ -38269,7 +40144,17 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 28.0
+      "global_quality_score": 28.0,
+      "product_keywords_contextual": [
+        "dresses",
+        "blouses",
+        "skirts",
+        "tops",
+        "shoes",
+        "accessories",
+        "necklace"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Momentous",
@@ -38396,7 +40281,18 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "setting mist",
+        "brush set",
+        "eyeshadow palette",
+        "lipstick",
+        "face brush set",
+        "cheek thrills",
+        "bronzer duo",
+        "translucent setting powder",
+        "lip pencil",
+        "powder blush brush"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -38757,7 +40653,9 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 39.0,
       "value_reason": "60% off, brand/cat est. ($65) ≈ $39 savings | type=16 + savings=25 = 41",
-      "global_quality_score": 71.0
+      "global_quality_score": 71.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Nasty Gal",
@@ -38832,7 +40730,9 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 45.5,
       "value_reason": "70% off, brand/cat est. ($65) ≈ $46 savings | type=16 + savings=25 = 41",
-      "global_quality_score": 65.0
+      "global_quality_score": 65.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Naturalizer",
@@ -38878,7 +40778,13 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "heels",
+        "sandals",
+        "flats",
+        "sneakers",
+        "boots"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -40862,7 +42768,28 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 1.0,
       "value_reason": "$1 off | type=8 + savings=3 = 11",
-      "global_quality_score": 29.0
+      "global_quality_score": 29.0,
+      "product_keywords_contextual": [
+        "salad",
+        "noodles",
+        "cavatappi",
+        "potstickers",
+        "dumpling",
+        "dipping sauce",
+        "dessert",
+        "entrée",
+        "mac",
+        "cheese",
+        "chicken breast",
+        "protein",
+        "garlic bread",
+        "marinara sauce",
+        "fountain drink",
+        "kids meal",
+        "bread",
+        "soup"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Noodles & Company",
@@ -40941,7 +42868,28 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 11.0,
       "value_reason": "free item, est. ≈ $11 savings | type=20 + savings=15 = 35",
-      "global_quality_score": 49.0
+      "global_quality_score": 49.0,
+      "product_keywords_contextual": [
+        "salad",
+        "noodles",
+        "cavatappi",
+        "potstickers",
+        "dumpling",
+        "dipping sauce",
+        "dessert",
+        "entrée",
+        "mac",
+        "cheese",
+        "chicken breast",
+        "protein",
+        "garlic bread",
+        "marinara sauce",
+        "fountain drink",
+        "kids meal",
+        "bread",
+        "soup"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Noom",
@@ -41511,7 +43459,25 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "birth control",
+        "GLP-1 Injections",
+        "Prescription Pills",
+        "Emergency contraception",
+        "Cold sore",
+        "Genital herpes",
+        "Women’s hair loss",
+        "Dandruff",
+        "Bacterial vaginosis",
+        "Menopause",
+        "Migraines",
+        "UTI",
+        "Vaginitis",
+        "Yeast infection",
+        "Eyelash growth serum",
+        "Anti-aging treatment plans",
+        "white cream"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -41620,7 +43586,25 @@
       "estimated_item_value": 22.0,
       "estimated_savings": 11.0,
       "value_reason": "50% off, brand/cat est. ($22) ≈ $11 savings | type=16 + savings=15 = 31",
-      "global_quality_score": 55.0
+      "global_quality_score": 55.0,
+      "product_keywords_contextual": [
+        "lip gloss",
+        "eyeshadow palette",
+        "makeup primer",
+        "foundation",
+        "concealer",
+        "eyeshadow",
+        "mascaras",
+        "eyeliner",
+        "lipsticks",
+        "highlighter",
+        "bronzer",
+        "blush",
+        "beauty sponges",
+        "face brushes",
+        "eyeshadow brushes"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "NYX Professional Makeup",
@@ -41696,7 +43680,25 @@
       "estimated_item_value": 22.0,
       "estimated_savings": 11.0,
       "value_reason": "50% off, brand/cat est. ($22) ≈ $11 savings | type=16 + savings=15 = 31",
-      "global_quality_score": 55.0
+      "global_quality_score": 55.0,
+      "product_keywords_contextual": [
+        "lip gloss",
+        "eyeshadow palette",
+        "makeup primer",
+        "foundation",
+        "concealer",
+        "eyeshadow",
+        "mascaras",
+        "eyeliner",
+        "lipsticks",
+        "highlighter",
+        "bronzer",
+        "blush",
+        "beauty sponges",
+        "face brushes",
+        "eyeshadow brushes"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "NYX Professional Makeup",
@@ -41772,7 +43774,25 @@
       "estimated_item_value": 22.0,
       "estimated_savings": 11.0,
       "value_reason": "50% off, brand/cat est. ($22) ≈ $11 savings | type=16 + savings=15 = 31",
-      "global_quality_score": 55.0
+      "global_quality_score": 55.0,
+      "product_keywords_contextual": [
+        "lip gloss",
+        "eyeshadow palette",
+        "makeup primer",
+        "foundation",
+        "concealer",
+        "eyeshadow",
+        "mascaras",
+        "eyeliner",
+        "lipsticks",
+        "highlighter",
+        "bronzer",
+        "blush",
+        "beauty sponges",
+        "face brushes",
+        "eyeshadow brushes"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "NZXT",
@@ -42065,7 +44085,10 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "brake pads",
+        "rotors"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -42144,7 +44167,10 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "brake pads",
+        "rotors"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -42825,7 +44851,15 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "dog food",
+        "bowl",
+        "scoop",
+        "puptainer",
+        "package",
+        "container",
+        "app"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -42979,7 +45013,28 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "Whey Protein",
+        "Creatine",
+        "Weight Gainers",
+        "BCAA",
+        "Glutamine",
+        "Casein",
+        "Protein Drink",
+        "Plant Protein",
+        "Isolate",
+        "Vitamins",
+        "Shaker Cup",
+        "Travel Packs",
+        "Samples",
+        "Pre-Workout",
+        "Amino Energy",
+        "Electrolytes",
+        "Instantized BCAA Powder",
+        "Serum Peptides",
+        "Mass Gainers",
+        "HMB Capsules"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -43057,7 +45112,28 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "Whey Protein",
+        "Creatine",
+        "Weight Gainers",
+        "BCAA",
+        "Glutamine",
+        "Casein",
+        "Protein Drink",
+        "Plant Protein",
+        "Isolate",
+        "Vitamins",
+        "Shaker Cup",
+        "Travel Packs",
+        "Samples",
+        "Pre-Workout",
+        "Amino Energy",
+        "Electrolytes",
+        "Instantized BCAA Powder",
+        "Serum Peptides",
+        "Mass Gainers",
+        "HMB Capsules"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -43252,7 +45328,9 @@
       "estimated_item_value": 28.0,
       "estimated_savings": 5.0,
       "value_reason": "unknown deal type, est. $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 28.0
+      "global_quality_score": 28.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Outback Steakhouse",
@@ -43334,7 +45412,9 @@
       "estimated_item_value": 28.0,
       "estimated_savings": 2.8,
       "value_reason": "10% off, brand/cat est. ($28) ≈ $3 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 26.0
+      "global_quality_score": 26.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Overstock",
@@ -43833,7 +45913,20 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 5.0,
       "value_reason": "50% off, brand/cat est. ($10) ≈ $5 savings | type=16 + savings=3 = 19",
-      "global_quality_score": 39.0
+      "global_quality_score": 39.0,
+      "product_keywords_contextual": [
+        "Sushi Boat",
+        "bottles",
+        "Courses",
+        "food",
+        "cocktails",
+        "beer",
+        "wine",
+        "entrée",
+        "starter",
+        "rice"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "P.F. Chang's",
@@ -43907,7 +46000,20 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 19.99,
       "value_reason": "$20 off | type=10 + savings=15 = 25",
-      "global_quality_score": 45.0
+      "global_quality_score": 45.0,
+      "product_keywords_contextual": [
+        "Sushi Boat",
+        "bottles",
+        "Courses",
+        "food",
+        "cocktails",
+        "beer",
+        "wine",
+        "entrée",
+        "starter",
+        "rice"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "P.F. Chang's",
@@ -43981,7 +46087,20 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 13.99,
       "value_reason": "$14 off | type=10 + savings=15 = 25",
-      "global_quality_score": 45.0
+      "global_quality_score": 45.0,
+      "product_keywords_contextual": [
+        "Sushi Boat",
+        "bottles",
+        "Courses",
+        "food",
+        "cocktails",
+        "beer",
+        "wine",
+        "entrée",
+        "starter",
+        "rice"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "PacSun",
@@ -44317,7 +46436,15 @@
       "estimated_item_value": 13.0,
       "estimated_savings": 13.0,
       "value_reason": "free item, est. ≈ $13 savings | type=20 + savings=15 = 35",
-      "global_quality_score": 39.0
+      "global_quality_score": 39.0,
+      "product_keywords_contextual": [
+        "bakery treat",
+        "bagel"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Panera Bread",
@@ -44393,7 +46520,15 @@
       "estimated_item_value": 13.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 7.0
+      "global_quality_score": 7.0,
+      "product_keywords_contextual": [
+        "bakery treat",
+        "bagel"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Panera Bread",
@@ -44467,7 +46602,15 @@
       "estimated_item_value": 13.0,
       "estimated_savings": 3.5,
       "value_reason": "birthday reward, est. free item ≈ $4 | type=18 + savings=3 = 21",
-      "global_quality_score": 21.0
+      "global_quality_score": 21.0,
+      "product_keywords_contextual": [
+        "bakery treat",
+        "bagel"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Parachute",
@@ -44847,7 +46990,9 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 25.5,
       "value_reason": "85% off, brand/cat est. ($30) ≈ $26 savings | type=16 + savings=15 = 31",
-      "global_quality_score": 50.0
+      "global_quality_score": 50.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Peet's Coffee",
@@ -44922,7 +47067,23 @@
       "estimated_item_value": 6.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 28.0
+      "global_quality_score": 28.0,
+      "product_keywords_contextual": [
+        "Coffee",
+        "Espresso",
+        "Espresso Capsules",
+        "Drip",
+        "Cold Brew",
+        "Tea",
+        "Baked goods",
+        "Coffee beans",
+        "Ultra Coffee Concentrate",
+        "Lattes",
+        "Frappés",
+        "Tea Shakers",
+        "Mug"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Peet's Coffee",
@@ -45000,7 +47161,23 @@
       "estimated_item_value": 6.0,
       "estimated_savings": 6.0,
       "value_reason": "free item, est. ≈ $6 savings | type=20 + savings=8 = 28",
-      "global_quality_score": 46.0
+      "global_quality_score": 46.0,
+      "product_keywords_contextual": [
+        "Coffee",
+        "Espresso",
+        "Espresso Capsules",
+        "Drip",
+        "Cold Brew",
+        "Tea",
+        "Baked goods",
+        "Coffee beans",
+        "Ultra Coffee Concentrate",
+        "Lattes",
+        "Frappés",
+        "Tea Shakers",
+        "Mug"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Peet's Coffee",
@@ -45079,7 +47256,23 @@
       "estimated_item_value": 6.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 18.0
+      "global_quality_score": 18.0,
+      "product_keywords_contextual": [
+        "Coffee",
+        "Espresso",
+        "Espresso Capsules",
+        "Drip",
+        "Cold Brew",
+        "Tea",
+        "Baked goods",
+        "Coffee beans",
+        "Ultra Coffee Concentrate",
+        "Lattes",
+        "Frappés",
+        "Tea Shakers",
+        "Mug"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Peloton",
@@ -45782,7 +47975,15 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "tires",
+        "brakes",
+        "cooper tire",
+        "starfire tire",
+        "continental tire",
+        "battery",
+        "alignment"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -45857,7 +48058,15 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "tires",
+        "brakes",
+        "cooper tire",
+        "starfire tire",
+        "continental tire",
+        "battery",
+        "alignment"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -46014,7 +48223,15 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "tires",
+        "brakes",
+        "cooper tire",
+        "starfire tire",
+        "continental tire",
+        "battery",
+        "alignment"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -46322,7 +48539,20 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 25.0
+      "global_quality_score": 25.0,
+      "product_keywords_contextual": [
+        "pet food",
+        "pet supplies",
+        "gift cards",
+        "treats",
+        "salon services",
+        "grooming services",
+        "training services",
+        "dog food",
+        "cat food",
+        "pet accessories"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "PetSmart",
@@ -46399,7 +48629,20 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 24.0
+      "global_quality_score": 24.0,
+      "product_keywords_contextual": [
+        "pet food",
+        "pet supplies",
+        "gift cards",
+        "treats",
+        "salon services",
+        "grooming services",
+        "training services",
+        "dog food",
+        "cat food",
+        "pet accessories"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "PetSmart",
@@ -46476,7 +48719,20 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 15.0,
       "value_reason": "birthday reward, est. free item ≈ $15 | type=18 + savings=15 = 33",
-      "global_quality_score": 52.0
+      "global_quality_score": 52.0,
+      "product_keywords_contextual": [
+        "pet food",
+        "pet supplies",
+        "gift cards",
+        "treats",
+        "salon services",
+        "grooming services",
+        "training services",
+        "dog food",
+        "cat food",
+        "pet accessories"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "PetSmart",
@@ -46553,7 +48809,20 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 15.0,
       "value_reason": "free item, est. ≈ $15 savings | type=20 + savings=15 = 35",
-      "global_quality_score": 56.0
+      "global_quality_score": 56.0,
+      "product_keywords_contextual": [
+        "pet food",
+        "pet supplies",
+        "gift cards",
+        "treats",
+        "salon services",
+        "grooming services",
+        "training services",
+        "dog food",
+        "cat food",
+        "pet accessories"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Pinstripes",
@@ -47635,7 +49904,17 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "Bluetooth Controller",
+        "Protection Case",
+        "Screen Protection Kit",
+        "Wired Controller",
+        "Controller Charging Base",
+        "Light Strip",
+        "Gaming Clip",
+        "Comfort Grip",
+        "Anti-Glare Screen Protector"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -48156,7 +50435,27 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "Dresses",
+        "Tops",
+        "Mini Skirts",
+        "Romper",
+        "Corset Top",
+        "Halter Mini Dress",
+        "Mesh Keyhole Corset Top",
+        "Linen Blend Tie Pants",
+        "Denim Shorts",
+        "Skort",
+        "Lace Top",
+        "Slip Mini Dress",
+        "Tank Top",
+        "Cargo Shorts",
+        "Swim",
+        "Midi Skirt",
+        "Lace Short Sleeve Top",
+        "Broderie Mini Dress",
+        "Floral Maxi Dress"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -48233,7 +50532,27 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "Dresses",
+        "Tops",
+        "Mini Skirts",
+        "Romper",
+        "Corset Top",
+        "Halter Mini Dress",
+        "Mesh Keyhole Corset Top",
+        "Linen Blend Tie Pants",
+        "Denim Shorts",
+        "Skort",
+        "Lace Top",
+        "Slip Mini Dress",
+        "Tank Top",
+        "Cargo Shorts",
+        "Swim",
+        "Midi Skirt",
+        "Lace Short Sleeve Top",
+        "Broderie Mini Dress",
+        "Floral Maxi Dress"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -48463,7 +50782,19 @@
       "estimated_item_value": 22.0,
       "estimated_savings": 13.2,
       "value_reason": "60% off, brand/cat est. ($22) ≈ $13 savings | type=16 + savings=15 = 31",
-      "global_quality_score": 55.0
+      "global_quality_score": 55.0,
+      "product_keywords_contextual": [
+        "shampoo",
+        "conditioner",
+        "scalp serum",
+        "hair mask",
+        "curl cream",
+        "root source hair supplements",
+        "cleanser",
+        "serum",
+        "moisturizer"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Puma",
@@ -48789,7 +51120,14 @@
       "estimated_item_value": 12.0,
       "estimated_savings": 3.5,
       "value_reason": "free item, est. ≈ $4 savings | type=20 + savings=3 = 23",
-      "global_quality_score": 35.0
+      "global_quality_score": 35.0,
+      "product_keywords_contextual": [
+        "chips",
+        "queso",
+        "guac",
+        "salsa"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Quiksilver",
@@ -49227,7 +51565,9 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 22.5,
       "value_reason": "BOGO, est. 50% of $45 order ≈ $22 savings | type=18 + savings=15 = 33",
-      "global_quality_score": 43.0
+      "global_quality_score": 43.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Rag & Bone",
@@ -49608,7 +51948,23 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 30.0
+      "global_quality_score": 30.0,
+      "product_keywords_contextual": [
+        "Bags",
+        "Polo",
+        "Linen",
+        "Hoodies",
+        "Sweater",
+        "Rugs",
+        "Lighting",
+        "Fragrances",
+        "Face masks",
+        "Watches",
+        "Jewelry",
+        "Eyewear",
+        "Books"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Ralph Lauren",
@@ -49689,7 +52045,23 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 19.5,
       "value_reason": "30% off, brand/cat est. ($65) ≈ $20 savings | type=12 + savings=15 = 27",
-      "global_quality_score": 55.0
+      "global_quality_score": 55.0,
+      "product_keywords_contextual": [
+        "Bags",
+        "Polo",
+        "Linen",
+        "Hoodies",
+        "Sweater",
+        "Rugs",
+        "Lighting",
+        "Fragrances",
+        "Face masks",
+        "Watches",
+        "Jewelry",
+        "Eyewear",
+        "Books"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Rare Beauty",
@@ -49736,7 +52108,15 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "Lip Oil Stick",
+        "Liquid Blush",
+        "Eau de Parfum",
+        "Brow Tinted Gel",
+        "Eyeshadow Palette",
+        "Foundation",
+        "Tinted Lip Oil"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -49846,7 +52226,22 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 50.0,
       "value_reason": "$50 off | type=13 + savings=25 = 38",
-      "global_quality_score": 59.0
+      "global_quality_score": 59.0,
+      "product_keywords_contextual": [
+        "handbag",
+        "belt",
+        "bucket bag",
+        "crossbody bag",
+        "dress",
+        "skirt",
+        "heel",
+        "hobo bag",
+        "sandal",
+        "shoe",
+        "tote bag",
+        "wallet"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Red Robin",
@@ -49922,7 +52317,28 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 5.0,
       "value_reason": "unknown deal type, est. $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 26.0
+      "global_quality_score": 26.0,
+      "product_keywords_contextual": [
+        "burger",
+        "side",
+        "tea",
+        "soda",
+        "lemonade",
+        "pizza",
+        "wrap",
+        "appetizer",
+        "fries",
+        "broccoli",
+        "cream soda",
+        "pear",
+        "vanilla",
+        "pepperoni",
+        "wings",
+        "sandwich",
+        "meal",
+        "perks"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Red Robin",
@@ -50002,7 +52418,28 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 10.0,
       "value_reason": "free item, est. ≈ $10 savings | type=20 + savings=8 = 28",
-      "global_quality_score": 42.0
+      "global_quality_score": 42.0,
+      "product_keywords_contextual": [
+        "burger",
+        "side",
+        "tea",
+        "soda",
+        "lemonade",
+        "pizza",
+        "wrap",
+        "appetizer",
+        "fries",
+        "broccoli",
+        "cream soda",
+        "pear",
+        "vanilla",
+        "pepperoni",
+        "wings",
+        "sandwich",
+        "meal",
+        "perks"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Reebok",
@@ -50137,7 +52574,18 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "shoes",
+        "clothing",
+        "accessories",
+        "t-shirt",
+        "tank top",
+        "leggings",
+        "sneakers",
+        "jacket",
+        "cap",
+        "suitcases"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -50250,7 +52698,19 @@
       "estimated_item_value": 13.0,
       "estimated_savings": 7.99,
       "value_reason": "$8 off | type=8 + savings=8 = 16",
-      "global_quality_score": 34.0
+      "global_quality_score": 34.0,
+      "product_keywords_contextual": [
+        "tickets",
+        "popcorn",
+        "candy",
+        "posters",
+        "art prints",
+        "merchandise",
+        "apparel",
+        "collectibles",
+        "swag"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Regal",
@@ -50330,7 +52790,19 @@
       "estimated_item_value": 13.0,
       "estimated_savings": 3.25,
       "value_reason": "25% off, brand/cat est. ($13) ≈ $3 savings | type=8 + savings=3 = 11",
-      "global_quality_score": 29.0
+      "global_quality_score": 29.0,
+      "product_keywords_contextual": [
+        "tickets",
+        "popcorn",
+        "candy",
+        "posters",
+        "art prints",
+        "merchandise",
+        "apparel",
+        "collectibles",
+        "swag"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Regal",
@@ -50410,7 +52882,19 @@
       "estimated_item_value": 13.0,
       "estimated_savings": 6.5,
       "value_reason": "50% off, brand/cat est. ($13) ≈ $6 savings | type=16 + savings=8 = 24",
-      "global_quality_score": 42.0
+      "global_quality_score": 42.0,
+      "product_keywords_contextual": [
+        "tickets",
+        "popcorn",
+        "candy",
+        "posters",
+        "art prints",
+        "merchandise",
+        "apparel",
+        "collectibles",
+        "swag"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Regal",
@@ -50488,7 +52972,19 @@
       "estimated_item_value": 13.0,
       "estimated_savings": 13.0,
       "value_reason": "birthday reward, est. free item ≈ $13 | type=18 + savings=15 = 33",
-      "global_quality_score": 51.0
+      "global_quality_score": 51.0,
+      "product_keywords_contextual": [
+        "tickets",
+        "popcorn",
+        "candy",
+        "posters",
+        "art prints",
+        "merchandise",
+        "apparel",
+        "collectibles",
+        "swag"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "REI",
@@ -50633,7 +53129,26 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "running shoes",
+        "backpacks",
+        "sandals",
+        "hiking shoes",
+        "smartwatch",
+        "hydration vest",
+        "socks",
+        "clothing",
+        "water bottles",
+        "hammocks",
+        "carabiners",
+        "flashlights",
+        "messenger bags",
+        "cots",
+        "baby carrier packs",
+        "lunch boxes",
+        "bags",
+        "bottles"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -50712,7 +53227,26 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "running shoes",
+        "backpacks",
+        "sandals",
+        "hiking shoes",
+        "smartwatch",
+        "hydration vest",
+        "socks",
+        "clothing",
+        "water bottles",
+        "hammocks",
+        "carabiners",
+        "flashlights",
+        "messenger bags",
+        "cots",
+        "baby carrier packs",
+        "lunch boxes",
+        "bags",
+        "bottles"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -50951,7 +53485,16 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "shorts",
+        "shirt",
+        "shoes",
+        "blouse",
+        "case",
+        "cap",
+        "brush",
+        "gummies"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -51032,7 +53575,28 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "blood tests",
+        "lab work",
+        "hormones test",
+        "fertility test",
+        "bodybuilder panel",
+        "C-Reactive Protein (CRP)",
+        "Sex Hormone Binding Globulin",
+        "Vitamin D",
+        "Hormone Light Test",
+        "Hormone Health Checkup",
+        "GLP-1 Weight Loss Readiness Quiz",
+        "Diabetes Symptoms Quiz",
+        "Fatigue & Low Energy Quiz",
+        "BMI Calculator",
+        "A1C to Average Glucose Calculator",
+        "Daily Calorie Calculator",
+        "Peptide therapy guides",
+        "Dosage calculator",
+        "Practical guides",
+        "Health guides"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -51603,7 +54167,18 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 18.0
+      "global_quality_score": 18.0,
+      "product_keywords_contextual": [
+        "bikini",
+        "bikini bottom",
+        "bikini top",
+        "cover up dress",
+        "shoes",
+        "accessories",
+        "swimwear",
+        "apparel"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Roxy",
@@ -51684,7 +54259,18 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
       "value_reason": "15% off, brand/cat est. ($65) ≈ $10 savings | type=5 + savings=8 = 13",
-      "global_quality_score": 37.0
+      "global_quality_score": 37.0,
+      "product_keywords_contextual": [
+        "bikini",
+        "bikini bottom",
+        "bikini top",
+        "cover up dress",
+        "shoes",
+        "accessories",
+        "swimwear",
+        "apparel"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Ryobi",
@@ -51916,7 +54502,9 @@
       "estimated_item_value": 22.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 20.0
+      "global_quality_score": 20.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Sally Beauty",
@@ -51999,7 +54587,9 @@
       "estimated_item_value": 22.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 26.0
+      "global_quality_score": 26.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Sally Beauty",
@@ -52082,7 +54672,9 @@
       "estimated_item_value": 22.0,
       "estimated_savings": 4.4,
       "value_reason": "20% off, brand/cat est. ($22) ≈ $4 savings | type=8 + savings=3 = 11",
-      "global_quality_score": 29.0
+      "global_quality_score": 29.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Sam Edelman",
@@ -53210,7 +55802,16 @@
       "estimated_item_value": 55.0,
       "estimated_savings": 8.25,
       "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14",
-      "global_quality_score": 22.0
+      "global_quality_score": 22.0,
+      "product_keywords_contextual": [
+        "Fuel Rewards card",
+        "credit card",
+        "Alt ID"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "other"
+      ]
     },
     {
       "brand": "Shoe Carnival",
@@ -53299,7 +55900,11 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 27.0
+      "global_quality_score": 27.0,
+      "product_keywords_contextual": [
+        "shoes"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Showpo",
@@ -54253,7 +56858,13 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "music",
+        "concert tickets",
+        "albums",
+        "songs",
+        "audiobooks"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -54333,7 +56944,13 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "music",
+        "concert tickets",
+        "albums",
+        "songs",
+        "audiobooks"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -54416,7 +57033,15 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "peach",
+        "ice cream bites",
+        "probiotic soda",
+        "coconut water",
+        "hydration mix",
+        "sunscreen",
+        "bug spray"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -54578,7 +57203,15 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "peach",
+        "ice cream bites",
+        "probiotic soda",
+        "coconut water",
+        "hydration mix",
+        "sunscreen",
+        "bug spray"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -54678,7 +57311,24 @@
       "estimated_item_value": 6.5,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 12.0
+      "global_quality_score": 12.0,
+      "product_keywords_contextual": [
+        "coffee",
+        "tea",
+        "bakery item",
+        "snacks",
+        "latte",
+        "cold brew",
+        "breakfast",
+        "sandwich",
+        "protein box",
+        "packaged coffee",
+        "merchandise"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Starbucks",
@@ -54747,7 +57397,24 @@
       "estimated_item_value": 6.5,
       "estimated_savings": 6.5,
       "value_reason": "birthday reward, est. free item ≈ $6 | type=18 + savings=8 = 26",
-      "global_quality_score": 26.0
+      "global_quality_score": 26.0,
+      "product_keywords_contextual": [
+        "coffee",
+        "tea",
+        "bakery item",
+        "snacks",
+        "latte",
+        "cold brew",
+        "breakfast",
+        "sandwich",
+        "protein box",
+        "packaged coffee",
+        "merchandise"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Starbucks",
@@ -54816,7 +57483,24 @@
       "estimated_item_value": 6.5,
       "estimated_savings": 6.5,
       "value_reason": "birthday reward, est. free item ≈ $6 | type=18 + savings=8 = 26",
-      "global_quality_score": 26.0
+      "global_quality_score": 26.0,
+      "product_keywords_contextual": [
+        "coffee",
+        "tea",
+        "bakery item",
+        "snacks",
+        "latte",
+        "cold brew",
+        "breakfast",
+        "sandwich",
+        "protein box",
+        "packaged coffee",
+        "merchandise"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Starbucks",
@@ -54885,7 +57569,24 @@
       "estimated_item_value": 6.5,
       "estimated_savings": 6.5,
       "value_reason": "birthday reward, est. free item ≈ $6 | type=18 + savings=8 = 26",
-      "global_quality_score": 26.0
+      "global_quality_score": 26.0,
+      "product_keywords_contextual": [
+        "coffee",
+        "tea",
+        "bakery item",
+        "snacks",
+        "latte",
+        "cold brew",
+        "breakfast",
+        "sandwich",
+        "protein box",
+        "packaged coffee",
+        "merchandise"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Starbucks",
@@ -54953,7 +57654,24 @@
       "estimated_item_value": 6.5,
       "estimated_savings": 6.5,
       "value_reason": "free item, est. ≈ $6 savings | type=20 + savings=8 = 28",
-      "global_quality_score": 34.0
+      "global_quality_score": 34.0,
+      "product_keywords_contextual": [
+        "coffee",
+        "tea",
+        "bakery item",
+        "snacks",
+        "latte",
+        "cold brew",
+        "breakfast",
+        "sandwich",
+        "protein box",
+        "packaged coffee",
+        "merchandise"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "SteelSeries",
@@ -55123,7 +57841,16 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 26.0
+      "global_quality_score": 26.0,
+      "product_keywords_contextual": [
+        "shoes",
+        "handbags",
+        "clothing",
+        "heels",
+        "sneakers",
+        "accessories"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Steve Madden",
@@ -55200,7 +57927,16 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 14.0,
       "value_reason": "50% off, vague deal, conservative est. ($28) ≈ $14 savings | type=16 + savings=15 = 31",
-      "global_quality_score": 61.0
+      "global_quality_score": 61.0,
+      "product_keywords_contextual": [
+        "shoes",
+        "handbags",
+        "clothing",
+        "heels",
+        "sneakers",
+        "accessories"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Steve Madden",
@@ -55276,7 +58012,16 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 15.0,
       "value_reason": "birthday reward, est. free item ≈ $15 | type=18 + savings=15 = 33",
-      "global_quality_score": 55.0
+      "global_quality_score": 55.0,
+      "product_keywords_contextual": [
+        "shoes",
+        "handbags",
+        "clothing",
+        "heels",
+        "sneakers",
+        "accessories"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Steve Madden",
@@ -55355,7 +58100,16 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 22.5,
       "value_reason": "25% off, brand/cat est. ($90) ≈ $22 savings | type=8 + savings=15 = 23",
-      "global_quality_score": 45.0
+      "global_quality_score": 45.0,
+      "product_keywords_contextual": [
+        "shoes",
+        "handbags",
+        "clothing",
+        "heels",
+        "sneakers",
+        "accessories"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Steve Madden",
@@ -55434,7 +58188,16 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 18.0,
       "value_reason": "20% off, brand/cat est. ($90) ≈ $18 savings | type=8 + savings=15 = 23",
-      "global_quality_score": 45.0
+      "global_quality_score": 45.0,
+      "product_keywords_contextual": [
+        "shoes",
+        "handbags",
+        "clothing",
+        "heels",
+        "sneakers",
+        "accessories"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Steve Madden",
@@ -55513,7 +58276,16 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 22.5,
       "value_reason": "25% off, brand/cat est. ($90) ≈ $22 savings | type=8 + savings=15 = 23",
-      "global_quality_score": 45.0
+      "global_quality_score": 45.0,
+      "product_keywords_contextual": [
+        "shoes",
+        "handbags",
+        "clothing",
+        "heels",
+        "sneakers",
+        "accessories"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Steve Madden",
@@ -55592,7 +58364,16 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 22.5,
       "value_reason": "25% off, brand/cat est. ($90) ≈ $22 savings | type=8 + savings=15 = 23",
-      "global_quality_score": 45.0
+      "global_quality_score": 45.0,
+      "product_keywords_contextual": [
+        "shoes",
+        "handbags",
+        "clothing",
+        "heels",
+        "sneakers",
+        "accessories"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Steve Madden",
@@ -55671,7 +58452,16 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 22.5,
       "value_reason": "25% off, brand/cat est. ($90) ≈ $22 savings | type=8 + savings=15 = 23",
-      "global_quality_score": 45.0
+      "global_quality_score": 45.0,
+      "product_keywords_contextual": [
+        "shoes",
+        "handbags",
+        "clothing",
+        "heels",
+        "sneakers",
+        "accessories"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Steve Madden",
@@ -55750,7 +58540,16 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 22.5,
       "value_reason": "25% off, brand/cat est. ($90) ≈ $22 savings | type=8 + savings=15 = 23",
-      "global_quality_score": 45.0
+      "global_quality_score": 45.0,
+      "product_keywords_contextual": [
+        "shoes",
+        "handbags",
+        "clothing",
+        "heels",
+        "sneakers",
+        "accessories"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Stihl",
@@ -56147,7 +58946,12 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 11.0
+      "global_quality_score": 11.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "food"
+      ]
     },
     {
       "brand": "Sur La Table",
@@ -56391,7 +59195,13 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 2.0,
       "value_reason": "sale price, est. 20% off $10 ≈ $2 savings | type=6 + savings=3 = 9",
-      "global_quality_score": 20.0
+      "global_quality_score": 20.0,
+      "product_keywords_contextual": [
+        "Peach & Goat Cheese Salad",
+        "Hot Honey Chicken Plate",
+        "Chicken Avocado Ranch Bowl"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Sweetgreen",
@@ -56468,7 +59278,13 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 2.0,
       "value_reason": "sale price, est. 20% off $10 ≈ $2 savings | type=6 + savings=3 = 9",
-      "global_quality_score": 20.0
+      "global_quality_score": 20.0,
+      "product_keywords_contextual": [
+        "Peach & Goat Cheese Salad",
+        "Hot Honey Chicken Plate",
+        "Chicken Avocado Ranch Bowl"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Sweetgreen",
@@ -56543,7 +59359,13 @@
       "estimated_item_value": 10.0,
       "estimated_savings": 10.0,
       "value_reason": "free item, est. ≈ $10 savings | type=20 + savings=8 = 28",
-      "global_quality_score": 43.0
+      "global_quality_score": 43.0,
+      "product_keywords_contextual": [
+        "Peach & Goat Cheese Salad",
+        "Hot Honey Chicken Plate",
+        "Chicken Avocado Ranch Bowl"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Taco Bell",
@@ -56630,7 +59452,30 @@
       "estimated_item_value": 8.0,
       "estimated_savings": 10.0,
       "value_reason": "free item, est. ≈ $10 savings | type=20 + savings=8 = 28",
-      "global_quality_score": 43.0
+      "global_quality_score": 43.0,
+      "product_keywords_contextual": [
+        "Cantina Chicken Crispy Taco",
+        "Beefy 5-Layer Burrito",
+        "Soft Taco",
+        "Chips & Nacho Cheese Sauce",
+        "Cinnamon Twists",
+        "Cheesy Roll Up",
+        "Bean Burrito",
+        "Crunchy Taco",
+        "Spicy Potato Soft Taco",
+        "Cheesy Toasted Breakfast Burrito (Sausage)",
+        "Medium Fountain Drink",
+        "Beefy Potato Loaded Griller",
+        "Mini Taco Salad",
+        "Nacho Cheese Doritos® Locos Taco",
+        "Seasoned Beef Chalupa Supreme®",
+        "Cheesy Gordita Crunch",
+        "3-Cheese Chicken Flatbread Melt",
+        "Breakfast Quesadilla (Sausage)",
+        "Cinnabon Delights®2 Pack",
+        "Mtn Dew® Baja Blast® Freeze"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Take 5 Oil Change",
@@ -56935,7 +59780,38 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 32.5,
       "value_reason": "50% off, brand/cat est. ($65) ≈ $32 savings | type=16 + savings=25 = 41",
-      "global_quality_score": 51.0
+      "global_quality_score": 51.0,
+      "product_keywords_contextual": [
+        "tees",
+        "knits",
+        "blouses",
+        "shirts",
+        "sweaters",
+        "pants",
+        "jeans",
+        "shorts",
+        "dresses",
+        "skirts",
+        "jackets",
+        "coats",
+        "suiting",
+        "loungewear",
+        "sleepwear",
+        "swimwear",
+        "intimates",
+        "tops",
+        "tunics",
+        "anoraks",
+        "pantsuits",
+        "skorts",
+        "cardigans",
+        "shoes"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "clothing",
+        "footwear"
+      ]
     },
     {
       "brand": "Target",
@@ -57666,7 +60542,30 @@
       "estimated_item_value": 32.0,
       "estimated_savings": 4.8,
       "value_reason": "15% off, brand/cat est. ($32) ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 25.0
+      "global_quality_score": 25.0,
+      "product_keywords_contextual": [
+        "CC color-correcting tinted serum",
+        "primer",
+        "concealer",
+        "mascara",
+        "lip balm",
+        "eyeliner",
+        "brow pencil",
+        "setting powder",
+        "lash applicator",
+        "brush",
+        "blush",
+        "face roller",
+        "false eyelashes",
+        "whipped body butter",
+        "compact blush",
+        "plumping lip oil",
+        "eye shadow",
+        "skin filter",
+        "lip plumper",
+        "cream shadow"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Tarte Cosmetics",
@@ -57748,7 +60647,30 @@
       "estimated_item_value": 32.0,
       "estimated_savings": 15.0,
       "value_reason": "free item, est. ≈ $15 savings | type=20 + savings=15 = 35",
-      "global_quality_score": 37.0
+      "global_quality_score": 37.0,
+      "product_keywords_contextual": [
+        "CC color-correcting tinted serum",
+        "primer",
+        "concealer",
+        "mascara",
+        "lip balm",
+        "eyeliner",
+        "brow pencil",
+        "setting powder",
+        "lash applicator",
+        "brush",
+        "blush",
+        "face roller",
+        "false eyelashes",
+        "whipped body butter",
+        "compact blush",
+        "plumping lip oil",
+        "eye shadow",
+        "skin filter",
+        "lip plumper",
+        "cream shadow"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Ted Baker",
@@ -58090,7 +61012,32 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 10.0,
       "value_reason": "$10 off | type=10 + savings=8 = 18",
-      "global_quality_score": 32.0
+      "global_quality_score": 32.0,
+      "product_keywords_contextual": [
+        "closet systems",
+        "shelving",
+        "storage bags",
+        "drawers",
+        "carts",
+        "hooks",
+        "hangers",
+        "jewelry boxes",
+        "laundry baskets",
+        "pantry organizers",
+        "cabinet organizers",
+        "refrigerator storage",
+        "cookware",
+        "tabletop",
+        "trash cans",
+        "desk organizers",
+        "file cabinets",
+        "label makers",
+        "notebooks",
+        "luggage",
+        "travel bags",
+        "bedding"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "The Container Store",
@@ -58162,7 +61109,32 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 9.0,
       "value_reason": "20% off, brand/cat est. ($45) ≈ $9 savings | type=8 + savings=8 = 16",
-      "global_quality_score": 48.0
+      "global_quality_score": 48.0,
+      "product_keywords_contextual": [
+        "closet systems",
+        "shelving",
+        "storage bags",
+        "drawers",
+        "carts",
+        "hooks",
+        "hangers",
+        "jewelry boxes",
+        "laundry baskets",
+        "pantry organizers",
+        "cabinet organizers",
+        "refrigerator storage",
+        "cookware",
+        "tabletop",
+        "trash cans",
+        "desk organizers",
+        "file cabinets",
+        "label makers",
+        "notebooks",
+        "luggage",
+        "travel bags",
+        "bedding"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "The Container Store",
@@ -58233,7 +61205,32 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 11.25,
       "value_reason": "25% off, brand/cat est. ($45) ≈ $11 savings | type=8 + savings=15 = 23",
-      "global_quality_score": 45.0
+      "global_quality_score": 45.0,
+      "product_keywords_contextual": [
+        "closet systems",
+        "shelving",
+        "storage bags",
+        "drawers",
+        "carts",
+        "hooks",
+        "hangers",
+        "jewelry boxes",
+        "laundry baskets",
+        "pantry organizers",
+        "cabinet organizers",
+        "refrigerator storage",
+        "cookware",
+        "tabletop",
+        "trash cans",
+        "desk organizers",
+        "file cabinets",
+        "label makers",
+        "notebooks",
+        "luggage",
+        "travel bags",
+        "bedding"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "The Container Store",
@@ -58304,7 +61301,32 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 36.0,
       "value_reason": "80% off, brand/cat est. ($45) ≈ $36 savings | type=16 + savings=25 = 41",
-      "global_quality_score": 63.0
+      "global_quality_score": 63.0,
+      "product_keywords_contextual": [
+        "closet systems",
+        "shelving",
+        "storage bags",
+        "drawers",
+        "carts",
+        "hooks",
+        "hangers",
+        "jewelry boxes",
+        "laundry baskets",
+        "pantry organizers",
+        "cabinet organizers",
+        "refrigerator storage",
+        "cookware",
+        "tabletop",
+        "trash cans",
+        "desk organizers",
+        "file cabinets",
+        "label makers",
+        "notebooks",
+        "luggage",
+        "travel bags",
+        "bedding"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "The Container Store",
@@ -58375,7 +61397,32 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 33.75,
       "value_reason": "75% off, brand/cat est. ($45) ≈ $34 savings | type=16 + savings=25 = 41",
-      "global_quality_score": 63.0
+      "global_quality_score": 63.0,
+      "product_keywords_contextual": [
+        "closet systems",
+        "shelving",
+        "storage bags",
+        "drawers",
+        "carts",
+        "hooks",
+        "hangers",
+        "jewelry boxes",
+        "laundry baskets",
+        "pantry organizers",
+        "cabinet organizers",
+        "refrigerator storage",
+        "cookware",
+        "tabletop",
+        "trash cans",
+        "desk organizers",
+        "file cabinets",
+        "label makers",
+        "notebooks",
+        "luggage",
+        "travel bags",
+        "bedding"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "The Container Store",
@@ -58446,7 +61493,32 @@
       "estimated_item_value": 45.0,
       "estimated_savings": 31.5,
       "value_reason": "70% off, brand/cat est. ($45) ≈ $32 savings | type=16 + savings=25 = 41",
-      "global_quality_score": 63.0
+      "global_quality_score": 63.0,
+      "product_keywords_contextual": [
+        "closet systems",
+        "shelving",
+        "storage bags",
+        "drawers",
+        "carts",
+        "hooks",
+        "hangers",
+        "jewelry boxes",
+        "laundry baskets",
+        "pantry organizers",
+        "cabinet organizers",
+        "refrigerator storage",
+        "cookware",
+        "tabletop",
+        "trash cans",
+        "desk organizers",
+        "file cabinets",
+        "label makers",
+        "notebooks",
+        "luggage",
+        "travel bags",
+        "bedding"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "The Farmer's Dog",
@@ -58856,7 +61928,21 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 32.5,
       "value_reason": "50% off, brand/cat est. ($65) ≈ $32 savings | type=16 + savings=25 = 41",
-      "global_quality_score": 58.0
+      "global_quality_score": 58.0,
+      "product_keywords_contextual": [
+        "dresses",
+        "shorts",
+        "denim",
+        "tops",
+        "handbags",
+        "sunglasses",
+        "espadrille sandals",
+        "paisley dress",
+        "silk scarf",
+        "eyelet blouse",
+        "capri pants"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Thrive Market",
@@ -58934,7 +62020,30 @@
       "estimated_item_value": 5.0,
       "estimated_savings": 1.5,
       "value_reason": "30% off, brand/cat est. ($5) ≈ $2 savings | type=12 + savings=3 = 15",
-      "global_quality_score": 27.0
+      "global_quality_score": 27.0,
+      "product_keywords_contextual": [
+        "beef chomplings",
+        "chicken nuggets",
+        "probiotic capsules",
+        "cereal",
+        "olive oil",
+        "protein powder",
+        "marinara sauce",
+        "omega supplement",
+        "jerky",
+        "seafood",
+        "powder",
+        "snacks",
+        "pantry staples",
+        "treats",
+        "beverages",
+        "vitamins",
+        "supplements",
+        "personal care",
+        "cleaning products",
+        "pet food"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Tillys",
@@ -60475,7 +63584,10 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "gift cards",
+        "appetizers"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -60557,7 +63669,10 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "gift cards",
+        "appetizers"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -60645,7 +63760,10 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "gift cards",
+        "appetizers"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -60963,7 +64081,17 @@
       "estimated_item_value": 7.0,
       "estimated_savings": 7.0,
       "value_reason": "free item, est. ≈ $7 savings | type=20 + savings=8 = 28",
-      "global_quality_score": 48.0
+      "global_quality_score": 48.0,
+      "product_keywords_contextual": [
+        "smoothies",
+        "flatbreads",
+        "wraps",
+        "bowls",
+        "oatmeal",
+        "chia pudding",
+        "acai bowl"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Tropical Smoothie Cafe",
@@ -61046,7 +64174,17 @@
       "estimated_item_value": 7.0,
       "estimated_savings": 7.0,
       "value_reason": "free item, est. ≈ $7 savings | type=20 + savings=8 = 28",
-      "global_quality_score": 48.0
+      "global_quality_score": 48.0,
+      "product_keywords_contextual": [
+        "smoothies",
+        "flatbreads",
+        "wraps",
+        "bowls",
+        "oatmeal",
+        "chia pudding",
+        "acai bowl"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Tropical Smoothie Cafe",
@@ -61131,7 +64269,17 @@
       "estimated_item_value": 7.0,
       "estimated_savings": 8.0,
       "value_reason": "$ off (no amount parsed), est. $8 | type=8 + savings=8 = 16",
-      "global_quality_score": 29.0
+      "global_quality_score": 29.0,
+      "product_keywords_contextual": [
+        "smoothies",
+        "flatbreads",
+        "wraps",
+        "bowls",
+        "oatmeal",
+        "chia pudding",
+        "acai bowl"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Turtle Beach",
@@ -61378,7 +64526,9 @@
       "estimated_item_value": 28.0,
       "estimated_savings": 15.0,
       "value_reason": "birthday reward, est. free item ≈ $15 | type=18 + savings=15 = 33",
-      "global_quality_score": 51.0
+      "global_quality_score": 51.0,
+      "product_keywords_contextual": [],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Under Armour",
@@ -61744,7 +64894,12 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 15.0,
       "value_reason": "free item, est. ≈ $15 savings | type=20 + savings=15 = 35",
-      "global_quality_score": 55.0
+      "global_quality_score": 55.0,
+      "product_keywords_contextual": [
+        "samples",
+        "free samples"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Urban Decay",
@@ -61822,7 +64977,12 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 4.5,
       "value_reason": "15% off, brand/cat est. ($30) ≈ $4 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 25.0
+      "global_quality_score": 25.0,
+      "product_keywords_contextual": [
+        "samples",
+        "free samples"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Urban Outfitters",
@@ -62327,7 +65487,33 @@
       "synthesis_reason": null,
       "product_categories": [],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "tote bag",
+        "backpack",
+        "lunch bag",
+        "wallet",
+        "wristlet",
+        "carry-on luggage",
+        "travel organizer",
+        "shoulder bag",
+        "travel bag",
+        "sunglasses",
+        "reading glasses",
+        "sleepwear",
+        "mini purse",
+        "makeup bag",
+        "toiletry bag",
+        "duffel bag",
+        "gym bag",
+        "belt bag",
+        "throw blanket",
+        "keychain",
+        "charm",
+        "pouch",
+        "laptop bag",
+        "tech accessory",
+        "slipper"
+      ],
       "matched_product_examples": [],
       "visibility": null,
       "sender_email": null,
@@ -62550,7 +65736,18 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
       "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14",
-      "global_quality_score": 36.0
+      "global_quality_score": 36.0,
+      "product_keywords_contextual": [
+        "cardigan",
+        "sweater",
+        "trouser",
+        "vest",
+        "polo top",
+        "shirt",
+        "trench coat",
+        "henley"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Vince",
@@ -62626,7 +65823,18 @@
       "estimated_item_value": 65.0,
       "estimated_savings": 9.75,
       "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=8 = 14",
-      "global_quality_score": 36.0
+      "global_quality_score": 36.0,
+      "product_keywords_contextual": [
+        "cardigan",
+        "sweater",
+        "trouser",
+        "vest",
+        "polo top",
+        "shirt",
+        "trench coat",
+        "henley"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Vineyard Vines",
@@ -63143,7 +66351,22 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 3.0,
       "value_reason": "20% off, vague deal, conservative est. ($15) ≈ $3 savings | type=8 + savings=3 = 11",
-      "global_quality_score": 17.0
+      "global_quality_score": 17.0,
+      "product_keywords_contextual": [
+        "pharmacy",
+        "grocery",
+        "health",
+        "wellness",
+        "pet store",
+        "veterinary"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "beauty",
+        "food",
+        "health",
+        "home"
+      ]
     },
     {
       "brand": "Walgreens",
@@ -63206,7 +66429,22 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 4.5,
       "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=3 = 9",
-      "global_quality_score": 19.0
+      "global_quality_score": 19.0,
+      "product_keywords_contextual": [
+        "pharmacy",
+        "grocery",
+        "health",
+        "wellness",
+        "pet store",
+        "veterinary"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "beauty",
+        "food",
+        "health",
+        "home"
+      ]
     },
     {
       "brand": "Walgreens",
@@ -63269,7 +66507,22 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 4.5,
       "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=3 = 9",
-      "global_quality_score": 19.0
+      "global_quality_score": 19.0,
+      "product_keywords_contextual": [
+        "pharmacy",
+        "grocery",
+        "health",
+        "wellness",
+        "pet store",
+        "veterinary"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "beauty",
+        "food",
+        "health",
+        "home"
+      ]
     },
     {
       "brand": "Walgreens",
@@ -63334,7 +66587,22 @@
       "estimated_item_value": 30.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 16.0
+      "global_quality_score": 16.0,
+      "product_keywords_contextual": [
+        "pharmacy",
+        "grocery",
+        "health",
+        "wellness",
+        "pet store",
+        "veterinary"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "beauty",
+        "food",
+        "health",
+        "home"
+      ]
     },
     {
       "brand": "Walmart",
@@ -63677,7 +66945,37 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 13.5,
       "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=15 = 21",
-      "global_quality_score": 31.0
+      "global_quality_score": 31.0,
+      "product_keywords_contextual": [
+        "coffee table",
+        "end table",
+        "accent chair",
+        "area rugs",
+        "bathroom vanities",
+        "mattresses",
+        "kitchen furniture",
+        "dining furniture",
+        "bedroom furniture",
+        "outdoor furniture",
+        "lighting",
+        "bedding",
+        "nightstand",
+        "table lamp",
+        "sconce",
+        "throw pillow",
+        "coat rack",
+        "writing desk",
+        "dining table",
+        "console table",
+        "side chair",
+        "sofa",
+        "loveseat",
+        "ottoman"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "Wayfair",
@@ -63742,7 +67040,37 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 180.81,
       "value_reason": "$181 off | type=15 + savings=45 = 60",
-      "global_quality_score": 70.0
+      "global_quality_score": 70.0,
+      "product_keywords_contextual": [
+        "coffee table",
+        "end table",
+        "accent chair",
+        "area rugs",
+        "bathroom vanities",
+        "mattresses",
+        "kitchen furniture",
+        "dining furniture",
+        "bedroom furniture",
+        "outdoor furniture",
+        "lighting",
+        "bedding",
+        "nightstand",
+        "table lamp",
+        "sconce",
+        "throw pillow",
+        "coat rack",
+        "writing desk",
+        "dining table",
+        "console table",
+        "side chair",
+        "sofa",
+        "loveseat",
+        "ottoman"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "Wayfair",
@@ -63807,7 +67135,37 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 85.0,
       "value_reason": "$85 off | type=13 + savings=35 = 48",
-      "global_quality_score": 58.0
+      "global_quality_score": 58.0,
+      "product_keywords_contextual": [
+        "coffee table",
+        "end table",
+        "accent chair",
+        "area rugs",
+        "bathroom vanities",
+        "mattresses",
+        "kitchen furniture",
+        "dining furniture",
+        "bedroom furniture",
+        "outdoor furniture",
+        "lighting",
+        "bedding",
+        "nightstand",
+        "table lamp",
+        "sconce",
+        "throw pillow",
+        "coat rack",
+        "writing desk",
+        "dining table",
+        "console table",
+        "side chair",
+        "sofa",
+        "loveseat",
+        "ottoman"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "Wayfair",
@@ -63872,7 +67230,37 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 933.04,
       "value_reason": "$933 off | type=15 + savings=45 = 60",
-      "global_quality_score": 70.0
+      "global_quality_score": 70.0,
+      "product_keywords_contextual": [
+        "coffee table",
+        "end table",
+        "accent chair",
+        "area rugs",
+        "bathroom vanities",
+        "mattresses",
+        "kitchen furniture",
+        "dining furniture",
+        "bedroom furniture",
+        "outdoor furniture",
+        "lighting",
+        "bedding",
+        "nightstand",
+        "table lamp",
+        "sconce",
+        "throw pillow",
+        "coat rack",
+        "writing desk",
+        "dining table",
+        "console table",
+        "side chair",
+        "sofa",
+        "loveseat",
+        "ottoman"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "Wayfair",
@@ -63937,7 +67325,37 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 960.0,
       "value_reason": "$960 off | type=15 + savings=45 = 60",
-      "global_quality_score": 70.0
+      "global_quality_score": 70.0,
+      "product_keywords_contextual": [
+        "coffee table",
+        "end table",
+        "accent chair",
+        "area rugs",
+        "bathroom vanities",
+        "mattresses",
+        "kitchen furniture",
+        "dining furniture",
+        "bedroom furniture",
+        "outdoor furniture",
+        "lighting",
+        "bedding",
+        "nightstand",
+        "table lamp",
+        "sconce",
+        "throw pillow",
+        "coat rack",
+        "writing desk",
+        "dining table",
+        "console table",
+        "side chair",
+        "sofa",
+        "loveseat",
+        "ottoman"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "Wayfair",
@@ -64002,7 +67420,37 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 111.04,
       "value_reason": "$111 off | type=15 + savings=45 = 60",
-      "global_quality_score": 70.0
+      "global_quality_score": 70.0,
+      "product_keywords_contextual": [
+        "coffee table",
+        "end table",
+        "accent chair",
+        "area rugs",
+        "bathroom vanities",
+        "mattresses",
+        "kitchen furniture",
+        "dining furniture",
+        "bedroom furniture",
+        "outdoor furniture",
+        "lighting",
+        "bedding",
+        "nightstand",
+        "table lamp",
+        "sconce",
+        "throw pillow",
+        "coat rack",
+        "writing desk",
+        "dining table",
+        "console table",
+        "side chair",
+        "sofa",
+        "loveseat",
+        "ottoman"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "Wayfair",
@@ -64067,7 +67515,37 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 1.0,
       "value_reason": "$1 off | type=8 + savings=3 = 11",
-      "global_quality_score": 21.0
+      "global_quality_score": 21.0,
+      "product_keywords_contextual": [
+        "coffee table",
+        "end table",
+        "accent chair",
+        "area rugs",
+        "bathroom vanities",
+        "mattresses",
+        "kitchen furniture",
+        "dining furniture",
+        "bedroom furniture",
+        "outdoor furniture",
+        "lighting",
+        "bedding",
+        "nightstand",
+        "table lamp",
+        "sconce",
+        "throw pillow",
+        "coat rack",
+        "writing desk",
+        "dining table",
+        "console table",
+        "side chair",
+        "sofa",
+        "loveseat",
+        "ottoman"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "Wayfair",
@@ -64132,7 +67610,37 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 639.0,
       "value_reason": "$639 off | type=15 + savings=45 = 60",
-      "global_quality_score": 70.0
+      "global_quality_score": 70.0,
+      "product_keywords_contextual": [
+        "coffee table",
+        "end table",
+        "accent chair",
+        "area rugs",
+        "bathroom vanities",
+        "mattresses",
+        "kitchen furniture",
+        "dining furniture",
+        "bedroom furniture",
+        "outdoor furniture",
+        "lighting",
+        "bedding",
+        "nightstand",
+        "table lamp",
+        "sconce",
+        "throw pillow",
+        "coat rack",
+        "writing desk",
+        "dining table",
+        "console table",
+        "side chair",
+        "sofa",
+        "loveseat",
+        "ottoman"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "Wayfair",
@@ -64197,7 +67705,37 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 465.0,
       "value_reason": "$465 off | type=15 + savings=45 = 60",
-      "global_quality_score": 70.0
+      "global_quality_score": 70.0,
+      "product_keywords_contextual": [
+        "coffee table",
+        "end table",
+        "accent chair",
+        "area rugs",
+        "bathroom vanities",
+        "mattresses",
+        "kitchen furniture",
+        "dining furniture",
+        "bedroom furniture",
+        "outdoor furniture",
+        "lighting",
+        "bedding",
+        "nightstand",
+        "table lamp",
+        "sconce",
+        "throw pillow",
+        "coat rack",
+        "writing desk",
+        "dining table",
+        "console table",
+        "side chair",
+        "sofa",
+        "loveseat",
+        "ottoman"
+      ],
+      "product_keywords_explicit": [],
+      "product_categories": [
+        "home"
+      ]
     },
     {
       "brand": "Wendy's",
@@ -64620,7 +68158,28 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 13.5,
       "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=15 = 21",
-      "global_quality_score": 45.0
+      "global_quality_score": 45.0,
+      "product_keywords_contextual": [
+        "sofa",
+        "sectionals",
+        "loveseats",
+        "seating",
+        "rugs",
+        "bedding",
+        "bath",
+        "lighting",
+        "pillows",
+        "throws",
+        "window treatments",
+        "art",
+        "mirrors",
+        "kitchen",
+        "dining",
+        "storage",
+        "furniture",
+        "coffee table"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "West Elm",
@@ -64697,7 +68256,28 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 32.0
+      "global_quality_score": 32.0,
+      "product_keywords_contextual": [
+        "sofa",
+        "sectionals",
+        "loveseats",
+        "seating",
+        "rugs",
+        "bedding",
+        "bath",
+        "lighting",
+        "pillows",
+        "throws",
+        "window treatments",
+        "art",
+        "mirrors",
+        "kitchen",
+        "dining",
+        "storage",
+        "furniture",
+        "coffee table"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "West Elm",
@@ -64774,7 +68354,28 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 28.0
+      "global_quality_score": 28.0,
+      "product_keywords_contextual": [
+        "sofa",
+        "sectionals",
+        "loveseats",
+        "seating",
+        "rugs",
+        "bedding",
+        "bath",
+        "lighting",
+        "pillows",
+        "throws",
+        "window treatments",
+        "art",
+        "mirrors",
+        "kitchen",
+        "dining",
+        "storage",
+        "furniture",
+        "coffee table"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "White House Black Market",
@@ -65098,7 +68699,35 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 36.0,
       "value_reason": "40% off, brand/cat est. ($90) ≈ $36 savings | type=12 + savings=25 = 37",
-      "global_quality_score": 61.0
+      "global_quality_score": 61.0,
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor furniture",
+        "garden furniture",
+        "fry pans",
+        "saucepan",
+        "stockpot",
+        "roaster",
+        "cocotte",
+        "risotto pan",
+        "chef knife",
+        "bread knife",
+        "steak knife",
+        "santoku knife",
+        "carving knife",
+        "pariing knife",
+        "cleaver",
+        "toaster",
+        "toaster oven"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Williams-Sonoma",
@@ -65174,7 +68803,35 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 27.0,
       "value_reason": "30% off, brand/cat est. ($90) ≈ $27 savings | type=12 + savings=25 = 37",
-      "global_quality_score": 61.0
+      "global_quality_score": 61.0,
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor furniture",
+        "garden furniture",
+        "fry pans",
+        "saucepan",
+        "stockpot",
+        "roaster",
+        "cocotte",
+        "risotto pan",
+        "chef knife",
+        "bread knife",
+        "steak knife",
+        "santoku knife",
+        "carving knife",
+        "pariing knife",
+        "cleaver",
+        "toaster",
+        "toaster oven"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Williams-Sonoma",
@@ -65250,7 +68907,35 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 27.0,
       "value_reason": "30% off, brand/cat est. ($90) ≈ $27 savings | type=12 + savings=25 = 37",
-      "global_quality_score": 61.0
+      "global_quality_score": 61.0,
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor furniture",
+        "garden furniture",
+        "fry pans",
+        "saucepan",
+        "stockpot",
+        "roaster",
+        "cocotte",
+        "risotto pan",
+        "chef knife",
+        "bread knife",
+        "steak knife",
+        "santoku knife",
+        "carving knife",
+        "pariing knife",
+        "cleaver",
+        "toaster",
+        "toaster oven"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Williams-Sonoma",
@@ -65326,7 +69011,35 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 18.0,
       "value_reason": "20% off, brand/cat est. ($90) ≈ $18 savings | type=8 + savings=15 = 23",
-      "global_quality_score": 47.0
+      "global_quality_score": 47.0,
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor furniture",
+        "garden furniture",
+        "fry pans",
+        "saucepan",
+        "stockpot",
+        "roaster",
+        "cocotte",
+        "risotto pan",
+        "chef knife",
+        "bread knife",
+        "steak knife",
+        "santoku knife",
+        "carving knife",
+        "pariing knife",
+        "cleaver",
+        "toaster",
+        "toaster oven"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Williams-Sonoma",
@@ -65402,7 +69115,35 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 40.5,
       "value_reason": "45% off, brand/cat est. ($90) ≈ $40 savings | type=12 + savings=25 = 37",
-      "global_quality_score": 61.0
+      "global_quality_score": 61.0,
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor furniture",
+        "garden furniture",
+        "fry pans",
+        "saucepan",
+        "stockpot",
+        "roaster",
+        "cocotte",
+        "risotto pan",
+        "chef knife",
+        "bread knife",
+        "steak knife",
+        "santoku knife",
+        "carving knife",
+        "pariing knife",
+        "cleaver",
+        "toaster",
+        "toaster oven"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Williams-Sonoma",
@@ -65478,7 +69219,35 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 36.0,
       "value_reason": "40% off, brand/cat est. ($90) ≈ $36 savings | type=12 + savings=25 = 37",
-      "global_quality_score": 61.0
+      "global_quality_score": 61.0,
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor furniture",
+        "garden furniture",
+        "fry pans",
+        "saucepan",
+        "stockpot",
+        "roaster",
+        "cocotte",
+        "risotto pan",
+        "chef knife",
+        "bread knife",
+        "steak knife",
+        "santoku knife",
+        "carving knife",
+        "pariing knife",
+        "cleaver",
+        "toaster",
+        "toaster oven"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Williams-Sonoma",
@@ -65554,7 +69323,35 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 22.5,
       "value_reason": "25% off, brand/cat est. ($90) ≈ $22 savings | type=8 + savings=15 = 23",
-      "global_quality_score": 47.0
+      "global_quality_score": 47.0,
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor furniture",
+        "garden furniture",
+        "fry pans",
+        "saucepan",
+        "stockpot",
+        "roaster",
+        "cocotte",
+        "risotto pan",
+        "chef knife",
+        "bread knife",
+        "steak knife",
+        "santoku knife",
+        "carving knife",
+        "pariing knife",
+        "cleaver",
+        "toaster",
+        "toaster oven"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Williams-Sonoma",
@@ -65630,7 +69427,35 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 5.0,
       "value_reason": "free shipping ≈ $5 savings | type=5 + savings=3 = 8",
-      "global_quality_score": 32.0
+      "global_quality_score": 32.0,
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor furniture",
+        "garden furniture",
+        "fry pans",
+        "saucepan",
+        "stockpot",
+        "roaster",
+        "cocotte",
+        "risotto pan",
+        "chef knife",
+        "bread knife",
+        "steak knife",
+        "santoku knife",
+        "carving knife",
+        "pariing knife",
+        "cleaver",
+        "toaster",
+        "toaster oven"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Williams-Sonoma",
@@ -65706,7 +69531,35 @@
       "estimated_item_value": 90.0,
       "estimated_savings": 67.5,
       "value_reason": "75% off, brand/cat est. ($90) ≈ $68 savings | type=16 + savings=35 = 51",
-      "global_quality_score": 75.0
+      "global_quality_score": 75.0,
+      "product_keywords_contextual": [
+        "cookware",
+        "dinnerware",
+        "cutlery",
+        "electrics",
+        "bakeware",
+        "tabletop",
+        "bar",
+        "home essentials",
+        "outdoor furniture",
+        "garden furniture",
+        "fry pans",
+        "saucepan",
+        "stockpot",
+        "roaster",
+        "cocotte",
+        "risotto pan",
+        "chef knife",
+        "bread knife",
+        "steak knife",
+        "santoku knife",
+        "carving knife",
+        "pariing knife",
+        "cleaver",
+        "toaster",
+        "toaster oven"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Windsor",
@@ -66035,7 +69888,17 @@
       "estimated_item_value": 12.0,
       "estimated_savings": 10.0,
       "value_reason": "$10 off | type=10 + savings=8 = 18",
-      "global_quality_score": 31.0
+      "global_quality_score": 31.0,
+      "product_keywords_contextual": [
+        "wings",
+        "boneless wings",
+        "tenders",
+        "sandwich",
+        "fries",
+        "corn",
+        "drink"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Wingstop",
@@ -66111,7 +69974,17 @@
       "estimated_item_value": 12.0,
       "estimated_savings": 8.0,
       "value_reason": "$ off (no amount parsed), est. $8 | type=8 + savings=8 = 16",
-      "global_quality_score": 29.0
+      "global_quality_score": 29.0,
+      "product_keywords_contextual": [
+        "wings",
+        "boneless wings",
+        "tenders",
+        "sandwich",
+        "fries",
+        "corn",
+        "drink"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Wingstop",
@@ -66188,7 +70061,17 @@
       "estimated_item_value": 12.0,
       "estimated_savings": 12.0,
       "value_reason": "free item, est. ≈ $12 savings | type=20 + savings=15 = 35",
-      "global_quality_score": 54.0
+      "global_quality_score": 54.0,
+      "product_keywords_contextual": [
+        "wings",
+        "boneless wings",
+        "tenders",
+        "sandwich",
+        "fries",
+        "corn",
+        "drink"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Wrangler",
@@ -66595,7 +70478,16 @@
       "estimated_item_value": 120.0,
       "estimated_savings": 2.0,
       "value_reason": "points/rewards, nominal value ≈ $2 | type=3 + savings=3 = 6",
-      "global_quality_score": 18.0
+      "global_quality_score": 18.0,
+      "product_keywords_contextual": [
+        "Hotel Rooms",
+        "Flights",
+        "Cruises",
+        "Car Rentals",
+        "Tours",
+        "Transfers"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Wyndham Hotels",
@@ -66671,7 +70563,16 @@
       "estimated_item_value": 120.0,
       "estimated_savings": 18.0,
       "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=15 = 21",
-      "global_quality_score": 37.0
+      "global_quality_score": 37.0,
+      "product_keywords_contextual": [
+        "Hotel Rooms",
+        "Flights",
+        "Cruises",
+        "Car Rentals",
+        "Tours",
+        "Transfers"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Wyndham Hotels",
@@ -66747,7 +70648,16 @@
       "estimated_item_value": 120.0,
       "estimated_savings": 18.0,
       "value_reason": "% off (unparseable), est. 15% of brand/cat value | type=6 + savings=15 = 21",
-      "global_quality_score": 35.0
+      "global_quality_score": 35.0,
+      "product_keywords_contextual": [
+        "Hotel Rooms",
+        "Flights",
+        "Cruises",
+        "Car Rentals",
+        "Tours",
+        "Transfers"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Wyndham Hotels",
@@ -66823,7 +70733,16 @@
       "estimated_item_value": 120.0,
       "estimated_savings": 18.0,
       "value_reason": "15% off, brand/cat est. ($120) ≈ $18 savings | type=5 + savings=15 = 20",
-      "global_quality_score": 48.0
+      "global_quality_score": 48.0,
+      "product_keywords_contextual": [
+        "Hotel Rooms",
+        "Flights",
+        "Cruises",
+        "Car Rentals",
+        "Tours",
+        "Transfers"
+      ],
+      "product_keywords_explicit": []
     },
     {
       "brand": "Zara",
