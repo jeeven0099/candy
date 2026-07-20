@@ -3,16 +3,17 @@ $python   = "C:\Python314\python.exe"
 $pipeline = "$root\promo-raw-scraper\run_pipeline.py"
 $lockFile = "$root\promo-raw-scraper\.pipeline.lock"
 
-# Prevent concurrent runs
+# Prevent concurrent runs — check lock file for a still-running Python process
 if (Test-Path $lockFile) {
-    $lockPid = Get-Content $lockFile -ErrorAction SilentlyContinue
-    $running = $lockPid -and (Get-Process -Id $lockPid -ErrorAction SilentlyContinue)
+    $lockPid = (Get-Content $lockFile -ErrorAction SilentlyContinue) -replace '\D', ''
+    $running = $lockPid -and (Get-Process -Id ([int]$lockPid) -ErrorAction SilentlyContinue)
     if ($running) {
         Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Pipeline already running (PID $lockPid). Exiting."
         exit 0
     }
     Remove-Item $lockFile -Force
 }
+# Write a placeholder so the lock exists before Python starts
 $PID | Out-File $lockFile -Force
 
 try {
@@ -28,11 +29,19 @@ try {
     }
 
     Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Starting pipeline (main pass)..."
-    & $python $pipeline `
-        --ollama-model qwen2.5:14b --ollama-timeout 3200 `
-        --parallel --groq-brands 50 `
-        --clean-only
-    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Main pass finished (exit $LASTEXITCODE)."
+    $pipelineJob = Start-Process $python -ArgumentList @(
+        $pipeline,
+        "--ollama-model", "qwen2.5:14b",
+        "--ollama-timeout", "3200",
+        "--parallel",
+        "--groq-brands", "50",
+        "--clean-only"
+    ) -PassThru -NoNewWindow
+    # Track the Python child PID in the lock file so concurrent-run check works
+    # even if this PowerShell wrapper exits early
+    $pipelineJob.Id | Out-File $lockFile -Force
+    $pipelineJob.WaitForExit()
+    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Main pass finished (exit $($pipelineJob.ExitCode))."
 
     # Retry pass runs every 3 days only
     $retryStampFile = "$root\promo-raw-scraper\.last_retry_date"
@@ -56,6 +65,10 @@ try {
     Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Applying keyword store patches..."
     & $python "$root\promo-raw-scraper\src\apply_keyword_store.py"
     Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Keyword store applied (exit $LASTEXITCODE)."
+
+    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Running keyword backfill (batch 10, Ollama)..."
+    & $python "$root\promo-raw-scraper\src\run_keyword_backfill.py" --ollama --batch 10
+    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Keyword backfill done (exit $LASTEXITCODE)."
 } finally {
     Remove-Item $lockFile -ErrorAction SilentlyContinue
 }
