@@ -1,8 +1,27 @@
 {
-  "generated_at": "2026-07-19T15:37:04.176736+00:00",
+  "generated_at": "2026-07-20T13:33:01.043719+00:00",
   "threshold": 60.0,
-  "total": 16,
+  "total": 19,
   "candidates": [
+    {
+      "promo_id": "hyperx_bestdealsongamingheadsetsmicskeyboardslaptopssaleupto50off",
+      "brand": "HyperX",
+      "category": "tech",
+      "title": "Best Deals on Gaming Headsets, Mics, Keyboards & Laptops | Sale Up to 50% Off",
+      "notify_score": 85.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "HyperX",
+      "notification_body": "Best Deals on Gaming Headsets, Mics, Keyboards & Laptops | Sale Up to 50% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 125.0,
+      "end_date": null,
+      "website_domain": "hyperx.com",
+      "source_url": "https://hyperx.com/collections/sale"
+    },
     {
       "promo_id": "nikon_upto50offonsaleitems",
       "brand": "Nikon",
@@ -23,9 +42,28 @@
       "source_url": "https://www.nikonusa.com/cameras-on-sale"
     },
     {
+      "promo_id": "anthropologie_extra50offsale",
+      "brand": "Anthropologie",
+      "category": "fashion",
+      "title": "EXTRA 50% OFF SALE",
+      "notify_score": 79.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Anthropologie",
+      "notification_body": "EXTRA 50% OFF SALE",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 45.0,
+      "end_date": "2026-07-21T00:00:00",
+      "website_domain": "anthropologie.com",
+      "source_url": "https://www.anthropologie.com/sale-all"
+    },
+    {
       "promo_id": "urbanoutfitters_buyonegetonefreestandardclothpregamehoodies",
       "brand": "Urban Outfitters",
-      "category": "retail",
+      "category": "fashion",
       "title": "Buy One, Get One FREE Standard Cloth Pregame Hoodies",
       "notify_score": 79.0,
       "signal_groups": [
@@ -42,42 +80,42 @@
       "source_url": "https://www.urbanoutfitters.com/sale"
     },
     {
-      "promo_id": "boxlunch_semiannualsale",
-      "brand": "BoxLunch",
+      "promo_id": "anthropologie_30offfashionablyearlyfallevent",
+      "brand": "Anthropologie",
       "category": "fashion",
-      "title": "Semi-Annual Sale!",
-      "notify_score": 71.0,
+      "title": "30% Off Fashionably Early Fall Event",
+      "notify_score": 75.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "BoxLunch",
-      "notification_body": "Semi-Annual Sale!",
+      "notification_title": "Anthropologie",
+      "notification_body": "30% Off Fashionably Early Fall Event",
       "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 45.5,
-      "end_date": null,
-      "website_domain": "boxlunch.com",
-      "source_url": "https://www.boxlunch.com/sale/"
+      "discount_value": "30%",
+      "estimated_savings": 27.0,
+      "end_date": "2026-07-21T00:00:00",
+      "website_domain": "anthropologie.com",
+      "source_url": "https://www.anthropologie.com/sale-all"
     },
     {
-      "promo_id": "americaneagle_3050offeverythingincludingjeans",
-      "brand": "American Eagle",
+      "promo_id": "bcbg_summersaleupto60offselecteditems",
+      "brand": "BCBG",
       "category": "fashion",
-      "title": "30-50% off everything, including jeans!",
+      "title": "Summer Sale - Up to 60% Off Selected Items",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "American Eagle",
-      "notification_body": "30-50% off everything, including jeans!",
+      "notification_title": "BCBG",
+      "notification_body": "Summer Sale - Up to 60% Off Selected Items",
       "discount_type": "percentage_off",
-      "discount_value": "30-50%",
-      "estimated_savings": 27.5,
+      "discount_value": "up to 60%",
+      "estimated_savings": 39.0,
       "end_date": null,
-      "website_domain": "ae.com",
-      "source_url": "https://www.ae.com/us/en?redirectedFrom=plp/us/en/c/ae/sale/cat4840004"
+      "website_domain": "bcbg.com",
+      "source_url": "https://bcbg.com/collections/sale"
     },
     {
       "promo_id": "bludot_modernfurnitureonsale",
@@ -97,6 +135,25 @@
       "end_date": null,
       "website_domain": "bludot.com",
       "source_url": "https://www.bludot.com/sale.html"
+    },
+    {
+      "promo_id": "chicos_extra60offallsale",
+      "brand": "Chico's",
+      "category": "fashion",
+      "title": "Extra 60% Off All Sale",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Chico's",
+      "notification_body": "Extra 60% Off All Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 39.0,
+      "end_date": null,
+      "website_domain": "chicos.com",
+      "source_url": "https://www.chicos.com/store/category/sale/cat40004/"
     },
     {
       "promo_id": "clubmonaco_shopallsaleupto70off",
@@ -213,80 +270,42 @@
       "source_url": "https://www.michaelkors.com/sale"
     },
     {
-      "promo_id": "ragbone_extra30offsale",
-      "brand": "Rag & Bone",
+      "promo_id": "tedbaker_saleupto50offselectedstyles",
+      "brand": "Ted Baker",
       "category": "fashion",
-      "title": "Extra 30% Off Sale",
+      "title": "SALE: UP TO 50% OFF SELECTED STYLES",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Rag & Bone",
-      "notification_body": "Extra 30% Off Sale",
+      "notification_title": "Ted Baker",
+      "notification_body": "SALE: UP TO 50% OFF SELECTED STYLES",
       "discount_type": "percentage_off",
-      "discount_value": "30%",
-      "estimated_savings": 19.5,
-      "end_date": "2026-07-20",
-      "website_domain": "rag-bone.com",
-      "source_url": "https://www.rag-bone.com/sale"
-    },
-    {
-      "promo_id": "tillys_clearanceupto60off",
-      "brand": "Tillys",
-      "category": "fashion",
-      "title": "Clearance up to 60% Off",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Tillys",
-      "notification_body": "Clearance up to 60% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 39.0,
-      "end_date": null,
-      "website_domain": "tillys.com",
-      "source_url": "https://www.tillys.com/"
-    },
-    {
-      "promo_id": "tillys_rsqjeansbuyonegetone50off",
-      "brand": "Tillys",
-      "category": "fashion",
-      "title": "RSQ Jeans - Buy One, Get One 50% Off*",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Tillys",
-      "notification_body": "RSQ Jeans - Buy One, Get One 50% Off*",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 27.5,
-      "end_date": null,
-      "website_domain": "tillys.com",
-      "source_url": "https://www.tillys.com/"
-    },
-    {
-      "promo_id": "tillys_womensshortsbuyonegetone50off",
-      "brand": "Tillys",
-      "category": "fashion",
-      "title": "Women's Shorts Buy One, Get One 50% Off*",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Tillys",
-      "notification_body": "Women's Shorts Buy One, Get One 50% Off*",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
+      "discount_value": "up to 50%",
       "estimated_savings": 32.5,
       "end_date": null,
-      "website_domain": "tillys.com",
-      "source_url": "https://www.tillys.com/"
+      "website_domain": "tedbaker.com",
+      "source_url": "https://www.tedbaker.com/collections/sale-us"
+    },
+    {
+      "promo_id": "volcom_shopsaleclothesshoesaccessoriesonsale",
+      "brand": "Volcom",
+      "category": "fashion",
+      "title": "Shop Sale - Clothes, Shoes & Accessories on Sale",
+      "notify_score": 65.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Volcom",
+      "notification_body": "Shop Sale - Clothes, Shoes & Accessories on Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 45.0,
+      "end_date": null,
+      "website_domain": "volcom.com",
+      "source_url": "https://www.volcom.com/collections/sale"
     },
     {
       "promo_id": "dsw_upto60offclearanceonlineonly",
@@ -306,6 +325,44 @@
       "end_date": null,
       "website_domain": "dsw.com",
       "source_url": "https://www.dsw.com/"
+    },
+    {
+      "promo_id": "mejuri_50offroundlabgrownsapphirenecklace",
+      "brand": "Mejuri",
+      "category": "fashion",
+      "title": "50% off Round Lab Grown Sapphire Necklace",
+      "notify_score": 63.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Mejuri",
+      "notification_body": "50% off Round Lab Grown Sapphire Necklace",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "mejuri.com",
+      "source_url": "https://mejuri.com/collections/shop-all"
+    },
+    {
+      "promo_id": "tillys_rsqjeansbuyonegetone50off",
+      "brand": "Tillys",
+      "category": "retail",
+      "title": "RSQ Jeans Buy One, Get One 50% Off*",
+      "notify_score": 61.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Tillys",
+      "notification_body": "RSQ Jeans Buy One, Get One 50% Off*",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 27.5,
+      "end_date": null,
+      "website_domain": "tillys.com",
+      "source_url": "https://www.tillys.com/"
     }
   ]
 }
