@@ -18,7 +18,14 @@ import '../widgets/value_tier_badge.dart';
 
 class DealDetailScreen extends StatefulWidget {
   final Promotion promo;
-  const DealDetailScreen({super.key, required this.promo});
+  final String? rankingMode;
+  final int? feedPosition;
+  const DealDetailScreen({
+    super.key,
+    required this.promo,
+    this.rankingMode,
+    this.feedPosition,
+  });
 
   @override
   State<DealDetailScreen> createState() => _DealDetailScreenState();
@@ -42,15 +49,36 @@ class _DealDetailScreenState extends State<DealDetailScreen> {
   }
 
   void _onScroll() {
-    final offset = _scrollController.offset;
-    if (!_hasTrackedScroll && offset > 200) {
+    if (!_scrollController.hasClients) return;
+    final pos = _scrollController.position;
+    final maxExtent = pos.maxScrollExtent;
+    if (maxExtent <= 0) return;
+    final depth = pos.pixels / maxExtent;
+
+    if (!_hasTrackedScroll && depth >= 0.5) {
       _hasTrackedScroll = true;
-      InteractionService().recordDetailScrolled(widget.promo.id, brand: widget.promo.brand);
+      InteractionService().recordDetailScrolled(
+        widget.promo.id,
+        brand: widget.promo.brand,
+        meta: InteractionService.promoMeta(
+          widget.promo,
+          rankingMode: widget.rankingMode,
+          feedPosition: widget.feedPosition,
+        ),
+      );
     }
     final hasHistorical = widget.promo.globalQualityScore >= 40;
-    if (hasHistorical && !_hasTrackedHistorical && offset > 420) {
+    if (hasHistorical && !_hasTrackedHistorical && depth >= 0.35) {
       _hasTrackedHistorical = true;
-      InteractionService().recordHistoricalComparisonViewed(widget.promo.id, brand: widget.promo.brand);
+      InteractionService().recordHistoricalComparisonViewed(
+        widget.promo.id,
+        brand: widget.promo.brand,
+        meta: InteractionService.promoMeta(
+          widget.promo,
+          rankingMode: widget.rankingMode,
+          feedPosition: widget.feedPosition,
+        ),
+      );
     }
   }
 
@@ -128,7 +156,7 @@ class _DealDetailScreenState extends State<DealDetailScreen> {
 
               // 7. Promo code
               if (_p.promoCode != null) ...[
-                _PromoCodeCard(code: _p.promoCode!, promoId: _p.id, brand: _p.brand),
+                _PromoCodeCard(promo: _p),
                 const SizedBox(height: 10),
               ],
 
@@ -254,7 +282,7 @@ class _DealHeroSection extends StatelessWidget {
           ],
           if (promo.verifyUrl != null && !hasSticky) ...[
             const SizedBox(height: 16),
-            _ShopNowButton(url: promo.verifyUrl!, promoId: promo.id, brand: promo.brand),
+            _ShopNowButton(promo: promo),
           ],
         ],
       ),
@@ -742,10 +770,8 @@ class _WhyGoodDealSection extends StatelessWidget {
 // ---------------------------------------------------------------------------
 
 class _PromoCodeCard extends StatelessWidget {
-  final String code;
-  final String promoId;
-  final String brand;
-  const _PromoCodeCard({required this.code, required this.promoId, required this.brand});
+  final Promotion promo;
+  const _PromoCodeCard({required this.promo});
 
   @override
   Widget build(BuildContext context) {
@@ -758,27 +784,41 @@ class _PromoCodeCard extends StatelessWidget {
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: Candy.chocolate),
           ),
           const SizedBox(height: 10),
-          _PromoCodeBox(code: code, promoId: promoId, brand: brand),
+          _PromoCodeBox(promo: promo),
         ],
       ),
     );
   }
 }
 
-class _PromoCodeBox extends StatelessWidget {
-  final String code;
-  final String promoId;
-  final String brand;
-  const _PromoCodeBox({required this.code, required this.promoId, required this.brand});
+class _PromoCodeBox extends StatefulWidget {
+  final Promotion promo;
+  const _PromoCodeBox({required this.promo});
+
+  @override
+  State<_PromoCodeBox> createState() => _PromoCodeBoxState();
+}
+
+class _PromoCodeBoxState extends State<_PromoCodeBox> {
+  // Fire code_copied once per page view — subsequent copies are intentional
+  // repeat actions but don't need separate analytics events.
+  bool _hasFiredCopy = false;
 
   @override
   Widget build(BuildContext context) {
+    final code = widget.promo.promoCode!;
     return GestureDetector(
       onTap: () {
         Clipboard.setData(ClipboardData(text: code));
-        InteractionService().recordCodeCopied(promoId, brand: brand, code: code);
-        // Keep legacy event too for existing Supabase queries
-        InteractionService().recordPromoCodeCopy(promoId, brand: brand, code: code);
+        if (!_hasFiredCopy) {
+          _hasFiredCopy = true;
+          InteractionService().recordCodeCopied(
+            widget.promo.id,
+            brand: widget.promo.brand,
+            code: code,
+            meta: InteractionService.promoMeta(widget.promo),
+          );
+        }
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Copied "$code"'),
@@ -1009,6 +1049,7 @@ class _RestrictionsCard extends StatefulWidget {
 
 class _RestrictionsCardState extends State<_RestrictionsCard> {
   bool _expanded = false;
+  bool _hasFiredExpand = false;
 
   @override
   Widget build(BuildContext context) {
@@ -1019,11 +1060,12 @@ class _RestrictionsCardState extends State<_RestrictionsCard> {
           GestureDetector(
             onTap: () {
               setState(() => _expanded = !_expanded);
-              if (!_expanded) {
-                // Fire analytics on first expand
+              if (_expanded && !_hasFiredExpand) {
+                _hasFiredExpand = true;
                 InteractionService().recordRestrictionExpanded(
                   widget.promo.id,
                   brand: widget.promo.brand,
+                  meta: InteractionService.promoMeta(widget.promo),
                 );
               }
             },
@@ -1292,6 +1334,7 @@ class _DetailSaveButton extends StatelessWidget {
                 promo.id,
                 brand: promo.brand,
                 category: promo.category,
+                meta: InteractionService.promoMeta(promo),
               );
               if (ctx.mounted) {
                 showModalBottomSheet(
@@ -1315,18 +1358,20 @@ class _DetailSaveButton extends StatelessWidget {
 // ---------------------------------------------------------------------------
 
 class _ShopNowButton extends StatelessWidget {
-  final String url;
-  final String promoId;
-  final String brand;
-  const _ShopNowButton({required this.url, required this.promoId, required this.brand});
+  final Promotion promo;
+  const _ShopNowButton({required this.promo});
 
   @override
   Widget build(BuildContext context) {
     return FilledButton(
       onPressed: () async {
-        InteractionService().recordShopNow(promoId, brand: brand);
-        InteractionService().recordRedeemClicked(promoId, brand: brand, actionType: 'open_url');
-        final uri = Uri.tryParse(url);
+        InteractionService().recordRedeemClicked(
+          promo.id,
+          brand: promo.brand,
+          actionType: 'open_url',
+          meta: InteractionService.promoMeta(promo),
+        );
+        final uri = Uri.tryParse(promo.verifyUrl!);
         if (uri != null) await launchUrl(uri, mode: LaunchMode.externalApplication);
       },
       style: FilledButton.styleFrom(
