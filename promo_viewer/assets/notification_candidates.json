@@ -1,26 +1,45 @@
 {
-  "generated_at": "2026-07-20T13:33:01.043719+00:00",
+  "generated_at": "2026-07-21T13:40:37.515523+00:00",
   "threshold": 60.0,
-  "total": 19,
+  "total": 16,
   "candidates": [
     {
-      "promo_id": "hyperx_bestdealsongamingheadsetsmicskeyboardslaptopssaleupto50off",
+      "promo_id": "hyperx_hyperxgaminggearsaleupto50off",
       "brand": "HyperX",
       "category": "tech",
-      "title": "Best Deals on Gaming Headsets, Mics, Keyboards & Laptops | Sale Up to 50% Off",
-      "notify_score": 85.0,
+      "title": "HyperX Gaming Gear Sale - Up to 50% Off",
+      "notify_score": 91.0,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "HyperX",
-      "notification_body": "Best Deals on Gaming Headsets, Mics, Keyboards & Laptops | Sale Up to 50% Off",
+      "notification_body": "HyperX Gaming Gear Sale - Up to 50% Off",
       "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
+      "discount_value": "Up to 50%",
       "estimated_savings": 125.0,
       "end_date": null,
       "website_domain": "hyperx.com",
       "source_url": "https://hyperx.com/collections/sale"
+    },
+    {
+      "promo_id": "toryburch_womensdesignersale",
+      "brand": "Tory Burch",
+      "category": "fashion",
+      "title": "Women's Designer Sale",
+      "notify_score": 85.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Tory Burch",
+      "notification_body": "Women's Designer Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 130.0,
+      "end_date": null,
+      "website_domain": "toryburch.com",
+      "source_url": "https://www.toryburch.com/en-us/sale"
     },
     {
       "promo_id": "nikon_upto50offonsaleitems",
@@ -40,63 +59,6 @@
       "end_date": null,
       "website_domain": "nikonusa.com",
       "source_url": "https://www.nikonusa.com/cameras-on-sale"
-    },
-    {
-      "promo_id": "anthropologie_extra50offsale",
-      "brand": "Anthropologie",
-      "category": "fashion",
-      "title": "EXTRA 50% OFF SALE",
-      "notify_score": 79.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Anthropologie",
-      "notification_body": "EXTRA 50% OFF SALE",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 45.0,
-      "end_date": "2026-07-21T00:00:00",
-      "website_domain": "anthropologie.com",
-      "source_url": "https://www.anthropologie.com/sale-all"
-    },
-    {
-      "promo_id": "urbanoutfitters_buyonegetonefreestandardclothpregamehoodies",
-      "brand": "Urban Outfitters",
-      "category": "fashion",
-      "title": "Buy One, Get One FREE Standard Cloth Pregame Hoodies",
-      "notify_score": 79.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Urban Outfitters",
-      "notification_body": "Free: Buy One, Get One FREE Standard Cloth Pregame Hoodies",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 55.0,
-      "end_date": null,
-      "website_domain": "urbanoutfitters.com",
-      "source_url": "https://www.urbanoutfitters.com/sale"
-    },
-    {
-      "promo_id": "anthropologie_30offfashionablyearlyfallevent",
-      "brand": "Anthropologie",
-      "category": "fashion",
-      "title": "30% Off Fashionably Early Fall Event",
-      "notify_score": 75.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Anthropologie",
-      "notification_body": "30% Off Fashionably Early Fall Event",
-      "discount_type": "percentage_off",
-      "discount_value": "30%",
-      "estimated_savings": 27.0,
-      "end_date": "2026-07-21T00:00:00",
-      "website_domain": "anthropologie.com",
-      "source_url": "https://www.anthropologie.com/sale-all"
     },
     {
       "promo_id": "bcbg_summersaleupto60offselecteditems",
@@ -251,23 +213,23 @@
       "source_url": "https://www.luckybrand.com/"
     },
     {
-      "promo_id": "michaelkors_upto60offselectstyles",
-      "brand": "Michael Kors",
-      "category": "fashion",
-      "title": "Up To 60% Off Select Styles",
+      "promo_id": "surlatable_summersaleupto55off",
+      "brand": "Sur La Table",
+      "category": "home_goods",
+      "title": "Summer Sale up to 55% off",
       "notify_score": 65.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Michael Kors",
-      "notification_body": "Up To 60% Off Select Styles",
+      "notification_title": "Sur La Table",
+      "notification_body": "Summer Sale up to 55% off",
       "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 33.0,
+      "discount_value": "up to 55%",
+      "estimated_savings": 49.5,
       "end_date": null,
-      "website_domain": "michaelkors.com",
-      "source_url": "https://www.michaelkors.com/sale"
+      "website_domain": "surlatable.com",
+      "source_url": "https://www.surlatable.com/category/cat-6070003/Sale"
     },
     {
       "promo_id": "tedbaker_saleupto50offselectedstyles",
@@ -287,25 +249,6 @@
       "end_date": null,
       "website_domain": "tedbaker.com",
       "source_url": "https://www.tedbaker.com/collections/sale-us"
-    },
-    {
-      "promo_id": "volcom_shopsaleclothesshoesaccessoriesonsale",
-      "brand": "Volcom",
-      "category": "fashion",
-      "title": "Shop Sale - Clothes, Shoes & Accessories on Sale",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Volcom",
-      "notification_body": "Shop Sale - Clothes, Shoes & Accessories on Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 45.0,
-      "end_date": null,
-      "website_domain": "volcom.com",
-      "source_url": "https://www.volcom.com/collections/sale"
     },
     {
       "promo_id": "dsw_upto60offclearanceonlineonly",
