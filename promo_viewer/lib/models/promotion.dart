@@ -44,6 +44,11 @@ class Promotion {
 
   // Pre-computed in pipeline (generate_scores.py)
   final double globalQualityScore;
+  final double economicValueScore;
+  final double expirationUrgencyScore;
+  final double effectiveDiscountPct;
+  final double clarityScore;
+  final List<String> valueExplanationCodes;
   final double? estimatedSavings;
 
   // Local neighborhood fields (local_neighborhood source only)
@@ -103,6 +108,11 @@ class Promotion {
     this.birthdayRelated = false,
     this.fastRedemption,
     this.globalQualityScore = 0.0,
+    this.economicValueScore = 0.0,
+    this.expirationUrgencyScore = 0.0,
+    this.effectiveDiscountPct = 0.0,
+    this.clarityScore = 0.0,
+    this.valueExplanationCodes = const [],
     this.estimatedSavings,
     this.neighborhood,
     this.address,
@@ -163,6 +173,11 @@ class Promotion {
               json['fast_redemption'] as Map<String, dynamic>)
           : null,
       globalQualityScore: ((json['global_quality_score'] ?? json['rank_base_score']) as num?)?.toDouble() ?? 0.0,
+      economicValueScore: (json['economic_value_score'] as num?)?.toDouble() ?? 0.0,
+      expirationUrgencyScore: (json['expiration_urgency_score'] as num?)?.toDouble() ?? 0.0,
+      effectiveDiscountPct: (json['effective_discount_pct'] as num?)?.toDouble() ?? 0.0,
+      clarityScore: (json['clarity_score'] as num?)?.toDouble() ?? 0.0,
+      valueExplanationCodes: (json['value_explanation_codes'] as List?)?.whereType<String>().toList() ?? [],
       estimatedSavings: (json['estimated_savings'] as num?)?.toDouble(),
       neighborhood: json['neighborhood'] as String?,
       address: json['address'] as String?,

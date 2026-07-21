@@ -25,4 +25,11 @@ class Candy {
 
   // Structural
   static const border     = Color(0xFFE4E4E7); // very subtle borders
+
+  // Quality tier colors — used by ValueTierBadge
+  static const tierExcellent = Color(0xFF28A745);
+  static const tierGreat     = Color(0xFF2ECC71);
+  static const tierGood      = Color(0xFFFF9F0A);
+  static const tierFair      = Color(0xFFFF6B2B);
+  static const tierLow       = Color(0xFFFF453A);
 }
