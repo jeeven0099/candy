@@ -21,8 +21,17 @@ class DealCard extends StatelessWidget {
   final Promotion promo;
   final VoidCallback? onTap;
   final Set<String> memberships;
+  final int? feedPosition;
+  final String? rankingMode;
 
-  const DealCard({super.key, required this.promo, this.onTap, this.memberships = const {}});
+  const DealCard({
+    super.key,
+    required this.promo,
+    this.onTap,
+    this.memberships = const {},
+    this.feedPosition,
+    this.rankingMode,
+  });
 
   void _showScoreDebug(BuildContext context) {
     final svc = InteractionService();
@@ -121,6 +130,7 @@ class DealCard extends StatelessWidget {
                       promo.id,
                       brand: promo.brand,
                       category: promo.category,
+                      meta: InteractionService.promoMeta(promo, feedPosition: feedPosition, rankingMode: rankingMode),
                     );
                     onTap!();
                   },
@@ -188,7 +198,7 @@ class DealCard extends StatelessWidget {
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          _HeartButton(promo: promo),
+                          _HeartButton(promo: promo, feedPosition: feedPosition, rankingMode: rankingMode),
                           _MenuButton(promo: promo),
                         ],
                       ),
@@ -375,7 +385,9 @@ class _Tag extends StatelessWidget {
 
 class _HeartButton extends StatelessWidget {
   final Promotion promo;
-  const _HeartButton({required this.promo});
+  final int? feedPosition;
+  final String? rankingMode;
+  const _HeartButton({required this.promo, this.feedPosition, this.rankingMode});
 
   @override
   Widget build(BuildContext context) {
@@ -402,6 +414,7 @@ class _HeartButton extends StatelessWidget {
                 promo.id,
                 brand: promo.brand,
                 category: promo.category,
+                meta: InteractionService.promoMeta(promo, feedPosition: feedPosition, rankingMode: rankingMode),
               );
               if (ctx.mounted) {
                 showModalBottomSheet(

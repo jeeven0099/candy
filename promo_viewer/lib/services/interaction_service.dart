@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/promotion.dart';
 import 'supabase_service.dart';
 import 'user_prefs_service.dart';
 
@@ -307,37 +308,112 @@ class InteractionService {
     String brand = '',
     String category = '',
     int? rankPosition,
+    Map<String, dynamic>? meta,
   }) =>
       _writeInteraction('deal_card_opened',
           promotionId: promoId,
           brand: brand,
           category: category,
-          rankPosition: rankPosition);
+          rankPosition: rankPosition,
+          metadata: meta);
 
-  void recordDetailScrolled(String promoId, {String brand = ''}) =>
-      _writeInteraction('deal_detail_scrolled', promotionId: promoId, brand: brand);
+  void recordDetailScrolled(String promoId, {String brand = '', Map<String, dynamic>? meta}) =>
+      _writeInteraction('deal_detail_scrolled',
+          promotionId: promoId, brand: brand, metadata: meta);
 
-  void recordRedeemClicked(String promoId, {String brand = '', String actionType = ''}) =>
-      _writeInteraction('redeem_clicked',
-          promotionId: promoId,
-          brand: brand,
-          metadata: actionType.isNotEmpty ? {'action_type': actionType} : null);
+  void recordRedeemClicked(
+    String promoId, {
+    String brand = '',
+    String actionType = '',
+    Map<String, dynamic>? meta,
+  }) {
+    final merged = <String, dynamic>{
+      if (actionType.isNotEmpty) 'action_type': actionType,
+      ...?meta,
+    };
+    _writeInteraction('redeem_clicked',
+        promotionId: promoId, brand: brand, metadata: merged.isEmpty ? null : merged);
+  }
 
-  void recordCodeCopied(String promoId, {String brand = '', String code = ''}) =>
-      _writeInteraction('code_copied',
-          promotionId: promoId,
-          brand: brand,
-          metadata: code.isNotEmpty ? {'code': code} : null);
+  void recordCodeCopied(
+    String promoId, {
+    String brand = '',
+    String code = '',
+    Map<String, dynamic>? meta,
+  }) {
+    final merged = <String, dynamic>{
+      if (code.isNotEmpty) 'code': code,
+      ...?meta,
+    };
+    _writeInteraction('code_copied',
+        promotionId: promoId, brand: brand, metadata: merged.isEmpty ? null : merged);
+  }
 
-  void recordRestrictionExpanded(String promoId, {String brand = ''}) =>
-      _writeInteraction('restriction_expanded', promotionId: promoId, brand: brand);
+  void recordRestrictionExpanded(String promoId,
+          {String brand = '', Map<String, dynamic>? meta}) =>
+      _writeInteraction('restriction_expanded',
+          promotionId: promoId, brand: brand, metadata: meta);
 
-  void recordHistoricalComparisonViewed(String promoId, {String brand = ''}) =>
-      _writeInteraction('historical_comparison_viewed', promotionId: promoId, brand: brand);
+  void recordHistoricalComparisonViewed(String promoId,
+          {String brand = '', Map<String, dynamic>? meta}) =>
+      _writeInteraction('historical_comparison_viewed',
+          promotionId: promoId, brand: brand, metadata: meta);
 
-  void recordDealSaved(String promoId, {String brand = '', String category = ''}) =>
+  void recordDealSaved(String promoId,
+          {String brand = '', String category = '', Map<String, dynamic>? meta}) =>
       _writeInteraction('deal_saved',
-          promotionId: promoId, brand: brand, category: category);
+          promotionId: promoId, brand: brand, category: category, metadata: meta);
+
+  // ── Rich event metadata builder ───────────────────────────────────────────
+  //
+  // Call at every analytics site that has a Promotion in scope:
+  //   meta: InteractionService.promoMeta(promo, feedPosition: i, rankingMode: 'forYou')
+  //
+  static Map<String, dynamic> promoMeta(
+    Promotion p, {
+    String? rankingMode,
+    int? feedPosition,
+  }) {
+    final m = <String, dynamic>{
+      'brand_id': _norm(p.brand),
+      'value_tier': _valueTier(p.globalQualityScore),
+      'effort_type': _effortType(p),
+    };
+    if (p.globalQualityScore > 0) m['global_quality_score'] = p.globalQualityScore;
+    if (p.economicValueScore > 0) m['economic_value_score'] = p.economicValueScore;
+    if (p.effectiveDiscountPct > 0) m['effective_discount_pct'] = p.effectiveDiscountPct;
+    final days = _daysUntilExpiry(p);
+    if (days != null) m['days_until_expiry'] = days;
+    if (rankingMode != null) m['ranking_mode'] = rankingMode;
+    if (feedPosition != null) m['feed_position'] = feedPosition;
+    return m;
+  }
+
+  static String _valueTier(double score) {
+    if (score >= 80) return 'excellent';
+    if (score >= 65) return 'great';
+    if (score >= 50) return 'good';
+    if (score >= 35) return 'fair';
+    if (score > 0)  return 'low';
+    return 'unscored';
+  }
+
+  static String _effortType(Promotion p) {
+    final fr = p.fastRedemption;
+    if (fr != null && fr.eligible) return fr.isLowEffort ? 'instant' : 'easy';
+    if (p.requiresApp)      return 'app_required';
+    if (p.promoCode != null) return 'code_required';
+    if (!p.requiresMembership) return 'easy';
+    return 'membership_required';
+  }
+
+  static int? _daysUntilExpiry(Promotion p) {
+    if (p.endDate == null) return null;
+    final end = DateTime.tryParse(p.endDate!);
+    if (end == null) return null;
+    final diff = end.difference(DateTime.now()).inDays;
+    return diff >= 0 ? diff : null;
+  }
 
   void recordTabSwitch(int tabIndex, String tabName) =>
       _writeInteraction('tab_switched',
