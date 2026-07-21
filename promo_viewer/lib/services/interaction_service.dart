@@ -300,6 +300,45 @@ class InteractionService {
 
   void recordSessionStart() => _writeInteraction('session_start');
 
+  // ── Deal detail analytics ─────────────────────────────────────────────────
+
+  void recordDealCardOpened(
+    String promoId, {
+    String brand = '',
+    String category = '',
+    int? rankPosition,
+  }) =>
+      _writeInteraction('deal_card_opened',
+          promotionId: promoId,
+          brand: brand,
+          category: category,
+          rankPosition: rankPosition);
+
+  void recordDetailScrolled(String promoId, {String brand = ''}) =>
+      _writeInteraction('deal_detail_scrolled', promotionId: promoId, brand: brand);
+
+  void recordRedeemClicked(String promoId, {String brand = '', String actionType = ''}) =>
+      _writeInteraction('redeem_clicked',
+          promotionId: promoId,
+          brand: brand,
+          metadata: actionType.isNotEmpty ? {'action_type': actionType} : null);
+
+  void recordCodeCopied(String promoId, {String brand = '', String code = ''}) =>
+      _writeInteraction('code_copied',
+          promotionId: promoId,
+          brand: brand,
+          metadata: code.isNotEmpty ? {'code': code} : null);
+
+  void recordRestrictionExpanded(String promoId, {String brand = ''}) =>
+      _writeInteraction('restriction_expanded', promotionId: promoId, brand: brand);
+
+  void recordHistoricalComparisonViewed(String promoId, {String brand = ''}) =>
+      _writeInteraction('historical_comparison_viewed', promotionId: promoId, brand: brand);
+
+  void recordDealSaved(String promoId, {String brand = '', String category = ''}) =>
+      _writeInteraction('deal_saved',
+          promotionId: promoId, brand: brand, category: category);
+
   void recordTabSwitch(int tabIndex, String tabName) =>
       _writeInteraction('tab_switched',
           context: tabName, metadata: {'tab_index': tabIndex});

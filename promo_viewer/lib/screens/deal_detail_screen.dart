@@ -9,25 +9,61 @@ import '../services/saved_deals_service.dart';
 import '../services/timezone_service.dart';
 import '../theme/candy_colors.dart';
 import '../widgets/brand_logo.dart';
+import '../widgets/effort_chip.dart';
 import '../widgets/fast_redeem_button.dart';
 import '../widgets/save_sheet.dart';
 import '../widgets/status_chip.dart';
+import '../widgets/urgency_chip.dart';
+import '../widgets/value_tier_badge.dart';
 
-class DealDetailScreen extends StatelessWidget {
+class DealDetailScreen extends StatefulWidget {
   final Promotion promo;
   const DealDetailScreen({super.key, required this.promo});
 
   @override
+  State<DealDetailScreen> createState() => _DealDetailScreenState();
+}
+
+class _DealDetailScreenState extends State<DealDetailScreen> {
+  final _scrollController = ScrollController();
+  bool _hasTrackedScroll = false;
+  bool _hasTrackedHistorical = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    final offset = _scrollController.offset;
+    if (!_hasTrackedScroll && offset > 200) {
+      _hasTrackedScroll = true;
+      InteractionService().recordDetailScrolled(widget.promo.id, brand: widget.promo.brand);
+    }
+    final hasHistorical = widget.promo.globalQualityScore >= 40;
+    if (hasHistorical && !_hasTrackedHistorical && offset > 420) {
+      _hasTrackedHistorical = true;
+      InteractionService().recordHistoricalComparisonViewed(widget.promo.id, brand: widget.promo.brand);
+    }
+  }
+
+  Promotion get _p => widget.promo;
+
+  bool get _hasSticky => _p.fastRedemption != null && _p.fastRedemption!.eligible;
+
+  @override
   Widget build(BuildContext context) {
-    final hasSticky = promo.fastRedemption != null && promo.fastRedemption!.eligible;
     return Scaffold(
       backgroundColor: Candy.cream,
-      bottomNavigationBar: hasSticky
-          ? _StickyFastRedeem(
-              fr: promo.fastRedemption!,
-              brand: promo.brand,
-              promoId: promo.id,
-            )
+      bottomNavigationBar: _hasSticky
+          ? _StickyRedeemBar(fr: _p.fastRedemption!, promo: _p)
           : null,
       appBar: AppBar(
         backgroundColor: Candy.cream,
@@ -35,72 +71,118 @@ class DealDetailScreen extends StatelessWidget {
         scrolledUnderElevation: 0,
         foregroundColor: Candy.chocolate,
         title: Text(
-          promo.brand,
+          _p.brand,
           style: const TextStyle(
             color: Candy.chocolate,
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
         ),
-        actions: [_DetailSaveButton(promo: promo)],
+        actions: [_DetailSaveButton(promo: _p)],
       ),
       body: Align(
         alignment: Alignment.topCenter,
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 720),
           child: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
-        children: [
-          _HeroCard(promo: promo),
-          const SizedBox(height: 12),
-          if (promo.source == 'web' && promo.verifyUrl != null) ...[
-            _TrustCard(
-              domain: promo.websiteDomain ?? promo.brand,
-              url: promo.verifyUrl!,
-              score: promo.confidenceScore,
-              promoId: promo.id,
-              brand: promo.brand,
-            ),
-            const SizedBox(height: 12),
-          ],
-          if (promo.promoCode != null) ...[
-            _PromoCodeCard(code: promo.promoCode!, promoId: promo.id, brand: promo.brand),
-            const SizedBox(height: 12),
-          ],
-          _EligibilityCard(promo: promo),
-          const SizedBox(height: 12),
-          if (promo.redemptionSteps.isNotEmpty) ...[
-            _RedeemCard(steps: promo.redemptionSteps),
-            const SizedBox(height: 12),
-          ],
-          if (promo.validDays.isNotEmpty || promo.timeStart != null) ...[
-            _WhenCard(promo: promo),
-            const SizedBox(height: 12),
-          ],
-          if (promo.termsText != null && promo.termsText!.isNotEmpty) ...[
-            _TermsCard(terms: promo.termsText!),
-            const SizedBox(height: 12),
-          ],
-          const SizedBox(height: 4),
-        ],
+            controller: _scrollController,
+            padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
+            children: [
+              // 1. Hero: brand + title + quality badge + primary CTA
+              _DealHeroSection(promo: _p, hasSticky: _hasSticky),
+              const SizedBox(height: 10),
+
+              // 2. Savings breakdown (when we have a meaningful estimate)
+              if (_p.estimatedSavings != null && _p.estimatedSavings! >= 5) ...[
+                _SavingsBreakdownCard(promo: _p),
+                const SizedBox(height: 10),
+              ],
+
+              // 3. Quick summary — answers "should I redeem?" in 3 bullets
+              _QuickSummaryCard(promo: _p),
+              const SizedBox(height: 10),
+
+              // 4. Source trust
+              if (_p.source == 'web' && _p.verifyUrl != null) ...[
+                _TrustCard(
+                  domain: _p.websiteDomain ?? _p.brand,
+                  url: _p.verifyUrl!,
+                  score: _p.confidenceScore,
+                  promoId: _p.id,
+                  brand: _p.brand,
+                ),
+                const SizedBox(height: 10),
+              ],
+
+              // 5. Historical comparison (when quality score is meaningful)
+              if (_p.globalQualityScore >= 40) ...[
+                _HistoricalComparisonCard(promo: _p),
+                const SizedBox(height: 10),
+              ],
+
+              // 6. Why this deal is good (from explanation codes)
+              if (_hasWhyContent(_p)) ...[
+                _WhyGoodDealSection(promo: _p),
+                const SizedBox(height: 10),
+              ],
+
+              // 7. Promo code
+              if (_p.promoCode != null) ...[
+                _PromoCodeCard(code: _p.promoCode!, promoId: _p.id, brand: _p.brand),
+                const SizedBox(height: 10),
+              ],
+
+              // 8. Eligibility ("Can I use this?")
+              _EligibilityCard(promo: _p),
+              const SizedBox(height: 10),
+
+              // 9. Step-by-step redemption
+              if (_p.redemptionSteps.isNotEmpty) ...[
+                _RedemptionStepsCard(steps: _p.redemptionSteps),
+                const SizedBox(height: 10),
+              ],
+
+              // 10. Day/time availability
+              if (_p.validDays.isNotEmpty || _p.timeStart != null) ...[
+                _WhenCard(promo: _p),
+                const SizedBox(height: 10),
+              ],
+
+              // 11. Restrictions (expandable)
+              if (_p.termsText != null && _p.termsText!.isNotEmpty) ...[
+                _RestrictionsCard(promo: _p),
+                const SizedBox(height: 10),
+              ],
+
+              // 12. Verdict — "Worth it if / Skip if"
+              _VerdictSection(promo: _p),
+              const SizedBox(height: 4),
+            ],
           ),
         ),
       ),
     );
   }
+
+  static bool _hasWhyContent(Promotion p) {
+    return p.valueExplanationCodes.any((c) => _positiveCode(c));
+  }
+
+  static bool _positiveCode(String c) =>
+      c != 'HIGH_SPEND_REQUIRED' && c != 'LOW_CONFIDENCE_WARNING';
 }
 
 // ---------------------------------------------------------------------------
-// Hero card
+// 1. Deal hero section
 // ---------------------------------------------------------------------------
 
-class _HeroCard extends StatelessWidget {
+class _DealHeroSection extends StatelessWidget {
   final Promotion promo;
-  const _HeroCard({required this.promo});
+  final bool hasSticky;
+  const _DealHeroSection({required this.promo, required this.hasSticky});
 
   @override
   Widget build(BuildContext context) {
-    final hasEstimated = promo.estimatedSavings != null && promo.estimatedSavings! > 0;
     return _Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +204,7 @@ class _HeroCard extends StatelessWidget {
               StatusChip(status: promo.status),
             ],
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: 12),
           Text(
             promo.title,
             style: const TextStyle(
@@ -133,46 +215,44 @@ class _HeroCard extends StatelessWidget {
               color: Candy.chocolate,
             ),
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: 12),
+          // Quality badge + effort + urgency chips
           Wrap(
-            spacing: 8,
-            runSpacing: 8,
+            spacing: 6,
+            runSpacing: 6,
             children: [
-              if (promo.displayValue.isNotEmpty)
-                _ValueBadge(value: promo.displayValue, type: promo.discountType),
-              _TagChip(label: _capitalize(promo.category)),
-              if (promo.redemptionMethod != 'unknown')
-                _TagChip(label: _formatRedemption(promo.redemptionMethod)),
-              if (promo.endDate != null)
+              if (promo.globalQualityScore > 0)
+                ValueTierBadge(qualityScore: promo.globalQualityScore, fontSize: 12),
+              EffortChip(promo: promo),
+              UrgencyChip(promo: promo),
+              if (promo.endDate != null && UrgencyChip(promo: promo).build(context) is SizedBox)
                 _TagChip(
                   label: 'Expires ${promo.endDate!}',
                   icon: Icons.calendar_today_outlined,
                 ),
             ],
           ),
-          if (hasEstimated) ...[
-            const SizedBox(height: 10),
-            Text(
-              '~\$${promo.estimatedSavings!.toStringAsFixed(0)} estimated savings',
-              style: const TextStyle(
-                fontSize: 13,
-                color: Candy.mint,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
+          const SizedBox(height: 10),
+          // Discount value badge + category
+          Wrap(
+            spacing: 8,
+            runSpacing: 6,
+            children: [
+              if (promo.displayValue.isNotEmpty)
+                _ValueBadge(value: promo.displayValue, type: promo.discountType),
+              _TagChip(label: _capitalize(promo.category)),
+              if (promo.redemptionMethod != 'unknown')
+                _TagChip(label: _formatRedemption(promo.redemptionMethod)),
+            ],
+          ),
           if (promo.minimumSpend != null) ...[
-            const SizedBox(height: 4),
+            const SizedBox(height: 6),
             Text(
               'Min spend: ${promo.minimumSpend}',
               style: const TextStyle(fontSize: 12, color: Candy.muted),
             ),
           ],
-          const SizedBox(height: 10),
-          _HeroEligSummary(promo: promo),
-          // Show Shop Now only when there is no sticky FastRedeemButton at the bottom
-          if (promo.verifyUrl != null &&
-              (promo.fastRedemption == null || !promo.fastRedemption!.eligible)) ...[
+          if (promo.verifyUrl != null && !hasSticky) ...[
             const SizedBox(height: 16),
             _ShopNowButton(url: promo.verifyUrl!, promoId: promo.id, brand: promo.brand),
           ],
@@ -193,54 +273,200 @@ class _HeroCard extends StatelessWidget {
       }[r] ?? r;
 }
 
-class _HeroEligSummary extends StatelessWidget {
+// ---------------------------------------------------------------------------
+// 2. Savings breakdown card
+// ---------------------------------------------------------------------------
+
+class _SavingsBreakdownCard extends StatelessWidget {
   final Promotion promo;
-  const _HeroEligSummary({required this.promo});
+  const _SavingsBreakdownCard({required this.promo});
 
   @override
   Widget build(BuildContext context) {
-    final parts = <String>[];
-    parts.add(promo.requiresMembership
-        ? (promo.membershipName ?? 'Members only')
-        : 'No membership needed');
-    if (!promo.requiresApp) parts.add('No app needed');
-    if (promo.purchaseRequired) parts.add('Purchase required');
-    return Text(
-      parts.join(' · '),
-      style: const TextStyle(fontSize: 12, color: Candy.muted, height: 1.4),
+    final savings = promo.estimatedSavings!;
+    final pct = promo.effectiveDiscountPct > 0 ? promo.effectiveDiscountPct / 100 : null;
+    final usualPrice = pct != null && pct < 1.0 ? savings / pct : null;
+    final todayPrice = usualPrice != null ? usualPrice - savings : null;
+
+    return _Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Savings breakdown',
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+              color: Candy.muted,
+              letterSpacing: 0.4,
+            ),
+          ),
+          const SizedBox(height: 12),
+          if (usualPrice != null)
+            _SboxRow(
+              label: 'Usually',
+              value: '~\$${usualPrice.round()}',
+              strikethrough: true,
+            ),
+          if (todayPrice != null)
+            _SboxRow(label: 'Today', value: '~\$${todayPrice.round()}'),
+          _SboxRow(
+            label: 'You save',
+            value: '~\$${savings.round()}',
+            highlight: true,
+          ),
+        ],
+      ),
     );
   }
 }
 
-class _ShopNowButton extends StatelessWidget {
-  final String url;
-  final String promoId;
-  final String brand;
-  const _ShopNowButton({required this.url, required this.promoId, required this.brand});
+class _SboxRow extends StatelessWidget {
+  final String label;
+  final String value;
+  final bool strikethrough;
+  final bool highlight;
+  const _SboxRow({
+    required this.label,
+    required this.value,
+    this.strikethrough = false,
+    this.highlight = false,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return FilledButton(
-      onPressed: () async {
-        InteractionService().recordShopNow(promoId, brand: brand);
-        final uri = Uri.tryParse(url);
-        if (uri != null) await launchUrl(uri, mode: LaunchMode.externalApplication);
-      },
-      style: FilledButton.styleFrom(
-        backgroundColor: Candy.raspberry,
-        minimumSize: const Size(double.infinity, 50),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-      ),
-      child: const Text(
-        'Shop Now',
-        style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: Colors.white),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: const TextStyle(fontSize: 15, color: Candy.muted),
+          ),
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: highlight ? 18 : 15,
+              fontWeight: highlight ? FontWeight.w800 : FontWeight.w500,
+              letterSpacing: highlight ? -0.5 : 0,
+              color: highlight ? Candy.mint : (strikethrough ? Candy.muted : Candy.chocolate),
+              decoration: strikethrough ? TextDecoration.lineThrough : null,
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
 // ---------------------------------------------------------------------------
-// Trust card
+// 3. Quick summary card — 3-bullet answer to "should I redeem?"
+// ---------------------------------------------------------------------------
+
+class _QuickSummaryCard extends StatelessWidget {
+  final Promotion promo;
+  const _QuickSummaryCard({required this.promo});
+
+  static String? _codeToText(String code, Promotion p) {
+    return switch (code) {
+      'HIGH_EFFECTIVE_DISCOUNT' => 'Higher discount than ${p.brand} usually offers',
+      'STRONG_DISCOUNT'         => 'Strong discount — above average for this category',
+      'HIGH_VALUE_SAVINGS'      => 'Saves more than \$50 — significant dollar value',
+      'GOOD_VALUE_SAVINGS'      => 'Solid dollar savings on this purchase',
+      'NO_MEMBERSHIP_REQUIRED'  => 'No membership required — open to everyone',
+      'LOW_REDEMPTION_FRICTION' => 'Easy to redeem — no extra steps',
+      'NO_PURCHASE_MINIMUM'     => 'No minimum spend — works on any purchase amount',
+      'STRONG_ECONOMIC_VALUE'   => 'Strong overall value for this type of promotion',
+      _                         => null,
+    };
+  }
+
+  List<String> _bullets() {
+    final result = <String>[];
+
+    for (final code in promo.valueExplanationCodes) {
+      if (result.length >= 3) break;
+      final text = _codeToText(code, promo);
+      if (text != null) result.add(text);
+    }
+
+    // Fallbacks from structured fields
+    if (result.length < 3 && !promo.requiresMembership) {
+      const line = 'No membership required — open to everyone';
+      if (!result.contains(line)) result.add(line);
+    }
+    if (result.length < 3 && !promo.requiresApp) {
+      const line = 'No app required — works without installing anything';
+      if (!result.contains(line)) result.add(line);
+    }
+    if (result.length < 3 && promo.confidenceScore >= 0.8) {
+      result.add('Verified from ${promo.websiteDomain ?? 'the official website'}');
+    }
+    if (result.isEmpty) {
+      result.add('${promo.displayValue} — ${promo.brand} promotion');
+    }
+
+    return result.take(3).toList();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final bullets = _bullets();
+    return _Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (promo.globalQualityScore > 0) ...[
+            ValueTierBadge(qualityScore: promo.globalQualityScore, fontSize: 13),
+            const SizedBox(height: 12),
+          ],
+          ...bullets.map(
+            (b) => Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 5),
+                    child: _GreenDot(),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      b,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        height: 1.45,
+                        color: Candy.chocolate,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _GreenDot extends StatelessWidget {
+  const _GreenDot();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 7,
+      height: 7,
+      decoration: const BoxDecoration(color: Candy.mint, shape: BoxShape.circle),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 4. Trust card
 // ---------------------------------------------------------------------------
 
 class _TrustCard extends StatelessWidget {
@@ -329,7 +555,190 @@ class _TrustCard extends StatelessWidget {
 }
 
 // ---------------------------------------------------------------------------
-// Promo code card
+// 5. Historical comparison card
+// ---------------------------------------------------------------------------
+
+class _HistoricalComparisonCard extends StatelessWidget {
+  final Promotion promo;
+  const _HistoricalComparisonCard({required this.promo});
+
+  static ({String rank, String description}) _rankInfo(double score) {
+    if (score >= 80) return (rank: 'Top 10%', description: 'of all deals we\'ve tracked for this brand');
+    if (score >= 65) return (rank: 'Top 25%', description: 'of similar deals we\'ve tracked');
+    if (score >= 50) return (rank: 'Top 40%', description: 'of deals in this category');
+    return (rank: 'Above average', description: 'relative to similar promotions');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final info = _rankInfo(promo.globalQualityScore);
+    // Normalize to 0–1 for the bar (cap at 1)
+    final todayRatio = (promo.globalQualityScore / 100).clamp(0.0, 1.0);
+    const typicalRatio = 0.52; // baseline representing an average deal
+
+    return _Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'HOW IT COMPARES',
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.6,
+              color: Candy.muted,
+            ),
+          ),
+          const SizedBox(height: 14),
+          // Rank stat
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: [
+              Text(
+                info.rank,
+                style: const TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: -1.0,
+                  color: Candy.mint,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: Text(
+                  info.description,
+                  style: const TextStyle(fontSize: 13, color: Candy.muted, height: 1.3),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          // Comparison bars
+          _CompareBar(label: 'Today\'s deal', ratio: todayRatio, highlight: true),
+          const SizedBox(height: 8),
+          _CompareBar(label: 'Typical deal', ratio: typicalRatio, highlight: false),
+        ],
+      ),
+    );
+  }
+}
+
+class _CompareBar extends StatelessWidget {
+  final String label;
+  final double ratio;
+  final bool highlight;
+  const _CompareBar({required this.label, required this.ratio, required this.highlight});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+            color: highlight ? Candy.chocolate : Candy.muted,
+          ),
+        ),
+        const SizedBox(height: 4),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(4),
+          child: LinearProgressIndicator(
+            value: ratio,
+            minHeight: 7,
+            backgroundColor: Candy.border,
+            color: highlight ? Candy.mint : Candy.muted.withValues(alpha: 0.4),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 6. Why this deal is good
+// ---------------------------------------------------------------------------
+
+class _WhyGoodDealSection extends StatelessWidget {
+  final Promotion promo;
+  const _WhyGoodDealSection({required this.promo});
+
+  static String? _codeToText(String code, Promotion p) {
+    return switch (code) {
+      'HIGH_EFFECTIVE_DISCOUNT' => 'Higher discount than ${p.brand} usually offers',
+      'STRONG_DISCOUNT'         => 'Strong discount — above average for this category',
+      'HIGH_VALUE_SAVINGS'      => 'Saves more than \$50 — significant dollar value',
+      'GOOD_VALUE_SAVINGS'      => 'Solid dollar savings on this purchase',
+      'EXPIRES_SOON'            => 'Ending soon — act before it expires',
+      'EXPIRES_TODAY'           => 'Last chance — expires today',
+      'NO_MEMBERSHIP_REQUIRED'  => 'No membership required — anyone can use this',
+      'LOW_REDEMPTION_FRICTION' => 'Easy to redeem — no extra steps required',
+      'NO_PURCHASE_MINIMUM'     => 'No minimum spend — works on a single item',
+      'STRONG_ECONOMIC_VALUE'   => 'Strong overall economic value for this promotion',
+      'HIGH_SPEND_REQUIRED'     => null,
+      'LOW_CONFIDENCE_WARNING'  => null,
+      _                         => null,
+    };
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final items = promo.valueExplanationCodes
+        .map((c) => _codeToText(c, promo))
+        .whereType<String>()
+        .toList();
+    if (items.isEmpty) return const SizedBox.shrink();
+
+    return _Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Why this is good',
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              color: Candy.chocolate,
+            ),
+          ),
+          const SizedBox(height: 12),
+          ...items.map(
+            (text) => Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(top: 3),
+                    child: Icon(Icons.check_circle_outline,
+                        size: 17, color: Candy.mint),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      text,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        height: 1.45,
+                        color: Candy.chocolate,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// 7. Promo code card
 // ---------------------------------------------------------------------------
 
 class _PromoCodeCard extends StatelessWidget {
@@ -356,8 +765,62 @@ class _PromoCodeCard extends StatelessWidget {
   }
 }
 
+class _PromoCodeBox extends StatelessWidget {
+  final String code;
+  final String promoId;
+  final String brand;
+  const _PromoCodeBox({required this.code, required this.promoId, required this.brand});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Clipboard.setData(ClipboardData(text: code));
+        InteractionService().recordCodeCopied(promoId, brand: brand, code: code);
+        // Keep legacy event too for existing Supabase queries
+        InteractionService().recordPromoCodeCopy(promoId, brand: brand, code: code);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Copied "$code"'),
+            duration: const Duration(seconds: 2),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      },
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        decoration: BoxDecoration(
+          color: Candy.lavender.withValues(alpha: 0.08),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Candy.lavender.withValues(alpha: 0.35)),
+        ),
+        child: Row(
+          children: [
+            const Icon(Icons.confirmation_number_outlined, size: 18, color: Candy.lavender),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                code,
+                style: const TextStyle(
+                  color: Candy.lavender,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 16,
+                  letterSpacing: 2.0,
+                  fontFamily: 'monospace',
+                ),
+              ),
+            ),
+            const Icon(Icons.copy, size: 16, color: Candy.lavender),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 // ---------------------------------------------------------------------------
-// Eligibility card
+// 8. Eligibility card
 // ---------------------------------------------------------------------------
 
 class _EligibilityCard extends StatelessWidget {
@@ -459,8 +922,7 @@ class _EligRow extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: const TextStyle(
-                fontSize: 14, color: Candy.chocolate, height: 1.3),
+              style: const TextStyle(fontSize: 14, color: Candy.chocolate, height: 1.3),
             ),
           ),
         ],
@@ -470,12 +932,12 @@ class _EligRow extends StatelessWidget {
 }
 
 // ---------------------------------------------------------------------------
-// Redeem card
+// 9. Redemption steps card
 // ---------------------------------------------------------------------------
 
-class _RedeemCard extends StatelessWidget {
+class _RedemptionStepsCard extends StatelessWidget {
   final List<String> steps;
-  const _RedeemCard({required this.steps});
+  const _RedemptionStepsCard({required this.steps});
 
   @override
   Widget build(BuildContext context) {
@@ -499,7 +961,7 @@ class _RedeemCard extends StatelessWidget {
 }
 
 // ---------------------------------------------------------------------------
-// When card
+// 10. When available card
 // ---------------------------------------------------------------------------
 
 class _WhenCard extends StatelessWidget {
@@ -534,12 +996,19 @@ class _WhenCard extends StatelessWidget {
 }
 
 // ---------------------------------------------------------------------------
-// Terms card
+// 11. Restrictions card (expandable)
 // ---------------------------------------------------------------------------
 
-class _TermsCard extends StatelessWidget {
-  final String terms;
-  const _TermsCard({required this.terms});
+class _RestrictionsCard extends StatefulWidget {
+  final Promotion promo;
+  const _RestrictionsCard({required this.promo});
+
+  @override
+  State<_RestrictionsCard> createState() => _RestrictionsCardState();
+}
+
+class _RestrictionsCardState extends State<_RestrictionsCard> {
+  bool _expanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -547,16 +1016,45 @@ class _TermsCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Terms',
-            style: TextStyle(
-              fontSize: 15, fontWeight: FontWeight.w700, color: Candy.chocolate),
+          GestureDetector(
+            onTap: () {
+              setState(() => _expanded = !_expanded);
+              if (!_expanded) {
+                // Fire analytics on first expand
+                InteractionService().recordRestrictionExpanded(
+                  widget.promo.id,
+                  brand: widget.promo.brand,
+                );
+              }
+            },
+            behavior: HitTestBehavior.opaque,
+            child: Row(
+              children: [
+                const Expanded(
+                  child: Text(
+                    'Restrictions',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                      color: Candy.chocolate,
+                    ),
+                  ),
+                ),
+                Icon(
+                  _expanded ? Icons.expand_less : Icons.expand_more,
+                  size: 20,
+                  color: Candy.muted,
+                ),
+              ],
+            ),
           ),
-          const SizedBox(height: 6),
-          Text(
-            terms,
-            style: const TextStyle(fontSize: 12, color: Candy.muted, height: 1.5),
-          ),
+          if (_expanded) ...[
+            const SizedBox(height: 8),
+            Text(
+              widget.promo.termsText!,
+              style: const TextStyle(fontSize: 12, color: Candy.muted, height: 1.5),
+            ),
+          ],
         ],
       ),
     );
@@ -564,32 +1062,209 @@ class _TermsCard extends StatelessWidget {
 }
 
 // ---------------------------------------------------------------------------
-// Sticky fast redeem bar
+// 12. Verdict section — "Worth it if / Skip if"
 // ---------------------------------------------------------------------------
 
-class _StickyFastRedeem extends StatelessWidget {
-  final FastRedemption fr;
-  final String brand;
-  final String promoId;
-  const _StickyFastRedeem({
-    required this.fr,
-    required this.brand,
-    required this.promoId,
-  });
+class _VerdictSection extends StatelessWidget {
+  final Promotion promo;
+  const _VerdictSection({required this.promo});
+
+  List<String> _worthItIf() {
+    final items = <String>[];
+    if (promo.estimatedSavings != null && promo.estimatedSavings! >= 20) {
+      items.add("You're already planning to shop at ${promo.brand}");
+    }
+    if (promo.fastRedemption?.eligible == true) {
+      items.add("You want to redeem quickly with one tap");
+    } else if (!promo.requiresMembership && !promo.requiresApp) {
+      items.add("You want a no-fuss deal — no app or membership needed");
+    }
+    if (promo.effectiveDiscountPct >= 30) {
+      items.add("You want above-average savings — ${promo.effectiveDiscountPct.round()}% is strong for this category");
+    }
+    if (items.isEmpty) {
+      items.add("You were already planning to use ${promo.brand}");
+    }
+    return items.take(2).toList();
+  }
+
+  List<String> _skipIf() {
+    final items = <String>[];
+    if (promo.requiresApp) {
+      items.add("You don't have the ${promo.brand} app installed");
+    }
+    if (promo.minimumSpend != null) {
+      items.add("You weren't planning to spend ${promo.minimumSpend} or more");
+    }
+    if (promo.requiresMembership &&
+        !(promo.membershipCost?.toLowerCase().contains('free') ?? false)) {
+      items.add("You don't have a ${promo.membershipName ?? promo.brand} membership");
+    }
+    if (items.isEmpty) {
+      items.add("You're only browsing — better saved for a planned purchase");
+    }
+    return items.take(2).toList();
+  }
+
+  String _verdictProse() {
+    final qualifier = promo.globalQualityScore >= 65
+        ? 'Worth using'
+        : promo.globalQualityScore >= 50
+            ? 'Decent option'
+            : 'Minor savings';
+
+    final details = <String>[];
+    if (promo.effectiveDiscountPct >= 30) {
+      details.add("${promo.effectiveDiscountPct.round()}% is above average for this brand");
+    } else if (promo.estimatedSavings != null && promo.estimatedSavings! >= 20) {
+      details.add("saves about \$${promo.estimatedSavings!.round()}");
+    }
+    if (!promo.requiresMembership && !promo.requiresApp) {
+      details.add("no account or app needed");
+    }
+    if (promo.expirationUrgencyScore >= 3) details.add("ending soon");
+
+    if (details.isEmpty) return "$qualifier.";
+    return "$qualifier — ${details.join(', ')}.";
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
-        child: FastRedeemButton(fr: fr, brand: brand, promoId: promoId),
+    final worthIt = _worthItIf();
+    final skip    = _skipIf();
+
+    return _Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Worth it if
+          const _VerdictHead(
+            icon: Icons.check_circle_outline,
+            label: 'Worth it if',
+            color: Candy.mint,
+          ),
+          const SizedBox(height: 6),
+          ...worthIt.map((t) => _VerdictItem(text: t)),
+          const SizedBox(height: 14),
+          const Divider(height: 1, color: Candy.border),
+          const SizedBox(height: 14),
+
+          // Skip if
+          const _VerdictHead(
+            icon: Icons.remove_circle_outline,
+            label: 'Skip if',
+            color: Candy.raspberry,
+          ),
+          const SizedBox(height: 6),
+          ...skip.map((t) => _VerdictItem(text: t)),
+          const SizedBox(height: 14),
+          const Divider(height: 1, color: Candy.border),
+          const SizedBox(height: 14),
+
+          // AI-style one-liner
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                decoration: BoxDecoration(
+                  color: Candy.pink,
+                  borderRadius: BorderRadius.circular(6),
+                  border: Border.all(color: Candy.border),
+                ),
+                child: const Text(
+                  'Candy',
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.w700,
+                    color: Candy.muted,
+                    letterSpacing: 0.3,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  _verdictProse(),
+                  style: const TextStyle(
+                    fontSize: 14,
+                    height: 1.55,
+                    fontStyle: FontStyle.italic,
+                    color: Candy.chocolate,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _VerdictHead extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Color color;
+  const _VerdictHead({required this.icon, required this.label, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(icon, size: 16, color: color),
+        const SizedBox(width: 7),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w700,
+            color: color,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _VerdictItem extends StatelessWidget {
+  final String text;
+  const _VerdictItem({required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 4, left: 23),
+      child: Text(
+        text,
+        style: const TextStyle(fontSize: 14, height: 1.45, color: Candy.chocolate),
       ),
     );
   }
 }
 
 // ---------------------------------------------------------------------------
-// Save button in app bar
+// Sticky redeem bar
+// ---------------------------------------------------------------------------
+
+class _StickyRedeemBar extends StatelessWidget {
+  final FastRedemption fr;
+  final Promotion promo;
+  const _StickyRedeemBar({required this.fr, required this.promo});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+        child: FastRedeemButton(fr: fr, brand: promo.brand, promoId: promo.id),
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Save button (app bar)
 // ---------------------------------------------------------------------------
 
 class _DetailSaveButton extends StatelessWidget {
@@ -613,6 +1288,11 @@ class _DetailSaveButton extends StatelessWidget {
               await svc.unsave(promo.id);
             } else {
               await svc.save(promo);
+              InteractionService().recordDealSaved(
+                promo.id,
+                brand: promo.brand,
+                category: promo.category,
+              );
               if (ctx.mounted) {
                 showModalBottomSheet(
                   context: ctx,
@@ -631,7 +1311,39 @@ class _DetailSaveButton extends StatelessWidget {
 }
 
 // ---------------------------------------------------------------------------
-// Shared small widgets
+// Shop now button
+// ---------------------------------------------------------------------------
+
+class _ShopNowButton extends StatelessWidget {
+  final String url;
+  final String promoId;
+  final String brand;
+  const _ShopNowButton({required this.url, required this.promoId, required this.brand});
+
+  @override
+  Widget build(BuildContext context) {
+    return FilledButton(
+      onPressed: () async {
+        InteractionService().recordShopNow(promoId, brand: brand);
+        InteractionService().recordRedeemClicked(promoId, brand: brand, actionType: 'open_url');
+        final uri = Uri.tryParse(url);
+        if (uri != null) await launchUrl(uri, mode: LaunchMode.externalApplication);
+      },
+      style: FilledButton.styleFrom(
+        backgroundColor: Candy.raspberry,
+        minimumSize: const Size(double.infinity, 50),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      ),
+      child: const Text(
+        'View Deal',
+        style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: Colors.white),
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Shared small widgets (used in multiple sections)
 // ---------------------------------------------------------------------------
 
 class _Card extends StatelessWidget {
@@ -746,14 +1458,14 @@ class _StepRow extends StatelessWidget {
             width: 22,
             height: 22,
             decoration: const BoxDecoration(
-              color: Candy.border,
+              color: Candy.raspberry,
               shape: BoxShape.circle,
             ),
             child: Center(
               child: Text(
                 '$index',
                 style: const TextStyle(
-                  color: Candy.chocolate,
+                  color: Colors.white,
                   fontSize: 11,
                   fontWeight: FontWeight.w700,
                 ),
@@ -764,8 +1476,7 @@ class _StepRow extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: const TextStyle(
-                fontSize: 14, height: 1.4, color: Candy.chocolate),
+              style: const TextStyle(fontSize: 14, height: 1.4, color: Candy.chocolate),
             ),
           ),
         ],
@@ -830,62 +1541,6 @@ class _TimeRow extends StatelessWidget {
             fontSize: 14, fontWeight: FontWeight.w500, color: Candy.chocolate),
         ),
       ],
-    );
-  }
-}
-
-class _PromoCodeBox extends StatelessWidget {
-  final String code;
-  final String promoId;
-  final String brand;
-  const _PromoCodeBox({required this.code, required this.promoId, required this.brand});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Clipboard.setData(ClipboardData(text: code));
-        InteractionService().recordPromoCodeCopy(promoId, brand: brand, code: code);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Copied "$code"'),
-            duration: const Duration(seconds: 2),
-            behavior: SnackBarBehavior.floating,
-          ),
-        );
-      },
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        decoration: BoxDecoration(
-          color: Candy.lavender.withValues(alpha: 0.08),
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: Candy.lavender.withValues(alpha: 0.35)),
-        ),
-        child: Row(
-          children: [
-            const Icon(
-              Icons.confirmation_number_outlined,
-              size: 18,
-              color: Candy.lavender,
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Text(
-                code,
-                style: const TextStyle(
-                  color: Candy.lavender,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 16,
-                  letterSpacing: 2.0,
-                  fontFamily: 'monospace',
-                ),
-              ),
-            ),
-            const Icon(Icons.copy, size: 16, color: Candy.lavender),
-          ],
-        ),
-      ),
     );
   }
 }

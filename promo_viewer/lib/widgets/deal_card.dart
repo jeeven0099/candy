@@ -11,8 +11,11 @@ import '../services/user_prefs_service.dart';
 import '../theme/candy_colors.dart';
 import '../utils/feed_ranker.dart';
 import 'brand_logo.dart';
+import 'effort_chip.dart';
 import 'fast_redeem_button.dart';
 import 'save_sheet.dart';
+import 'urgency_chip.dart';
+import 'value_tier_badge.dart';
 
 class DealCard extends StatelessWidget {
   final Promotion promo;
@@ -101,18 +104,8 @@ class DealCard extends StatelessWidget {
         (name.isNotEmpty && (m.contains(name) || name.contains(m))));
   }
 
-  // Days until expiry — null if unknown or already expired
-  int? get _daysLeft {
-    if (promo.endDate == null) return null;
-    final end = DateTime.tryParse(promo.endDate!);
-    if (end == null) return null;
-    final diff = end.difference(DateTime.now()).inDays;
-    return diff >= 0 ? diff : null;
-  }
-
   @override
   Widget build(BuildContext context) {
-    final days = _daysLeft;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       child: _LiquidGlassCard(
@@ -121,7 +114,16 @@ class DealCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           child: InkWell(
             borderRadius: BorderRadius.circular(16),
-            onTap: onTap,
+            onTap: onTap == null
+                ? null
+                : () {
+                    InteractionService().recordDealCardOpened(
+                      promo.id,
+                      brand: promo.brand,
+                      category: promo.category,
+                    );
+                    onTap!();
+                  },
             onLongPress: () => _showScoreDebug(context),
             child: Padding(
               padding: const EdgeInsets.all(14),
@@ -172,6 +174,13 @@ class DealCard extends StatelessWidget {
                                 ),
                               ),
                             ],
+                            if (promo.globalQualityScore > 0) ...[
+                              const SizedBox(height: 5),
+                              ValueTierBadge(
+                                qualityScore: promo.globalQualityScore,
+                                fontSize: 11,
+                              ),
+                            ],
                           ],
                         ),
                       ),
@@ -213,6 +222,7 @@ class DealCard extends StatelessWidget {
                     spacing: 6,
                     runSpacing: 4,
                     children: [
+                      EffortChip(promo: promo),
                       if (promo.isLocal && promo.neighborhood != null)
                         _Tag(
                           icon: Icons.storefront,
@@ -249,8 +259,7 @@ class DealCard extends StatelessWidget {
                         ),
                       if (promo.requiresApp)
                         _Tag(icon: Icons.smartphone, label: 'App required'),
-                      if (days != null && days <= 7)
-                        _UrgencyTag(days: days),
+                      UrgencyChip(promo: promo),
                     ],
                   ),
 
@@ -362,43 +371,6 @@ class _Tag extends StatelessWidget {
   }
 }
 
-// Urgency tag — deadline effect: "X days left" feels scarce
-class _UrgencyTag extends StatelessWidget {
-  final int days;
-  const _UrgencyTag({required this.days});
-
-  @override
-  Widget build(BuildContext context) {
-    final isHot = days <= 2;
-    final color = isHot ? const Color(0xFFC62828) : const Color(0xFFE65100);
-    final label = days == 0 ? 'Expires today' : '$days day${days == 1 ? '' : 's'} left';
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
-      decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: color.withValues(alpha: 0.25)),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(isHot ? Icons.local_fire_department : Icons.schedule,
-              size: 12, color: color),
-          const SizedBox(width: 3),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 11,
-              color: color,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 // ── Heart button ─────────────────────────────────────────────────────────────
 
 class _HeartButton extends StatelessWidget {
@@ -426,6 +398,11 @@ class _HeartButton extends StatelessWidget {
               await svc.unsave(promo.id);
             } else {
               await svc.save(promo);
+              InteractionService().recordDealSaved(
+                promo.id,
+                brand: promo.brand,
+                category: promo.category,
+              );
               if (ctx.mounted) {
                 showModalBottomSheet(
                   context: ctx,
