@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-07-21T13:40:37.515523+00:00",
+  "generated_at": "2026-07-22T12:46:12.042888+00:00",
   "threshold": 60.0,
-  "total": 16,
+  "total": 34,
   "candidates": [
     {
       "promo_id": "hyperx_hyperxgaminggearsaleupto50off",
       "brand": "HyperX",
       "category": "tech",
       "title": "HyperX Gaming Gear Sale - Up to 50% Off",
-      "notify_score": 91.0,
+      "notify_score": 87.36,
       "signal_groups": [
         "context",
         "value"
@@ -23,182 +23,30 @@
       "source_url": "https://hyperx.com/collections/sale"
     },
     {
-      "promo_id": "toryburch_womensdesignersale",
-      "brand": "Tory Burch",
+      "promo_id": "windsor_upto80off",
+      "brand": "Windsor",
       "category": "fashion",
-      "title": "Women's Designer Sale",
-      "notify_score": 85.0,
+      "title": "Up to 80% Off!",
+      "notify_score": 85.25,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Tory Burch",
-      "notification_body": "Women's Designer Sale",
+      "notification_title": "Windsor",
+      "notification_body": "Up to 80% Off!",
       "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 130.0,
+      "discount_value": "up to 80%",
+      "estimated_savings": 52.0,
       "end_date": null,
-      "website_domain": "toryburch.com",
-      "source_url": "https://www.toryburch.com/en-us/sale"
-    },
-    {
-      "promo_id": "nikon_upto50offonsaleitems",
-      "brand": "Nikon",
-      "category": "tech",
-      "title": "Up to 50% off on Sale Items",
-      "notify_score": 83.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Nikon",
-      "notification_body": "Up to 50% off on Sale Items",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 125.0,
-      "end_date": null,
-      "website_domain": "nikonusa.com",
-      "source_url": "https://www.nikonusa.com/cameras-on-sale"
-    },
-    {
-      "promo_id": "bcbg_summersaleupto60offselecteditems",
-      "brand": "BCBG",
-      "category": "fashion",
-      "title": "Summer Sale - Up to 60% Off Selected Items",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "BCBG",
-      "notification_body": "Summer Sale - Up to 60% Off Selected Items",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 39.0,
-      "end_date": null,
-      "website_domain": "bcbg.com",
-      "source_url": "https://bcbg.com/collections/sale"
-    },
-    {
-      "promo_id": "bludot_modernfurnitureonsale",
-      "brand": "Blu Dot",
-      "category": "home_goods",
-      "title": "Modern Furniture On Sale",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Blu Dot",
-      "notification_body": "Modern Furniture On Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 45.0,
-      "end_date": null,
-      "website_domain": "bludot.com",
-      "source_url": "https://www.bludot.com/sale.html"
-    },
-    {
-      "promo_id": "chicos_extra60offallsale",
-      "brand": "Chico's",
-      "category": "fashion",
-      "title": "Extra 60% Off All Sale",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Chico's",
-      "notification_body": "Extra 60% Off All Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "estimated_savings": 39.0,
-      "end_date": null,
-      "website_domain": "chicos.com",
-      "source_url": "https://www.chicos.com/store/category/sale/cat40004/"
-    },
-    {
-      "promo_id": "clubmonaco_shopallsaleupto70off",
-      "brand": "Club Monaco",
-      "category": "fashion",
-      "title": "Shop All Sale: Up to 70% OFF",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Club Monaco",
-      "notification_body": "Shop All Sale: Up to 70% OFF",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 45.5,
-      "end_date": null,
-      "website_domain": "clubmonaco.com",
-      "source_url": "https://www.clubmonaco.com/collections/sale"
-    },
-    {
-      "promo_id": "coach_upto50offselectstyles",
-      "brand": "Coach",
-      "category": "fashion",
-      "title": "Up to 50% off select styles",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Coach",
-      "notification_body": "Up to 50% off select styles",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 37.5,
-      "end_date": null,
-      "website_domain": "coach.com",
-      "source_url": "https://www.coach.com/content/promo"
-    },
-    {
-      "promo_id": "johnstonmurphy_endofseasonsale",
-      "brand": "Johnston & Murphy",
-      "category": "fashion",
-      "title": "End of Season Sale",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Johnston & Murphy",
-      "notification_body": "End of Season Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 55%",
-      "estimated_savings": 35.75,
-      "end_date": null,
-      "website_domain": "johnstonmurphy.com",
-      "source_url": "https://www.johnstonmurphy.com/c/sale"
-    },
-    {
-      "promo_id": "landsend_upto75offsaleclearance",
-      "brand": "Lands' End",
-      "category": "fashion",
-      "title": "Up to 75% off sale & clearance",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Lands' End",
-      "notification_body": "Up to 75% off sale & clearance",
-      "discount_type": "percentage_off",
-      "discount_value": "Up to 75%",
-      "estimated_savings": 48.75,
-      "end_date": null,
-      "website_domain": "landsend.com",
-      "source_url": "https://www.landsend.com/"
+      "website_domain": "windsorstore.com",
+      "source_url": "https://www.windsorstore.com/"
     },
     {
       "promo_id": "luckybrand_upto75offclearance",
       "brand": "Lucky Brand",
       "category": "retail",
       "title": "UP TO 75% OFF Clearance",
-      "notify_score": 65.0,
+      "notify_score": 83.89,
       "signal_groups": [
         "context",
         "value"
@@ -213,74 +61,150 @@
       "source_url": "https://www.luckybrand.com/"
     },
     {
-      "promo_id": "surlatable_summersaleupto55off",
-      "brand": "Sur La Table",
-      "category": "home_goods",
-      "title": "Summer Sale up to 55% off",
-      "notify_score": 65.0,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Sur La Table",
-      "notification_body": "Summer Sale up to 55% off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 55%",
-      "estimated_savings": 49.5,
-      "end_date": null,
-      "website_domain": "surlatable.com",
-      "source_url": "https://www.surlatable.com/category/cat-6070003/Sale"
-    },
-    {
-      "promo_id": "tedbaker_saleupto50offselectedstyles",
-      "brand": "Ted Baker",
+      "promo_id": "landsend_upto75offsaleclearance",
+      "brand": "Lands' End",
       "category": "fashion",
-      "title": "SALE: UP TO 50% OFF SELECTED STYLES",
-      "notify_score": 65.0,
+      "title": "Up to 75% off sale & clearance",
+      "notify_score": 83.64,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Ted Baker",
-      "notification_body": "SALE: UP TO 50% OFF SELECTED STYLES",
+      "notification_title": "Lands' End",
+      "notification_body": "Up to 75% off sale & clearance",
       "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 32.5,
+      "discount_value": "Up to 75%",
+      "estimated_savings": 48.75,
       "end_date": null,
-      "website_domain": "tedbaker.com",
-      "source_url": "https://www.tedbaker.com/collections/sale-us"
+      "website_domain": "landsend.com",
+      "source_url": "https://www.landsend.com/"
     },
     {
-      "promo_id": "dsw_upto60offclearanceonlineonly",
-      "brand": "DSW",
-      "category": "retail",
-      "title": "Up to 60% off clearance online only!",
-      "notify_score": 63.0,
+      "promo_id": "bowlero_summerseasonpass",
+      "brand": "Bowlero",
+      "category": "entertainment",
+      "title": "Summer Season Pass",
+      "notify_score": 83.47,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "DSW",
-      "notification_body": "Up to 60% off clearance online only!",
+      "notification_title": "Bowlero",
+      "notification_body": "Free: Summer Season Pass",
+      "discount_type": "free_item",
+      "discount_value": "Free",
+      "estimated_savings": 14.0,
+      "end_date": null,
+      "website_domain": "bowlero.com",
+      "source_url": "https://www.bowlero.com/deals"
+    },
+    {
+      "promo_id": "bcbg_summersaleupto60offselecteditems",
+      "brand": "BCBG",
+      "category": "fashion",
+      "title": "Summer Sale - Up to 60% Off Selected Items",
+      "notify_score": 78.18,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "BCBG",
+      "notification_body": "Summer Sale - Up to 60% Off Selected Items",
       "discount_type": "percentage_off",
       "discount_value": "up to 60%",
-      "estimated_savings": 48.0,
+      "estimated_savings": 39.0,
       "end_date": null,
-      "website_domain": "dsw.com",
-      "source_url": "https://www.dsw.com/"
+      "website_domain": "bcbg.com",
+      "source_url": "https://bcbg.com/collections/sale"
     },
     {
-      "promo_id": "mejuri_50offroundlabgrownsapphirenecklace",
+      "promo_id": "amctheatres_spidermanbrandnewdayfanevent",
+      "brand": "AMC Theatres",
+      "category": "entertainment",
+      "title": "Spider-Man: Brand New Day Fan Event",
+      "notify_score": 77.45,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "AMC Theatres",
+      "notification_body": "Free: Spider-Man: Brand New Day Fan Event",
+      "discount_type": "free_item",
+      "discount_value": "free socks",
+      "estimated_savings": 14.0,
+      "end_date": "2026-07-30",
+      "website_domain": "amctheatres.com",
+      "source_url": null
+    },
+    {
+      "promo_id": "nikon_upto50offonsaleitems",
+      "brand": "Nikon",
+      "category": "tech",
+      "title": "Up to 50% off on Sale Items",
+      "notify_score": 76.63,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Nikon",
+      "notification_body": "Up to 50% off on Sale Items",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 125.0,
+      "end_date": null,
+      "website_domain": "nikonusa.com",
+      "source_url": "https://www.nikonusa.com/cameras-on-sale"
+    },
+    {
+      "promo_id": "bludot_modernfurnitureonsale",
+      "brand": "Blu Dot",
+      "category": "home_goods",
+      "title": "Modern Furniture On Sale",
+      "notify_score": 74.72,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Blu Dot",
+      "notification_body": "Modern Furniture On Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 45.0,
+      "end_date": null,
+      "website_domain": "bludot.com",
+      "source_url": "https://www.bludot.com/sale.html"
+    },
+    {
+      "promo_id": "wendys_free6pcnuggetsonwendyswednesdaywith5purchase",
+      "brand": "Wendy's",
+      "category": "food",
+      "title": "Free 6pc Nuggets on Wendy's Wednesday with $5 Purchase",
+      "notify_score": 74.52,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Wendy's",
+      "notification_body": "Free: Free 6pc Nuggets on Wendy's Wednesday with $5 Purchase",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 9.0,
+      "end_date": null,
+      "website_domain": "wendys.com",
+      "source_url": "https://www.wendys.com/offers-coupons"
+    },
+    {
+      "promo_id": "mejuri_summerguideupto50off",
       "brand": "Mejuri",
       "category": "fashion",
-      "title": "50% off Round Lab Grown Sapphire Necklace",
-      "notify_score": 63.0,
+      "title": "Summer Guide - Up To 50% Off",
+      "notify_score": 73.87,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Mejuri",
-      "notification_body": "50% off Round Lab Grown Sapphire Necklace",
+      "notification_body": "Summer Guide - Up To 50% Off",
       "discount_type": "percentage_off",
       "discount_value": "50%",
       "estimated_savings": 32.5,
@@ -293,7 +217,7 @@
       "brand": "Tillys",
       "category": "retail",
       "title": "RSQ Jeans Buy One, Get One 50% Off*",
-      "notify_score": 61.0,
+      "notify_score": 73.26,
       "signal_groups": [
         "context",
         "value"
@@ -306,6 +230,424 @@
       "end_date": null,
       "website_domain": "tillys.com",
       "source_url": "https://www.tillys.com/"
+    },
+    {
+      "promo_id": "michaelkors_saveupto60onmusthaveselectstyles",
+      "brand": "Michael Kors",
+      "category": "fashion",
+      "title": "SAVE UP TO 60% ON MUST-HAVE SELECT STYLES",
+      "notify_score": 72.2,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Michael Kors",
+      "notification_body": "SAVE UP TO 60% ON MUST-HAVE SELECT STYLES",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 33.0,
+      "end_date": null,
+      "website_domain": "michaelkors.com",
+      "source_url": "https://www.michaelkors.com/sale"
+    },
+    {
+      "promo_id": "gamestop_4freecandyconwithbaseunitpurchase",
+      "brand": "GameStop",
+      "category": "gaming",
+      "title": "4 free candy con with base unit purchase",
+      "notify_score": 71.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "GameStop",
+      "notification_body": "Free: 4 free candy con with base unit purchase",
+      "discount_type": "free_item",
+      "discount_value": null,
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "gamestop.com",
+      "source_url": null
+    },
+    {
+      "promo_id": "johndeere_freeattractionsthissummer",
+      "brand": "John Deere",
+      "category": "home_improvement",
+      "title": "Free attractions this summer",
+      "notify_score": 71.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "John Deere",
+      "notification_body": "Free: Free attractions this summer",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": "2026-09-01",
+      "website_domain": "deere.com",
+      "source_url": "https://www.deere.com/en-us/"
+    },
+    {
+      "promo_id": "lifeextension_summersalehotdealsclearance",
+      "brand": "Life Extension",
+      "category": "pharmacy",
+      "title": "Summer Sale. Hot deals & Clearance.",
+      "notify_score": 70.75,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Life Extension",
+      "notification_body": "Summer Sale. Hot deals & Clearance.",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 18.0,
+      "end_date": null,
+      "website_domain": "lifeextension.com",
+      "source_url": "https://www.lifeextension.com/sales"
+    },
+    {
+      "promo_id": "tillys_womensshortsbuyonegetone50off",
+      "brand": "Tillys",
+      "category": "retail",
+      "title": "Women's Shorts Buy One, Get One 50% Off*",
+      "notify_score": 70.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Tillys",
+      "notification_body": "Women's Shorts Buy One, Get One 50% Off*",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "tillys.com",
+      "source_url": "https://www.tillys.com/"
+    },
+    {
+      "promo_id": "mainevent_kidsbowlfree",
+      "brand": "Main Event",
+      "category": "retail",
+      "title": "KIDS BOWL FREE",
+      "notify_score": 70.29,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Main Event",
+      "notification_body": "Free: KIDS BOWL FREE",
+      "discount_type": "free_item",
+      "discount_value": "2 free",
+      "estimated_savings": 10.0,
+      "end_date": "2026-10-31",
+      "website_domain": "mainevent.com",
+      "source_url": "https://www.mainevent.com/specials/"
+    },
+    {
+      "promo_id": "clubmonaco_shopallsaleupto70off",
+      "brand": "Club Monaco",
+      "category": "fashion",
+      "title": "Shop All Sale: Up to 70% OFF",
+      "notify_score": 69.93,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Club Monaco",
+      "notification_body": "Shop All Sale: Up to 70% OFF",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "estimated_savings": 45.5,
+      "end_date": null,
+      "website_domain": "clubmonaco.com",
+      "source_url": "https://www.clubmonaco.com/collections/sale"
+    },
+    {
+      "promo_id": "applebees_aspecialbirthdaytheapplebeesway",
+      "brand": "Applebee's",
+      "category": "food",
+      "title": "A Special Birthday, The Applebee's Way",
+      "notify_score": 69.0,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Applebee's",
+      "notification_body": "Birthday deal: A Special Birthday, The Applebee's Way",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "applebees.com",
+      "source_url": "https://www.applebees.com/en/specials"
+    },
+    {
+      "promo_id": "chicos_chicossale",
+      "brand": "Chico's",
+      "category": "fashion",
+      "title": "Chico's Sale",
+      "notify_score": 68.84,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Chico's",
+      "notification_body": "Chico's Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50% off",
+      "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "chicos.com",
+      "source_url": "https://www.chicos.com/store/category/sale/cat40004/"
+    },
+    {
+      "promo_id": "regal_birthdayfreepopcornoffer",
+      "brand": "Regal",
+      "category": "entertainment",
+      "title": "Birthday Free Popcorn Offer",
+      "notify_score": 68.34,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Regal",
+      "notification_body": "Birthday deal: Birthday Free Popcorn Offer",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 13.0,
+      "end_date": null,
+      "website_domain": "regmovies.com",
+      "source_url": "https://www.regmovies.com/static/en/us/regal-crown-club-info"
+    },
+    {
+      "promo_id": "johnstonmurphy_endofseasonsale",
+      "brand": "Johnston & Murphy",
+      "category": "fashion",
+      "title": "End of Season Sale",
+      "notify_score": 64.11,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Johnston & Murphy",
+      "notification_body": "End of Season Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 55%",
+      "estimated_savings": 35.75,
+      "end_date": null,
+      "website_domain": "johnstonmurphy.com",
+      "source_url": "https://www.johnstonmurphy.com/c/sale"
+    },
+    {
+      "promo_id": "cariboucoffee_freedrinkduringbirthdayweek",
+      "brand": "Caribou Coffee",
+      "category": "coffee",
+      "title": "Free Drink During Birthday Week",
+      "notify_score": 63.62,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Caribou Coffee",
+      "notification_body": "Birthday deal: Free Drink During Birthday Week",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 4.0,
+      "end_date": null,
+      "website_domain": "cariboucoffee.com",
+      "source_url": "https://www.cariboucoffee.com/caribou-perks/"
+    },
+    {
+      "promo_id": "gamestop_50offgpgs",
+      "brand": "GameStop",
+      "category": "gaming",
+      "title": "50% off GPGS",
+      "notify_score": 63.42,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "GameStop",
+      "notification_body": "50% off GPGS",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "gamestop.com",
+      "source_url": null
+    },
+    {
+      "promo_id": "chickfila_birthdayrewardintheapp",
+      "brand": "Chick-fil-A",
+      "category": "food",
+      "title": "Birthday Reward in the App",
+      "notify_score": 63.24,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Chick-fil-A",
+      "notification_body": "Birthday deal: Birthday Reward in the App",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 10.0,
+      "end_date": null,
+      "website_domain": "chick-fil-a.com",
+      "source_url": "https://www.chick-fil-a.com/one"
+    },
+    {
+      "promo_id": "aerie_6070offclearance",
+      "brand": "Aerie",
+      "category": "fashion",
+      "title": "60-70% off clearance",
+      "notify_score": 62.62,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Aerie",
+      "notification_body": "60-70% off clearance",
+      "discount_type": "percentage_off",
+      "discount_value": "60-70%",
+      "estimated_savings": 24.5,
+      "end_date": null,
+      "website_domain": "ae.com",
+      "source_url": "https://www.ae.com/us/en/c/aerie/sale/cat4840006"
+    },
+    {
+      "promo_id": "culvers_freebirthdayandhalfbirthdaytreats",
+      "brand": "Culver's",
+      "category": "food",
+      "title": "Free birthday and half-birthday treats",
+      "notify_score": 62.3,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Culver's",
+      "notification_body": "Birthday deal: Free birthday and half-birthday treats",
+      "discount_type": "free_item",
+      "discount_value": null,
+      "estimated_savings": 10.0,
+      "end_date": null,
+      "website_domain": "culvers.com",
+      "source_url": "https://www.culvers.com/delicious-rewards"
+    },
+    {
+      "promo_id": "einsteinbrosbagels_freeeggsandwichwithpurchaseforyourbirthday",
+      "brand": "Einstein Bros Bagels",
+      "category": "food",
+      "title": "FREE Egg Sandwich with purchase for your birthday.",
+      "notify_score": 62.09,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Einstein Bros Bagels",
+      "notification_body": "Birthday deal: FREE Egg Sandwich with purchase for your birthday.",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 6.0,
+      "end_date": null,
+      "website_domain": "einsteinbros.com",
+      "source_url": "https://www.einsteinbros.com/rewards/"
+    },
+    {
+      "promo_id": "talbots_4thofjulycelebration",
+      "brand": "Talbots",
+      "category": "fashion",
+      "title": "4th of July Celebration!",
+      "notify_score": 61.87,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Talbots",
+      "notification_body": "4th of July Celebration!",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "talbots.com",
+      "source_url": "https://www.talbots.com/sale"
+    },
+    {
+      "promo_id": "starbucks_freetreatonyourbirthday",
+      "brand": "Starbucks",
+      "category": "coffee",
+      "title": "Free treat on your birthday",
+      "notify_score": 61.78,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Starbucks",
+      "notification_body": "Birthday deal: Free treat on your birthday",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 6.5,
+      "end_date": null,
+      "website_domain": "starbucks.com",
+      "source_url": "https://www.starbucks.com/rewards"
+    },
+    {
+      "promo_id": "starbucks_7daystoredeemyourbirthdaytreat",
+      "brand": "Starbucks",
+      "category": "coffee",
+      "title": "7 days to redeem your birthday treat",
+      "notify_score": 61.78,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Starbucks",
+      "notification_body": "Birthday deal: 7 days to redeem your birthday treat",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 6.5,
+      "end_date": null,
+      "website_domain": "starbucks.com",
+      "source_url": "https://www.starbucks.com/rewards"
+    },
+    {
+      "promo_id": "starbucks_30daystoredeemyourbirthdaytreat",
+      "brand": "Starbucks",
+      "category": "coffee",
+      "title": "30 days to redeem your birthday treat",
+      "notify_score": 61.78,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Starbucks",
+      "notification_body": "Birthday deal: 30 days to redeem your birthday treat",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 6.5,
+      "end_date": null,
+      "website_domain": "starbucks.com",
+      "source_url": "https://www.starbucks.com/rewards"
+    },
+    {
+      "promo_id": "pinstripes_wednesdayhalfoffbottlesofwine",
+      "brand": "Pinstripes",
+      "category": "food",
+      "title": "Wednesday Half-Off Bottles of Wine",
+      "notify_score": 60.47,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Pinstripes",
+      "notification_body": "Wednesday Half-Off Bottles of Wine",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 5.0,
+      "end_date": null,
+      "website_domain": "pinstripes.com",
+      "source_url": "https://www.pinstripes.com/promos"
     }
   ]
 }
