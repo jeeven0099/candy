@@ -10,10 +10,13 @@ Steps:
   6.  generate_review_csv.py          -human-readable review -> logs/promotion_review.csv
   7.  generate_merged_json.py         -single merged JSON -> merged_promotions.json
   8.  merge_all_promotions.py         -web + email -> all_promotions.json
-  9.  generate_fast_redemption.py     -add fast_redemption to all_promotions.json
- 10.  generate_scores.py              -add rank_base_score to all_promotions.json
- 11.  generate_notifications.py       -notification_candidates.json -> Flutter assets
- 12.  copy to promo_viewer/assets/all_promotions.json
+  9.  run_keyword_backfill.py         -generate keywords for brands missing them
+ 10.  apply_keyword_store.py          -re-apply stored keywords overwritten by merge
+ 11.  generate_fast_redemption.py     -add fast_redemption to all_promotions.json
+ 12.  generate_scores.py              -add rank_base_score to all_promotions.json
+ 13.  generate_notifications.py       -notification_candidates.json -> Flutter assets
+ 14.  copy to promo_viewer/assets/all_promotions.json
+ 15.  git commit + push
 
 All output is written to logs/pipeline_<timestamp>.log in addition to the terminal.
 """
@@ -241,44 +244,63 @@ def main() -> None:
             sys.exit(rc)
 
         # Step 8: Merge web + email into all_promotions.json
-        rc = run([str(SRC / "merge_all_promotions.py")], "Step 8/13 -Merging promotions", log_fh)
+        rc = run([str(SRC / "merge_all_promotions.py")], "Step 8/15 -Merging promotions", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] merge_all_promotions exited with code {rc}.", log_fh)
             sys.exit(rc)
 
-        # Step 9: Add fast_redemption to all_promotions.json
-        rc = run([str(SRC / "generate_fast_redemption.py")], "Step 9/13 -Generating fast redemption data", log_fh)
+        # Step 9: Generate keywords for any brand in all_promotions.json that is missing them.
+        # Rebuilds the queue each run so newly-added brands are always picked up.
+        # Non-fatal: a keyword failure should not abort the rest of the pipeline.
+        kw_cmd = [str(SRC / "run_keyword_backfill.py"), "--rebuild-queue", "--batch", "999"]
+        if args.model == "groq":
+            kw_cmd += ["--groq-model", args.groq_model]
+            if args.groq_api_key:
+                kw_cmd += ["--groq-api-key", args.groq_api_key]
+        else:
+            kw_cmd += ["--ollama", "--ollama-model", args.ollama_model]
+        rc = run(kw_cmd, "Step 9/15 -Generating missing keywords", log_fh)
+        if rc != 0:
+            log_print(f"\n[WARN] run_keyword_backfill exited with code {rc} (non-fatal).", log_fh)
+
+        # Step 10: Re-apply keyword store so stored keywords survive the merge step rewrite.
+        rc = run([str(SRC / "apply_keyword_store.py")], "Step 10/15 -Applying keyword store", log_fh)
+        if rc != 0:
+            log_print(f"\n[WARN] apply_keyword_store exited with code {rc} (non-fatal).", log_fh)
+
+        # Step 11: Add fast_redemption to all_promotions.json
+        rc = run([str(SRC / "generate_fast_redemption.py")], "Step 11/15 -Generating fast redemption data", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] generate_fast_redemption exited with code {rc}.", log_fh)
             sys.exit(rc)
 
-        # Step 10: Add rank_base_score to all_promotions.json
-        rc = run([str(SRC / "generate_scores.py")], "Step 10/13 -Computing rank scores", log_fh)
+        # Step 12: Add rank_base_score to all_promotions.json
+        rc = run([str(SRC / "generate_scores.py")], "Step 12/15 -Computing rank scores", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] generate_scores exited with code {rc}.", log_fh)
             sys.exit(rc)
 
-        # Step 11: Compute notification candidates
-        rc = run([str(SRC / "generate_notifications.py")], "Step 11/13 -Computing notification candidates", log_fh)
+        # Step 13: Compute notification candidates
+        rc = run([str(SRC / "generate_notifications.py")], "Step 13/15 -Computing notification candidates", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] generate_notifications exited with code {rc}.", log_fh)
             sys.exit(rc)
 
-        # Step 12: Copy to Flutter app assets
+        # Step 14: Copy to Flutter app assets
         import shutil
         assets_dest = Path(__file__).resolve().parents[1] / "promo_viewer" / "assets" / "all_promotions.json"
         src_file = Path(__file__).resolve().parent / "all_promotions.json"
         if src_file.exists():
             shutil.copy2(src_file, assets_dest)
             size_kb = assets_dest.stat().st_size // 1024
-            log_print(f"\n[Step 12/13] Copied all_promotions.json to app assets ({size_kb} KB)", log_fh)
+            log_print(f"\n[Step 14/15] Copied all_promotions.json to app assets ({size_kb} KB)", log_fh)
         else:
             log_print(f"\n[ERROR] all_promotions.json not found at {src_file}", log_fh)
             sys.exit(1)
 
         write_run_summary(log_path, log_fh)
 
-        # Step 13: Publish updated assets to GitHub — also triggers deploy_web.yml
+        # Step 15: Publish updated assets to GitHub — also triggers deploy_web.yml
         # which rebuilds the Flutter web app with fresh bundled data.
         repo_root = Path(__file__).resolve().parents[1]
         assets_to_push = [
@@ -293,9 +315,9 @@ def main() -> None:
             )
             if commit_result.returncode == 0:
                 subprocess.run(["git", "push", "origin", "master"], cwd=repo_root, check=True)
-                log_print(f"\n[Step 13/13] Assets pushed to GitHub.", log_fh)
+                log_print(f"\n[Step 15/15] Assets pushed to GitHub.", log_fh)
             else:
-                log_print(f"\n[Step 13/13] No asset changes to push.", log_fh)
+                log_print(f"\n[Step 15/15] No asset changes to push.", log_fh)
         except Exception as e:
             log_print(f"\n[Step 15/15] Git push failed (non-fatal): {e}", log_fh)
 
