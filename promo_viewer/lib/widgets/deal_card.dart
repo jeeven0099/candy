@@ -115,6 +115,8 @@ class DealCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hasFastRedeem = promo.fastRedemption != null && promo.fastRedemption!.eligible;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       child: _LiquidGlassCard(
@@ -140,11 +142,12 @@ class DealCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // ── Header: logo | brand | badge + actions ──
+
+                  // ── Brand header ──────────────────────────────────────────
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      BrandLogo(promo: promo, size: 44),
+                      BrandLogo(promo: promo, size: 40),
                       const SizedBox(width: 10),
                       Expanded(
                         child: Column(
@@ -159,59 +162,55 @@ class DealCard extends StatelessWidget {
                                 letterSpacing: 1.1,
                               ),
                             ),
-                            const SizedBox(height: 4),
-                            Text(
-                              promo.title,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w700,
-                                height: 1.3,
-                                color: Candy.chocolate,
-                              ),
-                            ),
-                            if (promo.summary != null && promo.summary!.isNotEmpty) ...[
-                              const SizedBox(height: 3),
-                              Text(
-                                promo.summary!,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  height: 1.4,
-                                  color: Candy.muted,
-                                ),
-                              ),
-                            ],
-                            if (promo.globalQualityScore > 0) ...[
-                              const SizedBox(height: 5),
-                              ValueTierBadge(
-                                qualityScore: promo.globalQualityScore,
-                                fontSize: 11,
-                              ),
-                            ],
+                            const SizedBox(height: 2),
+                            _SourceLabel(promo: promo),
                           ],
                         ),
                       ),
-                      const SizedBox(width: 8),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          _HeartButton(promo: promo, feedPosition: feedPosition, rankingMode: rankingMode),
-                          _MenuButton(promo: promo),
-                        ],
-                      ),
+                      const SizedBox(width: 4),
+                      _HeartButton(promo: promo, feedPosition: feedPosition, rankingMode: rankingMode),
+                      _MenuButton(promo: promo),
                     ],
                   ),
 
-                  // ── Estimated savings line ──
+                  const SizedBox(height: 12),
+
+                  // ── Offer ─────────────────────────────────────────────────
+                  Text(
+                    promo.title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w800,
+                      height: 1.25,
+                      color: Candy.chocolate,
+                    ),
+                  ),
+                  if (promo.summary != null && promo.summary!.isNotEmpty) ...[
+                    const SizedBox(height: 3),
+                    Text(
+                      promo.summary!,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 12,
+                        height: 1.4,
+                        color: Candy.muted,
+                      ),
+                    ),
+                  ],
+
+                  const SizedBox(height: 8),
+
+                  // ── Value signals ─────────────────────────────────────────
+                  if (promo.globalQualityScore > 0)
+                    ValueTierBadge(qualityScore: promo.globalQualityScore, fontSize: 11),
                   if (_showSavings) ...[
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 4),
                     Row(
                       children: [
-                        Icon(Icons.savings_outlined,
-                            size: 13, color: const Color(0xFF2E7D32)),
+                        const Icon(Icons.savings_outlined, size: 13, color: Color(0xFF2E7D32)),
                         const SizedBox(width: 4),
                         Text(
                           '~\$${promo.estimatedSavings!.toStringAsFixed(0)} in savings',
@@ -224,10 +223,29 @@ class DealCard extends StatelessWidget {
                       ],
                     ),
                   ],
+                  if (_rankingInsight != null) ...[
+                    const SizedBox(height: 5),
+                    Row(
+                      children: [
+                        const Icon(Icons.check_circle_outline, size: 12, color: Color(0xFF2E7D32)),
+                        const SizedBox(width: 4),
+                        Expanded(
+                          child: Text(
+                            _rankingInsight!,
+                            style: const TextStyle(
+                              fontSize: 11,
+                              color: Color(0xFF2E7D32),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
 
                   const SizedBox(height: 10),
 
-                  // ── Tags row ──
+                  // ── Chips ─────────────────────────────────────────────────
                   Wrap(
                     spacing: 6,
                     runSpacing: 4,
@@ -239,12 +257,6 @@ class DealCard extends StatelessWidget {
                           label: 'Local · ${promo.neighborhood}',
                           color: const Color(0xFF2E7D32),
                           filled: true,
-                        )
-                      else if (promo.promotionType == 'online_only')
-                        _Tag(
-                          icon: Icons.language,
-                          label: 'Online',
-                          color: Candy.lavender,
                         )
                       else if (promo.distanceKm != null)
                         _Tag(
@@ -267,64 +279,61 @@ class DealCard extends StatelessWidget {
                               : 'Members only',
                           color: Candy.lavender,
                         ),
-                      if (promo.requiresApp)
-                        _Tag(icon: Icons.smartphone, label: 'App required'),
                       UrgencyChip(promo: promo),
                     ],
                   ),
 
-                  // ── Promo code ──
+                  // ── Promo code ────────────────────────────────────────────
                   if (promo.promoCode != null) ...[
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 10),
                     _PromoCodePill(code: promo.promoCode!),
                   ],
 
-                  // ── Fast redeem button ──
-                  if (promo.fastRedemption != null &&
-                      promo.fastRedemption!.eligible) ...[
+                  // ── Fast redeem CTA (centered, 62% width) ─────────────────
+                  if (hasFastRedeem) ...[
                     const SizedBox(height: 12),
-                    FastRedeemButton(fr: promo.fastRedemption!, brand: promo.brand, promoId: promo.id),
-                  ],
-
-                  // ── Synthesized category note ──
-                  if (_onSaleCategories.isNotEmpty) ...[
-                    const SizedBox(height: 8),
-                    Wrap(
-                      spacing: 5,
-                      runSpacing: 4,
-                      children: [
-                        Icon(Icons.local_offer_outlined, size: 11, color: Colors.teal.shade400),
-                        ..._onSaleCategories.map((cat) => Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                          decoration: BoxDecoration(
-                            color: Colors.teal.shade50,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Text(
-                            cat,
-                            style: TextStyle(fontSize: 10, color: Colors.teal.shade700, fontWeight: FontWeight.w500),
-                          ),
-                        )),
-                      ],
+                    Center(
+                      child: FractionallySizedBox(
+                        widthFactor: 0.62,
+                        child: FastRedeemButton(
+                          fr: promo.fastRedemption!,
+                          brand: promo.brand,
+                          promoId: promo.id,
+                        ),
+                      ),
                     ),
                   ],
 
-                  // ── Source trust line ──
-                  if (promo.source == 'web' && promo.websiteDomain != null) ...[
+                  // ── Meta footer ───────────────────────────────────────────
+                  if (_onSaleCategories.isNotEmpty || (promo.source == 'web' && promo.websiteDomain != null)) ...[
                     const SizedBox(height: 10),
                     Row(
                       children: [
-                        Icon(Icons.verified_outlined,
-                            size: 11, color: Colors.grey.shade400),
-                        const SizedBox(width: 4),
-                        Text(
-                          'Sourced from ${promo.websiteDomain}',
-                          style: TextStyle(
-                              fontSize: 11, color: Colors.grey.shade400),
-                        ),
+                        if (_onSaleCategories.isNotEmpty) ...[
+                          Icon(Icons.local_offer_outlined, size: 11, color: Colors.grey.shade400),
+                          const SizedBox(width: 3),
+                          Text(
+                            _onSaleCategories.take(3).join(' · '),
+                            style: TextStyle(fontSize: 11, color: Colors.grey.shade400),
+                          ),
+                        ],
+                        if (_onSaleCategories.isNotEmpty && promo.source == 'web' && promo.websiteDomain != null)
+                          Text('  ·  ', style: TextStyle(fontSize: 11, color: Colors.grey.shade300)),
+                        if (promo.source == 'web' && promo.websiteDomain != null) ...[
+                          Icon(Icons.verified_outlined, size: 11, color: Colors.grey.shade400),
+                          const SizedBox(width: 3),
+                          Expanded(
+                            child: Text(
+                              promo.websiteDomain!,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(fontSize: 11, color: Colors.grey.shade400),
+                            ),
+                          ),
+                        ],
                       ],
                     ),
                   ],
+
                 ],
               ),
             ),
@@ -334,11 +343,30 @@ class DealCard extends StatelessWidget {
     );
   }
 
-  // Show savings line only for % off deals where we have a meaningful estimate
   bool get _showSavings =>
-      promo.discountType == 'percentage_off' &&
       promo.estimatedSavings != null &&
-      promo.estimatedSavings! >= 10;
+      promo.estimatedSavings! >= 10 &&
+      !const {'food', 'fast_food', 'coffee', 'grocery', 'restaurant'}.contains(promo.category.toLowerCase());
+
+  String? get _rankingInsight {
+    final score = promo.globalQualityScore;
+    if (score <= 0) return null;
+    final cat = promo.category.toLowerCase();
+    final catLabel = switch (cat) {
+      'food' || 'fast_food' || 'restaurant' => 'food',
+      'coffee'      => 'coffee',
+      'clothing'    => 'clothing',
+      'footwear' || 'shoes' => 'footwear',
+      'electronics' => 'electronics',
+      'beauty'      => 'beauty',
+      'home'        => 'home',
+      'travel'      => 'travel',
+      _             => 'retail',
+    };
+    if (score >= 80) return 'One of this month\'s best $catLabel deals';
+    if (score >= 65) return 'Better than most ${promo.brand} offers';
+    return null;
+  }
 
   List<String> get _onSaleCategories => promo.productCategories;
 }
@@ -633,9 +661,14 @@ class _LiquidGlassCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 20,
+            color: Colors.black.withValues(alpha: 0.08),
+            blurRadius: 24,
             offset: const Offset(0, 6),
+          ),
+          BoxShadow(
+            color: const Color(0xFFE8D5C0).withValues(alpha: 0.25),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
           ),
         ],
       ),
@@ -650,12 +683,12 @@ class _LiquidGlassCard extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Colors.white.withValues(alpha: 0.96),
-                  Colors.white.withValues(alpha: 0.82),
+                  const Color(0xFFFFFDF9).withValues(alpha: 0.97),
+                  const Color(0xFFFFF8F2).withValues(alpha: 0.88),
                 ],
               ),
               border: Border.all(
-                color: Colors.white.withValues(alpha: 0.72),
+                color: Colors.white.withValues(alpha: 0.80),
                 width: 1.0,
               ),
             ),
@@ -663,6 +696,54 @@ class _LiquidGlassCard extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+// ── Source label ──────────────────────────────────────────────────────────────
+
+class _SourceLabel extends StatelessWidget {
+  final Promotion promo;
+  const _SourceLabel({required this.promo});
+
+  @override
+  Widget build(BuildContext context) {
+    final IconData icon;
+    final String label;
+    final Color color;
+
+    if (promo.isLocal && promo.neighborhood != null) {
+      icon = Icons.storefront_outlined;
+      label = promo.neighborhood!;
+      color = const Color(0xFF2E7D32);
+    } else if (promo.isLocal) {
+      icon = Icons.storefront_outlined;
+      label = 'In-store';
+      color = const Color(0xFF2E7D32);
+    } else if (promo.distanceKm != null) {
+      icon = Icons.near_me_outlined;
+      label = '${LocationService.formatDistance(promo.distanceKm)} away';
+      color = const Color(0xFF1565C0);
+    } else {
+      icon = Icons.language_outlined;
+      label = 'Online';
+      color = Candy.muted;
+    }
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(icon, size: 11, color: color.withValues(alpha: 0.7)),
+        const SizedBox(width: 3),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 11,
+            color: color.withValues(alpha: 0.7),
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -686,35 +767,43 @@ class _PromoCodePill extends StatelessWidget {
           ),
         );
       },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        decoration: BoxDecoration(
-          color: Candy.lavender.withValues(alpha: 0.08),
-          borderRadius: BorderRadius.circular(6),
-          border: Border.all(
-            color: Candy.lavender.withValues(alpha: 0.35),
-          ),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(Icons.confirmation_number_outlined,
-                size: 13, color: Candy.lavender),
-            const SizedBox(width: 6),
-            Text(
-              code,
-              style: const TextStyle(
-                color: Candy.lavender,
-                fontWeight: FontWeight.w700,
-                fontSize: 12,
-                letterSpacing: 1.2,
-                fontFamily: 'monospace',
-              ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            decoration: BoxDecoration(
+              color: Candy.lavender.withValues(alpha: 0.07),
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Candy.lavender.withValues(alpha: 0.30)),
             ),
-            const SizedBox(width: 6),
-            const Icon(Icons.copy, size: 11, color: Candy.lavender),
-          ],
-        ),
+            child: Row(
+              children: [
+                const Icon(Icons.confirmation_number_outlined, size: 14, color: Candy.lavender),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    code,
+                    style: const TextStyle(
+                      color: Candy.lavender,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 13,
+                      letterSpacing: 1.8,
+                      fontFamily: 'monospace',
+                    ),
+                  ),
+                ),
+                const Icon(Icons.copy_outlined, size: 14, color: Candy.lavender),
+              ],
+            ),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            'Tap to copy',
+            style: TextStyle(fontSize: 10, color: Candy.muted.withValues(alpha: 0.6)),
+          ),
+        ],
       ),
     );
   }
