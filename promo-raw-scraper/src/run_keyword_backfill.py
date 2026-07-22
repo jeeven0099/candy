@@ -139,6 +139,7 @@ def call_groq_keywords(
     brand: str,
     category: str,
     text: str,
+    model: str = GROQ_MODEL,
 ) -> Optional[dict]:
     """Call Groq with a keyword-only prompt. Returns dict or None on error."""
     safe_text = text[:5000]
@@ -149,7 +150,7 @@ def call_groq_keywords(
     )
     try:
         response = client.chat.completions.create(
-            model=GROQ_MODEL,
+            model=model,
             messages=[{"role": "user", "content": prompt}],
             response_format={"type": "json_object"},
             max_tokens=512,
@@ -234,10 +235,12 @@ def main() -> None:
     parser.add_argument("--rebuild-queue", action="store_true", help="Rebuild queue from scratch")
     parser.add_argument("--ollama", action="store_true", help="Use local Ollama instead of Groq")
     parser.add_argument("--ollama-model", default=OLLAMA_MODEL, help=f"Ollama model to use (default: {OLLAMA_MODEL})")
+    parser.add_argument("--groq-model", default=GROQ_MODEL, help=f"Groq model to use (default: {GROQ_MODEL})")
+    parser.add_argument("--groq-api-key", default=None, help="Groq API key (overrides GROQ_API_KEY env var)")
     args = parser.parse_args()
 
     use_ollama = args.ollama
-    api_key = os.environ.get("GROQ_API_KEY", "")
+    api_key = args.groq_api_key or os.environ.get("GROQ_API_KEY", "")
     if not use_ollama and not api_key:
         print("No GROQ_API_KEY set — falling back to Ollama.")
         use_ollama = True
@@ -266,7 +269,8 @@ def main() -> None:
         api_key=api_key,
         http_client=httpx.Client(verify=False),
     )
-    backend = f"Ollama ({args.ollama_model})" if use_ollama else f"Groq ({GROQ_MODEL})"
+    groq_model = args.groq_model
+    backend = f"Ollama ({args.ollama_model})" if use_ollama else f"Groq ({groq_model})"
     print(f"Backend: {backend}\n")
 
     results = {"done": 0, "failed": 0, "no_text": 0, "quota_hit": False}
@@ -289,7 +293,7 @@ def main() -> None:
             if use_ollama:
                 kw_data = call_ollama_keywords(brand, cat, text, model=args.ollama_model)
             else:
-                kw_data = call_groq_keywords(client, brand, cat, text)
+                kw_data = call_groq_keywords(client, brand, cat, text, model=groq_model)
             kws = kw_data["product_keywords"]
             cats = kw_data["product_categories"]
 
