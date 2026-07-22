@@ -252,13 +252,11 @@ def main() -> None:
         # Step 9: Generate keywords for any brand in all_promotions.json that is missing them.
         # Rebuilds the queue each run so newly-added brands are always picked up.
         # Non-fatal: a keyword failure should not abort the rest of the pipeline.
-        kw_cmd = [str(SRC / "run_keyword_backfill.py"), "--rebuild-queue", "--batch", "999"]
-        if args.model == "groq":
-            kw_cmd += ["--groq-model", args.groq_model]
-            if args.groq_api_key:
-                kw_cmd += ["--groq-api-key", args.groq_api_key]
-        else:
-            kw_cmd += ["--ollama", "--ollama-model", args.ollama_model]
+        kw_cmd = [
+            str(SRC / "run_keyword_backfill.py"),
+            "--rebuild-queue", "--batch", "999",
+            "--ollama", "--ollama-model", args.ollama_model,
+        ]
         rc = run(kw_cmd, "Step 9/15 -Generating missing keywords", log_fh)
         if rc != 0:
             log_print(f"\n[WARN] run_keyword_backfill exited with code {rc} (non-fatal).", log_fh)
