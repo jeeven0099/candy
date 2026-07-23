@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-22T12:46:12.042888+00:00",
+  "generated_at": "2026-07-23T14:00:46.037636+00:00",
   "threshold": 60.0,
   "total": 34,
   "candidates": [
@@ -99,6 +99,25 @@
       "source_url": "https://www.bowlero.com/deals"
     },
     {
+      "promo_id": "aldo_endofseasonsaleupto70off",
+      "brand": "Aldo",
+      "category": "retail",
+      "title": "End Of Season Sale - Up To 70% Off",
+      "notify_score": 82.23,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Aldo",
+      "notification_body": "End Of Season Sale - Up To 70% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "Up To 70%",
+      "estimated_savings": 56.0,
+      "end_date": null,
+      "website_domain": "aldoshoes.com",
+      "source_url": "https://www.aldoshoes.com/us/en_US/sale"
+    },
+    {
       "promo_id": "bcbg_summersaleupto60offselecteditems",
       "brand": "BCBG",
       "category": "fashion",
@@ -116,25 +135,6 @@
       "end_date": null,
       "website_domain": "bcbg.com",
       "source_url": "https://bcbg.com/collections/sale"
-    },
-    {
-      "promo_id": "amctheatres_spidermanbrandnewdayfanevent",
-      "brand": "AMC Theatres",
-      "category": "entertainment",
-      "title": "Spider-Man: Brand New Day Fan Event",
-      "notify_score": 77.45,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "AMC Theatres",
-      "notification_body": "Free: Spider-Man: Brand New Day Fan Event",
-      "discount_type": "free_item",
-      "discount_value": "free socks",
-      "estimated_savings": 14.0,
-      "end_date": "2026-07-30",
-      "website_domain": "amctheatres.com",
-      "source_url": null
     },
     {
       "promo_id": "nikon_upto50offonsaleitems",
@@ -175,23 +175,23 @@
       "source_url": "https://www.bludot.com/sale.html"
     },
     {
-      "promo_id": "wendys_free6pcnuggetsonwendyswednesdaywith5purchase",
-      "brand": "Wendy's",
-      "category": "food",
-      "title": "Free 6pc Nuggets on Wendy's Wednesday with $5 Purchase",
-      "notify_score": 74.52,
+      "promo_id": "swansonvitamins_buyonegetoneoffers",
+      "brand": "Swanson Vitamins",
+      "category": "pharmacy",
+      "title": "Buy One, Get One Offers",
+      "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Wendy's",
-      "notification_body": "Free: Free 6pc Nuggets on Wendy's Wednesday with $5 Purchase",
+      "notification_title": "Swanson Vitamins",
+      "notification_body": "Free: Buy One, Get One Offers",
       "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 9.0,
+      "discount_value": "1 free item",
+      "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "wendys.com",
-      "source_url": "https://www.wendys.com/offers-coupons"
+      "website_domain": "swansonvitamins.com",
+      "source_url": "https://www.swansonvitamins.com/collections/all?facet.onsalenow=Y"
     },
     {
       "promo_id": "mejuri_summerguideupto50off",
@@ -213,42 +213,23 @@
       "source_url": "https://mejuri.com/collections/shop-all"
     },
     {
-      "promo_id": "tillys_rsqjeansbuyonegetone50off",
-      "brand": "Tillys",
+      "promo_id": "walmart_freevaccinesbrandsamplesmore",
+      "brand": "Walmart",
       "category": "retail",
-      "title": "RSQ Jeans Buy One, Get One 50% Off*",
-      "notify_score": 73.26,
+      "title": "Free vaccines, brand samples & more*",
+      "notify_score": 73.33,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Tillys",
-      "notification_body": "RSQ Jeans Buy One, Get One 50% Off*",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 27.5,
+      "notification_title": "Walmart",
+      "notification_body": "Free: Free vaccines, brand samples & more*",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "tillys.com",
-      "source_url": "https://www.tillys.com/"
-    },
-    {
-      "promo_id": "michaelkors_saveupto60onmusthaveselectstyles",
-      "brand": "Michael Kors",
-      "category": "fashion",
-      "title": "SAVE UP TO 60% ON MUST-HAVE SELECT STYLES",
-      "notify_score": 72.2,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Michael Kors",
-      "notification_body": "SAVE UP TO 60% ON MUST-HAVE SELECT STYLES",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 33.0,
-      "end_date": null,
-      "website_domain": "michaelkors.com",
-      "source_url": "https://www.michaelkors.com/sale"
+      "website_domain": "walmart.com",
+      "source_url": "https://www.walmart.com/"
     },
     {
       "promo_id": "gamestop_4freecandyconwithbaseunitpurchase",
@@ -306,25 +287,6 @@
       "end_date": null,
       "website_domain": "lifeextension.com",
       "source_url": "https://www.lifeextension.com/sales"
-    },
-    {
-      "promo_id": "tillys_womensshortsbuyonegetone50off",
-      "brand": "Tillys",
-      "category": "retail",
-      "title": "Women's Shorts Buy One, Get One 50% Off*",
-      "notify_score": 70.67,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Tillys",
-      "notification_body": "Women's Shorts Buy One, Get One 50% Off*",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 22.5,
-      "end_date": null,
-      "website_domain": "tillys.com",
-      "source_url": "https://www.tillys.com/"
     },
     {
       "promo_id": "mainevent_kidsbowlfree",
@@ -400,7 +362,7 @@
       "estimated_savings": 32.5,
       "end_date": null,
       "website_domain": "chicos.com",
-      "source_url": "https://www.chicos.com/store/category/sale/cat40004/"
+      "source_url": null
     },
     {
       "promo_id": "regal_birthdayfreepopcornoffer",
@@ -420,6 +382,44 @@
       "end_date": null,
       "website_domain": "regmovies.com",
       "source_url": "https://www.regmovies.com/static/en/us/regal-crown-club-info"
+    },
+    {
+      "promo_id": "swansonvitamins_upto50offselectedproducts",
+      "brand": "Swanson Vitamins",
+      "category": "pharmacy",
+      "title": "Up to 50% off Selected Products",
+      "notify_score": 66.42,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Swanson Vitamins",
+      "notification_body": "Up to 50% off Selected Products",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "swansonvitamins.com",
+      "source_url": "https://www.swansonvitamins.com/collections/all?facet.onsalenow=Y"
+    },
+    {
+      "promo_id": "extendedstayamerica_kidsstayfree",
+      "brand": "Extended Stay America",
+      "category": "travel",
+      "title": "Kids Stay Free",
+      "notify_score": 65.14,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Extended Stay America",
+      "notification_body": "Free: Kids Stay Free",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "extendedstayamerica.com",
+      "source_url": "https://www.extendedstayamerica.com/special-offers?customer_id=347-521-0300&gclsrc=aw.ds&&mid=ps-google&channel=paid-search&partner=google&campaign=g_cs_extended_stay_america_homepage&adgroup=&ppckw=extended%20stay%20america%20greenville&adtype=regular&gad_source=1&gad_campaignid=10048702300&gclid=CjwKCAjwpefSBhBvEiwAzyEtZ8Tr3u47PsViiu273442P31w9YEb2GVQxOjzsKvlQE6PbVT_L2zUihoC3V8QAvD_BwE"
     },
     {
       "promo_id": "johnstonmurphy_endofseasonsale",
@@ -631,23 +631,23 @@
       "source_url": "https://www.starbucks.com/rewards"
     },
     {
-      "promo_id": "pinstripes_wednesdayhalfoffbottlesofwine",
-      "brand": "Pinstripes",
-      "category": "food",
-      "title": "Wednesday Half-Off Bottles of Wine",
-      "notify_score": 60.47,
+      "promo_id": "brooksbrothers_upto50offselectstyles",
+      "brand": "Brooks Brothers",
+      "category": "fashion",
+      "title": "Up to 50% Off Select Styles",
+      "notify_score": 60.1,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Pinstripes",
-      "notification_body": "Wednesday Half-Off Bottles of Wine",
+      "notification_title": "Brooks Brothers",
+      "notification_body": "Up to 50% Off Select Styles",
       "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 5.0,
+      "discount_value": "up to 50%",
+      "estimated_savings": 14.0,
       "end_date": null,
-      "website_domain": "pinstripes.com",
-      "source_url": "https://www.pinstripes.com/promos"
+      "website_domain": "brooksbrothers.com",
+      "source_url": "https://www.brooksbrothers.com/sale"
     }
   ]
 }
