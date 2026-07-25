@@ -26,7 +26,7 @@ const _kDemoCards = [
 ];
 
 const _kTypedQuery  = 'running shoes';
-const _kBrandCount  = 347;
+const _kBrandCount  = 1000;
 
 // Animation timeline (ms in a 2 100 ms window)
 //  0– 700  logo scale 0.95 → 1.00
