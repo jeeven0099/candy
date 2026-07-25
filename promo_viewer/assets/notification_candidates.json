@@ -1,26 +1,26 @@
 {
-  "generated_at": "2026-07-24T04:15:22.853810+00:00",
+  "generated_at": "2026-07-25T00:09:20.431885+00:00",
   "threshold": 60.0,
-  "total": 57,
+  "total": 93,
   "candidates": [
     {
-      "promo_id": "madewell_lastdayextra50off",
-      "brand": "Madewell",
-      "category": "retail",
-      "title": "Last Day Extra 50% Off",
-      "notify_score": 89.16,
+      "promo_id": "jimmyjohns_summerfridaydealfreehousemadelemonade",
+      "brand": "Jimmy John's",
+      "category": "food",
+      "title": "Summer Friday Deal - Free House‑Made Lemonade",
+      "notify_score": 88.24,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Madewell",
-      "notification_body": "Last Day Extra 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 40.0,
+      "notification_title": "Jimmy John's",
+      "notification_body": "Free: Summer Friday Deal - Free House‑Made Lemonade",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 10.0,
       "end_date": null,
-      "website_domain": "madewell.com",
-      "source_url": "https://www.madewell.com/sale/mens/"
+      "website_domain": "jimmyjohns.com",
+      "source_url": "https://www.jimmyjohns.com/offers/"
     },
     {
       "promo_id": "converse_conversesalesneakersclothingupto75off",
@@ -42,23 +42,23 @@
       "source_url": "https://www.converse.com/shop/sale"
     },
     {
-      "promo_id": "fashionnova_upto6080offsale",
-      "brand": "Fashion Nova",
+      "promo_id": "asos_asoswomenssale",
+      "brand": "ASOS",
       "category": "retail",
-      "title": "Up to 60-80% Off Sale",
+      "title": "ASOS Women's Sale",
       "notify_score": 85.58,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Fashion Nova",
-      "notification_body": "Up to 60-80% Off Sale",
+      "notification_title": "ASOS",
+      "notification_body": "ASOS Women's Sale",
       "discount_type": "percentage_off",
-      "discount_value": "60-80%",
+      "discount_value": "up to 80%",
       "estimated_savings": 36.0,
       "end_date": null,
-      "website_domain": "fashionnova.com",
-      "source_url": "https://www.fashionnova.com/"
+      "website_domain": "asos.com",
+      "source_url": "https://www.asos.com/us/women/sale/cat/?cid=7046#nlid=ww|sale|shop+by+category|view+all+sale"
     },
     {
       "promo_id": "aldo_endofseasonsaleupto70off",
@@ -99,6 +99,25 @@
       "source_url": "https://www.luckybrand.com/"
     },
     {
+      "promo_id": "amazon_samsungssd870evo2tblimitedtimedeal",
+      "brand": "Amazon",
+      "category": "tech",
+      "title": "Samsung SSD 870 EVO 2TB - Limited Time Deal",
+      "notify_score": 83.71,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Amazon",
+      "notification_body": "Samsung SSD 870 EVO 2TB - Limited Time Deal",
+      "discount_type": "percentage_off",
+      "discount_value": "62%",
+      "estimated_savings": 155.0,
+      "end_date": null,
+      "website_domain": "amazon.com",
+      "source_url": "https://www.amazon.com/deals"
+    },
+    {
       "promo_id": "clarks_upto60offsale",
       "brand": "Clarks",
       "category": "retail",
@@ -137,6 +156,25 @@
       "source_url": "https://www.thredup.com/"
     },
     {
+      "promo_id": "aloyoga_aloyogasaleupto70off",
+      "brand": "Alo Yoga",
+      "category": "retail",
+      "title": "Alo Yoga Sale - up to 70% off",
+      "notify_score": 82.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Alo Yoga",
+      "notification_body": "Alo Yoga Sale - up to 70% off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "estimated_savings": 63.0,
+      "end_date": null,
+      "website_domain": "aloyoga.com",
+      "source_url": "https://www.aloyoga.com/collections/sale"
+    },
+    {
       "promo_id": "duluthtrading_upto70offoriginalprices",
       "brand": "Duluth Trading",
       "category": "retail",
@@ -156,17 +194,74 @@
       "source_url": "https://www.duluthtrading.com/sale"
     },
     {
+      "promo_id": "lego_legosaleupto70offselectedsets",
+      "brand": "LEGO",
+      "category": "retail",
+      "title": "LEGO Sale - up to 70% off selected sets",
+      "notify_score": 82.1,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "LEGO",
+      "notification_body": "LEGO Sale - up to 70% off selected sets",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70% off",
+      "estimated_savings": 31.5,
+      "end_date": null,
+      "website_domain": "lego.com",
+      "source_url": "https://www.lego.com/en-us/categories/sales-and-deals"
+    },
+    {
+      "promo_id": "modaoperandi_womensdesignercollectionsaleupto70off",
+      "brand": "Moda Operandi",
+      "category": "retail",
+      "title": "Women's Designer Collection Sale - up to 70% off",
+      "notify_score": 82.1,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Moda Operandi",
+      "notification_body": "Women's Designer Collection Sale - up to 70% off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "estimated_savings": 31.5,
+      "end_date": null,
+      "website_domain": "modaoperandi.com",
+      "source_url": "https://www.modaoperandi.com/women/sale"
+    },
+    {
+      "promo_id": "cider_ciderclubweekend",
+      "brand": "Cider",
+      "category": "clothing",
+      "title": "Cider Club Weekend",
+      "notify_score": 81.98,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Cider",
+      "notification_body": "Cider Club Weekend",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "estimated_savings": 38.5,
+      "end_date": null,
+      "website_domain": "shopcider.com",
+      "source_url": "https://shopcider.com/collections/all"
+    },
+    {
       "promo_id": "kroger_buy1get1freegatoradewatersingleserve",
       "brand": "Kroger",
       "category": "food",
-      "title": "Buy 1 Get 1 Free Gatorade Water Single Serve",
+      "title": "Buy 1 Get 1 Free - GATORADE WATER SINGLE SERVE",
       "notify_score": 81.74,
       "signal_groups": [
         "personal",
         "value"
       ],
       "notification_title": "Kroger",
-      "notification_body": "Free: Buy 1 Get 1 Free Gatorade Water Single Serve",
+      "notification_body": "Free: Buy 1 Get 1 Free - GATORADE WATER SINGLE SERVE",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 10.0,
@@ -213,61 +308,232 @@
       "source_url": "https://www.clarks.com/en-us/all-sale/sale_us-c"
     },
     {
-      "promo_id": "shein_65offcoupon",
-      "brand": "SHEIN",
-      "category": "retail",
-      "title": "65% OFF Coupon",
-      "notify_score": 80.21,
+      "promo_id": "wendys_freeanysizefrywithpurchasefriday",
+      "brand": "Wendy's",
+      "category": "food",
+      "title": "Free Any Size Fry with Purchase (Friday)",
+      "notify_score": 80.52,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "SHEIN",
-      "notification_body": "65% OFF Coupon",
-      "discount_type": "percentage_off",
-      "discount_value": "65%",
-      "estimated_savings": 29.25,
+      "notification_title": "Wendy's",
+      "notification_body": "Free: Free Any Size Fry with Purchase (Friday)",
+      "discount_type": "free_item",
+      "discount_value": "free fry",
+      "estimated_savings": 9.0,
       "end_date": null,
-      "website_domain": "us.shein.com",
-      "source_url": "https://us.shein.com/flash-sale.html"
+      "website_domain": "wendys.com",
+      "source_url": "https://www.wendys.com/offers-coupons"
     },
     {
-      "promo_id": "boxlunch_upto70offgifts",
-      "brand": "BoxLunch",
-      "category": "retail",
-      "title": "Up to 70% Off Gifts",
-      "notify_score": 79.26,
+      "promo_id": "wendys_freeanysizefrywith5purchasefriday",
+      "brand": "Wendy's",
+      "category": "food",
+      "title": "Free Any Size Fry with $5 Purchase (Friday)",
+      "notify_score": 80.52,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "BoxLunch",
-      "notification_body": "Up to 70% Off Gifts",
-      "discount_type": "percentage_off",
-      "discount_value": "70%",
-      "estimated_savings": 31.5,
+      "notification_title": "Wendy's",
+      "notification_body": "Free: Free Any Size Fry with $5 Purchase (Friday)",
+      "discount_type": "free_item",
+      "discount_value": "free fry",
+      "estimated_savings": 9.0,
       "end_date": null,
-      "website_domain": "boxlunch.com",
-      "source_url": "https://www.boxlunch.com/sale/"
+      "website_domain": "wendys.com",
+      "source_url": "https://www.wendys.com/offers-coupons"
     },
     {
-      "promo_id": "nike_backtoschoolsale",
-      "brand": "Nike",
-      "category": "retail",
-      "title": "Back to School Sale",
-      "notify_score": 78.35,
+      "promo_id": "biolite_solarpanel10050off",
+      "brand": "BioLite",
+      "category": "electronics",
+      "title": "SolarPanel 100 - 50% OFF",
+      "notify_score": 79.36,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Nike",
-      "notification_body": "Back to School Sale",
+      "notification_title": "BioLite",
+      "notification_body": "SolarPanel 100 - 50% OFF",
       "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 52.5,
+      "discount_value": "50%",
+      "estimated_savings": 125.0,
       "end_date": null,
-      "website_domain": "nike.com",
-      "source_url": "https://www.nike.com/w/mens-sale-3yaepznik1"
+      "website_domain": "bioliteenergy.com",
+      "source_url": "https://www.bioliteenergy.com/collections/sale"
+    },
+    {
+      "promo_id": "aspinaloflondon_outletsaleupto60off",
+      "brand": "Aspinal of London",
+      "category": "retail",
+      "title": "Outlet Sale - Up to 60% Off",
+      "notify_score": 78.18,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Aspinal of London",
+      "notification_body": "Outlet Sale - Up to 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 27.0,
+      "end_date": null,
+      "website_domain": "aspinaloflondon.com",
+      "source_url": "https://www.aspinaloflondon.com/sale"
+    },
+    {
+      "promo_id": "marchesa_lastofitskindupto60off",
+      "brand": "Marchesa",
+      "category": "retail",
+      "title": "Last of Its Kind - Up to 60% Off",
+      "notify_score": 78.18,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Marchesa",
+      "notification_body": "Last of Its Kind - Up to 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 27.0,
+      "end_date": null,
+      "website_domain": "marchesa.com",
+      "source_url": "https://marchesa.com/"
+    },
+    {
+      "promo_id": "monicavinader_summerfavourites60off",
+      "brand": "Monica Vinader",
+      "category": "retail",
+      "title": "Summer Favourites 60% Off",
+      "notify_score": 78.18,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Monica Vinader",
+      "notification_body": "Summer Favourites 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 27.0,
+      "end_date": null,
+      "website_domain": "monicavinader.com",
+      "source_url": "https://www.monicavinader.com/us/sale"
+    },
+    {
+      "promo_id": "mvmt_13yearanniversarysale",
+      "brand": "MVMT",
+      "category": "retail",
+      "title": "13 Year Anniversary Sale",
+      "notify_score": 78.18,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "MVMT",
+      "notification_body": "13 Year Anniversary Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 27.0,
+      "end_date": null,
+      "website_domain": "mvmt.com",
+      "source_url": "https://www.mvmt.com/"
+    },
+    {
+      "promo_id": "surlatable_summeroverstocksale",
+      "brand": "Sur La Table",
+      "category": "retail",
+      "title": "Summer Overstock Sale",
+      "notify_score": 78.18,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Sur La Table",
+      "notification_body": "Summer Overstock Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 27.0,
+      "end_date": null,
+      "website_domain": "surlatable.com",
+      "source_url": "https://www.surlatable.com/category/cat-6070003/Sale"
+    },
+    {
+      "promo_id": "stjohn_upto60offbasics",
+      "brand": "St. John",
+      "category": "clothing",
+      "title": "Up to 60% Off Basics",
+      "notify_score": 78.15,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "St. John",
+      "notification_body": "Up to 60% Off Basics",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 33.0,
+      "end_date": null,
+      "website_domain": "stjohnknits.com",
+      "source_url": "https://www.stjohnknits.com/collections/sale"
+    },
+    {
+      "promo_id": "stjohn_60offresort2026",
+      "brand": "St. John",
+      "category": "clothing",
+      "title": "60% Off Resort 2026",
+      "notify_score": 78.15,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "St. John",
+      "notification_body": "60% Off Resort 2026",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 33.0,
+      "end_date": null,
+      "website_domain": "stjohnknits.com",
+      "source_url": "https://www.stjohnknits.com/collections/sale"
+    },
+    {
+      "promo_id": "stjohn_upto60offspring2026",
+      "brand": "St. John",
+      "category": "clothing",
+      "title": "Up to 60% Off Spring 2026",
+      "notify_score": 78.15,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "St. John",
+      "notification_body": "Up to 60% Off Spring 2026",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 33.0,
+      "end_date": null,
+      "website_domain": "stjohnknits.com",
+      "source_url": "https://www.stjohnknits.com/collections/sale"
+    },
+    {
+      "promo_id": "stjohn_upto60offcelebrationworthystyles",
+      "brand": "St. John",
+      "category": "clothing",
+      "title": "Up to 60% Off Celebration-Worthy Styles",
+      "notify_score": 78.15,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "St. John",
+      "notification_body": "Up to 60% Off Celebration-Worthy Styles",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 33.0,
+      "end_date": null,
+      "website_domain": "stjohnknits.com",
+      "source_url": "https://www.stjohnknits.com/collections/sale"
     },
     {
       "promo_id": "zara_zarasale",
@@ -286,7 +552,7 @@
       "estimated_savings": 44.0,
       "end_date": null,
       "website_domain": "zara.com",
-      "source_url": "https://www.zara.com/us/en/s-woman-sale-l9328.html"
+      "source_url": null
     },
     {
       "promo_id": "francescas_womensclearanceupto90offinboutiques",
@@ -308,6 +574,120 @@
       "source_url": "https://francescas.com/category/sale"
     },
     {
+      "promo_id": "driesvannoten_complimentarygiftwrappingmessage",
+      "brand": "Dries Van Noten",
+      "category": "retail",
+      "title": "Complimentary Gift Wrapping & Message",
+      "notify_score": 76.33,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Dries Van Noten",
+      "notification_body": "Free: Complimentary Gift Wrapping & Message",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "driesvannoten.com",
+      "source_url": "https://www.driesvannoten.com/"
+    },
+    {
+      "promo_id": "driesvannoten_complimentarysamples",
+      "brand": "Dries Van Noten",
+      "category": "retail",
+      "title": "Complimentary Samples",
+      "notify_score": 76.33,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Dries Van Noten",
+      "notification_body": "Free: Complimentary Samples",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "driesvannoten.com",
+      "source_url": "https://www.driesvannoten.com/"
+    },
+    {
+      "promo_id": "potterybarnkids_freeexpertdesignadvice",
+      "brand": "Pottery Barn Kids",
+      "category": "retail",
+      "title": "Free expert design advice",
+      "notify_score": 76.33,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Pottery Barn Kids",
+      "notification_body": "Free: Free expert design advice",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "potterybarnkids.com",
+      "source_url": "https://www.potterybarnkids.com/shop/sale/"
+    },
+    {
+      "promo_id": "overstock_gucciupto60off",
+      "brand": "Overstock",
+      "category": "home_goods",
+      "title": "Gucci Up to 60% Off",
+      "notify_score": 76.19,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Overstock",
+      "notification_body": "Gucci Up to 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 54.0,
+      "end_date": null,
+      "website_domain": "overstock.com",
+      "source_url": "https://www.overstock.com/deals"
+    },
+    {
+      "promo_id": "overstock_jewelrywatchupto60off",
+      "brand": "Overstock",
+      "category": "home_goods",
+      "title": "Jewelry & Watch Up to 60% Off",
+      "notify_score": 76.19,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Overstock",
+      "notification_body": "Jewelry & Watch Up to 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 54.0,
+      "end_date": null,
+      "website_domain": "overstock.com",
+      "source_url": "https://www.overstock.com/deals"
+    },
+    {
+      "promo_id": "mvmt_chronocollectionflashsale",
+      "brand": "MVMT",
+      "category": "retail",
+      "title": "Chrono Collection Flash Sale",
+      "notify_score": 75.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "MVMT",
+      "notification_body": "Chrono Collection Flash Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 22.5,
+      "end_date": "2026-07-26",
+      "website_domain": "mvmt.com",
+      "source_url": "https://www.mvmt.com/"
+    },
+    {
       "promo_id": "applebees_birthdayfreedessert",
       "brand": "Applebee's",
       "category": "food",
@@ -327,42 +707,118 @@
       "source_url": "https://www.applebees.com/en/specials"
     },
     {
-      "promo_id": "bodybuildingcom_buy2get1freeevlsupplements",
-      "brand": "Bodybuilding.com",
-      "category": "supplements",
-      "title": "Buy 2, Get 1 FREE EVL Supplements",
+      "promo_id": "babylist_freebreastpump",
+      "brand": "Babylist",
+      "category": "Baby Gear Marketplace",
+      "title": "Free Breast Pump",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Bodybuilding.com",
-      "notification_body": "Free: Buy 2, Get 1 FREE EVL Supplements",
+      "notification_title": "Babylist",
+      "notification_body": "Free: Free Breast Pump",
       "discount_type": "free_item",
-      "discount_value": "free",
+      "discount_value": "free breast pump",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "shop.bodybuilding.com",
-      "source_url": "https://shop.bodybuilding.com/collections/on-sale"
+      "website_domain": "babylist.com",
+      "source_url": "https://www.babylist.com/coupons/"
     },
     {
-      "promo_id": "spotify_try1monthfor0premiumindividual",
-      "brand": "Spotify",
-      "category": "subscription",
-      "title": "Try 1 month for $0 - Premium Individual",
+      "promo_id": "babylist_freebabylisthellobabybox",
+      "brand": "Babylist",
+      "category": "Baby Gear Marketplace",
+      "title": "Free Babylist Hello Baby Box",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Spotify",
-      "notification_body": "Free: Try 1 month for $0 - Premium Individual",
+      "notification_title": "Babylist",
+      "notification_body": "Free: Free Babylist Hello Baby Box",
+      "discount_type": "free_item",
+      "discount_value": "free Hello Baby Box",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "babylist.com",
+      "source_url": "https://www.babylist.com/coupons/"
+    },
+    {
+      "promo_id": "demellier_complimentarymonogramming",
+      "brand": "DeMellier",
+      "category": "accessories",
+      "title": "Complimentary Monogramming",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "DeMellier",
+      "notification_body": "Free: Complimentary Monogramming",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "spotify.com",
-      "source_url": "https://www.spotify.com/us/premium/"
+      "website_domain": "demellierlondon.com",
+      "source_url": "https://demellierlondon.com/"
+    },
+    {
+      "promo_id": "epicgamesstore_weeklyfreegame",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "Weekly Free Game",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: Weekly Free Game",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://store.epicgames.com/en-US/free-games"
+    },
+    {
+      "promo_id": "jomalone_complimentary9mlcologne",
+      "brand": "Jo Malone",
+      "category": "beauty",
+      "title": "Complimentary 9ml Cologne",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Jo Malone",
+      "notification_body": "Free: Complimentary 9ml Cologne",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "jomalone.com",
+      "source_url": "https://www.jomalone.com/"
+    },
+    {
+      "promo_id": "jomalone_complimentarygiftwrapping",
+      "brand": "Jo Malone",
+      "category": "beauty",
+      "title": "Complimentary Gift Wrapping",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Jo Malone",
+      "notification_body": "Free: Complimentary Gift Wrapping",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "jomalone.com",
+      "source_url": "https://www.jomalone.com/"
     },
     {
       "promo_id": "sweetgreen_thegulchfirst50complimentaryentrebowl",
@@ -403,25 +859,6 @@
       "source_url": "https://www.sweetgreen.com/sweet-rewards"
     },
     {
-      "promo_id": "bodybuildingcom_buyonegetone50offcorenutritionals",
-      "brand": "Bodybuilding.com",
-      "category": "supplements",
-      "title": "Buy One Get One 50% Off Core Nutritionals",
-      "notify_score": 73.83,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Bodybuilding.com",
-      "notification_body": "Buy One Get One 50% Off Core Nutritionals",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 30.0,
-      "end_date": null,
-      "website_domain": "shop.bodybuilding.com",
-      "source_url": "https://shop.bodybuilding.com/collections/on-sale"
-    },
-    {
       "promo_id": "applebees_veteransdayfreemeal",
       "brand": "Applebee's",
       "category": "food",
@@ -441,23 +878,118 @@
       "source_url": "https://www.applebees.com/en/specials"
     },
     {
-      "promo_id": "colourpop_freegiftfullcollectionset",
-      "brand": "ColourPop",
-      "category": "beauty",
-      "title": "Free Gift: Full Collection Set",
-      "notify_score": 73.44,
+      "promo_id": "jamesallen_upto50offthejamesallencollection",
+      "brand": "James Allen",
+      "category": "retail",
+      "title": "Up to 50% Off the James Allen Collection",
+      "notify_score": 73.67,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "ColourPop",
-      "notification_body": "Free: Free Gift: Full Collection Set",
+      "notification_title": "James Allen",
+      "notification_body": "Up to 50% Off the James Allen Collection",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "bluenile.com",
+      "source_url": "https://www.bluenile.com/"
+    },
+    {
+      "promo_id": "tedbaker_upto50offselectedstyles",
+      "brand": "Ted Baker",
+      "category": "retail",
+      "title": "Up to 50% off selected styles",
+      "notify_score": 73.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Ted Baker",
+      "notification_body": "Up to 50% off selected styles",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "tedbaker.com",
+      "source_url": "https://www.tedbaker.com/collections/sale-us"
+    },
+    {
+      "promo_id": "gorjana_freeinstorepickup",
+      "brand": "Gorjana",
+      "category": "retail",
+      "title": "Free In-Store Pickup",
+      "notify_score": 73.33,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Gorjana",
+      "notification_body": "Free: Free In-Store Pickup",
       "discount_type": "free_item",
       "discount_value": "free",
-      "estimated_savings": 14.0,
+      "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "colourpop.com",
-      "source_url": "https://colourpop.com/"
+      "website_domain": "gorjana.com",
+      "source_url": "https://www.gorjana.com/"
+    },
+    {
+      "promo_id": "gorjana_complimentarygiftwrap",
+      "brand": "Gorjana",
+      "category": "retail",
+      "title": "Complimentary Gift Wrap",
+      "notify_score": 73.29,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Gorjana",
+      "notification_body": "Free: Complimentary Gift Wrap",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 10.0,
+      "end_date": null,
+      "website_domain": "gorjana.com",
+      "source_url": "https://www.gorjana.com/"
+    },
+    {
+      "promo_id": "aliceolivia_aliceoliviasale",
+      "brand": "Alice + Olivia",
+      "category": "fashion",
+      "title": "Alice + Olivia Sale",
+      "notify_score": 72.81,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Alice + Olivia",
+      "notification_body": "Alice + Olivia Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60% off",
+      "estimated_savings": 39.0,
+      "end_date": null,
+      "website_domain": "aliceandolivia.com",
+      "source_url": "https://www.aliceandolivia.com/sale/"
+    },
+    {
+      "promo_id": "overstock_designershopupto50off",
+      "brand": "Overstock",
+      "category": "home_goods",
+      "title": "Designer Shop Up to 50% Off",
+      "notify_score": 72.17,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Overstock",
+      "notification_body": "Designer Shop Up to 50% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 45.0,
+      "end_date": null,
+      "website_domain": "overstock.com",
+      "source_url": "https://www.overstock.com/deals"
     },
     {
       "promo_id": "benihana_freesouvenirmugwithkabukikidsmeal",
@@ -477,25 +1009,6 @@
       "end_date": null,
       "website_domain": "benihana.com",
       "source_url": "https://www.benihana.com/promotions/"
-    },
-    {
-      "promo_id": "fentybeauty_buildyourownluxbalmbundlefree",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Build Your Own Lux Balm Bundle - Free",
-      "notify_score": 71.61,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Build Your Own Lux Balm Bundle - Free",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
     },
     {
       "promo_id": "firestone_freebrakeinspection",
@@ -536,61 +1049,23 @@
       "source_url": "https://www.skyzone.com/deals/"
     },
     {
-      "promo_id": "boxlunch_upto50offstyles",
-      "brand": "BoxLunch",
+      "promo_id": "courreges_seasonalsaleupto50off",
+      "brand": "Courreges",
       "category": "retail",
-      "title": "Up to 50% Off Styles",
+      "title": "Seasonal Sale - Up to 50% Off",
       "notify_score": 71.16,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "BoxLunch",
-      "notification_body": "Up to 50% Off Styles",
+      "notification_title": "Courreges",
+      "notification_body": "Seasonal Sale - Up to 50% Off",
       "discount_type": "percentage_off",
       "discount_value": "50%",
       "estimated_savings": 22.5,
       "end_date": null,
-      "website_domain": "boxlunch.com",
-      "source_url": "https://www.boxlunch.com/sale/"
-    },
-    {
-      "promo_id": "tillys_allclearanceextra3050off",
-      "brand": "Tillys",
-      "category": "clothing",
-      "title": "All Clearance Extra 30-50% Off",
-      "notify_score": 70.76,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Tillys",
-      "notification_body": "All Clearance Extra 30-50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "30-50%",
-      "estimated_savings": 27.5,
-      "end_date": null,
-      "website_domain": "tillys.com",
-      "source_url": "https://www.tillys.com/"
-    },
-    {
-      "promo_id": "heyharper_60offtriplehoopsset",
-      "brand": "Hey Harper",
-      "category": "accessories",
-      "title": "60% Off Triple Hoops Set",
-      "notify_score": 70.75,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Hey Harper",
-      "notification_body": "60% Off Triple Hoops Set",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "estimated_savings": 18.0,
-      "end_date": null,
-      "website_domain": "heyharper.com",
-      "source_url": "https://www.heyharper.com/"
+      "website_domain": "courreges.com",
+      "source_url": "https://www.courreges.com/"
     },
     {
       "promo_id": "lifeextension_summersaleupto60off",
@@ -669,6 +1144,63 @@
       "source_url": "https://www.williams-sonoma.com/shop/sale-special-offer/"
     },
     {
+      "promo_id": "insideweather_freeswatches",
+      "brand": "Inside Weather",
+      "category": "home",
+      "title": "Free Swatches",
+      "notify_score": 69.04,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Inside Weather",
+      "notification_body": "Free: Free Swatches",
+      "discount_type": "free_item",
+      "discount_value": "free swatches",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "insideweather.com",
+      "source_url": "https://insideweather.com/"
+    },
+    {
+      "promo_id": "yeti_freecustomizationcode",
+      "brand": "YETI",
+      "category": "Outdoor / Lifestyle",
+      "title": "Free customization code",
+      "notify_score": 68.96,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "YETI",
+      "notification_body": "Free: Free customization code",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "yeti.com",
+      "source_url": "https://www.yeti.com/sale"
+    },
+    {
+      "promo_id": "ganni_gannisale",
+      "brand": "GANNI",
+      "category": "fashion",
+      "title": "GANNI Sale",
+      "notify_score": 68.84,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "GANNI",
+      "notification_body": "GANNI Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50% off",
+      "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "ganni.com",
+      "source_url": "https://www.ganni.com/us/sale/"
+    },
+    {
       "promo_id": "mainevent_kidsbowlfree",
       "brand": "Main Event",
       "category": "other",
@@ -745,6 +1277,44 @@
       "source_url": "https://www.subway.com/en-us/rewards"
     },
     {
+      "promo_id": "altuzarra_altuzarrasale",
+      "brand": "Altuzarra",
+      "category": "Designer Fashion",
+      "title": "Altuzarra Sale",
+      "notify_score": 68.11,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Altuzarra",
+      "notification_body": "Altuzarra Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 66% off",
+      "estimated_savings": 19.8,
+      "end_date": null,
+      "website_domain": "altuzarra.com",
+      "source_url": "https://www.altuzarra.com/collections/sale"
+    },
+    {
+      "promo_id": "lgappliances_save3053onselecthomeappliances",
+      "brand": "LG Appliances",
+      "category": "home appliances",
+      "title": "Save 30-53% on select home appliances",
+      "notify_score": 67.78,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "LG Appliances",
+      "notification_body": "Save 30-53% on select home appliances",
+      "discount_type": "percentage_off",
+      "discount_value": "30-53%",
+      "estimated_savings": 15.9,
+      "end_date": null,
+      "website_domain": "lg.com",
+      "source_url": "https://www.lg.com/us/home-appliances"
+    },
+    {
       "promo_id": "mcdonalds_freesnackwrapfornewappusers",
       "brand": "McDonald's",
       "category": "food",
@@ -764,42 +1334,42 @@
       "source_url": "https://www.mcdonalds.com/us/en-us/deals.html"
     },
     {
-      "promo_id": "bodybuildingcom_buyonegetone50offnutrexessentials",
-      "brand": "Bodybuilding.com",
-      "category": "supplements",
-      "title": "Buy One, Get One 50% Off Nutrex Essentials",
+      "promo_id": "biolite_upto50offgaragesale",
+      "brand": "BioLite",
+      "category": "Outdoor / Adventure Gear",
+      "title": "Up to 50% Off Garage Sale",
       "notify_score": 66.42,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Bodybuilding.com",
-      "notification_body": "Buy One, Get One 50% Off Nutrex Essentials",
+      "notification_title": "BioLite",
+      "notification_body": "Up to 50% Off Garage Sale",
       "discount_type": "percentage_off",
-      "discount_value": "50%",
+      "discount_value": "up to 50%",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "shop.bodybuilding.com",
-      "source_url": "https://shop.bodybuilding.com/collections/on-sale"
+      "website_domain": "bioliteenergy.com",
+      "source_url": "https://www.bioliteenergy.com/collections/sale"
     },
     {
-      "promo_id": "bodybuildingcom_buyonealphabombgetsecond50off",
-      "brand": "Bodybuilding.com",
-      "category": "supplements",
-      "title": "Buy One Alpha Bomb, Get Second 50% Off",
+      "promo_id": "lgappliances_saveupto50onselectoledevoc5tvs",
+      "brand": "LG Appliances",
+      "category": "televisions",
+      "title": "Save up to 50% on select OLED evo C5 TVs",
       "notify_score": 66.42,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Bodybuilding.com",
-      "notification_body": "Buy One Alpha Bomb, Get Second 50% Off",
+      "notification_title": "LG Appliances",
+      "notification_body": "Save up to 50% on select OLED evo C5 TVs",
       "discount_type": "percentage_off",
-      "discount_value": "50%",
+      "discount_value": "up to 50%",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "shop.bodybuilding.com",
-      "source_url": "https://shop.bodybuilding.com/collections/on-sale"
+      "website_domain": "lg.com",
+      "source_url": "https://www.lg.com/us/home-appliances"
     },
     {
       "promo_id": "chipotle_birthdayfreerewardchoice",
@@ -838,6 +1408,25 @@
       "end_date": null,
       "website_domain": "nastygal.com",
       "source_url": "https://www.nastygal.com/"
+    },
+    {
+      "promo_id": "alc_endofseasonsale",
+      "brand": "A.L.C.",
+      "category": "Premium Fashion",
+      "title": "End of Season Sale",
+      "notify_score": 65.36,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "A.L.C.",
+      "notification_body": "End of Season Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 18.0,
+      "end_date": null,
+      "website_domain": "alcltd.com",
+      "source_url": "https://alcltd.com/collections/sale"
     },
     {
       "promo_id": "firehousesubs_birthdayreward",
@@ -935,6 +1524,63 @@
       "source_url": "https://joybird.com/sale/"
     },
     {
+      "promo_id": "marchesa_summersaleupto60sitewide",
+      "brand": "Marchesa",
+      "category": "retail",
+      "title": "Summer Sale - Up to 60% Sitewide",
+      "notify_score": 63.84,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Marchesa",
+      "notification_body": "Summer Sale - Up to 60% Sitewide",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 12.0,
+      "end_date": null,
+      "website_domain": "marchesa.com",
+      "source_url": "https://marchesa.com/"
+    },
+    {
+      "promo_id": "marchesa_shopnotteupto60offsitewide",
+      "brand": "Marchesa",
+      "category": "retail",
+      "title": "Shop Notte - Up to 60% Off Sitewide",
+      "notify_score": 63.84,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Marchesa",
+      "notification_body": "Shop Notte - Up to 60% Off Sitewide",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 12.0,
+      "end_date": null,
+      "website_domain": "marchesa.com",
+      "source_url": "https://marchesa.com/"
+    },
+    {
+      "promo_id": "marchesa_shoprosaupto60offsitewide",
+      "brand": "Marchesa",
+      "category": "retail",
+      "title": "Shop Rosa - Up to 60% Off Sitewide",
+      "notify_score": 63.84,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Marchesa",
+      "notification_body": "Shop Rosa - Up to 60% Off Sitewide",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 12.0,
+      "end_date": null,
+      "website_domain": "marchesa.com",
+      "source_url": "https://marchesa.com/"
+    },
+    {
       "promo_id": "factor_50offfreebreakfastfor1year",
       "brand": "Factor",
       "category": "food",
@@ -1011,6 +1657,25 @@
       "source_url": "https://www.einsteinbros.com/rewards/"
     },
     {
+      "promo_id": "vince_vincesale",
+      "brand": "Vince",
+      "category": "Affordable Luxury Fashion",
+      "title": "Vince Sale",
+      "notify_score": 61.99,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Vince",
+      "notification_body": "Vince Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50% off",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "vince.com",
+      "source_url": "https://www.vince.com/women-sale/"
+    },
+    {
       "promo_id": "nastygal_50offsalepromotion",
       "brand": "Nasty Gal",
       "category": "retail",
@@ -1066,6 +1731,25 @@
       "end_date": null,
       "website_domain": "regmovies.com",
       "source_url": "https://www.regmovies.com/static/en/us/regal-crown-club-info"
+    },
+    {
+      "promo_id": "joann_upto50offframesdcorartsuppliesandmore",
+      "brand": "JOANN",
+      "category": "Hobbies / Crafts",
+      "title": "Up to 50% off frames, décor, art supplies and more",
+      "notify_score": 61.2,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "JOANN",
+      "notification_body": "Up to 50% off frames, décor, art supplies and more",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "michaels.com",
+      "source_url": "https://www.michaels.com/sale"
     },
     {
       "promo_id": "petsmart_birthdayorgotchadaygift",
