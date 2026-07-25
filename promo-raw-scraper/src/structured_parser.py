@@ -28,6 +28,8 @@ def get_model(
     ollama_timeout: int = 600,
     groq_model: str = "llama-3.3-70b-versatile",
     groq_api_key: Optional[str] = None,
+    openrouter_model: str = "openai/gpt-4o-mini",
+    openrouter_api_key: Optional[str] = None,
     cloud_timeout: int = 120,
 ) -> LocalModelInterface:
     if model_type == "ollama":
@@ -44,6 +46,13 @@ def get_model(
             api_key=groq_api_key,
             timeout=cloud_timeout,
         )
+    if model_type == "openrouter":
+        from cloud_model import OpenRouterModel
+        return OpenRouterModel(
+            model_name=openrouter_model,
+            api_key=openrouter_api_key,
+            timeout=cloud_timeout,
+        )
     return RuleBasedLocalModel()
 
 
@@ -57,6 +66,8 @@ def parse_text_file(
     ollama_timeout: int = 600,
     groq_model: str = "llama-3.3-70b-versatile",
     groq_api_key: Optional[str] = None,
+    openrouter_model: str = "openai/gpt-4o-mini",
+    openrouter_api_key: Optional[str] = None,
     cloud_timeout: int = 120,
 ) -> List[Promotion]:
     text = input_path.read_text(encoding="utf-8", errors="replace")
@@ -68,6 +79,8 @@ def parse_text_file(
         ollama_timeout=ollama_timeout,
         groq_model=groq_model,
         groq_api_key=groq_api_key,
+        openrouter_model=openrouter_model,
+        openrouter_api_key=openrouter_api_key,
         cloud_timeout=cloud_timeout,
     )
 
@@ -79,11 +92,17 @@ def parse_text_file(
     )
 
 
-def save_promotions_json(promotions: List[Promotion], brand: str, input_path: Path) -> Path:
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+def save_promotions_json(
+    promotions: List[Promotion],
+    brand: str,
+    input_path: Path,
+    output_dir: Optional[Path] = None,
+) -> Path:
+    dest = output_dir or OUTPUT_DIR
+    dest.mkdir(parents=True, exist_ok=True)
 
     brand_slug = slugify(brand)
-    output_path = OUTPUT_DIR / f"{brand_slug}.json"
+    output_path = dest / f"{brand_slug}.json"
 
     payload = {
         "brand": brand,
@@ -104,11 +123,13 @@ def save_failed_output(
     brand: str,
     input_path: Path,
     error: Exception,
+    output_dir: Optional[Path] = None,
 ) -> Path:
-    FAILED_DIR.mkdir(parents=True, exist_ok=True)
+    failed_dir = (output_dir or OUTPUT_DIR) / "failed"
+    failed_dir.mkdir(parents=True, exist_ok=True)
 
     brand_slug = slugify(brand)
-    failed_path = FAILED_DIR / f"{brand_slug}.json"
+    failed_path = failed_dir / f"{brand_slug}.json"
 
     payload = {
         "brand": brand,

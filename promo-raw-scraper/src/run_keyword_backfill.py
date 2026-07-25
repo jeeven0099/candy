@@ -166,6 +166,68 @@ def call_groq_keywords(
         raise exc
 
 
+def _extract_json(text: str) -> dict:
+    """Extract first complete JSON object from text, handling markdown fences."""
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        pass
+    cleaned = re.sub(r'```(?:json)?\s*', '', text).replace('```', '').strip()
+    try:
+        return json.loads(cleaned)
+    except json.JSONDecodeError:
+        pass
+    start = cleaned.find('{')
+    if start == -1:
+        raise ValueError(f"No JSON object in response: {text[:200]}")
+    depth = 0
+    for i, ch in enumerate(cleaned[start:], start):
+        if ch == '{':
+            depth += 1
+        elif ch == '}':
+            depth -= 1
+            if depth == 0:
+                return json.loads(cleaned[start:i + 1])
+    raise ValueError(f"Incomplete JSON in response: {text[:200]}")
+
+
+def call_openrouter_keywords(
+    brand: str,
+    category: str,
+    text: str,
+    model: str = "openai/gpt-oss-120b",
+    api_key: str = "",
+    timeout: int = 60,
+) -> Optional[dict]:
+    """Call OpenRouter with a keyword-only prompt. Returns dict or raises on error."""
+    from openai import OpenAI
+    safe_text = text[:5000]
+    prompt = _KEYWORD_PROMPT.format(
+        brand=brand,
+        category=category or "retail",
+        text=safe_text,
+    )
+    client = OpenAI(
+        base_url="https://openrouter.ai/api/v1",
+        api_key=api_key,
+        http_client=httpx.Client(
+            verify=False,
+            timeout=httpx.Timeout(connect=15, read=timeout, write=30, pool=5),
+        ),
+    )
+    response = client.chat.completions.create(
+        model=model,
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=2048,
+    )
+    raw = response.choices[0].message.content or ""
+    data = _extract_json(raw)
+    return {
+        "product_keywords": [s for s in data.get("product_keywords", []) if isinstance(s, str)],
+        "product_categories": [s for s in data.get("product_categories", []) if isinstance(s, str)],
+    }
+
+
 def call_ollama_keywords(
     brand: str,
     category: str,
@@ -230,18 +292,27 @@ def patch_promotions_file(path: Path, brand: str, keywords: list[str], categorie
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Incremental keyword backfill (Groq or Ollama).")
+    parser = argparse.ArgumentParser(description="Incremental keyword backfill (Groq, Ollama, or OpenRouter).")
     parser.add_argument("--batch", type=int, default=10, help="Brands to process per run (default: 10)")
     parser.add_argument("--rebuild-queue", action="store_true", help="Rebuild queue from scratch")
     parser.add_argument("--ollama", action="store_true", help="Use local Ollama instead of Groq")
     parser.add_argument("--ollama-model", default=OLLAMA_MODEL, help=f"Ollama model to use (default: {OLLAMA_MODEL})")
     parser.add_argument("--groq-model", default=GROQ_MODEL, help=f"Groq model to use (default: {GROQ_MODEL})")
     parser.add_argument("--groq-api-key", default=None, help="Groq API key (overrides GROQ_API_KEY env var)")
+    parser.add_argument("--openrouter", action="store_true", help="Use OpenRouter instead of Groq/Ollama")
+    parser.add_argument("--openrouter-model", default="openai/gpt-oss-120b", help="OpenRouter model (default: openai/gpt-oss-120b)")
+    parser.add_argument("--openrouter-api-key", default=None, help="OpenRouter API key (overrides OPENROUTER_API_KEY env var)")
     args = parser.parse_args()
 
-    use_ollama = args.ollama
+    use_openrouter = args.openrouter
+    use_ollama = args.ollama and not use_openrouter
     api_key = args.groq_api_key or os.environ.get("GROQ_API_KEY", "")
-    if not use_ollama and not api_key:
+    openrouter_key = args.openrouter_api_key or os.environ.get("OPENROUTER_API_KEY", "")
+    if use_openrouter and not openrouter_key:
+        print("No OPENROUTER_API_KEY set — falling back to Ollama.")
+        use_openrouter = False
+        use_ollama = True
+    if not use_openrouter and not use_ollama and not api_key:
         print("No GROQ_API_KEY set — falling back to Ollama.")
         use_ollama = True
 
@@ -265,12 +336,17 @@ def main() -> None:
     print(f"Backfill batch: {len(batch)} brands ({len(pending)} total pending)")
     print(f"Queue: {len(q['done'])} done, {len(q['failed'])} failed\n")
 
-    client = None if use_ollama else Groq(
+    client = None if (use_ollama or use_openrouter) else Groq(
         api_key=api_key,
         http_client=httpx.Client(verify=False),
     )
     groq_model = args.groq_model
-    backend = f"Ollama ({args.ollama_model})" if use_ollama else f"Groq ({groq_model})"
+    if use_openrouter:
+        backend = f"OpenRouter ({args.openrouter_model})"
+    elif use_ollama:
+        backend = f"Ollama ({args.ollama_model})"
+    else:
+        backend = f"Groq ({groq_model})"
     print(f"Backend: {backend}\n")
 
     results = {"done": 0, "failed": 0, "no_text": 0, "quota_hit": False}
@@ -290,7 +366,9 @@ def main() -> None:
 
         print(f"  [{i+1}/{len(batch)}] {brand} ...", end=" ", flush=True)
         try:
-            if use_ollama:
+            if use_openrouter:
+                kw_data = call_openrouter_keywords(brand, cat, text, model=args.openrouter_model, api_key=openrouter_key)
+            elif use_ollama:
                 kw_data = call_ollama_keywords(brand, cat, text, model=args.ollama_model)
             else:
                 kw_data = call_groq_keywords(client, brand, cat, text, model=groq_model)
@@ -326,7 +404,7 @@ def main() -> None:
             q["failed"].append(brand)
             results["failed"] += 1
 
-        if i < len(batch) - 1 and not use_ollama:
+        if i < len(batch) - 1 and not use_ollama and not use_openrouter:
             time.sleep(2)  # rate limit buffer for Groq
 
     save_queue(q)

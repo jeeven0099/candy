@@ -241,6 +241,8 @@ def _process_brand(
             ollama_timeout=args.ollama_timeout,
             groq_model=args.groq_model,
             groq_api_key=args.groq_api_key,
+            openrouter_model=args.openrouter_model,
+            openrouter_api_key=args.openrouter_api_key,
             cloud_timeout=args.cloud_timeout,
         )
 
@@ -257,7 +259,8 @@ def _process_brand(
                     return
             except Exception:
                 pass
-        output_path = save_promotions_json(promotions=promotions, brand=brand, input_path=input_path)
+        output_path = save_promotions_json(promotions=promotions, brand=brand, input_path=input_path,
+                                           output_dir=STRUCTURED_DIR)
         tprint(f"[OK] {brand} ({len(promotions)} deals, {elapsed:.0f}s, {input_chars}c){tag}: {output_path}")
 
     t0 = time.time()
@@ -287,7 +290,8 @@ def _process_brand(
         is_timeout = "timed out" in str(e).lower()
         if is_timeout:
             failed_path = save_failed_output(
-                raw_data=dict(row), brand=brand, input_path=input_path, error=e
+                raw_data=dict(row), brand=brand, input_path=input_path, error=e,
+                output_dir=STRUCTURED_DIR,
             )
             tprint(f"[FAILED] {brand}: timeout after {elapsed:.0f}s ({input_chars}c) — {failed_path}")
             with lock:
@@ -312,7 +316,8 @@ def _process_brand(
         except Exception as e2:
             elapsed = time.time() - t0
             failed_path = save_failed_output(
-                raw_data=dict(row), brand=brand, input_path=input_path, error=e2
+                raw_data=dict(row), brand=brand, input_path=input_path, error=e2,
+                output_dir=STRUCTURED_DIR,
             )
             tprint(f"[FAILED] {brand} after {elapsed:.0f}s ({input_chars}c): {failed_path}")
             with lock:
@@ -379,7 +384,7 @@ def main() -> None:
                         help="Total candidates to consider across all workers. Default: 10")
     parser.add_argument(
         "--model",
-        choices=["rule_based", "ollama", "groq"],
+        choices=["rule_based", "ollama", "groq", "openrouter"],
         default="rule_based",
         help="Extraction backend for single-model (non-parallel) mode. Default: rule_based",
     )
@@ -394,6 +399,8 @@ def main() -> None:
     # Groq
     parser.add_argument("--groq-model", default="llama-3.3-70b-versatile")
     parser.add_argument("--groq-api-key", default=None)
+    parser.add_argument("--openrouter-model", default="openai/gpt-4o-mini")
+    parser.add_argument("--openrouter-api-key", default=None)
 
     # Cloud shared
     parser.add_argument("--cloud-timeout", type=int, default=120)
@@ -418,8 +425,17 @@ def main() -> None:
     parser.add_argument("--clean-only", action="store_true")
     parser.add_argument("--never-extracted", action="store_true",
                         help="Only process brands with no existing structured output")
+    parser.add_argument("--output-dir", type=str, default=None,
+                        help="Override output directory (default: structured_outputs/)")
 
     args = parser.parse_args()
+
+    # Allow redirecting all output to a custom directory (useful for benchmarks)
+    global STRUCTURED_DIR
+    if args.output_dir:
+        STRUCTURED_DIR = Path(args.output_dir).resolve()
+        STRUCTURED_DIR.mkdir(parents=True, exist_ok=True)
+        print(f"[INFO] Output redirected to: {STRUCTURED_DIR}")
 
     csv_path = resolve_path(args.csv)
     if csv_path is None or not csv_path.exists():
@@ -542,6 +558,7 @@ def main() -> None:
                     ollama_model=args.ollama_model, ollama_host=args.ollama_host,
                     ollama_timeout=args.ollama_timeout,
                     groq_model=args.groq_model, groq_api_key=args.groq_api_key,
+                    openrouter_model=args.openrouter_model, openrouter_api_key=args.openrouter_api_key,
                     cloud_timeout=args.cloud_timeout,
                 )
 
@@ -556,7 +573,8 @@ def main() -> None:
                             return
                     except Exception:
                         pass
-                out = save_promotions_json(promotions=promotions, brand=_b, input_path=_ip)
+                out = save_promotions_json(promotions=promotions, brand=_b, input_path=_ip,
+                                           output_dir=STRUCTURED_DIR)
                 print(f"[OK] {_b} ({len(promotions)} deals, {elapsed:.0f}s, {_ic}c){tag}: {out}")
 
             t0 = time.time()
@@ -590,7 +608,8 @@ def main() -> None:
                     except Exception as e2:
                         elapsed = time.time() - t0
                         failed_path = save_failed_output(
-                            raw_data=dict(row), brand=brand, input_path=input_path, error=e2
+                            raw_data=dict(row), brand=brand, input_path=input_path, error=e2,
+                            output_dir=STRUCTURED_DIR,
                         )
                         print(f"[FAILED] {brand} (ollama fallback) after {elapsed:.0f}s: {failed_path}")
                         with lock:
@@ -600,7 +619,8 @@ def main() -> None:
                 is_timeout = "timed out" in str(e).lower()
                 if is_timeout:
                     failed_path = save_failed_output(
-                        raw_data=dict(row), brand=brand, input_path=input_path, error=e
+                        raw_data=dict(row), brand=brand, input_path=input_path, error=e,
+                        output_dir=STRUCTURED_DIR,
                     )
                     print(f"[FAILED] {brand}: timeout after {elapsed:.0f}s ({input_chars}c) — {failed_path}")
                     with lock:
@@ -620,7 +640,8 @@ def main() -> None:
                 except Exception as e2:
                     elapsed = time.time() - t0
                     failed_path = save_failed_output(
-                        raw_data=dict(row), brand=brand, input_path=input_path, error=e2
+                        raw_data=dict(row), brand=brand, input_path=input_path, error=e2,
+                        output_dir=STRUCTURED_DIR,
                     )
                     print(f"[FAILED] {brand} after {elapsed:.0f}s ({input_chars}c): {failed_path}")
                     with lock:

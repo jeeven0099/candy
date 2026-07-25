@@ -4,12 +4,13 @@ cloud_model.py — Gemini and Groq backends for promo extraction.
 Both classes reuse OllamaModel's prompt, validation, coercion, and synthesis
 logic exactly. API keys are read from environment variables:
   GEMINI_API_KEY   — Google AI Studio (free tier: 15 RPM, 1500 req/day)
-  GROQ_API_KEY     — Groq (free tier: ~30 RPM, 100K tokens/day)
+  GROQ_API_KEY     — Groq Developer plan: 250K TPM for openai/gpt-oss-120b
 """
 from __future__ import annotations
 
 import json
 import os
+import time
 from typing import List, Optional
 
 from pydantic import ValidationError
@@ -90,7 +91,27 @@ def _finish_parsing(
         if len(grid_deals) >= 2 and len(grid_deals) / len(unique) >= 0.8:
             synthesized = helper._synthesize_sale_from_price_grid(text, brand, category, source_path)
             if synthesized:
-                dv = synthesized[0].discount_value or ""
+                # Merge keywords from all collapsed LLM deals into the synthesized card
+                card = synthesized[0]
+                merged_explicit: list[str] = list(card.product_keywords_explicit or [])
+                merged_contextual: list[str] = list(card.product_keywords_contextual or [])
+                merged_examples: list[str] = list(card.matched_product_examples or [])
+                seen_ex = {e.upper() for e in merged_examples}
+                for deal in grid_deals:
+                    for kw in (deal.product_keywords_explicit or []):
+                        if kw and kw not in merged_explicit:
+                            merged_explicit.append(kw)
+                    for kw in (deal.product_keywords_contextual or []):
+                        if kw and kw not in merged_contextual:
+                            merged_contextual.append(kw)
+                    for ex in (deal.matched_product_examples or []):
+                        if ex and ex.upper() not in seen_ex:
+                            merged_examples.append(ex)
+                            seen_ex.add(ex.upper())
+                card.product_keywords_explicit  = merged_explicit[:30]
+                card.product_keywords_contextual = merged_contextual[:40]
+                card.matched_product_examples    = merged_examples[:15]
+                dv = card.discount_value or ""
                 print(
                     f"[SYNTH] {brand}: cloud model returned {len(grid_deals)} product-grid deals — "
                     f"collapsed into one synthesized card ({dv})"
@@ -110,6 +131,94 @@ def _finish_parsing(
             return synthesized
 
     return unique
+
+
+class OpenRouterModel(LocalModelInterface):
+    """
+    OpenRouter backend — unified API for 100+ models including openai/gpt-4o-mini,
+    openai/gpt-oss-120b, meta-llama/llama-3.3-70b-instruct, etc.
+    Uses the OpenAI-compatible endpoint at https://openrouter.ai/api/v1.
+    API key: set OPENROUTER_API_KEY in .env
+    Install: pip install openai
+    """
+
+    def __init__(
+        self,
+        model_name: str = "openai/gpt-4o-mini",
+        api_key: Optional[str] = None,
+        timeout: int = 120,
+    ) -> None:
+        self.model_name = model_name
+        self.api_key    = api_key or os.environ.get("OPENROUTER_API_KEY", "")
+        self.timeout    = timeout
+        self._last_input_tokens:  int = 0
+        self._last_output_tokens: int = 0
+        if not self.api_key:
+            raise ValueError(
+                "OPENROUTER_API_KEY not set. "
+                "Export it or paste it into promo-raw-scraper/.env"
+            )
+
+    def parse_text(
+        self,
+        text: str,
+        brand: str,
+        category: Optional[str],
+        source_path: str,
+    ) -> List[Promotion]:
+        try:
+            from openai import OpenAI
+        except ImportError:
+            raise ImportError("openai not installed. Run: pip install openai")
+
+        helper = _make_helper()
+        prompt = helper._build_prompt(text, brand, category, source_path)
+
+        import httpx
+        print(f"  [OpenRouter] {brand}: calling {self.model_name}...", flush=True)
+        http_client = httpx.Client(
+            verify=False,
+            timeout=httpx.Timeout(connect=15.0, read=self.timeout, write=30.0, pool=5.0),
+        )
+        client = OpenAI(
+            api_key=self.api_key,
+            base_url="https://openrouter.ai/api/v1",
+            http_client=http_client,
+            default_headers={
+                "HTTP-Referer": "https://github.com/jeeven0099/promo-scraper",
+                "X-Title": "promo-raw-scraper",
+            },
+        )
+        response = client.chat.completions.create(
+            model=self.model_name,
+            messages=[{"role": "user", "content": prompt}],
+            response_format={"type": "json_object"},
+            max_tokens=8192,
+        )
+        raw = response.choices[0].message.content or ""
+
+        if response.usage:
+            self._last_input_tokens  = response.usage.prompt_tokens     or 0
+            self._last_output_tokens = response.usage.completion_tokens  or 0
+        else:
+            self._last_input_tokens  = 0
+            self._last_output_tokens = 0
+
+        # When OPENROUTER_TOKEN_LOG is set (e.g. by run_benchmark.py), append usage to it
+        token_log = os.environ.get("OPENROUTER_TOKEN_LOG", "")
+        if token_log and (self._last_input_tokens or self._last_output_tokens):
+            try:
+                with open(token_log, "a", encoding="utf-8") as lf:
+                    import json as _json
+                    lf.write(_json.dumps({
+                        "brand": brand,
+                        "input_tokens":  self._last_input_tokens,
+                        "output_tokens": self._last_output_tokens,
+                    }) + "\n")
+            except Exception:
+                pass
+
+        return _finish_parsing(helper, raw, brand, category, source_path, text)
 
 
 class GeminiModel(LocalModelInterface):
@@ -173,14 +282,19 @@ class GeminiModel(LocalModelInterface):
 class GroqModel(LocalModelInterface):
     """
     Groq backend — fast inference on open-weight models.
-    Free tier: ~30 RPM, 100K tokens/day.
-    Recommended model: llama-3.3-70b-versatile
+    Developer plan: 250K TPM for openai/gpt-oss-120b.
     Install: pip install groq
     """
 
+    # Developer plan TPM limit for openai/gpt-oss-120b
+    _TPM_LIMIT = 250_000
+    _last_call_time: float = 0.0
+    _tokens_this_minute: int = 0
+    _minute_start: float = 0.0
+
     def __init__(
         self,
-        model_name: str = "llama-3.3-70b-versatile",
+        model_name: str = "openai/gpt-oss-120b",
         api_key: Optional[str] = None,
         timeout: int = 120,
     ) -> None:
@@ -192,6 +306,22 @@ class GroqModel(LocalModelInterface):
                 "GROQ_API_KEY not set. "
                 "Export it or pass api_key= to GroqModel()."
             )
+
+    def _rate_limit(self, estimated_tokens: int) -> None:
+        """Pause if needed to stay under 250K TPM."""
+        now = time.monotonic()
+        if now - GroqModel._minute_start >= 60:
+            GroqModel._minute_start = now
+            GroqModel._tokens_this_minute = 0
+
+        if GroqModel._tokens_this_minute + estimated_tokens > self._TPM_LIMIT:
+            wait = 60 - (now - GroqModel._minute_start) + 1
+            print(f"  [rate-limit] TPM near limit — waiting {wait:.0f}s")
+            time.sleep(max(0, wait))
+            GroqModel._minute_start = time.monotonic()
+            GroqModel._tokens_this_minute = 0
+
+        GroqModel._tokens_this_minute += estimated_tokens
 
     def parse_text(
         self,
@@ -210,10 +340,11 @@ class GroqModel(LocalModelInterface):
         import httpx
 
         helper = _make_helper()
-        # Groq free tier: ~12K TPM. Prompt template overhead is ~2-3K tokens,
-        # so cap text at 6000 chars to stay well under the limit.
-        safe_text = text[:6000] if len(text) > 6000 else text
-        prompt = helper._build_prompt(safe_text, brand, category, source_path)
+        prompt = helper._build_prompt(text, brand, category, source_path)
+
+        # Estimate tokens before calling (4 chars ≈ 1 token)
+        estimated_tokens = len(prompt) // 4 + 8192
+        self._rate_limit(estimated_tokens)
 
         http_client = httpx.Client(verify=False)
         client = Groq(api_key=self.api_key, http_client=http_client)
@@ -225,4 +356,10 @@ class GroqModel(LocalModelInterface):
             timeout=self.timeout,
         )
         raw = response.choices[0].message.content or ""
+
+        # Update token count with actuals if available
+        if response.usage:
+            actual = (response.usage.prompt_tokens or 0) + (response.usage.completion_tokens or 0)
+            GroqModel._tokens_this_minute += actual - estimated_tokens
+
         return _finish_parsing(helper, raw, brand, category, source_path, text)

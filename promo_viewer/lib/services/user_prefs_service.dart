@@ -7,6 +7,9 @@ class UserPrefsService extends ChangeNotifier {
   factory UserPrefsService() => _i;
   UserPrefsService._();
 
+  // Shared notifier so ProfileScreen writes and FeedScreen reacts instantly.
+  static final nearMeRadiusNotifier = ValueNotifier<int>(5);
+
   UserPrefs? _prefs;
   String? _userId; // users.id (not auth.uid)
 

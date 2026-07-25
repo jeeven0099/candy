@@ -182,7 +182,27 @@ class OllamaModel(LocalModelInterface):
             if len(grid_deals) >= 2 and len(grid_deals) / len(unique) >= 0.8:
                 synthesized = self._synthesize_sale_from_price_grid(text, brand, category, source_path)
                 if synthesized:
-                    dv = synthesized[0].discount_value or ""
+                    # Merge keywords from all collapsed LLM deals into the synthesized card
+                    card = synthesized[0]
+                    merged_explicit: list[str] = list(card.product_keywords_explicit or [])
+                    merged_contextual: list[str] = list(card.product_keywords_contextual or [])
+                    merged_examples: list[str] = list(card.matched_product_examples or [])
+                    seen_ex = {e.upper() for e in merged_examples}
+                    for deal in grid_deals:
+                        for kw in (deal.product_keywords_explicit or []):
+                            if kw and kw not in merged_explicit:
+                                merged_explicit.append(kw)
+                        for kw in (deal.product_keywords_contextual or []):
+                            if kw and kw not in merged_contextual:
+                                merged_contextual.append(kw)
+                        for ex in (deal.matched_product_examples or []):
+                            if ex and ex.upper() not in seen_ex:
+                                merged_examples.append(ex)
+                                seen_ex.add(ex.upper())
+                    card.product_keywords_explicit   = merged_explicit[:30]
+                    card.product_keywords_contextual = merged_contextual[:40]
+                    card.matched_product_examples    = merged_examples[:15]
+                    dv = card.discount_value or ""
                     print(
                         f"[SYNTH] {brand}: LLM returned {len(grid_deals)} product-grid deals — "
                         f"collapsed into one synthesized card ({dv})"

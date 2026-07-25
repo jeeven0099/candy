@@ -33,10 +33,17 @@ _CLOSED_FILTERS = (
     '["abandoned"!="yes"]'
     '["shop"!="vacant"]'
     '["shop"!="no"]'
+    '["opening_hours"!="closed"]'
+    '["opening_hours"!="off"]'
 )
 
 # OSM key prefixes that mark a feature as closed/removed
-_CLOSED_KEY_PREFIXES = ("disused:", "abandoned:", "demolished:", "razed:", "was:")
+_CLOSED_KEY_PREFIXES = (
+    "disused:", "abandoned:", "demolished:", "razed:", "was:", "lifecycle:",
+)
+
+# OSM tag values that indicate permanently closed
+_CLOSED_LIFECYCLE_VALUES = {"closed", "disused", "abandoned", "demolished", "razed"}
 
 
 def slugify(value: str) -> str:
@@ -132,6 +139,13 @@ def _is_closed(tags: dict) -> bool:
     if tags.get("disused") == "yes" or tags.get("abandoned") == "yes":
         return True
     if tags.get("shop") in ("vacant", "no"):
+        return True
+    if tags.get("lifecycle") in _CLOSED_LIFECYCLE_VALUES:
+        return True
+    if tags.get("opening_hours") in ("closed", "off"):
+        return True
+    # amenity/shop set to "disused" or similar placeholder
+    if tags.get("amenity") in ("disused", "vacant") or tags.get("shop") in ("disused",):
         return True
     return False
 
