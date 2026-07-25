@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/promotion.dart';
 import '../services/category_prefs_service.dart';
 import '../services/location_service.dart';
 import '../services/promotions_service.dart';
+import '../services/user_prefs_service.dart';
 import '../widgets/deal_card.dart';
 import 'deal_detail_screen.dart';
 
@@ -46,11 +48,24 @@ class _FeedScreenState extends State<FeedScreen> {
   @override
   void initState() {
     super.initState();
+    _seedRadius();
+    UserPrefsService.nearMeRadiusNotifier.addListener(_onRadiusChanged);
     _loadData();
+  }
+
+  Future<void> _seedRadius() async {
+    final prefs = await SharedPreferences.getInstance();
+    final saved = prefs.getInt('near_me_radius_mi');
+    if (saved != null) UserPrefsService.nearMeRadiusNotifier.value = saved;
+  }
+
+  void _onRadiusChanged() {
+    if (_sortMode == _SortMode.nearMe) _applyFilters();
   }
 
   @override
   void dispose() {
+    UserPrefsService.nearMeRadiusNotifier.removeListener(_onRadiusChanged);
     _searchController.dispose();
     _searchDebounce?.cancel();
     super.dispose();
@@ -115,6 +130,10 @@ class _FeedScreenState extends State<FeedScreen> {
     if (_sortMode == _SortMode.bestDeals) {
       result.sort((a, b) => b.dealScore.compareTo(a.dealScore));
     } else if (_sortMode == _SortMode.nearMe) {
+      final radiusKm = UserPrefsService.nearMeRadiusNotifier.value * 1.60934;
+      result = result
+          .where((p) => (p.distanceKm ?? double.infinity) <= radiusKm)
+          .toList();
       result.sort((a, b) {
         final da = a.distanceKm ?? double.infinity;
         final db = b.distanceKm ?? double.infinity;

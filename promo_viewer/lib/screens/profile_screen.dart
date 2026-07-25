@@ -37,6 +37,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _saveRadius(int mi) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(_kRadiusKey, mi);
+    UserPrefsService.nearMeRadiusNotifier.value = mi;
     if (mounted) setState(() => _radiusMi = mi);
     // Persist to users table so the DB reflects the actual choice
     final authId = SupabaseService.currentUserId;

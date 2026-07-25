@@ -98,7 +98,7 @@ def main() -> None:
     parser.add_argument("--category", type=str, default=None, help="Filter by category")
     parser.add_argument("--scrape-limit", type=int, default=None, help="Max brands to scrape")
     parser.add_argument("--parse-limit", type=int, default=999, help="Max brands to parse. Default: 999 (all)")
-    parser.add_argument("--model", choices=["ollama", "groq"], default="ollama",
+    parser.add_argument("--model", choices=["ollama", "groq", "openrouter"], default="ollama",
                         help="Extraction backend for step 4. Default: ollama")
     parser.add_argument("--ollama-model", type=str, default="qwen2.5:14b")
     parser.add_argument("--ollama-host", type=str, default="http://localhost:11434")
@@ -107,6 +107,10 @@ def main() -> None:
                         help="Groq model name (used when --model groq)")
     parser.add_argument("--groq-api-key", type=str, default=None,
                         help="Groq API key (falls back to GROQ_API_KEY env var)")
+    parser.add_argument("--openrouter-model", type=str, default="openai/gpt-4o-mini",
+                        help="OpenRouter model name (used when --model openrouter)")
+    parser.add_argument("--openrouter-api-key", type=str, default=None,
+                        help="OpenRouter API key (falls back to OPENROUTER_API_KEY env var)")
     parser.add_argument("--cloud-timeout", type=int, default=120,
                         help="Seconds before a cloud model request times out. Default: 120")
     parser.add_argument("--parallel", action="store_true",
@@ -192,6 +196,7 @@ def main() -> None:
                     "--ollama-timeout", str(args.ollama_timeout),
                     "--ollama-restart-interval", str(args.ollama_restart_interval),
                     "--groq-model", args.groq_model,
+                    "--openrouter-model", args.openrouter_model,
                     "--cloud-timeout", str(args.cloud_timeout),
                 ]
                 if args.parallel:
@@ -205,6 +210,8 @@ def main() -> None:
                     parse_cmd += ["--model", args.model]
                     if args.model == "groq" and args.groq_api_key:
                         parse_cmd += ["--groq-api-key", args.groq_api_key]
+                    if args.model == "openrouter" and args.openrouter_api_key:
+                        parse_cmd += ["--openrouter-api-key", args.openrouter_api_key]
                 if args.force:
                     parse_cmd.append("--force")
                 if args.failed_only:
@@ -252,11 +259,18 @@ def main() -> None:
         # Step 9: Generate keywords for any brand in all_promotions.json that is missing them.
         # Rebuilds the queue each run so newly-added brands are always picked up.
         # Non-fatal: a keyword failure should not abort the rest of the pipeline.
-        kw_cmd = [
-            str(SRC / "run_keyword_backfill.py"),
-            "--rebuild-queue", "--batch", "999",
-            "--ollama", "--ollama-model", args.ollama_model,
-        ]
+        if args.model == "openrouter":
+            kw_cmd = [
+                str(SRC / "run_keyword_backfill.py"),
+                "--rebuild-queue", "--batch", "999",
+                "--openrouter", "--openrouter-model", args.openrouter_model,
+            ]
+        else:
+            kw_cmd = [
+                str(SRC / "run_keyword_backfill.py"),
+                "--rebuild-queue", "--batch", "999",
+                "--ollama", "--ollama-model", args.ollama_model,
+            ]
         rc = run(kw_cmd, "Step 9/15 -Generating missing keywords", log_fh)
         if rc != 0:
             log_print(f"\n[WARN] run_keyword_backfill exited with code {rc} (non-fatal).", log_fh)

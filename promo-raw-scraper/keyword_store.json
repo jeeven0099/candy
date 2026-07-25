@@ -1,23 +1,23 @@
 {
   "Tillys": {
     "contextual": [
-      "first order discount",
-      "best brands",
-      "anything",
-      "favorite surf brands",
-      "fresh fits",
-      "styles",
-      "denim",
-      "footwear",
-      "exclusive deals",
+      "jeans",
+      "tops",
+      "graphic tees",
+      "shorts",
+      "swimwear",
       "shoes",
-      "free shipping"
+      "backpacks",
+      "denim",
+      "sandals",
+      "accessories"
     ],
     "categories": [
       "footwear",
-      "clothing"
+      "clothing",
+      "accessories"
     ],
-    "updated_at": "2026-07-14T14:10:16.261990+00:00"
+    "updated_at": "2026-07-25T00:02:27.990670+00:00"
   },
   "Duluth Trading": {
     "contextual": [
@@ -62,16 +62,13 @@
   },
   "Abercrombie & Fitch": {
     "contextual": [
-      "accessories",
-      "footwear",
-      "clothing"
+      "bag"
     ],
     "categories": [
-      "accessories",
-      "footwear",
-      "clothing"
+      "clothing",
+      "accessories"
     ],
-    "updated_at": "2026-07-14T14:10:16.262115+00:00"
+    "updated_at": "2026-07-25T00:01:25.682885+00:00"
   },
   "White House Black Market": {
     "contextual": [
@@ -86,18 +83,22 @@
   },
   "LOFT": {
     "contextual": [
+      "dress",
       "pants",
-      "jeans",
-      "dresses",
-      "tops",
-      "shirts",
-      "sweaters",
-      "shorts"
+      "shirt",
+      "sweater",
+      "top",
+      "jean",
+      "short",
+      "accessory",
+      "tee",
+      "denim"
     ],
     "categories": [
-      "clothing"
+      "clothing",
+      "accessories"
     ],
-    "updated_at": "2026-07-20T16:09:00.466626+00:00"
+    "updated_at": "2026-07-24T23:58:35.390944+00:00"
   },
   "Microsoft": {
     "contextual": [
@@ -123,30 +124,37 @@
     "contextual": [
       "movie ticket",
       "poster",
-      "pin set",
       "concessions vessel",
+      "pin set",
       "collectible print",
-      "popcorn bucket",
-      "exclusive mystery Production Artwork",
-      "2-Movie Collection",
-      "Animation Print"
+      "popcorn bucket"
     ],
     "categories": [
       "other"
     ],
-    "updated_at": "2026-07-22T13:53:08.198890+00:00"
+    "updated_at": "2026-07-24T01:24:43.261319+00:00"
   },
   "Hilton": {
     "contextual": [
-      "hotel suite",
-      "room service pizzas",
-      "on-property credit",
-      "WiFi"
+      "hotel",
+      "room",
+      "suite",
+      "vacation",
+      "car rental",
+      "parking",
+      "breakfast",
+      "pizza",
+      "WiFi",
+      "points",
+      "experience",
+      "tour"
     ],
     "categories": [
-      "travel"
+      "travel",
+      "food",
+      "other"
     ],
-    "updated_at": "2026-07-22T13:53:30.682568+00:00"
+    "updated_at": "2026-07-24T23:58:52.341742+00:00"
   },
   "Steve Madden": {
     "contextual": [
@@ -160,7 +168,7 @@
       "accessories",
       "clothing"
     ],
-    "updated_at": "2026-07-22T13:54:05.841990+00:00"
+    "updated_at": "2026-07-24T01:25:18.701751+00:00"
   },
   "Wayfair": {
     "contextual": [
@@ -169,7 +177,7 @@
       "accent chair",
       "rug",
       "nightstand",
-      "table lamp",
+      "lamp",
       "sconce",
       "writing desk",
       "coat rack",
@@ -178,29 +186,36 @@
       "sofa",
       "swivel barrel chair",
       "modular sofa",
-      "sectional",
       "loveseat",
       "ottoman",
+      "sectional",
+      "power reclining sectional",
       "barrel swivel side dining chair",
-      "salon chair",
-      "power reclining sectional"
+      "salon chair"
     ],
     "categories": [
       "home"
     ],
-    "updated_at": "2026-07-22T13:55:16.091434+00:00"
+    "updated_at": "2026-07-24T01:26:08.483813+00:00"
   },
   "Williams-Sonoma": {
     "contextual": [
       "cookware",
       "dinnerware",
+      "pottery",
+      "bakeware",
+      "cutlery",
+      "tabletop",
+      "bar",
+      "electrics",
       "fry pans",
       "saucepans",
       "stockpots",
       "roasters",
       "cocottes",
       "risotto pans",
-      "cutlery",
+      "stainless-steel",
+      "cast-iron",
       "knives",
       "chef's knives",
       "bread knives",
@@ -211,7 +226,6 @@
       "cleavers",
       "honing steels",
       "kitchen shears",
-      "knife blocks",
       "salad boards",
       "serving boards",
       "chopping boards",
@@ -225,34 +239,36 @@
     "categories": [
       "home"
     ],
-    "updated_at": "2026-07-22T13:57:13.783765+00:00"
+    "updated_at": "2026-07-24T01:27:23.480336+00:00"
   },
   "Bath & Body Works": {
     "contextual": [
-      "fragrance",
+      "candle",
+      "single wick candle",
+      "wallflower",
+      "diffuser",
+      "hand soap",
+      "hand sanitizer",
+      "pocketbac",
       "body care",
-      "candles",
-      "wallflowers",
-      "diffusers",
-      "hand soaps",
-      "sanitizers",
       "skin care",
       "hair care",
-      "room sprays",
-      "gift sets",
-      "accessories",
-      "gift boxes",
-      "bags",
-      "wicks",
-      "refills",
-      "sanitizers",
-      "mini sizes",
-      "travel sizes"
+      "fragrance",
+      "room spray",
+      "gift set",
+      "gift box",
+      "gift bag",
+      "gift card",
+      "home fragrance",
+      "kitchen care",
+      "accessory"
     ],
     "categories": [
-      "beauty"
+      "beauty",
+      "home",
+      "accessories"
     ],
-    "updated_at": "2026-07-22T14:18:28.131225+00:00"
+    "updated_at": "2026-07-24T04:00:54.607552+00:00"
   },
   "Bowlero": {
     "contextual": [
@@ -283,39 +299,33 @@
   },
   "The Container Store": {
     "contextual": [
+      "pantry organizers",
+      "food storage containers",
+      "cabinet organizers",
+      "drawer organizers",
+      "cookware",
+      "tabletop barware",
+      "trash cans",
+      "recycling bins",
       "closet boxes",
-      "bins",
-      "baskets",
-      "cubes",
-      "drawers",
-      "shelving",
-      "furniture",
       "hangers",
       "jewelry boxes",
-      "laundry room accessories",
-      "organizers",
-      "snacks",
-      "food storage",
-      "refrigerator organizers",
-      "freezer organizers",
-      "drawer organizers",
-      "sink organizers",
-      "under sink organizers",
-      "cabinet organizers",
-      "closets",
-      "garage bags",
-      "boxes",
-      "totes",
+      "plastic bins",
+      "decorative baskets",
+      "storage bags",
+      "toy storage bins",
+      "pet storage crates",
       "shelving units",
-      "accessories"
+      "tool chests",
+      "filing cabinets",
+      "luggage"
     ],
     "categories": [
       "home",
-      "storage",
-      "kitchen",
-      "bath"
+      "travel",
+      "electronics"
     ],
-    "updated_at": "2026-07-22T13:58:57.203483+00:00"
+    "updated_at": "2026-07-25T00:02:14.100848+00:00"
   },
   "AllSaints": {
     "contextual": [
@@ -353,68 +363,74 @@
     "categories": [
       "travel"
     ],
-    "updated_at": "2026-07-22T13:59:21.629911+00:00"
+    "updated_at": "2026-07-24T01:28:53.796516+00:00"
   },
   "Chico's": {
     "contextual": [
       "dress",
-      "shirtdress",
-      "midi dress",
-      "maxi dress",
       "skirt",
+      "skort",
+      "jeans",
+      "pants",
+      "jewelry",
+      "shirt dress",
       "sweater dress",
+      "knit dress",
+      "maxi dress",
+      "midi dress",
       "shift dress",
-      "bungee dress",
-      "mockneck bungee dress",
-      "ruffle dress",
-      "contrast trim dress",
-      "tulip hem skort",
-      "pleated short skort",
-      "pull-on skort",
-      "floral midi dress",
-      "animal print skirt"
+      "kurta dress"
     ],
     "categories": [
-      "clothing"
+      "clothing",
+      "accessories"
     ],
-    "updated_at": "2026-07-22T14:20:02.115971+00:00"
+    "updated_at": "2026-07-25T00:00:54.258354+00:00"
   },
   "Starbucks": {
     "contextual": [
       "coffee",
       "tea",
-      "drink",
-      "espresso shot",
-      "syrup",
-      "cold foam",
+      "beverage",
       "bakery item",
-      "packaged snacks",
-      "latte",
-      "cold brew",
-      "hot breakfast",
+      "snack",
       "sandwich",
       "protein box",
       "packaged coffee",
-      "Starbucks® merchandise"
+      "merchandise",
+      "espresso",
+      "syrup",
+      "cold foam",
+      "latte",
+      "cold brew",
+      "breakfast",
+      "Starbucks Card"
     ],
     "categories": [
-      "food"
+      "food",
+      "other"
     ],
-    "updated_at": "2026-07-22T14:02:49.870148+00:00"
+    "updated_at": "2026-07-24T03:57:57.185994+00:00"
   },
   "Wingstop": {
     "contextual": [
-      "wings",
       "boneless wings",
-      "tenders",
-      "sandwich",
-      "fries",
-      "corn"
+      "classic wings",
+      "crispy tenders",
+      "chicken tender sandwich",
+      "voodoo fries",
+      "cajun corn",
+      "chicken sandwich",
+      "drink",
+      "side",
+      "dip",
+      "gift card"
     ],
     "categories": [
-      "food"
+      "food",
+      "other"
     ],
-    "updated_at": "2026-07-22T14:15:50.411537+00:00"
+    "updated_at": "2026-07-24T03:59:47.904034+00:00"
   },
   "Amazon": {
     "contextual": [
@@ -468,34 +484,48 @@
   },
   "Athleta": {
     "contextual": [
-      "shorts",
-      "tank",
-      "tee",
+      "tank top",
+      "legging",
+      "dress",
       "pant",
-      "crop tee",
-      "jumpsuits",
-      "dresses",
-      "jackets",
-      "bras",
-      "accessories",
-      "swim"
+      "bootcut pant",
+      "cargo pant",
+      "sweatshirt",
+      "hoodie",
+      "shorts",
+      "jacket",
+      "bra",
+      "swimwear",
+      "tights",
+      "jumpsuit",
+      "top",
+      "bottom",
+      "activewear",
+      "accessory"
     ],
     "categories": [
       "clothing",
-      "accessories"
+      "accessories",
+      "fitness"
     ],
-    "updated_at": "2026-07-17T20:16:46.852802+00:00"
+    "updated_at": "2026-07-25T00:03:24.900516+00:00"
   },
   "Disney+": {
     "contextual": [
-      "plans",
+      "subscription",
       "bundle",
-      "add-ons"
+      "plan",
+      "add‑on",
+      "service",
+      "perk",
+      "streaming service",
+      "monthly price",
+      "annual price"
     ],
     "categories": [
       "other"
     ],
-    "updated_at": "2026-07-22T14:03:08.769901+00:00"
+    "updated_at": "2026-07-25T00:01:12.390742+00:00"
   },
   "L.L.Bean": {
     "contextual": [
@@ -525,84 +555,84 @@
   },
   "PacSun": {
     "contextual": [
-      "Tees",
-      "Hoodies",
-      "Sweaters",
-      "Jackets",
-      "Jeans",
-      "Pants",
-      "Shorts",
-      "Skirts",
-      "Dresses",
-      "Swimwear",
-      "Shoes",
-      "Sneakers",
-      "Hats",
-      "Beanies",
-      "Backpacks",
-      "Sunglasses",
-      "Belts",
-      "Wallets",
-      "Socks",
-      "Bralettes",
-      "Joggers",
-      "Sweatpants",
-      "Boardshorts"
+      "jeans",
+      "pants",
+      "shorts",
+      "t-shirts",
+      "hoodies",
+      "jackets",
+      "shoes",
+      "sneakers",
+      "sunglasses",
+      "hats",
+      "backpacks",
+      "socks",
+      "belts",
+      "jewelry",
+      "swimwear",
+      "activewear",
+      "dresses",
+      "skirts",
+      "bralettes",
+      "fragrances"
     ],
     "categories": [
       "clothing",
       "footwear",
-      "accessories"
+      "accessories",
+      "beauty",
+      "home"
     ],
-    "updated_at": "2026-07-17T20:17:29.613993+00:00"
+    "updated_at": "2026-07-25T00:04:50.304432+00:00"
   },
   "PetSmart": {
     "contextual": [
-      "pet food",
-      "gift card"
+      "gift card",
+      "pet food"
     ],
     "categories": [
       "food",
       "other"
     ],
-    "updated_at": "2026-07-22T14:03:38.749540+00:00"
+    "updated_at": "2026-07-24T03:41:38.590687+00:00"
   },
   "Regal": {
     "contextual": [
+      "tickets",
       "popcorn",
       "candy",
-      "movie tickets",
+      "concessions",
+      "credits",
       "posters",
       "art prints",
-      "merchandise",
-      "swag",
-      "QR code"
+      "movie merch",
+      "swag"
     ],
     "categories": [
       "food",
-      "fitness",
       "other"
     ],
-    "updated_at": "2026-07-22T14:04:11.945986+00:00"
+    "updated_at": "2026-07-24T03:42:08.995540+00:00"
   },
   "REI": {
     "contextual": [
-      "runners",
       "backpacks",
-      "bags",
-      "lunch boxes",
-      "bottles",
-      "hiking shoes",
-      "sandals",
-      "hydratation vest",
-      "smartwatch",
-      "UPF clothing",
-      "sun hoodie",
-      "socks",
-      "snacks",
+      "sleeping bags",
+      "smart band",
+      "running shoes",
+      "climbing shoes",
+      "clogs",
       "water bottles",
-      "cot",
-      "baby carrier packs",
+      "tumblers",
+      "coolers",
+      "swimwear",
+      "bicycles",
+      "bike accessories",
+      "cycle clothing",
+      "paddles",
+      "personal flotation devices",
+      "hammocks",
+      "cots",
       "carabiners",
       "flashlights",
       "messenger bags"
@@ -611,15 +641,29 @@
       "footwear",
       "clothing",
       "accessories",
-      "fitness",
-      "travel"
+      "electronics"
     ],
-    "updated_at": "2026-07-22T14:33:04.503859+00:00"
+    "updated_at": "2026-07-25T00:01:56.404389+00:00"
   },
   "Walgreens": {
-    "contextual": [],
-    "categories": [],
-    "updated_at": "2026-07-22T14:04:23.547124+00:00"
+    "contextual": [
+      "prescriptions",
+      "grocery items",
+      "health & wellness products",
+      "pet supplies",
+      "veterinary products",
+      "Walgreens branded products",
+      "pharmacy items",
+      "essential items",
+      "FIFA World Cup items",
+      "4th of July essentials"
+    ],
+    "categories": [
+      "food",
+      "beauty",
+      "other"
+    ],
+    "updated_at": "2026-07-25T00:02:51.239813+00:00"
   },
   "Wendy's": {
     "contextual": [],
@@ -641,11 +685,26 @@
     "updated_at": "2026-07-17T20:17:57.572428+00:00"
   },
   "Wyndham Hotels": {
-    "contextual": [],
+    "contextual": [
+      "hotel room",
+      "hotel",
+      "travel bundle",
+      "flight",
+      "car rental",
+      "cruise",
+      "tour",
+      "activity",
+      "transfer",
+      "meeting space",
+      "event space",
+      "extended stay hotel",
+      "vacation package",
+      "credit card"
+    ],
     "categories": [
       "travel"
     ],
-    "updated_at": "2026-07-22T14:04:36.463466+00:00"
+    "updated_at": "2026-07-24T03:50:29.699250+00:00"
   },
   "American Eagle": {
     "contextual": [
@@ -667,51 +726,54 @@
   },
   "Ann Taylor": {
     "contextual": [
-      "clothing",
-      "petites",
       "dresses",
       "pants",
       "shirts",
       "sweaters",
+      "suits",
       "jackets",
       "skirts",
       "accessories",
-      "shoes"
+      "shoes",
+      "swimwear",
+      "denim",
+      "tops"
     ],
     "categories": [
       "clothing",
-      "footwear",
-      "accessories"
+      "accessories",
+      "footwear"
     ],
-    "updated_at": "2026-07-22T14:05:08.163000+00:00"
+    "updated_at": "2026-07-25T00:00:05.207245+00:00"
   },
   "Apple TV+": {
     "contextual": [
+      "Apple TV 4K",
       "Apple TV",
-      "smart TVs",
-      "sticks",
+      "Apple Vision Pro",
       "iPhone",
       "iPad",
       "Mac",
-      "Apple Vision Pro",
-      "Android",
-      "Google Play",
-      "PC",
-      "Microsoft Store",
-      "Samsung Smart TV",
-      "LG Smart TV",
-      "Vizio",
-      "Sony",
+      "Smart TV",
       "Roku",
-      "Amazon Fire Tv",
+      "Amazon Fire TV",
       "Google TV",
       "PlayStation",
-      "XBOX"
+      "Xbox",
+      "Samsung Smart TV",
+      "LG Smart TV",
+      "Vizio TV",
+      "Sony TV",
+      "subscription",
+      "Apple One",
+      "Apple device",
+      "streaming device"
     ],
     "categories": [
-      "electronics"
+      "electronics",
+      "other"
     ],
-    "updated_at": "2026-07-22T14:05:52.104970+00:00"
+    "updated_at": "2026-07-25T00:03:16.415722+00:00"
   },
   "Brooklinen": {
     "contextual": [
@@ -740,60 +802,40 @@
   },
   "Burger King": {
     "contextual": [
+      "Chocolate Shake",
       "Whopper",
       "Chicken Sandwich",
-      "Chocolate Shake",
       "Fries",
-      "Large Fries"
+      "Duo",
+      "Trio"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:06:16.912791+00:00"
+    "updated_at": "2026-07-24T03:44:24.279089+00:00"
   },
   "Burlington": {
     "contextual": [
       "skirt",
       "pants",
       "top",
-      "2-piece set",
-      "active 2-piece set",
-      "jacket",
-      "vest",
+      "dress",
       "jeans",
-      "embellished top",
-      "striped top",
-      "tube top",
+      "jacket",
+      "t‑shirt",
       "sandals",
-      "caftan",
-      "set",
+      "sneakers",
+      "flats",
+      "handbag",
       "tote",
-      "laundry basket",
-      "storage bins",
-      "floral laundry basket",
-      "wireless keyboard & mouse",
-      "water tumbler",
-      "food storage container set",
-      "queen bedding set",
-      "carry on luggage",
-      "kids luggage",
+      "earrings",
       "shampoo",
       "conditioner",
-      "hair styling set",
-      "lip butter set",
-      "cosmetic bag",
-      "supplements",
-      "pimple patches",
-      "under eye patches",
-      "collagen powder",
-      "cleansing facial wipes",
-      "bag charm",
-      "handbag",
-      "crossbody",
-      "pink handbag",
-      "baby 2 piece set",
-      "sippy bottle",
-      "diaper bag"
+      "lip butter",
+      "nail polish",
+      "diaper bag",
+      "baby bottle",
+      "bedding set"
     ],
     "categories": [
       "clothing",
@@ -802,20 +844,23 @@
       "beauty",
       "home"
     ],
-    "updated_at": "2026-07-22T14:43:13.298773+00:00"
+    "updated_at": "2026-07-24T04:06:35.715747+00:00"
   },
   "Caribou Coffee": {
     "contextual": [
       "coffee",
       "tea",
-      "baked goods",
       "bagel",
       "cream cheese",
+      "flavor shot",
+      "espresso",
+      "whip",
+      "bakery item",
       "egg sandwich",
       "soufflé",
       "burrito",
       "lunch item",
-      "mugs",
+      "mug",
       "merchandise",
       "beans",
       "growler",
@@ -824,35 +869,46 @@
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:06:56.605798+00:00"
+    "updated_at": "2026-07-24T03:45:16.466566+00:00"
   },
   "Chipotle": {
     "contextual": [
       "Chips",
       "Guac",
       "Tortilla Chips",
-      "Guacamole",
-      "Fountain Drink",
-      "Chicken",
-      "Burrito",
-      "Quesadilla",
+      "Side Tortilla",
       "Salsa",
-      "Kids Meal"
+      "Side of Guacamole",
+      "Fountain Drink",
+      "Protein Chicken",
+      "Burrito",
+      "Kids Meal",
+      "Entrée"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:07:29.005165+00:00"
+    "updated_at": "2026-07-24T03:45:54.563071+00:00"
   },
   "Choice Hotels": {
     "contextual": [
-      "nights",
-      "points"
+      "hotel stay",
+      "room",
+      "gift card",
+      "points",
+      "cruise",
+      "car rental",
+      "airfare",
+      "vacation package",
+      "racing experience",
+      "membership",
+      "credit card",
+      "reward night"
     ],
     "categories": [
       "travel"
     ],
-    "updated_at": "2026-07-22T14:20:37.869709+00:00"
+    "updated_at": "2026-07-25T00:01:04.889709+00:00"
   },
   "Cole Haan": {
     "contextual": [
@@ -894,28 +950,29 @@
   },
   "e.l.f. Cosmetics": {
     "contextual": [
-      "Lip & Cheek Whip",
-      "Styling Cream",
-      "Wand Set",
-      "Moisturizing Shampoo",
-      "Anti-Frizz Styling Spray",
-      "Conditioner",
-      "Treatment Oil"
+      "lip & cheek whip",
+      "styling cream",
+      "wand set",
+      "shampoo",
+      "anti-frizz styling spray",
+      "conditioner",
+      "treatment oil"
     ],
     "categories": [
       "beauty"
     ],
-    "updated_at": "2026-07-22T14:07:58.935385+00:00"
+    "updated_at": "2026-07-24T03:46:20.114701+00:00"
   },
   "Einstein Bros Bagels": {
     "contextual": [
       "bagels",
-      "coffee"
+      "coffee",
+      "egg sandwich"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:08:11.853098+00:00"
+    "updated_at": "2026-07-24T03:46:36.432356+00:00"
   },
   "Fashion Nova": {
     "contextual": [
@@ -985,86 +1042,86 @@
   },
   "Hulu": {
     "contextual": [
-      "Disney+",
-      "Hulu",
-      "ESPN+",
-      "bundle"
+      "subscription",
+      "plan"
     ],
     "categories": [
       "other"
     ],
-    "updated_at": "2026-07-22T14:08:29.413924+00:00"
+    "updated_at": "2026-07-24T03:46:51.674963+00:00"
   },
   "Hungryroot": {
     "contextual": [
       "chicken",
       "rice",
       "oats",
-      "pretzel sandwich",
+      "blueberry",
       "salmon",
-      "potato",
+      "sweet potato",
       "brussels",
-      "cilantro lime rice",
-      "overnight oats",
+      "eggs",
+      "grapefruit",
+      "asparagus",
+      "market salad",
       "cinnamon twists",
-      "meat alternative salad",
+      "meat alternative avocado salad",
       "tropical chickpea salad",
       "freeze dried strawberries",
-      "hummus lemon garlic",
+      "hummus",
       "chile verde with rice + beans",
-      "popcorn",
-      "green curry chicken with jasmine rice",
-      "cheddar cheese",
-      "potato crisps",
-      "guava cold pressed juice",
-      "skyr vanilla",
       "protein shake",
       "muffins",
-      "salmon salad"
+      "potatoes",
+      "cheddar bunnies",
+      "juice",
+      "skyr",
+      "popcorn",
+      "curry chicken with jasmine rice",
+      "cheese",
+      "potato crisps"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:09:38.442518+00:00"
+    "updated_at": "2026-07-24T03:48:08.795909+00:00"
   },
   "Johnston & Murphy": {
     "contextual": [
-      "loafer shoes",
-      "button-up shirts",
+      "loafers",
       "sandals",
-      "belt",
-      "leather belt"
+      "shirts",
+      "jeans",
+      "belts"
     ],
     "categories": [
       "footwear",
       "clothing",
       "accessories"
     ],
-    "updated_at": "2026-07-22T14:10:07.488679+00:00"
+    "updated_at": "2026-07-24T03:50:33.948054+00:00"
   },
   "Kohl's": {
     "contextual": [
+      "women's clothing",
+      "men's clothing",
+      "kids' clothing",
+      "baby clothing",
+      "shoes",
       "activewear",
       "bedding",
       "kitchen tools",
+      "home decor",
+      "home goods",
       "toys",
-      "shoes",
-      "skincare solutions",
-      "clothing",
+      "beauty products",
+      "skincare",
+      "makeup",
       "jewelry",
       "handbags",
       "accessories",
-      "home goods",
-      "work attire",
-      "play shoes",
-      "formal business attire",
-      "casual essentials",
-      "boys clothing",
-      "girls clothing",
-      "bedding sets",
-      "functional kitchen tools",
-      "seasonal touches",
-      "cosmetics"
+      "sports fan gear",
+      "seasonal decor",
+      "clothing accessories"
     ],
     "categories": [
       "clothing",
@@ -1073,7 +1130,7 @@
       "beauty",
       "home"
     ],
-    "updated_at": "2026-07-22T14:11:11.342668+00:00"
+    "updated_at": "2026-07-24T03:55:24.072358+00:00"
   },
   "Lands' End": {
     "contextual": [
@@ -1148,63 +1205,73 @@
   "NYX Professional Makeup": {
     "contextual": [
       "lip gloss",
-      "palette",
-      "eyeshadow",
-      "primer",
+      "lip balm",
+      "lipstick",
+      "eyes​hadow palette",
+      "makeup primer",
       "foundation",
       "concealer",
       "mascara",
       "eyeliner",
-      "liquid lipsticks",
-      "cream lipstick",
-      "glosses",
       "highlighter",
       "bronzer",
       "blush",
-      "sponges",
-      "face brushes",
-      "eyeshadow brushes"
+      "loose pigment",
+      "beauty sponge",
+      "face brush",
+      "eyeshadow brush",
+      "gift set",
+      "lip gloss kit",
+      "pressed powder palette",
+      "beauty tool"
     ],
     "categories": [
       "beauty"
     ],
-    "updated_at": "2026-07-22T14:12:00.952232+00:00"
+    "updated_at": "2026-07-24T03:58:05.694076+00:00"
   },
   "P.F. Chang's": {
     "contextual": [],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:12:14.347253+00:00"
+    "updated_at": "2026-07-24T03:58:11.109256+00:00"
   },
   "Panera Bread": {
     "contextual": [
+      "bagel",
       "bakery treat",
-      "bagel"
+      "bread",
+      "souffle",
+      "spread",
+      "drink",
+      "catering",
+      "gift card",
+      "bulk item"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:12:30.939174+00:00"
+    "updated_at": "2026-07-24T03:58:16.095082+00:00"
   },
   "Peet's Coffee": {
     "contextual": [
-      "Dark Roast Coffee",
-      "Decaf Coffee",
-      "Espresso Capsules",
-      "Iced Ube Matcha Latte",
-      "Lavender Vanilla Latte",
-      "Vanilla Protein Latte",
-      "Matcha Pineapple Burst",
-      "Ultr Coffee Concentrate",
-      "Protein Banana Cold Brew Oat Latte",
-      "Sparkling Watermelon Matcha Spritz",
-      "Espresso"
+      "coffee beans",
+      "ground coffee",
+      "espresso capsules",
+      "tea",
+      "coffee equipment",
+      "mugs",
+      "gift cards",
+      "bottled coffee concentrate",
+      "baked goods"
     ],
     "categories": [
-      "food"
+      "food",
+      "home",
+      "other"
     ],
-    "updated_at": "2026-07-22T14:13:13.997115+00:00"
+    "updated_at": "2026-07-25T00:05:00.229014+00:00"
   },
   "Princess Polly": {
     "contextual": [
@@ -1259,43 +1326,45 @@
       "shoes",
       "t-shirt",
       "shorts",
-      "jacket",
+      "tank top",
       "leggings",
-      "cap",
-      "sneaker",
+      "athletic jacket",
+      "baseball cap",
+      "sneakers",
+      "running shoes",
+      "training shoes",
+      "joggers",
       "hoodie",
       "polo",
-      "joggers",
       "luggage set",
-      "mesh upper",
-      "zigzag midsole pattern",
-      "breathable mesh details",
-      "textured sole"
+      "suitcases"
     ],
     "categories": [
       "footwear",
       "clothing",
-      "accessories"
+      "accessories",
+      "fitness"
     ],
-    "updated_at": "2026-07-22T15:06:41.112152+00:00"
+    "updated_at": "2026-07-24T04:12:40.960756+00:00"
   },
   "Sally Beauty": {
     "contextual": [],
     "categories": [
       "beauty"
     ],
-    "updated_at": "2026-07-22T14:13:57.835909+00:00"
+    "updated_at": "2026-07-25T00:01:15.164594+00:00"
   },
   "Sweetgreen": {
     "contextual": [
-      "Peach & Goat Cheese Salad",
-      "Hot Honey Chicken Plate",
-      "Chicken Avocado Ranch Bowl"
+      "salad",
+      "entree",
+      "plate",
+      "bowl"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:14:18.268984+00:00"
+    "updated_at": "2026-07-24T03:59:12.059072+00:00"
   },
   "Tropical Smoothie Cafe": {
     "contextual": [
@@ -1314,31 +1383,31 @@
   },
   "West Elm": {
     "contextual": [
-      "sofas",
-      "sectionals",
-      "sheets",
-      "quilts",
-      "duvets",
-      "comforters",
-      "rugs",
+      "sofa",
+      "sectional",
+      "loveseat",
+      "coffee table",
       "bedding",
-      "bath",
+      "sheets",
+      "quilt",
+      "duvet",
+      "comforter",
+      "pillowcase",
+      "coverlet",
+      "rug",
       "lighting",
-      "pillows",
-      "throws",
-      "room decor",
-      "window treatments",
+      "pillow",
+      "throw",
+      "window treatment",
       "art",
-      "mirrors",
-      "kitchen",
-      "dining",
-      "storage",
-      "organization"
+      "mirror",
+      "dining table",
+      "storage unit"
     ],
     "categories": [
       "home"
     ],
-    "updated_at": "2026-07-22T14:15:28.460104+00:00"
+    "updated_at": "2026-07-24T03:59:42.279848+00:00"
   },
   "Ace Hardware": {
     "contextual": [
@@ -1401,54 +1470,68 @@
   },
   "Applebee's": {
     "contextual": [
-      "Chicken Wonton Tacos",
-      "Classic Combo",
-      "Mozzarella Sticks",
-      "America’s Favorite Boneless Wings",
-      "Southwest Chicken Irresist-A-Bowl",
-      "Quesadilla Chicken Salad",
-      "Perfect Margarita",
-      "Shark Bowl",
-      "Bahama Mama"
+      "tacos",
+      "combo",
+      "mozzarella sticks",
+      "boneless wings",
+      "bowl",
+      "salad",
+      "margarita",
+      "cocktails",
+      "appetizer",
+      "dessert"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:17:44.367433+00:00"
+    "updated_at": "2026-07-24T04:00:48.685489+00:00"
   },
   "Belk": {
     "contextual": [
-      "backpacks",
-      "sneakers",
+      "backpack",
+      "sneaker",
       "swimwear",
-      "denim jackets",
-      "dress",
-      "beauty products",
-      "fragrances",
-      "active apparel",
-      "red top and white skirt",
-      "handbags",
-      "sandals"
+      "shorts",
+      "sandals",
+      "fragrance",
+      "t‑shirt",
+      "hoodie",
+      "shoe",
+      "handbag",
+      "beauty product",
+      "denim",
+      "bedding",
+      "bath"
     ],
     "categories": [
       "footwear",
       "clothing",
       "accessories",
-      "beauty"
+      "beauty",
+      "home"
     ],
-    "updated_at": "2026-07-22T14:40:58.244752+00:00"
+    "updated_at": "2026-07-24T04:06:18.821865+00:00"
   },
   "Benihana": {
-    "contextual": [],
-    "categories": [
-      "food"
+    "contextual": [
+      "fried rice",
+      "entrees",
+      "appetizer",
+      "cocktail",
+      "wings",
+      "mug",
+      "meal"
     ],
-    "updated_at": "2026-07-22T14:18:39.022172+00:00"
+    "categories": [
+      "food",
+      "other"
+    ],
+    "updated_at": "2026-07-24T04:01:04.795549+00:00"
   },
   "Boohoo": {
     "contextual": [],
     "categories": [],
-    "updated_at": "2026-07-22T14:41:11.156960+00:00"
+    "updated_at": "2026-07-23T13:51:57.959075+00:00"
   },
   "Brooks Brothers": {
     "contextual": [
@@ -1481,18 +1564,16 @@
   },
   "Chick-fil-A": {
     "contextual": [
-      "sides",
-      "desserts",
-      "entrees",
-      "Icedream cone",
-      "Waffle Potato Fries",
-      "Chick-n-Strips",
-      "Nuggets"
+      "milkshake",
+      "ice cream cone",
+      "waffle fries",
+      "chick‑n‑strips",
+      "nuggets"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:19:08.170331+00:00"
+    "updated_at": "2026-07-24T04:01:06.668709+00:00"
   },
   "Church's Chicken": {
     "contextual": [
@@ -1530,12 +1611,14 @@
   "Cinemark": {
     "contextual": [
       "tickets",
+      "snacks",
       "concessions"
     ],
     "categories": [
+      "food",
       "other"
     ],
-    "updated_at": "2026-07-22T14:20:51.381017+00:00"
+    "updated_at": "2026-07-24T04:01:58.195777+00:00"
   },
   "Clarks": {
     "contextual": [
@@ -1552,9 +1635,13 @@
     "updated_at": "2026-07-20T14:38:43.848099+00:00"
   },
   "Club Monaco": {
-    "contextual": [],
-    "categories": [],
-    "updated_at": "2026-07-22T14:21:06.042397+00:00"
+    "contextual": [
+      "cashmere"
+    ],
+    "categories": [
+      "clothing"
+    ],
+    "updated_at": "2026-07-24T04:02:05.282302+00:00"
   },
   "Coach": {
     "contextual": [
@@ -1563,11 +1650,10 @@
       "ready-to-wear"
     ],
     "categories": [
-      "accessories",
       "clothing",
-      "footwear"
+      "accessories"
     ],
-    "updated_at": "2026-07-22T14:21:27.074451+00:00"
+    "updated_at": "2026-07-24T04:02:13.084948+00:00"
   },
   "ColourPop": {
     "contextual": [
@@ -1591,40 +1677,50 @@
   },
   "Culver's": {
     "contextual": [
+      "ice cream",
+      "cone",
+      "scoop",
+      "fries",
       "ButterBurger",
-      "Crinkle Cut Fries",
-      "Concrete Mixer",
       "cheese curds",
-      "chicken tenders"
+      "Concrete Mixer",
+      "chicken tenders",
+      "gift card"
     ],
     "categories": [
-      "food"
+      "food",
+      "other"
     ],
-    "updated_at": "2026-07-22T14:21:50.461548+00:00"
+    "updated_at": "2026-07-24T04:02:21.866467+00:00"
   },
   "Del Taco": {
     "contextual": [
-      "Carnitas",
-      "Tacos",
-      "Grilled Chicken Tacos"
+      "tacos",
+      "carnitas",
+      "regular tacos",
+      "grilled chicken tacos"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:22:06.070228+00:00"
+    "updated_at": "2026-07-24T04:02:24.136804+00:00"
   },
   "Delta Air Lines": {
     "contextual": [
+      "flights",
       "plane tickets",
       "hotels",
       "car rentals",
       "cruises",
-      "vacation packages"
+      "vacation packages",
+      "gift cards",
+      "credit cards",
+      "bags"
     ],
     "categories": [
       "travel"
     ],
-    "updated_at": "2026-07-22T14:48:27.022201+00:00"
+    "updated_at": "2026-07-24T04:08:30.970565+00:00"
   },
   "Dossier": {
     "contextual": [
@@ -1643,31 +1739,40 @@
       "shoes",
       "sandals",
       "backpacks",
+      "satchels",
+      "socks",
+      "loafers",
+      "mules",
+      "oxford shoes",
+      "slides",
+      "strap sandals",
+      "velcro shoes",
       "chelsea boots",
       "high boots",
       "laceless boots",
-      "laces",
-      "loafers",
-      "mary jane shoes",
-      "mules",
-      "oxford shoes",
-      "satchels",
-      "slides",
-      "socks",
-      "strap sandals",
-      "velcro shoes"
+      "lace up boots",
+      "lace up shoes",
+      "buzz shoes",
+      "buzz boots"
     ],
     "categories": [
-      "footwear"
+      "footwear",
+      "accessories"
     ],
-    "updated_at": "2026-07-22T14:23:21.248220+00:00"
+    "updated_at": "2026-07-24T04:02:36.297650+00:00"
   },
   "Dutch Bros": {
-    "contextual": [],
+    "contextual": [
+      "coffee",
+      "iced coffee",
+      "lemonade",
+      "drink",
+      "gift card"
+    ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:23:34.111574+00:00"
+    "updated_at": "2026-07-24T04:02:42.192851+00:00"
   },
   "Eddie Bauer": {
     "contextual": [
@@ -1704,17 +1809,24 @@
   },
   "Enterprise": {
     "contextual": [
-      "cars",
-      "SUVs",
-      "trucks",
-      "vans",
-      "moving trucks",
-      "exotic cars"
+      "car",
+      "SUV",
+      "truck",
+      "van",
+      "moving truck",
+      "exotic car",
+      "vehicle",
+      "car rental",
+      "truck rental",
+      "van rental",
+      "moving truck rental",
+      "car share",
+      "fleet vehicle"
     ],
     "categories": [
       "travel"
     ],
-    "updated_at": "2026-07-22T14:23:54.897917+00:00"
+    "updated_at": "2026-07-24T04:02:55.007218+00:00"
   },
   "Factor": {
     "contextual": [
@@ -1733,47 +1845,55 @@
   },
   "Gainful": {
     "contextual": [
-      "protein",
-      "pre-workout",
+      "protein powder",
+      "pre‑workout",
       "hydration",
-      "collagen whey protein",
-      "everyday plant protein",
-      "everyday whey protein",
-      "isolate-only whey protein",
-      "lean plant protein",
-      "lean whey protein",
-      "performance whey protein",
+      "greens",
       "flavor packets",
-      "greens"
+      "flavor sticks",
+      "collagen whey protein",
+      "everyday whey protein",
+      "isolate‑only whey protein",
+      "lean whey protein",
+      "lean plant protein",
+      "performance whey protein",
+      "everyday plant protein",
+      "creatine",
+      "whey protein",
+      "plant protein"
     ],
     "categories": [
       "fitness"
     ],
-    "updated_at": "2026-07-22T14:25:09.572623+00:00"
+    "updated_at": "2026-07-24T04:02:56.538432+00:00"
   },
   "GNC": {
     "contextual": [
-      "creatina",
+      "creatine",
       "evening primrose oil",
       "fish oil",
       "magnesium",
-      "omega",
-      "plant based"
+      "omega-3",
+      "plant-based supplement",
+      "moisturising oil"
     ],
     "categories": [
-      "fitness"
+      "fitness",
+      "beauty",
+      "food"
     ],
-    "updated_at": "2026-07-22T14:25:30.903708+00:00"
+    "updated_at": "2026-07-24T04:03:10.872854+00:00"
   },
   "Hollister": {
     "contextual": [
-      "bags"
+      "jeans",
+      "bag"
     ],
     "categories": [
       "clothing",
       "accessories"
     ],
-    "updated_at": "2026-07-20T14:42:03.354928+00:00"
+    "updated_at": "2026-07-25T00:03:33.626716+00:00"
   },
   "IL MAKIAGE": {
     "contextual": [
@@ -1793,36 +1913,34 @@
   },
   "J.Crew": {
     "contextual": [
-      "T-shirt",
-      "jersey",
-      "cashmere",
-      "cotton",
-      "linen",
-      "polyester",
-      "wool",
-      "blend",
-      "denim",
-      "suede"
+      "t-shirt",
+      "sweater",
+      "boxers",
+      "dress shirt",
+      "swimwear",
+      "scrunchie",
+      "footwear"
     ],
     "categories": [
       "clothing",
-      "accessories"
+      "accessories",
+      "footwear",
+      "home"
     ],
-    "updated_at": "2026-07-22T14:26:07.375760+00:00"
+    "updated_at": "2026-07-24T23:59:23.733887+00:00"
   },
   "Lee": {
     "contextual": [
       "jeans",
       "shorts",
-      "t-shirt",
-      "tops",
+      "t-shirts",
       "shirts",
-      "pant"
+      "pants"
     ],
     "categories": [
       "clothing"
     ],
-    "updated_at": "2026-07-22T14:26:50.216961+00:00"
+    "updated_at": "2026-07-24T04:03:42.125459+00:00"
   },
   "Lilly Pulitzer": {
     "contextual": [
@@ -1840,12 +1958,13 @@
   },
   "Little Caesars": {
     "contextual": [
-      "pizza"
+      "pizza",
+      "gift card"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:27:02.724529+00:00"
+    "updated_at": "2026-07-24T04:03:46.495710+00:00"
   },
   "Michael Kors": {
     "contextual": [
@@ -1870,52 +1989,63 @@
   "ModCloth": {
     "contextual": [
       "dress",
+      "top",
       "blouse",
       "skirt",
+      "bottom",
+      "shoes",
+      "accessory",
+      "bag",
       "necklace",
-      "boombox",
-      "mididress",
-      "sleevedress",
-      "stripe dress",
-      "fox pattern dress",
-      "floral dress",
-      "tulle skirt",
-      "fit-and-flare dress"
+      "sock",
+      "shapewear"
     ],
     "categories": [
-      "clothing"
+      "clothing",
+      "footwear",
+      "accessories"
     ],
-    "updated_at": "2026-07-22T14:27:38.728035+00:00"
+    "updated_at": "2026-07-24T04:03:55.874226+00:00"
   },
   "Nasty Gal": {
-    "contextual": [],
-    "categories": [],
-    "updated_at": "2026-07-22T14:27:50.765688+00:00"
+    "contextual": [
+      "clothing",
+      "footwear",
+      "accessories"
+    ],
+    "categories": [
+      "clothing",
+      "footwear",
+      "accessories"
+    ],
+    "updated_at": "2026-07-25T00:01:47.440898+00:00"
   },
   "Noodles & Company": {
     "contextual": [
+      "salad",
       "side salad",
-      "Caesar Salad",
-      "Pulled Pork BBQ Mac & Cheese",
-      "Cajun Shrimp Fettuccine",
-      "Buffalo Chicken Ranch Mac",
-      "Basil Pesto Cavatappi",
-      "Cheesy Garlic Bread",
-      "Broccoli",
-      "Spinach",
-      "Cheddar Jack Cheese",
-      "Rice Crispy Treat",
-      "Cookie",
-      "Coca-Cola Zero Sugar Fountain Drink",
-      "Regular Fountain Drink",
-      "Portion of Parmesan Crusted Chicken Breast",
-      "Kids Meal",
-      "Buttered Noodles"
+      "caesar salad",
+      "mac & cheese",
+      "pulled pork BBQ mac & cheese",
+      "basil pesto cavatappi",
+      "cavatappi",
+      "buffalo chicken ranch mac",
+      "cheesy garlic bread",
+      "chicken breast",
+      "shrimp fettuccine",
+      "kids meal",
+      "rice crispy treat",
+      "dessert",
+      "coca-cola zero sugar",
+      "drink",
+      "to-go bag",
+      "protein",
+      "soup"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:28:53.009529+00:00"
+    "updated_at": "2026-07-24T04:04:19.309453+00:00"
   },
   "Old Navy": {
     "contextual": [
@@ -1972,23 +2102,27 @@
       "linen",
       "hoodies",
       "sweater",
-      "fragrances",
       "rugs",
       "lighting",
-      "watches",
+      "fragrance",
+      "watch",
       "jewelry",
       "eyewear",
+      "coffee",
+      "books",
+      "gift cards",
+      "footwear",
       "face masks",
-      "customizable merchandise",
-      "books"
+      "home decor"
     ],
     "categories": [
       "clothing",
+      "footwear",
       "accessories",
       "home",
       "beauty"
     ],
-    "updated_at": "2026-07-22T14:31:25.289360+00:00"
+    "updated_at": "2026-07-24T04:04:53.915981+00:00"
   },
   "Roxy": {
     "contextual": [
@@ -2032,13 +2166,15 @@
   },
   "Spotify": {
     "contextual": [
-      "Premium",
-      "Concert tickets"
+      "subscription",
+      "premium plan",
+      "audiobook",
+      "concert ticket"
     ],
     "categories": [
       "other"
     ],
-    "updated_at": "2026-07-22T14:33:21.038674+00:00"
+    "updated_at": "2026-07-24T04:05:04.803793+00:00"
   },
   "Tarte Cosmetics": {
     "contextual": [
@@ -2081,45 +2217,43 @@
     "updated_at": "2026-07-20T15:12:48.402392+00:00"
   },
   "Urban Decay": {
-    "contextual": [
-      "samples",
-      "free samples"
-    ],
+    "contextual": [],
     "categories": [
       "beauty"
     ],
-    "updated_at": "2026-07-22T14:33:35.138516+00:00"
+    "updated_at": "2026-07-24T04:05:09.400736+00:00"
   },
   "Vera Bradley": {
     "contextual": [
       "tote bag",
       "backpack",
-      "lunch bag",
       "wallet",
-      "purse",
+      "lunch bag",
+      "crossbody bag",
       "sunglasses",
-      "reading glasses",
       "sleepwear",
-      "carry-on luggage",
-      "travel organizer",
+      "mini purse",
       "shoulder bag",
-      "travel bag",
-      "makeup bags",
+      "laptop bag",
+      "makeup bag",
       "duffel bag",
       "belt bag",
-      "keychains",
-      "charms",
       "throw blanket",
-      "weekend bag",
-      "pouches"
+      "keychain",
+      "pouch",
+      "slippers",
+      "socks",
+      "drinkware",
+      "umbrella"
     ],
     "categories": [
       "accessories",
-      "bags",
+      "travel",
       "clothing",
-      "home"
+      "home",
+      "footwear"
     ],
-    "updated_at": "2026-07-22T15:16:05.864168+00:00"
+    "updated_at": "2026-07-24T04:14:05.390670+00:00"
   },
   "Vince": {
     "contextual": [
@@ -2127,41 +2261,49 @@
       "sweater",
       "trouser",
       "vest",
-      "top",
+      "polo",
+      "polo top",
       "shirt",
-      "trench coat"
-    ],
-    "categories": [
-      "clothing"
-    ],
-    "updated_at": "2026-07-22T14:33:57.858977+00:00"
-  },
-  "Aerie": {
-    "contextual": [
-      "bras",
-      "bralettes",
-      "undies",
-      "swimsuits",
-      "activewear",
-      "pajamas",
-      "leggings",
-      "shorts",
-      "hoodies",
-      "t-shirts",
-      "tanks",
-      "sweaters",
-      "cardigans",
-      "joggers",
-      "sweatpants",
-      "workout tops",
-      "sports bras"
+      "coat",
+      "trench coat",
+      "henley",
+      "bag",
+      "sweater vest"
     ],
     "categories": [
       "clothing",
-      "accessories",
-      "beauty"
+      "accessories"
     ],
-    "updated_at": "2026-07-22T14:36:48.487850+00:00"
+    "updated_at": "2026-07-24T04:05:23.568827+00:00"
+  },
+  "Aerie": {
+    "contextual": [
+      "bra",
+      "bralette",
+      "undies",
+      "leggings",
+      "shorts",
+      "swimsuit",
+      "bikini",
+      "one-piece",
+      "coverup",
+      "pajamas",
+      "joggers",
+      "sweatshirt",
+      "hoodie",
+      "sweatpants",
+      "t‑shirt",
+      "tank top",
+      "sweater",
+      "cardigan",
+      "sports bra",
+      "tiara"
+    ],
+    "categories": [
+      "clothing",
+      "accessories"
+    ],
+    "updated_at": "2026-07-24T04:05:51.396303+00:00"
   },
   "Aldi": {
     "contextual": [
@@ -2217,7 +2359,7 @@
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:38:06.687103+00:00"
+    "updated_at": "2026-07-24T04:05:57.114039+00:00"
   },
   "Aritzia": {
     "contextual": [
@@ -2261,7 +2403,7 @@
   "Bealls": {
     "contextual": [],
     "categories": [],
-    "updated_at": "2026-07-22T14:38:16.130477+00:00"
+    "updated_at": "2026-07-24T04:06:05.823782+00:00"
   },
   "Brooks Running": {
     "contextual": [
@@ -2283,135 +2425,178 @@
   },
   "Buffalo Wild Wings": {
     "contextual": [
-      "Boneless",
-      "Fries",
-      "Dips"
+      "boneless wings",
+      "fries",
+      "dips"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:41:26.886143+00:00"
+    "updated_at": "2026-07-24T04:06:21.549903+00:00"
   },
   "Chili's": {
     "contextual": [
-      "burgers",
+      "burger",
       "chicken tenders",
-      "fajitas",
-      "margaritas"
-    ],
-    "categories": [
-      "food"
-    ],
-    "updated_at": "2026-07-22T14:20:23.440620+00:00"
-  },
-  "Cracker Barrel": {
-    "contextual": [
-      "entrees",
-      "Campfire meals",
-      "S'mores Brownie Skillet",
-      "retail items",
-      "Gift Cards"
-    ],
-    "categories": [
-      "food"
-    ],
-    "updated_at": "2026-07-20T15:21:48.196614+00:00"
-  },
-  "CVS": {
-    "contextual": [
-      "first aid",
-      "vitamins",
-      "personal care",
-      "skincare items",
-      "beauty",
-      "snacks"
-    ],
-    "categories": [
-      "health",
-      "beauty",
-      "food"
-    ],
-    "updated_at": "2026-07-22T14:47:57.751412+00:00"
-  },
-  "Denny's": {
-    "contextual": [
-      "2-Egg Breakfast Slam",
-      "Everyday Value Slam",
-      "Two Meat Scrambler",
-      "Super Slam",
-      "Grand Slam® Burrito",
-      "Country Fried Steak",
-      "Classic Burger with Fries",
-      "BLT&E Slamwich",
-      "Chicken Tenders & Fries"
-    ],
-    "categories": [
-      "food"
-    ],
-    "updated_at": "2026-07-22T14:22:39.356895+00:00"
-  },
-  "Dunkin": {
-    "contextual": [
-      "MUNCHKINS® Donut Hole Treats",
-      "Hash Browns",
-      "Cold Foam drink topping",
-      "Espresso Shot",
-      "Coffee Milk",
-      "Lemonade drink add-in",
-      "Hot Coffee",
-      "Iced Coffee",
-      "Tea",
-      "Donut",
-      "Dunkin’ Refresher",
-      "Hot Chocolate",
-      "Chai Latte",
-      "Matcha Latte",
-      "Muffin",
-      "Iced Loaf slice",
-      "Breakfast sandwich",
-      "Wake-Up Wrap®",
-      "Stuffed Bagel Minis",
-      "Croissant Stuffers"
-    ],
-    "categories": [
-      "food"
-    ],
-    "updated_at": "2026-07-22T14:50:19.863765+00:00"
-  },
-  "Exxon Mobil": {
-    "contextual": [
-      "gas",
-      "premium gas",
-      "snacks",
-      "drinks",
-      "car washes",
-      "candy bars",
-      "chips"
+      "fajita",
+      "steak",
+      "chicken",
+      "shrimp",
+      "margarita",
+      "cocktail",
+      "beer",
+      "chips",
+      "salsa",
+      "gift card"
     ],
     "categories": [
       "food",
       "other"
     ],
-    "updated_at": "2026-07-22T14:50:56.235733+00:00"
+    "updated_at": "2026-07-24T04:01:32.792721+00:00"
+  },
+  "Cracker Barrel": {
+    "contextual": [
+      "entree",
+      "campfire meal",
+      "s'mores brownie skillet",
+      "gift card"
+    ],
+    "categories": [
+      "food"
+    ],
+    "updated_at": "2026-07-24T04:08:11.208412+00:00"
+  },
+  "CVS": {
+    "contextual": [
+      "first aid kits",
+      "vitamins",
+      "personal care items",
+      "beauty products",
+      "snacks",
+      "skincare products",
+      "over-the-counter medication",
+      "health supplements",
+      "prescription medication",
+      "pharmacy supplies"
+    ],
+    "categories": [
+      "beauty",
+      "food",
+      "other"
+    ],
+    "updated_at": "2026-07-25T00:00:26.304275+00:00"
+  },
+  "Denny's": {
+    "contextual": [
+      "egg",
+      "bacon",
+      "sausage",
+      "hash browns",
+      "toast",
+      "pancake",
+      "brioche French toast",
+      "biscuit",
+      "gravy",
+      "steak",
+      "burger",
+      "fries",
+      "chicken tenders",
+      "dipping sauce",
+      "lettuce",
+      "tomato",
+      "onion",
+      "cheese",
+      "bread",
+      "sourdough"
+    ],
+    "categories": [
+      "food"
+    ],
+    "updated_at": "2026-07-24T04:02:30.838671+00:00"
+  },
+  "Dunkin": {
+    "contextual": [
+      "donut",
+      "bagel",
+      "muffin",
+      "coffee",
+      "tea",
+      "espresso",
+      "latte",
+      "hot chocolate",
+      "chai latte",
+      "matcha latte",
+      "refresher",
+      "breakfast sandwich",
+      "wrap",
+      "croissant",
+      "bacon",
+      "hash brown",
+      "munchkins",
+      "donut hole treat",
+      "iced loaf",
+      "cream cheese"
+    ],
+    "categories": [
+      "food"
+    ],
+    "updated_at": "2026-07-24T04:08:46.346034+00:00"
+  },
+  "Exxon Mobil": {
+    "contextual": [
+      "gasoline",
+      "premium gas",
+      "fuel",
+      "snacks",
+      "drinks",
+      "candy bars",
+      "chips",
+      "car washes",
+      "credit card"
+    ],
+    "categories": [
+      "food",
+      "travel",
+      "other"
+    ],
+    "updated_at": "2026-07-24T04:08:56.727348+00:00"
   },
   "Frontier Airlines": {
-    "contextual": [],
+    "contextual": [
+      "flight",
+      "ticket",
+      "fare",
+      "bundle",
+      "travel extras",
+      "discount club",
+      "frequent flyer program",
+      "miles",
+      "award flight",
+      "elite status"
+    ],
     "categories": [
       "travel"
     ],
-    "updated_at": "2026-07-22T14:52:05.494098+00:00"
+    "updated_at": "2026-07-24T04:09:22.791649+00:00"
   },
   "Function of Beauty": {
     "contextual": [
-      "Leave-In Treatment",
-      "Custom Repair",
-      "Shampoo",
-      "Conditioner"
+      "shampoo",
+      "conditioner",
+      "hair mask",
+      "leave‑in treatment",
+      "hair repair",
+      "custom set",
+      "haircare",
+      "bodycare",
+      "hair treatment",
+      "hair product"
     ],
     "categories": [
       "beauty"
     ],
-    "updated_at": "2026-07-22T14:52:29.928211+00:00"
+    "updated_at": "2026-07-24T04:09:30.260564+00:00"
   },
   "Green Chef": {
     "contextual": [
@@ -2419,16 +2604,25 @@
       "organic produce",
       "premium proteins",
       "sustainably sourced seafood",
-      "non-GMO tofu",
-      "organic tempeh",
+      "ready-to-eat breakfasts",
       "egg bites",
       "superfood granola",
-      "Ready-to-Blend smoothies"
+      "ready-to-blend smoothies",
+      "organic tofu",
+      "organic tempeh",
+      "gluten-free meals",
+      "vegan meals",
+      "vegetarian meals",
+      "high-protein meals",
+      "low-carb meals",
+      "calorie-smart meals",
+      "plant-based meals",
+      "Mediterranean meals"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:53:09.334904+00:00"
+    "updated_at": "2026-07-24T04:09:37.374554+00:00"
   },
   "Guess": {
     "contextual": [
@@ -2439,48 +2633,62 @@
       "clothing",
       "accessories"
     ],
-    "updated_at": "2026-07-22T14:53:25.989280+00:00"
+    "updated_at": "2026-07-24T04:09:41.304629+00:00"
   },
   "IHOP": {
     "contextual": [
       "pancakes",
       "chocolate pancakes",
       "BLT",
-      "appetizers",
       "burrito",
-      "bow"
+      "bowl",
+      "appetizers",
+      "breakfast",
+      "meal"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:55:11.484456+00:00"
+    "updated_at": "2026-07-24T04:09:50.876302+00:00"
   },
   "JCPenney": {
     "contextual": [
       "shoes",
       "handbags",
       "accessories",
-      "swimwear",
+      "jewelry",
+      "beauty products",
+      "toys",
+      "games",
+      "home furnishings",
       "activewear",
-      "intimates"
+      "intimates",
+      "swimwear",
+      "clothing",
+      "baby items",
+      "kid's items"
     ],
     "categories": [
       "footwear",
       "clothing",
       "accessories",
-      "beauty"
+      "beauty",
+      "home"
     ],
-    "updated_at": "2026-07-22T14:55:38.496231+00:00"
+    "updated_at": "2026-07-24T04:09:56.890563+00:00"
   },
   "JetBlue": {
     "contextual": [
-      "flights",
-      "hotel"
+      "flight",
+      "vacation package",
+      "hotel",
+      "credit card",
+      "app"
     ],
     "categories": [
       "travel"
     ],
-    "updated_at": "2026-07-22T14:55:53.098141+00:00"
+    "updated_at": "2026-07-24T04:10:02.224266+00:00"
   },
   "Journeys": {
     "contextual": [
@@ -2491,7 +2699,7 @@
       "footwear",
       "accessories"
     ],
-    "updated_at": "2026-07-22T14:57:22.281847+00:00"
+    "updated_at": "2026-07-24T04:10:09.261260+00:00"
   },
   "Kizik": {
     "contextual": [
@@ -2531,28 +2739,37 @@
     "contextual": [
       "Snack Wrap",
       "McDouble",
-      "chicken McNuggets",
-      "sausage McMuffin",
-      "hash browns",
-      "fries",
+      "Chicken McNuggets",
+      "Sausage McMuffin",
+      "Hash Browns",
+      "Fries",
       "McChicken",
-      "sauce burrito",
-      "sausage biscuit",
+      "Sausage Burrito",
+      "Sausage Biscuit",
       "Premium Roast Coffee",
-      "soft drink",
+      "Soft drink",
       "Coca-Cola"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:58:38.454884+00:00"
+    "updated_at": "2026-07-24T04:10:16.465147+00:00"
   },
   "Outback Steakhouse": {
-    "contextual": [],
+    "contextual": [
+      "ribeye",
+      "steak",
+      "soup",
+      "salad",
+      "entree",
+      "dessert",
+      "meal",
+      "beverage"
+    ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:30:42.400652+00:00"
+    "updated_at": "2026-07-24T04:04:47.562175+00:00"
   },
   "Parachute": {
     "contextual": [
@@ -2584,8 +2801,10 @@
   },
   "Peacock": {
     "contextual": [],
-    "categories": [],
-    "updated_at": "2026-07-22T15:02:32.063800+00:00"
+    "categories": [
+      "electronics"
+    ],
+    "updated_at": "2026-07-24T04:11:10.856489+00:00"
   },
   "Prose": {
     "contextual": [
@@ -2594,7 +2813,7 @@
       "scalp serum",
       "hair mask",
       "curl cream",
-      "root source hair supplements",
+      "hair supplements",
       "cleanser",
       "serum",
       "moisturizer"
@@ -2602,25 +2821,25 @@
     "categories": [
       "beauty"
     ],
-    "updated_at": "2026-07-22T15:03:38.955646+00:00"
+    "updated_at": "2026-07-24T04:11:36.080898+00:00"
   },
   "Qdoba": {
     "contextual": [
       "chips",
       "queso",
-      "guac",
+      "guacamole",
       "salsa",
       "entrée"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T15:04:00.871466+00:00"
+    "updated_at": "2026-07-24T04:11:37.999507+00:00"
   },
   "Rack Room Shoes": {
     "contextual": [],
     "categories": [],
-    "updated_at": "2026-07-22T15:04:11.153962+00:00"
+    "updated_at": "2026-07-24T04:11:41.998573+00:00"
   },
   "Rag & Bone": {
     "contextual": [
@@ -2645,72 +2864,76 @@
   "Rebecca Minkoff": {
     "contextual": [
       "handbag",
-      "belt",
-      "bucket bag",
       "crossbody bag",
-      "hobo bag",
       "tote bag",
+      "bucket bag",
+      "hobo bag",
+      "shoulder bag",
       "wallet",
+      "belt",
       "dress",
       "skirt",
       "heel",
       "sandals",
       "shoes",
-      "flat",
       "mule",
-      "chain heel",
-      "mini dress",
-      "lace dress",
-      "smocked mini dress",
-      "bubble mini dress",
-      "open back dress"
+      "mary jane",
+      "coin purse",
+      "bag charm",
+      "moneypiece"
     ],
     "categories": [
       "footwear",
       "clothing",
       "accessories"
     ],
-    "updated_at": "2026-07-22T15:05:52.644743+00:00"
+    "updated_at": "2026-07-24T04:12:28.164646+00:00"
   },
   "Red Robin": {
     "contextual": [
       "burger",
-      "side",
-      "tea",
-      "soda",
-      "lemonade",
       "pizza",
-      "wraps",
+      "wrap",
       "sandwich",
-      "appetizer",
+      "pretzel bites",
+      "onion rings",
+      "mozzarella twists",
       "fries",
-      "broccoli",
+      "steak fries",
+      "sweet potato fries",
       "cream soda",
-      "flavors",
-      "beverages"
+      "drink",
+      "broccoli",
+      "wing",
+      "sauce",
+      "appetizer",
+      "side"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T14:32:04.406662+00:00"
+    "updated_at": "2026-07-24T04:04:59.003253+00:00"
   },
   "Revolve": {
     "contextual": [
+      "gummies",
       "shorts",
-      "blouse",
-      "shoes",
-      "cap",
+      "dress",
+      "running shoes",
       "flip flops",
-      "carry-on roller",
-      "brush"
+      "cap",
+      "vanity case",
+      "brush",
+      "carry‑on luggage"
     ],
     "categories": [
-      "clothing",
       "footwear",
+      "clothing",
       "accessories",
-      "beauty"
+      "beauty",
+      "travel"
     ],
-    "updated_at": "2026-07-22T15:07:15.060629+00:00"
+    "updated_at": "2026-07-24T04:12:47.927017+00:00"
   },
   "Ritual": {
     "contextual": [
@@ -2762,12 +2985,16 @@
   "Shell": {
     "contextual": [
       "gasoline",
+      "premium gasoline",
+      "V-Power NiTRO+ Premium Gasoline",
+      "diesel",
+      "alternative fuels",
       "fuel"
     ],
     "categories": [
-      "other"
+      "travel"
     ],
-    "updated_at": "2026-07-22T15:10:08.141394+00:00"
+    "updated_at": "2026-07-24T04:12:58.384904+00:00"
   },
   "Shoe Carnival": {
     "contextual": [
@@ -2776,7 +3003,7 @@
     "categories": [
       "footwear"
     ],
-    "updated_at": "2026-07-22T15:10:21.177837+00:00"
+    "updated_at": "2026-07-24T04:13:00.946328+00:00"
   },
   "Southwest Airlines": {
     "contextual": [],
@@ -2822,11 +3049,14 @@
     "updated_at": "2026-07-20T15:40:17.068793+00:00"
   },
   "Subway": {
-    "contextual": [],
+    "contextual": [
+      "food",
+      "beverages"
+    ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T15:10:49.986483+00:00"
+    "updated_at": "2026-07-24T04:13:18.904365+00:00"
   },
   "Taco Bell": {
     "contextual": [
@@ -2857,59 +3087,48 @@
   },
   "Talbots": {
     "contextual": [
-      "tees",
-      "knits",
-      "blouses",
-      "shirts",
-      "sweaters",
-      "pants",
-      "jeans",
-      "shorts",
-      "dresses",
-      "skirts",
-      "jackets",
-      "coats",
-      "suiting",
+      "tee",
+      "knit",
+      "blouse",
+      "shirt",
+      "sweater",
+      "pant",
+      "jean",
+      "short",
+      "dress",
+      "skirt",
+      "jacket",
+      "coat",
+      "suit",
       "loungewear",
       "sleepwear",
       "swimwear",
-      "intimates",
-      "tops",
-      "crewneck",
-      "sleeveless",
-      "lace",
-      "trim",
-      "embroidered",
-      "ribbed",
-      "patterned",
-      "denim",
-      "ankle pants",
-      "tunic",
-      "sweatshirt",
-      "knot top",
-      "jersey",
-      "cotton blend",
-      "wool blend",
-      "cashmere",
-      "velvet"
+      "intimate",
+      "shoe",
+      "accessory"
     ],
     "categories": [
       "clothing",
-      "footwear"
+      "footwear",
+      "accessories"
     ],
-    "updated_at": "2026-07-22T15:13:29.269042+00:00"
+    "updated_at": "2026-07-24T04:13:40.433201+00:00"
   },
   "ThredUp": {
     "contextual": [
       "dresses",
       "denim",
       "shorts",
-      "outerwear"
+      "outerwear",
+      "skirts",
+      "clothing",
+      "kids clothing",
+      "fashion"
     ],
     "categories": [
       "clothing"
     ],
-    "updated_at": "2026-07-22T15:13:49.878263+00:00"
+    "updated_at": "2026-07-24T04:13:43.344455+00:00"
   },
   "Thrive Market": {
     "contextual": [
@@ -2945,7 +3164,7 @@
     "categories": [
       "beauty"
     ],
-    "updated_at": "2026-07-22T15:14:57.837647+00:00"
+    "updated_at": "2026-07-24T04:13:51.152049+00:00"
   },
   "Under Armour": {
     "contextual": [
@@ -2994,63 +3213,99 @@
     "updated_at": "2026-07-20T15:46:53.705785+00:00"
   },
   "Extended Stay America": {
-    "contextual": [],
+    "contextual": [
+      "studio suite",
+      "deluxe studio",
+      "full bed",
+      "full kitchen",
+      "wi‑fi",
+      "guest laundry",
+      "pet‑friendly room",
+      "hotel room",
+      "suite",
+      "accommodation",
+      "extended stay"
+    ],
     "categories": [
       "travel"
     ],
-    "updated_at": "2026-07-22T14:24:08.408066+00:00"
+    "updated_at": "2026-07-25T00:01:24.118707+00:00"
   },
   "Domino's": {
     "contextual": [
       "pizza",
-      "crust",
       "toppings",
+      "crust",
       "wings",
-      "chicken",
-      "desserts",
-      "bread bites"
+      "boneless chicken",
+      "bread bites",
+      "desserts"
     ],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T13:59:42.409644+00:00"
+    "updated_at": "2026-07-24T01:29:13.838078+00:00"
   },
   "Great Wolf Lodge": {
-    "contextual": [],
-    "categories": [],
-    "updated_at": "2026-07-22T14:03:21.901456+00:00"
+    "contextual": [
+      "room",
+      "stay",
+      "reservation",
+      "attraction pass",
+      "dining package",
+      "meal",
+      "food",
+      "water park access",
+      "bundle",
+      "package"
+    ],
+    "categories": [
+      "travel",
+      "food"
+    ],
+    "updated_at": "2026-07-25T00:03:27.084933+00:00"
   },
   "Pep Boys": {
     "contextual": [
       "tires",
-      "brakes",
-      "battery",
-      "wheel alignment",
-      "air conditioning system evaluation",
-      "engine code pull service"
+      "batteries",
+      "refrigerant",
+      "air conditioning system"
     ],
     "categories": [
-      "fitness",
-      "electronics",
       "other"
     ],
-    "updated_at": "2026-07-22T14:13:44.482328+00:00"
+    "updated_at": "2026-07-24T03:58:58.779437+00:00"
   },
   "Take 5 Oil Change": {
-    "contextual": [],
+    "contextual": [
+      "oil change"
+    ],
     "categories": [
       "other"
     ],
-    "updated_at": "2026-07-22T14:14:29.717668+00:00"
+    "updated_at": "2026-07-24T03:59:21.018216+00:00"
   },
   "Topgolf": {
     "contextual": [
-      "gift cards"
+      "golf clubs",
+      "gift cards",
+      "food",
+      "drink",
+      "membership",
+      "lesson",
+      "class",
+      "game",
+      "app",
+      "bay"
     ],
     "categories": [
+      "food",
+      "electronics",
+      "fitness",
       "other"
     ],
-    "updated_at": "2026-07-22T14:14:44.483976+00:00"
+    "updated_at": "2026-07-24T03:59:37.533949+00:00"
   },
   "O'Reilly Auto Parts": {
     "contextual": [
@@ -3058,37 +3313,40 @@
       "rotors"
     ],
     "categories": [
-      "auto_parts"
+      "other"
     ],
-    "updated_at": "2026-07-22T14:29:06.628886+00:00"
+    "updated_at": "2026-07-24T04:04:21.119310+00:00"
   },
   "Optimum Nutrition": {
     "contextual": [
-      "Protein",
-      "Creatine",
-      "Weight Gainers",
-      "BCAA",
-      "Vitamins",
-      "Shaker Cup",
-      "Pre-Workout",
-      "Whey Protein",
-      "Casein",
-      "Glutamine",
-      "HMB",
-      "Amino Energy",
-      "Electrolytes",
-      "Isolate",
-      "Hydrowhey",
-      "Plant Protein",
-      "Samples",
-      "Capsules",
-      "Powder",
-      "Tablets"
+      "whey protein",
+      "protein powder",
+      "protein shake",
+      "protein drink",
+      "plant protein",
+      "isolate protein",
+      "casein",
+      "mass gainer",
+      "weight gainer",
+      "creatine gummies",
+      "creatine powder",
+      "creatine capsules",
+      "pre-workout",
+      "amino energy",
+      "BCAA powder",
+      "glutamine powder",
+      "vitamins",
+      "shaker cup",
+      "travel pack",
+      "snack"
     ],
     "categories": [
-      "food"
+      "fitness",
+      "food",
+      "accessories",
+      "travel"
     ],
-    "updated_at": "2026-07-22T14:30:30.183766+00:00"
+    "updated_at": "2026-07-24T04:04:35.705999+00:00"
   },
   "Sprouts": {
     "contextual": [
@@ -3116,39 +3374,29 @@
       "walking shoes",
       "slides",
       "sandals",
-      "low profile",
       "soccer cleats",
       "basketball shoes",
-      "workout shoes",
       "golf shoes",
       "shorts",
       "pants",
       "shirts",
-      "tops",
       "graphic tees",
       "jerseys",
       "sweatpants",
       "tracksuits",
       "swimwear",
       "hoodies",
-      "sweatshirts",
       "jackets",
       "socks",
-      "hats",
-      "beanies",
-      "bags",
-      "backpacks",
-      "underwear",
-      "soccer balls",
-      "water bottles",
-      "sunglasses"
+      "hats"
     ],
     "categories": [
       "footwear",
       "clothing",
-      "accessories"
+      "accessories",
+      "fitness"
     ],
-    "updated_at": "2026-07-22T14:36:01.930631+00:00"
+    "updated_at": "2026-07-24T04:05:41.930853+00:00"
   },
   "Best Buy": {
     "contextual": [
@@ -3178,45 +3426,51 @@
   },
   "Casper": {
     "contextual": [
-      "mattresses",
-      "pillows",
-      "bedding",
-      "furniture",
-      "sheet sets",
-      "mattress protectors",
-      "duvets",
-      "adjustable bed frames",
-      "headboards",
-      "foundation beds",
-      "metal bed frame",
-      "upholstered bed frame",
-      "haven bed frame",
-      "repose bed frame",
+      "mattress",
+      "pillow",
+      "bed frame",
+      "headboard",
+      "sheet",
+      "mattress protector",
+      "duvet",
+      "mattress topper",
+      "glow light",
+      "glow night light",
       "dog bed",
       "blanket robe",
+      "digital gift card",
       "weighted blanket",
-      "waterproof mattress protector",
-      "breathable mattress protector"
+      "adjustable base",
+      "bundle",
+      "foam",
+      "bedding",
+      "accessory",
+      "hybrid mattress"
     ],
     "categories": [
       "home"
     ],
-    "updated_at": "2026-07-22T14:46:19.409304+00:00"
+    "updated_at": "2026-07-24T04:07:58.375002+00:00"
   },
   "Cedar Point": {
     "contextual": [
+      "passes",
       "tickets",
-      "season passes",
-      "hotels",
-      "campgrounds",
-      "water gadgets",
-      "pools"
+      "drinks",
+      "hotel rooms",
+      "campground sites",
+      "rides",
+      "roller coasters",
+      "shows",
+      "events",
+      "water slides"
     ],
     "categories": [
       "travel",
+      "food",
       "other"
     ],
-    "updated_at": "2026-07-22T14:46:42.379760+00:00"
+    "updated_at": "2026-07-24T04:08:10.034516+00:00"
   },
   "Columbia": {
     "contextual": [
@@ -3255,59 +3509,66 @@
     "categories": [
       "other"
     ],
-    "updated_at": "2026-07-22T14:48:53.411820+00:00"
+    "updated_at": "2026-07-24T04:08:39.394604+00:00"
   },
   "Famous Footwear": {
     "contextual": [
       "shoes",
+      "sneakers",
       "sandals",
       "boots",
-      "socks",
-      "bags",
       "heels",
       "slip-ons",
+      "athletic shoes",
+      "sneaker boots",
       "work shoes",
-      "sneakers",
-      "sneaker boots"
+      "women's shoes",
+      "men's shoes",
+      "kids shoes",
+      "bags",
+      "accessories",
+      "socks",
+      "insoles",
+      "shoe care"
     ],
     "categories": [
-      "footwear"
+      "footwear",
+      "accessories"
     ],
-    "updated_at": "2026-07-22T14:51:31.782918+00:00"
+    "updated_at": "2026-07-24T04:09:08.771294+00:00"
   },
   "Five Guys": {
     "contextual": [
-      "blackberry",
-      "shake",
-      "mix-in",
+      "blackberry shake mix-in",
+      "milkshake",
       "burger",
-      "milkshake"
+      "catering",
+      "gift card"
     ],
     "categories": [
-      "food"
+      "food",
+      "other"
     ],
-    "updated_at": "2026-07-22T14:51:52.411544+00:00"
+    "updated_at": "2026-07-24T04:09:14.393708+00:00"
   },
   "John Deere": {
     "contextual": [
-      "Gator Utility Vehicle",
-      "8245R Tractor",
-      "Compact Tractors",
-      "Z530M Mower",
-      "X354 Mower",
-      "Precision Upgrades",
-      "8RX Tractor",
-      "250 P-Tier Excavator",
-      "Batteries",
-      "Lubricants",
-      "Grease Gun",
-      "Wheeled Feller Buncher"
+      "tractors",
+      "mowers",
+      "utility vehicles",
+      "excavators",
+      "parts",
+      "batteries",
+      "lubricants",
+      "grease gun",
+      "wheeled bunchers",
+      "sprayers",
+      "precision upgrades"
     ],
     "categories": [
-      "home",
-      "fitness"
+      "other"
     ],
-    "updated_at": "2026-07-22T14:56:58.570270+00:00"
+    "updated_at": "2026-07-24T04:10:04.968935+00:00"
   },
   "Kendra Scott": {
     "contextual": [
@@ -3315,13 +3576,18 @@
       "bracelets",
       "earrings",
       "rings",
+      "jewelry",
+      "watches",
+      "sunglasses",
       "charms",
-      "sunglasses"
+      "birthstone jewelry",
+      "initial jewelry",
+      "personalized gifts"
     ],
     "categories": [
       "accessories"
     ],
-    "updated_at": "2026-07-22T14:57:50.689926+00:00"
+    "updated_at": "2026-07-24T04:10:14.114756+00:00"
   },
   "Morphe": {
     "contextual": [
@@ -3349,49 +3615,52 @@
   },
   "Naturalizer": {
     "contextual": [
-      "heels",
       "sandals",
       "flats",
+      "heels",
       "sneakers",
-      "boots"
+      "boots",
+      "pumps",
+      "loafers",
+      "shoes"
     ],
     "categories": [
       "footwear"
     ],
-    "updated_at": "2026-07-22T14:59:57.431283+00:00"
+    "updated_at": "2026-07-24T04:10:37.184660+00:00"
   },
   "Nordstrom Rack": {
     "contextual": [],
     "categories": [],
-    "updated_at": "2026-07-22T15:00:08.028804+00:00"
+    "updated_at": "2026-07-24T04:10:40.473031+00:00"
   },
   "Nurx": {
     "contextual": [
       "birth control",
-      "prescription pills",
-      "GLP-1 Injections",
       "emergency contraception",
-      "cold sore",
-      "genital herpes",
-      "women’s hair loss",
-      "dandruff",
-      "bacterial vaginosis",
-      "menopause",
-      "migraines",
-      "UTI",
-      "vaginitis",
-      "yeast infection",
+      "GLP-1 injections",
+      "prescription pills",
+      "weight management treatment",
+      "anti-aging treatment",
       "eyelash growth serum",
-      "anti-aging treatment plans",
-      "acne solutions"
+      "melasma treatment",
+      "rosacea treatment",
+      "acne medication",
+      "mental health medication",
+      "hair loss treatment",
+      "dandruff treatment",
+      "bacterial vaginosis medication",
+      "menopause medication",
+      "migraine medication",
+      "UTI medication",
+      "vaginitis medication",
+      "yeast infection medication",
+      "cold sore medication"
     ],
     "categories": [
-      "healthcare",
-      "beauty",
-      "fitness",
       "other"
     ],
-    "updated_at": "2026-07-22T15:02:16.137385+00:00"
+    "updated_at": "2026-07-24T04:11:00.062482+00:00"
   },
   "Ollie": {
     "contextual": [
@@ -3411,53 +3680,43 @@
   "PowerA": {
     "contextual": [
       "controller",
-      "protection case",
+      "case",
       "screen protector",
+      "light strip",
       "charging base",
       "clip",
-      "light strip",
-      "wired controller",
-      "wireless controller",
-      "mobile gaming clip"
+      "charging station"
     ],
     "categories": [
-      "electronics"
+      "electronics",
+      "accessories"
     ],
-    "updated_at": "2026-07-22T15:03:06.064733+00:00"
+    "updated_at": "2026-07-24T04:11:31.338787+00:00"
   },
   "Rare Beauty": {
     "contextual": [
       "lip oil stick",
       "liquid blush",
-      "perfume",
+      "eau de parfum",
       "brow gel",
       "eyeshadow palette",
       "foundation",
-      "tinted lip oil"
+      "tinted lip oil",
+      "makeup set",
+      "beauty tool"
     ],
     "categories": [
-      "beauty"
+      "beauty",
+      "accessories"
     ],
-    "updated_at": "2026-07-22T15:04:41.115133+00:00"
+    "updated_at": "2026-07-24T04:12:07.093755+00:00"
   },
   "Rite Aid": {
-    "contextual": [
-      "blood tests",
-      "hormone test",
-      "fertility test",
-      "bodybuilder panel",
-      "lab work",
-      "CBC",
-      "SHBG",
-      "Vitamin D test",
-      "men's hormone light test",
-      "women's hormone light test",
-      "estradiol extended turnaround"
-    ],
+    "contextual": [],
     "categories": [
-      "health"
+      "other"
     ],
-    "updated_at": "2026-07-22T15:07:51.519128+00:00"
+    "updated_at": "2026-07-24T04:12:52.193362+00:00"
   },
   "VRBO": {
     "contextual": [
@@ -3477,14 +3736,15 @@
       "sandals",
       "boots",
       "slippers",
+      "platform boots",
       "running shoes",
       "heels",
-      "work & safety"
+      "work & safety shoes"
     ],
     "categories": [
       "footwear"
     ],
-    "updated_at": "2026-07-22T14:00:11.012743+00:00"
+    "updated_at": "2026-07-24T01:29:41.306480+00:00"
   },
   "Furbo": {
     "contextual": [
@@ -3499,54 +3759,74 @@
   },
   "Knott's Berry Farm": {
     "contextual": [
-      "tickets",
-      "season passes",
+      "ticket",
+      "season pass",
+      "daily ticket",
+      "waterpark ticket",
       "membership",
-      "park tickets",
-      "meal plans",
-      "park parking",
-      "ride rentals"
+      "gold membership",
+      "fast lane pass",
+      "parking pass",
+      "photo package",
+      "locker rental",
+      "stroller rental",
+      "wheelchair rental",
+      "drink plan",
+      "dining plan",
+      "visa credit card"
     ],
     "categories": [
       "travel",
+      "food",
       "other"
     ],
-    "updated_at": "2026-07-22T14:26:29.424626+00:00"
+    "updated_at": "2026-07-24T04:03:35.629902+00:00"
   },
   "Olive Garden": {
     "contextual": [
-      "Creamy Garlic Fettuccine",
-      "grilled chicken",
+      "fettuccine",
+      "chicken",
       "salmon",
       "shrimp",
-      "Pasta Pass",
-      "family-size pan",
+      "pasta",
+      "breadsticks",
       "entrée",
-      "classic",
-      "Italian Inspired Cocktails"
-    ],
-    "categories": [
-      "food"
-    ],
-    "updated_at": "2026-07-22T14:29:37.441755+00:00"
-  },
-  "Zesty Paws": {
-    "contextual": [
-      "supplements",
-      "bites",
-      "chews",
-      "oils",
-      "powder supplements",
-      "shampoo",
-      "spray",
-      "diffuser",
-      "mousses"
+      "cocktail",
+      "gift card",
+      "meal",
+      "catering"
     ],
     "categories": [
       "food",
       "other"
     ],
-    "updated_at": "2026-07-22T14:34:43.160391+00:00"
+    "updated_at": "2026-07-24T04:04:33.930801+00:00"
+  },
+  "Zesty Paws": {
+    "contextual": [
+      "soft chews",
+      "drops",
+      "oils",
+      "powder supplements",
+      "shampoo",
+      "spray",
+      "diffuser",
+      "multivitamin",
+      "probiotic",
+      "turmeric curcumin",
+      "calming supplement",
+      "hairball supplement",
+      "allergy supplement",
+      "immune supplement",
+      "hip joint supplement",
+      "flea tick spray",
+      "flea tick shampoo",
+      "cat diffuser"
+    ],
+    "categories": [
+      "food"
+    ],
+    "updated_at": "2026-07-24T04:05:31.770905+00:00"
   },
   "Herman Miller": {
     "contextual": [
@@ -3586,87 +3866,413 @@
   },
   "NOW Foods": {
     "contextual": [
-      "5-HTP",
-      "Chewables",
-      "Tablets",
-      "Aloe Soothing Gel",
-      "Veg Capsules",
-      "Softgels",
-      "Gummies",
-      "Lozenges",
-      "Powders",
-      "Tea Bags",
-      "Paste",
-      "Protein Powder",
-      "BCAA Big 6",
-      "Berberine HCl",
-      "Phytosome",
-      "BerryDophilus™"
+      "chewables",
+      "capsules",
+      "gel",
+      "oil",
+      "paste",
+      "powder",
+      "shampoo",
+      "cream",
+      "lotion",
+      "tablet",
+      "softgel",
+      "gummies",
+      "spray",
+      "tea bags",
+      "mask",
+      "balms",
+      "butters",
+      "liquids",
+      "effervescent tablets",
+      "lozenges"
     ],
     "categories": [
-      "supplements"
+      "beauty",
+      "food",
+      "fitness",
+      "other"
     ],
-    "updated_at": "2026-07-22T15:01:11.038586+00:00"
+    "updated_at": "2026-07-24T04:10:52.545723+00:00"
   },
   "Razer": {
     "contextual": [
-      "Razer Blade",
-      "Seiren V3 Chroma",
+      "laptop",
+      "microphone",
       "earbuds",
-      "chair",
-      "SOMA CHROMA"
+      "headset",
+      "mouse",
+      "keyboard",
+      "gaming chair",
+      "gaming kit",
+      "controller",
+      "accessories"
     ],
     "categories": [
-      "electronics"
+      "electronics",
+      "accessories",
+      "home"
     ],
-    "updated_at": "2026-07-22T15:05:06.541586+00:00"
+    "updated_at": "2026-07-24T04:12:14.303241+00:00"
   },
   "Sonic Drive-In": {
     "contextual": [],
     "categories": [
       "food"
     ],
-    "updated_at": "2026-07-22T15:10:33.413732+00:00"
+    "updated_at": "2026-07-24T04:13:03.057200+00:00"
   },
   "Universal Studios": {
-    "contextual": [],
-    "categories": [],
-    "updated_at": "2026-07-22T15:15:09.876326+00:00"
+    "contextual": [
+      "tickets",
+      "vacation packages",
+      "credit card",
+      "merchandise",
+      "memorabilia"
+    ],
+    "categories": [
+      "travel",
+      "other"
+    ],
+    "updated_at": "2026-07-24T04:13:54.059507+00:00"
   },
   "Vineyard Vines": {
     "contextual": [
-      "shirt",
-      "denim",
-      "belt",
+      "tee",
+      "accessory",
+      "swimwear",
+      "button-down shirt",
       "dress",
+      "pullover",
+      "short",
+      "pant",
+      "sweater",
+      "polo",
+      "jacket",
+      "shirt",
       "top",
-      "midi dress",
-      "cover up dress"
+      "skirt",
+      "sweatshirt",
+      "cover-up",
+      "belt",
+      "denim",
+      "quarter-zip"
+    ],
+    "categories": [
+      "clothing",
+      "accessories"
+    ],
+    "updated_at": "2026-07-24T04:14:37.874124+00:00"
+  },
+  "Walmart": {
+    "contextual": [
+      "headphones",
+      "instant camera",
+      "sandals",
+      "table lamp",
+      "water bottle",
+      "pouch",
+      "apparel",
+      "hair cream",
+      "running shoes",
+      "facial mist",
+      "smart ring",
+      "router",
+      "hair waver",
+      "tires",
+      "markers",
+      "eyeglasses",
+      "school supplies"
+    ],
+    "categories": [
+      "electronics",
+      "footwear",
+      "clothing",
+      "beauty",
+      "home"
+    ],
+    "updated_at": "2026-07-24T04:15:10.472645+00:00"
+  },
+  "Safeway": {
+    "contextual": [
+      "bread",
+      "bakery",
+      "cookies",
+      "desserts",
+      "cheesecakes",
+      "buns",
+      "rolls",
+      "sandwich breads",
+      "bagels",
+      "muffins",
+      "baguettes",
+      "french bread",
+      "tortillas",
+      "wraps",
+      "tacos",
+      "custom cakes",
+      "cupcakes",
+      "cheese",
+      "yogurt",
+      "pudding",
+      "milk",
+      "cream",
+      "butter",
+      "sour cream",
+      "meat",
+      "salami",
+      "lunch meats",
+      "prepared meat",
+      "pork",
+      "lamb",
+      "fish",
+      "shellfish",
+      "chicken",
+      "turkey",
+      "beef",
+      "sausage",
+      "hot dogs",
+      "bacon"
+    ],
+    "categories": [
+      "food"
+    ],
+    "updated_at": "2026-07-23T14:45:48.933389+00:00"
+  },
+  "Banana Republic": {
+    "contextual": [
+      "shirt",
+      "skirt",
+      "pant",
+      "short",
+      "dress",
+      "jumpsuit",
+      "suit",
+      "sweater",
+      "polo",
+      "tank top",
+      "cardigan",
+      "jacket",
+      "shoes"
+    ],
+    "categories": [
+      "clothing",
+      "footwear",
+      "accessories"
+    ],
+    "updated_at": "2026-07-24T04:06:03.028728+00:00"
+  },
+  "Bed Bath & Beyond": {
+    "contextual": [
+      "sofas",
+      "sectionals",
+      "benches",
+      "ottomans",
+      "accent chairs",
+      "recliners",
+      "coffee tables",
+      "TV stands",
+      "beds",
+      "mattresses",
+      "dressers",
+      "nightstands",
+      "rugs",
+      "doormats",
+      "bath towels",
+      "shower curtains",
+      "kitchen appliances",
+      "blenders",
+      "cookware",
+      "dinnerware"
+    ],
+    "categories": [
+      "home",
+      "electronics"
+    ],
+    "updated_at": "2026-07-24T04:06:09.934731+00:00"
+  },
+  "Canon": {
+    "contextual": [
+      "cameras",
+      "lenses",
+      "binoculars",
+      "monoculars",
+      "filters",
+      "printers",
+      "ink cartridges",
+      "toner cartridges",
+      "printer paper",
+      "scanners",
+      "projectors",
+      "fax machines",
+      "calculators",
+      "batteries",
+      "chargers",
+      "bags",
+      "cases",
+      "straps",
+      "microphones",
+      "remote controllers"
+    ],
+    "categories": [
+      "electronics",
+      "home",
+      "accessories"
+    ],
+    "updated_at": "2026-07-24T04:07:36.941373+00:00"
+  },
+  "WW (Weight Watchers)": {
+    "contextual": [
+      "weight loss program",
+      "membership",
+      "app",
+      "medication",
+      "recipe",
+      "workshop",
+      "coaching",
+      "social network",
+      "activity integration",
+      "sleep tracking",
+      "body scanner",
+      "fitness content"
+    ],
+    "categories": [
+      "fitness",
+      "food",
+      "other"
+    ],
+    "updated_at": "2026-07-24T04:15:21.350585+00:00"
+  },
+  "BarkBox": {
+    "contextual": [
+      "subscription box",
+      "toy",
+      "treat",
+      "chew",
+      "meal topper",
+      "food",
+      "plush toy",
+      "rubber toy",
+      "nylon toy",
+      "squeaky toy",
+      "tug toy",
+      "rope toy",
+      "toy-in-toy",
+      "fetch toy",
+      "enrichment toy",
+      "XL toy",
+      "super chewer",
+      "dental"
+    ],
+    "categories": [
+      "food",
+      "accessories"
+    ],
+    "updated_at": "2026-07-24T23:59:06.202563+00:00"
+  },
+  "Adore Me": {
+    "contextual": [
+      "bra",
+      "lingerie",
+      "panties",
+      "sleepwear",
+      "slip",
+      "g-string",
+      "bodysuit",
+      "babydoll",
+      "camisole",
+      "short set",
+      "swimwear",
+      "bikini top",
+      "bikini bottom",
+      "one-piece",
+      "cover-up dress",
+      "swim top",
+      "swim bottom",
+      "pasties"
     ],
     "categories": [
       "clothing"
     ],
-    "updated_at": "2026-07-22T15:16:29.564411+00:00"
+    "updated_at": "2026-07-24T23:59:37.383685+00:00"
   },
-  "Walmart": {
+  "iHerb": {
     "contextual": [
-      "fans",
-      "pools",
-      "ASICS Gel 1130",
-      "IPL Hair Removal Device",
-      "Foaming Body Wash",
-      "Oura Ring",
-      "Super Smoothing Cream",
-      "Laundry Detergent Powder",
-      "Crayola markers"
+      "supplements",
+      "vitamins",
+      "minerals",
+      "protein powder",
+      "whey protein",
+      "plant‑based protein",
+      "pre‑workout supplements",
+      "electrolytes",
+      "fish oil",
+      "multivitamins",
+      "probiotics",
+      "collagen supplements",
+      "creatine",
+      "BCAAs",
+      "shampoo",
+      "conditioner",
+      "body wash",
+      "facial cleanser",
+      "sunscreen",
+      "makeup"
     ],
     "categories": [
-      "electronics",
-      "fitness",
       "beauty",
+      "food",
+      "fitness",
       "accessories",
-      "home"
+      "other"
     ],
-    "updated_at": "2026-07-22T15:17:14.582390+00:00"
+    "updated_at": "2026-07-25T00:01:33.764789+00:00"
+  },
+  "Kylie Cosmetics": {
+    "contextual": [
+      "lipstick",
+      "blush",
+      "makeup",
+      "skincare",
+      "compact mirror",
+      "pouch",
+      "cosmic bottle"
+    ],
+    "categories": [
+      "beauty",
+      "accessories"
+    ],
+    "updated_at": "2026-07-25T00:03:57.744137+00:00"
+  },
+  "Overstock": {
+    "contextual": [
+      "sofas",
+      "sectional sofas",
+      "accent chairs",
+      "recliners",
+      "coffee tables",
+      "TV stands",
+      "beds",
+      "mattresses",
+      "dressers",
+      "nightstands",
+      "dining tables",
+      "dining chairs",
+      "patio furniture sets",
+      "outdoor chaise lounges",
+      "hammocks",
+      "desks",
+      "office chairs",
+      "area rugs",
+      "ceiling lights",
+      "throw pillows"
+    ],
+    "categories": [
+      "home",
+      "clothing",
+      "footwear",
+      "accessories"
+    ],
+    "updated_at": "2026-07-25T00:04:11.403872+00:00"
   }
 }
