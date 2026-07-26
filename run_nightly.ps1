@@ -6,7 +6,8 @@ $lockFile = "$root\promo-raw-scraper\.pipeline.lock"
 # Prevent concurrent runs — check lock file for a still-running Python process
 if (Test-Path $lockFile) {
     $lockPid = (Get-Content $lockFile -ErrorAction SilentlyContinue) -replace '\D', ''
-    $running = $lockPid -and (Get-Process -Id ([int]$lockPid) -ErrorAction SilentlyContinue)
+    $proc    = if ($lockPid) { Get-Process -Id ([int]$lockPid) -ErrorAction SilentlyContinue } else { $null }
+    $running = $proc -and ($proc.Name -like "python*")
     if ($running) {
         Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Pipeline already running (PID $lockPid). Exiting."
         exit 0
