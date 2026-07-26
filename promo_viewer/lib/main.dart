@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'screens/splash_screen.dart';
 import 'services/notification_service.dart';
 import 'theme/candy_colors.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
+
+// Must be top-level for FCM background handler
+@pragma('vm:entry-point')
+Future<void> _fcmBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+}
 
 void main() async {
   await SentryFlutter.init(
@@ -14,6 +22,21 @@ void main() async {
     },
     appRunner: () async {
       WidgetsFlutterBinding.ensureInitialized();
+      await Firebase.initializeApp();
+      FirebaseMessaging.onBackgroundMessage(_fcmBackgroundHandler);
+
+      // Handle notification tap when app is opened from terminated state
+      final initial = await FirebaseMessaging.instance.getInitialMessage();
+      if (initial != null) {
+        NotificationService.pendingPromoId = initial.data['promo_id'];
+      }
+
+      // Handle notification tap when app is in background
+      FirebaseMessaging.onMessageOpenedApp.listen((message) {
+        final promoId = message.data['promo_id'];
+        if (promoId != null) NotificationService.tapNotifier.value = promoId;
+      });
+
       await NotificationService.init(navigatorKey: navigatorKey);
       runApp(const PromoViewerApp());
     },
