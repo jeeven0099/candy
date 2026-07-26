@@ -298,6 +298,9 @@ def main() -> None:
             log_print(f"\n[ERROR] generate_notifications exited with code {rc}.", log_fh)
             sys.exit(rc)
 
+        # Step 13b: Send push notifications via Supabase Edge Function (non-fatal)
+        _send_push_notifications(log_fh)
+
         # Step 14: Copy to Flutter app assets
         import shutil
         assets_dest = Path(__file__).resolve().parents[1] / "promo_viewer" / "assets" / "all_promotions.json"
@@ -348,6 +351,50 @@ def main() -> None:
             f"{'='*60}\n"
         )
         log_print(summary, log_fh)
+
+
+def _send_push_notifications(log_fh) -> None:
+    """POST notification candidates to the Supabase Edge Function. Non-fatal."""
+    import json
+    import urllib.request
+    import urllib.error
+
+    candidates_path = ROOT / "notification_candidates.json"
+    if not candidates_path.exists():
+        log_print("[Push] notification_candidates.json not found — skipping push.", log_fh)
+        return
+
+    supabase_url     = _os.environ.get("SUPABASE_URL", "").rstrip("/")
+    service_role_key = _os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+    if not supabase_url or not service_role_key:
+        log_print("[Push] SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY not set — skipping push.", log_fh)
+        return
+
+    try:
+        data = json.loads(candidates_path.read_text(encoding="utf-8"))
+        candidates = data.get("candidates", [])
+        payload = json.dumps({"candidates": candidates}).encode()
+
+        url = f"{supabase_url}/functions/v1/send-push"
+        req = urllib.request.Request(
+            url,
+            data=payload,
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {service_role_key}",
+            },
+            method="POST",
+        )
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            result = json.loads(resp.read())
+            log_print(
+                f"[Push] Sent {result.get('sent', 0)} push(es) to "
+                f"{result.get('users', 0)} user(s) from "
+                f"{result.get('candidates', 0)} candidate(s).",
+                log_fh,
+            )
+    except Exception as exc:
+        log_print(f"[Push] Edge Function call failed (non-fatal): {exc}", log_fh)
 
 
 def write_run_summary(log_path: Path, log_fh) -> None:
