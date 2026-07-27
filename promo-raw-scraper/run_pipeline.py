@@ -355,22 +355,22 @@ def main() -> None:
 
 def _send_push_notifications(log_fh) -> None:
     """POST notification candidates to the Supabase Edge Function. Non-fatal."""
-    import json
-    import urllib.request
-    import urllib.error
-
-    candidates_path = ROOT / "notification_candidates.json"
-    if not candidates_path.exists():
-        log_print("[Push] notification_candidates.json not found — skipping push.", log_fh)
-        return
-
-    supabase_url     = _os.environ.get("SUPABASE_URL", "").rstrip("/")
-    service_role_key = _os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
-    if not supabase_url or not service_role_key:
-        log_print("[Push] SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY not set — skipping push.", log_fh)
-        return
-
     try:
+        import json
+        import urllib.request
+
+        assets_dir = Path(__file__).resolve().parents[1] / "promo_viewer" / "assets"
+        candidates_path = assets_dir / "notification_candidates.json"
+        if not candidates_path.exists():
+            log_print("[Push] notification_candidates.json not found - skipping push.", log_fh)
+            return
+
+        supabase_url     = _os.environ.get("SUPABASE_URL", "").rstrip("/")
+        service_role_key = _os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+        if not supabase_url or not service_role_key:
+            log_print("[Push] SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY not set - skipping push.", log_fh)
+            return
+
         data = json.loads(candidates_path.read_text(encoding="utf-8"))
         candidates = data.get("candidates", [])
         payload = json.dumps({"candidates": candidates}).encode()
