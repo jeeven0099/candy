@@ -11,7 +11,9 @@ final navigatorKey = GlobalKey<NavigatorState>();
 // Must be top-level for FCM background handler
 @pragma('vm:entry-point')
 Future<void> _fcmBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
+  try {
+    await Firebase.initializeApp();
+  } catch (_) {}
 }
 
 void main() async {
@@ -22,20 +24,30 @@ void main() async {
     },
     appRunner: () async {
       WidgetsFlutterBinding.ensureInitialized();
-      await Firebase.initializeApp();
-      FirebaseMessaging.onBackgroundMessage(_fcmBackgroundHandler);
 
-      // Handle notification tap when app is opened from terminated state
-      final initial = await FirebaseMessaging.instance.getInitialMessage();
-      if (initial != null) {
-        NotificationService.pendingPromoId = initial.data['promo_id'];
+      bool firebaseReady = false;
+      try {
+        await Firebase.initializeApp();
+        firebaseReady = true;
+      } catch (_) {
+        // Firebase config files not yet added — push notifications unavailable
       }
 
-      // Handle notification tap when app is in background
-      FirebaseMessaging.onMessageOpenedApp.listen((message) {
-        final promoId = message.data['promo_id'];
-        if (promoId != null) NotificationService.tapNotifier.value = promoId;
-      });
+      if (firebaseReady) {
+        FirebaseMessaging.onBackgroundMessage(_fcmBackgroundHandler);
+
+        // Handle notification tap when app is opened from terminated state
+        final initial = await FirebaseMessaging.instance.getInitialMessage();
+        if (initial != null) {
+          NotificationService.pendingPromoId = initial.data['promo_id'];
+        }
+
+        // Handle notification tap when app is in background
+        FirebaseMessaging.onMessageOpenedApp.listen((message) {
+          final promoId = message.data['promo_id'];
+          if (promoId != null) NotificationService.tapNotifier.value = promoId;
+        });
+      }
 
       await NotificationService.init(navigatorKey: navigatorKey);
       runApp(const PromoViewerApp());
