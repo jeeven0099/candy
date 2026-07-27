@@ -1,9 +1,9 @@
-$root     = "C:\Users\user\Downloads\promo-raw-scraper"
+﻿$root     = "C:\Users\user\Downloads\promo-raw-scraper"
 $python   = "C:\Python314\python.exe"
 $pipeline = "$root\promo-raw-scraper\run_pipeline.py"
 $lockFile = "$root\promo-raw-scraper\.pipeline.lock"
 
-# Prevent concurrent runs — check lock file for a still-running Python process
+# Prevent concurrent runs - check lock file for a still-running Python process
 if (Test-Path $lockFile) {
     $lockPid = (Get-Content $lockFile -ErrorAction SilentlyContinue) -replace '\D', ''
     $proc    = if ($lockPid) { Get-Process -Id ([int]$lockPid) -ErrorAction SilentlyContinue } else { $null }
@@ -18,7 +18,7 @@ if (Test-Path $lockFile) {
 $PID | Out-File $lockFile -Force
 
 try {
-    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Starting pipeline (main pass — OpenRouter openai/gpt-oss-120b)..."
+    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Starting pipeline (main pass - OpenRouter openai/gpt-oss-120b)..."
     $pipelineJob = Start-Process $python -ArgumentList @(
         $pipeline,
         "--model", "openrouter",
