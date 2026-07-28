@@ -563,6 +563,21 @@ class _TrustCard extends StatelessWidget {
                     'Last checked $dateLabel · $_confidenceLabel',
                     style: const TextStyle(fontSize: 11, color: Candy.muted),
                   ),
+                  Builder(builder: (context) {
+                    final uri = Uri.tryParse(url);
+                    final path = uri != null && (uri.path.isNotEmpty && uri.path != '/')
+                        ? uri.path + (uri.query.isNotEmpty ? '?${uri.query}' : '')
+                        : null;
+                    if (path == null) return const SizedBox.shrink();
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 2),
+                      child: Text(
+                        path,
+                        style: const TextStyle(fontSize: 10, color: Candy.muted),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    );
+                  }),
                 ],
               ),
             ),
