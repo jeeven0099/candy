@@ -479,6 +479,7 @@ _CARD_PARTNER_RE = re.compile(
     r"\b(with|using|via)\s+the\s+.{5,60}(card|credit|debit|rewards)\b",
     re.IGNORECASE,
 )
+_NUMERIC_RE = re.compile(r'(\d+(?:\.\d+)?)')
 
 
 def _dedup_key(promo: dict) -> tuple:
@@ -487,6 +488,20 @@ def _dedup_key(promo: dict) -> tuple:
     title = _CARD_PARTNER_RE.sub("", title)
     title = re.sub(r"[^a-z0-9]", "", title)
     return (title, promo.get("discount_type"), promo.get("discount_value"))
+
+
+def _numeric_discount(promo: dict) -> Optional[str]:
+    """Extract the leading numeric value from discount_value for fuzzy dedup.
+
+    'up to 50%', '50%', '50% off', 'up to 50% off' → '50'
+    '$20 off', '$20' → '20'
+    None / 'free' / 'points' → None (skip fuzzy match)
+    """
+    val = (promo.get("discount_value") or "").strip()
+    if not val or val.lower() in ("free", "points", "unknown"):
+        return None
+    m = _NUMERIC_RE.search(val)
+    return m.group(1) if m else None
 
 
 def deduplicate(promotions: List[dict]) -> List[dict]:
@@ -507,7 +522,27 @@ def deduplicate(promotions: List[dict]) -> List[dict]:
             seen[key] = len(result)
             result.append(promo)
 
-    return result
+    # Secondary pass: same discount_type + same numeric value + same source URL → duplicate.
+    # Catches cases where the LLM produced two titles for the same deal
+    # (e.g. "Semi-Annual Sale — up to 50% off" and "Limited Time Only — 50% off")
+    # that differ only in marketing language but link to the same page.
+    url_value_seen: Dict[tuple, int] = {}
+    final: List[dict] = []
+    for promo in result:
+        dtype = promo.get("discount_type")
+        num = _numeric_discount(promo)
+        url = promo.get("deal_url") or promo.get("source_url") or ""
+        if dtype and num and url:
+            uv_key = (dtype, num, url)
+            if uv_key in url_value_seen:
+                idx = url_value_seen[uv_key]
+                if (promo.get("confidence_score") or 0) > (final[idx].get("confidence_score") or 0):
+                    final[idx] = promo
+                continue
+            url_value_seen[uv_key] = len(final)
+        final.append(promo)
+
+    return final
 
 
 # ---------------------------------------------------------------------------
