@@ -5,6 +5,15 @@ from bs4 import BeautifulSoup
 
 DROP_TAGS = ['script', 'style', 'noscript', 'svg', 'canvas', 'iframe', 'nav', 'footer']
 
+# Path prefixes that are navigation/utility — don't annotate with deal_url
+_NAV_PATH_RE = re.compile(
+    r'^/?(?:cart|checkout|account|login|sign-?in|sign-?up|register|logout|'
+    r'wishlist|search|help|support|contact|about|faq|returns?|shipping|'
+    r'privacy|terms|sitemap|legal|accessibility|careers?|press|blog|'
+    r'stores?|locations?|store-?finder|find-a-store)(?:/|$|\?)',
+    re.IGNORECASE,
+)
+
 NOISE_PHRASES = [
     'accept cookies',
     'cookie policy',
@@ -53,6 +62,21 @@ def clean_visible_text(html: str) -> str:
         alt = img.get('alt', '').strip()
         if len(alt) > 5:  # skip generic "logo", "img" etc.
             img.replace_with(alt)
+
+    # Preserve internal href links so the LLM can extract per-deal URLs.
+    # Only annotate links whose href looks like a deal/offer page, not nav/utility.
+    for a in soup.find_all('a', href=True):
+        href = a.get('href', '').strip()
+        visible = a.get_text().strip()
+        if (
+            href.startswith('/')
+            and len(href) > 1
+            and not href.startswith('//')
+            and len(visible) > 4
+            and not _NAV_PATH_RE.match(href)
+            and '#' not in href[:href.find('?') + 1 if '?' in href else len(href)]
+        ):
+            a.replace_with(f"{visible} [deal_url:{href}]")
 
     text = soup.get_text('\n')
     lines = []

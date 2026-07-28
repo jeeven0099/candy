@@ -147,6 +147,10 @@ class Promotion(BaseModel):
     product_keywords_contextual: List[str] = Field(default_factory=list)
     matched_product_examples: List[str] = Field(default_factory=list)
 
+    # Per-deal deep-link URL (e.g. /newsletter, /refer-a-friend). When present,
+    # the app should link here instead of the brand homepage / source_url.
+    deal_url: Optional[str] = None
+
     # Email-only fields
     visibility: Optional[EmailVisibility] = None
     sender_email: Optional[str] = None

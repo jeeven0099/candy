@@ -54,7 +54,8 @@ Return a JSON object with a "promotions" array. Each item in the array has EXACT
   "target_gender": "one of: women | men | kids | unisex — or null if not a fashion/apparel deal. Use 'unisex' when the page covers both men and women equally.",
   "product_keywords_explicit": "array of strings (max 10) — product types this deal DIRECTLY targets. Fill from the deal title, summary, or the sale grid / offer container immediately associated with this specific deal. E.g. '20% off running shoes' → ['running shoes', 'sneakers']. Use specific product-type nouns only — not colors, genders, fit descriptors, or promo words like 'sale', 'new', 'summer'. Leave [] for truly sitewide deals or rewards programs.",
   "product_keywords_contextual": "array of strings (max 25) — ONLY for sitewide or brand-wide deals: product types visible in product cards or grids on this page. Require at least 3 distinct product examples to support each term. Do NOT draw from: nav menus, footer links, SEO metadata, image alt text, breadcrumbs, recommended articles, or legal text. Leave [] when product_keywords_explicit is non-empty or for rewards programs.",
-  "product_categories": "array of strings (max 5) — broad buckets this deal covers, chosen from: footwear, clothing, accessories, beauty, food, electronics, home, fitness, travel, other. Leave [] only for pure rewards programs."
+  "product_categories": "array of strings (max 5) — broad buckets this deal covers, chosen from: footwear, clothing, accessories, beauty, food, electronics, home, fitness, travel, other. Leave [] only for pure rewards programs.",
+  "deal_url": "string or null — the specific URL path for THIS deal (e.g. '/newsletter', '/refer-a-friend?situation=swn', '/sale/womens'). Only set when a [deal_url:...] marker in the text directly corresponds to this deal. Use the exact path from the marker. Leave null for sitewide sales or when no matching link marker is present."
     }
   ]
 }
@@ -540,6 +541,7 @@ class OllamaModel(LocalModelInterface):
 
         discounts: list[int] = []
         pair_positions: list[int] = []  # char offset of first price in each accepted pair
+        raw_dollar_savings: list[float] = []  # actual dollar saving per accepted pair
 
         for i in range(len(price_matches) - 1):
             m_i, m_j = price_matches[i], price_matches[i + 1]
@@ -585,11 +587,13 @@ class OllamaModel(LocalModelInterface):
             if 10 <= pct <= 85:
                 discounts.append(pct)
                 pair_positions.append(m_i.start())
+                raw_dollar_savings.append(original - sale)
 
         # Only count pairs with a real markdown (≥20%).
         valid_idx = [i for i, d in enumerate(discounts) if d >= 20]
         valid_discounts = [discounts[i] for i in valid_idx]
         valid_positions = [pair_positions[i] for i in valid_idx]
+        valid_dollar_savings = [raw_dollar_savings[i] for i in valid_idx]
 
         if not valid_discounts:
             return []
@@ -637,7 +641,13 @@ class OllamaModel(LocalModelInterface):
 
         discount_value = f"up to {display_max}% off"
         title = f"{brand} Sale"
-        summary = f"{brand} has items on sale with discounts from {min_disc}% to {display_max}% off."
+
+        max_dollar = max(valid_dollar_savings) if valid_dollar_savings else 0
+        if max_dollar >= 50:
+            dollar_str = f"${max_dollar:,.0f}" if max_dollar == int(max_dollar) else f"${max_dollar:,.2f}"
+            summary = f"{brand} has items on sale up to {display_max}% off, saving up to {dollar_str}."
+        else:
+            summary = f"{brand} has items on sale with discounts from {min_disc}% to {display_max}% off."
         if product_cats:
             summary += f" On sale: {', '.join(product_cats)}."
 
@@ -646,6 +656,8 @@ class OllamaModel(LocalModelInterface):
             f"Discount range: {min_disc}%–{display_max}% (max detected: {max_d}%, pairs: {n_pairs}).",
             "No explicit deal text — inferred from sale vs. original price pairs.",
         ]
+        if max_dollar >= 50:
+            notes.append(f"Max dollar saving observed: ${max_dollar:,.0f} (from highest-value price pair).")
         if display_max < max_d:
             notes.append(
                 f"Headline capped at {display_max}% (p90) — max of {max_d}% lacked supporting pairs."
@@ -962,7 +974,11 @@ class OllamaModel(LocalModelInterface):
             "Extract product types from product cards and grids on the page. Need 3+ distinct examples to support each term. "
             "Do NOT use: nav, footer, SEO tags, breadcrumbs, alt text, recommended articles, or legal text.\n"
             "- product_categories (max 5): broad buckets from: footwear, clothing, accessories, beauty, food, "
-            "electronics, home, fitness, travel, other. Leave [] only for pure rewards programs.\n\n"
+            "electronics, home, fitness, travel, other. Leave [] only for pure rewards programs.\n"
+            "- deal_url: The text may contain [deal_url:/path] markers inline with deal descriptions. "
+            "When a marker immediately precedes or follows a deal you are extracting, set deal_url to that path exactly as written. "
+            "Each deal should get its own deal_url — do not share one URL across multiple deals unless the same marker appears next to all of them. "
+            "Leave null for sitewide sale grids or when no matching marker is present.\n\n"
             "If no promotions are found, return {\"promotions\": []}.\n"
             "Respond with ONLY the JSON object. No explanation, no markdown, no code fences.\n\n"
             "--- RAW TEXT START ---\n"

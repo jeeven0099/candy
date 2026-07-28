@@ -29,6 +29,7 @@ class Promotion {
   final String? sourcePath;
   final String? websiteDomain;
   final String? sourceUrl;
+  final String? dealUrl;
   final String? ogImageUrl;
 
   // Email-only fields
@@ -100,6 +101,7 @@ class Promotion {
     this.sourcePath,
     this.websiteDomain,
     this.sourceUrl,
+    this.dealUrl,
     this.ogImageUrl,
     this.visibility,
     this.emailSubject,
@@ -162,6 +164,7 @@ class Promotion {
       sourcePath: json['source_path'] as String?,
       websiteDomain: json['website_domain'] as String?,
       sourceUrl: json['source_url'] as String?,
+      dealUrl: json['deal_url'] as String?,
       ogImageUrl: json['og_image_url'] as String?,
       visibility: json['visibility'] as String?,
       emailSubject: json['email_subject'] as String?,
@@ -222,7 +225,9 @@ class Promotion {
   }
 
   /// Best available URL for verifying the promotion.
+  /// Prefers the deal-specific deep-link over the generic source page.
   String? get verifyUrl {
+    if (dealUrl != null && dealUrl!.isNotEmpty) return dealUrl;
     if (sourceUrl != null && sourceUrl!.isNotEmpty) return sourceUrl;
     if (websiteDomain != null && websiteDomain!.isNotEmpty) return 'https://$websiteDomain';
     return null;
