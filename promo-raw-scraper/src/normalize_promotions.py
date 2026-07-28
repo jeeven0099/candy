@@ -632,6 +632,12 @@ def normalize_file(
             promo["og_image_url"] = og_image
         if source_url:
             promo["source_url"] = source_url
+        # Resolve relative deal_url paths to absolute using the brand's domain
+        deal_url = promo.get("deal_url")
+        if deal_url and deal_url.startswith("/") and website_domain:
+            promo["deal_url"] = f"https://www.{website_domain}{deal_url}"
+        elif deal_url and not deal_url.startswith("http"):
+            promo["deal_url"] = None  # discard malformed values
         promo = fix_zero_pct_discount(promo)
         promo = fix_free_shipping(promo)
         promo = fix_subscription_pricing(promo)
