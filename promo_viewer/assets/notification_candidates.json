@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-29T03:15:30.510531+00:00",
+  "generated_at": "2026-07-29T05:11:02.202513+00:00",
   "threshold": 60.0,
-  "total": 76,
+  "total": 79,
   "candidates": [
     {
       "promo_id": "prettylittlething_endofseasonsale",
@@ -211,6 +211,25 @@
       "end_date": null,
       "website_domain": "amazon.com",
       "source_url": "https://www.amazon.com/deals"
+    },
+    {
+      "promo_id": "wendys_free6pcnuggetswith5purchasewednesday",
+      "brand": "Wendy's",
+      "category": "food",
+      "title": "Free 6pc Nuggets with $5 Purchase (Wednesday)",
+      "notify_score": 80.52,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Wendy's",
+      "notification_body": "Free: Free 6pc Nuggets with $5 Purchase (Wednesday)",
+      "discount_type": "free_item",
+      "discount_value": "free 6pc nuggets",
+      "estimated_savings": 9.0,
+      "end_date": null,
+      "website_domain": "wendys.com",
+      "source_url": "https://www.wendys.com/offers-coupons"
     },
     {
       "promo_id": "proenzaschouler_salenowupto65off",
@@ -1315,6 +1334,25 @@
       "source_url": "https://www.factor75.com/"
     },
     {
+      "promo_id": "pinstripes_halfoffbottlesofwine",
+      "brand": "Pinstripes",
+      "category": "beverages",
+      "title": "Half‑Off Bottles of Wine",
+      "notify_score": 63.42,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Pinstripes",
+      "notification_body": "Half‑Off Bottles of Wine",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "pinstripes.com",
+      "source_url": "https://www.pinstripes.com/promos"
+    },
+    {
       "promo_id": "saatva_saatvasale",
       "brand": "Saatva",
       "category": "Mattress / Home",
@@ -1408,6 +1446,25 @@
       "end_date": null,
       "website_domain": "starbucks.com",
       "source_url": "https://www.starbucks.com/rewards"
+    },
+    {
+      "promo_id": "dutchbros_freestickeronfirstwednesdayofeverymonth",
+      "brand": "Dutch Bros",
+      "category": "food",
+      "title": "Free Sticker on First Wednesday of Every Month",
+      "notify_score": 60.76,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Dutch Bros",
+      "notification_body": "Free: Free Sticker on First Wednesday of Every Month",
+      "discount_type": "free_item",
+      "discount_value": "free sticker",
+      "estimated_savings": 5.5,
+      "end_date": null,
+      "website_domain": null,
+      "source_url": "https://www.dutchbros.com/rewards/"
     },
     {
       "promo_id": "bedbathbeyond_upto50offselectarearugs",
