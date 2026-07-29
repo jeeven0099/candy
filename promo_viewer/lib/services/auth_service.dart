@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'supabase_service.dart';
+import 'push_token_service.dart';
 
 String _appPlatform() {
   if (kIsWeb) return 'web';
@@ -62,6 +63,8 @@ class AuthService {
           .update({'use_count': useCount + 1})
           .eq('code', code);
     } catch (_) {}
+
+    PushTokenService.register();
   }
 
   static Future<void> signIn({
@@ -81,6 +84,7 @@ class AuthService {
           'app_platform':  _appPlatform(),
         }).eq('auth_id', res.user!.id);
       } catch (_) {}
+      PushTokenService.register();
     }
   }
 
