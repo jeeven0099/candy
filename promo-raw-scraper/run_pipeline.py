@@ -227,13 +227,21 @@ def main() -> None:
                     log_print(f"\n[WARN] parse_candidates exited with code {rc} (partial extraction). Continuing with whatever was extracted.", log_fh)
 
         # Step 5: Normalize
-        normalize_cmd = [str(SRC / "normalize_promotions.py")]
-        if args.brand:
-            normalize_cmd += ["--brand", args.brand]
-        rc = run(normalize_cmd, "Step 5/13 -Normalizing promotions", log_fh)
-        if rc != 0:
-            log_print(f"\n[ERROR] normalize_promotions exited with code {rc}.", log_fh)
-            sys.exit(rc)
+        if args.from_step <= 5:
+            normalize_cmd = [str(SRC / "normalize_promotions.py")]
+            if args.brand:
+                normalize_cmd += ["--brand", args.brand]
+            rc = run(normalize_cmd, "Step 5/13 -Normalizing promotions", log_fh)
+            if rc != 0:
+                log_print(f"\n[ERROR] normalize_promotions exited with code {rc}.", log_fh)
+                sys.exit(rc)
+
+        # Step 5b: Backfill deal URLs from raw text markers (no LLM needed)
+        if args.from_step <= 6:
+            backfill_cmd = [str(SRC.parent / "backfill_deal_urls.py")]
+            rc = run(backfill_cmd, "Step 5b/13 -Backfilling deal URLs from raw text", log_fh)
+            if rc != 0:
+                log_print(f"\n[WARN] backfill_deal_urls exited with code {rc} (non-fatal).", log_fh)
 
         # Step 6: Review CSV
         review_cmd = [str(SRC / "generate_review_csv.py")]
