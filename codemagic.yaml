@@ -10,7 +10,7 @@ workflows:
     environment:
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.candy.app
+        bundle_identifier: com.jeeven.candy
       flutter: stable
       xcode: latest
       cocoapods: default
@@ -21,7 +21,7 @@ workflows:
 
       - name: Fetch signing files
         script: |
-          app-store-connect fetch-signing-files com.candy.app \
+          app-store-connect fetch-signing-files com.jeeven.candy \
             --type IOS_APP_STORE \
             --create
 
