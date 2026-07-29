@@ -16,6 +16,9 @@ workflows:
       cocoapods: default
 
     scripts:
+      - name: Set up code signing
+        script: xcode-project use-profiles
+
       - name: Flutter pub get
         script: |
           cd promo_viewer
@@ -26,7 +29,8 @@ workflows:
           cd promo_viewer
           flutter build ipa --release \
             --build-name=1.0.0 \
-            --build-number=$PROJECT_BUILD_NUMBER
+            --build-number=$PROJECT_BUILD_NUMBER \
+            --export-options-plist=/Users/builder/export_options.plist
 
     artifacts:
       - promo_viewer/build/ios/ipa/*.ipa
