@@ -16,31 +16,6 @@ workflows:
       cocoapods: default
 
     scripts:
-      - name: Set up keychain
-        script: keychain initialize
-
-      - name: Create or fetch distribution certificate
-        script: |
-          app-store-connect create-certificate \
-            --type IOS_DISTRIBUTION \
-            --save || true
-          app-store-connect list-certificates \
-            --type IOS_DISTRIBUTION \
-            --save
-
-      - name: Fetch or create provisioning profile
-        script: |
-          app-store-connect fetch-signing-files com.jeeven.candy \
-            --type IOS_APP_STORE \
-            --create \
-            --save
-
-      - name: Add certificates to keychain
-        script: keychain add-certificates
-
-      - name: Use provisioning profile
-        script: xcode-project use-profiles
-
       - name: Flutter pub get
         script: |
           cd promo_viewer
