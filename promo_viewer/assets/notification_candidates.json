@@ -1,26 +1,26 @@
 {
-  "generated_at": "2026-07-28T07:03:16.037789+00:00",
+  "generated_at": "2026-07-29T03:15:30.510531+00:00",
   "threshold": 60.0,
-  "total": 89,
+  "total": 76,
   "candidates": [
     {
-      "promo_id": "converse_conversesalesneakersclothingupto75off",
-      "brand": "Converse",
+      "promo_id": "prettylittlething_endofseasonsale",
+      "brand": "PrettyLittleThing",
       "category": "retail",
-      "title": "Converse Sale: Sneakers & Clothing - Up to 75% Off",
-      "notify_score": 86.12,
+      "title": "End of Season Sale",
+      "notify_score": 85.58,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Converse",
-      "notification_body": "Converse Sale: Sneakers & Clothing - Up to 75% Off",
+      "notification_title": "PrettyLittleThing",
+      "notification_body": "End of Season Sale",
       "discount_type": "percentage_off",
-      "discount_value": "up to 75%",
-      "estimated_savings": 67.5,
+      "discount_value": "50-80%",
+      "estimated_savings": 36.0,
       "end_date": null,
-      "website_domain": "converse.com",
-      "source_url": "https://www.converse.com/shop/sale"
+      "website_domain": "prettylittlething.us",
+      "source_url": "https://www.prettylittlething.us/categories/womens-sale"
     },
     {
       "promo_id": "aldo_endofseasonsaleupto70off",
@@ -61,25 +61,6 @@
       "source_url": "https://www.luckybrand.com/"
     },
     {
-      "promo_id": "clarks_upto60offsale",
-      "brand": "Clarks",
-      "category": "retail",
-      "title": "Up to 60% Off Sale",
-      "notify_score": 83.31,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Clarks",
-      "notification_body": "Up to 60% Off Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 54.0,
-      "end_date": null,
-      "website_domain": "clarks.com",
-      "source_url": "https://www.clarks.com/en-us/all-sale/sale_us-c"
-    },
-    {
       "promo_id": "thredup_theforecastupto90off",
       "brand": "ThredUp",
       "category": "retail",
@@ -118,42 +99,23 @@
       "source_url": "https://www.duluthtrading.com/sale"
     },
     {
-      "promo_id": "farfetch_ss26saleishereupto70off",
+      "promo_id": "farfetch_ss26saleupto70off",
       "brand": "Farfetch",
       "category": "retail",
-      "title": "SS26 sale is here: up to 70% off",
+      "title": "SS26 Sale - up to 70% off",
       "notify_score": 82.1,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Farfetch",
-      "notification_body": "SS26 sale is here: up to 70% off",
+      "notification_body": "SS26 Sale - up to 70% off",
       "discount_type": "percentage_off",
       "discount_value": "up to 70%",
       "estimated_savings": 31.5,
       "end_date": null,
       "website_domain": "farfetch.com",
       "source_url": "https://www.farfetch.com/shopping/women/sale/all/items.aspx"
-    },
-    {
-      "promo_id": "lego_legosaleupto70offselectedsets",
-      "brand": "LEGO",
-      "category": "retail",
-      "title": "LEGO Sale - up to 70% off selected sets",
-      "notify_score": 82.1,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "LEGO",
-      "notification_body": "LEGO Sale - up to 70% off selected sets",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70% off",
-      "estimated_savings": 31.5,
-      "end_date": null,
-      "website_domain": "lego.com",
-      "source_url": "https://www.lego.com/en-us/categories/sales-and-deals"
     },
     {
       "promo_id": "modaoperandi_womensdesignercollectionsaleupto70off",
@@ -173,6 +135,25 @@
       "end_date": null,
       "website_domain": "modaoperandi.com",
       "source_url": "https://www.modaoperandi.com/women/sale"
+    },
+    {
+      "promo_id": "mrporter_mensluxuryfashionsaleupto70off",
+      "brand": "MR PORTER",
+      "category": "retail",
+      "title": "Men's Luxury Fashion Sale - up to 70% off",
+      "notify_score": 82.1,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "MR PORTER",
+      "notification_body": "Men's Luxury Fashion Sale - up to 70% off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "estimated_savings": 31.5,
+      "end_date": null,
+      "website_domain": "mrporter.com",
+      "source_url": "https://www.mrporter.com/en-us/mens/sale"
     },
     {
       "promo_id": "cider_ciderclubweekend",
@@ -211,25 +192,6 @@
       "end_date": null,
       "website_domain": "ikea.com",
       "source_url": "https://www.ikea.com/us/en/offers/"
-    },
-    {
-      "promo_id": "clarks_upto50offsale",
-      "brand": "Clarks",
-      "category": "retail",
-      "title": "Up to 50% Off Sale",
-      "notify_score": 81.16,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Clarks",
-      "notification_body": "Up to 50% Off Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 45.0,
-      "end_date": null,
-      "website_domain": "clarks.com",
-      "source_url": "https://www.clarks.com/en-us/all-sale/sale_us-c"
     },
     {
       "promo_id": "amazon_todaysdealsupto62off",
@@ -289,25 +251,6 @@
       "source_url": "https://www.bioliteenergy.com/collections/sale"
     },
     {
-      "promo_id": "marchesa_lastofitskindupto60off",
-      "brand": "Marchesa",
-      "category": "retail",
-      "title": "Last of Its Kind - Up to 60% Off",
-      "notify_score": 78.18,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Marchesa",
-      "notification_body": "Last of Its Kind - Up to 60% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 27.0,
-      "end_date": null,
-      "website_domain": "marchesa.com",
-      "source_url": "https://marchesa.com/"
-    },
-    {
       "promo_id": "monicavinader_summerfavourites60off",
       "brand": "Monica Vinader",
       "category": "retail",
@@ -327,19 +270,19 @@
       "source_url": "https://www.monicavinader.com/us/sale"
     },
     {
-      "promo_id": "alc_endofseasonsale",
+      "promo_id": "alc_endofseasonsaleupto60off",
       "brand": "A.L.C.",
       "category": "clothing",
-      "title": "End of Season Sale",
+      "title": "End of Season Sale: Up to 60% Off",
       "notify_score": 78.15,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "A.L.C.",
-      "notification_body": "End of Season Sale",
+      "notification_body": "End of Season Sale: Up to 60% Off",
       "discount_type": "percentage_off",
-      "discount_value": "60%",
+      "discount_value": "up to 60%",
       "estimated_savings": 33.0,
       "end_date": null,
       "website_domain": "alcltd.com",
@@ -357,63 +300,6 @@
       ],
       "notification_title": "St. John",
       "notification_body": "Up to 60% Off Basics",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "estimated_savings": 33.0,
-      "end_date": null,
-      "website_domain": "stjohnknits.com",
-      "source_url": "https://www.stjohnknits.com/collections/sale"
-    },
-    {
-      "promo_id": "stjohn_60offresort2026",
-      "brand": "St. John",
-      "category": "clothing",
-      "title": "60% Off Resort 2026",
-      "notify_score": 78.15,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "St. John",
-      "notification_body": "60% Off Resort 2026",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "estimated_savings": 33.0,
-      "end_date": null,
-      "website_domain": "stjohnknits.com",
-      "source_url": "https://www.stjohnknits.com/collections/sale"
-    },
-    {
-      "promo_id": "stjohn_upto60offspring2026",
-      "brand": "St. John",
-      "category": "clothing",
-      "title": "Up to 60% Off Spring 2026",
-      "notify_score": 78.15,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "St. John",
-      "notification_body": "Up to 60% Off Spring 2026",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "estimated_savings": 33.0,
-      "end_date": null,
-      "website_domain": "stjohnknits.com",
-      "source_url": "https://www.stjohnknits.com/collections/sale"
-    },
-    {
-      "promo_id": "stjohn_upto60offcelebrationworthystyles",
-      "brand": "St. John",
-      "category": "clothing",
-      "title": "Up to 60% Off Celebration-Worthy Styles",
-      "notify_score": 78.15,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "St. John",
-      "notification_body": "Up to 60% Off Celebration-Worthy Styles",
       "discount_type": "percentage_off",
       "discount_value": "60%",
       "estimated_savings": 33.0,
@@ -444,16 +330,16 @@
       "promo_id": "michaelkors_semiannualsaleupto60offselectstyles",
       "brand": "Michael Kors",
       "category": "retail",
-      "title": "Semi-Annual Sale - Up To 60% Off Select Styles",
+      "title": "Semi-Annual Sale - Up to 60% Off Select Styles",
       "notify_score": 76.79,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Michael Kors",
-      "notification_body": "Semi-Annual Sale - Up To 60% Off Select Styles",
+      "notification_body": "Semi-Annual Sale - Up to 60% Off Select Styles",
       "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
+      "discount_value": "60%",
       "estimated_savings": 33.0,
       "end_date": null,
       "website_domain": "michaelkors.com",
@@ -517,63 +403,6 @@
       "source_url": "https://www.mcdonalds.com/us/en-us/deals.html"
     },
     {
-      "promo_id": "overstock_gucciupto60off",
-      "brand": "Overstock",
-      "category": "home_goods",
-      "title": "Gucci Up to 60% Off",
-      "notify_score": 76.19,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Overstock",
-      "notification_body": "Gucci Up to 60% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 54.0,
-      "end_date": null,
-      "website_domain": "overstock.com",
-      "source_url": "https://www.overstock.com/deals"
-    },
-    {
-      "promo_id": "overstock_jewelrywatchupto60off",
-      "brand": "Overstock",
-      "category": "home_goods",
-      "title": "Jewelry & Watch Up to 60% Off",
-      "notify_score": 76.19,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Overstock",
-      "notification_body": "Jewelry & Watch Up to 60% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 54.0,
-      "end_date": null,
-      "website_domain": "overstock.com",
-      "source_url": "https://www.overstock.com/deals"
-    },
-    {
-      "promo_id": "lanebryant_clearanceextra50off",
-      "brand": "Lane Bryant",
-      "category": "clothing",
-      "title": "Clearance Extra 50% OFF",
-      "notify_score": 75.76,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Lane Bryant",
-      "notification_body": "Clearance Extra 50% OFF",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 27.5,
-      "end_date": "2026-07-30",
-      "website_domain": "lanebryant.com",
-      "source_url": "https://www.lanebryant.com/sale"
-    },
-    {
       "promo_id": "applebees_birthdayfreedessert",
       "brand": "Applebee's",
       "category": "food",
@@ -591,6 +420,44 @@
       "end_date": null,
       "website_domain": "applebees.com",
       "source_url": "https://www.applebees.com/en/specials"
+    },
+    {
+      "promo_id": "iherb_upto70offdeals",
+      "brand": "iHerb",
+      "category": "pharmacy",
+      "title": "Up to 70% Off Deals",
+      "notify_score": 74.54,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "iHerb",
+      "notification_body": "Up to 70% Off Deals",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "estimated_savings": 21.0,
+      "end_date": null,
+      "website_domain": "iherb.com",
+      "source_url": "https://www.iherb.com/info/sales-and-offers"
+    },
+    {
+      "promo_id": "myprotein_upto70offpaydaysale",
+      "brand": "MyProtein",
+      "category": "fitness",
+      "title": "Up to 70% off Payday Sale",
+      "notify_score": 74.54,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "MyProtein",
+      "notification_body": "Up to 70% off Payday Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "70%",
+      "estimated_savings": 21.0,
+      "end_date": null,
+      "website_domain": "myprotein.com",
+      "source_url": "https://www.myprotein.com/c/all-offers/clearance-multibuy/"
     },
     {
       "promo_id": "babylist_freebreastpump",
@@ -707,44 +574,6 @@
       "source_url": "https://www.jomalone.com/"
     },
     {
-      "promo_id": "sweetgreen_thegulchfirst50complimentaryentrebowl",
-      "brand": "Sweetgreen",
-      "category": "food",
-      "title": "The Gulch First 50 - Complimentary Entrée Bowl",
-      "notify_score": 74.24,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Sweetgreen",
-      "notification_body": "Free: The Gulch First 50 - Complimentary Entrée Bowl",
-      "discount_type": "free_item",
-      "discount_value": "complimentary entrée bowl up to $20",
-      "estimated_savings": 10.0,
-      "end_date": null,
-      "website_domain": null,
-      "source_url": "https://www.sweetgreen.com/sweet-rewards"
-    },
-    {
-      "promo_id": "sweetgreen_freebowlnewrestaurantopeningsfirst75guests",
-      "brand": "Sweetgreen",
-      "category": "food",
-      "title": "Free Bowl - New Restaurant Openings (First 75 Guests)",
-      "notify_score": 74.24,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Sweetgreen",
-      "notification_body": "Free: Free Bowl - New Restaurant Openings (First 75 Guests)",
-      "discount_type": "free_item",
-      "discount_value": "complimentary entrée bowl up to $20",
-      "estimated_savings": 10.0,
-      "end_date": null,
-      "website_domain": null,
-      "source_url": "https://www.sweetgreen.com/sweet-rewards"
-    },
-    {
       "promo_id": "applebees_veteransdayfreemeal",
       "brand": "Applebee's",
       "category": "food",
@@ -794,25 +623,6 @@
       ],
       "notification_title": "White House Black Market",
       "notification_body": "Up to 50% Off Wear-Now Styles",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 22.5,
-      "end_date": null,
-      "website_domain": "whitehouseblackmarket.com",
-      "source_url": "https://www.whitehouseblackmarket.com/store/category/sale/cat210002/"
-    },
-    {
-      "promo_id": "whitehouseblackmarket_upto50offsalestyles",
-      "brand": "White House Black Market",
-      "category": "retail",
-      "title": "Up to 50% Off Sale Styles",
-      "notify_score": 73.67,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "White House Black Market",
-      "notification_body": "Up to 50% Off Sale Styles",
       "discount_type": "percentage_off",
       "discount_value": "up to 50%",
       "estimated_savings": 22.5,
@@ -897,23 +707,23 @@
       "source_url": "https://www.massimodutti.com/us/"
     },
     {
-      "promo_id": "overstock_designershopupto50off",
-      "brand": "Overstock",
-      "category": "home_goods",
-      "title": "Designer Shop Up to 50% Off",
-      "notify_score": 72.17,
+      "promo_id": "regal_birthdayfreepopcorn",
+      "brand": "Regal",
+      "category": "food",
+      "title": "Birthday Free Popcorn",
+      "notify_score": 72.59,
       "signal_groups": [
-        "context",
+        "personal",
         "value"
       ],
-      "notification_title": "Overstock",
-      "notification_body": "Designer Shop Up to 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 45.0,
+      "notification_title": "Regal",
+      "notification_body": "Birthday deal: Birthday Free Popcorn",
+      "discount_type": "free_item",
+      "discount_value": "free popcorn",
+      "estimated_savings": 13.0,
       "end_date": null,
-      "website_domain": "overstock.com",
-      "source_url": "https://www.overstock.com/deals"
+      "website_domain": "regmovies.com",
+      "source_url": "https://www.regmovies.com/static/en/us/regal-crown-club-info"
     },
     {
       "promo_id": "benihana_freesouvenirmugwithkabukikidsmeal",
@@ -933,6 +743,44 @@
       "end_date": null,
       "website_domain": "benihana.com",
       "source_url": "https://www.benihana.com/promotions/"
+    },
+    {
+      "promo_id": "noodlescompany_freebirthdaysmallentre",
+      "brand": "Noodles & Company",
+      "category": "food",
+      "title": "Free Birthday Small Entrée",
+      "notify_score": 71.81,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Noodles & Company",
+      "notification_body": "Birthday deal: Free Birthday Small Entrée",
+      "discount_type": "free_item",
+      "discount_value": "free small entrée",
+      "estimated_savings": 11.0,
+      "end_date": null,
+      "website_domain": "noodles.com",
+      "source_url": "https://www.noodles.com/rewards/"
+    },
+    {
+      "promo_id": "noodlescompany_freebirthdayregularentre",
+      "brand": "Noodles & Company",
+      "category": "food",
+      "title": "Free Birthday Regular Entrée",
+      "notify_score": 71.81,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Noodles & Company",
+      "notification_body": "Birthday deal: Free Birthday Regular Entrée",
+      "discount_type": "free_item",
+      "discount_value": "free regular entrée",
+      "estimated_savings": 11.0,
+      "end_date": null,
+      "website_domain": "noodles.com",
+      "source_url": "https://www.noodles.com/rewards/"
     },
     {
       "promo_id": "firestone_freebrakeinspection",
@@ -971,6 +819,25 @@
       "end_date": null,
       "website_domain": "skyzone.com",
       "source_url": "https://www.skyzone.com/deals/"
+    },
+    {
+      "promo_id": "sweetgreen_first50complimentaryentrebowlthegulch",
+      "brand": "Sweetgreen",
+      "category": "food",
+      "title": "First 50 Complimentary Entrée Bowl - The Gulch",
+      "notify_score": 71.19,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Sweetgreen",
+      "notification_body": "Free: First 50 Complimentary Entrée Bowl - The Gulch",
+      "discount_type": "free_item",
+      "discount_value": "free (up to $20)",
+      "estimated_savings": 10.0,
+      "end_date": null,
+      "website_domain": null,
+      "source_url": "https://www.sweetgreen.com/sweet-rewards"
     },
     {
       "promo_id": "courreges_upto50offwomensapparel",
@@ -1030,23 +897,23 @@
       "source_url": "https://www.tillys.com/"
     },
     {
-      "promo_id": "thecontainerstore_freedesignconsultation",
-      "brand": "The Container Store",
+      "promo_id": "kendrascott_freegiftboxing",
+      "brand": "Kendra Scott",
       "category": "retail",
-      "title": "Free Design Consultation",
+      "title": "Free Gift Boxing",
       "notify_score": 70.6,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "The Container Store",
-      "notification_body": "Free: Free Design Consultation",
+      "notification_title": "Kendra Scott",
+      "notification_body": "Free: Free Gift Boxing",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "containerstore.com",
-      "source_url": "https://www.containerstore.com/"
+      "website_domain": "kendrascott.com",
+      "source_url": "https://www.kendrascott.com/sale/"
     },
     {
       "promo_id": "nastygal_summerhotlist70offselectedlines",
@@ -1144,6 +1011,25 @@
       "source_url": "https://www.ganni.com/us/sale/"
     },
     {
+      "promo_id": "maje_upto50offnewlyaddedstyles",
+      "brand": "Maje",
+      "category": "retail",
+      "title": "Up to 50% off newly added styles",
+      "notify_score": 68.66,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Maje",
+      "notification_body": "Up to 50% off newly added styles",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "us.maje.com",
+      "source_url": "https://us.maje.com/en/sale-see-all/"
+    },
+    {
       "promo_id": "mainevent_kidsbowlfree",
       "brand": "Main Event",
       "category": "other",
@@ -1182,23 +1068,42 @@
       "source_url": "https://www.cinemark.com/movie-rewards-info/"
     },
     {
-      "promo_id": "culvers_freebirthdayandhalfbirthdaytreatsformembers",
+      "promo_id": "culvers_freebirthdayandhalfbirthdaytreats",
       "brand": "Culver's",
       "category": "food",
-      "title": "Free birthday and half‑birthday treats for members",
+      "title": "Free birthday and half‑birthday treats",
       "notify_score": 68.24,
       "signal_groups": [
         "personal",
         "value"
       ],
       "notification_title": "Culver's",
-      "notification_body": "Birthday deal: Free birthday and half‑birthday treats for members",
+      "notification_body": "Birthday deal: Free birthday and half‑birthday treats",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 10.0,
       "end_date": null,
       "website_domain": "culvers.com",
       "source_url": "https://www.culvers.com/delicious-rewards"
+    },
+    {
+      "promo_id": "noodlescompany_freebirthdaydessert",
+      "brand": "Noodles & Company",
+      "category": "food",
+      "title": "Free Birthday Dessert",
+      "notify_score": 68.24,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Noodles & Company",
+      "notification_body": "Birthday deal: Free Birthday Dessert",
+      "discount_type": "free_item",
+      "discount_value": "free dessert",
+      "estimated_savings": 10.0,
+      "end_date": null,
+      "website_domain": "noodles.com",
+      "source_url": "https://www.noodles.com/rewards/"
     },
     {
       "promo_id": "subway_birthdaysurprisefreeitem",
@@ -1239,114 +1144,38 @@
       "source_url": "https://www.altuzarra.com/collections/sale"
     },
     {
-      "promo_id": "lg_save3053onselecthomeappliances",
-      "brand": "LG",
-      "category": "home appliances",
-      "title": "Save 30-53% on select home appliances",
-      "notify_score": 67.78,
+      "promo_id": "panerabread_birthdayreward",
+      "brand": "Panera Bread",
+      "category": "food",
+      "title": "Birthday Reward",
+      "notify_score": 67.59,
       "signal_groups": [
-        "context",
+        "personal",
         "value"
       ],
-      "notification_title": "LG",
-      "notification_body": "Save 30-53% on select home appliances",
-      "discount_type": "percentage_off",
-      "discount_value": "30-53%",
-      "estimated_savings": 15.9,
+      "notification_title": "Panera Bread",
+      "notification_body": "Birthday deal: Birthday Reward",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 13.0,
       "end_date": null,
-      "website_domain": "lg.com",
-      "source_url": "https://www.lg.com/us/deals"
+      "website_domain": null,
+      "source_url": "https://www.panerabread.com/en-us/mypanera/meet-mypanera.html"
     },
     {
-      "promo_id": "lgappliances_save3053onselecthomeappliances",
-      "brand": "LG Appliances",
-      "category": "home appliances",
-      "title": "Save 30-53% on select home appliances",
-      "notify_score": 67.78,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "LG Appliances",
-      "notification_body": "Save 30-53% on select home appliances",
-      "discount_type": "percentage_off",
-      "discount_value": "30-53%",
-      "estimated_savings": 15.9,
-      "end_date": null,
-      "website_domain": "lg.com",
-      "source_url": "https://www.lg.com/us/home-appliances"
-    },
-    {
-      "promo_id": "biolite_upto50offgaragesale",
-      "brand": "BioLite",
-      "category": "Outdoor / Adventure Gear",
-      "title": "Up to 50% Off Garage Sale",
-      "notify_score": 66.42,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "BioLite",
-      "notification_body": "Up to 50% Off Garage Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "bioliteenergy.com",
-      "source_url": "https://www.bioliteenergy.com/collections/sale"
-    },
-    {
-      "promo_id": "lg_saveupto50onselectoledevoc5tvs",
-      "brand": "LG",
-      "category": "televisions",
-      "title": "Save up to 50% on select OLED evo C5 TVs",
-      "notify_score": 66.42,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "LG",
-      "notification_body": "Save up to 50% on select OLED evo C5 TVs",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "lg.com",
-      "source_url": "https://www.lg.com/us/deals"
-    },
-    {
-      "promo_id": "lgappliances_saveupto50onselectoledevoc5tvs",
-      "brand": "LG Appliances",
-      "category": "televisions",
-      "title": "Save up to 50% on select OLED evo C5 TVs",
-      "notify_score": 66.42,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "LG Appliances",
-      "notification_body": "Save up to 50% on select OLED evo C5 TVs",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "lg.com",
-      "source_url": "https://www.lg.com/us/home-appliances"
-    },
-    {
-      "promo_id": "chipotle_birthdayfreerewardchoice",
+      "promo_id": "chipotle_birthdayfreereward",
       "brand": "Chipotle",
       "category": "food",
-      "title": "Birthday Free Reward Choice",
+      "title": "Birthday Free Reward",
       "notify_score": 66.26,
       "signal_groups": [
         "personal",
         "value"
       ],
       "notification_title": "Chipotle",
-      "notification_body": "Birthday deal: Birthday Free Reward Choice",
+      "notification_body": "Birthday deal: Birthday Free Reward",
       "discount_type": "free_item",
-      "discount_value": "Free birthday reward (chips, guac, queso, or drink)",
+      "discount_value": "free birthday reward",
       "estimated_savings": 12.0,
       "end_date": null,
       "website_domain": "chipotle.com",
@@ -1372,42 +1201,42 @@
       "source_url": "https://www.nastygal.com/"
     },
     {
-      "promo_id": "firehousesubs_birthdayreward",
-      "brand": "Firehouse Subs",
-      "category": "food",
-      "title": "Birthday Reward",
-      "notify_score": 65.27,
+      "promo_id": "lgappliances_topappliancedealssave3053onselecthomeappliances",
+      "brand": "LG Appliances",
+      "category": "Home Appliances",
+      "title": "Top appliance deals - Save 30-53% on select home appliances",
+      "notify_score": 65.51,
       "signal_groups": [
-        "personal",
+        "context",
         "value"
       ],
-      "notification_title": "Firehouse Subs",
-      "notification_body": "Birthday deal: Birthday Reward",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 10.0,
+      "notification_title": "LG Appliances",
+      "notification_body": "Top appliance deals - Save 30-53% on select home appliances",
+      "discount_type": "percentage_off",
+      "discount_value": "30-53%",
+      "estimated_savings": 15.9,
       "end_date": null,
-      "website_domain": "firehousesubs.com",
-      "source_url": "https://www.firehousesubs.com/rewards/"
+      "website_domain": "lg.com",
+      "source_url": "https://www.lg.com/us/home-appliances"
     },
     {
-      "promo_id": "noodlescompany_birthdayreward",
-      "brand": "Noodles & Company",
-      "category": "food",
-      "title": "Birthday Reward",
-      "notify_score": 65.27,
+      "promo_id": "topgolf_halfoffgolf",
+      "brand": "Topgolf",
+      "category": "entertainment",
+      "title": "Half-Off Golf",
+      "notify_score": 65.31,
       "signal_groups": [
-        "personal",
+        "context",
         "value"
       ],
-      "notification_title": "Noodles & Company",
-      "notification_body": "Birthday deal: Birthday Reward",
-      "discount_type": "free_item",
-      "discount_value": "free dessert / small entrée / regular entrée",
-      "estimated_savings": 10.0,
+      "notification_title": "Topgolf",
+      "notification_body": "Half-Off Golf",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 7.0,
       "end_date": null,
-      "website_domain": "noodles.com",
-      "source_url": "https://www.noodles.com/rewards/"
+      "website_domain": "topgolf.com",
+      "source_url": "https://topgolf.com/us/"
     },
     {
       "promo_id": "coach_upto50offselectstyles",
@@ -1467,44 +1296,6 @@
       "source_url": "https://marchesa.com/"
     },
     {
-      "promo_id": "marchesa_shopnotteupto60offsitewide",
-      "brand": "Marchesa",
-      "category": "retail",
-      "title": "Shop Notte - Up to 60% Off Sitewide",
-      "notify_score": 63.84,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Marchesa",
-      "notification_body": "Shop Notte - Up to 60% Off Sitewide",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 12.0,
-      "end_date": null,
-      "website_domain": "marchesa.com",
-      "source_url": "https://marchesa.com/"
-    },
-    {
-      "promo_id": "marchesa_shoprosaupto60offsitewide",
-      "brand": "Marchesa",
-      "category": "retail",
-      "title": "Shop Rosa - Up to 60% Off Sitewide",
-      "notify_score": 63.84,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Marchesa",
-      "notification_body": "Shop Rosa - Up to 60% Off Sitewide",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 12.0,
-      "end_date": null,
-      "website_domain": "marchesa.com",
-      "source_url": "https://marchesa.com/"
-    },
-    {
       "promo_id": "factor_50offfreebreakfastfor1year",
       "brand": "Factor",
       "category": "food",
@@ -1524,42 +1315,23 @@
       "source_url": "https://www.factor75.com/"
     },
     {
-      "promo_id": "hilton_breakfastincluded",
-      "brand": "Hilton",
-      "category": "travel",
-      "title": "Breakfast Included",
-      "notify_score": 62.14,
+      "promo_id": "saatva_saatvasale",
+      "brand": "Saatva",
+      "category": "Mattress / Home",
+      "title": "Saatva Sale",
+      "notify_score": 63.24,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Hilton",
-      "notification_body": "Free: Breakfast Included",
-      "discount_type": "free_item",
-      "discount_value": "breakfast",
-      "estimated_savings": 15.0,
+      "notification_title": "Saatva",
+      "notification_body": "Saatva Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 53% off",
+      "estimated_savings": 15.9,
       "end_date": null,
-      "website_domain": "hilton.com",
-      "source_url": "https://www.hilton.com/en/offers/"
-    },
-    {
-      "promo_id": "hilton_parkstay",
-      "brand": "Hilton",
-      "category": "travel",
-      "title": "Park & Stay",
-      "notify_score": 62.14,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Hilton",
-      "notification_body": "Free: Park & Stay",
-      "discount_type": "free_item",
-      "discount_value": "parking",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "hilton.com",
-      "source_url": "https://www.hilton.com/en/offers/"
+      "website_domain": "saatva.com",
+      "source_url": "https://www.saatva.com/sale"
     },
     {
       "promo_id": "einsteinbrosbagels_freeeggsandwichwithpurchaseonyourbirthday",
@@ -1619,74 +1391,55 @@
       "source_url": "https://www.nastygal.com/"
     },
     {
-      "promo_id": "panerabread_birthdayrewardfreebakerytreat",
-      "brand": "Panera Bread",
+      "promo_id": "starbucks_birthdayreward",
+      "brand": "Starbucks",
       "category": "food",
-      "title": "Birthday Reward - Free Bakery Treat",
-      "notify_score": 61.3,
+      "title": "Birthday Reward",
+      "notify_score": 61.34,
       "signal_groups": [
         "personal",
         "value"
       ],
-      "notification_title": "Panera Bread",
-      "notification_body": "Birthday deal: Birthday Reward - Free Bakery Treat",
+      "notification_title": "Starbucks",
+      "notification_body": "Birthday deal: Birthday Reward",
       "discount_type": "free_item",
-      "discount_value": "free bakery treat",
-      "estimated_savings": 13.0,
+      "discount_value": "free drink",
+      "estimated_savings": 6.5,
       "end_date": null,
-      "website_domain": null,
-      "source_url": "https://www.panerabread.com/en-us/mypanera/meet-mypanera.html"
+      "website_domain": "starbucks.com",
+      "source_url": "https://www.starbucks.com/rewards"
     },
     {
-      "promo_id": "regal_birthdayfreepopcorn",
-      "brand": "Regal",
-      "category": "food",
-      "title": "Birthday Free Popcorn",
-      "notify_score": 61.3,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Regal",
-      "notification_body": "Birthday deal: Birthday Free Popcorn",
-      "discount_type": "free_item",
-      "discount_value": "free popcorn",
-      "estimated_savings": 13.0,
-      "end_date": null,
-      "website_domain": "regmovies.com",
-      "source_url": "https://www.regmovies.com/static/en/us/regal-crown-club-info"
-    },
-    {
-      "promo_id": "joann_upto50offframesdcorartsuppliesandmore",
-      "brand": "JOANN",
-      "category": "Hobbies / Crafts",
-      "title": "Up to 50% off frames, décor, art supplies and more",
-      "notify_score": 61.2,
+      "promo_id": "bedbathbeyond_upto50offselectarearugs",
+      "brand": "Bed Bath & Beyond",
+      "category": "home",
+      "title": "Up to 50% Off Select Area Rugs",
+      "notify_score": 60.64,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "JOANN",
-      "notification_body": "Up to 50% off frames, décor, art supplies and more",
+      "notification_title": "Bed Bath & Beyond",
+      "notification_body": "Up to 50% Off Select Area Rugs",
       "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 15.0,
+      "discount_value": "50%",
+      "estimated_savings": 45.0,
       "end_date": null,
-      "website_domain": "michaels.com",
-      "source_url": "https://www.michaels.com/sale"
+      "website_domain": "bedbathandbeyond.com",
+      "source_url": "https://www.bedbathandbeyond.com/deals"
     },
     {
-      "promo_id": "petsmart_birthdayorgotchadaygift",
+      "promo_id": "petsmart_birthdayorgotchadaygiftformembers",
       "brand": "PetSmart",
       "category": "pets",
-      "title": "Birthday or Gotcha Day Gift",
+      "title": "Birthday or Gotcha Day gift for members",
       "notify_score": 60.26,
       "signal_groups": [
         "personal",
         "value"
       ],
       "notification_title": "PetSmart",
-      "notification_body": "Birthday deal: Birthday or Gotcha Day Gift",
+      "notification_body": "Birthday deal: Birthday or Gotcha Day gift for members",
       "discount_type": "free_item",
       "discount_value": "gift",
       "estimated_savings": 15.0,
