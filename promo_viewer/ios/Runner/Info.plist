@@ -4,6 +4,8 @@
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Candy uses your location to show deals near you.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Candy uses your location to show deals near you.</string>
 	<key>NSUserNotificationsUsageDescription</key>
 	<string>Candy sends you alerts when great deals from your favourite brands are available.</string>
 	<key>NSAppTransportSecurity</key>
