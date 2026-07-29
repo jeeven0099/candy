@@ -19,15 +19,13 @@ workflows:
       - name: Create distribution certificate
         script: |
           app-store-connect create-certificate \
-            --type IOS_DISTRIBUTION \
-            --save || true
+            --type IOS_DISTRIBUTION || true
 
       - name: Fetch provisioning profile
         script: |
           app-store-connect fetch-signing-files com.jeeven.candy \
             --type IOS_APP_STORE \
-            --create \
-            --save
+            --create
 
       - name: Add certificates to keychain
         script: keychain add-certificates
