@@ -12,7 +12,7 @@ class PromotionsService {
     cached = list
         .cast<Map<String, dynamic>>()
         .map(Promotion.fromJson)
-        .where((p) => p.title.isNotEmpty)
+        .where((p) => p.title.isNotEmpty && p.globalQualityScore >= 35)
         .toList();
     return cached;
   }
