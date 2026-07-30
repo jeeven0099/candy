@@ -109,6 +109,7 @@ def process_brand(norm_path: Path) -> tuple[int, int]:
         if path:
             absolute = f"https://www.{domain}{path}" if domain else path
             promo["deal_url"] = absolute
+            promo["source_url"] = absolute
             updated += 1
 
     if updated:
