@@ -341,6 +341,10 @@ const Map<String, List<String>> kBrandProductTags = {
 
 const Map<String, Map<String, List<String>>> kSearchTaxonomy = {
   // ── Food ──────────────────────────────────────────────────────────────────
+  'food': {
+    'aliases': ['fast food', 'restaurant', 'restaurants', 'dining', 'eat out', 'eating out', 'meal', 'takeout', 'takeaway', 'dine'],
+    'brands':  ["McDonald's", "Wendy's", "Burger King", "Chick-fil-A", "Taco Bell", "Chipotle", "Subway", "Domino's", "Pizza Hut", "Papa Johns", "Little Caesars", "Popeyes", "KFC", "Shake Shack", "Five Guys", "Whataburger", "Sonic Drive-In", "Jack in the Box", "Raising Cane's", "Wingstop", "Buffalo Wild Wings", "Panda Express", "Panera Bread", "IHOP", "Denny's", "Cracker Barrel", "Outback Steakhouse", "Texas Roadhouse", "LongHorn Steakhouse", "Applebee's", "TGI Fridays", "Moe's Southwest Grill", "Qdoba", "Del Taco", "El Pollo Loco", "Church's Chicken", "Hardee's", "P.F. Chang's", "Steak 'n Shake", "Tropical Smoothie Cafe"],
+  },
   'burgers': {
     'aliases': ['burger', 'cheeseburger', 'hamburger', 'whopper', 'big mac'],
     'brands':  ["Burger King", "McDonald's", "Wendy's", "Five Guys", "Shake Shack", "Whataburger", "Sonic Drive-In"],
