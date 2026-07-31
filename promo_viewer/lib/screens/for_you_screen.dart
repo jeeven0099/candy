@@ -9,7 +9,19 @@ import 'deal_detail_screen.dart';
 
 const _kFeedLimit = 30;
 
-class ForYouScreen extends StatelessWidget {
+const _kCategories = [
+  ('All',         null),
+  ('Food',        ['food']),
+  ('Groceries',   ['groceries', 'pharmacy', 'health']),
+  ('Fashion',     ['fashion', 'clothing', 'retail']),
+  ('Beauty',      ['beauty', 'Premium Beauty']),
+  ('Tech',        ['electronics', 'tech', 'gaming']),
+  ('Home',        ['home', 'Premium Appliances']),
+  ('Travel',      ['travel']),
+  ('Fitness',     ['fitness', 'Outdoor / Adventure Gear']),
+];
+
+class ForYouScreen extends StatefulWidget {
   final List<Promotion> all;
   final Set<String> memberships;
   final Future<void> Function() onRefresh;
@@ -22,6 +34,20 @@ class ForYouScreen extends StatelessWidget {
   });
 
   @override
+  State<ForYouScreen> createState() => _ForYouScreenState();
+}
+
+class _ForYouScreenState extends State<ForYouScreen> {
+  int _selectedChip = 0;
+
+  List<Promotion> _applyCategory(List<Promotion> deals) {
+    final cats = _kCategories[_selectedChip].$2;
+    if (cats == null) return deals;
+    return deals.where((p) => cats.any((c) =>
+        p.category.toLowerCase() == c.toLowerCase())).toList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
       listenable: UserPrefsService(),
@@ -31,37 +57,36 @@ class ForYouScreen extends StatelessWidget {
         final isBirthdayMonth = prefs?.birthdayMonth != null &&
             prefs!.birthdayMonth == DateTime.now().month;
 
-        // Birthday deals — highlighted section, only during birthday month
         final bdayDeals = isBirthdayMonth
-            ? (all
+            ? (widget.all
                 .where((p) => p.birthdayRelated && p.isActive)
                 .toList()
               ..sort((a, b) => b.globalQualityScore.compareTo(a.globalQualityScore)))
             : <Promotion>[];
         final bdayIds = {for (final p in bdayDeals) p.id};
 
-        // Main personalized feed — birthday deals excluded (shown above)
         final ranked = selectTopDeals(
-          all.where((p) => p.isActive && !bdayIds.contains(p.id)).toList(),
+          widget.all.where((p) => p.isActive && !bdayIds.contains(p.id)).toList(),
           svc,
           prefs: prefs,
           limit: _kFeedLimit,
           maxPerBrand: 2,
         );
 
+        final filtered = _applyCategory(ranked);
         final hasPrefs = prefs != null && !prefs.isEmpty;
 
         return Scaffold(
           backgroundColor: Candy.cream,
           body: SafeArea(
             child: RefreshIndicator(
-              onRefresh: onRefresh,
+              onRefresh: widget.onRefresh,
               child: CustomScrollView(
                 slivers: [
                   SliverToBoxAdapter(child: _buildHeader(hasPrefs)),
+                  SliverToBoxAdapter(child: _buildChips()),
 
-                  // ── Birthday deals ──────────────────────────────────────
-                  if (isBirthdayMonth) ...[
+                  if (isBirthdayMonth && _selectedChip == 0) ...[
                     SliverToBoxAdapter(child: _sectionHeading(
                       icon: Icons.celebration_outlined,
                       label: 'Birthday Deals',
@@ -78,17 +103,16 @@ class ForYouScreen extends StatelessWidget {
                       ),
                   ],
 
-                  // ── Personalized feed ───────────────────────────────────
-                  if (ranked.isNotEmpty) ...[
+                  if (filtered.isNotEmpty) ...[
                     SliverToBoxAdapter(child: _sectionHeading(
                       icon: hasPrefs ? Icons.auto_awesome : Icons.trending_up,
                       label: hasPrefs ? 'Picked for you' : 'Top deals right now',
-                      count: ranked.length,
+                      count: filtered.length,
                     )),
                     SliverList(
                       delegate: SliverChildBuilderDelegate(
-                        (ctx, i) => _dealCard(ctx, ranked[i]),
-                        childCount: ranked.length,
+                        (ctx, i) => _dealCard(ctx, filtered[i]),
+                        childCount: filtered.length,
                       ),
                     ),
                   ] else if (!isBirthdayMonth)
@@ -135,6 +159,43 @@ class ForYouScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildChips() {
+    return SizedBox(
+      height: 44,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+        itemCount: _kCategories.length,
+        separatorBuilder: (_, __) => const SizedBox(width: 8),
+        itemBuilder: (_, i) {
+          final selected = i == _selectedChip;
+          return GestureDetector(
+            onTap: () => setState(() => _selectedChip = i),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 150),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+              decoration: BoxDecoration(
+                color: selected ? Candy.raspberry : Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: selected ? Candy.raspberry : Colors.grey.shade200,
+                ),
+              ),
+              child: Text(
+                _kCategories[i].$1,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                  color: selected ? Colors.white : Candy.chocolate,
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   Widget _sectionHeading({
     required IconData icon,
     required String label,
@@ -168,7 +229,7 @@ class ForYouScreen extends StatelessWidget {
   Widget _dealCard(BuildContext context, Promotion p) {
     return DealCard(
       promo: p,
-      memberships: memberships,
+      memberships: widget.memberships,
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(builder: (_) => DealDetailScreen(promo: p)),
