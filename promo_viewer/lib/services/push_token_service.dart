@@ -1,9 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'supabase_service.dart';
 
 class PushTokenService {
   static Future<void> register() async {
     if (!SupabaseService.isLoggedIn) return;
+    if (Firebase.apps.isEmpty) return;
 
     final messaging = FirebaseMessaging.instance;
 
@@ -53,6 +55,7 @@ class PushTokenService {
 
   static Future<void> deleteToken() async {
     if (!SupabaseService.isLoggedIn) return;
+    if (Firebase.apps.isEmpty) return;
     final token = await FirebaseMessaging.instance.getToken();
     if (token == null) return;
     final authId = SupabaseService.currentUserId;
