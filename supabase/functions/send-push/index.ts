@@ -191,6 +191,17 @@ Deno.serve(async (req) => {
   // Filter candidates below quality floor
   const qualified = candidates.filter(c => c.notify_score >= MIN_GLOBAL_QUALITY);
 
+  // Fetch promo_ids sent to each user in the last 7 days
+  const cutoff = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const { data: recentLogs } = await supabase
+    .from('notification_log')
+    .select('user_id, promo_id')
+    .gte('sent_at', cutoff);
+
+  const recentSent = new Set<string>(
+    (recentLogs ?? []).map((r: any) => `${r.user_id}:${r.promo_id}`)
+  );
+
   let accessToken: string | null = null;
   let sent = 0;
 
@@ -198,16 +209,18 @@ Deno.serve(async (req) => {
     const favBrands = new Set(user.favorite_brands.map(b => b.toLowerCase()));
     const favCats   = new Set(user.favorite_categories.map(c => c.toLowerCase()));
 
-    // Score all qualified candidates for this user
-    const scored = qualified.map(c => {
-      let score = c.notify_score;
-      const isFavBrand = favBrands.has(c.brand.toLowerCase());
-      const isFavCat   = favCats.has(c.category.toLowerCase());
-      if (isFavBrand) score += BRAND_BONUS;
-      if (isFavCat)   score += CATEGORY_BONUS;
-      const threshold = (isFavBrand || isFavCat) ? PERSONAL_THRESHOLD : UNKNOWN_THRESHOLD;
-      return { c, score, threshold };
-    }).filter(e => e.score >= e.threshold);
+    // Score all qualified candidates for this user, skipping recently sent ones
+    const scored = qualified
+      .filter(c => !recentSent.has(`${user.user_id}:${c.promo_id}`))
+      .map(c => {
+        let score = c.notify_score;
+        const isFavBrand = favBrands.has(c.brand.toLowerCase());
+        const isFavCat   = favCats.has(c.category.toLowerCase());
+        if (isFavBrand) score += BRAND_BONUS;
+        if (isFavCat)   score += CATEGORY_BONUS;
+        const threshold = (isFavBrand || isFavCat) ? PERSONAL_THRESHOLD : UNKNOWN_THRESHOLD;
+        return { c, score, threshold };
+      }).filter(e => e.score >= e.threshold);
 
     if (scored.length === 0) continue;
 
@@ -235,7 +248,14 @@ Deno.serve(async (req) => {
       body,
       c.promo_id,
     );
-    if (ok) sent++;
+    if (ok) {
+      sent++;
+      // Log so this deal isn't sent to this user again for 7 days
+      await supabase.from('notification_log').insert({
+        user_id:  user.user_id,
+        promo_id: c.promo_id,
+      });
+    }
   }
 
   return new Response(
