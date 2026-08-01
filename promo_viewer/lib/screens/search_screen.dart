@@ -38,6 +38,16 @@ const _kChipsByCategory = <String, List<String>>{
   'tech':          ['headphones', 'laptops', 'phones', 'cameras', 'smart home', 'gaming', 'tablets', 'speakers', 'wearables', 'chargers'],
 };
 
+// ── For You category filters ──────────────────────────────────────────────────
+
+const _kForYouCategories = [
+  ('All',       null                                          ),
+  ('Food',      ['food', 'fast food', 'restaurant', 'dining']),
+  ('Groceries', ['groceries', 'pharmacy', 'health']          ),
+  ('Tech',      ['electronics', 'tech', 'gaming']            ),
+  ('Fashion',   ['fashion', 'clothing', 'retail']            ),
+];
+
 // ── Context chip definitions ───────────────────────────────────────────────────
 
 class _ContextChip {
@@ -86,6 +96,7 @@ class _SearchScreenState extends State<SearchScreen> {
   String  _lastTrackedQ = '';
   SearchContext _ctx    = SearchContext.forYou;
   int     _radiusMi     = 5;
+  int     _selectedCategory = 0;
   Timer?  _debounce;
   Position? _position;
   bool    _locating       = false;
@@ -236,7 +247,7 @@ class _SearchScreenState extends State<SearchScreen> {
       _svc.recordSearchEvent('search_filter_chip_changed',
           params: {'chip': ctx.name, 'query': _query});
     }
-    setState(() => _ctx = ctx);
+    setState(() { _ctx = ctx; _selectedCategory = 0; });
     _recordContextImpressions();
   }
 
@@ -310,6 +321,26 @@ class _SearchScreenState extends State<SearchScreen> {
         params: {'deal_id': dealId, 'brand': brand, 'query': _debouncedQ});
   }
 
+  List<BrandGroup> _filterByCategory(List<BrandGroup> groups) {
+    final cats = _kForYouCategories[_selectedCategory].$2;
+    if (cats == null) return groups;
+    final result = <BrandGroup>[];
+    for (final g in groups) {
+      final deals = g.deals.where((p) =>
+          cats.any((c) => p.category.toLowerCase() == c.toLowerCase())).toList();
+      if (deals.isNotEmpty) {
+        result.add(BrandGroup(
+          brand: g.brand,
+          deals: deals,
+          bestTier: g.bestTier,
+          bestScore: g.bestScore,
+          contexts: g.contexts,
+        ));
+      }
+    }
+    return result;
+  }
+
   // ── Build ─────────────────────────────────────────────────────────────────
 
   @override
@@ -324,6 +355,7 @@ class _SearchScreenState extends State<SearchScreen> {
           children: [
             _buildHeader(),
             _buildContextChips(),
+            if (_ctx == SearchContext.forYou) _buildCategoryChips(),
             if (_ctx == SearchContext.nearMe) _buildNearMeLocationRow(),
             const Divider(height: 1),
             Expanded(child: _buildBody(hasQuery, results)),
@@ -475,6 +507,41 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
+  Widget _buildCategoryChips() {
+    return SizedBox(
+      height: 40,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        itemCount: _kForYouCategories.length,
+        itemBuilder: (context, i) {
+          final selected = i == _selectedCategory;
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: ChoiceChip(
+              label: Text(_kForYouCategories[i].$1),
+              selected: selected,
+              onSelected: (_) => setState(() => _selectedCategory = i),
+              labelStyle: TextStyle(
+                fontSize: 12,
+                fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
+                color: selected ? Colors.white : Candy.chocolate,
+              ),
+              selectedColor: Candy.chocolate,
+              backgroundColor: Colors.white,
+              side: BorderSide(
+                color: selected ? Candy.chocolate : Colors.grey.shade300,
+              ),
+              shape: const StadiumBorder(),
+              showCheckmark: false,
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   // ── Body routing ──────────────────────────────────────────────────────────
 
   Widget _buildBody(bool hasQuery, List<BrandGroup> results) {
@@ -489,7 +556,10 @@ class _SearchScreenState extends State<SearchScreen> {
       return _buildLocationPrompt();
     }
     final groups = _getContextGroups();
-    return groups.isEmpty ? _buildContextEmpty() : _buildGroupList(groups);
+    final displayed = _ctx == SearchContext.forYou
+        ? _filterByCategory(groups)
+        : groups;
+    return displayed.isEmpty ? _buildContextEmpty() : _buildGroupList(displayed);
   }
 
   // ── Feed (chips, no query) ────────────────────────────────────────────────
