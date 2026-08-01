@@ -1,8 +1,46 @@
 {
-  "generated_at": "2026-07-31T07:10:59.262478+00:00",
+  "generated_at": "2026-08-01T06:51:42.214990+00:00",
   "threshold": 60.0,
-  "total": 75,
+  "total": 77,
   "candidates": [
+    {
+      "promo_id": "dianevonfurstenberg_upto75offsalewithcodesale20",
+      "brand": "Diane von Furstenberg",
+      "category": "retail",
+      "title": "Up to 75% Off Sale with Code SALE20",
+      "notify_score": 91.89,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Diane von Furstenberg",
+      "notification_body": "Up to 75% Off Sale with Code SALE20",
+      "discount_type": "percentage_off",
+      "discount_value": "75%",
+      "estimated_savings": 33.75,
+      "end_date": null,
+      "website_domain": "dvf.com",
+      "source_url": "https://www.dvf.com/collections/sale"
+    },
+    {
+      "promo_id": "thredup_freecleanoutbagzerofeesforsellers",
+      "brand": "ThredUp",
+      "category": "retail",
+      "title": "Free clean out bag & zero fees for sellers",
+      "notify_score": 91.0,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "ThredUp",
+      "notification_body": "Free: Free clean out bag & zero fees for sellers",
+      "discount_type": "free_item",
+      "discount_value": "free clean out bag",
+      "estimated_savings": 100.0,
+      "end_date": null,
+      "website_domain": "thredup.com",
+      "source_url": "https://www.thredup.com/"
+    },
     {
       "promo_id": "stevemadden_summersalecode",
       "brand": "Steve Madden",
@@ -23,25 +61,6 @@
       "source_url": "https://www.stevemadden.com/policies/shipping-policy"
     },
     {
-      "promo_id": "jimmyjohns_freehousemadelemonadewithsummerfridaypromo",
-      "brand": "Jimmy John's",
-      "category": "food",
-      "title": "Free House-Made Lemonade with Summer Friday Promo",
-      "notify_score": 88.24,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Jimmy John's",
-      "notification_body": "Free: Free House-Made Lemonade with Summer Friday Promo",
-      "discount_type": "free_item",
-      "discount_value": "free lemonade",
-      "estimated_savings": 10.0,
-      "end_date": null,
-      "website_domain": "jimmyjohns.com",
-      "source_url": "https://www.jimmyjohns.com/menu/originals-sandwiches"
-    },
-    {
       "promo_id": "outbacksteakhouse_kidseatfreemondays",
       "brand": "Outback Steakhouse",
       "category": "food",
@@ -54,11 +73,30 @@
       "notification_title": "Outback Steakhouse",
       "notification_body": "Free: Kids Eat Free Mondays",
       "discount_type": "free_item",
-      "discount_value": "free",
+      "discount_value": "free kids meal",
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "outback.com",
       "source_url": "https://www.outback.com/offers/limited-time-menu"
+    },
+    {
+      "promo_id": "asos_asoswomenssaleupto80off",
+      "brand": "ASOS",
+      "category": "retail",
+      "title": "ASOS Women's Sale - up to 80% off",
+      "notify_score": 85.58,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "ASOS",
+      "notification_body": "ASOS Women's Sale - up to 80% off",
+      "discount_type": "percentage_off",
+      "discount_value": "80%",
+      "estimated_savings": 36.0,
+      "end_date": null,
+      "website_domain": "asos.com",
+      "source_url": "https://www.asos.com/us/women/sale/dresses/cat/?cid=5235"
     },
     {
       "promo_id": "jackery_jackerysaleupto60off",
@@ -80,23 +118,23 @@
       "source_url": "https://www.jackery.com/products/jackery-solar-generator-5000-plus"
     },
     {
-      "promo_id": "modaoperandi_womensdesignercollectionsale",
-      "brand": "Moda Operandi",
+      "promo_id": "boxlunch_shopallclearanceupto70off",
+      "brand": "BoxLunch",
       "category": "retail",
-      "title": "Women's Designer Collection Sale",
+      "title": "Shop All Clearance - Up to 70% Off",
       "notify_score": 82.1,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Moda Operandi",
-      "notification_body": "Women's Designer Collection Sale",
+      "notification_title": "BoxLunch",
+      "notification_body": "Shop All Clearance - Up to 70% Off",
       "discount_type": "percentage_off",
       "discount_value": "up to 70%",
       "estimated_savings": 31.5,
       "end_date": null,
-      "website_domain": "modaoperandi.com",
-      "source_url": "https://www.modaoperandi.com/women/sale"
+      "website_domain": "boxlunch.com",
+      "source_url": "https://www.boxlunch.com/sale/"
     },
     {
       "promo_id": "mrporter_mensluxuryfashionsale",
@@ -120,9 +158,9 @@
     {
       "promo_id": "pacsun_lastchancesavingsupto70offallmarkdowns",
       "brand": "PacSun",
-      "category": "retail",
+      "category": "clothing",
       "title": "Last Chance Savings Up To 70% Off All Markdowns",
-      "notify_score": 82.1,
+      "notify_score": 81.98,
       "signal_groups": [
         "context",
         "value"
@@ -131,7 +169,7 @@
       "notification_body": "Last Chance Savings Up To 70% Off All Markdowns",
       "discount_type": "percentage_off",
       "discount_value": "up to 70%",
-      "estimated_savings": 31.5,
+      "estimated_savings": 38.5,
       "end_date": null,
       "website_domain": "pacsun.com",
       "source_url": "https://www.pacsun.com/mens/sale/"
@@ -194,23 +232,23 @@
       "source_url": "https://www.luckybrand.com/sale/featured-shops/shop-sale-tops"
     },
     {
-      "promo_id": "skyzone_birthdaylikeabossfree100dayjumppass",
-      "brand": "Sky Zone",
-      "category": "entertainment",
-      "title": "Birthday Like a Boss - Free 100‑Day Jump Pass",
-      "notify_score": 80.47,
+      "promo_id": "kroger_buy1get1freegatoradewatersingleserve",
+      "brand": "Kroger",
+      "category": "beverages",
+      "title": "Buy 1 Get 1 Free Gatorade Water Single Serve",
+      "notify_score": 80.67,
       "signal_groups": [
         "personal",
         "value"
       ],
-      "notification_title": "Sky Zone",
-      "notification_body": "Birthday deal: Birthday Like a Boss - Free 100‑Day Jump Pass",
+      "notification_title": "Kroger",
+      "notification_body": "Free: Buy 1 Get 1 Free Gatorade Water Single Serve",
       "discount_type": "free_item",
       "discount_value": "free",
-      "estimated_savings": 14.0,
-      "end_date": null,
-      "website_domain": "skyzone.com",
-      "source_url": "https://www.skyzone.com/deals/"
+      "estimated_savings": 30.0,
+      "end_date": "2026-10-31",
+      "website_domain": "kroger.com",
+      "source_url": "https://www.kroger.com/savings/"
     },
     {
       "promo_id": "dillards_summerclearanceevent",
@@ -251,25 +289,6 @@
       "source_url": "https://www.hyperx.com/products/hyperx-quadcast-2-s-usb-microphone"
     },
     {
-      "promo_id": "mainevent_freepicnicperks",
-      "brand": "Main Event",
-      "category": "food",
-      "title": "Free Picnic Perks",
-      "notify_score": 79.24,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Main Event",
-      "notification_body": "Free: Free Picnic Perks",
-      "discount_type": "free_item",
-      "discount_value": "free upgrade",
-      "estimated_savings": 10.0,
-      "end_date": null,
-      "website_domain": "mainevent.com",
-      "source_url": "https://www.mainevent.com/specials/"
-    },
-    {
       "promo_id": "prose_freegrandbeachbag32valuewithemailsignup",
       "brand": "Prose",
       "category": "beauty",
@@ -289,6 +308,25 @@
       "source_url": "https://prose.com/"
     },
     {
+      "promo_id": "aspinaloflondon_saleupto60off",
+      "brand": "Aspinal of London",
+      "category": "retail",
+      "title": "Sale - Up to 60% Off",
+      "notify_score": 78.18,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Aspinal of London",
+      "notification_body": "Sale - Up to 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 27.0,
+      "end_date": null,
+      "website_domain": "aspinaloflondon.com",
+      "source_url": "https://www.aspinaloflondon.com/mens-bags/view-all"
+    },
+    {
       "promo_id": "mansurgavriel_summersaleupto60off",
       "brand": "Mansur Gavriel",
       "category": "retail",
@@ -306,25 +344,6 @@
       "end_date": null,
       "website_domain": "mansurgavriel.com",
       "source_url": "https://www.mansurgavriel.com/collections/sale"
-    },
-    {
-      "promo_id": "alc_upto60offsale",
-      "brand": "A.L.C.",
-      "category": "clothing",
-      "title": "Up to 60% off Sale",
-      "notify_score": 78.15,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "A.L.C.",
-      "notification_body": "Up to 60% off Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60% off",
-      "estimated_savings": 33.0,
-      "end_date": null,
-      "website_domain": "alcltd.com",
-      "source_url": "https://alcltd.com/collections/sale"
     },
     {
       "promo_id": "stjohn_upto60offbasics",
@@ -403,6 +422,25 @@
       "source_url": "https://www.stjohnknits.com/collections/sale"
     },
     {
+      "promo_id": "cartier_freegiftwrapping",
+      "brand": "Cartier",
+      "category": "retail",
+      "title": "Free Gift Wrapping",
+      "notify_score": 76.33,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Cartier",
+      "notification_body": "Free: Free Gift Wrapping",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "cartier.com",
+      "source_url": "https://www.cartier.com/en-us/"
+    },
+    {
       "promo_id": "potterybarnkids_freeexpertdesignadvice",
       "brand": "Pottery Barn Kids",
       "category": "retail",
@@ -479,25 +517,6 @@
       "source_url": "https://www.surlatable.com/category/cat-6070003/Sale"
     },
     {
-      "promo_id": "iherb_upto70offdeals",
-      "brand": "iHerb",
-      "category": "pharmacy",
-      "title": "Up to 70% Off Deals",
-      "notify_score": 74.54,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "iHerb",
-      "notification_body": "Up to 70% Off Deals",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 21.0,
-      "end_date": null,
-      "website_domain": "iherb.com",
-      "source_url": "https://www.iherb.com/info/sales-and-offers"
-    },
-    {
       "promo_id": "myprotein_upto70offpaydaysale",
       "brand": "MyProtein",
       "category": "fitness",
@@ -515,44 +534,6 @@
       "end_date": null,
       "website_domain": "myprotein.com",
       "source_url": "https://www.myprotein.com/c/all-offers/clearance-multibuy/"
-    },
-    {
-      "promo_id": "wendys_freeanysizefrywithanypurchasefriday",
-      "brand": "Wendy's",
-      "category": "food",
-      "title": "Free any size fry with any purchase (Friday)",
-      "notify_score": 74.52,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Wendy's",
-      "notification_body": "Free: Free any size fry with any purchase (Friday)",
-      "discount_type": "free_item",
-      "discount_value": "free any size fry",
-      "estimated_savings": 9.0,
-      "end_date": null,
-      "website_domain": "wendys.com",
-      "source_url": "https://www.wendys.com/offers-coupons"
-    },
-    {
-      "promo_id": "wendys_freeanysizefrywith5purchasefriday",
-      "brand": "Wendy's",
-      "category": "food",
-      "title": "Free any size fry with $5 purchase (Friday)",
-      "notify_score": 74.52,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Wendy's",
-      "notification_body": "Free: Free any size fry with $5 purchase (Friday)",
-      "discount_type": "free_item",
-      "discount_value": "free any size fry",
-      "estimated_savings": 9.0,
-      "end_date": null,
-      "website_domain": "wendys.com",
-      "source_url": "https://www.wendys.com/offers-coupons"
     },
     {
       "promo_id": "babylist_freehellobabybox",
@@ -650,23 +631,23 @@
       "source_url": "https://www.jomalone.com/online-exclusive-offers"
     },
     {
-      "promo_id": "romanro_freeinsurancecheck",
-      "brand": "Roman (Ro)",
-      "category": "pharmacy",
-      "title": "Free insurance check",
+      "promo_id": "luluandgeorgia_freedesignservices",
+      "brand": "Lulu and Georgia",
+      "category": "Premium Home",
+      "title": "Free Design Services",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Roman (Ro)",
-      "notification_body": "Free: Free insurance check",
+      "notification_title": "Lulu and Georgia",
+      "notification_body": "Free: Free Design Services",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "ro.co",
-      "source_url": "https://ro.co/"
+      "website_domain": "luluandgeorgia.com",
+      "source_url": "https://www.luluandgeorgia.com/collections/sale"
     },
     {
       "promo_id": "sundayriley_freevirtualconsultation",
@@ -686,6 +667,25 @@
       "end_date": null,
       "website_domain": "sundayriley.com",
       "source_url": "https://www.sundayriley.com/collections/all"
+    },
+    {
+      "promo_id": "tirerack_free2yearroadhazardprotection",
+      "brand": "Tire Rack",
+      "category": "auto_parts",
+      "title": "Free 2-Year Road Hazard Protection",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Tire Rack",
+      "notification_body": "Free: Free 2-Year Road Hazard Protection",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "tirerack.com",
+      "source_url": "https://www.tirerack.com/specialoffers/specialoffers.jsp"
     },
     {
       "promo_id": "tonal_firstmonthfreeontonalrent",
@@ -726,23 +726,23 @@
       "source_url": "https://www.applebees.com/en/specials"
     },
     {
-      "promo_id": "bluemercury_saleupto50off",
-      "brand": "Bluemercury",
+      "promo_id": "boxlunch_upto50offsale",
+      "brand": "BoxLunch",
       "category": "retail",
-      "title": "Sale - Up to 50% Off",
+      "title": "Up to 50% Off Sale",
       "notify_score": 73.67,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Bluemercury",
-      "notification_body": "Sale - Up to 50% Off",
+      "notification_title": "BoxLunch",
+      "notification_body": "Up to 50% Off Sale",
       "discount_type": "percentage_off",
-      "discount_value": "up to 50% off",
+      "discount_value": "up to 50%",
       "estimated_savings": 22.5,
       "end_date": null,
-      "website_domain": "bluemercury.com",
-      "source_url": "https://bluemercury.com/collections/sale"
+      "website_domain": "boxlunch.com",
+      "source_url": "https://www.boxlunch.com/sale/"
     },
     {
       "promo_id": "courreges_50offwomen",
@@ -800,6 +800,25 @@
       "end_date": null,
       "website_domain": "off---white.com",
       "source_url": "https://www.off---white.com/en-us/new-in/men-new-in/"
+    },
+    {
+      "promo_id": "tedbaker_upto50offselectedstyles",
+      "brand": "Ted Baker",
+      "category": "retail",
+      "title": "UP TO 50% OFF SELECTED STYLES",
+      "notify_score": 73.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Ted Baker",
+      "notification_body": "UP TO 50% OFF SELECTED STYLES",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "tedbaker.com",
+      "source_url": "https://www.tedbaker.com/collections/sale-us"
     },
     {
       "promo_id": "potterybarn_freedesignservices",
@@ -916,6 +935,25 @@
       "source_url": "https://www.noodles.com/order"
     },
     {
+      "promo_id": "skyzone_birthdaylikeabossfree100dayjumppass",
+      "brand": "Sky Zone",
+      "category": "entertainment",
+      "title": "Birthday Like a Boss - Free 100‑Day Jump Pass",
+      "notify_score": 71.47,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Sky Zone",
+      "notification_body": "Birthday deal: Birthday Like a Boss - Free 100‑Day Jump Pass",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 14.0,
+      "end_date": null,
+      "website_domain": "skyzone.com",
+      "source_url": "https://www.skyzone.com/deals/"
+    },
+    {
       "promo_id": "firestone_freebrakeinspection",
       "brand": "Firestone",
       "category": "auto_parts",
@@ -992,6 +1030,25 @@
       "source_url": "https://www.babylist.com/registry/new"
     },
     {
+      "promo_id": "mainevent_freepicnicperks",
+      "brand": "Main Event",
+      "category": "food",
+      "title": "Free Picnic Perks",
+      "notify_score": 70.24,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Main Event",
+      "notification_body": "Free: Free Picnic Perks",
+      "discount_type": "free_item",
+      "discount_value": "free upgrade",
+      "estimated_savings": 10.0,
+      "end_date": null,
+      "website_domain": "mainevent.com",
+      "source_url": "https://www.mainevent.com/specials/"
+    },
+    {
       "promo_id": "clubmonaco_shopallsale",
       "brand": "Club Monaco",
       "category": "retail",
@@ -1049,25 +1106,6 @@
       "source_url": "https://www.applebees.com/en/specials"
     },
     {
-      "promo_id": "calvinklein_calvinkleinsale",
-      "brand": "Calvin Klein",
-      "category": "fashion",
-      "title": "Calvin Klein Sale",
-      "notify_score": 68.84,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Calvin Klein",
-      "notification_body": "Calvin Klein Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50% off",
-      "estimated_savings": 32.5,
-      "end_date": null,
-      "website_domain": "calvinklein.us",
-      "source_url": "https://www.calvinklein.us/en/sale/women/dresses"
-    },
-    {
       "promo_id": "ganni_gannisale",
       "brand": "GANNI",
       "category": "fashion",
@@ -1104,25 +1142,6 @@
       "end_date": null,
       "website_domain": "kiehls.com",
       "source_url": "https://www.kiehls.com/skincare/eye-creams-and-serums/avocado-eye-cream/258.html"
-    },
-    {
-      "promo_id": "mainevent_kidsbowlfree",
-      "brand": "Main Event",
-      "category": "other",
-      "title": "Kids Bowl Free",
-      "notify_score": 68.49,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Main Event",
-      "notification_body": "Free: Kids Bowl Free",
-      "discount_type": "free_item",
-      "discount_value": "2 free games",
-      "estimated_savings": 10.0,
-      "end_date": null,
-      "website_domain": "mainevent.com",
-      "source_url": "https://www.mainevent.com/specials/"
     },
     {
       "promo_id": "culvers_freebirthdayandhalfbirthdaytreats",
@@ -1296,6 +1315,25 @@
       "source_url": "https://www.chick-fil-a.com/one"
     },
     {
+      "promo_id": "saatva_saatvasale",
+      "brand": "Saatva",
+      "category": "Mattress / Home",
+      "title": "Saatva Sale",
+      "notify_score": 63.24,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Saatva",
+      "notification_body": "Saatva Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 53% off",
+      "estimated_savings": 15.9,
+      "end_date": null,
+      "website_domain": "saatva.com",
+      "source_url": "https://www.saatva.com/mattresses/saatva-classic"
+    },
+    {
       "promo_id": "einsteinbrosbagels_unlimitedfreecoffeeonevisit",
       "brand": "Einstein Bros Bagels",
       "category": "food",
@@ -1353,6 +1391,25 @@
       "source_url": "/terms-and-conditions"
     },
     {
+      "promo_id": "romanro_freeinsurancecheck",
+      "brand": "Roman (Ro)",
+      "category": "pharmacy",
+      "title": "Free insurance check",
+      "notify_score": 62.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Roman (Ro)",
+      "notification_body": "Free: Free insurance check",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "ro.co",
+      "source_url": "https://ro.co/"
+    },
+    {
       "promo_id": "peetscoffee_freebirthdaydrink",
       "brand": "Peet's Coffee",
       "category": "food",
@@ -1370,25 +1427,6 @@
       "end_date": null,
       "website_domain": "peets.com",
       "source_url": "https://www.peets.com/collections/all-coffees"
-    },
-    {
-      "promo_id": "saatva_saatvasale",
-      "brand": "Saatva",
-      "category": "Mattress / Home",
-      "title": "Saatva Sale",
-      "notify_score": 61.99,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Saatva",
-      "notification_body": "Saatva Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50% off",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "saatva.com",
-      "source_url": "https://www.saatva.com/mattresses/saatva-classic"
     },
     {
       "promo_id": "vince_vincesale",
