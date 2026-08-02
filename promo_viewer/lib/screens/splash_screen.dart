@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import '../services/interaction_service.dart';
 import '../services/notification_service.dart';
+import '../services/push_token_service.dart';
 import '../services/saved_deals_service.dart';
 import '../services/supabase_service.dart';
 import '../services/timezone_service.dart';
@@ -128,6 +129,7 @@ class _SplashScreenState extends State<SplashScreen>
       final uid = SupabaseService.currentUserId;
       if (uid != null) await SavedDealsService().loadForUser(uid);
       _tagSentryUser();
+      PushTokenService.register();
     }
 
     NotificationService().processNotificationCandidates();
