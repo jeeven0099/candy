@@ -73,9 +73,10 @@ class PushTokenService {
         },
         onConflict: 'user_id, token',
       );
-      Sentry.addBreadcrumb(Breadcrumb(
-        message: '[PushToken] token upserted for user $userId',
-      ));
+      await Sentry.captureMessage(
+        '[PushToken] token upserted successfully for user $userId',
+        level: SentryLevel.info,
+      );
     } catch (e, st) {
       await Sentry.captureException(e, stackTrace: st,
           hint: Hint.withMap({'context': '[PushToken] upsert failed'}));
