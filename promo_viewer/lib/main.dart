@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'firebase_options.dart';
 import 'screens/splash_screen.dart';
 import 'services/notification_service.dart';
 import 'theme/candy_colors.dart';
@@ -12,7 +13,7 @@ final navigatorKey = GlobalKey<NavigatorState>();
 @pragma('vm:entry-point')
 Future<void> _fcmBackgroundHandler(RemoteMessage message) async {
   try {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   } catch (_) {}
 }
 
@@ -27,7 +28,9 @@ void main() async {
 
       bool firebaseReady = false;
       try {
-        await Firebase.initializeApp();
+        await Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform,
+        );
         firebaseReady = true;
       } catch (e, st) {
         await Sentry.captureException(e, stackTrace: st,
