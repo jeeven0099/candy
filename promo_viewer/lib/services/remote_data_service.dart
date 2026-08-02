@@ -1,20 +1,16 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../config.dart';
 
-/// Fetches asset files from a dynamically-discovered server URL, caches in
-/// SharedPreferences, and falls back to bundled assets when offline.
+/// Fetches asset files from a dynamically-discovered server URL, caches to
+/// disk (not SharedPreferences), and falls back to bundled assets when offline.
 ///
-/// Server discovery: on first load (or when the cached URL is stale), the
-/// service fetches [kConfigUrl] (a stable GitHub raw file) to get the current
-/// server URL. Edit server_config.json in the repo and push to update it —
-/// no app rebuild required.
-///
-/// Cache TTLs:
-///   Server URL:  1 hour  (propagates server changes within an hour)
-///   Asset data:  6 hours (stale data preferred over a network error)
+/// Large JSON files (all_promotions.json, brand_locations.json) are written to
+/// the app's support directory so iOS does not keep them in RAM permanently.
 class RemoteDataService {
   static const _dataTtlMs   = 6 * 60 * 60 * 1000; // 6 h
   static const _serverTtlMs = 1 * 60 * 60 * 1000; // 1 h
@@ -23,15 +19,28 @@ class RemoteDataService {
   static const _serverUrlKey   = '_rds_server_url';
   static const _serverUrlTsKey = '_rds_server_url_ts';
 
-  // In-process cache so parallel load() calls don't all hit SharedPreferences.
   static String? _serverUrlMem;
 
-  /// Returns the current server base URL, discovering it from [kConfigUrl]
-  /// if the cached value is absent or stale.
+  static Future<Directory> _cacheDir() async {
+    final base = await getApplicationSupportDirectory();
+    final dir  = Directory('${base.path}/rds_cache');
+    if (!dir.existsSync()) dir.createSync(recursive: true);
+    return dir;
+  }
+
+  static Future<File> _cacheFile(String filename) async {
+    final dir = await _cacheDir();
+    return File('${dir.path}/${filename.replaceAll('/', '_')}');
+  }
+
+  static Future<File> _tsFile(String filename) async {
+    final dir = await _cacheDir();
+    return File('${dir.path}/${filename.replaceAll('/', '_')}.ts');
+  }
+
   static Future<String?> _resolveServerUrl() async {
     final prefs = await SharedPreferences.getInstance();
 
-    // In-memory hit
     if (_serverUrlMem != null) {
       final ts = prefs.getInt(_serverUrlTsKey) ?? 0;
       if (DateTime.now().millisecondsSinceEpoch - ts < _serverTtlMs) {
@@ -39,7 +48,6 @@ class RemoteDataService {
       }
     }
 
-    // SharedPreferences hit
     final cached = prefs.getString(_serverUrlKey);
     final ts     = prefs.getInt(_serverUrlTsKey) ?? 0;
     if (cached != null &&
@@ -48,7 +56,6 @@ class RemoteDataService {
       return cached;
     }
 
-    // Fetch from GitHub bootstrap
     try {
       final response =
           await http.get(Uri.parse(kConfigUrl)).timeout(_timeout);
@@ -65,32 +72,24 @@ class RemoteDataService {
       }
     } catch (_) {}
 
-    // Fall back to stale cached URL rather than nothing
     if (cached != null && cached.isNotEmpty) {
       _serverUrlMem = cached;
       return cached;
     }
 
-    return null; // no server — use bundled assets
+    return null;
   }
 
-  /// Load [filename] (e.g. 'all_promotions.json').
-  /// Resolution order:
-  ///   1. SharedPreferences cache (if fresh)
-  ///   2. Remote server (discovered via kConfigUrl) → updates cache
-  ///   3. SharedPreferences cache (stale)
-  ///   4. Bundled assets
   static Future<String> load(String filename) async {
-    final prefs   = await SharedPreferences.getInstance();
-    final cacheKey = '_rds_$filename';
-    final tsKey    = '_rds_ts_$filename';
+    final cf = await _cacheFile(filename);
+    final tf = await _tsFile(filename);
 
-    final cached = prefs.getString(cacheKey);
-    final ts     = prefs.getInt(tsKey) ?? 0;
-    final ageMs  = DateTime.now().millisecondsSinceEpoch - ts;
-
-    // 1. Fresh cache
-    if (cached != null && ageMs < _dataTtlMs) return cached;
+    // 1. Fresh disk cache
+    if (cf.existsSync() && tf.existsSync()) {
+      final ts    = int.tryParse(await tf.readAsString()) ?? 0;
+      final ageMs = DateTime.now().millisecondsSinceEpoch - ts;
+      if (ageMs < _dataTtlMs) return cf.readAsString();
+    }
 
     // 2. Try remote
     final serverUrl = await _resolveServerUrl();
@@ -100,28 +99,33 @@ class RemoteDataService {
         final response = await http.get(uri).timeout(_timeout);
         if (response.statusCode == 200) {
           final body = response.body;
-          await prefs.setString(cacheKey, body);
-          await prefs.setInt(tsKey, DateTime.now().millisecondsSinceEpoch);
+          await cf.writeAsString(body);
+          await tf.writeAsString(
+              '${DateTime.now().millisecondsSinceEpoch}');
           return body;
         }
       } catch (_) {}
     }
 
-    // 3. Stale cache
-    if (cached != null) return cached;
+    // 3. Stale disk cache
+    if (cf.existsSync()) return cf.readAsString();
 
     // 4. Bundled assets
     return rootBundle.loadString('assets/$filename');
   }
 
-  /// Force-clear the data cache for [filename] (e.g. on pull-to-refresh).
   static Future<void> clearCache(String filename) async {
+    final cf = await _cacheFile(filename);
+    final tf = await _tsFile(filename);
+    if (cf.existsSync()) cf.deleteSync();
+    if (tf.existsSync()) tf.deleteSync();
+
+    // Also clear old SharedPreferences cache entries from previous versions
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('_rds_$filename');
     await prefs.remove('_rds_ts_$filename');
   }
 
-  /// Force-clear the cached server URL so it re-discovers on next load.
   static Future<void> clearServerUrl() async {
     _serverUrlMem = null;
     final prefs = await SharedPreferences.getInstance();
