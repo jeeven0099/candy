@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'firebase_options.dart';
 import 'screens/splash_screen.dart';
 import 'services/notification_service.dart';
 import 'theme/candy_colors.dart';
@@ -13,7 +12,7 @@ final navigatorKey = GlobalKey<NavigatorState>();
 @pragma('vm:entry-point')
 Future<void> _fcmBackgroundHandler(RemoteMessage message) async {
   try {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    await Firebase.initializeApp();
   } catch (_) {}
 }
 
@@ -28,13 +27,10 @@ void main() async {
 
       bool firebaseReady = false;
       try {
-        await Firebase.initializeApp(
-          options: DefaultFirebaseOptions.currentPlatform,
-        );
+        await Firebase.initializeApp();
         firebaseReady = true;
-      } catch (e, st) {
-        await Sentry.captureException(e, stackTrace: st,
-            hint: Hint.withMap({'context': 'Firebase.initializeApp() failed'}));
+      } catch (_) {
+        // Firebase config files not yet added — push notifications unavailable
       }
 
       if (firebaseReady) {
