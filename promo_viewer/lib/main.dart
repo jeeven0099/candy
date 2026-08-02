@@ -37,10 +37,14 @@ void main() async {
         FirebaseMessaging.onBackgroundMessage(_fcmBackgroundHandler);
 
         // Handle notification tap when app is opened from terminated state
-        final initial = await FirebaseMessaging.instance.getInitialMessage();
-        if (initial != null) {
-          NotificationService.pendingPromoId = initial.data['promo_id'];
-        }
+        try {
+          final initial = await FirebaseMessaging.instance
+              .getInitialMessage()
+              .timeout(const Duration(seconds: 5), onTimeout: () => null);
+          if (initial != null) {
+            NotificationService.pendingPromoId = initial.data['promo_id'];
+          }
+        } catch (_) {}
 
         // Handle notification tap when app is in background
         FirebaseMessaging.onMessageOpenedApp.listen((message) {
