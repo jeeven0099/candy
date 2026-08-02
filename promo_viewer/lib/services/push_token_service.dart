@@ -1,11 +1,18 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'supabase_service.dart';
 
 class PushTokenService {
   static Future<void> register() async {
-    if (!SupabaseService.isLoggedIn) return;
-    if (Firebase.apps.isEmpty) return;
+    if (!SupabaseService.isLoggedIn) {
+      Sentry.addBreadcrumb(Breadcrumb(message: '[PushToken] skipped: not logged in'));
+      return;
+    }
+    if (Firebase.apps.isEmpty) {
+      Sentry.addBreadcrumb(Breadcrumb(message: '[PushToken] skipped: Firebase not initialized'));
+      return;
+    }
 
     final messaging = FirebaseMessaging.instance;
 
@@ -14,10 +21,22 @@ class PushTokenService {
       badge: true,
       sound: true,
     );
+    Sentry.addBreadcrumb(Breadcrumb(
+      message: '[PushToken] permission: ${settings.authorizationStatus}',
+    ));
     if (settings.authorizationStatus == AuthorizationStatus.denied) return;
 
     final token = await messaging.getToken();
-    if (token == null) return;
+    Sentry.addBreadcrumb(Breadcrumb(
+      message: '[PushToken] getToken result: ${token == null ? "NULL" : "ok (${token.substring(0, 20)}...)"}',
+    ));
+    if (token == null) {
+      await Sentry.captureMessage(
+        '[PushToken] getToken returned null — APNs key may be missing in Firebase',
+        level: SentryLevel.warning,
+      );
+      return;
+    }
 
     await _upsertToken(token);
 
@@ -36,7 +55,13 @@ class PushTokenService {
           .select('id')
           .eq('auth_id', authId)
           .maybeSingle();
-      if (userRow == null) return;
+      if (userRow == null) {
+        await Sentry.captureMessage(
+          '[PushToken] no users row found for auth_id $authId',
+          level: SentryLevel.warning,
+        );
+        return;
+      }
       final userId = userRow['id'] as String;
 
       await SupabaseService.client.from('device_tokens').upsert(
@@ -48,8 +73,12 @@ class PushTokenService {
         },
         onConflict: 'user_id, token',
       );
-    } catch (e) {
-      // Non-fatal — push will still work on next successful register
+      Sentry.addBreadcrumb(Breadcrumb(
+        message: '[PushToken] token upserted for user $userId',
+      ));
+    } catch (e, st) {
+      await Sentry.captureException(e, stackTrace: st,
+          hint: Hint.withMap({'context': '[PushToken] upsert failed'}));
     }
   }
 
