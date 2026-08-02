@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-08-02T05:24:37Z",
-  "promotion_count": 1912,
+  "generated_at": "2026-08-02T07:10:43Z",
+  "promotion_count": 1913,
   "promotions": [
     {
       "brand": "A.L.C.",
@@ -28285,7 +28285,7 @@
       "brand": "Brooks Brothers",
       "category": "retail",
       "promotion_title": "Extra 25% Off Clearance",
-      "short_summary": "Extra 25% off clearance items, which are already discounted up to 60% off.",
+      "short_summary": "Extra 25% off already discounted clearance items.",
       "promotion_type": "sale",
       "discount_type": "percentage_off",
       "discount_value": "25%",
@@ -28303,9 +28303,11 @@
       "time_end": null,
       "timezone": "America/New_York",
       "redemption_method": "online",
-      "redemption_steps": [],
+      "redemption_steps": [
+        "Shop online"
+      ],
       "promo_code": null,
-      "terms_text": "Extra 25% off clearance, already up to 60% off",
+      "terms_text": "Extra 25% off clearance, already up to 60% off.",
       "minimum_spend": null,
       "purchase_required": true,
       "deal_scope": "brand_level",
@@ -28313,10 +28315,10 @@
       "friction_reasons": [],
       "confidence_score": 0.96,
       "source_type": "web_page",
-      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\brooks_brothers_20260801T020319Z.txt",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\brooks_brothers_20260802T020321Z.txt",
       "extraction_status": "success",
       "notes": [
-        "Promotion appears in header and within page."
+        "Promotion appears on sale page without membership requirement."
       ],
       "target_gender": "unisex",
       "synthesized": false,
@@ -28329,9 +28331,14 @@
       "product_keywords_contextual": [
         "dress shirts",
         "suits",
-        "sport shirts",
+        "shoes",
+        "ties",
+        "blazers",
         "sweaters",
-        "jackets"
+        "polos",
+        "pants",
+        "jackets",
+        "accessories"
       ],
       "matched_product_examples": [],
       "deal_url": "https://www.brooksbrothers.com/stretch-non-iron-oxford-button-down-collar%2C-vintage-check-shirt/MG04448.html",
@@ -28340,8 +28347,8 @@
       "email_subject": null,
       "email_date": null,
       "website_domain": "brooksbrothers.com",
-      "status": "probably_active",
       "source_url": "https://www.brooksbrothers.com/stretch-non-iron-oxford-button-down-collar%2C-vintage-check-shirt/MG04448.html",
+      "status": "probably_active",
       "source": "web",
       "fast_redemption": {
         "eligible": true,
@@ -28382,7 +28389,7 @@
       "brand": "Brooks Brothers",
       "category": "retail",
       "promotion_title": "Up to 50% Off Select Styles",
-      "short_summary": "Select styles are discounted up to 50% during the sale.",
+      "short_summary": "Select styles discounted up to 50% off.",
       "promotion_type": "sale",
       "discount_type": "percentage_off",
       "discount_value": "up to 50%",
@@ -28400,20 +28407,22 @@
       "time_end": null,
       "timezone": "America/New_York",
       "redemption_method": "online",
-      "redemption_steps": [],
+      "redemption_steps": [
+        "Shop online"
+      ],
       "promo_code": null,
-      "terms_text": "Up to 50% Off Select Styles",
+      "terms_text": "Up to 50% Off Select Styles.",
       "minimum_spend": null,
       "purchase_required": true,
       "deal_scope": "brand_level",
       "friction_level": "low",
       "friction_reasons": [],
-      "confidence_score": 0.94,
+      "confidence_score": 0.95,
       "source_type": "web_page",
-      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\brooks_brothers_20260801T020319Z.txt",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\brooks_brothers_20260802T020321Z.txt",
       "extraction_status": "success",
       "notes": [
-        "Sitewide sale highlighted in page banner."
+        "Sale applies to a broad range of styles."
       ],
       "target_gender": "unisex",
       "synthesized": false,
@@ -28426,9 +28435,14 @@
       "product_keywords_contextual": [
         "dress shirts",
         "suits",
-        "sport shirts",
+        "shoes",
+        "ties",
+        "blazers",
         "sweaters",
-        "jackets"
+        "polos",
+        "pants",
+        "jackets",
+        "accessories"
       ],
       "matched_product_examples": [],
       "deal_url": "https://www.brooksbrothers.com/sale/mens",
@@ -28437,8 +28451,8 @@
       "email_subject": null,
       "email_date": null,
       "website_domain": "brooksbrothers.com",
-      "status": "probably_active",
       "source_url": "https://www.brooksbrothers.com/sale/mens",
+      "status": "probably_active",
       "source": "web",
       "fast_redemption": {
         "eligible": true,
@@ -28479,7 +28493,7 @@
       "brand": "Brooks Brothers",
       "category": "retail",
       "promotion_title": "Free Standard Shipping on $200+",
-      "short_summary": "Free standard shipping for orders of $200 or more.",
+      "short_summary": "Free standard shipping on orders of $200 or more.",
       "promotion_type": "sale",
       "discount_type": "free_shipping",
       "discount_value": "free",
@@ -28497,27 +28511,44 @@
       "time_end": null,
       "timezone": "America/New_York",
       "redemption_method": "online",
-      "redemption_steps": [],
+      "redemption_steps": [
+        "Add items to cart",
+        "Proceed to checkout"
+      ],
       "promo_code": null,
-      "terms_text": "Free Standard Shipping on $200+",
+      "terms_text": "Free Standard Shipping on $200+.",
       "minimum_spend": "$200",
       "purchase_required": true,
       "deal_scope": "brand_level",
       "friction_level": "low",
       "friction_reasons": [],
-      "confidence_score": 0.92,
+      "confidence_score": 0.94,
       "source_type": "web_page",
-      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\brooks_brothers_20260801T020319Z.txt",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\brooks_brothers_20260802T020321Z.txt",
       "extraction_status": "success",
       "notes": [
-        "Shipping incentive applies to all orders meeting spend threshold."
+        "Shipping offer applies site‑wide with minimum spend."
       ],
-      "target_gender": null,
+      "target_gender": "unisex",
       "synthesized": false,
       "synthesis_reason": null,
-      "product_categories": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "dress shirts",
+        "suits",
+        "shoes",
+        "ties",
+        "blazers",
+        "sweaters",
+        "polos",
+        "pants",
+        "jackets",
+        "accessories"
+      ],
       "matched_product_examples": [],
       "deal_url": null,
       "visibility": null,
@@ -28525,6 +28556,7 @@
       "email_subject": null,
       "email_date": null,
       "website_domain": "brooksbrothers.com",
+      "source_url": "https://www.brooksbrothers.com/sale",
       "status": "probably_active",
       "source": "web",
       "fast_redemption": {
@@ -28532,7 +28564,7 @@
         "action_type": "open_url",
         "button_label": "Shop Now",
         "primary_value": null,
-        "primary_url": "https://www.brooksbrothers.com",
+        "primary_url": "https://www.brooksbrothers.com/sale",
         "app_deep_link": null,
         "web_fallback_url": null,
         "steps_after_click": [
@@ -28564,7 +28596,7 @@
       "brand": "Brooks Brothers",
       "category": "retail",
       "promotion_title": "Rewards Program: Brooks Brothers",
-      "short_summary": "Earn points and rewards as a Brooks Brothers Rewards member.",
+      "short_summary": "Sign up for Brooks Brothers Rewards and earn 2,500 points (valid until 9/27).",
       "promotion_type": "reward",
       "discount_type": "points",
       "discount_value": null,
@@ -28582,27 +28614,44 @@
       "time_end": null,
       "timezone": "America/New_York",
       "redemption_method": "online",
-      "redemption_steps": [],
+      "redemption_steps": [
+        "Create a Brooks Brothers account",
+        "Enroll in Rewards program"
+      ],
       "promo_code": null,
-      "terms_text": "Start earning rewards as a Brooks Brothers Rewards Member",
+      "terms_text": "Join Brooks Brothers Rewards: Earn 2500 Points until 9/27.",
       "minimum_spend": null,
       "purchase_required": false,
       "deal_scope": "brand_level",
       "friction_level": "low",
       "friction_reasons": [],
-      "confidence_score": 0.93,
+      "confidence_score": 0.97,
       "source_type": "web_page",
-      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\brooks_brothers_20260801T020319Z.txt",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\brooks_brothers_20260802T020321Z.txt",
       "extraction_status": "success",
       "notes": [
-        "Program description appears without explicit discount values."
+        "Rewards program appears to be free to join."
       ],
-      "target_gender": null,
+      "target_gender": "unisex",
       "synthesized": false,
       "synthesis_reason": null,
-      "product_categories": [],
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ],
       "product_keywords_explicit": [],
-      "product_keywords_contextual": [],
+      "product_keywords_contextual": [
+        "dress shirts",
+        "suits",
+        "shoes",
+        "ties",
+        "blazers",
+        "sweaters",
+        "polos",
+        "pants",
+        "jackets",
+        "accessories"
+      ],
       "matched_product_examples": [],
       "deal_url": "https://www.brooksbrothers.com/on/demandware.store/Sites-brooksbrothers-Site/en_US/Search-ShowAjax?cgid=sale&prefn1=gender&prefv1=Men",
       "visibility": null,
@@ -28610,8 +28659,8 @@
       "email_subject": null,
       "email_date": null,
       "website_domain": "brooksbrothers.com",
-      "status": "probably_active",
       "source_url": "https://www.brooksbrothers.com/on/demandware.store/Sites-brooksbrothers-Site/en_US/Search-ShowAjax?cgid=sale&prefn1=gender&prefv1=Men",
+      "status": "probably_active",
       "source": "web",
       "fast_redemption": {
         "eligible": true,
@@ -28645,6 +28694,111 @@
         "NO_PURCHASE_MINIMUM"
       ],
       "global_quality_score": 21.71
+    },
+    {
+      "brand": "Brooks Brothers",
+      "category": "retail",
+      "promotion_title": "Up to 60% Off Clearance",
+      "short_summary": "Clearance items discounted up to 60% off.",
+      "promotion_type": "sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "requires_membership": false,
+      "membership_name": null,
+      "membership_cost": null,
+      "requires_app": false,
+      "requires_account_login": false,
+      "new_user_only": false,
+      "birthday_related": false,
+      "start_date": null,
+      "end_date": null,
+      "valid_days": [],
+      "time_start": null,
+      "time_end": null,
+      "timezone": "America/New_York",
+      "redemption_method": "online",
+      "redemption_steps": [
+        "Shop online"
+      ],
+      "promo_code": null,
+      "terms_text": "Clearance items already up to 60% off.",
+      "minimum_spend": null,
+      "purchase_required": true,
+      "deal_scope": "brand_level",
+      "friction_level": "low",
+      "friction_reasons": [],
+      "confidence_score": 0.95,
+      "source_type": "web_page",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\brooks_brothers_20260802T020321Z.txt",
+      "extraction_status": "success",
+      "notes": [
+        "Base clearance discount mentioned alongside extra 25% off."
+      ],
+      "target_gender": "unisex",
+      "synthesized": false,
+      "synthesis_reason": null,
+      "product_categories": [
+        "clothing",
+        "accessories"
+      ],
+      "product_keywords_explicit": [],
+      "product_keywords_contextual": [
+        "dress shirts",
+        "suits",
+        "shoes",
+        "ties",
+        "blazers",
+        "sweaters",
+        "polos",
+        "pants",
+        "jackets",
+        "accessories"
+      ],
+      "matched_product_examples": [],
+      "deal_url": "https://www.brooksbrothers.com/sale/mens",
+      "visibility": null,
+      "sender_email": null,
+      "email_subject": null,
+      "email_date": null,
+      "website_domain": "brooksbrothers.com",
+      "source_url": "https://www.brooksbrothers.com/sale/mens",
+      "status": "probably_active",
+      "source": "web",
+      "fast_redemption": {
+        "eligible": true,
+        "action_type": "open_url",
+        "button_label": "Shop Now",
+        "primary_value": null,
+        "primary_url": "https://www.brooksbrothers.com/sale/mens",
+        "app_deep_link": null,
+        "web_fallback_url": null,
+        "steps_after_click": [
+          "Browse the sale.",
+          "Discount applies automatically at checkout."
+        ],
+        "eliminates_steps": [
+          "Searching for the brand website"
+        ],
+        "effort_level": "low",
+        "confidence": 0.85
+      },
+      "estimated_item_value": 45.0,
+      "estimated_savings": 27.0,
+      "effective_discount_pct": 60.0,
+      "clarity_score": 5.0,
+      "value_reason": "60% off, brand/cat est. ($45) ≈ $27 savings | rel=20.3 abs=44.9 spend_pen=0.0 qty_pen=0.0 pres=2.0 clr=5.0 mult=1.00 fr=6.0 fresh=0.0 urg=0.0 fric=0.0",
+      "economic_value_score": 65.18,
+      "expiration_urgency_score": 0.0,
+      "source_freshness_score": 0.0,
+      "low_confidence_flagged": false,
+      "value_explanation_codes": [
+        "HIGH_EFFECTIVE_DISCOUNT",
+        "GOOD_VALUE_SAVINGS",
+        "NO_MEMBERSHIP_REQUIRED",
+        "NO_PURCHASE_MINIMUM",
+        "STRONG_ECONOMIC_VALUE"
+      ],
+      "global_quality_score": 78.18
     },
     {
       "brand": "Brooks Running",
