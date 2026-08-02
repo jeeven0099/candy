@@ -1,8 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../services/auth_service.dart';
+import '../services/push_token_service.dart';
 import '../services/saved_deals_service.dart';
 import '../services/supabase_service.dart';
 import '../services/user_prefs_service.dart';
@@ -21,11 +24,43 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   int _radiusMi = 5;
+  String _fcmStatus = 'Tap to check';
+  bool _fcmChecking = false;
 
   @override
   void initState() {
     super.initState();
     _loadRadius();
+  }
+
+  Future<void> _checkFcm() async {
+    setState(() { _fcmChecking = true; _fcmStatus = 'Checking…'; });
+    try {
+      if (Firebase.apps.isEmpty) {
+        setState(() { _fcmStatus = 'Firebase not initialized'; _fcmChecking = false; });
+        return;
+      }
+      final settings = await FirebaseMessaging.instance.requestPermission();
+      if (settings.authorizationStatus == AuthorizationStatus.denied) {
+        setState(() { _fcmStatus = 'Permission denied in iOS Settings'; _fcmChecking = false; });
+        return;
+      }
+      final token = await FirebaseMessaging.instance.getToken();
+      if (token == null) {
+        setState(() { _fcmStatus = 'getToken() = null — APNs key wrong in Firebase'; _fcmChecking = false; });
+        return;
+      }
+      setState(() { _fcmStatus = 'Token: ${token.substring(0, 20)}…\nSaving…'; });
+      await PushTokenService.register();
+      final row = await SupabaseService.client
+          .from('device_tokens').select('token').limit(1).maybeSingle();
+      setState(() {
+        _fcmStatus = row != null ? 'Saved to Supabase' : 'Token ok but Supabase save failed';
+        _fcmChecking = false;
+      });
+    } catch (e) {
+      setState(() { _fcmStatus = 'Error: $e'; _fcmChecking = false; });
+    }
   }
 
   Future<void> _loadRadius() async {
@@ -61,6 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             if (SupabaseService.isLoggedIn)
               SliverToBoxAdapter(child: _buildAccountSection()),
             SliverToBoxAdapter(child: _buildLocationSection()),
+            SliverToBoxAdapter(child: _buildDebugSection()),
             SliverToBoxAdapter(child: _buildAboutSection()),
             const SliverPadding(padding: EdgeInsets.only(bottom: 32)),
           ],
@@ -123,6 +159,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 );
               }
             },
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ── Push notification debug ────────────────────────────────────────────────
+
+  Widget _buildDebugSection() {
+    return _Section(
+      icon: Icons.notifications_outlined,
+      title: 'Push Notifications',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(_fcmStatus,
+              style: TextStyle(fontSize: 13, color: Colors.grey.shade600)),
+          const SizedBox(height: 10),
+          SizedBox(
+            width: double.infinity,
+            child: OutlinedButton(
+              onPressed: _fcmChecking ? null : _checkFcm,
+              child: Text(_fcmChecking ? 'Checking…' : 'Check & Register Token'),
+            ),
           ),
         ],
       ),
