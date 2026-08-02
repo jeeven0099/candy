@@ -84,7 +84,7 @@ class AuthService {
           'app_platform':  _appPlatform(),
         }).eq('auth_id', res.user!.id);
       } catch (_) {}
-      PushTokenService.register();
+      await PushTokenService.register();
     }
   }
 
