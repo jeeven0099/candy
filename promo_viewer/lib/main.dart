@@ -29,8 +29,9 @@ void main() async {
       try {
         await Firebase.initializeApp();
         firebaseReady = true;
-      } catch (_) {
-        // Firebase config files not yet added — push notifications unavailable
+      } catch (e, st) {
+        await Sentry.captureException(e, stackTrace: st,
+            hint: Hint.withMap({'context': 'Firebase.initializeApp() failed'}));
       }
 
       if (firebaseReady) {
