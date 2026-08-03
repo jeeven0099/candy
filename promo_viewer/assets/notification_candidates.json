@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-02T08:57:41.112038+00:00",
+  "generated_at": "2026-08-03T07:33:46.914815+00:00",
   "threshold": 60.0,
-  "total": 85,
+  "total": 78,
   "candidates": [
     {
       "promo_id": "stevemadden_summersalecode",
@@ -23,44 +23,6 @@
       "source_url": "https://www.stevemadden.com/policies/shipping-policy"
     },
     {
-      "promo_id": "thredup_freecleanoutbagzerosellerfees",
-      "brand": "ThredUp",
-      "category": "retail",
-      "title": "Free clean out bag & zero seller fees",
-      "notify_score": 87.76,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "ThredUp",
-      "notification_body": "Free: Free clean out bag & zero seller fees",
-      "discount_type": "free_item",
-      "discount_value": "clean out bag",
-      "estimated_savings": 100.0,
-      "end_date": null,
-      "website_domain": "thredup.com",
-      "source_url": "https://www.thredup.com/"
-    },
-    {
-      "promo_id": "shein_flashsaleupto85off",
-      "brand": "SHEIN",
-      "category": "retail",
-      "title": "Flash Sale - Up to 85% off",
-      "notify_score": 87.18,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "SHEIN",
-      "notification_body": "Flash Sale - Up to 85% off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 85%",
-      "estimated_savings": 38.25,
-      "end_date": null,
-      "website_domain": "us.shein.com",
-      "source_url": "https://us.shein.com/flash-sale.html"
-    },
-    {
       "promo_id": "outbacksteakhouse_kidseatfreemondays",
       "brand": "Outback Steakhouse",
       "category": "food",
@@ -78,25 +40,6 @@
       "end_date": null,
       "website_domain": "outback.com",
       "source_url": "https://www.outback.com/offers/limited-time-menu"
-    },
-    {
-      "promo_id": "asos_asoswomenssaleupto80off",
-      "brand": "ASOS",
-      "category": "retail",
-      "title": "ASOS Women's Sale - up to 80% off",
-      "notify_score": 85.58,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "ASOS",
-      "notification_body": "ASOS Women's Sale - up to 80% off",
-      "discount_type": "percentage_off",
-      "discount_value": "80%",
-      "estimated_savings": 36.0,
-      "end_date": null,
-      "website_domain": "asos.com",
-      "source_url": "https://www.asos.com/us/women/sale/dresses/cat/?cid=5235"
     },
     {
       "promo_id": "jackery_jackerysaleupto60off",
@@ -118,44 +61,6 @@
       "source_url": "https://www.jackery.com/products/jackery-solar-generator-5000-plus"
     },
     {
-      "promo_id": "shakeshack_chickensundaysfreechickenshackwith10min",
-      "brand": "Shake Shack",
-      "category": "food",
-      "title": "Chicken Sundays, Free Chicken Shack with $10 Min",
-      "notify_score": 82.59,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Shake Shack",
-      "notification_body": "Free: Chicken Sundays, Free Chicken Shack with $10 Min",
-      "discount_type": "free_item",
-      "discount_value": "free Chicken Shack",
-      "estimated_savings": 13.0,
-      "end_date": null,
-      "website_domain": "shakeshack.com",
-      "source_url": "https://www.shakeshack.com/privacy-settings/accept"
-    },
-    {
-      "promo_id": "boxlunch_shopallclearanceupto70off",
-      "brand": "BoxLunch",
-      "category": "retail",
-      "title": "Shop All Clearance - Up to 70% Off",
-      "notify_score": 82.1,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "BoxLunch",
-      "notification_body": "Shop All Clearance - Up to 70% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 31.5,
-      "end_date": null,
-      "website_domain": "boxlunch.com",
-      "source_url": "https://www.boxlunch.com/sale/"
-    },
-    {
       "promo_id": "mrporter_mensluxuryfashionsale",
       "brand": "MR PORTER",
       "category": "retail",
@@ -173,6 +78,25 @@
       "end_date": null,
       "website_domain": "mrporter.com",
       "source_url": "https://www.mrporter.com/en-us/mens/product/paul-smith/clothing/plain-shirts/embroidered-cotton-blend-shirt/46376663162965430"
+    },
+    {
+      "promo_id": "kroger_buy1get1freegatoradewatersingleserve",
+      "brand": "Kroger",
+      "category": "food",
+      "title": "Buy 1 Get 1 Free Gatorade Water Single Serve",
+      "notify_score": 81.74,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Kroger",
+      "notification_body": "Free: Buy 1 Get 1 Free Gatorade Water Single Serve",
+      "discount_type": "free_item",
+      "discount_value": "free Gatorade water single serve",
+      "estimated_savings": 10.0,
+      "end_date": "2026-10-31",
+      "website_domain": "kroger.com",
+      "source_url": "https://www.kroger.com/savings/"
     },
     {
       "promo_id": "ikea_ikeasale",
@@ -232,42 +156,23 @@
       "source_url": "https://www.luckybrand.com/sale/featured-shops/shop-sale-tops"
     },
     {
-      "promo_id": "chicos_67offpriceasmarked",
-      "brand": "Chico's",
-      "category": "clothing",
-      "title": "67% Off - Price as Marked",
-      "notify_score": 80.89,
+      "promo_id": "kroger_30offfirstpickupordeliveryorder",
+      "brand": "Kroger",
+      "category": "pickup/delivery",
+      "title": "$30 off First Pickup or Delivery Order",
+      "notify_score": 80.35,
       "signal_groups": [
-        "context",
+        "personal",
         "value"
       ],
-      "notification_title": "Chico's",
-      "notification_body": "67% Off - Price as Marked",
-      "discount_type": "percentage_off",
-      "discount_value": "67%",
-      "estimated_savings": 36.85,
-      "end_date": null,
-      "website_domain": "chicos.com",
-      "source_url": "https://www.chicos.com/store/category/sale/cat40004/"
-    },
-    {
-      "promo_id": "dillards_summerclearanceevent",
-      "brand": "Dillard's",
-      "category": "retail",
-      "title": "Summer Clearance Event",
-      "notify_score": 80.21,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Dillard's",
-      "notification_body": "Summer Clearance Event",
-      "discount_type": "percentage_off",
-      "discount_value": "30-65%",
-      "estimated_savings": 29.25,
-      "end_date": null,
-      "website_domain": "dillards.com",
-      "source_url": "https://www.dillards.com/c/sale-clearance"
+      "notification_title": "Kroger",
+      "notification_body": "$30 off First Pickup or Delivery Order",
+      "discount_type": "amount_off",
+      "discount_value": "$30",
+      "estimated_savings": 30.0,
+      "end_date": "2026-08-04",
+      "website_domain": "kroger.com",
+      "source_url": "https://www.kroger.com/pr/online-deal-days"
     },
     {
       "promo_id": "hyperx_hyperxgaminggearsaleupto50off",
@@ -346,6 +251,25 @@
       "source_url": "https://www.mansurgavriel.com/collections/sale"
     },
     {
+      "promo_id": "alc_upto60offsale",
+      "brand": "A.L.C.",
+      "category": "clothing",
+      "title": "Up to 60% Off Sale",
+      "notify_score": 78.15,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "A.L.C.",
+      "notification_body": "Up to 60% Off Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 33.0,
+      "end_date": null,
+      "website_domain": "alcltd.com",
+      "source_url": "https://www.alcltd.com/pages/email-sms"
+    },
+    {
       "promo_id": "stjohn_upto60offbasics",
       "brand": "St. John",
       "category": "clothing",
@@ -422,23 +346,23 @@
       "source_url": "https://www.stjohnknits.com/collections/sale"
     },
     {
-      "promo_id": "chicos_56offpriceasmarked",
-      "brand": "Chico's",
-      "category": "clothing",
-      "title": "56% Off - Price as Marked",
-      "notify_score": 76.47,
+      "promo_id": "luluandgeorgia_freedesignservices",
+      "brand": "Lulu and Georgia",
+      "category": "retail",
+      "title": "Free Design Services",
+      "notify_score": 76.33,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Chico's",
-      "notification_body": "56% Off - Price as Marked",
-      "discount_type": "percentage_off",
-      "discount_value": "56%",
-      "estimated_savings": 30.8,
+      "notification_title": "Lulu and Georgia",
+      "notification_body": "Free: Free Design Services",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "chicos.com",
-      "source_url": "https://www.chicos.com/store/category/sale/cat40004/"
+      "website_domain": "luluandgeorgia.com",
+      "source_url": "https://www.luluandgeorgia.com/collections/sale"
     },
     {
       "promo_id": "potterybarnkids_freeexpertdesignadvice",
@@ -517,6 +441,25 @@
       "source_url": "https://www.mcdonalds.com/us/en-us/mcdonalds-email-signup.html"
     },
     {
+      "promo_id": "gog_variousgamesarelistedwithdiscountpercentagesandsaleprices",
+      "brand": "GOG",
+      "category": "gaming",
+      "title": "Various games are listed with discount percentages and sale prices",
+      "notify_score": 75.33,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "GOG",
+      "notification_body": "Various games are listed with discount percentages and sale prices",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 90%",
+      "estimated_savings": 27.0,
+      "end_date": null,
+      "website_domain": "gog.com",
+      "source_url": "https://www.gog.com/en/games?discounted=true"
+    },
+    {
       "promo_id": "myprotein_upto70offpaydaysale",
       "brand": "MyProtein",
       "category": "fitness",
@@ -577,20 +520,20 @@
       "promo_id": "bluemercury_freesampleswithallorders",
       "brand": "Bluemercury",
       "category": "beauty",
-      "title": "Free samples with all orders",
+      "title": "Free Samples with All Orders",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Bluemercury",
-      "notification_body": "Free: Free samples with all orders",
+      "notification_body": "Free: Free Samples with All Orders",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "bluemercury.com",
-      "source_url": "https://www.bluemercury.com/pages/blue-rewards"
+      "source_url": "https://www.bluemercury.com/pages/contact-us"
     },
     {
       "promo_id": "ecoflow_freeecoflow65wchargerwithsubscription",
@@ -612,23 +555,42 @@
       "source_url": "https://www.us.ecoflow.com/collections/whole-home-backup-power-solutions"
     },
     {
-      "promo_id": "epicgamesstore_freeweeklygame",
+      "promo_id": "epicgamesstore_weeklyfreepcgame",
       "brand": "Epic Games Store",
       "category": "Gaming",
-      "title": "Free Weekly Game",
+      "title": "Weekly Free PC Game",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Epic Games Store",
-      "notification_body": "Free: Free Weekly Game",
+      "notification_body": "Free: Weekly Free PC Game",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/en-US/free-games"
+      "source_url": "https://www.store.epicgames.com/browse"
+    },
+    {
+      "promo_id": "epicgamesstore_freegamescollection",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "Free Games Collection",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: Free Games Collection",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://www.store.epicgames.com/p/fall-guys"
     },
     {
       "promo_id": "jomalone_complimentary9mlcologne",
@@ -745,25 +707,6 @@
       "source_url": "https://www.applebees.com/en/specials"
     },
     {
-      "promo_id": "boxlunch_upto50offsale",
-      "brand": "BoxLunch",
-      "category": "retail",
-      "title": "Up to 50% Off Sale",
-      "notify_score": 73.67,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "BoxLunch",
-      "notification_body": "Up to 50% Off Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 22.5,
-      "end_date": null,
-      "website_domain": "boxlunch.com",
-      "source_url": "https://www.boxlunch.com/sale/"
-    },
-    {
       "promo_id": "courreges_50offwomen",
       "brand": "Courreges",
       "category": "retail",
@@ -821,25 +764,6 @@
       "source_url": "https://www.off---white.com/en-us/new-in/men-new-in/"
     },
     {
-      "promo_id": "sandro_upto50offthesummercollection",
-      "brand": "Sandro",
-      "category": "retail",
-      "title": "Up to 50% off the summer collection",
-      "notify_score": 73.67,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Sandro",
-      "notification_body": "Up to 50% off the summer collection",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 22.5,
-      "end_date": null,
-      "website_domain": "us.sandro-paris.com",
-      "source_url": "https://www.us.sandro-paris.com/en/womens/sale/new-styles-added/"
-    },
-    {
       "promo_id": "thecontainerstore_freedesignconsultation",
       "brand": "The Container Store",
       "category": "retail",
@@ -857,25 +781,6 @@
       "end_date": null,
       "website_domain": "containerstore.com",
       "source_url": "https://www.containerstore.com/virtual-closet-design-service"
-    },
-    {
-      "promo_id": "modcloth_modclothdressdealsupto75off",
-      "brand": "ModCloth",
-      "category": "retail",
-      "title": "ModCloth DRESS DEALS up to 75% OFF",
-      "notify_score": 71.89,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "ModCloth",
-      "notification_body": "ModCloth DRESS DEALS up to 75% OFF",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 75%",
-      "estimated_savings": 33.75,
-      "end_date": null,
-      "website_domain": "modcloth.com",
-      "source_url": "https://modcloth.com/"
     },
     {
       "promo_id": "benihana_freesouvenirmugwithkabukikidsmealforbirthday",
@@ -933,25 +838,6 @@
       "end_date": null,
       "website_domain": "noodles.com",
       "source_url": "https://www.noodles.com/order"
-    },
-    {
-      "promo_id": "epicgamesstore_freemobilegamethursday",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "Free Mobile Game Thursday",
-      "notify_score": 71.61,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: Free Mobile Game Thursday",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://www.store.epicgames.com/p/otxo-396b8b"
     },
     {
       "promo_id": "skyzone_birthdaylikeabossfree100dayjumppass",
@@ -1030,25 +916,6 @@
       "source_url": "https://www.firestonecompleteautocare.com/offers/"
     },
     {
-      "promo_id": "kroger_buy1gatoradewaterget1free",
-      "brand": "Kroger",
-      "category": "beverages",
-      "title": "Buy 1 Gatorade Water, Get 1 Free",
-      "notify_score": 71.26,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Kroger",
-      "notification_body": "Free: Buy 1 Gatorade Water, Get 1 Free",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": "2026-10-31",
-      "website_domain": "kroger.com",
-      "source_url": "https://www.kroger.com/savings/"
-    },
-    {
       "promo_id": "sweetgreen_first50complimentaryentrebowlthegulch",
       "brand": "Sweetgreen",
       "category": "food",
@@ -1066,25 +933,6 @@
       "end_date": null,
       "website_domain": null,
       "source_url": "https://www.sweetgreen.com/sweet-rewards"
-    },
-    {
-      "promo_id": "charlottetilbury_freeminigifts",
-      "brand": "Charlotte Tilbury",
-      "category": "retail",
-      "title": "Free Mini Gifts",
-      "notify_score": 70.86,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Charlotte Tilbury",
-      "notification_body": "Free: Free Mini Gifts",
-      "discount_type": "free_item",
-      "discount_value": "free mini gifts",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "charlottetilbury.com",
-      "source_url": "https://www.charlottetilbury.com/us/"
     },
     {
       "promo_id": "joybird_freefabricsamples",
@@ -1144,25 +992,6 @@
       "source_url": "https://www.mainevent.com/specials/"
     },
     {
-      "promo_id": "pinstripes_sundayfamilyfavoriteskidseatfree",
-      "brand": "Pinstripes",
-      "category": "food",
-      "title": "Sunday Family Favorites - Kids Eat Free",
-      "notify_score": 70.24,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Pinstripes",
-      "notification_body": "Free: Sunday Family Favorites - Kids Eat Free",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 10.0,
-      "end_date": null,
-      "website_domain": "pinstripes.com",
-      "source_url": "https://www.pinstripes.com/private-events"
-    },
-    {
       "promo_id": "clubmonaco_shopallsale",
       "brand": "Club Monaco",
       "category": "retail",
@@ -1199,25 +1028,6 @@
       "end_date": null,
       "website_domain": "augustinusbader.com",
       "source_url": "https://augustinusbader.com/us/en/"
-    },
-    {
-      "promo_id": "luluandgeorgia_freedesignservices",
-      "brand": "Lulu and Georgia",
-      "category": "home",
-      "title": "Free Design Services",
-      "notify_score": 69.04,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Lulu and Georgia",
-      "notification_body": "Free: Free Design Services",
-      "discount_type": "free_item",
-      "discount_value": "free design services",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "luluandgeorgia.com",
-      "source_url": "https://www.luluandgeorgia.com/collections/sale"
     },
     {
       "promo_id": "applebees_birthdayfreedessert",
@@ -1372,6 +1182,25 @@
       "source_url": "https://www.panerabread.com/en-us/mypanera/meet-mypanera.html"
     },
     {
+      "promo_id": "dell_ultimatemicrosoftcollegeoffer",
+      "brand": "Dell",
+      "category": "electronics",
+      "title": "Ultimate Microsoft College Offer",
+      "notify_score": 66.63,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Dell",
+      "notification_body": "Free: Ultimate Microsoft College Offer",
+      "discount_type": "free_item",
+      "discount_value": "free Microsoft 365, free Xbox Game Pass, free Xbox controller",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "dell.com",
+      "source_url": "https://www.dell.com/en-us/shop/deals/business-pc-deals"
+    },
+    {
       "promo_id": "chipotle_birthdayfreereward",
       "brand": "Chipotle",
       "category": "food",
@@ -1448,6 +1277,25 @@
       "source_url": "https://www.coach.com/content/promo"
     },
     {
+      "promo_id": "starbucks_modmondayfreecustomization",
+      "brand": "Starbucks",
+      "category": "food",
+      "title": "Mod Monday Free Customization",
+      "notify_score": 63.34,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Starbucks",
+      "notification_body": "Free: Mod Monday Free Customization",
+      "discount_type": "free_item",
+      "discount_value": "up to $2.25",
+      "estimated_savings": 6.5,
+      "end_date": null,
+      "website_domain": "starbucks.com",
+      "source_url": "https://www.starbucks.com/store-locator"
+    },
+    {
       "promo_id": "chickfila_birthdayreward",
       "brand": "Chick-fil-A",
       "category": "food",
@@ -1503,6 +1351,25 @@
       "end_date": null,
       "website_domain": "einsteinbros.com",
       "source_url": "https://www.einsteinbros.com/rewards/"
+    },
+    {
+      "promo_id": "lookfantastic_shopallbeautydealsupto50off",
+      "brand": "Lookfantastic",
+      "category": "beauty",
+      "title": "Shop All Beauty Deals - Up to 50% Off",
+      "notify_score": 62.76,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Lookfantastic",
+      "notification_body": "Shop All Beauty Deals - Up to 50% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 11.0,
+      "end_date": null,
+      "website_domain": "lookfantastic.com",
+      "source_url": "https://www.lookfantastic.com/c/offers/sale/skincare/"
     },
     {
       "promo_id": "subway_birthdaybonus",
