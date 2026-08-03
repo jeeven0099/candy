@@ -30,8 +30,8 @@ class PushTokenService {
     ));
     if (settings.authorizationStatus == AuthorizationStatus.denied) return;
 
-    // On iOS with swizzling disabled, the APNs token must arrive before
-    // getToken() can resolve. Poll up to ~10 s for it.
+    // On iOS the APNs token must arrive before getToken() can succeed.
+    // Poll up to ~10 s in case registration is slow on first launch.
     if (defaultTargetPlatform == TargetPlatform.iOS) {
       String? apns;
       for (int i = 0; i < 5 && apns == null; i++) {
