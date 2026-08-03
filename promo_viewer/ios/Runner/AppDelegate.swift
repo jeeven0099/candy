@@ -28,6 +28,13 @@ import FirebaseMessaging
     super.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
   }
 
+  override func application(_ application: UIApplication,
+                             didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    // Logged so it surfaces in Sentry via Flutter's error handler
+    print("[APNs] didFailToRegisterForRemoteNotifications: \(error)")
+    super.application(application, didFailToRegisterForRemoteNotificationsWithError: error)
+  }
+
   func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
   }
