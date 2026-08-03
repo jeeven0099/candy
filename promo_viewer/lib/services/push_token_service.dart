@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -5,6 +6,8 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'supabase_service.dart';
 
 class PushTokenService {
+  static StreamSubscription<String>? _tokenRefreshSub;
+
   static Future<void> register() async {
     if (!SupabaseService.isLoggedIn) {
       Sentry.addBreadcrumb(Breadcrumb(message: '[PushToken] skipped: not logged in'));
@@ -66,8 +69,9 @@ class PushTokenService {
 
     await _upsertToken(token);
 
-    // Refresh token whenever FCM rotates it
-    messaging.onTokenRefresh.listen(_upsertToken);
+    // Refresh token whenever FCM rotates it (cancel previous sub to avoid duplicates)
+    _tokenRefreshSub?.cancel();
+    _tokenRefreshSub = messaging.onTokenRefresh.listen(_upsertToken);
   }
 
   static Future<void> _upsertToken(String token) async {
