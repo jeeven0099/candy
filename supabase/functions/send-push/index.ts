@@ -95,7 +95,10 @@ async function getAccessToken(sa: ServiceAccount): Promise<string> {
       assertion: jwt,
     }),
   });
-  const json = await resp.json() as { access_token: string };
+  const json = await resp.json() as { access_token?: string; error?: string; error_description?: string };
+  if (!json.access_token) {
+    throw new Error(`OAuth token exchange failed (${resp.status}): ${json.error} — ${json.error_description}`);
+  }
   return json.access_token;
 }
 
@@ -106,7 +109,7 @@ async function sendFcm(
   title: string,
   body: string,
   promoId: string,
-): Promise<boolean> {
+): Promise<{ ok: boolean; error?: string }> {
   const resp = await fetch(
     `https://fcm.googleapis.com/v1/projects/${projectId}/messages:send`,
     {
@@ -124,13 +127,16 @@ async function sendFcm(
             payload: { aps: { sound: 'default', badge: 1 } },
           },
           android: {
-            notification: { sound: 'default', priority: 'high' },
+            priority: 'high',
+            notification: { sound: 'default' },
           },
         },
       }),
     },
   );
-  return resp.ok;
+  if (resp.ok) return { ok: true };
+  const errBody = await resp.text().catch(() => '(no body)');
+  return { ok: false, error: `HTTP ${resp.status}: ${errBody}` };
 }
 
 // ── Main handler ──────────────────────────────────────────────────────────────
@@ -160,7 +166,12 @@ Deno.serve(async (req) => {
   if (!saRaw) {
     return new Response('FCM_SERVICE_ACCOUNT secret not set', { status: 500 });
   }
-  const sa: ServiceAccount = JSON.parse(saRaw);
+  let sa: ServiceAccount;
+  try {
+    sa = JSON.parse(saRaw);
+  } catch (e) {
+    return new Response(`FCM_SERVICE_ACCOUNT is not valid JSON: ${e}`, { status: 500 });
+  }
 
   // Supabase admin client to query users
   const supabase = createClient(
@@ -168,12 +179,13 @@ Deno.serve(async (req) => {
     Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
   );
 
-  // Fetch all device tokens joined with user preferences
+  // Query from users so both device_tokens and user_preferences can be
+  // joined via their user_id FKs (device_tokens has no FK to user_preferences).
   const { data: rows, error } = await supabase
-    .from('device_tokens')
+    .from('users')
     .select(`
-      token,
-      users!inner(id),
+      id,
+      device_tokens!inner(token),
       user_preferences!inner(favorite_brands, favorite_categories)
     `);
 
@@ -181,12 +193,23 @@ Deno.serve(async (req) => {
     return new Response(`DB error: ${error.message}`, { status: 500 });
   }
 
-  const users: UserRow[] = (rows ?? []).map((r: any) => ({
-    user_id: r.users.id,
-    token: r.token,
-    favorite_brands:     r.user_preferences.favorite_brands     ?? [],
-    favorite_categories: r.user_preferences.favorite_categories ?? [],
-  }));
+  // Flatten: one UserRow per device token (a user may have multiple devices).
+  const users: UserRow[] = [];
+  for (const row of (rows ?? [])) {
+    const prefsArr: any[] = Array.isArray(row.user_preferences)
+      ? row.user_preferences : [row.user_preferences];
+    const prefs = prefsArr[0];
+    if (!prefs) continue;
+    for (const dt of (row.device_tokens ?? [])) {
+      if (!dt?.token) continue;
+      users.push({
+        user_id:             row.id,
+        token:               dt.token,
+        favorite_brands:     prefs.favorite_brands     ?? [],
+        favorite_categories: prefs.favorite_categories ?? [],
+      });
+    }
+  }
 
   // Filter candidates below quality floor
   const qualified = candidates.filter(c => c.notify_score >= MIN_GLOBAL_QUALITY);
@@ -204,6 +227,7 @@ Deno.serve(async (req) => {
 
   let accessToken: string | null = null;
   let sent = 0;
+  const fcmErrors: string[] = [];
 
   for (const user of users) {
     const favBrands = new Set(user.favorite_brands.map(b => b.toLowerCase()));
@@ -240,7 +264,7 @@ Deno.serve(async (req) => {
       accessToken = await getAccessToken(sa);
     }
 
-    const ok = await sendFcm(
+    const result = await sendFcm(
       accessToken,
       sa.project_id,
       user.token,
@@ -248,18 +272,20 @@ Deno.serve(async (req) => {
       body,
       c.promo_id,
     );
-    if (ok) {
+    if (result.ok) {
       sent++;
       // Log so this deal isn't sent to this user again for 7 days
       await supabase.from('notification_log').insert({
         user_id:  user.user_id,
         promo_id: c.promo_id,
       });
+    } else if (result.error) {
+      fcmErrors.push(`user ${user.user_id}: ${result.error}`);
     }
   }
 
   return new Response(
-    JSON.stringify({ sent, users: users.length, candidates: qualified.length }),
+    JSON.stringify({ sent, users: users.length, candidates: qualified.length, fcm_errors: fcmErrors }),
     { headers: { 'Content-Type': 'application/json' } },
   );
 });
