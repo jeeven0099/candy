@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+﻿import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'supabase_service.dart';
 import 'push_token_service.dart';
@@ -57,7 +57,7 @@ class AuthService {
       });
     } catch (_) {}
 
-    // Increment use_count (best-effort — non-fatal if RLS blocks it)
+    // Increment use_count (best-effort â€” non-fatal if RLS blocks it)
     try {
       await _sb.from('invite_codes')
           .update({'use_count': useCount + 1})
@@ -84,7 +84,7 @@ class AuthService {
           'app_platform':  _appPlatform(),
         }).eq('auth_id', res.user!.id);
       } catch (_) {}
-      await PushTokenService.register();
+      PushTokenService.register();
     }
   }
 
@@ -104,3 +104,4 @@ class AuthService {
     return e.message;
   }
 }
+
