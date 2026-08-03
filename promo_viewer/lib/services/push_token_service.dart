@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'supabase_service.dart';
 
@@ -26,7 +27,32 @@ class PushTokenService {
     ));
     if (settings.authorizationStatus == AuthorizationStatus.denied) return;
 
-    final token = await messaging.getToken();
+    // On iOS with swizzling disabled, the APNs token must arrive before
+    // getToken() can resolve. Poll up to ~10 s for it.
+    if (defaultTargetPlatform == TargetPlatform.iOS) {
+      String? apns;
+      for (int i = 0; i < 5 && apns == null; i++) {
+        try {
+          apns = await messaging
+              .getAPNSToken()
+              .timeout(const Duration(seconds: 3), onTimeout: () => null);
+        } catch (_) {}
+        if (apns == null) await Future.delayed(const Duration(seconds: 2));
+      }
+      if (apns == null) {
+        Sentry.addBreadcrumb(
+            Breadcrumb(message: '[PushToken] APNs token unavailable after retries'));
+        return;
+      }
+    }
+
+    String? token;
+    try {
+      token = await messaging.getToken();
+    } catch (e) {
+      Sentry.addBreadcrumb(Breadcrumb(message: '[PushToken] getToken error: $e'));
+      return;
+    }
     Sentry.addBreadcrumb(Breadcrumb(
       message: '[PushToken] getToken result: ${token == null ? "NULL" : "ok (${token.substring(0, 20)}...)"}',
     ));
