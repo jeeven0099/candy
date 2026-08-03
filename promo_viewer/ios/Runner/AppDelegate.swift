@@ -18,6 +18,7 @@ import FirebaseMessaging
     options.bundleID = "com.jeeven.candy"
     options.storageBucket = "cnady-ce15b.firebasestorage.app"
     FirebaseApp.configure(options: options)
+    application.registerForRemoteNotifications()
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 

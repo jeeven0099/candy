@@ -45,6 +45,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
         setState(() { _fcmStatus = 'Permission denied in iOS Settings'; _fcmChecking = false; });
         return;
       }
+      // Wait up to 10 s for APNs token (required when swizzling is disabled)
+      String? apns;
+      for (int i = 0; i < 5 && apns == null; i++) {
+        try {
+          apns = await FirebaseMessaging.instance
+              .getAPNSToken()
+              .timeout(const Duration(seconds: 3), onTimeout: () => null);
+        } catch (_) {}
+        if (apns == null) await Future.delayed(const Duration(seconds: 2));
+      }
+      if (apns == null) {
+        setState(() { _fcmStatus = 'APNs token unavailable — Push Notifications capability missing in provisioning profile?'; _fcmChecking = false; });
+        return;
+      }
       final token = await FirebaseMessaging.instance.getToken();
       if (token == null) {
         setState(() { _fcmStatus = 'getToken() = null — APNs key wrong in Firebase'; _fcmChecking = false; });
