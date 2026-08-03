@@ -36,16 +36,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _checkFcm() async {
     setState(() { _fcmChecking = true; _fcmStatus = 'Checking…'; });
     try {
+      // Read the native APNs registration status written by AppDelegate.
+      // shared_preferences_foundation stores keys without prefix, so the key
+      // matches UserDefaults.standard.set(_:forKey:"apns_status") in Swift.
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.reload(); // force re-read from disk, not stale cache
+      final native = prefs.getString('apns_status') ?? '(not recorded)';
+
       if (Firebase.apps.isEmpty) {
-        setState(() { _fcmStatus = 'Firebase not initialized'; _fcmChecking = false; });
+        setState(() { _fcmStatus = 'Firebase not initialized\nNative APNs: $native'; _fcmChecking = false; });
         return;
       }
       final settings = await FirebaseMessaging.instance.requestPermission();
       if (settings.authorizationStatus == AuthorizationStatus.denied) {
-        setState(() { _fcmStatus = 'Permission denied in iOS Settings'; _fcmChecking = false; });
+        setState(() { _fcmStatus = 'Permission denied in iOS Settings\nNative APNs: $native'; _fcmChecking = false; });
         return;
       }
-      // Wait up to 10 s for APNs token (required when swizzling is disabled)
+
+      setState(() { _fcmStatus = 'Native APNs: $native\nPolling for token…'; });
+
       String? apns;
       for (int i = 0; i < 5 && apns == null; i++) {
         try {
@@ -56,12 +65,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         if (apns == null) await Future.delayed(const Duration(seconds: 2));
       }
       if (apns == null) {
-        setState(() { _fcmStatus = 'APNs token unavailable — Push Notifications capability missing in provisioning profile?'; _fcmChecking = false; });
+        setState(() { _fcmStatus = 'APNs token unavailable\nNative: $native'; _fcmChecking = false; });
         return;
       }
       final token = await FirebaseMessaging.instance.getToken();
       if (token == null) {
-        setState(() { _fcmStatus = 'getToken() = null — APNs key wrong in Firebase'; _fcmChecking = false; });
+        setState(() { _fcmStatus = 'getToken() = null — APNs key wrong in Firebase\nNative APNs: $native'; _fcmChecking = false; });
         return;
       }
       setState(() { _fcmStatus = 'Token: ${token.substring(0, 20)}…\nSaving…'; });
@@ -69,7 +78,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       final row = await SupabaseService.client
           .from('device_tokens').select('token').limit(1).maybeSingle();
       setState(() {
-        _fcmStatus = row != null ? 'Saved to Supabase' : 'Token ok but Supabase save failed';
+        _fcmStatus = row != null ? 'Saved to Supabase ✓' : 'Token ok but Supabase save failed';
         _fcmChecking = false;
       });
     } catch (e) {
