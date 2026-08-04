@@ -13,7 +13,11 @@ class SaveSheet extends StatelessWidget {
   // remindAt is null when no sensible future reminder can be offered.
   (DateTime?, String) _reminderOffer() {
     final end = promo.endDate != null ? DateTime.tryParse(promo.endDate!) : null;
-    if (end == null) return (null, 'No expiry date — reminder not available.');
+    if (end == null) {
+      final remindAt = DateTime.now().add(const Duration(days: 2));
+      final remind9am = DateTime(remindAt.year, remindAt.month, remindAt.day, 9, 0);
+      return (remind9am, 'No expiry set — remind you in 2 days?');
+    }
 
     final daysLeft = end.difference(DateTime.now()).inDays;
 

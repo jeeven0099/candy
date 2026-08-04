@@ -65,15 +65,25 @@ class _ForYouScreenState extends State<ForYouScreen> {
             : <Promotion>[];
         final bdayIds = {for (final p in bdayDeals) p.id};
 
+        final activeDeals = widget.all
+            .where((p) => p.isActive && !bdayIds.contains(p.id))
+            .toList();
+
+        // When a specific category chip is selected, filter first so the
+        // preference-based ranking operates on that category's full deal pool,
+        // not just the top-30 preferred deals (which may not include that category).
+        final poolForChip =
+            _selectedChip == 0 ? activeDeals : _applyCategory(activeDeals);
+
         final ranked = selectTopDeals(
-          widget.all.where((p) => p.isActive && !bdayIds.contains(p.id)).toList(),
+          poolForChip,
           svc,
           prefs: prefs,
           limit: _kFeedLimit,
           maxPerBrand: 2,
         );
 
-        final filtered = _applyCategory(ranked);
+        final filtered = ranked;
         final hasPrefs = prefs != null && !prefs.isEmpty;
 
         return Scaffold(
