@@ -126,10 +126,15 @@ class _SearchScreenState extends State<SearchScreen> {
   void didUpdateWidget(SearchScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
     // Re-attach distances after a data refresh so Near Me deals don't vanish.
+    // Must await and setState — promos rebuild immediately on widget update, and
+    // without a setState after attach, distances are never reflected in the UI.
     if (widget.all != oldWidget.all &&
         _position != null &&
         _position is! _FakePosition) {
-      LocationService.attachDistances(widget.all, _position!);
+      final pos = _position!;
+      LocationService.attachDistances(widget.all, pos).then((_) {
+        if (mounted) setState(() {});
+      });
     }
   }
 
@@ -187,6 +192,43 @@ class _SearchScreenState extends State<SearchScreen> {
       prefs:    _prefsSvc.prefs,
       radiusMi: _ctx == SearchContext.nearMe ? _radiusMi.toDouble() : null,
     );
+  }
+
+  // Builds brand groups for a selected category chip, bypassing user-pref ranking
+  // so all deals in the category are shown regardless of the user's preferences.
+  List<BrandGroup> _getCategoryGroups() {
+    final cats = _kForYouCategories[_selectedCategory].$2;
+    if (cats == null) return _getContextGroups();
+
+    final opts = _opts;
+    final catDeals = _visiblePromos.where((p) {
+      if (!passesExclusion(p, opts)) return false;
+      return cats.any((c) =>
+          p.category.toLowerCase().contains(c.toLowerCase()) ||
+          c.toLowerCase().contains(p.category.toLowerCase()));
+    }).toList();
+
+    final brandMap = <String, List<Promotion>>{};
+    for (final p in catDeals) {
+      brandMap.putIfAbsent(p.brand, () => []).add(p);
+    }
+
+    final groups = brandMap.entries.map((e) {
+      final deals = List.of(e.value)
+        ..sort((a, b) => b.globalQualityScore.compareTo(a.globalQualityScore));
+      final contexts = <String>{};
+      for (final p in deals) { contexts.addAll(dealContextLabels(p)); }
+      return BrandGroup(
+        brand:     e.key,
+        deals:     deals,
+        bestTier:  1,
+        bestScore: deals.first.globalQualityScore,
+        contexts:  contexts.toList(),
+      );
+    }).toList()
+      ..sort((a, b) => b.bestScore.compareTo(a.bestScore));
+
+    return groups.take(15).toList();
   }
 
   void _recordContextImpressions() {
@@ -570,10 +612,14 @@ class _SearchScreenState extends State<SearchScreen> {
     if (_ctx == SearchContext.nearMe && _position == null && !_locating) {
       return _buildLocationPrompt();
     }
-    final groups = _getContextGroups();
-    final displayed = _ctx == SearchContext.forYou
-        ? _filterByCategory(groups)
-        : groups;
+    final List<BrandGroup> displayed;
+    if (_ctx == SearchContext.forYou && _selectedCategory != 0) {
+      // Category chip selected: show all deals in that category bypassing user prefs.
+      displayed = _getCategoryGroups();
+    } else {
+      final groups = _getContextGroups();
+      displayed = _ctx == SearchContext.forYou ? _filterByCategory(groups) : groups;
+    }
     return displayed.isEmpty ? _buildContextEmpty() : _buildGroupList(displayed);
   }
 
