@@ -253,11 +253,11 @@ Deno.serve(async (req) => {
     const best = scored[0];
     const { c } = best;
 
-    const body = favBrands.has(c.brand.toLowerCase())
-      ? `${c.notification_body} — from a brand you love`
+    const dealLine = favBrands.has(c.brand.toLowerCase())
+      ? `${c.notification_title}: ${c.notification_body} — from a brand you love`
       : favCats.has(c.category.toLowerCase())
-        ? `${c.notification_body} — in a category you follow`
-        : c.notification_body;
+        ? `${c.notification_title}: ${c.notification_body} — in a category you follow`
+        : `${c.notification_title}: ${c.notification_body}`;
 
     // Lazy-init access token (shared across all users in this batch)
     if (!accessToken) {
@@ -268,8 +268,8 @@ Deno.serve(async (req) => {
       accessToken,
       sa.project_id,
       user.token,
-      c.notification_title,
-      body,
+      'Deal of the Day for You',
+      dealLine,
       c.promo_id,
     );
     if (result.ok) {

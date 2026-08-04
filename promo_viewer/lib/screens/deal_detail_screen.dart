@@ -313,7 +313,10 @@ class _SavingsBreakdownCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final savings = promo.estimatedSavings!;
     final pct = promo.effectiveDiscountPct > 0 ? promo.effectiveDiscountPct / 100 : null;
-    final usualPrice = pct != null && pct < 1.0 ? savings / pct : null;
+    final rawUsual = pct != null && pct < 1.0 ? savings / pct : null;
+    // Suppress price comparison when the implied "usual price" is implausibly high
+    // (e.g. a 1.5% reward deal saving $10 would show $667 — don't show that).
+    final usualPrice = (rawUsual != null && rawUsual <= 500) ? rawUsual : null;
     final todayPrice = usualPrice != null ? usualPrice - savings : null;
 
     return _Card(

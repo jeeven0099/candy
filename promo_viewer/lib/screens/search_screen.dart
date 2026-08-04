@@ -123,6 +123,17 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   @override
+  void didUpdateWidget(SearchScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Re-attach distances after a data refresh so Near Me deals don't vanish.
+    if (widget.all != oldWidget.all &&
+        _position != null &&
+        _position is! _FakePosition) {
+      LocationService.attachDistances(widget.all, _position!);
+    }
+  }
+
+  @override
   void dispose() {
     _prefsSvc.removeListener(_onPrefsChanged);
     _debounce?.cancel();
@@ -404,9 +415,13 @@ class _SearchScreenState extends State<SearchScreen> {
             leading: const Icon(Icons.search, size: 20),
             trailing: [
               if (_query.isNotEmpty)
-                IconButton(
-                  icon: const Icon(Icons.close, size: 18),
-                  onPressed: _clearQuery,
+                GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: _clearQuery,
+                  child: const Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Icon(Icons.close, size: 18, color: Colors.grey),
+                  ),
                 ),
             ],
             onChanged: _onQueryChanged,

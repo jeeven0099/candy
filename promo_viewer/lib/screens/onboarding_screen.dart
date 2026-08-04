@@ -716,6 +716,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   static const _kPageNames = ['auth', 'categories', 'brands', 'deal_types', 'radius'];
 
   void _goToPage(int p) {
+    FocusScope.of(context).unfocus();
     setState(() => _error = null);
     InteractionService().recordSearchEvent('onboarding_page_viewed',
         params: {'page': p < _kPageNames.length ? _kPageNames[p] : '$p'});
@@ -1033,7 +1034,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   // ── Page 2: Brands ────────────────────────────────────────────────────────
 
   Widget _buildBrandsPage() {
-    final brands = _brandsForCategories(_selectedCats);
+    // Only show brands that have a known logo domain — excludes brands that
+    // would only ever render as initials (no local asset, no domain entry).
+    final brands = _brandsForCategories(_selectedCats)
+        .where((b) => _kBrandDomains.containsKey(b))
+        .toList();
     final count  = _selectedBrands.length;
     return SafeArea(
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -1057,7 +1062,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     crossAxisCount: 5,
                     mainAxisSpacing: 8,
                     crossAxisSpacing: 8,
-                    childAspectRatio: 1.0,
+                    childAspectRatio: 0.82,
                   ),
                   itemCount: brands.length,
                   itemBuilder: (context, i) {
@@ -1573,28 +1578,50 @@ class _BrandLogoTileState extends State<_BrandLogoTile> {
           opacity: widget.disabled ? 0.38 : 1.0,
           child: LayoutBuilder(
             builder: (context, constraints) {
-              final logoSize = constraints.maxWidth * 0.62;
-              return Center(
-                child: Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    _logo(logoSize),
-                    if (widget.selected)
-                      Positioned(
-                        right: -5,
-                        top: -5,
-                        child: Container(
-                          width: 16, height: 16,
-                          decoration: const BoxDecoration(
-                            color: Candy.raspberry,
-                            shape: BoxShape.circle,
+              final logoSize = constraints.maxWidth * 0.55;
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      _logo(logoSize),
+                      if (widget.selected)
+                        Positioned(
+                          right: -5,
+                          top: -5,
+                          child: Container(
+                            width: 16, height: 16,
+                            decoration: const BoxDecoration(
+                              color: Candy.raspberry,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(Icons.check,
+                                color: Colors.white, size: 10),
                           ),
-                          child: const Icon(Icons.check,
-                              color: Colors.white, size: 10),
                         ),
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 3),
+                    child: Text(
+                      widget.brandName,
+                      textAlign: TextAlign.center,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 8,
+                        fontWeight: widget.selected
+                            ? FontWeight.w600
+                            : FontWeight.w400,
+                        color: widget.selected
+                            ? Candy.raspberry
+                            : Candy.chocolate,
                       ),
-                  ],
-                ),
+                    ),
+                  ),
+                ],
               );
             },
           ),
