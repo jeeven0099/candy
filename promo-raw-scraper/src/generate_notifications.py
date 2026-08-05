@@ -49,6 +49,13 @@ def _slugify(s: str) -> str:
     return re.sub(r'[^a-z0-9]', '', (s or '').lower())
 
 
+def _promo_id(brand: str, title: str) -> str:
+    # Must match Flutter's Promotion.id getter exactly:
+    # '${brand}_$title'.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_')
+    raw = re.sub(r'[^a-z0-9]+', '_', f'{brand}_{title}'.lower()).strip('_')
+    return raw[:100]
+
+
 def _extract_percent(value: str | None) -> float | None:
     if not value:
         return None
@@ -269,10 +276,7 @@ def main() -> None:
             continue
 
         notif_title, notif_body = make_notification_text(promo)
-        brand_slug = _slugify(promo.get('brand', ''))
-        promo_id = f"{brand_slug}_{_slugify(promo.get('promotion_title', ''))}"
-        if len(promo_id) > 100:
-            promo_id = promo_id[:100]
+        promo_id = _promo_id(promo.get('brand', ''), promo.get('promotion_title', ''))
 
         candidates.append({
             'promo_id':           promo_id,
