@@ -677,6 +677,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final _selectedCats      = <String>{};
   final _selectedBrands    = <String>{};
   final _selectedDealTypes = <String>{};
+  final _failedLogoBrands  = <String>{};
   int   _radiusMi          = 5;
   int?  _birthdayMonth;
   int?  _birthdayDay;
@@ -1034,10 +1035,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   // ── Page 2: Brands ────────────────────────────────────────────────────────
 
   Widget _buildBrandsPage() {
-    // Only show brands that have a known logo domain — excludes brands that
-    // would only ever render as initials (no local asset, no domain entry).
+    // Only show brands with a known logo domain AND a logo that successfully
+    // loaded — brands that fell back to initials are added to _failedLogoBrands
+    // via the onLogoFailed callback and filtered out here.
     final brands = _brandsForCategories(_selectedCats)
-        .where((b) => _kBrandDomains.containsKey(b))
+        .where((b) => _kBrandDomains.containsKey(b) && !_failedLogoBrands.contains(b))
         .toList();
     final count  = _selectedBrands.length;
     return SafeArea(
@@ -1076,6 +1078,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       selected: sel,
                       disabled: disabled,
                       onTap: disabled ? null : () => _toggleBrand(b),
+                      onLogoFailed: () {
+                        if (mounted) {
+                          setState(() {
+                            _failedLogoBrands.add(b);
+                            _selectedBrands.remove(b);
+                          });
+                        }
+                      },
                     );
                   },
                 ),
@@ -1459,6 +1469,7 @@ class _BrandLogoTile extends StatefulWidget {
   final bool selected;
   final bool disabled;
   final VoidCallback? onTap;
+  final VoidCallback? onLogoFailed;
 
   const _BrandLogoTile({
     super.key,
@@ -1467,6 +1478,7 @@ class _BrandLogoTile extends StatefulWidget {
     required this.selected,
     required this.disabled,
     required this.onTap,
+    this.onLogoFailed,
   });
 
   @override
@@ -1494,7 +1506,14 @@ class _BrandLogoTileState extends State<_BrandLogoTile> {
 
   void _nextAttempt() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) setState(() => _attempt++);
+      if (!mounted) return;
+      setState(() => _attempt++);
+      if (_attempt >= 3) {
+        // All logo sources exhausted — notify parent to remove this brand.
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) widget.onLogoFailed?.call();
+        });
+      }
     });
   }
 
@@ -1524,7 +1543,7 @@ class _BrandLogoTileState extends State<_BrandLogoTile> {
 
   Widget _logo(double size) {
     final domain = widget.domain;
-    if (domain == null || _attempt >= 3) return _initials_(size);
+    if (domain == null || _attempt >= 3) return _shimmer(size);
 
     if (_attempt == 0) {
       return Image.asset(
