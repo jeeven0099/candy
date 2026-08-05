@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T05:42:35Z",
+  "generated_at": "2026-08-05T07:37:04Z",
   "promotion_count": 1902,
   "promotions": [
     {
@@ -43155,9 +43155,9 @@
     },
     {
       "brand": "Craftsman",
-      "category": "home_improvement",
-      "promotion_title": "Buy a V20* ADVANCED battery starter kit and get one select bare tool free",
-      "short_summary": "Get a select bare tool free when you buy the 3AH V20* ADVANCED battery and charger starter kit.",
+      "category": "retail",
+      "promotion_title": "Buy V20 Battery Starter Kit, Get a Free Bare Tool",
+      "short_summary": "Purchase the Craftsman V20 4.0Ah Battery and Charger Kit between 8/1/26‑8/31/26 and receive a select bare tool for free.",
       "promotion_type": "sale",
       "discount_type": "free_item",
       "discount_value": "free",
@@ -43168,30 +43168,32 @@
       "requires_account_login": false,
       "new_user_only": false,
       "birthday_related": false,
-      "start_date": null,
-      "end_date": null,
+      "start_date": "2026-08-01",
+      "end_date": "2026-08-31",
       "valid_days": [],
       "time_start": null,
       "time_end": null,
-      "timezone": "America/Chicago",
+      "timezone": "America/New_York",
       "redemption_method": "in_store",
       "redemption_steps": [
-        "Purchase the V20* ADVANCED™ battery starter kit",
-        "Receive a select bare tool for free at checkout"
+        "Add the Craftsman V20 4.0Ah Battery and Charger Kit to your cart.",
+        "Proceed to checkout; a select bare tool will be added for free.",
+        "Complete purchase in‑store or online at participating Ace Hardware locations."
       ],
       "promo_code": null,
-      "terms_text": "Get a select bare tool for free when you buy the 3AH V20* ADVANCED battery and charger starter kit",
+      "terms_text": "Buy a V20* battery starter kit and get one select bare tool free†",
       "minimum_spend": null,
       "purchase_required": true,
-      "deal_scope": "brand_level",
+      "deal_scope": "location_specific",
       "friction_level": "low",
       "friction_reasons": [],
-      "confidence_score": 0.95,
+      "confidence_score": 0.96,
       "source_type": "web_page",
-      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\craftsman_20260804T020827Z.txt",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\craftsman_20260805T020641Z.txt",
       "extraction_status": "success",
       "notes": [
-        "Promotion dates listed as 7/20 - 10/16 without a year."
+        "Promotion limited to 8/1‑8/31/26 or while supplies last.",
+        "No explicit promo code; redemption via purchase."
       ],
       "target_gender": null,
       "synthesized": false,
@@ -43201,7 +43203,7 @@
       ],
       "product_keywords_explicit": [
         "V20 battery starter kit",
-        "bare tool"
+        "select bare tool"
       ],
       "product_keywords_contextual": [],
       "matched_product_examples": [],
@@ -43211,8 +43213,9 @@
       "email_subject": null,
       "email_date": null,
       "website_domain": "craftsman.com",
-      "status": "probably_active",
+      "og_image_url": "https://bynder.sbdinc.com/asset/14b55d7f-5176-4a38-b5cc-c04e75e74bd7/thumbnail/webimage-CM_Homepage-RFAM-PostRace-desktop-EN_GEB1",
       "source_url": "https://www.craftsman.com/en-us/product/cmcs300b/v20-cordless-reciprocating-saw-tool-only",
+      "status": "active",
       "source": "web",
       "fast_redemption": {
         "eligible": true,
@@ -43232,12 +43235,12 @@
         "effort_level": "medium",
         "confidence": 0.7
       },
-      "estimated_item_value": 30.0,
+      "estimated_item_value": 45.0,
       "estimated_savings": 15.0,
       "effective_discount_pct": 100.0,
       "clarity_score": 2.0,
-      "value_reason": "free item, est. ≈ $15 savings | rel=27.0 abs=35.3 spend_pen=0.0 qty_pen=0.0 pres=4.0 clr=2.0 mult=1.00 fr=6.0 fresh=0.0 urg=0.0 fric=3.0",
-      "economic_value_score": 62.26,
+      "value_reason": "free item, est. ≈ $15 savings | rel=27.0 abs=37.3 spend_pen=0.0 qty_pen=0.0 pres=4.0 clr=2.0 mult=1.00 fr=6.0 fresh=0.0 urg=0.0 fric=3.0",
+      "economic_value_score": 64.33,
       "expiration_urgency_score": 0.0,
       "source_freshness_score": 0.0,
       "low_confidence_flagged": false,
@@ -43247,16 +43250,16 @@
         "NO_PURCHASE_MINIMUM",
         "STRONG_ECONOMIC_VALUE"
       ],
-      "global_quality_score": 71.26
+      "global_quality_score": 73.33
     },
     {
       "brand": "Craftsman",
-      "category": "home_improvement",
-      "promotion_title": "Save up to 30% on hand tools",
-      "short_summary": "Up to 30% off hand tools from 8/1 to 10/31.",
+      "category": "retail",
+      "promotion_title": "Save 20% on Select Mechanical Tools",
+      "short_summary": "Get 20% off a selection of mechanical tools at participating Ace Hardware stores.",
       "promotion_type": "sale",
       "discount_type": "percentage_off",
-      "discount_value": "up to 30%",
+      "discount_value": "20%",
       "requires_membership": false,
       "membership_name": null,
       "membership_cost": null,
@@ -43269,84 +43272,81 @@
       "valid_days": [],
       "time_start": null,
       "time_end": null,
-      "timezone": "America/Chicago",
-      "redemption_method": "online",
+      "timezone": "America/New_York",
+      "redemption_method": "in_store",
       "redemption_steps": [
-        "Shop selected hand tools during the promotion period"
+        "Select eligible mechanical tools.",
+        "Discount will be applied at checkout."
       ],
       "promo_code": null,
-      "terms_text": "Save up to 30% on hand tools from 8/1 - 10/31",
+      "terms_text": "Save 20% on select mech tools",
       "minimum_spend": null,
       "purchase_required": true,
-      "deal_scope": "brand_level",
+      "deal_scope": "location_specific",
       "friction_level": "low",
       "friction_reasons": [],
       "confidence_score": 0.94,
       "source_type": "web_page",
-      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\craftsman_20260804T020827Z.txt",
+      "source_path": "C:\\Users\\user\\Downloads\\promo-raw-scraper\\promo-raw-scraper\\raw_text\\craftsman_20260805T020641Z.txt",
       "extraction_status": "success",
-      "notes": [],
+      "notes": [
+        "No specific dates provided; assumed ongoing promotion."
+      ],
       "target_gender": null,
       "synthesized": false,
       "synthesis_reason": null,
       "product_categories": [
         "home"
       ],
-      "product_keywords_explicit": [],
-      "product_keywords_contextual": [
-        "utility knife",
-        "claw hammer",
-        "tape measure",
-        "hex key set",
-        "pliers",
-        "multi-bit screwdriver set",
-        "mechanics tool set",
-        "combination wrench set"
+      "product_keywords_explicit": [
+        "mechanical tools"
       ],
+      "product_keywords_contextual": [],
       "matched_product_examples": [],
-      "deal_url": "https://www.craftsman.com/en-us/product/cmmt12001/standard-sae-ratcheting-combination-wrench-set-3-piece",
+      "deal_url": "https://www.craftsman.com/en-us/product/cmcv002b/v20-cordless-2-gallon-wet-dry-vac-tool-only",
       "visibility": null,
       "sender_email": null,
       "email_subject": null,
       "email_date": null,
       "website_domain": "craftsman.com",
+      "og_image_url": "https://bynder.sbdinc.com/asset/14b55d7f-5176-4a38-b5cc-c04e75e74bd7/thumbnail/webimage-CM_Homepage-RFAM-PostRace-desktop-EN_GEB1",
+      "source_url": "https://www.craftsman.com/en-us/product/cmcv002b/v20-cordless-2-gallon-wet-dry-vac-tool-only",
       "status": "probably_active",
-      "source_url": "https://www.craftsman.com/en-us/product/cmmt12001/standard-sae-ratcheting-combination-wrench-set-3-piece",
       "source": "web",
       "fast_redemption": {
         "eligible": true,
-        "action_type": "open_url",
-        "button_label": "Shop Now",
-        "primary_value": null,
-        "primary_url": "https://www.craftsman.com/en-us/product/cmmt12001/standard-sae-ratcheting-combination-wrench-set-3-piece",
+        "action_type": "open_maps",
+        "button_label": "Find Nearest Store",
+        "primary_value": "Craftsman",
+        "primary_url": "https://www.craftsman.com/en-us/product/cmcv002b/v20-cordless-2-gallon-wet-dry-vac-tool-only",
         "app_deep_link": null,
         "web_fallback_url": null,
         "steps_after_click": [
-          "Browse the sale.",
-          "Discount applies automatically at checkout."
+          "Go to the nearest store.",
+          "Mention this promotion at checkout."
         ],
         "eliminates_steps": [
-          "Searching for the brand website"
+          "Searching for the nearest location"
         ],
-        "effort_level": "low",
-        "confidence": 0.85
+        "effort_level": "medium",
+        "confidence": 0.7
       },
-      "estimated_item_value": 30.0,
+      "estimated_item_value": 45.0,
       "estimated_savings": 9.0,
-      "effective_discount_pct": 30.0,
+      "effective_discount_pct": 20.0,
       "clarity_score": 5.0,
-      "value_reason": "30% off, brand/cat est. ($30) ≈ $9 savings | rel=12.9 abs=29.3 spend_pen=0.0 qty_pen=0.0 pres=2.0 clr=5.0 mult=1.00 fr=6.0 fresh=0.0 urg=0.0 fric=0.0",
-      "economic_value_score": 42.17,
+      "value_reason": "20% off, brand/cat est. ($45) ≈ $9 savings | rel=9.5 abs=31.0 spend_pen=0.0 qty_pen=0.0 pres=2.0 clr=5.0 mult=1.00 fr=6.0 fresh=0.0 urg=0.0 fric=3.0",
+      "economic_value_score": 40.53,
       "expiration_urgency_score": 0.0,
       "source_freshness_score": 0.0,
       "low_confidence_flagged": false,
       "value_explanation_codes": [
-        "STRONG_DISCOUNT",
+        "MODERATE_DISCOUNT",
         "NO_MEMBERSHIP_REQUIRED",
         "NO_PURCHASE_MINIMUM",
         "STRONG_ECONOMIC_VALUE"
       ],
-      "global_quality_score": 55.17
+      "global_quality_score": 50.53
     },
     {
       "brand": "Cult Beauty",
