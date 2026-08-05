@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-04T07:17:48.386390+00:00",
+  "generated_at": "2026-08-05T07:34:05.932191+00:00",
   "threshold": 60.0,
-  "total": 82,
+  "total": 108,
   "candidates": [
     {
       "promo_id": "stevemadden_summersalecode",
@@ -25,17 +25,17 @@
     {
       "promo_id": "thredup_freecleanoutbagzerofeesforsellers",
       "brand": "ThredUp",
-      "category": "retail",
-      "title": "Free Clean-Out Bag & Zero Fees for Sellers",
+      "category": "fashion",
+      "title": "Free Clean Out Bag & ZERO Fees for Sellers",
       "notify_score": 87.76,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "ThredUp",
-      "notification_body": "Free: Free Clean-Out Bag & Zero Fees for Sellers",
+      "notification_body": "Free: Free Clean Out Bag & ZERO Fees for Sellers",
       "discount_type": "free_item",
-      "discount_value": "clean-out bag",
+      "discount_value": "free clean out bag",
       "estimated_savings": 100.0,
       "end_date": null,
       "website_domain": "thredup.com",
@@ -61,42 +61,61 @@
       "source_url": "https://www.outback.com/offers/limited-time-menu"
     },
     {
-      "promo_id": "zaraman_zarasaleupto80off",
-      "brand": "Zara Man",
+      "promo_id": "everlane_womenssaleupto75off",
+      "brand": "Everlane",
       "category": "retail",
-      "title": "Zara Sale - up to 80% off",
-      "notify_score": 85.58,
+      "title": "Women's Sale - up to 75% off",
+      "notify_score": 83.89,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Zara Man",
-      "notification_body": "Zara Sale - up to 80% off",
+      "notification_title": "Everlane",
+      "notification_body": "Women's Sale - up to 75% off",
       "discount_type": "percentage_off",
-      "discount_value": "up to 80%",
-      "estimated_savings": 36.0,
+      "discount_value": "up to 75%",
+      "estimated_savings": 33.75,
       "end_date": null,
-      "website_domain": "zara.com",
-      "source_url": "https://www.zara.com/us/en/s-man-sale-l10847.html"
+      "website_domain": "everlane.com",
+      "source_url": "https://www.everlane.com/collections/womens-new-arrivals"
     },
     {
-      "promo_id": "jackery_jackerysaleupto60off",
-      "brand": "Jackery",
-      "category": "electronics",
-      "title": "Jackery Sale - Up to 60% Off",
-      "notify_score": 83.31,
+      "promo_id": "fentybeauty_aaprockyhydravizorinvisiblemoisturizerfree",
+      "brand": "Fenty Beauty",
+      "category": "beauty",
+      "title": "A$AP Rocky Hydra Vizor Invisible Moisturizer - Free",
+      "notify_score": 82.43,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Jackery",
-      "notification_body": "Jackery Sale - Up to 60% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 150.0,
+      "notification_title": "Fenty Beauty",
+      "notification_body": "Free: A$AP Rocky Hydra Vizor Invisible Moisturizer - Free",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 25.0,
       "end_date": null,
-      "website_domain": "jackery.com",
-      "source_url": "https://www.jackery.com/products/jackery-solar-generator-5000-plus"
+      "website_domain": "fentybeauty.com",
+      "source_url": "https://www.fentybeauty.com/sale"
+    },
+    {
+      "promo_id": "fentybeauty_buildyourownampmmoisturizerbundlefree",
+      "brand": "Fenty Beauty",
+      "category": "beauty",
+      "title": "Build Your Own AM + PM Moisturizer Bundle - Free",
+      "notify_score": 82.43,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Fenty Beauty",
+      "notification_body": "Free: Build Your Own AM + PM Moisturizer Bundle - Free",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 25.0,
+      "end_date": null,
+      "website_domain": "fentybeauty.com",
+      "source_url": "https://www.fentybeauty.com/sale"
     },
     {
       "promo_id": "kroger_nodeliveryfeeunlimiteduses",
@@ -176,44 +195,6 @@
       "source_url": "https://www.ikea.com/us/en/offers/"
     },
     {
-      "promo_id": "aquazzura_saleupto50offshoesandbags",
-      "brand": "Aquazzura",
-      "category": "retail",
-      "title": "Sale: up to 50% off Shoes and Bags",
-      "notify_score": 81.16,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Aquazzura",
-      "notification_body": "Sale: up to 50% off Shoes and Bags",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 45.0,
-      "end_date": null,
-      "website_domain": "aquazzura.com",
-      "source_url": "https://www.aquazzura.com/us_en/aquazzura-world/stories-en/interviews-en"
-    },
-    {
-      "promo_id": "footlocker_upto50off",
-      "brand": "Foot Locker",
-      "category": "retail",
-      "title": "Up to 50% Off",
-      "notify_score": 81.16,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Foot Locker",
-      "notification_body": "Up to 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 50.0,
-      "end_date": null,
-      "website_domain": "footlocker.com",
-      "source_url": "https://www.footlocker.com/category/sale/new-balance.html"
-    },
-    {
       "promo_id": "luckybrand_clearancesaleupto75off",
       "brand": "Lucky Brand",
       "category": "retail",
@@ -233,6 +214,25 @@
       "source_url": "https://www.luckybrand.com/sale/featured-shops/shop-sale-tops"
     },
     {
+      "promo_id": "prettylittlething_prettylittlethingsale",
+      "brand": "PrettyLittleThing",
+      "category": "fashion",
+      "title": "PrettyLittleThing Sale",
+      "notify_score": 80.17,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "PrettyLittleThing",
+      "notification_body": "PrettyLittleThing Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 83% off",
+      "estimated_savings": 53.95,
+      "end_date": null,
+      "website_domain": "prettylittlething.us",
+      "source_url": "https://www.prettylittlething.us/categories/womens-sale-tops"
+    },
+    {
       "promo_id": "hyperx_hyperxgaminggearsaleupto50off",
       "brand": "HyperX",
       "category": "tech",
@@ -249,7 +249,7 @@
       "estimated_savings": 125.0,
       "end_date": null,
       "website_domain": "hyperx.com",
-      "source_url": "https://www.hyperx.com/products/hyperx-quadcast-2-usb-microphone"
+      "source_url": "https://www.hyperx.com/products/hyperx-quadcast-2-s-usb-microphone"
     },
     {
       "promo_id": "prose_freegrandbeachbag32valuewithemailsignup",
@@ -271,42 +271,23 @@
       "source_url": "https://prose.com/"
     },
     {
-      "promo_id": "aspinaloflondon_outletsaleupto60off",
-      "brand": "Aspinal of London",
-      "category": "retail",
-      "title": "Outlet Sale - Up to 60% Off",
-      "notify_score": 78.18,
+      "promo_id": "fentybeauty_buildyourownliplinerlipglossbundlefree",
+      "brand": "Fenty Beauty",
+      "category": "beauty",
+      "title": "Build Your Own Lip Liner + Lip Gloss Bundle - Free",
+      "notify_score": 78.44,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Aspinal of London",
-      "notification_body": "Outlet Sale - Up to 60% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 27.0,
+      "notification_title": "Fenty Beauty",
+      "notification_body": "Free: Build Your Own Lip Liner + Lip Gloss Bundle - Free",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 18.0,
       "end_date": null,
-      "website_domain": "aspinaloflondon.com",
-      "source_url": "https://www.aspinaloflondon.com/womens-bags/view-all"
-    },
-    {
-      "promo_id": "bcbg_finalsaleupto60off",
-      "brand": "BCBG",
-      "category": "fashion",
-      "title": "Final Sale - Up to 60% Off",
-      "notify_score": 78.18,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "BCBG",
-      "notification_body": "Final Sale - Up to 60% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 39.0,
-      "end_date": null,
-      "website_domain": "bcbg.com",
-      "source_url": "https://bcbg.com/collections/sale"
+      "website_domain": "fentybeauty.com",
+      "source_url": "https://www.fentybeauty.com/sale"
     },
     {
       "promo_id": "mansurgavriel_summersaleupto60off",
@@ -326,6 +307,25 @@
       "end_date": null,
       "website_domain": "mansurgavriel.com",
       "source_url": "https://www.mansurgavriel.com/collections/sale"
+    },
+    {
+      "promo_id": "talbots_flashsaleextra60offallmarkdowns",
+      "brand": "Talbots",
+      "category": "retail",
+      "title": "FLASH SALE! EXTRA 60% off all markdowns",
+      "notify_score": 78.18,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Talbots",
+      "notification_body": "FLASH SALE! EXTRA 60% off all markdowns",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 27.0,
+      "end_date": null,
+      "website_domain": "talbots.com",
+      "source_url": "https://www.talbots.com/home?cT=d"
     },
     {
       "promo_id": "stjohn_upto60offbasics",
@@ -402,6 +402,44 @@
       "end_date": null,
       "website_domain": "stjohnknits.com",
       "source_url": "https://www.stjohnknits.com/collections/sale"
+    },
+    {
+      "promo_id": "driesvannoten_complimentarygiftwrappingmessage",
+      "brand": "Dries Van Noten",
+      "category": "retail",
+      "title": "Complimentary gift wrapping & message",
+      "notify_score": 76.33,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Dries Van Noten",
+      "notification_body": "Free: Complimentary gift wrapping & message",
+      "discount_type": "free_item",
+      "discount_value": "gift wrapping & message",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "driesvannoten.com",
+      "source_url": "https://www.driesvannoten.com/"
+    },
+    {
+      "promo_id": "driesvannoten_complimentarysamples",
+      "brand": "Dries Van Noten",
+      "category": "retail",
+      "title": "Complimentary samples",
+      "notify_score": 76.33,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Dries Van Noten",
+      "notification_body": "Free: Complimentary samples",
+      "discount_type": "free_item",
+      "discount_value": "complimentary samples",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "driesvannoten.com",
+      "source_url": "https://www.driesvannoten.com/"
     },
     {
       "promo_id": "potterybarnkids_freeexpertdesignadvice",
@@ -499,23 +537,61 @@
       "source_url": "https://www.target.com/c/top-deals/-/N-4xw74"
     },
     {
-      "promo_id": "myprotein_upto70offpaydaysale",
-      "brand": "MyProtein",
-      "category": "fitness",
-      "title": "Up to 70% off Payday Sale",
-      "notify_score": 74.54,
+      "promo_id": "lanebryant_clearanceextra60off",
+      "brand": "Lane Bryant",
+      "category": "retail",
+      "title": "Clearance Extra 60% Off",
+      "notify_score": 75.18,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "MyProtein",
-      "notification_body": "Up to 70% off Payday Sale",
+      "notification_title": "Lane Bryant",
+      "notification_body": "Clearance Extra 60% Off",
       "discount_type": "percentage_off",
-      "discount_value": "70%",
-      "estimated_savings": 21.0,
+      "discount_value": "60%",
+      "estimated_savings": 27.0,
       "end_date": null,
-      "website_domain": "myprotein.com",
-      "source_url": "https://www.myprotein.com/c/all-offers/clearance-multibuy/"
+      "website_domain": "lanebryant.com",
+      "source_url": "https://www.lanebryant.com/sale"
+    },
+    {
+      "promo_id": "wendys_wendyswednesdayfree6pcnuggswpurchase",
+      "brand": "Wendy's",
+      "category": "food",
+      "title": "Wendy's Wednesday - Free 6pc Nuggs w/ Purchase",
+      "notify_score": 74.52,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Wendy's",
+      "notification_body": "Free: Wendy's Wednesday - Free 6pc Nuggs w/ Purchase",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 9.0,
+      "end_date": null,
+      "website_domain": "wendys.com",
+      "source_url": "https://www.wendys.com/offers-coupons"
+    },
+    {
+      "promo_id": "wendys_wendyswednesdayfree6pcnuggsw5purchase",
+      "brand": "Wendy's",
+      "category": "food",
+      "title": "Wendy's Wednesday - Free 6pc Nuggs w/ $5 Purchase",
+      "notify_score": 74.52,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Wendy's",
+      "notification_body": "Free: Wendy's Wednesday - Free 6pc Nuggs w/ $5 Purchase",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 9.0,
+      "end_date": null,
+      "website_domain": "wendys.com",
+      "source_url": "https://www.wendys.com/offers-coupons"
     },
     {
       "promo_id": "article_freeinteriordesignservices",
@@ -575,17 +651,36 @@
       "source_url": "https://www.us.ecoflow.com/collections/whole-home-backup-power-solutions"
     },
     {
-      "promo_id": "epicgamesstore_weeklyfreepcgame",
+      "promo_id": "epicgamesstore_freepcgameoftheweek",
       "brand": "Epic Games Store",
       "category": "Gaming",
-      "title": "Weekly Free PC Game",
+      "title": "Free PC Game of the Week",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Epic Games Store",
-      "notification_body": "Free: Weekly Free PC Game",
+      "notification_body": "Free: Free PC Game of the Week",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://www.store.epicgames.com/browse"
+    },
+    {
+      "promo_id": "epicgamesstore_freegameeverythursdayonmobileandpc",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "Free Game Every Thursday on Mobile and PC",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: Free Game Every Thursday on Mobile and PC",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
@@ -594,17 +689,17 @@
       "source_url": "https://www.store.epicgames.com/p/marvel-rivals-182004"
     },
     {
-      "promo_id": "epicgamesstore_freetoplaygamescollection",
+      "promo_id": "epicgamesstore_fortnitefreebasegame",
       "brand": "Epic Games Store",
       "category": "Gaming",
-      "title": "Free-to-Play Games Collection",
+      "title": "Fortnite - Free Base Game",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Epic Games Store",
-      "notification_body": "Free: Free-to-Play Games Collection",
+      "notification_body": "Free: Fortnite - Free Base Game",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
@@ -613,61 +708,384 @@
       "source_url": "https://store.epicgames.com/en-US/free-games"
     },
     {
-      "promo_id": "jomalone_complimentary9mlcologne",
-      "brand": "Jo Malone",
-      "category": "beauty",
-      "title": "Complimentary 9ml Cologne",
+      "promo_id": "epicgamesstore_rocketleaguefreebasegame",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "Rocket League - Free Base Game",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Jo Malone",
-      "notification_body": "Free: Complimentary 9ml Cologne",
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: Rocket League - Free Base Game",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "jomalone.com",
-      "source_url": "https://www.jomalone.com/online-exclusive-offers"
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://store.epicgames.com/en-US/free-games"
     },
     {
-      "promo_id": "jomalone_complimentarygiftwrapping",
-      "brand": "Jo Malone",
-      "category": "beauty",
-      "title": "Complimentary Gift Wrapping",
+      "promo_id": "epicgamesstore_genshinimpactfreebasegame",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "Genshin Impact - Free Base Game",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Jo Malone",
-      "notification_body": "Free: Complimentary Gift Wrapping",
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: Genshin Impact - Free Base Game",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "jomalone.com",
-      "source_url": "https://www.jomalone.com/events"
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://store.epicgames.com/en-US/free-games"
     },
     {
-      "promo_id": "jomalone_complimentarydeluxemini",
-      "brand": "Jo Malone",
-      "category": "beauty",
-      "title": "Complimentary Deluxe Mini",
+      "promo_id": "epicgamesstore_zenlesszonezerofreebasegame",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "Zenless Zone Zero - Free Base Game",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Jo Malone",
-      "notification_body": "Free: Complimentary Deluxe Mini",
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: Zenless Zone Zero - Free Base Game",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "jomalone.com",
-      "source_url": "https://www.jomalone.com/online-exclusive-offers"
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://store.epicgames.com/en-US/free-games"
+    },
+    {
+      "promo_id": "epicgamesstore_honkaistarrailfreebasegame",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "Honkai: Star Rail - Free Base Game",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: Honkai: Star Rail - Free Base Game",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://store.epicgames.com/en-US/free-games"
+    },
+    {
+      "promo_id": "epicgamesstore_valorantfreebasegame",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "VALORANT - Free Base Game",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: VALORANT - Free Base Game",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://store.epicgames.com/en-US/free-games"
+    },
+    {
+      "promo_id": "epicgamesstore_thesims4freebasegame",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "The Sims 4 - Free Base Game",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: The Sims 4 - Free Base Game",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://store.epicgames.com/en-US/free-games"
+    },
+    {
+      "promo_id": "epicgamesstore_arknightsendfieldfreebasegame",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "Arknights: Endfield - Free Base Game",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: Arknights: Endfield - Free Base Game",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://store.epicgames.com/en-US/free-games"
+    },
+    {
+      "promo_id": "epicgamesstore_pubgbattlegroundsfreebasegame",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "PUBG: BATTLEGROUNDS - Free Base Game",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: PUBG: BATTLEGROUNDS - Free Base Game",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://store.epicgames.com/en-US/free-games"
+    },
+    {
+      "promo_id": "epicgamesstore_crosshairv2freebasegame",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "Crosshair V2 - Free Base Game",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: Crosshair V2 - Free Base Game",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://store.epicgames.com/en-US/free-games"
+    },
+    {
+      "promo_id": "epicgamesstore_marvelrivalsfreebasegame",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "Marvel Rivals - Free Base Game",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: Marvel Rivals - Free Base Game",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://store.epicgames.com/en-US/free-games"
+    },
+    {
+      "promo_id": "fentybeauty_aaprockyxfentyskincollectionbundlefree",
+      "brand": "Fenty Beauty",
+      "category": "beauty",
+      "title": "A$AP Rocky x Fenty Skin Collection Bundle - Free",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Fenty Beauty",
+      "notification_body": "Free: A$AP Rocky x Fenty Skin Collection Bundle - Free",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "fentybeauty.com",
+      "source_url": "https://www.fentybeauty.com/sale"
+    },
+    {
+      "promo_id": "fentybeauty_aaprockybuildyourownluxbalmbundlefree",
+      "brand": "Fenty Beauty",
+      "category": "beauty",
+      "title": "A$AP Rocky Build Your Own Lux Balm Bundle - Free",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Fenty Beauty",
+      "notification_body": "Free: A$AP Rocky Build Your Own Lux Balm Bundle - Free",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "fentybeauty.com",
+      "source_url": "https://www.fentybeauty.com/sale"
+    },
+    {
+      "promo_id": "fentybeauty_alloverbodymistgreenraspberryfree",
+      "brand": "Fenty Beauty",
+      "category": "beauty",
+      "title": "Allover Body Mist - Green Raspberry - Free",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Fenty Beauty",
+      "notification_body": "Free: Allover Body Mist - Green Raspberry - Free",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "fentybeauty.com",
+      "source_url": "https://www.fentybeauty.com/sale"
+    },
+    {
+      "promo_id": "fentybeauty_alloverbodymisttropictripfree",
+      "brand": "Fenty Beauty",
+      "category": "beauty",
+      "title": "Allover Body Mist - Tropic Trip - Free",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Fenty Beauty",
+      "notification_body": "Free: Allover Body Mist - Tropic Trip - Free",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "fentybeauty.com",
+      "source_url": "https://www.fentybeauty.com/sale"
+    },
+    {
+      "promo_id": "fentybeauty_bigdripprbodywashvanillaflowersfree",
+      "brand": "Fenty Beauty",
+      "category": "beauty",
+      "title": "Big Dripp'r Body Wash - Vanilla Flowers - Free",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Fenty Beauty",
+      "notification_body": "Free: Big Dripp'r Body Wash - Vanilla Flowers - Free",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "fentybeauty.com",
+      "source_url": "https://www.fentybeauty.com/sale"
+    },
+    {
+      "promo_id": "fentybeauty_buildyourown4piecesummerglowbundlefree",
+      "brand": "Fenty Beauty",
+      "category": "beauty",
+      "title": "Build Your Own 4-Piece Summer Glow Bundle - Free",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Fenty Beauty",
+      "notification_body": "Free: Build Your Own 4-Piece Summer Glow Bundle - Free",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "fentybeauty.com",
+      "source_url": "https://www.fentybeauty.com/sale"
+    },
+    {
+      "promo_id": "fentybeauty_buildyourownbodycarefragrancebundlefree",
+      "brand": "Fenty Beauty",
+      "category": "beauty",
+      "title": "Build Your Own Body Care + Fragrance Bundle - Free",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Fenty Beauty",
+      "notification_body": "Free: Build Your Own Body Care + Fragrance Bundle - Free",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "fentybeauty.com",
+      "source_url": "https://www.fentybeauty.com/sale"
+    },
+    {
+      "promo_id": "fentybeauty_buildyourownfentyface4piecebundlefree",
+      "brand": "Fenty Beauty",
+      "category": "beauty",
+      "title": "Build Your Own Fenty Face 4‑Piece Bundle - Free",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Fenty Beauty",
+      "notification_body": "Free: Build Your Own Fenty Face 4‑Piece Bundle - Free",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "fentybeauty.com",
+      "source_url": "https://www.fentybeauty.com/sale"
+    },
+    {
+      "promo_id": "fentybeauty_buildyourownprimesetbundlefree",
+      "brand": "Fenty Beauty",
+      "category": "beauty",
+      "title": "Build Your Own Prime + Set Bundle - Free",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Fenty Beauty",
+      "notification_body": "Free: Build Your Own Prime + Set Bundle - Free",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "fentybeauty.com",
+      "source_url": "https://www.fentybeauty.com/sale"
+    },
+    {
+      "promo_id": "fentybeauty_buttadrophydratingbodymilkamberbouquetfree",
+      "brand": "Fenty Beauty",
+      "category": "beauty",
+      "title": "Butta Drop Hydrating Body Milk - Amber Bouquet - Free",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Fenty Beauty",
+      "notification_body": "Free: Butta Drop Hydrating Body Milk - Amber Bouquet - Free",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "fentybeauty.com",
+      "source_url": "https://www.fentybeauty.com/sale"
     },
     {
       "promo_id": "sundayriley_freevirtualconsultation",
@@ -765,23 +1183,23 @@
       "source_url": "https://www.courreges.com/"
     },
     {
-      "promo_id": "offwhite_saleseasonupto50offselectedstyles",
-      "brand": "Off-White",
+      "promo_id": "whitehouseblackmarket_upto50offwearnowstyles",
+      "brand": "White House Black Market",
       "category": "retail",
-      "title": "Sale Season: Up to 50% Off Selected Styles",
+      "title": "Up to 50% Off Wear-Now Styles",
       "notify_score": 73.67,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Off-White",
-      "notification_body": "Sale Season: Up to 50% Off Selected Styles",
+      "notification_title": "White House Black Market",
+      "notification_body": "Up to 50% Off Wear-Now Styles",
       "discount_type": "percentage_off",
-      "discount_value": "50%",
+      "discount_value": "up to 50%",
       "estimated_savings": 22.5,
       "end_date": null,
-      "website_domain": "off---white.com",
-      "source_url": "https://www.off---white.com/en-us/new-in/men-new-in/"
+      "website_domain": "whitehouseblackmarket.com",
+      "source_url": "https://www.whitehouseblackmarket.com/store/category/sale/cat210002/"
     },
     {
       "promo_id": "thecontainerstore_freedesignconsultation",
@@ -858,6 +1276,25 @@
       "end_date": null,
       "website_domain": "noodles.com",
       "source_url": "https://www.noodles.com/order"
+    },
+    {
+      "promo_id": "luluandgeorgia_freedesignservices",
+      "brand": "Lulu and Georgia",
+      "category": "Premium Home",
+      "title": "Free Design Services",
+      "notify_score": 71.61,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Lulu and Georgia",
+      "notification_body": "Free: Free Design Services",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "luluandgeorgia.com",
+      "source_url": "https://www.luluandgeorgia.com/collections/sale"
     },
     {
       "promo_id": "skyzone_birthdaylikeabossfree100dayjumppass",
@@ -974,23 +1411,23 @@
       "source_url": "https://www.sweetgreen.com/sweet-rewards"
     },
     {
-      "promo_id": "alc_finalhoursforsaleupto60off",
-      "brand": "A.L.C.",
-      "category": "Premium Fashion",
-      "title": "Final Hours for Sale: Up to 60% Off",
-      "notify_score": 70.75,
+      "promo_id": "dermstore_dermstoresaleupto70off",
+      "brand": "Dermstore",
+      "category": "beauty",
+      "title": "Dermstore Sale - Up to 70% Off",
+      "notify_score": 70.8,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "A.L.C.",
-      "notification_body": "Final Hours for Sale: Up to 60% Off",
+      "notification_title": "Dermstore",
+      "notification_body": "Dermstore Sale - Up to 70% Off",
       "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 18.0,
+      "discount_value": "up to 70%",
+      "estimated_savings": 15.4,
       "end_date": null,
-      "website_domain": "alcltd.com",
-      "source_url": "https://alcltd.com/collections/sale"
+      "website_domain": "dermstore.com",
+      "source_url": "https://www.dermstore.com/c/anniversary-sale/"
     },
     {
       "promo_id": "tillys_allclearanceextra3050off",
@@ -1088,6 +1525,25 @@
       "source_url": "https://www.clubmonaco.com/collections/womens-best-sellers"
     },
     {
+      "promo_id": "cariboucoffee_freebirthdaybeverage",
+      "brand": "Caribou Coffee",
+      "category": "coffee",
+      "title": "Free birthday beverage",
+      "notify_score": 69.62,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Caribou Coffee",
+      "notification_body": "Birthday deal: Free birthday beverage",
+      "discount_type": "free_item",
+      "discount_value": "free beverage",
+      "estimated_savings": 4.0,
+      "end_date": null,
+      "website_domain": "cariboucoffee.com",
+      "source_url": "https://www.cariboucoffee.com/caribou-perks/"
+    },
+    {
       "promo_id": "augustinusbader_birthdaygift",
       "brand": "Augustinus Bader",
       "category": "beauty",
@@ -1124,6 +1580,25 @@
       "end_date": null,
       "website_domain": "applebees.com",
       "source_url": "https://www.applebees.com/en/specials"
+    },
+    {
+      "promo_id": "epicgamesstore_fallguysfreebasegame",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "Fall Guys - Free Base Game",
+      "notify_score": 68.96,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: Fall Guys - Free Base Game",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://store.epicgames.com/en-US/free-games"
     },
     {
       "promo_id": "calvinklein_calvinkleinsale",
@@ -1181,25 +1656,6 @@
       "end_date": null,
       "website_domain": "kiehls.com",
       "source_url": "https://www.kiehls.com/skincare/eye-creams-and-serums/avocado-eye-cream/258.html"
-    },
-    {
-      "promo_id": "pandora_freelimitededitiondisneyprincessjewelrybox",
-      "brand": "Pandora",
-      "category": "accessories",
-      "title": "Free Limited Edition Disney Princess Jewelry Box",
-      "notify_score": 68.61,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Pandora",
-      "notification_body": "Free: Free Limited Edition Disney Princess Jewelry Box",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "us.pandora.net",
-      "source_url": "https://www.us.pandora.net/en/jewelry/sale/?prefn1=primaryCategory&prefv1=Charms"
     },
     {
       "promo_id": "culvers_freebirthdayandhalfbirthdaytreats",
@@ -1297,23 +1753,42 @@
       "source_url": "https://www.panerabread.com/en-us/mypanera/meet-mypanera.html"
     },
     {
-      "promo_id": "zwilling_knivessale",
-      "brand": "Zwilling",
-      "category": "Premium Kitchen",
-      "title": "Knives Sale",
-      "notify_score": 66.42,
+      "promo_id": "gap_womensclothessale",
+      "brand": "Gap",
+      "category": "retail",
+      "title": "Women's Clothes Sale",
+      "notify_score": 67.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Zwilling",
-      "notification_body": "Knives Sale",
+      "notification_title": "Gap",
+      "notification_body": "Women's Clothes Sale",
       "discount_type": "percentage_off",
       "discount_value": "up to 50%",
+      "estimated_savings": 20.0,
+      "end_date": null,
+      "website_domain": "gap.com",
+      "source_url": "https://www.gap.com/browse/category.do?cid=8792&cl=true#pageId=0&department=136"
+    },
+    {
+      "promo_id": "dell_collegebundlefreemicrosoft365xboxgamepassxboxcontroller",
+      "brand": "Dell",
+      "category": "tech",
+      "title": "College bundle - free Microsoft 365, Xbox Game Pass, Xbox controller",
+      "notify_score": 66.63,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Dell",
+      "notification_body": "Free: College bundle - free Microsoft 365, Xbox Game Pass, Xbox controller",
+      "discount_type": "free_item",
+      "discount_value": "Microsoft 365 Premium, Xbox Game Pass Ultimate, Xbox Controller",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "zwilling.com",
-      "source_url": "https://www.zwilling.com/us/sale/"
+      "website_domain": "dell.com",
+      "source_url": "https://www.dell.com/en-us/shop/deals/business-pc-deals"
     },
     {
       "promo_id": "chipotle_birthdayfreereward",
@@ -1352,6 +1827,25 @@
       "end_date": null,
       "website_domain": "lg.com",
       "source_url": "https://www.lg.com/us/promotions/top-appliance-deals"
+    },
+    {
+      "promo_id": "whitehouseblackmarket_upto64offselectitems",
+      "brand": "White House Black Market",
+      "category": "retail",
+      "title": "Up to 64% Off Select Items",
+      "notify_score": 65.44,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "White House Black Market",
+      "notification_body": "Up to 64% Off Select Items",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 64%",
+      "estimated_savings": 12.8,
+      "end_date": null,
+      "website_domain": "whitehouseblackmarket.com",
+      "source_url": "https://www.whitehouseblackmarket.com/store/category/sale/cat210002/"
     },
     {
       "promo_id": "insideweather_freeswatches",
@@ -1409,25 +1903,6 @@
       "end_date": null,
       "website_domain": "chick-fil-a.com",
       "source_url": "https://www.chick-fil-a.com/one"
-    },
-    {
-      "promo_id": "saatva_saatvasale",
-      "brand": "Saatva",
-      "category": "Mattress / Home",
-      "title": "Saatva Sale",
-      "notify_score": 63.24,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Saatva",
-      "notification_body": "Saatva Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 53% off",
-      "estimated_savings": 15.9,
-      "end_date": null,
-      "website_domain": "saatva.com",
-      "source_url": "https://www.saatva.com/mattresses/saatva-classic"
     },
     {
       "promo_id": "einsteinbrosbagels_unlimitedfreecoffeeonevisit",
@@ -1525,23 +2000,42 @@
       "source_url": "https://www.peets.com/collections/all-coffees"
     },
     {
-      "promo_id": "vince_vincesale",
-      "brand": "Vince",
-      "category": "Affordable Luxury Fashion",
-      "title": "Vince Sale",
+      "promo_id": "saatva_saatvasale",
+      "brand": "Saatva",
+      "category": "Mattress / Home",
+      "title": "Saatva Sale",
       "notify_score": 61.99,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Vince",
-      "notification_body": "Vince Sale",
+      "notification_title": "Saatva",
+      "notification_body": "Saatva Sale",
       "discount_type": "percentage_off",
       "discount_value": "up to 50% off",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "vince.com",
-      "source_url": "https://www.vince.com/women-sweaters-sale/"
+      "website_domain": "saatva.com",
+      "source_url": "https://www.saatva.com/mattresses/saatva-classic"
+    },
+    {
+      "promo_id": "dutchbros_freestickeronfirstwednesdayofeverymonth",
+      "brand": "Dutch Bros",
+      "category": "food",
+      "title": "Free Sticker on First Wednesday of Every Month",
+      "notify_score": 60.76,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Dutch Bros",
+      "notification_body": "Free: Free Sticker on First Wednesday of Every Month",
+      "discount_type": "free_item",
+      "discount_value": "free sticker",
+      "estimated_savings": 5.5,
+      "end_date": null,
+      "website_domain": null,
+      "source_url": "https://www.dutchbros.com/rewards/"
     },
     {
       "promo_id": "petsmart_birthdayorgotchadaygiftformembers",
