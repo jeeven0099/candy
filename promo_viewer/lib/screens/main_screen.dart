@@ -43,7 +43,19 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _onLateNotificationTap() {
-    if (_all.isNotEmpty) _handlePendingNotification(_all);
+    final promoId = NotificationService.tapNotifier.value;
+    if (promoId == null || _all.isEmpty || !mounted) return;
+    // Clear before navigating so the same promo_id can trigger again later.
+    NotificationService.tapNotifier.value = null;
+    final matches = _all.where((p) => p.id == promoId);
+    if (matches.isEmpty) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => DealDetailScreen(promo: matches.first)),
+        );
+      }
+    });
   }
 
   Future<void> _loadData() async {
