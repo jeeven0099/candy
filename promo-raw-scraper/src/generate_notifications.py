@@ -35,7 +35,7 @@ MEMBERSHIPS_IN = ROOT.parent / "promo_viewer" / "assets" / "user_memberships.jso
 ASSETS_DIR     = ROOT.parent / "promo_viewer" / "assets"
 OUTPUT         = ASSETS_DIR / "notification_candidates.json"
 
-NOTIFY_THRESHOLD    = 60.0   # wider pool — client personalisation applies the real cut-off
+NOTIFY_THRESHOLD    = 65.0   # raised: filters weak deals before they reach the edge function
 MIN_SIGNAL_GROUPS   = 2
 
 _BOGO_RE   = re.compile(r'\bbogo\b|buy.one.get.one', re.IGNORECASE)
@@ -104,6 +104,21 @@ def _is_low_friction(promo: dict) -> bool:
     )
 
 
+def _is_birthday_month(birthday_str: str | None) -> bool:
+    """True if today falls within the 30-day window before the user's next birthday."""
+    if not birthday_str:
+        return False
+    try:
+        bday = date.fromisoformat(birthday_str[:10])
+    except ValueError:
+        return False
+    today = date.today()
+    bday_this_year = bday.replace(year=today.year)
+    if bday_this_year < today:
+        bday_this_year = bday.replace(year=today.year + 1)
+    return 0 <= (bday_this_year - today).days <= 30
+
+
 def _is_email_exclusive(promo: dict) -> bool:
     """Deal came from a private email (not a public web scrape)."""
     return (
@@ -144,7 +159,7 @@ def get_signal_groups(
     if brand_slug in member_brands:
         groups.add('personal')
 
-    if promo.get('birthday_related'):
+    if promo.get('birthday_related') and _is_birthday_month(user_prefs.get('birthday')):
         groups.add('personal')
 
     # ── Value ─────────────────────────────────────────────────────────────────

@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-06T07:03:26.682436+00:00",
-  "threshold": 60.0,
-  "total": 94,
+  "generated_at": "2026-08-06T21:16:09.523356+00:00",
+  "threshold": 65.0,
+  "total": 72,
   "candidates": [
     {
       "promo_id": "diane_von_furstenberg_further_markdowns_up_to_75_off",
@@ -1011,82 +1011,6 @@
       "source_url": "https://www.zwilling.com/us/sale/"
     },
     {
-      "promo_id": "benihana_free_souvenir_mug_with_kabuki_kids_meal_for_birthday",
-      "brand": "Benihana",
-      "category": "food",
-      "title": "Free souvenir mug with Kabuki Kids meal for birthday",
-      "notify_score": 71.81,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Benihana",
-      "notification_body": "Birthday deal: Free souvenir mug with Kabuki Kids meal for birthday",
-      "discount_type": "free_item",
-      "discount_value": "free souvenir mug",
-      "estimated_savings": 11.0,
-      "end_date": null,
-      "website_domain": "benihana.com",
-      "source_url": "https://www.benihana.com/cdn-cgi/l/email-protection"
-    },
-    {
-      "promo_id": "noodles_company_free_birthday_small_entr_e",
-      "brand": "Noodles & Company",
-      "category": "food",
-      "title": "Free Birthday Small Entrée",
-      "notify_score": 71.81,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Noodles & Company",
-      "notification_body": "Birthday deal: Free Birthday Small Entrée",
-      "discount_type": "free_item",
-      "discount_value": "free small entrée",
-      "estimated_savings": 11.0,
-      "end_date": null,
-      "website_domain": "noodles.com",
-      "source_url": "https://www.noodles.com/order"
-    },
-    {
-      "promo_id": "noodles_company_free_birthday_regular_entr_e",
-      "brand": "Noodles & Company",
-      "category": "food",
-      "title": "Free Birthday Regular Entrée",
-      "notify_score": 71.81,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Noodles & Company",
-      "notification_body": "Birthday deal: Free Birthday Regular Entrée",
-      "discount_type": "free_item",
-      "discount_value": "free regular entrée",
-      "estimated_savings": 11.0,
-      "end_date": null,
-      "website_domain": "noodles.com",
-      "source_url": "https://www.noodles.com/order"
-    },
-    {
-      "promo_id": "sky_zone_birthday_like_a_boss_free_100_day_jump_pass",
-      "brand": "Sky Zone",
-      "category": "entertainment",
-      "title": "Birthday Like a Boss - Free 100‑Day Jump Pass",
-      "notify_score": 71.47,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Sky Zone",
-      "notification_body": "Birthday deal: Birthday Like a Boss - Free 100‑Day Jump Pass",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 14.0,
-      "end_date": null,
-      "website_domain": "skyzone.com",
-      "source_url": "https://www.skyzone.com/deals/"
-    },
-    {
       "promo_id": "firestone_free_flat_tire_repair_tire_pilot",
       "brand": "Firestone",
       "category": "auto",
@@ -1239,63 +1163,6 @@
       "source_url": "https://www.clubmonaco.com/collections/womens-best-sellers"
     },
     {
-      "promo_id": "caribou_coffee_free_birthday_beverage",
-      "brand": "Caribou Coffee",
-      "category": "coffee",
-      "title": "Free birthday beverage",
-      "notify_score": 69.62,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Caribou Coffee",
-      "notification_body": "Birthday deal: Free birthday beverage",
-      "discount_type": "free_item",
-      "discount_value": "free beverage",
-      "estimated_savings": 4.0,
-      "end_date": null,
-      "website_domain": "cariboucoffee.com",
-      "source_url": "https://www.cariboucoffee.com/caribou-perks/"
-    },
-    {
-      "promo_id": "augustinus_bader_birthday_gift",
-      "brand": "Augustinus Bader",
-      "category": "beauty",
-      "title": "Birthday Gift",
-      "notify_score": 69.61,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Augustinus Bader",
-      "notification_body": "Birthday deal: Birthday Gift",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "augustinusbader.com",
-      "source_url": "https://augustinusbader.com/us/en/"
-    },
-    {
-      "promo_id": "applebee_s_birthday_free_dessert",
-      "brand": "Applebee's",
-      "category": "food",
-      "title": "Birthday Free Dessert",
-      "notify_score": 69.0,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Applebee's",
-      "notification_body": "Birthday deal: Birthday Free Dessert",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "applebees.com",
-      "source_url": "https://www.applebees.com/en/specials"
-    },
-    {
       "promo_id": "calvin_klein_calvin_klein_sale",
       "brand": "Calvin Klein",
       "category": "fashion",
@@ -1353,44 +1220,6 @@
       "source_url": "https://www.kiehls.com/skincare/eye-creams-and-serums/avocado-eye-cream/258.html"
     },
     {
-      "promo_id": "culver_s_free_birthday_and_half_birthday_treats",
-      "brand": "Culver's",
-      "category": "food",
-      "title": "Free birthday and half‑birthday treats",
-      "notify_score": 68.24,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Culver's",
-      "notification_body": "Birthday deal: Free birthday and half‑birthday treats",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 10.0,
-      "end_date": null,
-      "website_domain": "culvers.com",
-      "source_url": "https://www.culvers.com/delicious-rewards"
-    },
-    {
-      "promo_id": "noodles_company_free_birthday_dessert",
-      "brand": "Noodles & Company",
-      "category": "food",
-      "title": "Free Birthday Dessert",
-      "notify_score": 68.24,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Noodles & Company",
-      "notification_body": "Birthday deal: Free Birthday Dessert",
-      "discount_type": "free_item",
-      "discount_value": "free dessert",
-      "estimated_savings": 10.0,
-      "end_date": null,
-      "website_domain": "noodles.com",
-      "source_url": "https://www.noodles.com/order"
-    },
-    {
       "promo_id": "lg_top_deals_save_30_53_on_select_home_appliances",
       "brand": "LG",
       "category": "home appliances",
@@ -1427,25 +1256,6 @@
       "end_date": null,
       "website_domain": "altuzarra.com",
       "source_url": "https://www.altuzarra.com/collections/new-arrivals"
-    },
-    {
-      "promo_id": "panera_bread_birthday_reward",
-      "brand": "Panera Bread",
-      "category": "food",
-      "title": "Birthday Reward",
-      "notify_score": 67.59,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Panera Bread",
-      "notification_body": "Birthday deal: Birthday Reward",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 13.0,
-      "end_date": null,
-      "website_domain": null,
-      "source_url": "https://www.panerabread.com/en-us/mypanera/meet-mypanera.html"
     },
     {
       "promo_id": "gap_women_s_clothes_sale",
@@ -1505,25 +1315,6 @@
       "source_url": "https://www.kroger.com/pr/boost"
     },
     {
-      "promo_id": "chipotle_birthday_free_reward",
-      "brand": "Chipotle",
-      "category": "food",
-      "title": "Birthday Free Reward",
-      "notify_score": 66.26,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Chipotle",
-      "notification_body": "Birthday deal: Birthday Free Reward",
-      "discount_type": "free_item",
-      "discount_value": "free birthday reward",
-      "estimated_savings": 12.0,
-      "end_date": null,
-      "website_domain": "chipotle.com",
-      "source_url": "https://www.chipotle.com/rewards-terms"
-    },
-    {
       "promo_id": "lg_appliances_top_appliance_deals_save_30_53_on_select_home_appliances",
       "brand": "LG Appliances",
       "category": "Home Appliances",
@@ -1579,215 +1370,6 @@
       "end_date": null,
       "website_domain": "insideweather.com",
       "source_url": "https://insideweather.com/"
-    },
-    {
-      "promo_id": "coach_up_to_50_off_select_styles",
-      "brand": "Coach",
-      "category": "retail",
-      "title": "Up to 50% off select styles",
-      "notify_score": 64.31,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Coach",
-      "notification_body": "Up to 50% off select styles",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 37.5,
-      "end_date": null,
-      "website_domain": "coach.com",
-      "source_url": "https://www.coach.com/content/promo"
-    },
-    {
-      "promo_id": "chick_fil_a_birthday_reward",
-      "brand": "Chick-fil-A",
-      "category": "food",
-      "title": "Birthday Reward",
-      "notify_score": 63.24,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Chick-fil-A",
-      "notification_body": "Birthday deal: Birthday Reward",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 10.0,
-      "end_date": null,
-      "website_domain": "chick-fil-a.com",
-      "source_url": "https://www.chick-fil-a.com/one"
-    },
-    {
-      "promo_id": "einstein_bros_bagels_unlimited_free_coffee_one_visit",
-      "brand": "Einstein Bros Bagels",
-      "category": "food",
-      "title": "Unlimited Free Coffee (One Visit)",
-      "notify_score": 62.76,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Einstein Bros Bagels",
-      "notification_body": "Free: Unlimited Free Coffee (One Visit)",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 5.5,
-      "end_date": null,
-      "website_domain": "einsteinbros.com",
-      "source_url": "https://www.einsteinbros.com/rewards/"
-    },
-    {
-      "promo_id": "subway_birthday_bonus",
-      "brand": "Subway",
-      "category": "food",
-      "title": "Birthday Bonus",
-      "notify_score": 62.3,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Subway",
-      "notification_body": "Birthday deal: Birthday Bonus",
-      "discount_type": "free_item",
-      "discount_value": "free birthday item",
-      "estimated_savings": 10.0,
-      "end_date": null,
-      "website_domain": "subway.com",
-      "source_url": "https://www.subway.com/en-us/legal/rewards"
-    },
-    {
-      "promo_id": "hers_free_balancing_your_hormones_guide",
-      "brand": "Hers",
-      "category": "healthcare",
-      "title": "Free Balancing Your Hormones guide",
-      "notify_score": 62.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Hers",
-      "notification_body": "Free: Free Balancing Your Hormones guide",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": null,
-      "source_url": "/terms-and-conditions"
-    },
-    {
-      "promo_id": "roman_ro_free_insurance_check",
-      "brand": "Roman (Ro)",
-      "category": "pharmacy",
-      "title": "Free insurance check",
-      "notify_score": 62.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Roman (Ro)",
-      "notification_body": "Free: Free insurance check",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "ro.co",
-      "source_url": "https://ro.co/"
-    },
-    {
-      "promo_id": "peet_s_coffee_free_birthday_drink",
-      "brand": "Peet's Coffee",
-      "category": "food",
-      "title": "Free Birthday Drink",
-      "notify_score": 62.02,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Peet's Coffee",
-      "notification_body": "Birthday deal: Free Birthday Drink",
-      "discount_type": "free_item",
-      "discount_value": "free drink",
-      "estimated_savings": 4.0,
-      "end_date": null,
-      "website_domain": "peets.com",
-      "source_url": "https://www.peets.com/collections/all-coffees"
-    },
-    {
-      "promo_id": "saatva_saatva_sale",
-      "brand": "Saatva",
-      "category": "Mattress / Home",
-      "title": "Saatva Sale",
-      "notify_score": 61.99,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Saatva",
-      "notification_body": "Saatva Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50% off",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "saatva.com",
-      "source_url": "https://www.saatva.com/mattresses/saatva-classic"
-    },
-    {
-      "promo_id": "vince_vince_sale",
-      "brand": "Vince",
-      "category": "Affordable Luxury Fashion",
-      "title": "Vince Sale",
-      "notify_score": 61.99,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Vince",
-      "notification_body": "Vince Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50% off",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "vince.com",
-      "source_url": "https://www.vince.com/women-sweaters-sale/"
-    },
-    {
-      "promo_id": "petsmart_birthday_or_gotcha_day_gift_for_members",
-      "brand": "PetSmart",
-      "category": "pets",
-      "title": "Birthday or Gotcha Day gift for members",
-      "notify_score": 60.26,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "PetSmart",
-      "notification_body": "Birthday deal: Birthday or Gotcha Day gift for members",
-      "discount_type": "free_item",
-      "discount_value": "gift",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "petsmart.com",
-      "source_url": "https://www.petsmart.com/create-account"
-    },
-    {
-      "promo_id": "sandro_sitewide_sale_up_to_50_off",
-      "brand": "Sandro",
-      "category": "fashion",
-      "title": "Sitewide Sale - Up to 50% Off",
-      "notify_score": 60.1,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Sandro",
-      "notification_body": "Sitewide Sale - Up to 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 14.0,
-      "end_date": null,
-      "website_domain": "us.sandro-paris.com",
-      "source_url": "https://us.sandro-paris.com/en/womens/sale/see-all/"
     }
   ]
 }
