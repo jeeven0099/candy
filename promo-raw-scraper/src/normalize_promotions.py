@@ -572,16 +572,20 @@ def _scrape_age_days(source_path: str, now: datetime) -> Optional[float]:
 def compute_status(promo: dict, now: datetime) -> str:
     """
     Priority order:
-      expired       — end_date parsed and in the past
-      low_confidence — confidence < 0.4
-      needs_review  — source > 30 days old, OR confidence < 0.6, OR source 14-30 days old
-      online_only   — deal_scope == online_only
-      probably_active — no end_date, freshly scraped (< 14 days)
-      active        — end_date in future, all checks passed
+      expired         — end_date parsed and in the past
+      low_confidence  — confidence < 0.4
+      needs_review    — confirmed age > 30 days, OR confidence < 0.6, OR age 14-30 days
+      online_only     — deal_scope == online_only
+      probably_active — no end_date, freshly confirmed (< 14 days)
+      active          — end_date in future, all checks passed
+
+    Age is measured from last_confirmed if present (set on re-parse and on
+    skipped_duplicate_hash — meaning the page was re-fetched and was identical,
+    so the deal is still live). Falls back to source_path timestamp for promos
+    that predate the last_confirmed field.
     """
     confidence = float(promo.get("confidence_score") or 0.0)
     end_date_str = promo.get("end_date") or ""
-    source_path = promo.get("source_path", "")
     deal_scope = promo.get("deal_scope", "unknown")
 
     if end_date_str:
@@ -592,7 +596,19 @@ def compute_status(promo: dict, now: datetime) -> str:
     if confidence < 0.4:
         return "low_confidence"
 
-    age = _scrape_age_days(source_path, now)
+    # Prefer last_confirmed (updated on every scrape, including unchanged pages)
+    # over source_path timestamp (only updated when content actually changes).
+    last_confirmed_str = promo.get("last_confirmed")
+    if last_confirmed_str:
+        try:
+            confirmed = datetime.fromisoformat(last_confirmed_str)
+            if confirmed.tzinfo is None:
+                confirmed = confirmed.replace(tzinfo=timezone.utc)
+            age: Optional[float] = (now - confirmed).total_seconds() / 86400
+        except ValueError:
+            age = _scrape_age_days(promo.get("source_path", ""), now)
+    else:
+        age = _scrape_age_days(promo.get("source_path", ""), now)
 
     if age is not None and age > 30:
         return "needs_review"
@@ -692,6 +708,7 @@ def normalize_file(
                 promo["redemption_method"] = "online"
         promo = fix_confidence(promo)
         promo["status"] = compute_status(promo, now)
+        promo["last_confirmed"] = now.isoformat()
         normalized.append(promo)
 
     normalized = deduplicate(normalized)
