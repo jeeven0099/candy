@@ -253,7 +253,7 @@ def main() -> None:
             sys.exit(rc)
 
         # Step 7: Merged JSON
-        rc = run([str(SRC / "generate_merged_json.py")], "Step 7/13 -Generating merged promotions JSON", log_fh)
+        rc = run([str(SRC / "generate_merged_json.py"), "--active-only"], "Step 7/13 -Generating merged promotions JSON", log_fh)
         if rc != 0:
             log_print(f"\n[ERROR] generate_merged_json exited with code {rc}.", log_fh)
             sys.exit(rc)

@@ -1,4 +1,4 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import argparse
 import json
@@ -10,7 +10,7 @@ from pathlib import Path
 from clean_html import clean_visible_text, extract_og_image, extract_title
 from fetch_page import fetch_page, FetchResult
 from fetch_page_js import fetch_page_js, PlaywrightSession
-from hash_content import hash_exists_for_brand, is_similar_to_last, sha256_text
+from hash_content import hash_exists_for_brand, sha256_text
 from logger import append_jsonl
 from source_loader import filter_sources, load_sources
 
@@ -19,6 +19,7 @@ RAW_HTML_DIR = ROOT / 'raw_html'
 RAW_TEXT_DIR = ROOT / 'raw_text'
 LOG_FILE = ROOT / 'logs' / 'scrape_results.jsonl'
 SOURCES_FILE = ROOT / 'sources' / 'urls.json'
+NORMALIZED_DIR = ROOT / 'normalized_outputs'
 
 
 def utc_timestamp_for_filename() -> str:
@@ -281,17 +282,23 @@ def process_source(source, dry_run: bool = False, *,
         existing = sorted(RAW_TEXT_DIR.glob(f'{source.slug}_*.txt'))
         if existing:
             existing[-1].touch()
+        # Page is identical — confirm existing normalized deals as still active
+        # so mainstay deals don't age out of the feed on unchanged pages.
+        norm_path = NORMALIZED_DIR / f'{source.slug}.json'
+        if norm_path.exists():
+            try:
+                data = json.loads(norm_path.read_text(encoding='utf-8'))
+                now_iso = datetime.now(timezone.utc).isoformat()
+                for p in data.get('promotions', []):
+                    p['last_confirmed'] = now_iso
+                norm_path.write_text(
+                    json.dumps(data, indent=2, ensure_ascii=False), encoding='utf-8')
+            except Exception:
+                pass
         return {'brand': source.brand, 'category': source.category,
                 'url': source.url, 'status': 'skipped_duplicate_hash',
                 'content_hash': content_hash, 'scraped_at': scraped_at,
                 'text_length': len(text), 'html_length': len(html)}
-
-    similar, ratio = is_similar_to_last(source.slug, text, RAW_TEXT_DIR)
-    if similar:
-        return {'brand': source.brand, 'category': source.category,
-                'url': source.url, 'status': 'skipped_similar',
-                'content_hash': content_hash, 'similarity': ratio,
-                'scraped_at': scraped_at, 'text_length': len(text), 'html_length': len(html)}
 
     RAW_HTML_DIR.mkdir(parents=True, exist_ok=True)
     RAW_TEXT_DIR.mkdir(parents=True, exist_ok=True)
@@ -331,6 +338,7 @@ def main() -> None:
     parser.add_argument('--limit', type=int, default=None, help='Limit number of sources')
     parser.add_argument('--dry-run', action='store_true', help='Print what would be fetched without fetching')
     parser.add_argument('--keep-raw', type=int, default=1, help='Raw files to keep per brand (default: 1)')
+    parser.add_argument('--force', action='store_true', help='Re-save raw text even when content is similar to last scrape')
     args = parser.parse_args()
 
     sources = load_sources(SOURCES_FILE)
@@ -376,28 +384,20 @@ def main() -> None:
         print(f'\nPruned {deleted} old raw file(s) (kept {args.keep_raw} per brand)')
 
     # Scrape summary
-    changed       = [r['brand'] for r in records if r.get('status') == 'success']
-    skipped_exact = sum(1 for r in records if r.get('status') == 'skipped_duplicate_hash')
-    fuzzy_records = [r for r in records if r.get('status') == 'skipped_similar']
-    skipped_fuzzy = len(fuzzy_records)
-    skipped       = skipped_exact + skipped_fuzzy
-    failed        = [r['brand'] for r in records if r.get('status', '').startswith('failed')]
+    changed = [r['brand'] for r in records if r.get('status') == 'success']
+    skipped = sum(1 for r in records if r.get('status') == 'skipped_duplicate_hash')
+    failed  = [r['brand'] for r in records if r.get('status', '').startswith('failed')]
 
     print(f'\n{"="*60}')
     print(f'  Scrape summary')
     print(f'{"="*60}')
     print(f'  Changed  : {len(changed)} brand(s) -> will be re-parsed by qwen')
-    print(f'  Unchanged: {skipped} brand(s) -> will be skipped'
-          + (f' ({skipped_fuzzy} fuzzy-matched)' if skipped_fuzzy else ''))
+    print(f'  Unchanged: {skipped} brand(s) -> will be skipped')
     print(f'  Failed   : {len(failed)} brand(s) -> no data')
     if changed:
         print(f'\n  Brands with new content:')
         for b in sorted(changed):
             print(f'    + {b}')
-    if fuzzy_records:
-        print(f'\n  Fuzzy-skipped brands (similarity >= threshold):')
-        for r in sorted(fuzzy_records, key=lambda r: r['brand']):
-            print(f'    ~ {r["brand"]} (similarity {r["similarity"]:.4f})')
     if failed:
         print(f'\n  Failed brands:')
         for b in sorted(failed):
