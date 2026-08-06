@@ -29,13 +29,33 @@ interface UserRow {
   favorite_categories: string[];
 }
 
-// ── Scoring constants (mirror notification_service.dart) ──────────────────────
+// Per-user activity derived from recent in-app behaviour (last 7 days).
+interface UserActivity {
+  // Brands the user explicitly searched for (highest intent signal)
+  searchedBrands: Set<string>;
+  // Categories the user searched for
+  searchedCats: Set<string>;
+  // Brands the user opened / clicked deals from
+  clickedBrands: Set<string>;
+  // Categories the user engaged with
+  clickedCats: Set<string>;
+}
 
-const MIN_GLOBAL_QUALITY  = 60;
-const PERSONAL_THRESHOLD  = 95;
-const UNKNOWN_THRESHOLD   = 105;
-const BRAND_BONUS         = 40;
-const CATEGORY_BONUS      = 25;
+// ── Scoring constants ─────────────────────────────────────────────────────────
+
+const MIN_GLOBAL_QUALITY   = 65;   // matches raised pipeline threshold
+const PERSONAL_THRESHOLD   = 90;   // bar when there's any known affinity
+const UNKNOWN_THRESHOLD    = 110;  // bar when user has zero relationship to deal
+
+// Onboarding prefs (lower weight — stated intent, may be stale)
+const FAV_BRAND_BONUS      = 35;
+const FAV_CAT_BONUS        = 20;
+
+// Recent in-app behaviour (higher weight — demonstrated, current intent)
+const SEARCH_BRAND_BONUS   = 55;  // user searched for this brand by name
+const SEARCH_CAT_BONUS     = 30;  // user searched a term matching this category
+const CLICKED_BRAND_BONUS  = 45;  // user opened / clicked a deal from this brand
+const CLICKED_CAT_BONUS    = 20;  // user engaged with this category
 
 // ── FCM helper ────────────────────────────────────────────────────────────────
 
@@ -179,8 +199,7 @@ Deno.serve(async (req) => {
     Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
   );
 
-  // Query from users so both device_tokens and user_preferences can be
-  // joined via their user_id FKs (device_tokens has no FK to user_preferences).
+  // Query users with device tokens and onboarding prefs
   const { data: rows, error } = await supabase
     .from('users')
     .select(`
@@ -193,7 +212,7 @@ Deno.serve(async (req) => {
     return new Response(`DB error: ${error.message}`, { status: 500 });
   }
 
-  // Flatten: one UserRow per device token (a user may have multiple devices).
+  // Flatten: one UserRow per device token (a user may have multiple devices)
   const users: UserRow[] = [];
   for (const row of (rows ?? [])) {
     const prefsArr: any[] = Array.isArray(row.user_preferences)
@@ -214,17 +233,74 @@ Deno.serve(async (req) => {
   // Filter candidates below quality floor
   const qualified = candidates.filter(c => c.notify_score >= MIN_GLOBAL_QUALITY);
 
-  // Fetch promo_ids sent to each user in the last 7 days
+  // ── Batch-fetch all recent signals in 3 parallel queries ─────────────────────
   const cutoff = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
-  const { data: recentLogs } = await supabase
-    .from('notification_log')
-    .select('user_id, promo_id')
-    .gte('sent_at', cutoff);
+
+  const [recentLogsRes, interactionsRes, searchesRes] = await Promise.all([
+    // Notifications already sent — prevent repeats within 7 days
+    supabase.from('notification_log')
+      .select('user_id, promo_id')
+      .gte('sent_at', cutoff),
+
+    // Recent deal opens and clicks — strongest intent signal
+    supabase.from('user_interactions')
+      .select('user_id, brand, category')
+      .in('event_type', ['deal_card_opened', 'deal_card_clicked', 'redeem_clicked', 'fast_redeem_clicked'])
+      .gte('created_at', cutoff)
+      .not('user_id', 'is', null),
+
+    // Recent searches — explicit interest the user typed
+    supabase.from('search_events')
+      .select('user_id, query, normalized_query')
+      .gte('created_at', cutoff)
+      .not('user_id', 'is', null),
+  ]);
 
   const recentSent = new Set<string>(
-    (recentLogs ?? []).map((r: any) => `${r.user_id}:${r.promo_id}`)
+    (recentLogsRes.data ?? []).map((r: any) => `${r.user_id}:${r.promo_id}`)
   );
 
+  // Build per-user activity maps from interactions
+  const activityMap = new Map<string, UserActivity>();
+  const ensureActivity = (uid: string): UserActivity => {
+    if (!activityMap.has(uid)) {
+      activityMap.set(uid, {
+        searchedBrands: new Set(),
+        searchedCats:   new Set(),
+        clickedBrands:  new Set(),
+        clickedCats:    new Set(),
+      });
+    }
+    return activityMap.get(uid)!;
+  };
+
+  for (const row of (interactionsRes.data ?? [])) {
+    if (!row.user_id) continue;
+    const a = ensureActivity(row.user_id);
+    if (row.brand)    a.clickedBrands.add(row.brand.toLowerCase());
+    if (row.category) a.clickedCats.add(row.category.toLowerCase());
+  }
+
+  // Build a set of all unique candidate brands/categories for fast search matching
+  const candidateBrands = new Set(qualified.map(c => c.brand.toLowerCase()));
+  const candidateCats   = new Set(qualified.map(c => c.category.toLowerCase()));
+
+  for (const row of (searchesRes.data ?? [])) {
+    if (!row.user_id) continue;
+    const q = (row.normalized_query || row.query || '').toLowerCase();
+    if (!q) continue;
+    const a = ensureActivity(row.user_id);
+    // Match query against candidate brands (substring in either direction)
+    for (const brand of candidateBrands) {
+      if (brand.includes(q) || q.includes(brand)) a.searchedBrands.add(brand);
+    }
+    // Match query against candidate categories
+    for (const cat of candidateCats) {
+      if (cat.includes(q) || q.includes(cat)) a.searchedCats.add(cat);
+    }
+  }
+
+  // ── Per-user scoring and send ─────────────────────────────────────────────────
   let accessToken: string | null = null;
   let sent = 0;
   const fcmErrors: string[] = [];
@@ -232,34 +308,73 @@ Deno.serve(async (req) => {
   for (const user of users) {
     const favBrands = new Set(user.favorite_brands.map(b => b.toLowerCase()));
     const favCats   = new Set(user.favorite_categories.map(c => c.toLowerCase()));
+    const activity  = activityMap.get(user.user_id);
 
-    // Score all qualified candidates for this user, skipping recently sent ones
     const scored = qualified
       .filter(c => !recentSent.has(`${user.user_id}:${c.promo_id}`))
       .map(c => {
+        const brand = c.brand.toLowerCase();
+        const cat   = c.category.toLowerCase();
+
+        // Determine which signals fire for this candidate
+        const isFavBrand      = favBrands.has(brand);
+        const isFavCat        = favCats.has(cat);
+        const isSearchedBrand = activity?.searchedBrands.has(brand) ?? false;
+        const isSearchedCat   = activity?.searchedCats.has(cat)     ?? false;
+        const isClickedBrand  = activity?.clickedBrands.has(brand)  ?? false;
+        const isClickedCat    = activity?.clickedCats.has(cat)      ?? false;
+
+        const hasAnySignal = isFavBrand || isFavCat || isSearchedBrand ||
+                             isSearchedCat || isClickedBrand || isClickedCat;
+
         let score = c.notify_score;
-        const isFavBrand = favBrands.has(c.brand.toLowerCase());
-        const isFavCat   = favCats.has(c.category.toLowerCase());
-        if (isFavBrand) score += BRAND_BONUS;
-        if (isFavCat)   score += CATEGORY_BONUS;
-        const threshold = (isFavBrand || isFavCat) ? PERSONAL_THRESHOLD : UNKNOWN_THRESHOLD;
-        return { c, score, threshold };
-      }).filter(e => e.score >= e.threshold);
+        if (isFavBrand)      score += FAV_BRAND_BONUS;
+        if (isFavCat)        score += FAV_CAT_BONUS;
+        if (isSearchedBrand) score += SEARCH_BRAND_BONUS;
+        if (isSearchedCat)   score += SEARCH_CAT_BONUS;
+        if (isClickedBrand)  score += CLICKED_BRAND_BONUS;
+        if (isClickedCat)    score += CLICKED_CAT_BONUS;
+
+        const threshold = hasAnySignal ? PERSONAL_THRESHOLD : UNKNOWN_THRESHOLD;
+
+        // Pick the most specific reason for the notification copy
+        const reason = isSearchedBrand ? 'searched_brand'
+          : isClickedBrand             ? 'clicked_brand'
+          : isFavBrand                 ? 'fav_brand'
+          : isSearchedCat              ? 'searched_cat'
+          : isClickedCat               ? 'clicked_cat'
+          : isFavCat                   ? 'fav_cat'
+          : 'none';
+
+        return { c, score, threshold, reason };
+      })
+      .filter(e => e.score >= e.threshold);
 
     if (scored.length === 0) continue;
 
-    // Best candidate for this user
     scored.sort((a, b) => b.score - a.score);
-    const best = scored[0];
-    const { c } = best;
+    const { c, reason } = scored[0];
 
-    const dealLine = favBrands.has(c.brand.toLowerCase())
-      ? `${c.notification_title}: ${c.notification_body} — from a brand you love`
-      : favCats.has(c.category.toLowerCase())
-        ? `${c.notification_title}: ${c.notification_body} — in a category you follow`
-        : `${c.notification_title}: ${c.notification_body}`;
+    // Build a notification body that explains why the user is seeing this deal
+    const body = (() => {
+      switch (reason) {
+        case 'searched_brand':
+          return `${c.notification_body} — you searched for ${c.brand}`;
+        case 'clicked_brand':
+          return `${c.notification_body} — based on your recent browsing`;
+        case 'fav_brand':
+          return `${c.notification_body} — from a brand you love`;
+        case 'searched_cat':
+          return `${c.notification_body} — matches your recent search`;
+        case 'clicked_cat':
+          return `${c.notification_body} — in a category you've been browsing`;
+        case 'fav_cat':
+          return `${c.notification_body} — in ${c.category}`;
+        default:
+          return c.notification_body;
+      }
+    })();
 
-    // Lazy-init access token (shared across all users in this batch)
     if (!accessToken) {
       accessToken = await getAccessToken(sa);
     }
@@ -268,13 +383,12 @@ Deno.serve(async (req) => {
       accessToken,
       sa.project_id,
       user.token,
-      'Deal of the Day for You',
-      dealLine,
+      c.notification_title,
+      body,
       c.promo_id,
     );
     if (result.ok) {
       sent++;
-      // Log so this deal isn't sent to this user again for 7 days
       await supabase.from('notification_log').insert({
         user_id:  user.user_id,
         promo_id: c.promo_id,
