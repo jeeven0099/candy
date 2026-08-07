@@ -77,6 +77,23 @@ class _MainScreenState extends State<MainScreen> {
       }
       _svc.recordSessionStart();
       _handlePendingNotification(promos);
+      // Also drain any tapNotifier value that arrived before _all was ready.
+      // The listener fires only on value changes, so if _all was empty at the
+      // time of the tap it silently returned — we catch it here.
+      final pendingTap = NotificationService.tapNotifier.value;
+      if (pendingTap != null && mounted) {
+        NotificationService.tapNotifier.value = null;
+        final m = promos.where((p) => p.id == pendingTap);
+        if (m.isNotEmpty) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => DealDetailScreen(promo: m.first)),
+              );
+            }
+          });
+        }
+      }
     } catch (_) {
       if (mounted) setState(() { _loading = false; _error = true; });
     }
