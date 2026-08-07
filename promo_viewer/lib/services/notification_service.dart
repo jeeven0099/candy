@@ -12,6 +12,33 @@ import 'interaction_service.dart';
 import 'promotions_service.dart';
 import 'user_prefs_service.dart';
 
+// Top-level so it can execute in the background isolate when an action button
+// is tapped while the app is terminated.
+@pragma('vm:entry-point')
+Future<void> _onBgNotifAction(NotificationResponse response) async {
+  final payload  = response.payload;
+  final actionId = response.actionId;
+  if (payload == null || payload.isEmpty) return;
+  if (actionId != 'interested' && actionId != 'not_interested') return;
+  try {
+    final m   = jsonDecode(payload) as Map<String, dynamic>;
+    final id  = m['id']    as String? ?? '';
+    final b   = m['brand'] as String? ?? '';
+    final cat = m['cat']   as String? ?? '';
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString(NotificationService.kFeedbackKey);
+    final fb  = raw != null
+        ? (jsonDecode(raw) as Map<String, dynamic>)
+        : <String, dynamic>{};
+    fb[id] = {
+      'brand': b, 'category': cat,
+      'interested': actionId == 'interested',
+      'ts': DateTime.now().toIso8601String(),
+    };
+    await prefs.setString(NotificationService.kFeedbackKey, jsonEncode(fb));
+  } catch (_) {}
+}
+
 class NotificationService {
   static final NotificationService _instance = NotificationService._();
   factory NotificationService() => _instance;
@@ -20,35 +47,36 @@ class NotificationService {
   static const _channelId   = 'candy_reminders';
   static const _channelName = 'Deal Reminders';
 
+  // Notification action/category IDs
+  static const _kCategoryId = 'deal_candidate';
+  static const _kInterested = 'interested';
+  static const _kDismissed  = 'not_interested';
+
   // Rate-limit config
-  static const _maxPerDay          = 2;
-  static const _minGapHours        = 4;
-  static const _quietStart         = 22; // 10 PM
-  static const _quietEnd           = 8;  // 8 AM
-  static const _brandCooldownDays  = 7;
-  static const _dealCooldownDays   = 7;
+  static const _maxPerDay         = 2;
+  static const _minGapHours       = 4;
+  static const _quietStart        = 22; // 10 PM
+  static const _quietEnd          = 8;  // 8 AM
+  static const _brandCooldownDays = 7;
+  static const _dealCooldownDays  = 7;
 
-  // Hard quality floor — never fire a notification for a weak deal,
-  // even if it matches all personal preferences.
-  static const _kMinGlobalQuality = 60.0;
-
-  // Personalised threshold (at least one affinity signal fires): 95
-  // Unknown brand/category (no signals): 105 — must be truly exceptional
+  static const _kMinGlobalQuality  = 60.0;
   static const _kPersonalThreshold = 95.0;
   static const _kUnknownThreshold  = 105.0;
 
   // SharedPreferences keys
-  static const _kNotifiedDeals      = 'notif_notified_deals_v1';
-  static const _kNotifiedBrands     = 'notif_notified_brands_v1';
-  static const _kSentToday          = 'notif_sent_today_v1';
-  static const _kLastSentAt         = 'notif_last_sent_at_v1';
-  static const _kNotifHistory       = 'notif_history_v1'; // capped at 50 entries
+  static const _kNotifiedDeals  = 'notif_notified_deals_v1';
+  static const _kNotifiedBrands = 'notif_notified_brands_v1';
+  static const _kSentToday      = 'notif_sent_today_v1';
+  static const _kLastSentAt     = 'notif_last_sent_at_v1';
+  static const _kNotifHistory   = 'notif_history_v1';
+  // Accessed by the top-level background handler so must be public
+  static const kFeedbackKey     = 'notif_feedback_v1';
 
   FlutterLocalNotificationsPlugin? _plugin;
 
   static GlobalKey<NavigatorState>? _navigatorKey;
 
-  // Holds a promoId when the app is launched cold from a notification tap.
   static String? pendingPromoId;
   static final tapNotifier = ValueNotifier<String?>(null);
 
@@ -58,21 +86,35 @@ class NotificationService {
     final svc = NotificationService();
     svc._plugin = FlutterLocalNotificationsPlugin();
     await svc._plugin!.initialize(
-      settings: const InitializationSettings(
-        android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+      settings: InitializationSettings(
+        android: const AndroidInitializationSettings('@mipmap/ic_launcher'),
         iOS: DarwinInitializationSettings(
           requestAlertPermission: true,
           requestBadgePermission: false,
           requestSoundPermission: true,
+          notificationCategories: [
+            DarwinNotificationCategory(
+              _kCategoryId,
+              actions: [
+                DarwinNotificationAction.plain(_kInterested, 'Interested'),
+                DarwinNotificationAction.plain(
+                  _kDismissed, 'Not Interested',
+                  options: {DarwinNotificationActionOption.destructive},
+                ),
+              ],
+              options: {DarwinNotificationCategoryOption.hiddenPreviewShowTitle},
+            ),
+          ],
         ),
       ),
       onDidReceiveNotificationResponse: _handleTap,
+      onDidReceiveBackgroundNotificationResponse: _onBgNotifAction,
     );
     final launchDetails = await svc._plugin!.getNotificationAppLaunchDetails();
     if (launchDetails?.didNotificationLaunchApp == true) {
-      final id = launchDetails?.notificationResponse?.payload;
-      if (id != null && id.isNotEmpty) {
-        pendingPromoId = id;
+      final payload = launchDetails?.notificationResponse?.payload;
+      if (payload != null && payload.isNotEmpty) {
+        pendingPromoId = _parsePayload(payload).id;
       }
     }
     final androidPlugin = svc._plugin!
@@ -88,9 +130,46 @@ class NotificationService {
     await androidPlugin?.requestExactAlarmsPermission();
   }
 
+  // ---------------------------------------------------------------------------
+  // Payload encoding — includes brand/category so action handlers are
+  // self-contained even when running in the background isolate.
+  // ---------------------------------------------------------------------------
+
+  static String _makePayload(String id, String brand, String category) =>
+      jsonEncode({'id': id, 'brand': brand, 'cat': category});
+
+  static ({String id, String brand, String category}) _parsePayload(String payload) {
+    try {
+      final m = jsonDecode(payload) as Map<String, dynamic>;
+      return (
+        id:       m['id']    as String? ?? payload,
+        brand:    m['brand'] as String? ?? '',
+        category: m['cat']   as String? ?? '',
+      );
+    } catch (_) {
+      // Legacy payloads are plain promoId strings
+      return (id: payload, brand: '', category: '');
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Tap / action handling
+  // ---------------------------------------------------------------------------
+
   static void _handleTap(NotificationResponse response) {
-    final promoId = response.payload;
-    if (promoId == null || promoId.isEmpty) return;
+    final payload = response.payload;
+    if (payload == null || payload.isEmpty) return;
+
+    final parsed  = _parsePayload(payload);
+    final promoId = parsed.id;
+    final actionId = response.actionId;
+
+    if (actionId == _kInterested || actionId == _kDismissed) {
+      _recordFeedback(
+          promoId, parsed.brand, parsed.category, actionId == _kInterested);
+      return;
+    }
+
     final matches = PromotionsService.cached.where((p) => p.id == promoId);
     if (matches.isEmpty) {
       pendingPromoId = promoId;
@@ -102,13 +181,37 @@ class NotificationService {
     );
   }
 
+  static Future<void> _recordFeedback(
+      String promoId, String brand, String category, bool interested) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final raw   = prefs.getString(kFeedbackKey);
+      final fb    = raw != null
+          ? (jsonDecode(raw) as Map<String, dynamic>)
+          : <String, dynamic>{};
+      fb[promoId] = {
+        'brand': brand, 'category': category,
+        'interested': interested,
+        'ts': DateTime.now().toIso8601String(),
+      };
+      // Prune entries older than 30 days
+      final cutoff = DateTime.now().subtract(const Duration(days: 30));
+      fb.removeWhere((_, v) {
+        final ts = DateTime.tryParse((v as Map)['ts'] as String? ?? '');
+        return ts != null && ts.isBefore(cutoff);
+      });
+      await prefs.setString(kFeedbackKey, jsonEncode(fb));
+    } catch (_) {}
+
+    // Fire-and-forget to Supabase via InteractionService
+    InteractionService()
+        .recordNotificationFeedback(promoId, brand, category, interested);
+  }
+
   // ---------------------------------------------------------------------------
   // Pipeline-driven notification candidates
   // ---------------------------------------------------------------------------
 
-  /// Called once on app launch. Reads notification_candidates.json, re-scores
-  /// each candidate against the user's actual preferences and interaction
-  /// history, then sends the best qualifying deal (if any clears the bar).
   Future<void> processNotificationCandidates() async {
     if (kIsWeb) return;
     if (_inQuietHours()) return;
@@ -137,13 +240,17 @@ class NotificationService {
         .toList() ?? [];
     if (rawCandidates.isEmpty) return;
 
-    // User context for personalisation
     final userPrefs = UserPrefsService().prefs;
     final svc       = InteractionService();
 
-    // Attach affinity signals and re-score, then sort best-first
+    // Load stored notification feedback to factor into scoring
+    final feedbackRaw = sharedPrefs.getString(kFeedbackKey);
+    final feedback = feedbackRaw != null
+        ? (jsonDecode(feedbackRaw) as Map<String, dynamic>)
+        : <String, dynamic>{};
+
     final scored = rawCandidates.map((c) {
-      final signals = _affinitySignals(c, userPrefs, svc);
+      final signals = _affinitySignals(c, userPrefs, svc, feedback);
       final score   = _scoreFromSignals(
           (c['notify_score'] as num?)?.toDouble() ?? 0.0, signals);
       return (c: c, signals: signals, score: score);
@@ -159,20 +266,22 @@ class NotificationService {
     for (final entry in scored) {
       if (todayCount + sent >= _maxPerDay) break;
 
-      final c        = entry.c;
-      final globalQ  = (c['notify_score'] as num?)?.toDouble() ?? 0.0;
-      final signals  = entry.signals;
-      final pScore   = entry.score;
+      final c       = entry.c;
+      final globalQ = (c['notify_score'] as num?)?.toDouble() ?? 0.0;
+      final signals = entry.signals;
+      final pScore  = entry.score;
 
-      // Hard quality floor — affinity cannot rescue a genuinely weak deal
       if (globalQ < _kMinGlobalQuality) continue;
 
-      // Personalised deals get a lower bar; unknown brands need to be truly exceptional
+      // Skip deals the user already said they're not interested in
+      if (signals.contains('user_dismissed')) continue;
+
       final threshold = signals.isNotEmpty ? _kPersonalThreshold : _kUnknownThreshold;
       if (pScore < threshold) continue;
 
-      final promoId = c['promo_id'] as String? ?? '';
-      final brand   = c['brand']   as String? ?? '';
+      final promoId  = c['promo_id']  as String? ?? '';
+      final brand    = c['brand']     as String? ?? '';
+      final category = c['category']  as String? ?? '';
 
       if (_isCooledDown(notifiedDeals,  promoId, _dealCooldownDays))  continue;
       if (_isCooledDown(notifiedBrands, brand,   _brandCooldownDays)) continue;
@@ -182,11 +291,13 @@ class NotificationService {
       final reason = signals.isNotEmpty ? body : 'exceptional deal';
 
       await _sendImmediate(
-        id:      promoId.hashCode & 0x7FFFFFFF,
-        title:   title,
-        body:    body,
-        payload: promoId,
-        score:   pScore,
+        id:       promoId.hashCode & 0x7FFFFFFF,
+        title:    title,
+        body:     body,
+        promoId:  promoId,
+        brand:    brand,
+        category: category,
+        score:    pScore,
       );
 
       notifiedDeals[promoId] = today;
@@ -195,7 +306,7 @@ class NotificationService {
 
       _appendHistory(sharedPrefs, {
         'brand':                brand,
-        'category':             c['category'] ?? '',
+        'category':             category,
         'promo_id':             promoId,
         'global_quality_score': globalQ,
         'personalized_score':   pScore,
@@ -204,7 +315,7 @@ class NotificationService {
         'fired_at':             now.toIso8601String(),
       });
 
-      break; // one per launch — gap enforced on next open
+      break;
     }
 
     if (sent > 0) {
@@ -215,11 +326,11 @@ class NotificationService {
     }
   }
 
-  /// Which personal affinity signals apply to this candidate.
   List<String> _affinitySignals(
     Map<String, dynamic> c,
     UserPrefs? prefs,
     InteractionService svc,
+    Map<String, dynamic> feedback,
   ) {
     final signals  = <String>[];
     if (prefs == null) return signals;
@@ -239,27 +350,39 @@ class NotificationService {
         (svc.clickCount(p.id) > 0 || svc.hasFastRedeemed(p.id)));
     if (interacted) signals.add('brand_interaction');
 
+    // Past notification feedback for this brand/category
+    for (final v in feedback.values) {
+      final f = v as Map<String, dynamic>;
+      final fb   = (f['brand']    as String? ?? '').toLowerCase();
+      final fc   = (f['category'] as String? ?? '').toLowerCase();
+      final interested = f['interested'] as bool? ?? false;
+      if (fb == brandRaw || fc == catRaw) {
+        signals.add(interested ? 'user_interested' : 'user_dismissed');
+        break;
+      }
+    }
+
     return signals;
   }
 
-  /// Base quality score + affinity bonuses.
   double _scoreFromSignals(double base, List<String> signals) {
     double s = base;
     if (signals.contains('favorite_brand'))    s += 40.0;
     if (signals.contains('favorite_category')) s += 25.0;
     if (signals.contains('brand_interaction')) s += 15.0;
+    if (signals.contains('user_interested'))   s += 35.0;
+    if (signals.contains('user_dismissed'))    s -= 80.0; // pushed far below threshold
     return s;
   }
 
-  /// Notification body with personalised suffix based on active signals.
   String _personalBody(Map<String, dynamic> c, List<String> signals) {
     final base = c['notification_body'] as String? ?? c['title'] as String? ?? '';
+    if (signals.contains('user_interested'))   return '$base — based on your feedback';
     if (signals.contains('favorite_brand'))    return '$base — from a brand you love';
     if (signals.contains('favorite_category')) return '$base — in a category you follow';
     return base;
   }
 
-  /// Appends a rich history entry (capped at 50) for later analysis.
   void _appendHistory(SharedPreferences prefs, Map<String, dynamic> entry) {
     final raw = prefs.getString(_kNotifHistory);
     List<dynamic> history = [];
@@ -272,7 +395,7 @@ class NotificationService {
   }
 
   // ---------------------------------------------------------------------------
-  // Reminder scheduling (for saved deals expiring soon — existing feature)
+  // Reminder scheduling (for saved deals expiring soon)
   // ---------------------------------------------------------------------------
 
   Future<void> scheduleReminder({
@@ -289,7 +412,7 @@ class NotificationService {
       id: _notifId(promoId),
       title: '$brand deal is expiring soon!',
       body: title,
-      payload: promoId,
+      payload: _makePayload(promoId, brand, ''),
       scheduledDate: when,
       notificationDetails: const NotificationDetails(
         android: AndroidNotificationDetails(
@@ -320,27 +443,34 @@ class NotificationService {
     required int id,
     required String title,
     required String body,
-    required String payload,
+    required String promoId,
+    required String brand,
+    required String category,
     required double score,
   }) async {
     await _plugin?.show(
       id: id,
       title: title,
       body: body,
-      notificationDetails: const NotificationDetails(
-        android: AndroidNotificationDetails(
+      notificationDetails: NotificationDetails(
+        android: const AndroidNotificationDetails(
           _channelId,
           _channelName,
           importance: Importance.high,
           priority: Priority.high,
+          actions: [
+            AndroidNotificationAction('interested',   'Interested',    showsUserInterface: false),
+            AndroidNotificationAction('not_interested', 'Not Interested', showsUserInterface: false, cancelNotification: true),
+          ],
         ),
-        iOS: DarwinNotificationDetails(
+        iOS: const DarwinNotificationDetails(
           presentAlert: true,
           presentSound: true,
           subtitle: 'Tap to see deal',
+          categoryIdentifier: _kCategoryId,
         ),
       ),
-      payload: payload,
+      payload: _makePayload(promoId, brand, category),
     );
   }
 
@@ -360,19 +490,14 @@ class NotificationService {
   String _dateKey(DateTime dt) =>
       '${dt.year}-${dt.month.toString().padLeft(2, '0')}-${dt.day.toString().padLeft(2, '0')}';
 
-  // notifiedDeals: { promoId → "YYYY-MM-DD" }
   Map<String, String> _loadNotifiedDeals(SharedPreferences prefs) {
     final raw = prefs.getString(_kNotifiedDeals);
     if (raw == null) return {};
-    try {
-      return Map<String, String>.from(jsonDecode(raw) as Map);
-    } catch (_) {
-      return {};
-    }
+    try { return Map<String, String>.from(jsonDecode(raw) as Map); }
+    catch (_) { return {}; }
   }
 
   void _saveNotifiedDeals(SharedPreferences prefs, Map<String, String> map) {
-    // Prune entries older than cooldown period to keep storage small
     final cutoff = DateTime.now().subtract(const Duration(days: _dealCooldownDays));
     map.removeWhere((_, ts) {
       final d = DateTime.tryParse(ts);
@@ -384,11 +509,8 @@ class NotificationService {
   Map<String, String> _loadNotifiedBrands(SharedPreferences prefs) {
     final raw = prefs.getString(_kNotifiedBrands);
     if (raw == null) return {};
-    try {
-      return Map<String, String>.from(jsonDecode(raw) as Map);
-    } catch (_) {
-      return {};
-    }
+    try { return Map<String, String>.from(jsonDecode(raw) as Map); }
+    catch (_) { return {}; }
   }
 
   void _saveNotifiedBrands(SharedPreferences prefs, Map<String, String> map) {

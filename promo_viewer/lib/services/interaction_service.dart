@@ -151,6 +151,18 @@ class InteractionService {
     await p.setStringList(_recentKey, raw);
   }
 
+  // ── Notification feedback ─────────────────────────────────────────────────
+
+  Future<void> recordNotificationFeedback(
+    String promoId, String brand, String category, bool interested) async {
+    _writeInteraction(
+      interested ? 'notification_interested' : 'notification_dismissed',
+      promotionId: promoId,
+      brand: brand,
+      category: category,
+    );
+  }
+
   // ── Deal skip ─────────────────────────────────────────────────────────────
 
   static const _skipDeal = 'skip_deal_';
