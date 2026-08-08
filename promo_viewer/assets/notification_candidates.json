@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-08T10:35:47.993194+00:00",
+  "generated_at": "2026-08-08T12:36:43.845719+00:00",
   "threshold": 65.0,
-  "total": 50,
+  "total": 51,
   "candidates": [
     {
       "promo_id": "outback_steakhouse_kids_eat_free_mondays",
@@ -781,6 +781,25 @@
       "end_date": null,
       "website_domain": "calvinklein.us",
       "source_url": "https://www.calvinklein.us/en/sale/women/dresses"
+    },
+    {
+      "promo_id": "lg_appliances_top_deals_save_30_53_on_select_home_appliances",
+      "brand": "LG Appliances",
+      "category": "Home Appliances",
+      "title": "Top Deals: Save 30-53% on select home appliances",
+      "notify_score": 67.78,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "LG Appliances",
+      "notification_body": "Top Deals: Save 30-53% on select home appliances",
+      "discount_type": "percentage_off",
+      "discount_value": "30-53%",
+      "estimated_savings": 15.9,
+      "end_date": null,
+      "website_domain": "lg.com",
+      "source_url": "https://www.lg.com/us/home-appliances"
     },
     {
       "promo_id": "altuzarra_altuzarra_sale",
