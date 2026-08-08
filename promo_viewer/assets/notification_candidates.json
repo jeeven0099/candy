@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-07T12:46:41.734846+00:00",
+  "generated_at": "2026-08-08T10:35:47.993194+00:00",
   "threshold": 65.0,
-  "total": 61,
+  "total": 50,
   "candidates": [
     {
       "promo_id": "outback_steakhouse_kids_eat_free_mondays",
@@ -23,42 +23,80 @@
       "source_url": "https://www.outback.com/offers/limited-time-menu"
     },
     {
-      "promo_id": "express_women_s_men_s_clothing_sale_up_to_75_off",
-      "brand": "Express",
-      "category": "clothing",
-      "title": "Women's & Men's Clothing Sale - Up to 75% Off",
-      "notify_score": 83.73,
+      "promo_id": "asos_asos_women_s_sale",
+      "brand": "ASOS",
+      "category": "retail",
+      "title": "ASOS Women's Sale",
+      "notify_score": 85.58,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Express",
-      "notification_body": "Women's & Men's Clothing Sale - Up to 75% Off",
+      "notification_title": "ASOS",
+      "notification_body": "ASOS Women's Sale",
       "discount_type": "percentage_off",
-      "discount_value": "up to 75%",
-      "estimated_savings": 41.25,
+      "discount_value": "up to 80%",
+      "estimated_savings": 36.0,
       "end_date": null,
-      "website_domain": "express.com",
-      "source_url": "https://www.express.com/g/returns-policy"
+      "website_domain": "asos.com",
+      "source_url": "https://www.asos.com/us/women/sale/dresses/cat/?cid=5235"
     },
     {
-      "promo_id": "clarks_end_of_season_sale_up_to_60_off",
-      "brand": "Clarks",
+      "promo_id": "moda_operandi_women_s_designer_collection_sale_up_to_75_off",
+      "brand": "Moda Operandi",
       "category": "retail",
-      "title": "End of Season Sale - Up to 60% Off",
+      "title": "Women's Designer Collection Sale - up to 75% off",
+      "notify_score": 83.89,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Moda Operandi",
+      "notification_body": "Women's Designer Collection Sale - up to 75% off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 75%",
+      "estimated_savings": 33.75,
+      "end_date": null,
+      "website_domain": "modaoperandi.com",
+      "source_url": "https://www.modaoperandi.com/women/sale"
+    },
+    {
+      "promo_id": "talbots_60_off_markdown_dresses_skirts_jackets_more",
+      "brand": "Talbots",
+      "category": "retail",
+      "title": "60% Off Markdown Dresses, Skirts, Jackets & More",
       "notify_score": 83.31,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Clarks",
-      "notification_body": "End of Season Sale - Up to 60% Off",
+      "notification_title": "Talbots",
+      "notification_body": "60% Off Markdown Dresses, Skirts, Jackets & More",
       "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 54.0,
+      "discount_value": "60%",
+      "estimated_savings": 45.0,
       "end_date": null,
-      "website_domain": "clarks.com",
-      "source_url": "https://www.clarks.com/en-us/all-sale/sale_us-c"
+      "website_domain": "talbots.com",
+      "source_url": "https://www.talbots.com/sale"
+    },
+    {
+      "promo_id": "larroud_summer_sale",
+      "brand": "Larroudé",
+      "category": "footwear",
+      "title": "Summer Sale",
+      "notify_score": 83.16,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Larroudé",
+      "notification_body": "Summer Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "estimated_savings": 66.5,
+      "end_date": null,
+      "website_domain": "larroude.com",
+      "source_url": "https://larroude.com/"
     },
     {
       "promo_id": "applebee_s_veterans_day_free_meals",
@@ -99,42 +137,23 @@
       "source_url": "https://www.cinemark.com/movie-rewards-info/"
     },
     {
-      "promo_id": "adore_me_nala_clearance_70_off",
-      "brand": "Adore Me",
+      "promo_id": "aritzia_snooze_you_lose_50_70_off",
+      "brand": "Aritzia",
       "category": "retail",
-      "title": "Nala Clearance 70% OFF",
+      "title": "Snooze, You Lose 50-70% Off",
       "notify_score": 82.1,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Adore Me",
-      "notification_body": "Nala Clearance 70% OFF",
+      "notification_title": "Aritzia",
+      "notification_body": "Snooze, You Lose 50-70% Off",
       "discount_type": "percentage_off",
-      "discount_value": "70%",
+      "discount_value": "50–70%",
       "estimated_savings": 31.5,
       "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/sets-and-bundles/sale"
-    },
-    {
-      "promo_id": "adore_me_lindy_clearance_70_off",
-      "brand": "Adore Me",
-      "category": "retail",
-      "title": "Lindy Clearance 70% OFF",
-      "notify_score": 82.1,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Adore Me",
-      "notification_body": "Lindy Clearance 70% OFF",
-      "discount_type": "percentage_off",
-      "discount_value": "70%",
-      "estimated_savings": 31.5,
-      "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/sets-and-bundles/sale"
+      "website_domain": "aritzia.com",
+      "source_url": "https://www.aritzia.com/us/en/sale"
     },
     {
       "promo_id": "club_monaco_shop_all_sale_up_to_70_off",
@@ -156,99 +175,23 @@
       "source_url": "https://www.clubmonaco.com/collections/sale"
     },
     {
-      "promo_id": "mr_porter_men_s_luxury_fashion_sale",
-      "brand": "MR PORTER",
+      "promo_id": "farfetch_ss26_sale_up_to_70_off",
+      "brand": "Farfetch",
       "category": "retail",
-      "title": "Men's Luxury Fashion Sale",
+      "title": "SS26 Sale - Up to 70% Off",
       "notify_score": 82.1,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "MR PORTER",
-      "notification_body": "Men's Luxury Fashion Sale",
+      "notification_title": "Farfetch",
+      "notification_body": "SS26 Sale - Up to 70% Off",
       "discount_type": "percentage_off",
-      "discount_value": "70%",
+      "discount_value": "up to 70% off",
       "estimated_savings": 31.5,
       "end_date": null,
-      "website_domain": "mrporter.com",
-      "source_url": "https://www.mrporter.com/en-us/mens/product/paul-smith/clothing/plain-shirts/embroidered-cotton-blend-shirt/46376663162965430"
-    },
-    {
-      "promo_id": "the_children_s_place_back_to_school_up_to_70_off",
-      "brand": "The Children's Place",
-      "category": "retail",
-      "title": "Back to School Up to 70% Off",
-      "notify_score": 82.1,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "The Children's Place",
-      "notification_body": "Back to School Up to 70% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 31.5,
-      "end_date": null,
-      "website_domain": "childrensplace.com",
-      "source_url": "https://www.childrensplace.com/us/"
-    },
-    {
-      "promo_id": "zara_man_zara_sale_up_to_70_off_selected_items",
-      "brand": "Zara Man",
-      "category": "retail",
-      "title": "Zara Sale - Up to 70% Off Selected Items",
-      "notify_score": 82.1,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Zara Man",
-      "notification_body": "Zara Sale - Up to 70% Off Selected Items",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 31.5,
-      "end_date": null,
-      "website_domain": "zara.com",
-      "source_url": "https://www.zara.com/us/en/s-man-sale-l10847.html"
-    },
-    {
-      "promo_id": "sperry_sale_styles_up_to_70_off",
-      "brand": "Sperry",
-      "category": "footwear",
-      "title": "Sale Styles Up to 70% Off",
-      "notify_score": 81.91,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Sperry",
-      "notification_body": "Sale Styles Up to 70% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "70%",
-      "estimated_savings": 59.5,
-      "end_date": null,
-      "website_domain": "sperry.com",
-      "source_url": "https://www.sperry.com/collections/new-arrivals"
-    },
-    {
-      "promo_id": "kroger_buy_one_get_one_free_gatorade",
-      "brand": "Kroger",
-      "category": "food",
-      "title": "Buy One Get One Free Gatorade",
-      "notify_score": 81.24,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Kroger",
-      "notification_body": "Free: Buy One Get One Free Gatorade",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 10.0,
-      "end_date": "2026-10-31",
-      "website_domain": "kroger.com",
-      "source_url": "https://www.kroger.com/savings/"
+      "website_domain": "farfetch.com",
+      "source_url": "https://www.farfetch.com/shopping/women/sale/lifestyle-1/items.aspx"
     },
     {
       "promo_id": "ikea_ikea_sale",
@@ -286,7 +229,7 @@
       "estimated_savings": 33.75,
       "end_date": null,
       "website_domain": "nordstromrack.com",
-      "source_url": "https://www.nordstromrack.com/"
+      "source_url": null
     },
     {
       "promo_id": "einstein_bros_bagels_unlimited_free_coffee_one_visit",
@@ -343,7 +286,7 @@
       "estimated_savings": 29.25,
       "end_date": null,
       "website_domain": "nordstromrack.com",
-      "source_url": "https://www.nordstromrack.com/"
+      "source_url": null
     },
     {
       "promo_id": "nordstrom_rack_eileen_fisher_up_to_60_off",
@@ -362,7 +305,7 @@
       "estimated_savings": 33.0,
       "end_date": "2026-08-10",
       "website_domain": "nordstromrack.com",
-      "source_url": "https://www.nordstromrack.com/"
+      "source_url": null
     },
     {
       "promo_id": "nordstrom_rack_up_to_65_off_homecoming_looks",
@@ -381,7 +324,26 @@
       "estimated_savings": 35.75,
       "end_date": null,
       "website_domain": "nordstromrack.com",
-      "source_url": "https://www.nordstromrack.com/"
+      "source_url": null
+    },
+    {
+      "promo_id": "hyperx_hyperx_gaming_gear_sale",
+      "brand": "HyperX",
+      "category": "electronics",
+      "title": "HyperX Gaming Gear Sale",
+      "notify_score": 79.36,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "HyperX",
+      "notification_body": "HyperX Gaming Gear Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 125.0,
+      "end_date": null,
+      "website_domain": "hyperx.com",
+      "source_url": "https://www.hyperx.com/products/hyperx-quadcast-2-s-usb-microphone"
     },
     {
       "promo_id": "pottery_barn_warehouse_sale_up_to_60_off",
@@ -401,6 +363,25 @@
       "end_date": null,
       "website_domain": "potterybarn.com",
       "source_url": "https://www.potterybarn.com/shop/sale/"
+    },
+    {
+      "promo_id": "michael_kors_semi_annual_sale_up_to_60_off_select_styles",
+      "brand": "Michael Kors",
+      "category": "retail",
+      "title": "Semi-Annual Sale - Up to 60% off Select Styles",
+      "notify_score": 76.79,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Michael Kors",
+      "notification_body": "Semi-Annual Sale - Up to 60% off Select Styles",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 33.0,
+      "end_date": null,
+      "website_domain": "michaelkors.com",
+      "source_url": "https://www.michaelkors.com/outlet/"
     },
     {
       "promo_id": "west_elm_up_to_60_off_sale_clearance",
@@ -441,42 +422,42 @@
       "source_url": "https://www.babylist.com/coupons/"
     },
     {
-      "promo_id": "abercrombie_fitch_denim_event_25_50_off_all_jeans",
+      "promo_id": "burrow_free_swatches",
+      "brand": "Burrow",
+      "category": "retail",
+      "title": "Free Swatches",
+      "notify_score": 76.33,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Burrow",
+      "notification_body": "Free: Free Swatches",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "burrow.com",
+      "source_url": "https://burrow.com/sale"
+    },
+    {
+      "promo_id": "abercrombie_fitch_the_abercrombie_denim_event_25_50_off_all_jeans",
       "brand": "Abercrombie & Fitch",
       "category": "retail",
-      "title": "Denim Event - 25-50% Off All Jeans",
+      "title": "The Abercrombie Denim Event: 25-50% Off All Jeans",
       "notify_score": 76.26,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Abercrombie & Fitch",
-      "notification_body": "Denim Event - 25-50% Off All Jeans",
+      "notification_body": "The Abercrombie Denim Event: 25-50% Off All Jeans",
       "discount_type": "percentage_off",
       "discount_value": "25-50%",
       "estimated_savings": 27.5,
       "end_date": null,
       "website_domain": "abercrombie.com",
       "source_url": "https://www.abercrombie.com/shop/us/kids?pagefm=navigation-top+nav"
-    },
-    {
-      "promo_id": "target_bogo_50_off_bath_towels",
-      "brand": "Target",
-      "category": "home",
-      "title": "BOGO 50% off bath towels",
-      "notify_score": 76.03,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Target",
-      "notification_body": "BOGO 50% off bath towels",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 90.0,
-      "end_date": null,
-      "website_domain": "target.com",
-      "source_url": null
     },
     {
       "promo_id": "nordstrom_rack_new_shoe_markdowns_up_to_60_off",
@@ -495,26 +476,7 @@
       "estimated_savings": 54.0,
       "end_date": null,
       "website_domain": "nordstromrack.com",
-      "source_url": "https://www.nordstromrack.com/"
-    },
-    {
-      "promo_id": "adore_me_madelaine_clearance_60_off",
-      "brand": "Adore Me",
-      "category": "retail",
-      "title": "Madelaine Clearance 60% OFF",
-      "notify_score": 75.49,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Adore Me",
-      "notification_body": "Madelaine Clearance 60% OFF",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "estimated_savings": 27.0,
-      "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/sets-and-bundles/sale"
+      "source_url": null
     },
     {
       "promo_id": "iherb_up_to_70_off_deals",
@@ -536,61 +498,23 @@
       "source_url": "https://www.iherb.com/rewards/info/rewards-program"
     },
     {
-      "promo_id": "wendy_s_friday_free_any_size_fry_w_purchase",
-      "brand": "Wendy's",
-      "category": "food",
-      "title": "Friday - Free Any Size Fry w/ Purchase",
-      "notify_score": 74.52,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Wendy's",
-      "notification_body": "Free: Friday - Free Any Size Fry w/ Purchase",
-      "discount_type": "free_item",
-      "discount_value": "free fries",
-      "estimated_savings": 9.0,
-      "end_date": null,
-      "website_domain": "wendys.com",
-      "source_url": "https://www.wendys.com/offers-coupons"
-    },
-    {
-      "promo_id": "wendy_s_fryday_free_any_size_fry_w_5_purchase",
-      "brand": "Wendy's",
-      "category": "food",
-      "title": "Fryday - Free Any Size Fry w/ $5 Purchase",
-      "notify_score": 74.52,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Wendy's",
-      "notification_body": "Free: Fryday - Free Any Size Fry w/ $5 Purchase",
-      "discount_type": "free_item",
-      "discount_value": "free fries",
-      "estimated_savings": 9.0,
-      "end_date": null,
-      "website_domain": "wendys.com",
-      "source_url": "https://www.wendys.com/offers-coupons"
-    },
-    {
-      "promo_id": "epic_games_store_free_games_weekly_and_thursday_free_game_offers",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "Free Games - Weekly and Thursday Free Game Offers",
+      "promo_id": "beis_free_personalization",
+      "brand": "BEIS",
+      "category": "accessories",
+      "title": "Free Personalization",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: Free Games - Weekly and Thursday Free Game Offers",
+      "notification_title": "BEIS",
+      "notification_body": "Free: Free Personalization",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/en-US/free-games"
+      "website_domain": "beistravel.com",
+      "source_url": "https://beistravel.com/collections/sale"
     },
     {
       "promo_id": "inside_weather_free_swatches",
@@ -669,23 +593,23 @@
       "source_url": "https://www.apc-us.com/collections/sale-women-view-all"
     },
     {
-      "promo_id": "adore_me_gynger_bow_collection_50_off",
-      "brand": "Adore Me",
+      "promo_id": "talbots_extra_50_off_all_other_markdowns",
+      "brand": "Talbots",
       "category": "retail",
-      "title": "Gynger Bow Collection 50% OFF",
+      "title": "Extra 50% Off All Other Markdowns",
       "notify_score": 73.67,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Adore Me",
-      "notification_body": "Gynger Bow Collection 50% OFF",
+      "notification_title": "Talbots",
+      "notification_body": "Extra 50% Off All Other Markdowns",
       "discount_type": "percentage_off",
       "discount_value": "50%",
       "estimated_savings": 22.5,
       "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/sets-and-bundles/sale"
+      "website_domain": "talbots.com",
+      "source_url": "https://www.talbots.com/home?cT=d"
     },
     {
       "promo_id": "babylist_free_breast_pump",
@@ -707,6 +631,25 @@
       "source_url": "https://www.babylist.com/registry/new"
     },
     {
+      "promo_id": "pandora_free_limited_edition_disney_princess_jewelry_box",
+      "brand": "Pandora",
+      "category": "retail",
+      "title": "Free Limited Edition Disney Princess Jewelry Box",
+      "notify_score": 73.6,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Pandora",
+      "notification_body": "Free: Free Limited Edition Disney Princess Jewelry Box",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "us.pandora.net",
+      "source_url": "https://www.us.pandora.net/en/jewelry/sale/?prefn1=primaryCategory&prefv1=Charms"
+    },
+    {
       "promo_id": "the_container_store_free_design_consultation",
       "brand": "The Container Store",
       "category": "retail",
@@ -724,25 +667,6 @@
       "end_date": null,
       "website_domain": "containerstore.com",
       "source_url": "https://www.containerstore.com/s/clearance/1"
-    },
-    {
-      "promo_id": "proenza_schouler_seasonal_sale_up_to_65_off",
-      "brand": "Proenza Schouler",
-      "category": "Designer Fashion",
-      "title": "Seasonal Sale Up To 65% Off",
-      "notify_score": 72.71,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Proenza Schouler",
-      "notification_body": "Seasonal Sale Up To 65% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "65%",
-      "estimated_savings": 19.5,
-      "end_date": null,
-      "website_domain": "proenzaschouler.com",
-      "source_url": "https://www.proenzaschouler.com/collections/sale"
     },
     {
       "promo_id": "west_elm_up_to_50_off",
@@ -783,118 +707,23 @@
       "source_url": "https://www.tonal.com/"
     },
     {
-      "promo_id": "firestone_free_flat_tire_repair",
-      "brand": "Firestone",
-      "category": "auto_parts",
-      "title": "Free Flat Tire Repair",
+      "promo_id": "kroger_buy_1_gatorade_water_single_serve_get_1_free",
+      "brand": "Kroger",
+      "category": "beverages",
+      "title": "Buy 1 Gatorade Water Single Serve, Get 1 Free",
       "notify_score": 71.26,
       "signal_groups": [
-        "context",
+        "personal",
         "value"
       ],
-      "notification_title": "Firestone",
-      "notification_body": "Free: Free Flat Tire Repair",
+      "notification_title": "Kroger",
+      "notification_body": "Free: Buy 1 Gatorade Water Single Serve, Get 1 Free",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "firestonecompleteautocare.com",
-      "source_url": "https://www.firestonecompleteautocare.com/offers/"
-    },
-    {
-      "promo_id": "firestone_free_brake_inspection",
-      "brand": "Firestone",
-      "category": "auto_parts",
-      "title": "Free Brake Inspection",
-      "notify_score": 71.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Firestone",
-      "notification_body": "Free: Free Brake Inspection",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "firestonecompleteautocare.com",
-      "source_url": "https://www.firestonecompleteautocare.com/offers/"
-    },
-    {
-      "promo_id": "firestone_battery_check",
-      "brand": "Firestone",
-      "category": "auto_parts",
-      "title": "Battery Check",
-      "notify_score": 71.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Firestone",
-      "notification_body": "Free: Battery Check",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "firestonecompleteautocare.com",
-      "source_url": "https://www.firestonecompleteautocare.com/offers/"
-    },
-    {
-      "promo_id": "kiehl_s_complimentary_skin_analysis_samples",
-      "brand": "Kiehl's",
-      "category": "beauty",
-      "title": "Complimentary Skin Analysis & Samples",
-      "notify_score": 71.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Kiehl's",
-      "notification_body": "Free: Complimentary Skin Analysis & Samples",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "kiehls.com",
-      "source_url": "https://www.kiehls.com/skincare/eye-creams-and-serums/avocado-eye-cream/258.html"
-    },
-    {
-      "promo_id": "adore_me_bessima_clearance_50_off",
-      "brand": "Adore Me",
-      "category": "retail",
-      "title": "Bessima Clearance 50% OFF",
-      "notify_score": 71.16,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Adore Me",
-      "notification_body": "Bessima Clearance 50% OFF",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 22.5,
-      "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/sets-and-bundles/sale"
-    },
-    {
-      "promo_id": "adore_me_shoshana_cover_up_clearance_50_off",
-      "brand": "Adore Me",
-      "category": "retail",
-      "title": "Shoshana Cover‑Up Clearance 50% OFF",
-      "notify_score": 71.16,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Adore Me",
-      "notification_body": "Shoshana Cover‑Up Clearance 50% OFF",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 22.5,
-      "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/sets-and-bundles/sale"
+      "end_date": "2026-10-31",
+      "website_domain": "kroger.com",
+      "source_url": "https://www.kroger.com/savings/"
     },
     {
       "promo_id": "moda_operandi_moda_operandi_sale",
@@ -935,25 +764,6 @@
       "source_url": "https://www.mansurgavriel.com/collections/sale"
     },
     {
-      "promo_id": "mcdonald_s_free_big_mac_with_1_minimum_purchase_first_time_app_users",
-      "brand": "McDonald's",
-      "category": "food",
-      "title": "Free Big Mac with $1 Minimum Purchase (First-time App Users)",
-      "notify_score": 70.52,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "McDonald's",
-      "notification_body": "Free: Free Big Mac with $1 Minimum Purchase (First-time App Users)",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 9.0,
-      "end_date": null,
-      "website_domain": "mcdonalds.com",
-      "source_url": "https://www.mcdonalds.com/us/es-us/deals.html"
-    },
-    {
       "promo_id": "calvin_klein_calvin_klein_sale",
       "brand": "Calvin Klein",
       "category": "fashion",
@@ -971,25 +781,6 @@
       "end_date": null,
       "website_domain": "calvinklein.us",
       "source_url": "https://www.calvinklein.us/en/sale/women/dresses"
-    },
-    {
-      "promo_id": "ganni_ganni_sale",
-      "brand": "GANNI",
-      "category": "fashion",
-      "title": "GANNI Sale",
-      "notify_score": 68.84,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "GANNI",
-      "notification_body": "GANNI Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50% off",
-      "estimated_savings": 32.5,
-      "end_date": null,
-      "website_domain": "ganni.com",
-      "source_url": "https://www.ganni.com/us/dresses-sale/"
     },
     {
       "promo_id": "altuzarra_altuzarra_sale",
@@ -1011,6 +802,25 @@
       "source_url": "https://www.altuzarra.com/collections/new-arrivals"
     },
     {
+      "promo_id": "boohoo_up_to_70_off_almost_everything",
+      "brand": "Boohoo",
+      "category": "retail",
+      "title": "Up To 70% Off Almost Everything",
+      "notify_score": 67.69,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Boohoo",
+      "notification_body": "Up To 70% Off Almost Everything",
+      "discount_type": "percentage_off",
+      "discount_value": "70%",
+      "estimated_savings": 14.0,
+      "end_date": null,
+      "website_domain": "us.boohoo.com",
+      "source_url": "https://us.boohoo.com/categories/womens-sale"
+    },
+    {
       "promo_id": "gap_women_s_clothes_sale",
       "brand": "Gap",
       "category": "retail",
@@ -1027,7 +837,26 @@
       "estimated_savings": 20.0,
       "end_date": null,
       "website_domain": "gap.com",
-      "source_url": "https://www.gap.com/browse/category.do?cid=8792&cl=true#pageId=0&department=136"
+      "source_url": "https://www.gap.com/browse/category.do?cid=11900&cl=true#pageId=0&department=75"
+    },
+    {
+      "promo_id": "l_l_bean_15_off_select_backpacks",
+      "brand": "L.L.Bean",
+      "category": "retail",
+      "title": "15% Off Select Backpacks",
+      "notify_score": 67.11,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "L.L.Bean",
+      "notification_body": "15% Off Select Backpacks",
+      "discount_type": "percentage_off",
+      "discount_value": "15%",
+      "estimated_savings": 12.0,
+      "end_date": "2026-08-09",
+      "website_domain": "llbean.com",
+      "source_url": "https://www.llbean.com/?nav=pdp-32"
     },
     {
       "promo_id": "joybird_free_design_services",
@@ -1068,80 +897,43 @@
       "source_url": "https://joybird.com/sale/"
     },
     {
-      "promo_id": "adore_me_madelaine_triangle_swim_top_clearance_50_off",
-      "brand": "Adore Me",
-      "category": "retail",
-      "title": "Madelaine Triangle Swim Top Clearance 50% OFF",
-      "notify_score": 66.19,
+      "promo_id": "kroger_50_off_boost_annual_membership",
+      "brand": "Kroger",
+      "category": "other",
+      "title": "50% Off Boost Annual Membership",
+      "notify_score": 66.42,
       "signal_groups": [
         "context",
+        "personal",
         "value"
       ],
-      "notification_title": "Adore Me",
-      "notification_body": "Madelaine Triangle Swim Top Clearance 50% OFF",
+      "notification_title": "Kroger",
+      "notification_body": "50% Off Boost Annual Membership",
       "discount_type": "percentage_off",
       "discount_value": "50%",
       "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/sets-and-bundles/sale"
+      "end_date": "2026-08-18",
+      "website_domain": "kroger.com",
+      "source_url": "https://www.kroger.com/savings/"
     },
     {
-      "promo_id": "adore_me_demi_bralette_swim_top_clearance_50_off",
-      "brand": "Adore Me",
-      "category": "retail",
-      "title": "Demi Bralette Swim Top Clearance 50% OFF",
-      "notify_score": 66.19,
+      "promo_id": "firestone_free_flat_tire_repair",
+      "brand": "Firestone",
+      "category": "automotive",
+      "title": "Free Flat Tire Repair",
+      "notify_score": 66.04,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Adore Me",
-      "notification_body": "Demi Bralette Swim Top Clearance 50% OFF",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
+      "notification_title": "Firestone",
+      "notification_body": "Free: Free Flat Tire Repair",
+      "discount_type": "free_item",
+      "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/sets-and-bundles/sale"
-    },
-    {
-      "promo_id": "adore_me_tatiana_triangle_swim_top_clearance_50_off",
-      "brand": "Adore Me",
-      "category": "retail",
-      "title": "Tatiana Triangle Swim Top Clearance 50% OFF",
-      "notify_score": 66.19,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Adore Me",
-      "notification_body": "Tatiana Triangle Swim Top Clearance 50% OFF",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/sets-and-bundles/sale"
-    },
-    {
-      "promo_id": "lg_ultragear_save_30_53_on_select_home_appliances",
-      "brand": "LG UltraGear",
-      "category": "Premium Electronics",
-      "title": "Save 30-53% on select home appliances",
-      "notify_score": 65.51,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "LG UltraGear",
-      "notification_body": "Save 30-53% on select home appliances",
-      "discount_type": "percentage_off",
-      "discount_value": "30-53%",
-      "estimated_savings": 15.9,
-      "end_date": null,
-      "website_domain": "lg.com",
-      "source_url": "https://www.lg.com/us/monitors"
+      "website_domain": "firestonecompleteautocare.com",
+      "source_url": "https://www.firestonecompleteautocare.com/offers/"
     },
     {
       "promo_id": "avis_free_car_rental_upgrade_coupon",
