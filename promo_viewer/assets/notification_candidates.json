@@ -1,27 +1,8 @@
 {
-  "generated_at": "2026-08-09T08:44:03.753627+00:00",
+  "generated_at": "2026-08-10T15:49:16.772649+00:00",
   "threshold": 65.0,
-  "total": 74,
+  "total": 57,
   "candidates": [
-    {
-      "promo_id": "ted_baker_final_sale_up_to_85_off",
-      "brand": "Ted Baker",
-      "category": "retail",
-      "title": "Final Sale - Up to 85% Off",
-      "notify_score": 87.18,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Ted Baker",
-      "notification_body": "Final Sale - Up to 85% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 85%",
-      "estimated_savings": 38.25,
-      "end_date": null,
-      "website_domain": "tedbaker.com",
-      "source_url": "https://www.tedbaker.com/pages/shipping-returns"
-    },
     {
       "promo_id": "converse_converse_sale_sneakers_clothing_up_to_75_off",
       "brand": "Converse",
@@ -39,7 +20,7 @@
       "estimated_savings": 67.5,
       "end_date": null,
       "website_domain": "converse.com",
-      "source_url": "https://www.converse.com/shop/sale"
+      "source_url": null
     },
     {
       "promo_id": "outback_steakhouse_kids_eat_free_mondays",
@@ -61,6 +42,25 @@
       "source_url": "https://www.outback.com/offers/limited-time-menu"
     },
     {
+      "promo_id": "dsw_up_to_60_off_clearance_online",
+      "brand": "DSW",
+      "category": "retail",
+      "title": "Up to 60% Off Clearance Online",
+      "notify_score": 85.31,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "DSW",
+      "notification_body": "Up to 60% Off Clearance Online",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 48.0,
+      "end_date": "2026-08-12",
+      "website_domain": "dsw.com",
+      "source_url": "https://www.dsw.com/"
+    },
+    {
       "promo_id": "nordstrom_rack_clearance_new_markdowns_up_to_75_off",
       "brand": "Nordstrom Rack",
       "category": "retail",
@@ -77,7 +77,7 @@
       "estimated_savings": 33.75,
       "end_date": null,
       "website_domain": "nordstromrack.com",
-      "source_url": "https://www.nordstromrack.com/"
+      "source_url": null
     },
     {
       "promo_id": "nordstrom_rack_new_shoe_markdowns_up_to_60_off",
@@ -96,26 +96,7 @@
       "estimated_savings": 54.0,
       "end_date": null,
       "website_domain": "nordstromrack.com",
-      "source_url": "https://www.nordstromrack.com/"
-    },
-    {
-      "promo_id": "talbots_60_off_markdown_dresses_skirts_jackets_more",
-      "brand": "Talbots",
-      "category": "retail",
-      "title": "60% off markdown dresses, skirts, jackets & more",
-      "notify_score": 83.31,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Talbots",
-      "notification_body": "60% off markdown dresses, skirts, jackets & more",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "estimated_savings": 45.0,
-      "end_date": null,
-      "website_domain": "talbots.com",
-      "source_url": "https://www.talbots.com/home?cT=d"
+      "source_url": null
     },
     {
       "promo_id": "applebee_s_veterans_day_free_meals",
@@ -137,44 +118,6 @@
       "source_url": "https://www.applebees.com/en/specials"
     },
     {
-      "promo_id": "fenty_beauty_a_ap_rocky_hydra_vizor_invisible_moisturizer_broad_spectrum_spf_30_sunscreen",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "A$AP Rocky Hydra Vizor Invisible Moisturizer Broad Spectrum SPF 30 Sunscreen...",
-      "notify_score": 82.43,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: A$AP Rocky Hydra Vizor Invisible Moisturizer Broad Spectrum SPF 30 Sunscreen...",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 25.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_build_your_own_am_pm_moisturizer_bundle",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Build Your Own AM + PM Moisturizer Bundle",
-      "notify_score": 82.43,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Build Your Own AM + PM Moisturizer Bundle",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 25.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
       "promo_id": "cinemark_become_a_movie_fan_for_free",
       "brand": "Cinemark",
       "category": "entertainment",
@@ -192,25 +135,6 @@
       "end_date": null,
       "website_domain": "cinemark.com",
       "source_url": "https://www.cinemark.com/movie-rewards-info/"
-    },
-    {
-      "promo_id": "nordstrom_rack_eileen_fisher_flash_event_up_to_60_off",
-      "brand": "Nordstrom Rack",
-      "category": "retail",
-      "title": "Eileen Fisher Flash Event - Up to 60% Off",
-      "notify_score": 82.18,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Nordstrom Rack",
-      "notification_body": "Eileen Fisher Flash Event - Up to 60% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60% off",
-      "estimated_savings": 27.0,
-      "end_date": "2026-08-10",
-      "website_domain": "nordstromrack.com",
-      "source_url": "https://www.nordstromrack.com/"
     },
     {
       "promo_id": "club_monaco_shop_all_sale_up_to_70_off",
@@ -244,30 +168,11 @@
       "notification_title": "Farfetch",
       "notification_body": "SS26 Sale - up to 70% off",
       "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
+      "discount_value": "up to 70% off",
       "estimated_savings": 31.5,
       "end_date": null,
       "website_domain": "farfetch.com",
-      "source_url": "https://www.farfetch.com/shopping/women/sale/zuhair-murad/items.aspx"
-    },
-    {
-      "promo_id": "pacsun_last_chance_savings_up_to_70_off_all_markdowns",
-      "brand": "PacSun",
-      "category": "retail",
-      "title": "Last Chance Savings Up To 70% Off All Markdowns",
-      "notify_score": 82.1,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "PacSun",
-      "notification_body": "Last Chance Savings Up To 70% Off All Markdowns",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 31.5,
-      "end_date": null,
-      "website_domain": "pacsun.com",
-      "source_url": "https://www.pacsun.com/mens/sale/"
+      "source_url": "https://www.farfetch.com/shopping/women/sale/clothing-1/items.aspx"
     },
     {
       "promo_id": "sperry_sale_styles_up_to_70_off",
@@ -305,7 +210,7 @@
       "estimated_savings": 10.0,
       "end_date": "2026-10-31",
       "website_domain": "kroger.com",
-      "source_url": "https://www.kroger.com/savings/"
+      "source_url": null
     },
     {
       "promo_id": "ikea_ikea_sale",
@@ -324,7 +229,7 @@
       "estimated_savings": 76.5,
       "end_date": null,
       "website_domain": "ikea.com",
-      "source_url": "https://www.ikea.com/us/en/offers/"
+      "source_url": null
     },
     {
       "promo_id": "nordstrom_rack_women_s_denim_up_to_60_off",
@@ -343,7 +248,7 @@
       "estimated_savings": 33.0,
       "end_date": null,
       "website_domain": "nordstromrack.com",
-      "source_url": "https://www.nordstromrack.com/"
+      "source_url": null
     },
     {
       "promo_id": "einstein_bros_bagels_unlimited_free_coffee_one_visit",
@@ -381,7 +286,7 @@
       "estimated_savings": 29.25,
       "end_date": null,
       "website_domain": "dillards.com",
-      "source_url": "https://www.dillards.com/c/sale-clearance"
+      "source_url": null
     },
     {
       "promo_id": "nordstrom_rack_up_to_65_off_bestsellers",
@@ -400,7 +305,7 @@
       "estimated_savings": 29.25,
       "end_date": null,
       "website_domain": "nordstromrack.com",
-      "source_url": "https://www.nordstromrack.com/"
+      "source_url": null
     },
     {
       "promo_id": "nordstrom_rack_homecoming_looks_up_to_65_off",
@@ -419,26 +324,45 @@
       "estimated_savings": 29.25,
       "end_date": null,
       "website_domain": "nordstromrack.com",
-      "source_url": "https://www.nordstromrack.com/"
+      "source_url": null
     },
     {
-      "promo_id": "pinstripes_sunday_family_favorites",
-      "brand": "Pinstripes",
-      "category": "food",
-      "title": "Sunday Family Favorites",
-      "notify_score": 79.24,
+      "promo_id": "bcbg_sale_up_to_60_off",
+      "brand": "BCBG",
+      "category": "retail",
+      "title": "Sale - up to 60% off",
+      "notify_score": 78.18,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Pinstripes",
-      "notification_body": "Free: Sunday Family Favorites",
-      "discount_type": "free_item",
-      "discount_value": "free (kids)",
-      "estimated_savings": 10.0,
+      "notification_title": "BCBG",
+      "notification_body": "Sale - up to 60% off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 27.0,
       "end_date": null,
-      "website_domain": "pinstripes.com",
-      "source_url": "https://www.pinstripes.com/private-events"
+      "website_domain": "bcbg.com",
+      "source_url": "https://bcbg.com/collections/sale"
+    },
+    {
+      "promo_id": "monica_vinader_60_off_summer_favourites",
+      "brand": "Monica Vinader",
+      "category": "retail",
+      "title": "60% off summer favourites",
+      "notify_score": 78.18,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Monica Vinader",
+      "notification_body": "60% off summer favourites",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 27.0,
+      "end_date": null,
+      "website_domain": "monicavinader.com",
+      "source_url": "https://www.monicavinader.com/us/shop/best-sellers?offer=QUARTZ20"
     },
     {
       "promo_id": "nordstrom_rack_animal_print_trend_up_to_60_off",
@@ -457,7 +381,7 @@
       "estimated_savings": 27.0,
       "end_date": null,
       "website_domain": "nordstromrack.com",
-      "source_url": "https://www.nordstromrack.com/"
+      "source_url": null
     },
     {
       "promo_id": "nordstrom_rack_suede_trend_up_to_60_off",
@@ -476,7 +400,7 @@
       "estimated_savings": 27.0,
       "end_date": null,
       "website_domain": "nordstromrack.com",
-      "source_url": "https://www.nordstromrack.com/"
+      "source_url": null
     },
     {
       "promo_id": "nordstrom_rack_romantic_vibes_trend_up_to_60_off",
@@ -495,7 +419,7 @@
       "estimated_savings": 27.0,
       "end_date": null,
       "website_domain": "nordstromrack.com",
-      "source_url": "https://www.nordstromrack.com/"
+      "source_url": null
     },
     {
       "promo_id": "nordstrom_rack_back_to_school_kids_styles_up_to_60_off",
@@ -514,7 +438,7 @@
       "estimated_savings": 27.0,
       "end_date": null,
       "website_domain": "nordstromrack.com",
-      "source_url": "https://www.nordstromrack.com/"
+      "source_url": null
     },
     {
       "promo_id": "pottery_barn_warehouse_sale_up_to_60_off",
@@ -593,23 +517,23 @@
       "source_url": "https://www.babylist.com/coupons/"
     },
     {
-      "promo_id": "shake_shack_chicken_sundays_free_chicken_shack_with_10_minimum",
-      "brand": "Shake Shack",
-      "category": "food",
-      "title": "Chicken Sundays: Free Chicken Shack with $10 Minimum",
-      "notify_score": 76.14,
+      "promo_id": "fenty_beauty_free_items_sale",
+      "brand": "Fenty Beauty",
+      "category": "retail",
+      "title": "Free Items Sale",
+      "notify_score": 76.33,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Shake Shack",
-      "notification_body": "Free: Chicken Sundays: Free Chicken Shack with $10 Minimum",
+      "notification_title": "Fenty Beauty",
+      "notification_body": "Free: Free Items Sale",
       "discount_type": "free_item",
-      "discount_value": "Free Chicken Shack",
-      "estimated_savings": 13.0,
-      "end_date": "2026-12-27",
-      "website_domain": "shakeshack.com",
-      "source_url": "https://www.shakeshack.com/privacy-settings/accept"
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "fentybeauty.com",
+      "source_url": "https://www.fentybeauty.com/collections/meetusatmidnight"
     },
     {
       "promo_id": "iherb_up_to_70_off_deals",
@@ -686,253 +610,6 @@
       "end_date": null,
       "website_domain": "store.epicgames.com",
       "source_url": "https://www.store.epicgames.com/p/onimusha-way-of-the-sword-demo-68dcc0"
-    },
-    {
-      "promo_id": "fenty_beauty_a_ap_rocky_x_fenty_skin_collection_bundle",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "A$AP Rocky x Fenty Skin Collection Bundle",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: A$AP Rocky x Fenty Skin Collection Bundle",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_allover_body_mist_green_raspberry",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Allover Body Mist - Green Raspberry",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Allover Body Mist - Green Raspberry",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_allover_body_mist_hey_bouquet",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Allover Body Mist - Hey, Bouquet",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Allover Body Mist - Hey, Bouquet",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_allover_body_mist_tropic_trip",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Allover Body Mist - Tropic Trip",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Allover Body Mist - Tropic Trip",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_allover_body_mist_vanilla_flowers",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Allover Body Mist - Vanilla Flowers",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Allover Body Mist - Vanilla Flowers",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_big_dripp_r_body_wash_vanilla_flowers",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Big Dripp'r Body Wash - Vanilla Flowers",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Big Dripp'r Body Wash - Vanilla Flowers",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_body_lava_body_luminizer_how_many_carats",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Body Lava Body Luminizer - How Many Carats?!",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Body Lava Body Luminizer - How Many Carats?!",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_body_lava_body_luminizer_who_needs_clothes",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Body Lava Body Luminizer - Who Needs Clothes?!",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Body Lava Body Luminizer - Who Needs Clothes?!",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_body_start_r_set_mini_body_trio",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Body Start'r Set Mini Body Trio",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Body Start'r Set Mini Body Trio",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_brown_d_pout_lip_liner_mini_lip_plumper_duo",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Brown'd Pout Lip Liner + Mini Lip Plumper Duo",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Brown'd Pout Lip Liner + Mini Lip Plumper Duo",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_build_your_own_4_piece_summer_glow_bundle",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Build Your Own 4-Piece Summer Glow Bundle",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Build Your Own 4-Piece Summer Glow Bundle",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_build_your_own_body_care_fragrance_bundle",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Build Your Own Body Care + Fragrance Bundle",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Build Your Own Body Care + Fragrance Bundle",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_build_your_own_fenty_face_4_piece_bundle",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Build Your Own Fenty Face 4-Piece Bundle",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Build Your Own Fenty Face 4-Piece Bundle",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
     },
     {
       "promo_id": "inside_weather_free_swatches",
@@ -1027,39 +704,20 @@
       "estimated_savings": 22.5,
       "end_date": null,
       "website_domain": "fashionphile.com",
-      "source_url": "https://www.fashionphile.com/"
+      "source_url": null
     },
     {
-      "promo_id": "talbots_extra_50_off_all_other_markdowns",
-      "brand": "Talbots",
-      "category": "retail",
-      "title": "Extra 50% off all other markdowns",
-      "notify_score": 73.67,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Talbots",
-      "notification_body": "Extra 50% off all other markdowns",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 22.5,
-      "end_date": null,
-      "website_domain": "talbots.com",
-      "source_url": "https://www.talbots.com/home?cT=d"
-    },
-    {
-      "promo_id": "ted_baker_all_sale_up_to_50_off_selected_styles",
+      "promo_id": "ted_baker_all_sale_us",
       "brand": "Ted Baker",
       "category": "retail",
-      "title": "All Sale - Up to 50% Off Selected Styles",
+      "title": "All Sale - US",
       "notify_score": 73.67,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Ted Baker",
-      "notification_body": "All Sale - Up to 50% Off Selected Styles",
+      "notification_body": "All Sale - US",
       "discount_type": "percentage_off",
       "discount_value": "up to 50%",
       "estimated_savings": 22.5,
@@ -1085,25 +743,6 @@
       "end_date": null,
       "website_domain": "babylist.com",
       "source_url": "https://www.babylist.com/registry/new"
-    },
-    {
-      "promo_id": "bodybuilding_com_buy_1_get_1_50_off_evl_nutrition",
-      "brand": "Bodybuilding.com",
-      "category": "pharmacy",
-      "title": "Buy 1 Get 1 50% Off EVL Nutrition",
-      "notify_score": 72.83,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Bodybuilding.com",
-      "notification_body": "Buy 1 Get 1 50% Off EVL Nutrition",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 30.0,
-      "end_date": null,
-      "website_domain": "shop.bodybuilding.com",
-      "source_url": "https://shop.bodybuilding.com/collections/on-sale"
     },
     {
       "promo_id": "alice_olivia_alice_olivia_sale",
@@ -1142,6 +781,25 @@
       "end_date": null,
       "website_domain": "westelm.com",
       "source_url": "https://www.westelm.com/shop/sale/"
+    },
+    {
+      "promo_id": "starbucks_free_mod_monday_customization",
+      "brand": "Starbucks",
+      "category": "food",
+      "title": "Free Mod Monday customization",
+      "notify_score": 72.34,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Starbucks",
+      "notification_body": "Free: Free Mod Monday customization",
+      "discount_type": "free_item",
+      "discount_value": "free customization up to $2.25",
+      "estimated_savings": 6.5,
+      "end_date": null,
+      "website_domain": "starbucks.com",
+      "source_url": "https://www.starbucks.com/rewards"
     },
     {
       "promo_id": "tonal_first_month_free",
@@ -1201,25 +859,6 @@
       "source_url": "https://www.merrell.com/US/en/content?caid=cs-shipping-info"
     },
     {
-      "promo_id": "prettylittlething_end_of_season_sale_60_80_off_almost_everything",
-      "brand": "PrettyLittleThing",
-      "category": "retail",
-      "title": "End of Season Sale - 60-80% OFF almost everything",
-      "notify_score": 71.11,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "PrettyLittleThing",
-      "notification_body": "End of Season Sale - 60-80% OFF almost everything",
-      "discount_type": "percentage_off",
-      "discount_value": "60-80%",
-      "estimated_savings": 16.0,
-      "end_date": null,
-      "website_domain": "prettylittlething.us",
-      "source_url": "https://www.prettylittlething.us/categories/womens-sale"
-    },
-    {
       "promo_id": "moda_operandi_moda_operandi_sale",
       "brand": "Moda Operandi",
       "category": "Luxury Retail",
@@ -1256,6 +895,44 @@
       "end_date": null,
       "website_domain": "mansurgavriel.com",
       "source_url": "https://www.mansurgavriel.com/collections/sale"
+    },
+    {
+      "promo_id": "williams_sonoma_free_kitchen_design_services",
+      "brand": "Williams-Sonoma",
+      "category": "home_goods",
+      "title": "Free Kitchen Design Services",
+      "notify_score": 70.55,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Williams-Sonoma",
+      "notification_body": "Free: Free Kitchen Design Services",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "williams-sonoma.com",
+      "source_url": "https://www.williams-sonoma.com/pages/williams-sonoma/gifts/gift-cards-egift-cards/?cm_sp=accountflyout-_-default-_-giftcard"
+    },
+    {
+      "promo_id": "williams_sonoma_free_registry_services",
+      "brand": "Williams-Sonoma",
+      "category": "home_goods",
+      "title": "Free Registry Services",
+      "notify_score": 70.55,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Williams-Sonoma",
+      "notification_body": "Free: Free Registry Services",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "williams-sonoma.com",
+      "source_url": "https://www.williams-sonoma.com/pages/williams-sonoma/gifts/gift-cards-egift-cards/?cm_sp=accountflyout-_-default-_-giftcard"
     },
     {
       "promo_id": "calvin_klein_calvin_klein_sale",
@@ -1331,7 +1008,7 @@
       "estimated_savings": 20.0,
       "end_date": null,
       "website_domain": "gap.com",
-      "source_url": "https://www.gap.com/browse/category.do?cid=8792&cl=true#pageId=0&department=136"
+      "source_url": "https://www.gap.com/browse/category.do?cid=11900&cl=true#pageId=0&department=75"
     },
     {
       "promo_id": "joybird_free_design_services",
