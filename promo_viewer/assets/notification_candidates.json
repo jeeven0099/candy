@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-08-11T14:48:02.075744+00:00",
+  "generated_at": "2026-08-11T17:44:41.086941+00:00",
   "threshold": 65.0,
-  "total": 79,
+  "total": 81,
   "candidates": [
     {
       "promo_id": "asos_asos_women_s_sale_up_to_80_off",
@@ -1068,6 +1068,25 @@
       "source_url": "https://www.babylist.com/registry/new"
     },
     {
+      "promo_id": "pep_boys_free_towing_service_limited_time",
+      "brand": "Pep Boys",
+      "category": "retail",
+      "title": "Free Towing Service - Limited Time",
+      "notify_score": 73.33,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Pep Boys",
+      "notification_body": "Free: Free Towing Service - Limited Time",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": "2026-08-31",
+      "website_domain": "pepboys.com",
+      "source_url": "https://www.pepboys.com/sale-specials-coupons"
+    },
+    {
       "promo_id": "alice_olivia_alice_olivia_sale",
       "brand": "Alice + Olivia",
       "category": "fashion",
@@ -1294,6 +1313,25 @@
       "end_date": "2026-08-16",
       "website_domain": "hobbylobby.com",
       "source_url": "https://www.hobbylobby.com/weekly-ad"
+    },
+    {
+      "promo_id": "pep_boys_free_brake_inspection",
+      "brand": "Pep Boys",
+      "category": "retail",
+      "title": "Free Brake Inspection",
+      "notify_score": 70.6,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Pep Boys",
+      "notification_body": "Free: Free Brake Inspection",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "pepboys.com",
+      "source_url": "https://www.pepboys.com/batteries/battery-replacement"
     },
     {
       "promo_id": "williams_sonoma_free_kitchen_design_services",
