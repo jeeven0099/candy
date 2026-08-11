@@ -14,6 +14,8 @@ Signal groups (require ≥ 2 distinct groups to fire):
 Hard disqualifiers:
   - confidence_score < 0.75
   - discount_type == "points"
+  - valid_days set and today is not among them
+  - demographic restriction (veteran, military, student, senior, etc.)
   - requires paid membership AND user is not a confirmed member
   - new_user_only AND user is evidently an existing customer
   - global_quality_score < 75
@@ -43,6 +45,23 @@ _TRIAL_RE  = re.compile(
     r'\bfree\s+trial\b|\btrial\b|\d+\s+(?:months?|weeks?|days?)\s+free',
     re.IGNORECASE,
 )
+
+# Demographic groups that restrict deal eligibility to specific people.
+# Notifying a user who doesn't belong to the group wastes a daily slot.
+_DEMOGRAPHIC_RE = re.compile(
+    r'\b(veteran|veterans|military|active[- ]duty|'
+    r'student|students|teacher|teachers|'
+    r'senior|seniors|first[- ]responder|first[- ]responders|'
+    r'healthcare|nurse|nurses|employee\s+discount|staff\s+discount)\b',
+    re.IGNORECASE,
+)
+
+# Canonical weekday index (0=Mon … 6=Sun) keyed by common short and long names.
+_WEEKDAY_IDX: dict[str, int] = {
+    'monday': 0, 'tuesday': 1, 'wednesday': 2, 'thursday': 3,
+    'friday': 4, 'saturday': 5, 'sunday': 6,
+    'mon': 0, 'tue': 1, 'wed': 2, 'thu': 3, 'fri': 4, 'sat': 5, 'sun': 6,
+}
 
 
 def _slugify(s: str) -> str:
@@ -117,6 +136,25 @@ def _is_birthday_month(birthday_str: str | None) -> bool:
     if bday_this_year < today:
         bday_this_year = bday.replace(year=today.year + 1)
     return 0 <= (bday_this_year - today).days <= 30
+
+
+def _valid_on_today(promo: dict) -> bool:
+    """False if deal has valid_days and today is not among them."""
+    valid_days = [d.lower().strip() for d in (promo.get('valid_days') or []) if d]
+    if not valid_days:
+        return True
+    today_idx = date.today().weekday()  # 0=Monday ... 6=Sunday
+    return any(_WEEKDAY_IDX.get(d) == today_idx for d in valid_days)
+
+
+def _is_demographic_restricted(promo: dict) -> bool:
+    """True if the deal targets a specific demographic (veteran, student, etc.)."""
+    text = ' '.join(filter(None, [
+        promo.get('promotion_title', ''),
+        promo.get('summary', ''),
+        promo.get('terms_text', ''),
+    ]))
+    return bool(_DEMOGRAPHIC_RE.search(text))
 
 
 def _is_email_exclusive(promo: dict) -> bool:
@@ -200,6 +238,15 @@ def is_disqualified(
 
     if dtype == 'points':
         return True, 'points'
+
+    # Don't notify about a day-specific deal on the wrong day
+    if not _valid_on_today(promo):
+        return True, 'wrong_day'
+
+    # Don't notify about deals that require a specific demographic
+    # (veteran, military, student, senior, etc.) — the user may not qualify
+    if _is_demographic_restricted(promo):
+        return True, 'demographic_restricted'
 
     if promo.get('requires_membership'):
         cost = (promo.get('membership_cost') or '').lower()
