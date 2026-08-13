@@ -1,8 +1,27 @@
 {
-  "generated_at": "2026-08-12T12:35:48.615094+00:00",
+  "generated_at": "2026-08-13T12:45:32.359006+00:00",
   "threshold": 65.0,
-  "total": 88,
+  "total": 77,
   "candidates": [
+    {
+      "promo_id": "asos_asos_women_s_sale_up_to_80_off",
+      "brand": "ASOS",
+      "category": "retail",
+      "title": "ASOS Women's Sale - up to 80% off",
+      "notify_score": 85.58,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "ASOS",
+      "notification_body": "ASOS Women's Sale - up to 80% off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 80%",
+      "estimated_savings": 36.0,
+      "end_date": null,
+      "website_domain": "asos.com",
+      "source_url": "https://www.asos.com/us/women/sale/dresses/cat/?cid=5235"
+    },
     {
       "promo_id": "aldo_end_of_season_sale_up_to_70_off",
       "brand": "Aldo",
@@ -23,42 +42,23 @@
       "source_url": "https://www.aldoshoes.com/collections/womens-sale"
     },
     {
-      "promo_id": "ann_taylor_extra_70_off_select_sale_styles",
-      "brand": "Ann Taylor",
+      "promo_id": "sperry_sale_styles_up_to_70_off",
+      "brand": "Sperry",
       "category": "retail",
-      "title": "EXTRA 70% OFF SELECT SALE STYLES",
+      "title": "Sale Styles Up to 70% Off",
       "notify_score": 85.23,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Ann Taylor",
-      "notification_body": "EXTRA 70% OFF SELECT SALE STYLES",
+      "notification_title": "Sperry",
+      "notification_body": "Sale Styles Up to 70% Off",
       "discount_type": "percentage_off",
       "discount_value": "70%",
-      "estimated_savings": 56.0,
+      "estimated_savings": 59.5,
       "end_date": null,
-      "website_domain": "anntaylor.com",
-      "source_url": "https://www.anntaylor.com/sale/all-sale/cata000055/"
-    },
-    {
-      "promo_id": "moda_operandi_women_s_designer_collection_sale",
-      "brand": "Moda Operandi",
-      "category": "retail",
-      "title": "Women's Designer Collection Sale",
-      "notify_score": 83.89,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Moda Operandi",
-      "notification_body": "Women's Designer Collection Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 75%+",
-      "estimated_savings": 33.75,
-      "end_date": null,
-      "website_domain": "modaoperandi.com",
-      "source_url": "https://www.modaoperandi.com/women/sale"
+      "website_domain": "sperry.com",
+      "source_url": "https://www.sperry.com/collections/new-arrivals"
     },
     {
       "promo_id": "nordstrom_rack_clearance_new_markdowns_up_to_75_off",
@@ -80,63 +80,6 @@
       "source_url": null
     },
     {
-      "promo_id": "express_up_to_75_off_all_markdowns",
-      "brand": "Express",
-      "category": "clothing",
-      "title": "Up to 75% Off All Markdowns",
-      "notify_score": 83.73,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Express",
-      "notification_body": "Up to 75% Off All Markdowns",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 75%",
-      "estimated_savings": 41.25,
-      "end_date": null,
-      "website_domain": "express.com",
-      "source_url": "https://www.express.com/womens-clothing/jeans/skinny-jeans/cat1910079?title=Women’s Skinny Jeans&category=trending-search"
-    },
-    {
-      "promo_id": "ann_taylor_extra_60_off_sale",
-      "brand": "Ann Taylor",
-      "category": "retail",
-      "title": "EXTRA 60% OFF SALE",
-      "notify_score": 83.31,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Ann Taylor",
-      "notification_body": "EXTRA 60% OFF SALE",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "estimated_savings": 48.0,
-      "end_date": null,
-      "website_domain": "anntaylor.com",
-      "source_url": "https://www.anntaylor.com/sale/all-sale/cata000055/"
-    },
-    {
-      "promo_id": "michael_kors_semi_annual_sale",
-      "brand": "Michael Kors",
-      "category": "retail",
-      "title": "Semi-Annual Sale",
-      "notify_score": 83.31,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Michael Kors",
-      "notification_body": "Semi-Annual Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 132.0,
-      "end_date": null,
-      "website_domain": "michaelkors.com",
-      "source_url": "https://www.michaelkors.com/outlet/"
-    },
-    {
       "promo_id": "nordstrom_rack_new_shoe_markdowns_up_to_60_off",
       "brand": "Nordstrom Rack",
       "category": "retail",
@@ -156,23 +99,42 @@
       "source_url": null
     },
     {
-      "promo_id": "fenty_beauty_a_ap_rocky_hydra_vizor_invisible_moisturizer_broad_spectrum_spf_30_sunscreen",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "A$AP Rocky Hydra Vizor Invisible Moisturizer Broad Spectrum SPF 30 Sunscreen...",
-      "notify_score": 82.43,
+      "promo_id": "hobby_lobby_items_labeled_the_spring_shop_75_off",
+      "brand": "Hobby Lobby",
+      "category": "retail",
+      "title": "Items Labeled The Spring Shop 75% Off",
+      "notify_score": 82.89,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: A$AP Rocky Hydra Vizor Invisible Moisturizer Broad Spectrum SPF 30 Sunscreen...",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 25.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
+      "notification_title": "Hobby Lobby",
+      "notification_body": "Items Labeled The Spring Shop 75% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "75%",
+      "estimated_savings": 33.75,
+      "end_date": "2026-08-16",
+      "website_domain": "hobbylobby.com",
+      "source_url": "https://www.hobbylobby.com/weekly-ad"
+    },
+    {
+      "promo_id": "hobby_lobby_summer_toys_75_off",
+      "brand": "Hobby Lobby",
+      "category": "retail",
+      "title": "Summer Toys 75% Off",
+      "notify_score": 82.89,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Hobby Lobby",
+      "notification_body": "Summer Toys 75% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "75%",
+      "estimated_savings": 33.75,
+      "end_date": "2026-08-16",
+      "website_domain": "hobbylobby.com",
+      "source_url": "https://www.hobbylobby.com/weekly-ad"
     },
     {
       "promo_id": "cinemark_become_a_movie_fan_for_free",
@@ -213,42 +175,61 @@
       "source_url": "https://www.clubmonaco.com/collections/sale"
     },
     {
-      "promo_id": "farfetch_ss26_sale",
+      "promo_id": "farfetch_ss26_sale_up_to_70_off",
       "brand": "Farfetch",
       "category": "retail",
-      "title": "SS26 Sale",
+      "title": "SS26 Sale - Up to 70% Off",
       "notify_score": 82.1,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Farfetch",
-      "notification_body": "SS26 Sale",
+      "notification_body": "SS26 Sale - Up to 70% Off",
       "discount_type": "percentage_off",
       "discount_value": "up to 70%",
       "estimated_savings": 31.5,
       "end_date": null,
       "website_domain": "farfetch.com",
-      "source_url": "https://www.farfetch.com/shopping/women/sale/zuhair-murad/items.aspx"
+      "source_url": "https://www.farfetch.com/shopping/women/sale/lifestyle-1/items.aspx"
     },
     {
-      "promo_id": "kroger_buy_1_get_1_free_gatorade",
-      "brand": "Kroger",
-      "category": "food",
-      "title": "Buy 1 Get 1 Free Gatorade",
-      "notify_score": 81.74,
+      "promo_id": "macy_s_up_to_70_off_sale",
+      "brand": "Macy's",
+      "category": "retail",
+      "title": "Up to 70% Off Sale",
+      "notify_score": 82.1,
       "signal_groups": [
-        "personal",
+        "context",
         "value"
       ],
-      "notification_title": "Kroger",
-      "notification_body": "Free: Buy 1 Get 1 Free Gatorade",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 10.0,
-      "end_date": "2026-10-31",
-      "website_domain": "kroger.com",
-      "source_url": "https://www.kroger.com/savings/"
+      "notification_title": "Macy's",
+      "notification_body": "Up to 70% Off Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70% off",
+      "estimated_savings": 31.5,
+      "end_date": null,
+      "website_domain": "macys.com",
+      "source_url": "https://www.macys.com/shop/sale?id=3536"
+    },
+    {
+      "promo_id": "loft_70_off_so_many_styles",
+      "brand": "LOFT",
+      "category": "clothing",
+      "title": "70% off so many styles",
+      "notify_score": 81.98,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "LOFT",
+      "notification_body": "70% off so many styles",
+      "discount_type": "percentage_off",
+      "discount_value": "70%",
+      "estimated_savings": 38.5,
+      "end_date": "2027-01-11",
+      "website_domain": "loft.com",
+      "source_url": "https://www.loft.com/sale/catl000011/"
     },
     {
       "promo_id": "ikea_ikea_sale",
@@ -268,44 +249,6 @@
       "end_date": null,
       "website_domain": "ikea.com",
       "source_url": "https://www.ikea.com/us/en/offers/"
-    },
-    {
-      "promo_id": "hobby_lobby_items_labeled_the_spring_shop_75_off",
-      "brand": "Hobby Lobby",
-      "category": "retail",
-      "title": "Items Labeled The Spring Shop 75% Off",
-      "notify_score": 80.89,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Hobby Lobby",
-      "notification_body": "Items Labeled The Spring Shop 75% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "75%",
-      "estimated_savings": 33.75,
-      "end_date": "2026-08-16",
-      "website_domain": "hobbylobby.com",
-      "source_url": "https://www.hobbylobby.com/weekly-ad"
-    },
-    {
-      "promo_id": "hobby_lobby_summer_toys_75_off",
-      "brand": "Hobby Lobby",
-      "category": "retail",
-      "title": "Summer Toys 75% Off",
-      "notify_score": 80.89,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Hobby Lobby",
-      "notification_body": "Summer Toys 75% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "75%",
-      "estimated_savings": 33.75,
-      "end_date": "2026-08-16",
-      "website_domain": "hobbylobby.com",
-      "source_url": "https://www.hobbylobby.com/weekly-ad"
     },
     {
       "promo_id": "nordstrom_rack_women_s_denim_up_to_60_off",
@@ -358,7 +301,7 @@
       "notification_title": "Dillard's",
       "notification_body": "Summer Clearance Event",
       "discount_type": "percentage_off",
-      "discount_value": "30-65%",
+      "discount_value": "30-65% off",
       "estimated_savings": 29.25,
       "end_date": null,
       "website_domain": "dillards.com",
@@ -422,17 +365,17 @@
       "source_url": null
     },
     {
-      "promo_id": "proenza_schouler_seasonal_sale_up_to_65_off",
+      "promo_id": "proenza_schouler_seasonal_sale_now_up_to_65_off",
       "brand": "Proenza Schouler",
       "category": "retail",
-      "title": "Seasonal Sale Up to 65% Off",
+      "title": "Seasonal Sale Now Up To 65% Off",
       "notify_score": 80.21,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Proenza Schouler",
-      "notification_body": "Seasonal Sale Up to 65% Off",
+      "notification_body": "Seasonal Sale Now Up To 65% Off",
       "discount_type": "percentage_off",
       "discount_value": "up to 65%",
       "estimated_savings": 29.25,
@@ -441,23 +384,137 @@
       "source_url": "https://www.proenzaschouler.com/collections/sale"
     },
     {
-      "promo_id": "massimo_dutti_up_to_60_off_discover_selection",
-      "brand": "Massimo Dutti",
+      "promo_id": "shein_65_off_coupon",
+      "brand": "SHEIN",
       "category": "retail",
-      "title": "Up to 60% off Discover Selection",
+      "title": "65% OFF Coupon",
+      "notify_score": 80.21,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "SHEIN",
+      "notification_body": "65% OFF Coupon",
+      "discount_type": "percentage_off",
+      "discount_value": "65%",
+      "estimated_savings": 29.25,
+      "end_date": null,
+      "website_domain": "us.shein.com",
+      "source_url": "https://us.shein.com/flash-sale.html"
+    },
+    {
+      "promo_id": "hyperx_hyperx_gaming_gear_sale",
+      "brand": "HyperX",
+      "category": "electronics",
+      "title": "HyperX Gaming Gear Sale",
+      "notify_score": 79.36,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "HyperX",
+      "notification_body": "HyperX Gaming Gear Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 125.0,
+      "end_date": null,
+      "website_domain": "hyperx.com",
+      "source_url": "https://www.hyperx.com/products/hyperx-cloud-alpha-wireless"
+    },
+    {
+      "promo_id": "lane_bryant_final_sale_extra_60_off",
+      "brand": "Lane Bryant",
+      "category": "retail",
+      "title": "Final Sale Extra 60% Off",
+      "notify_score": 79.18,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Lane Bryant",
+      "notification_body": "Final Sale Extra 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 27.0,
+      "end_date": "2026-08-14",
+      "website_domain": "lanebryant.com",
+      "source_url": "https://www.lanebryant.com/sale"
+    },
+    {
+      "promo_id": "kroger_buy_1_get_1_free_gatorade_water_single_serve",
+      "brand": "Kroger",
+      "category": "food",
+      "title": "Buy 1 Get 1 Free Gatorade Water Single Serve",
+      "notify_score": 78.74,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Kroger",
+      "notification_body": "Free: Buy 1 Get 1 Free Gatorade Water Single Serve",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 10.0,
+      "end_date": "2026-10-31",
+      "website_domain": "kroger.com",
+      "source_url": "https://www.kroger.com/savings/"
+    },
+    {
+      "promo_id": "ihop_free_any_burrito_or_bowl",
+      "brand": "IHOP",
+      "category": "food",
+      "title": "Free Any Burrito or Bowl",
+      "notify_score": 78.3,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "IHOP",
+      "notification_body": "Free: Free Any Burrito or Bowl",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 10.0,
+      "end_date": null,
+      "website_domain": "ihop.com",
+      "source_url": "https://www.ihop.com/en/menu"
+    },
+    {
+      "promo_id": "athleta_all_sale_up_to_60_off",
+      "brand": "Athleta",
+      "category": "retail",
+      "title": "All Sale: Up to 60% Off",
       "notify_score": 78.18,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Massimo Dutti",
-      "notification_body": "Up to 60% off Discover Selection",
+      "notification_title": "Athleta",
+      "notification_body": "All Sale: Up to 60% Off",
       "discount_type": "percentage_off",
-      "discount_value": "60%",
+      "discount_value": "up to 60%",
       "estimated_savings": 27.0,
       "end_date": null,
-      "website_domain": "massimodutti.com",
-      "source_url": "https://www.massimodutti.com/us/"
+      "website_domain": "athleta.gap.com",
+      "source_url": "https://athleta.gap.com/browse/category.do?cid=1023728"
+    },
+    {
+      "promo_id": "macy_s_big_home_event_up_to_60_off",
+      "brand": "Macy's",
+      "category": "retail",
+      "title": "Big Home Event - Up to 60% Off",
+      "notify_score": 78.18,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Macy's",
+      "notification_body": "Big Home Event - Up to 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60% off",
+      "estimated_savings": 27.0,
+      "end_date": null,
+      "website_domain": "macys.com",
+      "source_url": "https://www.macys.com/shop/brands/lancome?id=28688&cm_re=sale-slideshow-get-a-free-lancome-gift-slide2"
     },
     {
       "promo_id": "nordstrom_rack_animal_print_trend_up_to_60_off",
@@ -536,61 +593,23 @@
       "source_url": null
     },
     {
-      "promo_id": "tillys_rsq_jeans_bogo_50_off",
-      "brand": "Tillys",
+      "promo_id": "michael_kors_semi_annual_sale_up_to_60_off_select_styles",
+      "brand": "Michael Kors",
       "category": "retail",
-      "title": "RSQ Jeans BOGO 50% Off",
-      "notify_score": 77.16,
+      "title": "Semi-Annual Sale - Up to 60% Off Select Styles",
+      "notify_score": 76.79,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Tillys",
-      "notification_body": "RSQ Jeans BOGO 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 45.0,
-      "end_date": null,
-      "website_domain": "tillys.com",
-      "source_url": "https://www.tillys.com/"
-    },
-    {
-      "promo_id": "tillys_women_s_shorts_bogo_50_off",
-      "brand": "Tillys",
-      "category": "retail",
-      "title": "Women's Shorts BOGO 50% Off",
-      "notify_score": 77.16,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Tillys",
-      "notification_body": "Women's Shorts BOGO 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 45.0,
-      "end_date": null,
-      "website_domain": "tillys.com",
-      "source_url": "https://www.tillys.com/"
-    },
-    {
-      "promo_id": "target_up_to_60_off_indoor_furniture",
-      "brand": "Target",
-      "category": "home",
-      "title": "Up to 60% off indoor furniture",
-      "notify_score": 76.73,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Target",
-      "notification_body": "Up to 60% off indoor furniture",
+      "notification_title": "Michael Kors",
+      "notification_body": "Semi-Annual Sale - Up to 60% Off Select Styles",
       "discount_type": "percentage_off",
       "discount_value": "up to 60%",
-      "estimated_savings": 54.0,
+      "estimated_savings": 33.0,
       "end_date": null,
-      "website_domain": "target.com",
-      "source_url": "https://www.target.com/c/top-deals/-/N-4xw74"
+      "website_domain": "michaelkors.com",
+      "source_url": "https://www.michaelkors.com/outlet/"
     },
     {
       "promo_id": "west_elm_up_to_60_off_sale_clearance",
@@ -631,23 +650,42 @@
       "source_url": "https://www.babylist.com/coupons/"
     },
     {
-      "promo_id": "coach_up_to_50_off_select_styles",
-      "brand": "Coach",
+      "promo_id": "floor_decor_free_design_services",
+      "brand": "Floor & Decor",
       "category": "retail",
-      "title": "Up to 50% off select styles",
-      "notify_score": 76.31,
+      "title": "Free Design Services",
+      "notify_score": 76.33,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Coach",
-      "notification_body": "Up to 50% off select styles",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 37.5,
+      "notification_title": "Floor & Decor",
+      "notification_body": "Free: Free Design Services",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "coach.com",
-      "source_url": "https://www.coach.com/content/promo"
+      "website_domain": "flooranddecor.com",
+      "source_url": "https://www.flooranddecor.com/explore-bonus-room"
+    },
+    {
+      "promo_id": "loft_extra_60_off_sale_styles",
+      "brand": "LOFT",
+      "category": "clothing",
+      "title": "Extra 60% off sale styles",
+      "notify_score": 75.46,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "LOFT",
+      "notification_body": "Extra 60% off sale styles",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 33.0,
+      "end_date": null,
+      "website_domain": "loft.com",
+      "source_url": "https://www.loft.com/sale/catl000011/"
     },
     {
       "promo_id": "tillys_clearance_sale",
@@ -688,74 +726,17 @@
       "source_url": "https://floydhome.com/"
     },
     {
-      "promo_id": "iherb_up_to_70_off_deals",
-      "brand": "iHerb",
-      "category": "pharmacy",
-      "title": "Up to 70% Off Deals",
-      "notify_score": 74.54,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "iHerb",
-      "notification_body": "Up to 70% Off Deals",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 21.0,
-      "end_date": "2026-09-30",
-      "website_domain": "iherb.com",
-      "source_url": "https://www.iherb.com/rewards/info/rewards-program"
-    },
-    {
-      "promo_id": "wendy_s_wendy_s_wednesday_free_6pc_nuggets_w_purchase",
-      "brand": "Wendy's",
-      "category": "food",
-      "title": "Wendy's Wednesday - Free 6pc Nuggets w/ Purchase",
-      "notify_score": 74.52,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Wendy's",
-      "notification_body": "Free: Wendy's Wednesday - Free 6pc Nuggets w/ Purchase",
-      "discount_type": "free_item",
-      "discount_value": "free 6pc nuggets",
-      "estimated_savings": 9.0,
-      "end_date": null,
-      "website_domain": "wendys.com",
-      "source_url": "https://www.wendys.com/offers-coupons"
-    },
-    {
-      "promo_id": "beis_free_personalization",
-      "brand": "BEIS",
-      "category": "accessories",
-      "title": "Free Personalization",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "BEIS",
-      "notification_body": "Free: Free Personalization",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "beistravel.com",
-      "source_url": "https://beistravel.com/collections/sale"
-    },
-    {
-      "promo_id": "epic_games_store_free_pc_game_every_week",
+      "promo_id": "epic_games_store_weekly_free_pc_game",
       "brand": "Epic Games Store",
       "category": "Gaming",
-      "title": "Free PC Game Every Week",
+      "title": "Weekly Free PC Game",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Epic Games Store",
-      "notification_body": "Free: Free PC Game Every Week",
+      "notification_body": "Free: Weekly Free PC Game",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
@@ -764,251 +745,23 @@
       "source_url": "https://www.store.epicgames.com/browse"
     },
     {
-      "promo_id": "epic_games_store_free_to_play_games_collection",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "Free‑to‑Play Games Collection",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: Free‑to‑Play Games Collection",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://www.store.epicgames.com/p/onimusha-way-of-the-sword-demo-68dcc0"
-    },
-    {
-      "promo_id": "epic_games_store_free_game_demos",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "Free Game Demos",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: Free Game Demos",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://www.store.epicgames.com/p/onimusha-way-of-the-sword-demo-68dcc0"
-    },
-    {
-      "promo_id": "fenty_beauty_a_ap_rocky_x_fenty_skin_collection_bundle",
+      "promo_id": "fenty_beauty_fenty_beauty_sale_free_items",
       "brand": "Fenty Beauty",
       "category": "beauty",
-      "title": "A$AP Rocky x Fenty Skin Collection Bundle",
+      "title": "Fenty Beauty Sale - Free Items",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Fenty Beauty",
-      "notification_body": "Free: A$AP Rocky x Fenty Skin Collection Bundle",
+      "notification_body": "Free: Fenty Beauty Sale - Free Items",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_a_ap_rocky_fenty_skin_build_your_own_lux_balm_bundle",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "A$AP Rocky × Fenty Skin Build Your Own Lux Balm Bundle",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: A$AP Rocky × Fenty Skin Build Your Own Lux Balm Bundle",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_allover_body_mist_green_raspberry",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Allover Body Mist - Green Raspberry",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Allover Body Mist - Green Raspberry",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_allover_body_mist_hey_bouquet",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Allover Body Mist - Hey, Bouquet",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Allover Body Mist - Hey, Bouquet",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_allover_body_mist_tropic_trip",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Allover Body Mist - Tropic Trip",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Allover Body Mist - Tropic Trip",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_allover_body_mist_vanilla_flowers",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Allover Body Mist - Vanilla Flowers",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Allover Body Mist - Vanilla Flowers",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_big_dripp_r_body_wash_vanilla_flowers",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Big Dripp'r Body Wash - Vanilla Flowers",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Big Dripp'r Body Wash - Vanilla Flowers",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_body_lava_body_luminizer_how_many_carats",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Body Lava Body Luminizer - How Many Carats?!",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Body Lava Body Luminizer - How Many Carats?!",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_body_lava_body_luminizer_who_needs_clothes",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Body Lava Body Luminizer - Who Needs Clothes?!",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Body Lava Body Luminizer - Who Needs Clothes?!",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_body_start_r_set_mini_body_trio",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Body Start'r Set Mini Body Trio",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Body Start'r Set Mini Body Trio",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
-    },
-    {
-      "promo_id": "fenty_beauty_brown_d_pout_lip_liner_mini_lip_plumper_duo",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Brown'd Pout Lip Liner + Mini Lip Plumper Duo",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Brown'd Pout Lip Liner + Mini Lip Plumper Duo",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/sale"
+      "source_url": "https://www.fentybeauty.com/collections/new-best-sellers"
     },
     {
       "promo_id": "inside_weather_free_swatches",
@@ -1049,25 +802,6 @@
       "source_url": "https://ro.co/"
     },
     {
-      "promo_id": "tire_rack_free_2_year_road_hazard_protection",
-      "brand": "Tire Rack",
-      "category": "auto",
-      "title": "Free 2-Year Road Hazard Protection",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Tire Rack",
-      "notification_body": "Free: Free 2-Year Road Hazard Protection",
-      "discount_type": "free_item",
-      "discount_value": "2-year road hazard protection",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "tirerack.com",
-      "source_url": "https://www.tirerack.com/specialoffers/specialoffers.jsp"
-    },
-    {
       "promo_id": "yeti_free_customization_code_for_new_account_creation",
       "brand": "YETI",
       "category": "Outdoor / Lifestyle",
@@ -1085,25 +819,6 @@
       "end_date": null,
       "website_domain": "yeti.com",
       "source_url": "https://www.yeti.com/shipping-and-returns.html"
-    },
-    {
-      "promo_id": "puma_50_off_back_to_school_sale",
-      "brand": "Puma",
-      "category": "fashion",
-      "title": "50% Off Back-to-School Sale",
-      "notify_score": 73.87,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Puma",
-      "notification_body": "50% Off Back-to-School Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 32.5,
-      "end_date": null,
-      "website_domain": "us.puma.com",
-      "source_url": "https://us.puma.com/us/en/sale"
     },
     {
       "promo_id": "a_p_c_summer_sale_50_off",
@@ -1125,23 +840,99 @@
       "source_url": "https://www.apc-us.com/collections/sale-women-view-all"
     },
     {
-      "promo_id": "lxrandco_over_50_off_retail",
-      "brand": "LXRandCo",
+      "promo_id": "macy_s_back_to_school_25_to_50_off_kid_approved_looks",
+      "brand": "Macy's",
       "category": "retail",
-      "title": "Over 50% Off Retail",
+      "title": "Back to School - 25% to 50% Off Kid‑Approved Looks",
       "notify_score": 73.67,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "LXRandCo",
-      "notification_body": "Over 50% Off Retail",
+      "notification_title": "Macy's",
+      "notification_body": "Back to School - 25% to 50% Off Kid‑Approved Looks",
+      "discount_type": "percentage_off",
+      "discount_value": "25-50% off",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "macys.com",
+      "source_url": "https://www.macys.com/shop/sale?id=3536"
+    },
+    {
+      "promo_id": "maje_sale_up_to_50_off_spring_summer_styles",
+      "brand": "Maje",
+      "category": "retail",
+      "title": "Sale - up to 50% off Spring‑Summer styles",
+      "notify_score": 73.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Maje",
+      "notification_body": "Sale - up to 50% off Spring‑Summer styles",
       "discount_type": "percentage_off",
       "discount_value": "up to 50%",
       "estimated_savings": 22.5,
       "end_date": null,
-      "website_domain": "fashionphile.com",
-      "source_url": "https://www.fashionphile.com/"
+      "website_domain": "us.maje.com",
+      "source_url": "https://www.us.maje.com/en/sale-sweaters-and-cardigans/"
+    },
+    {
+      "promo_id": "nordstrom_sale_clearance",
+      "brand": "Nordstrom",
+      "category": "retail",
+      "title": "Sale & Clearance",
+      "notify_score": 73.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Nordstrom",
+      "notification_body": "Sale & Clearance",
+      "discount_type": "percentage_off",
+      "discount_value": "Up to 50%",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "nordstrom.com",
+      "source_url": "https://www.nordstrom.com/browse/sale"
+    },
+    {
+      "promo_id": "off_white_sale_season_up_to_50_off_selected_styles",
+      "brand": "Off-White",
+      "category": "retail",
+      "title": "Sale Season: Up to 50% Off Selected Styles",
+      "notify_score": 73.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Off-White",
+      "notification_body": "Sale Season: Up to 50% Off Selected Styles",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "off---white.com",
+      "source_url": "https://www.off---white.com/en-us/new-in/?OWHP1=FW26IMAGE"
+    },
+    {
+      "promo_id": "puma_50_off_back_to_school_sale",
+      "brand": "Puma",
+      "category": "retail",
+      "title": "50% Off Back-to-School Sale",
+      "notify_score": 73.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Puma",
+      "notification_body": "50% Off Back-to-School Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "us.puma.com",
+      "source_url": "https://www.us.puma.com/us/en/puma/shop-all-promotions"
     },
     {
       "promo_id": "ted_baker_up_to_50_off_selected_styles",
@@ -1182,23 +973,23 @@
       "source_url": "https://www.babylist.com/registry/new"
     },
     {
-      "promo_id": "pep_boys_free_towing_service_limited_time",
-      "brand": "Pep Boys",
+      "promo_id": "dries_van_noten_complimentary_gift_wrapping_samples",
+      "brand": "Dries Van Noten",
       "category": "retail",
-      "title": "Free Towing Service - Limited Time",
-      "notify_score": 73.33,
+      "title": "Complimentary gift wrapping & samples",
+      "notify_score": 73.6,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Pep Boys",
-      "notification_body": "Free: Free Towing Service - Limited Time",
+      "notification_title": "Dries Van Noten",
+      "notification_body": "Free: Complimentary gift wrapping & samples",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
-      "end_date": "2026-08-31",
-      "website_domain": "pepboys.com",
-      "source_url": "https://www.pepboys.com/sale-specials-coupons"
+      "end_date": null,
+      "website_domain": "driesvannoten.com",
+      "source_url": "https://www.driesvannoten.com/"
     },
     {
       "promo_id": "the_container_store_free_design_consultation",
@@ -1220,23 +1011,118 @@
       "source_url": "https://www.containerstore.com/virtual-closet-design-service"
     },
     {
-      "promo_id": "alice_olivia_alice_olivia_sale",
-      "brand": "Alice + Olivia",
-      "category": "fashion",
-      "title": "Alice + Olivia Sale",
-      "notify_score": 72.81,
+      "promo_id": "hobby_lobby_mirrors_lamps_50_off",
+      "brand": "Hobby Lobby",
+      "category": "retail",
+      "title": "Mirrors & Lamps 50% Off",
+      "notify_score": 72.67,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Alice + Olivia",
-      "notification_body": "Alice + Olivia Sale",
+      "notification_title": "Hobby Lobby",
+      "notification_body": "Mirrors & Lamps 50% Off",
       "discount_type": "percentage_off",
-      "discount_value": "up to 60% off",
-      "estimated_savings": 39.0,
-      "end_date": null,
-      "website_domain": "aliceandolivia.com",
-      "source_url": "https://www.aliceandolivia.com/collections/best-sellers"
+      "discount_value": "50%",
+      "estimated_savings": 22.5,
+      "end_date": "2026-08-16",
+      "website_domain": "hobbylobby.com",
+      "source_url": "https://www.hobbylobby.com/weekly-ad"
+    },
+    {
+      "promo_id": "hobby_lobby_christmas_decor_50_off",
+      "brand": "Hobby Lobby",
+      "category": "retail",
+      "title": "Christmas Decor 50% Off",
+      "notify_score": 72.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Hobby Lobby",
+      "notification_body": "Christmas Decor 50% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 22.5,
+      "end_date": "2026-08-16",
+      "website_domain": "hobbylobby.com",
+      "source_url": "https://www.hobbylobby.com/weekly-ad"
+    },
+    {
+      "promo_id": "hobby_lobby_christmas_trees_50_off",
+      "brand": "Hobby Lobby",
+      "category": "retail",
+      "title": "Christmas Trees 50% Off",
+      "notify_score": 72.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Hobby Lobby",
+      "notification_body": "Christmas Trees 50% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 22.5,
+      "end_date": "2026-08-16",
+      "website_domain": "hobbylobby.com",
+      "source_url": "https://www.hobbylobby.com/weekly-ad"
+    },
+    {
+      "promo_id": "hobby_lobby_christmas_floral_50_off",
+      "brand": "Hobby Lobby",
+      "category": "retail",
+      "title": "Christmas Floral 50% Off",
+      "notify_score": 72.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Hobby Lobby",
+      "notification_body": "Christmas Floral 50% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 22.5,
+      "end_date": "2026-08-16",
+      "website_domain": "hobbylobby.com",
+      "source_url": "https://www.hobbylobby.com/weekly-ad"
+    },
+    {
+      "promo_id": "hobby_lobby_christmas_crafts_50_off",
+      "brand": "Hobby Lobby",
+      "category": "retail",
+      "title": "Christmas Crafts 50% Off",
+      "notify_score": 72.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Hobby Lobby",
+      "notification_body": "Christmas Crafts 50% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 22.5,
+      "end_date": "2026-08-16",
+      "website_domain": "hobbylobby.com",
+      "source_url": "https://www.hobbylobby.com/weekly-ad"
+    },
+    {
+      "promo_id": "hobby_lobby_christmas_party_tableware_50_off",
+      "brand": "Hobby Lobby",
+      "category": "retail",
+      "title": "Christmas Party & Tableware 50% Off",
+      "notify_score": 72.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Hobby Lobby",
+      "notification_body": "Christmas Party & Tableware 50% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 22.5,
+      "end_date": "2026-08-16",
+      "website_domain": "hobbylobby.com",
+      "source_url": "https://www.hobbylobby.com/weekly-ad"
     },
     {
       "promo_id": "west_elm_up_to_50_off",
@@ -1258,23 +1144,23 @@
       "source_url": "https://www.westelm.com/shop/sale/"
     },
     {
-      "promo_id": "article_free_interior_design_services",
-      "brand": "Article",
-      "category": "Premium Furniture",
-      "title": "Free Interior Design Services",
-      "notify_score": 71.61,
+      "promo_id": "zwilling_knives_sale_up_to_50_off",
+      "brand": "Zwilling",
+      "category": "home",
+      "title": "Knives Sale - Up to 50% Off",
+      "notify_score": 72.64,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Article",
-      "notification_body": "Free: Free Interior Design Services",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
+      "notification_title": "Zwilling",
+      "notification_body": "Knives Sale - Up to 50% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 45.0,
       "end_date": null,
-      "website_domain": "article.com",
-      "source_url": "https://www.article.com/browse/213/sale"
+      "website_domain": "zwilling.com",
+      "source_url": "https://www.zwilling.com/us/sale/"
     },
     {
       "promo_id": "tonal_first_month_free",
@@ -1296,9 +1182,28 @@
       "source_url": "https://www.tonal.com/"
     },
     {
+      "promo_id": "firestone_free_flat_tire_repair",
+      "brand": "Firestone",
+      "category": "auto_parts",
+      "title": "Free Flat Tire Repair",
+      "notify_score": 71.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Firestone",
+      "notification_body": "Free: Free Flat Tire Repair",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "firestonecompleteautocare.com",
+      "source_url": "https://www.firestonecompleteautocare.com/offers/"
+    },
+    {
       "promo_id": "firestone_free_brake_inspection",
       "brand": "Firestone",
-      "category": "other",
+      "category": "auto_parts",
       "title": "Free Brake Inspection",
       "notify_score": 71.26,
       "signal_groups": [
@@ -1308,30 +1213,30 @@
       "notification_title": "Firestone",
       "notification_body": "Free: Free Brake Inspection",
       "discount_type": "free_item",
-      "discount_value": "free brake inspection",
+      "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "firestonecompleteautocare.com",
       "source_url": "https://www.firestonecompleteautocare.com/offers/"
     },
     {
-      "promo_id": "firestone_battery_check",
-      "brand": "Firestone",
-      "category": "other",
-      "title": "Battery Check",
+      "promo_id": "pep_boys_free_brake_inspection",
+      "brand": "Pep Boys",
+      "category": "auto_parts",
+      "title": "Free Brake Inspection",
       "notify_score": 71.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Firestone",
-      "notification_body": "Free: Battery Check",
+      "notification_title": "Pep Boys",
+      "notification_body": "Free: Free Brake Inspection",
       "discount_type": "free_item",
-      "discount_value": "free battery check",
+      "discount_value": "free brake inspection",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "firestonecompleteautocare.com",
-      "source_url": "https://www.firestonecompleteautocare.com/offers/"
+      "website_domain": "pepboys.com",
+      "source_url": "https://www.pepboys.com/batteries/battery-replacement"
     },
     {
       "promo_id": "moda_operandi_moda_operandi_sale",
@@ -1372,194 +1277,42 @@
       "source_url": "https://www.mansurgavriel.com/collections/sale"
     },
     {
-      "promo_id": "hobby_lobby_mirrors_lamps_50_off",
-      "brand": "Hobby Lobby",
+      "promo_id": "lane_bryant_clearance_extra_50_off",
+      "brand": "Lane Bryant",
       "category": "retail",
-      "title": "Mirrors & Lamps 50% Off",
+      "title": "Clearance Extra 50% Off",
       "notify_score": 70.67,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Hobby Lobby",
-      "notification_body": "Mirrors & Lamps 50% Off",
+      "notification_title": "Lane Bryant",
+      "notification_body": "Clearance Extra 50% Off",
       "discount_type": "percentage_off",
       "discount_value": "50%",
       "estimated_savings": 22.5,
-      "end_date": "2026-08-16",
-      "website_domain": "hobbylobby.com",
-      "source_url": "https://www.hobbylobby.com/weekly-ad"
+      "end_date": "2026-08-20",
+      "website_domain": "lanebryant.com",
+      "source_url": "https://www.lanebryant.com/sale"
     },
     {
-      "promo_id": "hobby_lobby_christmas_decor_50_off",
-      "brand": "Hobby Lobby",
-      "category": "retail",
-      "title": "Christmas Decor 50% Off",
-      "notify_score": 70.67,
+      "promo_id": "burrow_free_swatches",
+      "brand": "Burrow",
+      "category": "home",
+      "title": "Free Swatches",
+      "notify_score": 69.04,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Hobby Lobby",
-      "notification_body": "Christmas Decor 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 22.5,
-      "end_date": "2026-08-16",
-      "website_domain": "hobbylobby.com",
-      "source_url": "https://www.hobbylobby.com/weekly-ad"
-    },
-    {
-      "promo_id": "hobby_lobby_christmas_trees_50_off",
-      "brand": "Hobby Lobby",
-      "category": "retail",
-      "title": "Christmas Trees 50% Off",
-      "notify_score": 70.67,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Hobby Lobby",
-      "notification_body": "Christmas Trees 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 22.5,
-      "end_date": "2026-08-16",
-      "website_domain": "hobbylobby.com",
-      "source_url": "https://www.hobbylobby.com/weekly-ad"
-    },
-    {
-      "promo_id": "hobby_lobby_christmas_floral_50_off",
-      "brand": "Hobby Lobby",
-      "category": "retail",
-      "title": "Christmas Floral 50% Off",
-      "notify_score": 70.67,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Hobby Lobby",
-      "notification_body": "Christmas Floral 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 22.5,
-      "end_date": "2026-08-16",
-      "website_domain": "hobbylobby.com",
-      "source_url": "https://www.hobbylobby.com/weekly-ad"
-    },
-    {
-      "promo_id": "hobby_lobby_christmas_crafts_50_off",
-      "brand": "Hobby Lobby",
-      "category": "retail",
-      "title": "Christmas Crafts 50% Off",
-      "notify_score": 70.67,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Hobby Lobby",
-      "notification_body": "Christmas Crafts 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 22.5,
-      "end_date": "2026-08-16",
-      "website_domain": "hobbylobby.com",
-      "source_url": "https://www.hobbylobby.com/weekly-ad"
-    },
-    {
-      "promo_id": "hobby_lobby_christmas_party_tableware_50_off",
-      "brand": "Hobby Lobby",
-      "category": "retail",
-      "title": "Christmas Party & Tableware 50% Off",
-      "notify_score": 70.67,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Hobby Lobby",
-      "notification_body": "Christmas Party & Tableware 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 22.5,
-      "end_date": "2026-08-16",
-      "website_domain": "hobbylobby.com",
-      "source_url": "https://www.hobbylobby.com/weekly-ad"
-    },
-    {
-      "promo_id": "tillys_women_s_swim_up_to_50_off",
-      "brand": "Tillys",
-      "category": "retail",
-      "title": "Women's Swim Up to 50% Off",
-      "notify_score": 70.67,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Tillys",
-      "notification_body": "Women's Swim Up to 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 22.5,
-      "end_date": null,
-      "website_domain": "tillys.com",
-      "source_url": "https://www.tillys.com/"
-    },
-    {
-      "promo_id": "pep_boys_free_brake_inspection",
-      "brand": "Pep Boys",
-      "category": "retail",
-      "title": "Free Brake Inspection",
-      "notify_score": 70.6,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Pep Boys",
-      "notification_body": "Free: Free Brake Inspection",
+      "notification_title": "Burrow",
+      "notification_body": "Free: Free Swatches",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "pepboys.com",
-      "source_url": "https://www.pepboys.com/batteries/battery-replacement"
-    },
-    {
-      "promo_id": "williams_sonoma_free_kitchen_design_services",
-      "brand": "Williams-Sonoma",
-      "category": "home_goods",
-      "title": "Free Kitchen Design Services",
-      "notify_score": 70.55,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Williams-Sonoma",
-      "notification_body": "Free: Free Kitchen Design Services",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "williams-sonoma.com",
-      "source_url": "https://www.williams-sonoma.com/pages/williams-sonoma/gifts/gift-cards-egift-cards/?cm_sp=accountflyout-_-default-_-giftcard"
-    },
-    {
-      "promo_id": "williams_sonoma_free_registry_services",
-      "brand": "Williams-Sonoma",
-      "category": "home_goods",
-      "title": "Free Registry Services",
-      "notify_score": 70.55,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Williams-Sonoma",
-      "notification_body": "Free: Free Registry Services",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "williams-sonoma.com",
-      "source_url": "https://www.williams-sonoma.com/pages/williams-sonoma/gifts/gift-cards-egift-cards/?cm_sp=accountflyout-_-default-_-giftcard"
+      "website_domain": "burrow.com",
+      "source_url": "https://burrow.com/sale"
     },
     {
       "promo_id": "ganni_ganni_sale",
@@ -1581,23 +1334,23 @@
       "source_url": "https://www.ganni.com/us/dresses-sale/"
     },
     {
-      "promo_id": "firestone_free_flat_tire_repair",
-      "brand": "Firestone",
-      "category": "other",
-      "title": "Free Flat Tire Repair",
-      "notify_score": 68.61,
+      "promo_id": "epic_games_store_thursday_free_mobile_game",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "Thursday Free Mobile Game",
+      "notify_score": 68.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Firestone",
-      "notification_body": "Free: Free Flat Tire Repair",
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: Thursday Free Mobile Game",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "firestonecompleteautocare.com",
-      "source_url": "https://www.firestonecompleteautocare.com/offers/"
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://www.store.epicgames.com/p/genshin-impact"
     },
     {
       "promo_id": "altuzarra_altuzarra_sale",
@@ -1655,6 +1408,45 @@
       "end_date": null,
       "website_domain": "joybird.com",
       "source_url": "https://joybird.com/sale/"
+    },
+    {
+      "promo_id": "sur_la_table_gifts_for_registering_with_us",
+      "brand": "Sur La Table",
+      "category": "home",
+      "title": "Gifts for Registering With Us",
+      "notify_score": 66.6,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Sur La Table",
+      "notification_body": "Free: Gifts for Registering With Us",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "surlatable.com",
+      "source_url": "https://www.surlatable.com/category/cat-6070003/Sale"
+    },
+    {
+      "promo_id": "kroger_50_off_an_annual_membership",
+      "brand": "Kroger",
+      "category": "other",
+      "title": "50% Off an Annual Membership",
+      "notify_score": 66.42,
+      "signal_groups": [
+        "context",
+        "personal",
+        "value"
+      ],
+      "notification_title": "Kroger",
+      "notification_body": "50% Off an Annual Membership",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 15.0,
+      "end_date": "2026-08-18",
+      "website_domain": "kroger.com",
+      "source_url": "https://www.kroger.com/savings/"
     },
     {
       "promo_id": "avis_free_car_rental_upgrade_coupon",
