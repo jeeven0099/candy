@@ -144,7 +144,7 @@ async function sendFcm(
           notification: { title, body },
           data: { promo_id: promoId },
           apns: {
-            payload: { aps: { sound: 'default', badge: 1 } },
+            payload: { aps: { sound: 'default', badge: 1, category: 'deal_candidate' } },
           },
           android: {
             priority: 'high',
