@@ -42,14 +42,20 @@ void main() async {
               .getInitialMessage()
               .timeout(const Duration(seconds: 5), onTimeout: () => null);
           if (initial != null) {
-            NotificationService.pendingPromoId = initial.data['promo_id'];
+            final promoId = initial.data['promo_id'] as String?;
+            if (promoId != null && promoId.isNotEmpty) {
+              await NotificationService.storePendingPromoId(promoId);
+            }
           }
         } catch (_) {}
 
         // Handle notification tap when app is in background
-        FirebaseMessaging.onMessageOpenedApp.listen((message) {
-          final promoId = message.data['promo_id'];
-          if (promoId != null) NotificationService.tapNotifier.value = promoId;
+        FirebaseMessaging.onMessageOpenedApp.listen((message) async {
+          final promoId = message.data['promo_id'] as String?;
+          if (promoId != null && promoId.isNotEmpty) {
+            await NotificationService.storePendingPromoId(promoId);
+            NotificationService.tapNotifier.value = promoId;
+          }
         });
       }
 
