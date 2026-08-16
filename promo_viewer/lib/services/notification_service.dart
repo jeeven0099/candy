@@ -72,6 +72,7 @@ class NotificationService {
   static const _kNotifHistory   = 'notif_history_v1';
   // Accessed by the top-level background handler so must be public
   static const kFeedbackKey     = 'notif_feedback_v1';
+  static const _kPendingPromoId = 'pending_notif_promo_id';
 
   FlutterLocalNotificationsPlugin? _plugin;
 
@@ -79,6 +80,21 @@ class NotificationService {
 
   static String? pendingPromoId;
   static final tapNotifier = ValueNotifier<String?>(null);
+
+  /// Persists a notification promo_id to SharedPreferences so it survives
+  /// app restarts and iOS memory termination.
+  static Future<void> storePendingPromoId(String id) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_kPendingPromoId, id);
+  }
+
+  /// Reads and clears the persisted promo_id. Returns null if none stored.
+  static Future<String?> consumePendingPromoId() async {
+    final prefs = await SharedPreferences.getInstance();
+    final id = prefs.getString(_kPendingPromoId);
+    if (id != null) await prefs.remove(_kPendingPromoId);
+    return id;
+  }
 
   static Future<void> init({GlobalKey<NavigatorState>? navigatorKey}) async {
     if (kIsWeb) return;
@@ -114,7 +130,9 @@ class NotificationService {
     if (launchDetails?.didNotificationLaunchApp == true) {
       final payload = launchDetails?.notificationResponse?.payload;
       if (payload != null && payload.isNotEmpty) {
-        pendingPromoId = _parsePayload(payload).id;
+        final id = _parsePayload(payload).id;
+        pendingPromoId = id;
+        await storePendingPromoId(id);
       }
     }
     final androidPlugin = svc._plugin!
@@ -169,6 +187,9 @@ class NotificationService {
           promoId, parsed.brand, parsed.category, actionId == _kInterested);
       return;
     }
+
+    // Always persist so MainScreen can navigate even if cached is empty now
+    storePendingPromoId(promoId);
 
     final matches = PromotionsService.cached.where((p) => p.id == promoId);
     if (matches.isEmpty) {

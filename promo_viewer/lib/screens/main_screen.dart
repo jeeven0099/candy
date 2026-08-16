@@ -44,9 +44,15 @@ class _MainScreenState extends State<MainScreen> {
 
   void _onLateNotificationTap() {
     final promoId = NotificationService.tapNotifier.value;
-    if (promoId == null || _all.isEmpty || !mounted) return;
-    // Clear before navigating so the same promo_id can trigger again later.
+    if (promoId == null || !mounted) return;
     NotificationService.tapNotifier.value = null;
+
+    if (_all.isEmpty) {
+      // Data not loaded yet — already persisted to SharedPreferences in
+      // storePendingPromoId; _navigatePendingNotification will pick it up
+      // when _loadData() completes.
+      return;
+    }
     final matches = _all.where((p) => p.id == promoId);
     if (matches.isEmpty) return;
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -76,39 +82,31 @@ class _MainScreenState extends State<MainScreen> {
         });
       }
       _svc.recordSessionStart();
-      _handlePendingNotification(promos);
-      // Also drain any tapNotifier value that arrived before _all was ready.
-      // The listener fires only on value changes, so if _all was empty at the
-      // time of the tap it silently returned — we catch it here.
-      final pendingTap = NotificationService.tapNotifier.value;
-      if (pendingTap != null && mounted) {
-        NotificationService.tapNotifier.value = null;
-        final m = promos.where((p) => p.id == pendingTap);
-        if (m.isNotEmpty) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (mounted) {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => DealDetailScreen(promo: m.first)),
-              );
-            }
-          });
-        }
-      }
+      await _navigatePendingNotification(promos);
     } catch (_) {
       if (mounted) setState(() { _loading = false; _error = true; });
     }
   }
 
-  void _handlePendingNotification(List<Promotion> promos) {
-    final promoId = NotificationService.pendingPromoId;
-    if (promoId == null) return;
+  Future<void> _navigatePendingNotification(List<Promotion> promos) async {
+    // SharedPreferences is the authoritative store — written by every code path
+    // that receives a notification tap (FCM terminated, FCM background, local).
+    // In-memory pendingPromoId / tapNotifier are secondary and may be stale.
+    String? promoId = await NotificationService.consumePendingPromoId();
+    promoId ??= NotificationService.pendingPromoId;
     NotificationService.pendingPromoId = null;
+    promoId ??= NotificationService.tapNotifier.value;
+    NotificationService.tapNotifier.value = null;
+
+    if (promoId == null || !mounted) return;
     final matches = promos.where((p) => p.id == promoId);
-    if (matches.isEmpty || !mounted) return;
+    if (matches.isEmpty) return;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Navigator.of(context).push(
-        MaterialPageRoute(builder: (_) => DealDetailScreen(promo: matches.first)),
-      );
+      if (mounted) {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => DealDetailScreen(promo: matches.first)),
+        );
+      }
     });
   }
 
