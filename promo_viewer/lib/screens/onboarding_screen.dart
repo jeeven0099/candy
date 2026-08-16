@@ -1,6 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' show AuthException;
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../models/user_prefs.dart';
 import '../services/auth_service.dart';
@@ -674,6 +676,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final _codeCtrl  = TextEditingController();
   bool  _obscure   = true;
 
+  StreamSubscription<AuthState>? _authSub;
+
   final _selectedCats      = <String>{};
   final _selectedBrands    = <String>{};
   final _selectedDealTypes = <String>{};
@@ -697,6 +701,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       }
       _loadRadius();
     }
+    // Rebuild password strength bar as the user types
+    _passCtrl.addListener(_onPassChanged);
+    // Handle OAuth sign-ins (Google / Apple) which complete asynchronously
+    _authSub = SupabaseService.client.auth.onAuthStateChange.listen(_onAuthStateChange);
   }
 
   Future<void> _loadRadius() async {
@@ -707,11 +715,44 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   void dispose() {
+    _authSub?.cancel();
+    _passCtrl.removeListener(_onPassChanged);
     _pageCtrl.dispose();
     _emailCtrl.dispose();
     _passCtrl.dispose();
     _codeCtrl.dispose();
     super.dispose();
+  }
+
+  void _onPassChanged() {
+    if (!_isSignIn && mounted) setState(() {});
+  }
+
+  // Handles the async callback after Google / Apple OAuth completes.
+  // Email sign-in/sign-up is handled synchronously by _submit() instead.
+  Future<void> _onAuthStateChange(AuthState state) async {
+    if (state.event != AuthChangeEvent.signedIn) return;
+    final session = state.session;
+    if (session == null || !mounted) return;
+    final provider = session.user.appMetadata['provider'] as String?;
+    if (provider == 'email') return; // handled by _submit()
+
+    setState(() => _loading = true);
+    try {
+      await AuthService.ensureUserRow();
+      await UserPrefsService().load();
+      final uid = SupabaseService.currentUserId;
+      if (uid != null) await SavedDealsService().loadForUser(uid);
+      if (!mounted) return;
+      final prefs = UserPrefsService().prefs;
+      if (prefs != null && prefs.favoriteCategories.isNotEmpty) {
+        _launchApp();
+      } else {
+        _goToPage(1);
+      }
+    } catch (_) {
+      if (mounted) setState(() { _loading = false; _error = 'Sign in failed. Please try again.'; });
+    }
   }
 
   static const _kPageNames = ['auth', 'categories', 'brands', 'deal_types', 'radius'];
@@ -733,6 +774,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     if (email.isEmpty || pass.isEmpty) {
       setState(() => _error = 'Please fill in all fields.');
       return;
+    }
+    if (!_isSignIn) {
+      if (pass.length < 8) {
+        setState(() => _error = 'Password must be at least 8 characters.');
+        return;
+      }
+      final hasLetter = pass.contains(RegExp(r'[a-zA-Z]'));
+      final hasDigit  = pass.contains(RegExp(r'[0-9]'));
+      if (!hasLetter || !hasDigit) {
+        setState(() => _error = 'Password must contain both letters and numbers.');
+        return;
+      }
     }
     if (!_isSignIn && _codeCtrl.text.trim().isEmpty) {
       setState(() => _error = 'Please enter your invite code.');
@@ -896,7 +949,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               hint: 'you@example.com', inputType: TextInputType.emailAddress),
           const SizedBox(height: 14),
           _Field(
-            controller: _passCtrl, label: 'Password', hint: '6+ characters',
+            controller: _passCtrl,
+            label: 'Password',
+            hint: _isSignIn ? 'Your password' : '8+ chars, letters & numbers',
             obscure: _obscure,
             suffix: IconButton(
               icon: Icon(_obscure ? Icons.visibility_off : Icons.visibility,
@@ -905,6 +960,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
           ),
           if (!_isSignIn) ...[
+            const SizedBox(height: 8),
+            _PasswordStrengthBar(password: _passCtrl.text),
             const SizedBox(height: 14),
             _Field(controller: _codeCtrl, label: 'Invite code',
                 hint: 'e.g. CANDY2025',
@@ -917,6 +974,37 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           const SizedBox(height: 24),
           _PrimaryButton(label: _isSignIn ? 'Sign In' : 'Join Beta',
               loading: _loading, onTap: _submit),
+          const SizedBox(height: 20),
+          _OAuthDivider(),
+          const SizedBox(height: 16),
+          _OAuthButton(
+            icon: _googleIcon(),
+            label: 'Continue with Google',
+            onTap: _loading ? null : () async {
+              setState(() { _loading = true; _error = null; });
+              try {
+                await AuthService.signInWithGoogle();
+              } catch (_) {
+                if (mounted) setState(() { _loading = false; _error = 'Google sign-in failed.'; });
+              }
+              // Navigation handled by _onAuthStateChange when the browser callback fires
+              if (mounted) setState(() => _loading = false);
+            },
+          ),
+          const SizedBox(height: 10),
+          _OAuthButton(
+            icon: const Icon(Icons.apple, size: 20, color: Colors.black87),
+            label: 'Continue with Apple',
+            onTap: _loading ? null : () async {
+              setState(() { _loading = true; _error = null; });
+              try {
+                await AuthService.signInWithApple();
+              } catch (_) {
+                if (mounted) setState(() { _loading = false; _error = 'Apple sign-in failed.'; });
+              }
+              if (mounted) setState(() => _loading = false);
+            },
+          ),
           const SizedBox(height: 18),
           Center(child: TextButton(
             onPressed: () => setState(() { _isSignIn = !_isSignIn; _error = null; }),
@@ -1787,4 +1875,149 @@ class _Field extends StatelessWidget {
       ),
     ]);
   }
+}
+
+// ── Password strength bar ─────────────────────────────────────────────────────
+
+enum _PwStrength { empty, short, noMix, good }
+
+_PwStrength _evalStrength(String pw) {
+  if (pw.isEmpty) return _PwStrength.empty;
+  if (pw.length < 8)  return _PwStrength.short;
+  final hasLetter = pw.contains(RegExp(r'[a-zA-Z]'));
+  final hasDigit  = pw.contains(RegExp(r'[0-9]'));
+  if (!hasLetter || !hasDigit) return _PwStrength.noMix;
+  return _PwStrength.good;
+}
+
+class _PasswordStrengthBar extends StatelessWidget {
+  final String password;
+  const _PasswordStrengthBar({required this.password});
+
+  @override
+  Widget build(BuildContext context) {
+    final strength = _evalStrength(password);
+    if (strength == _PwStrength.empty) return const SizedBox.shrink();
+
+    final (filled, color, label) = switch (strength) {
+      _PwStrength.short  => (1, const Color(0xFFE53935), 'Too short'),
+      _PwStrength.noMix  => (2, const Color(0xFFFB8C00), 'Add numbers or letters'),
+      _PwStrength.good   => (3, const Color(0xFF2E7D32), 'Strong'),
+      _PwStrength.empty  => (0, Colors.transparent, ''),
+    };
+
+    return Row(
+      children: [
+        for (int i = 0; i < 3; i++) ...[
+          Expanded(
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              height: 4,
+              decoration: BoxDecoration(
+                color: i < filled ? color : Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+          ),
+          if (i < 2) const SizedBox(width: 4),
+        ],
+        const SizedBox(width: 10),
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 150),
+          child: Text(
+            label,
+            key: ValueKey(label),
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              color: color,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+// ── OAuth widgets ─────────────────────────────────────────────────────────────
+
+class _OAuthDivider extends StatelessWidget {
+  const _OAuthDivider();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(child: Divider(color: Colors.grey.shade300, height: 1)),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14),
+          child: Text(
+            'or',
+            style: TextStyle(
+              fontSize: 13,
+              color: Colors.grey.shade400,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+        Expanded(child: Divider(color: Colors.grey.shade300, height: 1)),
+      ],
+    );
+  }
+}
+
+class _OAuthButton extends StatelessWidget {
+  final Widget icon;
+  final String label;
+  final VoidCallback? onTap;
+  const _OAuthButton({required this.icon, required this.label, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 50,
+      child: OutlinedButton(
+        onPressed: onTap,
+        style: OutlinedButton.styleFrom(
+          side: BorderSide(color: Colors.grey.shade300),
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+          foregroundColor: Candy.chocolate,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            icon,
+            const SizedBox(width: 10),
+            Text(
+              label,
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+                color: Candy.chocolate,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Widget _googleIcon() {
+  // Four-color "G" approximating the Google logo mark
+  return Container(
+    width: 20,
+    height: 20,
+    alignment: Alignment.center,
+    child: const Text(
+      'G',
+      style: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        color: Color(0xFF4285F4), // Google blue
+      ),
+    ),
+  );
 }

@@ -92,6 +92,38 @@ class AuthService {
     await _sb.auth.signOut();
   }
 
+  // Deep link scheme registered in iOS Info.plist / Android manifest.
+  // Must match the redirect URL configured in Supabase dashboard → Auth → URL Config.
+  static const _redirectUrl = 'com.jeeven.candy://login-callback/';
+
+  static Future<void> signInWithGoogle() async {
+    await _sb.auth.signInWithOAuth(
+      OAuthProvider.google,
+      redirectTo: _redirectUrl,
+    );
+  }
+
+  static Future<void> signInWithApple() async {
+    await _sb.auth.signInWithOAuth(
+      OAuthProvider.apple,
+      redirectTo: _redirectUrl,
+    );
+  }
+
+  /// Upserts the users table row after OAuth sign-in (non-fatal if it fails).
+  static Future<void> ensureUserRow() async {
+    final user = _sb.auth.currentUser;
+    if (user == null) return;
+    try {
+      await _sb.from('users').upsert({
+        'auth_id':      user.id,
+        'email':        user.email,
+        'app_platform': _appPlatform(),
+      }, onConflict: 'auth_id');
+    } catch (_) {}
+    PushTokenService.register();
+  }
+
   /// Human-readable message from a Supabase AuthException.
   static String friendlyError(AuthException e) {
     final msg = e.message.toLowerCase();
@@ -99,7 +131,9 @@ class AuthService {
     if (msg.contains('already registered') || msg.contains('already exists')) {
       return 'An account with this email already exists.';
     }
-    if (msg.contains('password')) return 'Password must be at least 6 characters.';
+    if (msg.contains('password')) {
+      return 'Password must be at least 8 characters, with letters and numbers.';
+    }
     if (msg.contains('email')) return 'Please enter a valid email address.';
     return e.message;
   }

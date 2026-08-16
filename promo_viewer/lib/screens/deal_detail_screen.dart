@@ -309,84 +309,239 @@ class _SavingsBreakdownCard extends StatelessWidget {
   final Promotion promo;
   const _SavingsBreakdownCard({required this.promo});
 
+  static String _contextNote(Promotion p) {
+    return switch (p.discountType) {
+      'free_item'      => 'Free item added to your order',
+      'free_shipping'  => 'Shipping cost eliminated from your order',
+      'points'         => 'Earned toward future rewards',
+      'cashback'       => 'Credited back after purchase',
+      _                => 'Estimated vs. typical full price',
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     final savings = promo.estimatedSavings!;
     final pct = promo.effectiveDiscountPct > 0 ? promo.effectiveDiscountPct / 100 : null;
     final rawUsual = pct != null && pct < 1.0 ? savings / pct : null;
-    // Suppress price comparison when the implied "usual price" is implausibly high
-    // (e.g. a 1.5% reward deal saving $10 would show $667 — don't show that).
+    // Suppress price comparison when implied "usual" would be implausibly high.
     final usualPrice = (rawUsual != null && rawUsual <= 500) ? rawUsual : null;
     final todayPrice = usualPrice != null ? usualPrice - savings : null;
+    final discountPct = promo.effectiveDiscountPct > 0
+        ? promo.effectiveDiscountPct.round()
+        : null;
+
+    // Fraction of the original price the user actually pays (for the visual bar).
+    final paidFraction = pct != null ? (1.0 - pct).clamp(0.0, 1.0) : null;
 
     return _Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Savings breakdown',
-            style: TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w700,
-              color: Candy.muted,
-              letterSpacing: 0.4,
-            ),
+          // Hero: what you actually spend (when known), otherwise fall back to savings
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      todayPrice != null ? 'YOU PAY' : 'YOU SAVE',
+                      style: const TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.8,
+                        color: Candy.muted,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      todayPrice != null
+                          ? '~\$${todayPrice.round()}'
+                          : '~\$${savings.round()}',
+                      style: TextStyle(
+                        fontSize: 36,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: -1.5,
+                        height: 1.0,
+                        color: todayPrice != null ? Candy.chocolate : Candy.mint,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              if (discountPct != null)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Candy.mint.withValues(alpha: 0.10),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Candy.mint.withValues(alpha: 0.25)),
+                  ),
+                  child: Text(
+                    '$discountPct%\nOFF',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w800,
+                      color: Candy.mint,
+                      height: 1.15,
+                      letterSpacing: -0.5,
+                    ),
+                  ),
+                ),
+            ],
           ),
-          const SizedBox(height: 12),
-          if (usualPrice != null)
-            _SboxRow(
-              label: 'Usually',
-              value: '~\$${usualPrice.round()}',
-              strikethrough: true,
+
+          // Price comparison (when we have enough data for before/after)
+          if (usualPrice != null && todayPrice != null && paidFraction != null) ...[
+            const SizedBox(height: 16),
+            _SpendBar(paidFraction: paidFraction, savingsAmount: savings.round()),
+            const SizedBox(height: 14),
+            IntrinsicHeight(
+              child: Row(
+                children: [
+                  Expanded(
+                    child: _PriceColumn(
+                      label: 'Regular price',
+                      price: '~\$${usualPrice.round()}',
+                      strikethrough: true,
+                      color: Candy.muted,
+                    ),
+                  ),
+                  const VerticalDivider(
+                    width: 1,
+                    thickness: 1,
+                    color: Candy.border,
+                    indent: 4,
+                    endIndent: 4,
+                  ),
+                  Expanded(
+                    child: _PriceColumn(
+                      label: 'You save',
+                      price: '~\$${savings.round()}',
+                      strikethrough: false,
+                      color: Candy.mint,
+                      bold: true,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          if (todayPrice != null)
-            _SboxRow(label: 'Today', value: '~\$${todayPrice.round()}'),
-          _SboxRow(
-            label: 'You save',
-            value: '~\$${savings.round()}',
-            highlight: true,
-          ),
+          ] else ...[
+            const SizedBox(height: 10),
+            Text(
+              _contextNote(promo),
+              style: const TextStyle(
+                fontSize: 13,
+                color: Candy.muted,
+                height: 1.4,
+              ),
+            ),
+          ],
         ],
       ),
     );
   }
 }
 
-class _SboxRow extends StatelessWidget {
+class _SpendBar extends StatelessWidget {
+  /// [paidFraction] is the portion of regular price the user pays (0–1).
+  /// [savingsAmount] is the dollar savings shown in the label.
+  final double paidFraction;
+  final int savingsAmount;
+  const _SpendBar({required this.paidFraction, required this.savingsAmount});
+
+  @override
+  Widget build(BuildContext context) {
+    final paidPct  = (paidFraction * 100).round().clamp(1, 99);
+    final savedPct = (100 - paidPct).clamp(1, 99);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(6),
+          child: Row(
+            children: [
+              // Paid portion — chocolate/dark
+              Expanded(
+                flex: paidPct,
+                child: Container(height: 8, color: Candy.chocolate.withValues(alpha: 0.18)),
+              ),
+              // Saved portion — mint/green
+              Expanded(
+                flex: savedPct,
+                child: Container(height: 8, color: Candy.mint),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 5),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              width: 8,
+              height: 8,
+              decoration: const BoxDecoration(color: Candy.mint, shape: BoxShape.circle),
+            ),
+            const SizedBox(width: 5),
+            Text(
+              '\$$savingsAmount saved',
+              style: const TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: Candy.mint,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class _PriceColumn extends StatelessWidget {
   final String label;
-  final String value;
+  final String price;
   final bool strikethrough;
-  final bool highlight;
-  const _SboxRow({
+  final Color color;
+  final bool bold;
+  const _PriceColumn({
     required this.label,
-    required this.value,
-    this.strikethrough = false,
-    this.highlight = false,
+    required this.price,
+    required this.strikethrough,
+    required this.color,
+    this.bold = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            label,
-            style: const TextStyle(fontSize: 15, color: Candy.muted),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 11,
+            fontWeight: FontWeight.w500,
+            color: Candy.muted,
           ),
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: highlight ? 18 : 15,
-              fontWeight: highlight ? FontWeight.w800 : FontWeight.w500,
-              letterSpacing: highlight ? -0.5 : 0,
-              color: highlight ? Candy.mint : (strikethrough ? Candy.muted : Candy.chocolate),
-              decoration: strikethrough ? TextDecoration.lineThrough : null,
-            ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          price,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: bold ? FontWeight.w700 : FontWeight.w400,
+            color: color,
+            decoration: strikethrough ? TextDecoration.lineThrough : null,
+            decorationColor: Candy.muted,
+            decorationThickness: 2,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
