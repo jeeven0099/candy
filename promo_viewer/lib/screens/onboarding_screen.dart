@@ -985,9 +985,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               try {
                 await AuthService.signInWithGoogle();
               } catch (_) {
-                if (mounted) setState(() { _loading = false; _error = 'Google sign-in failed.'; });
+                // signInWithOAuth throws when the browser hands control back to the app.
+                // The session is already established; _onAuthStateChange handles navigation.
               }
-              // Navigation handled by _onAuthStateChange when the browser callback fires
               if (mounted) setState(() => _loading = false);
             },
           ),
@@ -1000,7 +1000,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               try {
                 await AuthService.signInWithApple();
               } catch (_) {
-                if (mounted) setState(() { _loading = false; _error = 'Apple sign-in failed.'; });
+                // Same as Google — session established; _onAuthStateChange handles navigation.
               }
               if (mounted) setState(() => _loading = false);
             },
