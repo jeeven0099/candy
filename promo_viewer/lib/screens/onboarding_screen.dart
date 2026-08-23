@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../models/user_prefs.dart';
 import '../services/auth_service.dart';
@@ -770,6 +771,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     } else {
       _goToPage(1);
     }
+    // Dismiss SFSafariViewController so the user sees the new screen immediately.
+    try { await closeInAppWebView(); } catch (_) {}
   }
 
   static const _kPageNames = ['auth', 'categories', 'brands', 'deal_types', 'radius'];
