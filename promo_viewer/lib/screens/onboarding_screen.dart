@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../auth_debug.dart';
 import '../models/user_prefs.dart';
 import '../services/auth_service.dart';
 import '../services/interaction_service.dart';
@@ -718,11 +719,11 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    AuthDebug.add('lifecycle: $state');
     if (state != AppLifecycleState.resumed) return;
-    // Fallback: if the OAuth stream event was missed, check the session directly
-    // when the app comes back to foreground from the OAuth browser.
     Future.delayed(const Duration(milliseconds: 600), () {
       final session = SupabaseService.client.auth.currentSession;
+      AuthDebug.add('lifecycle-resumed: session=${session != null}');
       if (session == null || !mounted) return;
       final provider = session.user.appMetadata['provider'] as String?;
       if (provider == null || provider == 'email') return;
@@ -749,30 +750,41 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   // Handles the async callback after Google / Apple OAuth completes.
   // Email sign-in/sign-up is handled synchronously by _submit() instead.
   Future<void> _onAuthStateChange(AuthState state) async {
+    AuthDebug.add('authEvent: ${state.event}');
     if (state.event != AuthChangeEvent.signedIn) return;
     final session = state.session;
+    AuthDebug.add('session=${session != null}, mounted=$mounted');
     if (session == null || !mounted) return;
     final provider = session.user.appMetadata['provider'] as String?;
+    AuthDebug.add('provider=$provider');
     if (provider == 'email') return; // handled by _submit()
 
     setState(() => _loading = true);
-    // Best-effort: load data but don't block navigation if queries fail right
-    // after OAuth (session may not be fully propagated to the HTTP client yet).
     try {
       await AuthService.ensureUserRow();
       await UserPrefsService().load();
       final uid = SupabaseService.currentUserId;
       if (uid != null) await SavedDealsService().loadForUser(uid);
-    } catch (_) {}
+      AuthDebug.add('data load: OK');
+    } catch (e) {
+      AuthDebug.add('data load: ERR ${e.toString().length > 30 ? e.toString().substring(0, 30) : e}');
+    }
     if (!mounted) return;
     final prefs = UserPrefsService().prefs;
-    if (prefs != null && prefs.favoriteCategories.isNotEmpty) {
+    final hasPrefs = prefs != null && prefs.favoriteCategories.isNotEmpty;
+    AuthDebug.add('hasPrefs=$hasPrefs → ${hasPrefs ? "launchApp" : "goToPage1"}');
+    if (hasPrefs) {
       _launchApp();
     } else {
       _goToPage(1);
     }
     // Dismiss SFSafariViewController so the user sees the new screen immediately.
-    try { await closeInAppWebView(); } catch (_) {}
+    try {
+      await closeInAppWebView();
+      AuthDebug.add('closeWebView: OK');
+    } catch (e) {
+      AuthDebug.add('closeWebView: ERR $e');
+    }
   }
 
   static const _kPageNames = ['auth', 'categories', 'brands', 'deal_types', 'radius'];
@@ -1001,12 +1013,13 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             icon: _googleIcon(),
             label: 'Continue with Google',
             onTap: _loading ? null : () async {
+              AuthDebug.add('google: tapped');
               setState(() { _loading = true; _error = null; });
               try {
                 await AuthService.signInWithGoogle();
-              } catch (_) {
-                // signInWithOAuth throws when the browser hands control back to the app.
-                // The session is already established; _onAuthStateChange handles navigation.
+                AuthDebug.add('google: signInWithOAuth returned');
+              } catch (e) {
+                AuthDebug.add('google: catch ${e.toString().length > 30 ? e.toString().substring(0, 30) : e}');
               }
               if (mounted) setState(() => _loading = false);
             },
@@ -1034,6 +1047,37 @@ class _OnboardingScreenState extends State<OnboardingScreen>
               style: const TextStyle(color: Candy.raspberry, fontWeight: FontWeight.w500),
             ),
           )),
+          // ── Debug log panel (temporary — remove after OAuth is confirmed working) ──
+          ValueListenableBuilder<List<String>>(
+            valueListenable: AuthDebug.log,
+            builder: (_, entries, __) {
+              if (entries.isEmpty) return const SizedBox.shrink();
+              return Container(
+                margin: const EdgeInsets.only(top: 12),
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF0D1117),
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: const Color(0xFF30363D)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('auth log', style: TextStyle(color: Color(0xFF8B949E), fontSize: 9, letterSpacing: 1)),
+                    const SizedBox(height: 4),
+                    ...entries.map((e) => Text(e,
+                      style: const TextStyle(
+                        color: Color(0xFF3FB950),
+                        fontSize: 10,
+                        fontFamily: 'monospace',
+                        height: 1.4,
+                      ),
+                    )),
+                  ],
+                ),
+              );
+            },
+          ),
         ]),
       ),
     );
