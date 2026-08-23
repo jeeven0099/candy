@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'auth_debug.dart';
 import 'screens/splash_screen.dart';
 import 'services/notification_service.dart';
 import 'theme/candy_colors.dart';
@@ -116,18 +115,11 @@ class PromoViewerApp extends StatelessWidget {
       onUnknownRoute: (settings) {
         final uri = Uri.tryParse(settings.name ?? '');
         if (uri != null && uri.queryParameters.containsKey('code')) {
-          AuthDebug.add('onUnknownRoute: code found');
           () async {
             try {
               await Supabase.instance.client.auth.getSessionFromUrl(uri);
-              AuthDebug.add('getSessionFromUrl: OK');
-            } catch (e) {
-              AuthDebug.add('getSessionFromUrl: ERR ${e.toString().length > 40 ? e.toString().substring(0, 40) : e}');
-            }
+            } catch (_) {}
           }();
-        } else {
-          final name = settings.name ?? '';
-          AuthDebug.add('onUnknownRoute: ${name.length > 50 ? name.substring(0, 50) : name}');
         }
         return PageRouteBuilder<void>(
           settings: settings,
