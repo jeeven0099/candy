@@ -11,6 +11,6 @@ class AuthDebug {
         '${t.hour.toString().padLeft(2, '0')}:'
         '${t.minute.toString().padLeft(2, '0')}:'
         '${t.second.toString().padLeft(2, '0')}';
-    log.value = ['$ts  $msg', ...log.value].take(12).toList();
+    log.value = ['$ts  $msg', ...log.value].take(20).toList();
   }
 }

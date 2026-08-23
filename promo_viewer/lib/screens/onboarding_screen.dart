@@ -680,6 +680,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   bool  _obscure   = true;
 
   StreamSubscription<AuthState>? _authSub;
+  bool _oauthSignInInitiated = false;
 
   final _selectedCats      = <String>{};
   final _selectedBrands    = <String>{};
@@ -756,8 +757,11 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     AuthDebug.add('session=${session != null}, mounted=$mounted');
     if (session == null || !mounted) return;
     final provider = session.user.appMetadata['provider'] as String?;
-    AuthDebug.add('provider=$provider');
-    if (provider == 'email') return; // handled by _submit()
+    AuthDebug.add('provider=$provider, oauth=$_oauthSignInInitiated');
+    // Skip email-provider events UNLESS we know we initiated an OAuth sign-in
+    // (e.g. user has an email account — Google sign-in links to it, returns provider='email').
+    if (provider == 'email' && !_oauthSignInInitiated) return;
+    _oauthSignInInitiated = false; // consume the flag
 
     setState(() => _loading = true);
     try {
@@ -1014,6 +1018,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             label: 'Continue with Google',
             onTap: _loading ? null : () async {
               AuthDebug.add('google: tapped');
+              _oauthSignInInitiated = true;
               setState(() { _loading = true; _error = null; });
               try {
                 await AuthService.signInWithGoogle();
@@ -1029,6 +1034,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             icon: const Icon(Icons.apple, size: 20, color: Colors.black87),
             label: 'Continue with Apple',
             onTap: _loading ? null : () async {
+              _oauthSignInInitiated = true;
               setState(() { _loading = true; _error = null; });
               try {
                 await AuthService.signInWithApple();
