@@ -663,7 +663,8 @@ class OnboardingScreen extends StatefulWidget {
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
+class _OnboardingScreenState extends State<OnboardingScreen>
+    with WidgetsBindingObserver {
   // Page 0: Auth  1: Categories  2: Brands  3: Deal types  4: Radius
   late final PageController _pageCtrl;
 
@@ -705,6 +706,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     _passCtrl.addListener(_onPassChanged);
     // Handle OAuth sign-ins (Google / Apple) which complete asynchronously
     _authSub = SupabaseService.client.auth.onAuthStateChange.listen(_onAuthStateChange);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   Future<void> _loadRadius() async {
@@ -714,7 +716,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) return;
+    // Fallback: if the OAuth stream event was missed, check the session directly
+    // when the app comes back to foreground from the OAuth browser.
+    Future.delayed(const Duration(milliseconds: 600), () {
+      final session = SupabaseService.client.auth.currentSession;
+      if (session == null || !mounted) return;
+      final provider = session.user.appMetadata['provider'] as String?;
+      if (provider == null || provider == 'email') return;
+      _onAuthStateChange(AuthState(AuthChangeEvent.signedIn, session));
+    });
+  }
+
+  @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _authSub?.cancel();
     _passCtrl.removeListener(_onPassChanged);
     _pageCtrl.dispose();
