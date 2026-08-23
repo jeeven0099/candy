@@ -1,8 +1,27 @@
 {
-  "generated_at": "2026-08-20T09:19:45.295401+00:00",
+  "generated_at": "2026-08-23T08:11:58.616866+00:00",
   "threshold": 65.0,
-  "total": 63,
+  "total": 41,
   "candidates": [
+    {
+      "promo_id": "shake_shack_chicken_sundays_free_chicken_shack_with_10_minimum",
+      "brand": "Shake Shack",
+      "category": "food",
+      "title": "Chicken Sundays: Free Chicken Shack with $10 Minimum",
+      "notify_score": 94.59,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Shake Shack",
+      "notification_body": "Free: Chicken Sundays: Free Chicken Shack with $10 Minimum",
+      "discount_type": "free_item",
+      "discount_value": "free Chicken Shack or Chicken Shack Lettuce Wrap",
+      "estimated_savings": 13.0,
+      "end_date": "2026-12-27",
+      "website_domain": "shakeshack.com",
+      "source_url": "https://www.shakeshack.com/privacy-settings/accept"
+    },
     {
       "promo_id": "anine_bing_complimentary_tote_gift",
       "brand": "Anine Bing",
@@ -21,44 +40,6 @@
       "end_date": null,
       "website_domain": "aninebing.com",
       "source_url": "https://www.aninebing.com/collections/new-in"
-    },
-    {
-      "promo_id": "asos_asos_women_s_sale_up_to_80_off",
-      "brand": "ASOS",
-      "category": "retail",
-      "title": "ASOS Women's Sale - up to 80% off",
-      "notify_score": 85.58,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "ASOS",
-      "notification_body": "ASOS Women's Sale - up to 80% off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 80%",
-      "estimated_savings": 36.0,
-      "end_date": null,
-      "website_domain": "asos.com",
-      "source_url": "https://www.asos.com/us/women/sale/dresses/cat/?cid=5235"
-    },
-    {
-      "promo_id": "fashion_nova_60_80_discount_on_sale_items",
-      "brand": "Fashion Nova",
-      "category": "retail",
-      "title": "60-80% Discount on Sale Items",
-      "notify_score": 85.58,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fashion Nova",
-      "notification_body": "60-80% Discount on Sale Items",
-      "discount_type": "percentage_off",
-      "discount_value": "60-80%",
-      "estimated_savings": 36.0,
-      "end_date": null,
-      "website_domain": "fashionnova.com",
-      "source_url": "https://www.fashionnova.com/collections/accessories"
     },
     {
       "promo_id": "carter_s_flash_sale_up_to_75_off_while_sizes_last",
@@ -99,57 +80,19 @@
       "source_url": "https://www.skinceuticals.com/skincare/skincare-sets/anti-aging-starter-set/3606000666863.html"
     },
     {
-      "promo_id": "cinemark_become_a_movie_fan_for_free",
-      "brand": "Cinemark",
-      "category": "entertainment",
-      "title": "Become a Movie Fan for Free",
-      "notify_score": 82.34,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Cinemark",
-      "notification_body": "Free: Become a Movie Fan for Free",
-      "discount_type": "free_item",
-      "discount_value": "free membership",
-      "estimated_savings": 13.0,
-      "end_date": null,
-      "website_domain": "cinemark.com",
-      "source_url": "https://www.cinemark.com/movie-rewards-info/"
-    },
-    {
-      "promo_id": "club_monaco_shop_all_sale_up_to_70_off",
-      "brand": "Club Monaco",
-      "category": "retail",
-      "title": "Shop All Sale: Up to 70% OFF",
-      "notify_score": 82.1,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Club Monaco",
-      "notification_body": "Shop All Sale: Up to 70% OFF",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70% OFF",
-      "estimated_savings": 31.5,
-      "end_date": null,
-      "website_domain": "clubmonaco.com",
-      "source_url": "https://www.clubmonaco.com/collections/sale"
-    },
-    {
-      "promo_id": "kroger_buy_1_get_1_free_gatorade_single_serve",
+      "promo_id": "kroger_buy_1_get_1_free_gatorade_water_single_serve",
       "brand": "Kroger",
       "category": "food",
-      "title": "Buy 1 Get 1 Free Gatorade Single Serve",
+      "title": "Buy 1 Get 1 Free Gatorade Water Single Serve",
       "notify_score": 81.74,
       "signal_groups": [
         "personal",
         "value"
       ],
       "notification_title": "Kroger",
-      "notification_body": "Free: Buy 1 Get 1 Free Gatorade Single Serve",
+      "notification_body": "Free: Buy 1 Get 1 Free Gatorade Water Single Serve",
       "discount_type": "free_item",
-      "discount_value": "free Gatorade single serve",
+      "discount_value": "free",
       "estimated_savings": 10.0,
       "end_date": "2026-10-31",
       "website_domain": "kroger.com",
@@ -175,82 +118,6 @@
       "source_url": "https://www.ikea.com/us/en/offers/"
     },
     {
-      "promo_id": "einstein_bros_bagels_unlimited_free_coffee_one_visit",
-      "brand": "Einstein Bros Bagels",
-      "category": "coffee",
-      "title": "Unlimited Free Coffee (One Visit)",
-      "notify_score": 80.59,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Einstein Bros Bagels",
-      "notification_body": "Free: Unlimited Free Coffee (One Visit)",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 5.5,
-      "end_date": null,
-      "website_domain": "einsteinbros.com",
-      "source_url": "https://www.einsteinbros.com/rewards/"
-    },
-    {
-      "promo_id": "lulu_and_georgia_summer_sale_additional_20_off",
-      "brand": "Lulu and Georgia",
-      "category": "home",
-      "title": "Summer Sale - additional 20% off",
-      "notify_score": 80.29,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Lulu and Georgia",
-      "notification_body": "Summer Sale - additional 20% off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70% off",
-      "estimated_savings": 63.0,
-      "end_date": null,
-      "website_domain": "luluandgeorgia.com",
-      "source_url": "https://www.luluandgeorgia.com/collections/sale"
-    },
-    {
-      "promo_id": "missoma_up_to_65_off_sale_extra_10_off",
-      "brand": "Missoma",
-      "category": "retail",
-      "title": "Up to 65% Off Sale (Extra 10% Off)",
-      "notify_score": 80.21,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Missoma",
-      "notification_body": "Up to 65% Off Sale (Extra 10% Off)",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 65%",
-      "estimated_savings": 29.25,
-      "end_date": null,
-      "website_domain": "us.missoma.com",
-      "source_url": "https://www.us.missoma.com/pages/returns"
-    },
-    {
-      "promo_id": "macy_s_labor_day_home_sale_up_to_65_off",
-      "brand": "Macy's",
-      "category": "home",
-      "title": "Labor Day Home Sale up to 65% off",
-      "notify_score": 78.57,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Macy's",
-      "notification_body": "Labor Day Home Sale up to 65% off",
-      "discount_type": "percentage_off",
-      "discount_value": "65%",
-      "estimated_savings": 58.5,
-      "end_date": null,
-      "website_domain": "macys.com",
-      "source_url": "https://www.macys.com/shop/sale/by-category/womens?id=10066"
-    },
-    {
       "promo_id": "ihop_free_any_burrito_or_bowl",
       "brand": "IHOP",
       "category": "food",
@@ -270,6 +137,25 @@
       "source_url": "https://www.ihop.com/en/menu"
     },
     {
+      "promo_id": "athleta_all_sale_up_to_60_off",
+      "brand": "Athleta",
+      "category": "retail",
+      "title": "All Sale: Up to 60% Off",
+      "notify_score": 78.18,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Athleta",
+      "notification_body": "All Sale: Up to 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 27.0,
+      "end_date": null,
+      "website_domain": "athleta.gap.com",
+      "source_url": "https://athleta.gap.com/browse/category.do?cid=1023728"
+    },
+    {
       "promo_id": "massimo_dutti_up_to_60_off_discover_selection_women",
       "brand": "Massimo Dutti",
       "category": "retail",
@@ -286,7 +172,7 @@
       "estimated_savings": 27.0,
       "end_date": null,
       "website_domain": "massimodutti.com",
-      "source_url": "https://www.massimodutti.com/us/"
+      "source_url": null
     },
     {
       "promo_id": "massimo_dutti_up_to_60_off_discover_selection_men",
@@ -305,221 +191,69 @@
       "estimated_savings": 27.0,
       "end_date": null,
       "website_domain": "massimodutti.com",
-      "source_url": "https://www.massimodutti.com/us/"
+      "source_url": null
     },
     {
-      "promo_id": "columbia_annual_summer_sale_up_to_50_off",
-      "brand": "Columbia",
-      "category": "fashion",
-      "title": "Annual Summer Sale - Up to 50% Off",
-      "notify_score": 77.73,
+      "promo_id": "blue_buffalo_blue_appetit_pet_food_recipes_free_recipe_collection",
+      "brand": "Blue Buffalo",
+      "category": "food",
+      "title": "Blue Appetit pet food recipes - Free recipe collection",
+      "notify_score": 76.3,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Columbia",
-      "notification_body": "Annual Summer Sale - Up to 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 45.0,
-      "end_date": null,
-      "website_domain": "columbia.com",
-      "source_url": "https://www.columbia.com/t/accessibility/"
-    },
-    {
-      "promo_id": "columbia_men_s_sale_up_to_50_off",
-      "brand": "Columbia",
-      "category": "fashion",
-      "title": "Men's Sale - Up to 50% Off",
-      "notify_score": 77.73,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Columbia",
-      "notification_body": "Men's Sale - Up to 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 45.0,
-      "end_date": null,
-      "website_domain": "columbia.com",
-      "source_url": "https://www.columbia.com/c/sale/"
-    },
-    {
-      "promo_id": "columbia_women_s_sale_up_to_50_off",
-      "brand": "Columbia",
-      "category": "fashion",
-      "title": "Women's Sale - Up to 50% Off",
-      "notify_score": 77.73,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Columbia",
-      "notification_body": "Women's Sale - Up to 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 45.0,
-      "end_date": null,
-      "website_domain": "columbia.com",
-      "source_url": "https://www.columbia.com/c/sale/"
-    },
-    {
-      "promo_id": "columbia_kids_sale_up_to_50_off",
-      "brand": "Columbia",
-      "category": "fashion",
-      "title": "Kids' Sale - Up to 50% Off",
-      "notify_score": 77.73,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Columbia",
-      "notification_body": "Kids' Sale - Up to 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 45.0,
-      "end_date": null,
-      "website_domain": "columbia.com",
-      "source_url": "https://www.columbia.com/c/sale/"
-    },
-    {
-      "promo_id": "columbia_shoe_sale_up_to_50_off",
-      "brand": "Columbia",
-      "category": "fashion",
-      "title": "Shoe Sale - Up to 50% Off",
-      "notify_score": 77.73,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Columbia",
-      "notification_body": "Shoe Sale - Up to 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 45.0,
-      "end_date": null,
-      "website_domain": "columbia.com",
-      "source_url": "https://www.columbia.com/c/sale/"
-    },
-    {
-      "promo_id": "columbia_accessories_equipment_sale_up_to_50_off",
-      "brand": "Columbia",
-      "category": "fashion",
-      "title": "Accessories & Equipment Sale - Up to 50% Off",
-      "notify_score": 77.73,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Columbia",
-      "notification_body": "Accessories & Equipment Sale - Up to 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 45.0,
-      "end_date": null,
-      "website_domain": "columbia.com",
-      "source_url": "https://www.columbia.com/c/sale/"
-    },
-    {
-      "promo_id": "west_elm_up_to_60_off_sale_clearance",
-      "brand": "West Elm",
-      "category": "home",
-      "title": "Up to 60% Off Sale & Clearance",
-      "notify_score": 76.73,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "West Elm",
-      "notification_body": "Up to 60% Off Sale & Clearance",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 54.0,
-      "end_date": null,
-      "website_domain": "westelm.com",
-      "source_url": "https://www.westelm.com/shop/sale/"
-    },
-    {
-      "promo_id": "babylist_free_babylist_hello_baby_box",
-      "brand": "Babylist",
-      "category": "retail",
-      "title": "Free Babylist Hello Baby Box",
-      "notify_score": 76.33,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Babylist",
-      "notification_body": "Free: Free Babylist Hello Baby Box",
+      "notification_title": "Blue Buffalo",
+      "notification_body": "Free: Blue Appetit pet food recipes - Free recipe collection",
       "discount_type": "free_item",
-      "discount_value": "free Hello Baby Box",
-      "estimated_savings": 15.0,
+      "discount_value": "free",
+      "estimated_savings": 10.0,
       "end_date": null,
-      "website_domain": "babylist.com",
-      "source_url": "https://www.babylist.com/coupons/"
+      "website_domain": "bluebuffalo.com",
+      "source_url": "https://www.bluebuffalo.com/"
     },
     {
-      "promo_id": "bluemercury_free_samples_with_all_orders",
-      "brand": "Bluemercury",
+      "promo_id": "ted_baker_belaire_olive",
+      "brand": "Ted Baker",
       "category": "retail",
-      "title": "Free samples with all orders",
-      "notify_score": 76.33,
+      "title": "BELAIRE | OLIVE",
+      "notify_score": 76.01,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Bluemercury",
-      "notification_body": "Free: Free samples with all orders",
+      "notification_title": "Ted Baker",
+      "notification_body": "BELAIRE | OLIVE",
+      "discount_type": "percentage_off",
+      "discount_value": "55%",
+      "estimated_savings": 24.75,
+      "end_date": null,
+      "website_domain": "tedbaker.com",
+      "source_url": "https://www.tedbaker.com/collections/sale-us"
+    },
+    {
+      "promo_id": "cartier_free_gift_wrapping",
+      "brand": "Cartier",
+      "category": "Jewelry",
+      "title": "Free Gift Wrapping",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Cartier",
+      "notification_body": "Free: Free Gift Wrapping",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "bluemercury.com",
-      "source_url": "https://www.bluemercury.com/pages/contact-us"
-    },
-    {
-      "promo_id": "overstock_up_to_60_off_sale",
-      "brand": "Overstock",
-      "category": "home_goods",
-      "title": "Up to 60% Off Sale",
-      "notify_score": 76.19,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Overstock",
-      "notification_body": "Up to 60% Off Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 54.0,
-      "end_date": null,
-      "website_domain": "overstock.com",
-      "source_url": "https://www.overstock.com/deals"
-    },
-    {
-      "promo_id": "macy_s_semi_annual_jewelry_sale_up_to_70_off",
-      "brand": "Macy's",
-      "category": "accessories",
-      "title": "Semi-Annual Jewelry Sale up to 70% off",
-      "notify_score": 74.54,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Macy's",
-      "notification_body": "Semi-Annual Jewelry Sale up to 70% off",
-      "discount_type": "percentage_off",
-      "discount_value": "70%",
-      "estimated_savings": 21.0,
-      "end_date": null,
-      "website_domain": "macys.com",
-      "source_url": "https://www.macys.com/shop/sale?id=3536"
+      "website_domain": "cartier.com",
+      "source_url": "https://www.cartier.com/en-us/"
     },
     {
       "promo_id": "epic_games_store_weekly_free_pc_game",
       "brand": "Epic Games Store",
-      "category": "Gaming",
+      "category": "other",
       "title": "Weekly Free PC Game",
       "notify_score": 74.26,
       "signal_groups": [
@@ -533,20 +267,20 @@
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/en-US/free-games"
+      "source_url": "https://www.store.epicgames.com/browse"
     },
     {
-      "promo_id": "epic_games_store_mongil_star_dive_free_game",
+      "promo_id": "epic_games_store_free_to_play_games_collection",
       "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "MONGIL: STAR DIVE - Free Game",
+      "category": "other",
+      "title": "Free-to-Play Games Collection",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Epic Games Store",
-      "notification_body": "Free: MONGIL: STAR DIVE - Free Game",
+      "notification_body": "Free: Free-to-Play Games Collection",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
@@ -555,232 +289,80 @@
       "source_url": "https://store.epicgames.com/en-US/free-games"
     },
     {
-      "promo_id": "epic_games_store_fortnite_free_game",
+      "promo_id": "epic_games_store_free_game_demos_collection",
       "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "Fortnite - Free Game",
+      "category": "other",
+      "title": "Free Game Demos Collection",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Epic Games Store",
-      "notification_body": "Free: Fortnite - Free Game",
+      "notification_body": "Free: Free Game Demos Collection",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/en-US/free-games"
+      "source_url": "https://www.store.epicgames.com/browse"
     },
     {
-      "promo_id": "epic_games_store_rocket_league_free_game",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "Rocket League - Free Game",
+      "promo_id": "jo_malone_free_deluxe_mini_sample_with_every_order",
+      "brand": "Jo Malone",
+      "category": "beauty",
+      "title": "Free Deluxe Mini Sample with Every Order",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: Rocket League - Free Game",
+      "notification_title": "Jo Malone",
+      "notification_body": "Free: Free Deluxe Mini Sample with Every Order",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/en-US/free-games"
+      "website_domain": "jomalone.com",
+      "source_url": "https://www.jomalone.com/"
     },
     {
-      "promo_id": "epic_games_store_genshin_impact_free_game",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "Genshin Impact - Free Game",
+      "promo_id": "jo_malone_complimentary_9ml_cologne",
+      "brand": "Jo Malone",
+      "category": "beauty",
+      "title": "Complimentary 9ml Cologne",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: Genshin Impact - Free Game",
+      "notification_title": "Jo Malone",
+      "notification_body": "Free: Complimentary 9ml Cologne",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/en-US/free-games"
+      "website_domain": "jomalone.com",
+      "source_url": "https://www.jomalone.com/online-exclusive-offers"
     },
     {
-      "promo_id": "epic_games_store_zenless_zone_zero_free_game",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "Zenless Zone Zero - Free Game",
+      "promo_id": "jo_malone_complimentary_gift_wrapping",
+      "brand": "Jo Malone",
+      "category": "beauty",
+      "title": "Complimentary Gift Wrapping",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: Zenless Zone Zero - Free Game",
+      "notification_title": "Jo Malone",
+      "notification_body": "Free: Complimentary Gift Wrapping",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/en-US/free-games"
-    },
-    {
-      "promo_id": "epic_games_store_honkai_star_rail_free_game",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "Honkai: Star Rail - Free Game",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: Honkai: Star Rail - Free Game",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/en-US/free-games"
-    },
-    {
-      "promo_id": "epic_games_store_arknights_endfield_free_game",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "Arknights: Endfield - Free Game",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: Arknights: Endfield - Free Game",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/en-US/free-games"
-    },
-    {
-      "promo_id": "epic_games_store_fall_guys_free_game",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "Fall Guys - Free Game",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: Fall Guys - Free Game",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/en-US/free-games"
-    },
-    {
-      "promo_id": "epic_games_store_valorant_free_game",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "VALORANT - Free Game",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: VALORANT - Free Game",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/en-US/free-games"
-    },
-    {
-      "promo_id": "epic_games_store_marvel_rivals_free_game",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "Marvel Rivals - Free Game",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: Marvel Rivals - Free Game",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/en-US/free-games"
-    },
-    {
-      "promo_id": "epic_games_store_the_sims_4_free_game",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "The Sims 4 - Free Game",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: The Sims 4 - Free Game",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/en-US/free-games"
-    },
-    {
-      "promo_id": "epic_games_store_crosshair_v2_free_game",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "Crosshair V2 - Free Game",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: Crosshair V2 - Free Game",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/en-US/free-games"
-    },
-    {
-      "promo_id": "epic_games_store_pubg_battlegrounds_free_game",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "PUBG: BATTLEGROUNDS - Free Game",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: PUBG: BATTLEGROUNDS - Free Game",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/en-US/free-games"
+      "website_domain": "jomalone.com",
+      "source_url": "https://www.jomalone.com/ai-scent-advisor"
     },
     {
       "promo_id": "prose_free_to_go_tumbler_with_email_sign_up",
@@ -821,25 +403,6 @@
       "source_url": "https://ro.co/"
     },
     {
-      "promo_id": "yeti_free_customization_code_for_new_account_creation",
-      "brand": "YETI",
-      "category": "Outdoor / Lifestyle",
-      "title": "Free customization code for new account creation",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "YETI",
-      "notification_body": "Free: Free customization code for new account creation",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "yeti.com",
-      "source_url": "https://www.yeti.com/shipping-and-returns.html"
-    },
-    {
       "promo_id": "a_p_c_summer_sale_50_off",
       "brand": "A.P.C.",
       "category": "retail",
@@ -859,17 +422,74 @@
       "source_url": "https://www.apc-us.com/collections/sale-women-view-all"
     },
     {
-      "promo_id": "maje_spring_summer_sale",
+      "promo_id": "courreges_women_50_off",
+      "brand": "Courreges",
+      "category": "retail",
+      "title": "Women 50% off",
+      "notify_score": 73.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Courreges",
+      "notification_body": "Women 50% off",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "courreges.com",
+      "source_url": "https://www.courreges.com/"
+    },
+    {
+      "promo_id": "courreges_men_50_off",
+      "brand": "Courreges",
+      "category": "retail",
+      "title": "Men 50% off",
+      "notify_score": 73.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Courreges",
+      "notification_body": "Men 50% off",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "courreges.com",
+      "source_url": "https://www.courreges.com/"
+    },
+    {
+      "promo_id": "fashionphile_over_50_off_retail",
+      "brand": "Fashionphile",
+      "category": "retail",
+      "title": "Over 50% Off Retail",
+      "notify_score": 73.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Fashionphile",
+      "notification_body": "Over 50% Off Retail",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "fashionphile.com",
+      "source_url": "https://www.fashionphile.com/"
+    },
+    {
+      "promo_id": "maje_spring_summer_sale_up_to_50_off",
       "brand": "Maje",
       "category": "retail",
-      "title": "Spring‑Summer Sale",
+      "title": "Spring‑Summer Sale - up to 50% off",
       "notify_score": 73.67,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Maje",
-      "notification_body": "Spring‑Summer Sale",
+      "notification_body": "Spring‑Summer Sale - up to 50% off",
       "discount_type": "percentage_off",
       "discount_value": "up to 50%",
       "estimated_savings": 22.5,
@@ -878,17 +498,17 @@
       "source_url": "https://www.us.maje.com/en/sale-dresses/"
     },
     {
-      "promo_id": "ted_baker_sale_new_lines_added_up_to_50_off",
+      "promo_id": "ted_baker_all_sale_us",
       "brand": "Ted Baker",
       "category": "retail",
-      "title": "Sale: New Lines Added - Up to 50% Off",
+      "title": "All Sale - US",
       "notify_score": 73.67,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Ted Baker",
-      "notification_body": "Sale: New Lines Added - Up to 50% Off",
+      "notification_body": "All Sale - US",
       "discount_type": "percentage_off",
       "discount_value": "up to 50%",
       "estimated_savings": 22.5,
@@ -897,42 +517,42 @@
       "source_url": "https://www.tedbaker.com/collections/sale-us"
     },
     {
-      "promo_id": "babylist_free_breast_pump",
-      "brand": "Babylist",
+      "promo_id": "ted_baker_pomonna_navy_flamingo_print_drawstring_swim_shorts",
+      "brand": "Ted Baker",
       "category": "retail",
-      "title": "Free Breast Pump",
-      "notify_score": 73.6,
+      "title": "POMONNA | NAVY Flamingo Print Drawstring Swim Shorts",
+      "notify_score": 73.67,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Babylist",
-      "notification_body": "Free: Free Breast Pump",
-      "discount_type": "free_item",
-      "discount_value": "free breast pump",
-      "estimated_savings": 15.0,
+      "notification_title": "Ted Baker",
+      "notification_body": "POMONNA | NAVY Flamingo Print Drawstring Swim Shorts",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 22.5,
       "end_date": null,
-      "website_domain": "babylist.com",
-      "source_url": "https://www.babylist.com/registry/new"
+      "website_domain": "tedbaker.com",
+      "source_url": "https://www.tedbaker.com/collections/sale-us"
     },
     {
-      "promo_id": "west_elm_up_to_50_off",
-      "brand": "West Elm",
-      "category": "home",
-      "title": "Up to 50% Off",
-      "notify_score": 72.64,
+      "promo_id": "mejuri_complimentary_jewelry_cleaning_at_stores",
+      "brand": "Mejuri",
+      "category": "retail",
+      "title": "Complimentary Jewelry Cleaning at Stores",
+      "notify_score": 73.33,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "West Elm",
-      "notification_body": "Up to 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 45.0,
+      "notification_title": "Mejuri",
+      "notification_body": "Free: Complimentary Jewelry Cleaning at Stores",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "westelm.com",
-      "source_url": "https://www.westelm.com/shop/sale/"
+      "website_domain": "mejuri.com",
+      "source_url": "https://www.mejuri.com/collections/jewelry-essentials"
     },
     {
       "promo_id": "zwilling_knives_sale_save_up_to_50",
@@ -973,28 +593,9 @@
       "source_url": "https://www.bigotires.com/deals"
     },
     {
-      "promo_id": "firestone_free_flat_tire_repair",
-      "brand": "Firestone",
-      "category": "other",
-      "title": "Free Flat Tire Repair",
-      "notify_score": 71.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Firestone",
-      "notification_body": "Free: Free Flat Tire Repair",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "firestonecompleteautocare.com",
-      "source_url": "https://www.firestonecompleteautocare.com/offers/"
-    },
-    {
       "promo_id": "firestone_free_brake_inspection",
       "brand": "Firestone",
-      "category": "other",
+      "category": "auto_parts",
       "title": "Free Brake Inspection",
       "notify_score": 71.26,
       "signal_groups": [
@@ -1004,7 +605,7 @@
       "notification_title": "Firestone",
       "notification_body": "Free: Free Brake Inspection",
       "discount_type": "free_item",
-      "discount_value": "free",
+      "discount_value": "Brake Inspection",
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "firestonecompleteautocare.com",
@@ -1030,23 +631,23 @@
       "source_url": "https://www.calvinklein.us/en/sale/women/dresses"
     },
     {
-      "promo_id": "mansur_gavriel_summer_sale_up_to_60_off",
-      "brand": "Mansur Gavriel",
-      "category": "Bags / Accessories",
-      "title": "Summer Sale - Up to 60% Off",
-      "notify_score": 70.75,
+      "promo_id": "tillys_labor_day_sale",
+      "brand": "Tillys",
+      "category": "retail",
+      "title": "Labor Day Sale",
+      "notify_score": 70.67,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Mansur Gavriel",
-      "notification_body": "Summer Sale - Up to 60% Off",
+      "notification_title": "Tillys",
+      "notification_body": "Labor Day Sale",
       "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 18.0,
+      "discount_value": "up to 50%",
+      "estimated_savings": 22.5,
       "end_date": null,
-      "website_domain": "mansurgavriel.com",
-      "source_url": "https://www.mansurgavriel.com/collections/sale"
+      "website_domain": "tillys.com",
+      "source_url": "https://www.tillys.com/"
     },
     {
       "promo_id": "burrow_free_swatches",
@@ -1065,7 +666,7 @@
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "burrow.com",
-      "source_url": null
+      "source_url": "https://burrow.com/sale"
     },
     {
       "promo_id": "inside_weather_free_swatches",
@@ -1103,26 +704,26 @@
       "estimated_savings": 32.5,
       "end_date": null,
       "website_domain": "ganni.com",
-      "source_url": "https://www.ganni.com/us/dresses-sale/"
+      "source_url": "https://www.ganni.com/us/t-shirts-sale/"
     },
     {
-      "promo_id": "lg_top_home_appliance_sale",
-      "brand": "LG",
-      "category": "home appliances",
-      "title": "Top Home Appliance Sale",
-      "notify_score": 67.78,
+      "promo_id": "tillys_clearance_sale_extra_50_off",
+      "brand": "Tillys",
+      "category": "retail",
+      "title": "Clearance Sale Extra 50% Off",
+      "notify_score": 68.16,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "LG",
-      "notification_body": "Top Home Appliance Sale",
+      "notification_title": "Tillys",
+      "notification_body": "Clearance Sale Extra 50% Off",
       "discount_type": "percentage_off",
-      "discount_value": "30-53%",
-      "estimated_savings": 15.9,
+      "discount_value": "50%",
+      "estimated_savings": 22.5,
       "end_date": null,
-      "website_domain": "lg.com",
-      "source_url": "https://www.lg.com/us/deals"
+      "website_domain": "tillys.com",
+      "source_url": "https://www.tillys.com/"
     },
     {
       "promo_id": "altuzarra_altuzarra_sale",
@@ -1144,61 +745,42 @@
       "source_url": "https://www.altuzarra.com/collections/new-arrivals"
     },
     {
-      "promo_id": "fashion_nova_70_off_sitewide_sale",
-      "brand": "Fashion Nova",
-      "category": "retail",
-      "title": "70% Off Sitewide Sale",
-      "notify_score": 67.69,
+      "promo_id": "bodybuilding_com_buy_one_get_one_50_off",
+      "brand": "Bodybuilding.com",
+      "category": "pharmacy",
+      "title": "Buy One, Get One 50% OFF!",
+      "notify_score": 66.42,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Fashion Nova",
-      "notification_body": "70% Off Sitewide Sale",
+      "notification_title": "Bodybuilding.com",
+      "notification_body": "Buy One, Get One 50% OFF!",
       "discount_type": "percentage_off",
-      "discount_value": "70%",
-      "estimated_savings": 14.0,
+      "discount_value": "50%",
+      "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "fashionnova.com",
-      "source_url": "https://www.fashionnova.com/collections/wear-to-work"
+      "website_domain": "shop.bodybuilding.com",
+      "source_url": "https://shop.bodybuilding.com/collections/on-sale"
     },
     {
-      "promo_id": "joybird_free_design_services",
-      "brand": "Joybird",
-      "category": "home",
-      "title": "Free Design Services",
-      "notify_score": 66.6,
+      "promo_id": "lxrandco_over_50_off_retail",
+      "brand": "LXRandCo",
+      "category": "Luxury Resale",
+      "title": "Over 50% Off Retail",
+      "notify_score": 66.42,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Joybird",
-      "notification_body": "Free: Free Design Services",
-      "discount_type": "free_item",
-      "discount_value": "free",
+      "notification_title": "LXRandCo",
+      "notification_body": "Over 50% Off Retail",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "joybird.com",
-      "source_url": "https://joybird.com/sale/"
-    },
-    {
-      "promo_id": "joybird_free_fabric_samples",
-      "brand": "Joybird",
-      "category": "home",
-      "title": "Free Fabric Samples",
-      "notify_score": 66.6,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Joybird",
-      "notification_body": "Free: Free Fabric Samples",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "joybird.com",
-      "source_url": "https://joybird.com/sale/"
+      "website_domain": "fashionphile.com",
+      "source_url": "https://www.fashionphile.com/"
     }
   ]
 }
