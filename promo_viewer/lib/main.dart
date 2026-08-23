@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'screens/splash_screen.dart';
 import 'services/notification_service.dart';
 import 'theme/candy_colors.dart';
@@ -106,19 +107,32 @@ class PromoViewerApp extends StatelessWidget {
         ),
       ),
       home: const SplashScreen(),
-      // OAuth redirect deep links arrive as unknown named routes (/login-callback/).
-      // Push a transparent, zero-duration route that pops itself — onAuthStateChange handles navigation.
-      onUnknownRoute: (settings) => PageRouteBuilder<void>(
-        settings: settings,
-        opaque: false,
-        transitionDuration: Duration.zero,
-        pageBuilder: (context, anim, anim2) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (Navigator.of(context).canPop()) Navigator.of(context).pop();
-          });
-          return const SizedBox.shrink();
-        },
-      ),
+      // OAuth redirect deep links arrive as unknown named routes.
+      // With scene-based lifecycle (FlutterSceneDelegate), the redirect URL goes
+      // through Flutter's navigation channel — app_links never sees it and
+      // Supabase's uriLinkStream never fires. We detect the code here and call
+      // getSessionFromUrl directly, which triggers onAuthStateChange.signedIn.
+      onUnknownRoute: (settings) {
+        final uri = Uri.tryParse(settings.name ?? '');
+        if (uri != null && uri.queryParameters.containsKey('code')) {
+          () async {
+            try {
+              await Supabase.instance.client.auth.getSessionFromUrl(uri);
+            } catch (_) {}
+          }();
+        }
+        return PageRouteBuilder<void>(
+          settings: settings,
+          opaque: false,
+          transitionDuration: Duration.zero,
+          pageBuilder: (context, anim, anim2) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (Navigator.of(context).canPop()) Navigator.of(context).pop();
+            });
+            return const SizedBox.shrink();
+          },
+        );
+      },
     );
   }
 }
