@@ -106,6 +106,19 @@ class PromoViewerApp extends StatelessWidget {
         ),
       ),
       home: const SplashScreen(),
+      // OAuth redirect deep links arrive as unknown named routes (/login-callback/).
+      // Push a transparent, zero-duration route that pops itself — onAuthStateChange handles navigation.
+      onUnknownRoute: (settings) => PageRouteBuilder<void>(
+        settings: settings,
+        opaque: false,
+        transitionDuration: Duration.zero,
+        pageBuilder: (context, anim, anim2) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (Navigator.of(context).canPop()) Navigator.of(context).pop();
+          });
+          return const SizedBox.shrink();
+        },
+      ),
     );
   }
 }
