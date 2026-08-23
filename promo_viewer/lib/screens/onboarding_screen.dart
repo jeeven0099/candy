@@ -755,20 +755,20 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     if (provider == 'email') return; // handled by _submit()
 
     setState(() => _loading = true);
+    // Best-effort: load data but don't block navigation if queries fail right
+    // after OAuth (session may not be fully propagated to the HTTP client yet).
     try {
       await AuthService.ensureUserRow();
       await UserPrefsService().load();
       final uid = SupabaseService.currentUserId;
       if (uid != null) await SavedDealsService().loadForUser(uid);
-      if (!mounted) return;
-      final prefs = UserPrefsService().prefs;
-      if (prefs != null && prefs.favoriteCategories.isNotEmpty) {
-        _launchApp();
-      } else {
-        _goToPage(1);
-      }
-    } catch (_) {
-      if (mounted) setState(() { _loading = false; _error = 'Sign in failed. Please try again.'; });
+    } catch (_) {}
+    if (!mounted) return;
+    final prefs = UserPrefsService().prefs;
+    if (prefs != null && prefs.favoriteCategories.isNotEmpty) {
+      _launchApp();
+    } else {
+      _goToPage(1);
     }
   }
 
