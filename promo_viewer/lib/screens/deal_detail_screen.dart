@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../models/fast_redemption.dart';
 import '../models/promotion.dart';
 import '../services/interaction_service.dart';
+import '../services/promotions_service.dart';
 import '../services/location_service.dart';
 import '../services/saved_deals_service.dart';
 import '../services/timezone_service.dart';
@@ -176,11 +177,6 @@ class _DealDetailScreenState extends State<DealDetailScreen> {
                 const SizedBox(height: 10),
               ],
 
-              // 11. Restrictions (expandable)
-              if (_p.termsText != null && _p.termsText!.isNotEmpty) ...[
-                _RestrictionsCard(promo: _p),
-                const SizedBox(height: 10),
-              ],
 
             ],
           ),
@@ -760,19 +756,45 @@ class _HistoricalComparisonCard extends StatelessWidget {
   final Promotion promo;
   const _HistoricalComparisonCard({required this.promo});
 
-  static ({String rank, String description}) _rankInfo(double score) {
-    if (score >= 80) return (rank: 'Top 10%', description: 'of all deals we\'ve tracked for this brand');
-    if (score >= 65) return (rank: 'Top 25%', description: 'of similar deals we\'ve tracked');
-    if (score >= 50) return (rank: 'Top 40%', description: 'of deals in this category');
-    return (rank: 'Above average', description: 'relative to similar promotions');
+  String _categoryRank() {
+    final category = promo.category.toLowerCase();
+    final peers = PromotionsService.cached
+        .where((p) => p.category.toLowerCase() == category)
+        .toList();
+    final score = promo.globalQualityScore;
+    final int topPct;
+    if (peers.length < 5) {
+      // Sparse category — fall back to score thresholds
+      if (score >= 80) topPct = 10;
+      else if (score >= 65) topPct = 25;
+      else if (score >= 50) topPct = 40;
+      else topPct = 50;
+    } else {
+      final beaten = peers.where((p) => p.globalQualityScore < score).length;
+      final raw = ((1.0 - beaten / peers.length) * 100).round();
+      if (raw <= 5) topPct = 5;
+      else if (raw <= 10) topPct = 10;
+      else if (raw <= 15) topPct = 15;
+      else if (raw <= 20) topPct = 20;
+      else if (raw <= 25) topPct = 25;
+      else if (raw <= 30) topPct = 30;
+      else if (raw <= 40) topPct = 40;
+      else topPct = 50;
+    }
+    return 'Top $topPct%';
+  }
+
+  String _categoryLabel() {
+    final raw = promo.category;
+    if (raw.isEmpty) return 'deals';
+    return '${raw[0].toUpperCase()}${raw.substring(1)} deals';
   }
 
   @override
   Widget build(BuildContext context) {
-    final info = _rankInfo(promo.globalQualityScore);
-    // Normalize to 0–1 for the bar (cap at 1)
+    final rank = _categoryRank();
     final todayRatio = (promo.globalQualityScore / 100).clamp(0.0, 1.0);
-    const typicalRatio = 0.52; // baseline representing an average deal
+    const typicalRatio = 0.52;
 
     return _Card(
       child: Column(
@@ -788,13 +810,12 @@ class _HistoricalComparisonCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 14),
-          // Rank stat
           Row(
             crossAxisAlignment: CrossAxisAlignment.baseline,
             textBaseline: TextBaseline.alphabetic,
             children: [
               Text(
-                info.rank,
+                rank,
                 style: const TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w800,
@@ -805,14 +826,13 @@ class _HistoricalComparisonCard extends StatelessWidget {
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
-                  info.description,
+                  'in ${_categoryLabel()}',
                   style: const TextStyle(fontSize: 13, color: Candy.muted, height: 1.3),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 16),
-          // Comparison bars
           _CompareBar(label: 'Today\'s deal', ratio: todayRatio, highlight: true),
           const SizedBox(height: 8),
           _CompareBar(label: 'Typical deal', ratio: typicalRatio, highlight: false),
@@ -1204,75 +1224,6 @@ class _WhenCard extends StatelessWidget {
     );
   }
 }
-
-// ---------------------------------------------------------------------------
-// 11. Restrictions card (expandable)
-// ---------------------------------------------------------------------------
-
-class _RestrictionsCard extends StatefulWidget {
-  final Promotion promo;
-  const _RestrictionsCard({required this.promo});
-
-  @override
-  State<_RestrictionsCard> createState() => _RestrictionsCardState();
-}
-
-class _RestrictionsCardState extends State<_RestrictionsCard> {
-  bool _expanded = false;
-  bool _hasFiredExpand = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return _Card(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          GestureDetector(
-            onTap: () {
-              setState(() => _expanded = !_expanded);
-              if (_expanded && !_hasFiredExpand) {
-                _hasFiredExpand = true;
-                InteractionService().recordRestrictionExpanded(
-                  widget.promo.id,
-                  brand: widget.promo.brand,
-                  meta: InteractionService.promoMeta(widget.promo),
-                );
-              }
-            },
-            behavior: HitTestBehavior.opaque,
-            child: Row(
-              children: [
-                const Expanded(
-                  child: Text(
-                    'Restrictions',
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
-                      color: Candy.chocolate,
-                    ),
-                  ),
-                ),
-                Icon(
-                  _expanded ? Icons.expand_less : Icons.expand_more,
-                  size: 20,
-                  color: Candy.muted,
-                ),
-              ],
-            ),
-          ),
-          if (_expanded) ...[
-            const SizedBox(height: 8),
-            Text(
-              widget.promo.termsText!,
-              style: const TextStyle(fontSize: 12, color: Candy.muted, height: 1.5),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-}
-
 
 // ---------------------------------------------------------------------------
 // Sticky redeem bar
