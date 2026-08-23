@@ -100,7 +100,6 @@ class AuthService {
     await _sb.auth.signInWithOAuth(
       OAuthProvider.google,
       redirectTo: _redirectUrl,
-      authScreenLaunchMode: LaunchMode.externalApplication,
     );
   }
 
@@ -108,7 +107,6 @@ class AuthService {
     await _sb.auth.signInWithOAuth(
       OAuthProvider.apple,
       redirectTo: _redirectUrl,
-      authScreenLaunchMode: LaunchMode.externalApplication,
     );
   }
 
