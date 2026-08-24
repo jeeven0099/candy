@@ -252,10 +252,21 @@ class _ForYouScreenState extends State<ForYouScreen> {
     return DealCard(
       promo: p,
       memberships: widget.memberships,
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (_) => DealDetailScreen(promo: p)),
-      ),
+      onTap: () async {
+        InteractionService().recordClick(
+          p.id,
+          brand: p.brand,
+          category: p.category,
+        );
+        await Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => DealDetailScreen(promo: p)),
+        );
+        // Reset the seen key so returning to the feed triggers recordSeen again —
+        // deals the user just scrolled past after viewing the detail get another
+        // impression tick, which is what we want for freshness.
+        if (mounted) setState(() => _lastRecordedKey = '');
+      },
     );
   }
 
