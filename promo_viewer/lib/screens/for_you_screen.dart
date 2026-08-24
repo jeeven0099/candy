@@ -88,9 +88,11 @@ class _ForYouScreenState extends State<ForYouScreen> {
         // the comparison is by value, not object identity (Dart Set has no ==).
         final ids = ranked.map((p) => p.id).toList()..sort();
         final visibleKey = ids.join(',');
+        debugPrint('[Fatigue] ForYou build: ${ids.length} ranked deals, key changed=${visibleKey != _lastRecordedKey}');
         if (visibleKey != _lastRecordedKey) {
           _lastRecordedKey = visibleKey;
           WidgetsBinding.instance.addPostFrameCallback((_) {
+            debugPrint('[Fatigue] postFrameCallback firing, mounted=$mounted');
             if (mounted) svc.recordSeen(ids);
           });
         }

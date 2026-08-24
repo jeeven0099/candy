@@ -39,13 +39,21 @@ class InteractionService {
 
   Future<void> recordSeen(List<String> ids) async {
     final p = _prefs;
-    if (p == null || ids.isEmpty) return;
+    if (p == null) {
+      debugPrint('[Fatigue] recordSeen SKIPPED — _prefs is null (init not called yet?)');
+      return;
+    }
+    if (ids.isEmpty) {
+      debugPrint('[Fatigue] recordSeen SKIPPED — ids list is empty');
+      return;
+    }
+    debugPrint('[Fatigue] recordSeen: writing ${ids.length} deals');
     final now = DateTime.now().toIso8601String();
     for (final id in ids) {
       final next = (p.getInt('$_seen$id') ?? 0) + 1;
       await p.setInt('$_seen$id', next);
       await p.setString('$_lastSeen$id', now);
-      debugPrint('[Fatigue] recordSeen $id → seenCount=$next');
+      debugPrint('[Fatigue]   $id → seenCount=$next');
     }
   }
 
