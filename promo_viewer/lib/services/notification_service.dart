@@ -7,7 +7,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/timezone.dart' as tz;
 import '../models/user_prefs.dart';
-import '../screens/deal_detail_screen.dart';
 import 'interaction_service.dart';
 import 'promotions_service.dart';
 import 'user_prefs_service.dart';
@@ -76,8 +75,6 @@ class NotificationService {
 
   FlutterLocalNotificationsPlugin? _plugin;
 
-  static GlobalKey<NavigatorState>? _navigatorKey;
-
   static String? pendingPromoId;
   static final tapNotifier = ValueNotifier<String?>(null);
 
@@ -98,7 +95,6 @@ class NotificationService {
 
   static Future<void> init({GlobalKey<NavigatorState>? navigatorKey}) async {
     if (kIsWeb) return;
-    _navigatorKey = navigatorKey;
     final svc = NotificationService();
     svc._plugin = FlutterLocalNotificationsPlugin();
     await svc._plugin!.initialize(
@@ -188,18 +184,13 @@ class NotificationService {
       return;
     }
 
-    // Always persist so MainScreen can navigate even if cached is empty now
+    // Always persist first (for terminated-app restarts), then set tapNotifier
+    // so MainScreen can navigate via addPostFrameCallback when the navigator is
+    // guaranteed ready. Direct _navigatorKey?.currentState?.push() is fragile
+    // because it fires while the app may still be transitioning to foreground.
     storePendingPromoId(promoId);
-
-    final matches = PromotionsService.cached.where((p) => p.id == promoId);
-    if (matches.isEmpty) {
-      pendingPromoId = promoId;
-      tapNotifier.value = promoId;
-      return;
-    }
-    _navigatorKey?.currentState?.push(
-      MaterialPageRoute(builder: (_) => DealDetailScreen(promo: matches.first)),
-    );
+    pendingPromoId = promoId;
+    tapNotifier.value = promoId;
   }
 
   static Future<void> _recordFeedback(

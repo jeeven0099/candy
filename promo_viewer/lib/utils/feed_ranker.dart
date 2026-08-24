@@ -20,6 +20,16 @@ const _kCategoryFloors = <String, double>{
   'travel':           80.0,
 };
 
+// Pet brands are often tagged as 'food' by the scraper (pet food/treats).
+// They should not appear in the general feed unless the user has explicitly
+// added them as a favorite brand.
+const _kPetBrands = {
+  'barkbox', 'the farmers dog', "the farmer's dog", 'farmers dog',
+  "farmer's dog", 'chewy', 'petco', 'petsmart', 'ollie', 'nom nom',
+  '1800petmeds', 'hill\'s pet nutrition', 'hills pet nutrition', 'petsafe',
+  'blue buffalo', 'purina', 'royal canin', 'iams', 'science diet',
+};
+
 bool _isFreeOrBogo(Promotion p) {
   final d = p.discountType.toLowerCase();
   return d == 'free_item' || d.contains('bogo');
@@ -62,6 +72,12 @@ bool _isStrongDiscount(Promotion p) {
 /// Gate applied before any personalization boost. Category preference reorders
 /// good deals — it does not rescue weak ones.
 bool isFeedWorthy(Promotion p, {Set<String> favBrands = const {}}) {
+  // Pet brands are scraped as 'food' but are irrelevant to most users.
+  // Exclude unless the user has explicitly favorited the brand.
+  if (_kPetBrands.contains(p.brand.toLowerCase()) &&
+      !favBrands.contains(p.brand.toLowerCase())) {
+    return false;
+  }
   if (_isFreeOrBogo(p) && p.globalQualityScore >= 45) return true;
   if (_isStrongDiscount(p) && p.globalQualityScore >= 55) return true;
   if (favBrands.contains(p.brand.toLowerCase()) && p.globalQualityScore >= 50) return true;
@@ -216,17 +232,23 @@ double fatiguePenalty(String id, InteractionService svc) {
 
   final seen = svc.seenCount(id);
   if (seen == 0) return 0;
-  // Clicks cancel fatigue — the user is still interested.
-  if (svc.clickCount(id) > 0) return 0;
+
+  // Clicks signal interest and slow fatigue, but don't cancel it indefinitely.
+  // Without this, clicked deals stay pinned to the top of the feed forever,
+  // making it feel stale.
+  final clicked = svc.clickCount(id) > 0;
 
   switch (seen) {
     case 1:  return 0;
     case 2:  return 0;
-    case 3:  return 3;
-    case 4:  return 8;
+    case 3:  return clicked ? 0 : 5;
+    case 4:  return clicked ? 5 : 15;
+    case 5:  return clicked ? 12 : _kHide;
     default:
       final last = svc.lastSeenAt(id);
-      if (last != null && DateTime.now().difference(last).inDays < 7) return _kHide;
+      if (last != null && DateTime.now().difference(last).inDays < 7) {
+        return clicked ? 18 : _kHide;
+      }
       return 8;
   }
 }
