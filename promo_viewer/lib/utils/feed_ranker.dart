@@ -218,36 +218,24 @@ ScoreBreakdown computeBreakdown(
   );
 }
 
-/// Fatigue penalty for deals the user has seen but not acted on.
-///
-/// Fast-redeemed deals no longer cancel fatigue — they accrue normally so
-/// already-used deals fade from the feed rather than staying pinned. Clicked
-/// deals (intent signal) still cancel fatigue.
+/// Fatigue penalty based purely on seenCount.
+/// recordClick() bumps seenCount directly, so opening a deal detail
+/// page contributes to fatigue without needing a separate clicks branch here.
 double fatiguePenalty(String id, InteractionService svc) {
   if (svc.isDealSkipped(id)) return _kHide;
-
-  // Fast-redeemed: small persistent penalty so the deal stays visible for
-  // evergreen offers but ranks slightly lower than new deals.
   if (svc.hasFastRedeemed(id)) return 8.0;
 
   final seen = svc.seenCount(id);
-  if (seen == 0) return 0;
-
-  // Clicks signal interest and slow fatigue, but don't cancel it indefinitely.
-  // Without this, clicked deals stay pinned to the top of the feed forever,
-  // making it feel stale.
-  final clicked = svc.clickCount(id) > 0;
-
   switch (seen) {
+    case 0:
     case 1:  return 0;
-    case 2:  return 0;
-    case 3:  return clicked ? 0 : 5;
-    case 4:  return clicked ? 5 : 15;
-    case 5:  return clicked ? 12 : _kHide;
+    case 2:  return 3;
+    case 3:  return 8;
+    case 4:  return 15;
     default:
       final last = svc.lastSeenAt(id);
       if (last != null && DateTime.now().difference(last).inDays < 7) {
-        return clicked ? 18 : _kHide;
+        return _kHide;
       }
       return 8;
   }
