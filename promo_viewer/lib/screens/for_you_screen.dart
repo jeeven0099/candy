@@ -39,6 +39,7 @@ class ForYouScreen extends StatefulWidget {
 
 class _ForYouScreenState extends State<ForYouScreen> {
   int _selectedChip = 0;
+  Set<String> _lastRecordedIds = {};
 
   List<Promotion> _applyCategory(List<Promotion> deals) {
     final cats = _kCategories[_selectedChip].$2;
@@ -82,6 +83,16 @@ class _ForYouScreenState extends State<ForYouScreen> {
           limit: _kFeedLimit,
           maxPerBrand: 2,
         );
+
+        // Record deals as seen so fatigue accrues. Only fire when the visible
+        // set changes (chip switch, refresh) — not on every rebuild.
+        final visibleIds = ranked.map((p) => p.id).toSet();
+        if (visibleIds != _lastRecordedIds) {
+          _lastRecordedIds = visibleIds;
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) svc.recordSeen(visibleIds.toList());
+          });
+        }
 
         final filtered = ranked;
         final hasPrefs = prefs != null && !prefs.isEmpty;
