@@ -547,9 +547,9 @@ class _QuickSummaryCard extends StatelessWidget {
   final Promotion promo;
   const _QuickSummaryCard({required this.promo});
 
-  static String? _codeToText(String code, Promotion p) {
+  static String? _codeToText(String code) {
     return switch (code) {
-      'HIGH_EFFECTIVE_DISCOUNT' => 'Higher discount than ${p.brand} usually offers',
+      'HIGH_EFFECTIVE_DISCOUNT' => 'Higher than average discount for this category',
       'STRONG_DISCOUNT'         => 'Strong discount — above average for this category',
       'HIGH_VALUE_SAVINGS'      => 'Saves more than \$50 — significant dollar value',
       'GOOD_VALUE_SAVINGS'      => 'Solid dollar savings on this purchase',
@@ -566,7 +566,7 @@ class _QuickSummaryCard extends StatelessWidget {
 
     for (final code in promo.valueExplanationCodes) {
       if (result.length >= 3) break;
-      final text = _codeToText(code, promo);
+      final text = _codeToText(code);
       if (text != null) result.add(text);
     }
 
@@ -884,9 +884,9 @@ class _WhyGoodDealSection extends StatelessWidget {
   final Promotion promo;
   const _WhyGoodDealSection({required this.promo});
 
-  static String? _codeToText(String code, Promotion p) {
+  static String? _codeToText(String code) {
     return switch (code) {
-      'HIGH_EFFECTIVE_DISCOUNT' => 'Higher discount than ${p.brand} usually offers',
+      'HIGH_EFFECTIVE_DISCOUNT' => 'Higher than average discount for this category',
       'STRONG_DISCOUNT'         => 'Strong discount — above average for this category',
       'HIGH_VALUE_SAVINGS'      => 'Saves more than \$50 — significant dollar value',
       'GOOD_VALUE_SAVINGS'      => 'Solid dollar savings on this purchase',
@@ -905,7 +905,7 @@ class _WhyGoodDealSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = promo.valueExplanationCodes
-        .map((c) => _codeToText(c, promo))
+        .map((c) => _codeToText(c))
         .whereType<String>()
         .toList();
     if (items.isEmpty) return const SizedBox.shrink();
