@@ -59,6 +59,10 @@ class InteractionService {
     final p = _prefs;
     if (p == null) return;
     await p.setInt('$_click$id', (p.getInt('$_click$id') ?? 0) + 1);
+    // Opening the detail counts as a view — bumping seenCount here means
+    // fatigue accrues even if ForYouScreen doesn't re-render between sessions.
+    await p.setInt('$_seen$id', (p.getInt('$_seen$id') ?? 0) + 1);
+    await p.setString('$_lastSeen$id', DateTime.now().toIso8601String());
 
     _writeInteraction('deal_card_clicked',
         promotionId: id, brand: brand, category: category);

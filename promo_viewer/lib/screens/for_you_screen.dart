@@ -39,7 +39,7 @@ class ForYouScreen extends StatefulWidget {
 
 class _ForYouScreenState extends State<ForYouScreen> {
   int _selectedChip = 0;
-  Set<String> _lastRecordedIds = {};
+  String _lastRecordedKey = '';
 
   List<Promotion> _applyCategory(List<Promotion> deals) {
     final cats = _kCategories[_selectedChip].$2;
@@ -84,13 +84,14 @@ class _ForYouScreenState extends State<ForYouScreen> {
           maxPerBrand: 2,
         );
 
-        // Record deals as seen so fatigue accrues. Only fire when the visible
-        // set changes (chip switch, refresh) — not on every rebuild.
-        final visibleIds = ranked.map((p) => p.id).toSet();
-        if (visibleIds != _lastRecordedIds) {
-          _lastRecordedIds = visibleIds;
+        // Record deals as seen so fatigue accrues. Use a sorted string key so
+        // the comparison is by value, not object identity (Dart Set has no ==).
+        final ids = ranked.map((p) => p.id).toList()..sort();
+        final visibleKey = ids.join(',');
+        if (visibleKey != _lastRecordedKey) {
+          _lastRecordedKey = visibleKey;
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            if (mounted) svc.recordSeen(visibleIds.toList());
+            if (mounted) svc.recordSeen(ids);
           });
         }
 
