@@ -499,6 +499,25 @@ const Map<String, Map<String, List<String>>> kSearchTaxonomy = {
 String _norm(String s) =>
     s.toLowerCase().replaceAll(RegExp(r"[^a-z0-9 ]"), '').trim();
 
+// Brands whose promotions must NOT match via semantic/category paths (tier ≥ 5)
+// for the listed query keywords. Direct brand-name searches (tier ≤ 4) still work.
+const Map<String, List<String>> kBrandSemanticBlocklist = {
+  // Pet brands — AI tags their subscription boxes as "food" since they sell dog food/treats
+  'BarkBox':               ['food', 'fast food', 'restaurant', 'restaurants', 'dining', 'eat out', 'meal', 'takeout', 'takeaway', 'dine', 'groceries', 'grocery'],
+  "The Farmer's Dog":      ['food', 'fast food', 'restaurant', 'restaurants', 'dining', 'eat out', 'meal', 'takeout', 'takeaway', 'dine', 'groceries', 'grocery'],
+  "Farmer's Dog":          ['food', 'fast food', 'restaurant', 'restaurants', 'dining', 'eat out', 'meal', 'takeout', 'takeaway', 'dine', 'groceries', 'grocery'],
+  'Farmers Dog':           ['food', 'fast food', 'restaurant', 'restaurants', 'dining', 'eat out', 'meal', 'takeout', 'takeaway', 'dine', 'groceries', 'grocery'],
+  // Furniture brands whose lifestyle photography/keywords bleed into fashion
+  'Castlery':              ['fashion', 'clothing', 'clothes', 'apparel', 'style', 'jeans', 'dresses', 'suits', 'activewear', 'shoes', 'sneakers', 'handbags'],
+  'Article':               ['fashion', 'clothing', 'clothes', 'apparel'],
+  'Crate & Barrel':        ['fashion', 'clothing', 'clothes', 'apparel'],
+  'CB2':                   ['fashion', 'clothing', 'clothes', 'apparel'],
+  'Pottery Barn':          ['fashion', 'clothing', 'clothes', 'apparel'],
+  'West Elm':              ['fashion', 'clothing', 'clothes', 'apparel'],
+  'Restoration Hardware':  ['fashion', 'clothing', 'clothes', 'apparel'],
+  'RH':                    ['fashion', 'clothing', 'clothes', 'apparel'],
+};
+
 /// Returns (score, tier) for a promotion against a query.
 /// tier=0 means no match — exclude from results.
 ({double score, int tier}) searchMatch(Promotion p, String query, {double? distanceKm}) {
@@ -617,6 +636,20 @@ String _norm(String s) =>
   }
 
   if (tier == 0) return (score: 0, tier: 0);
+
+  // ── Semantic blocklist — veto wrong-category matches for known brands ──────
+  // Only applies when the match came from semantic/category paths (tier ≥ 5),
+  // not when the user typed the brand name directly (tier ≤ 4).
+  if (tier >= 5) {
+    for (final entry in kBrandSemanticBlocklist.entries) {
+      if (_norm(entry.key) == brand) {
+        if (entry.value.any((blocked) => _norm(blocked) == q)) {
+          return (score: 0, tier: 0);
+        }
+        break;
+      }
+    }
+  }
 
   // ── Secondary boosts (tiebreakers only) ───────────────────────────────────
   score += (p.globalQualityScore.clamp(0.0, 100.0) / 100.0) * 25;
