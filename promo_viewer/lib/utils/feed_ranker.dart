@@ -22,13 +22,15 @@ const _kCategoryFloors = <String, double>{
 
 // Pet brands are often tagged as 'food' by the scraper (pet food/treats).
 // They should not appear in the general feed unless the user has explicitly
-// added them as a favorite brand.
-const _kPetBrands = {
+// added them as a favorite brand, or the Household chip is selected.
+const kPetBrandNames = {
   'barkbox', 'the farmers dog', "the farmer's dog", 'farmers dog',
   "farmer's dog", 'chewy', 'petco', 'petsmart', 'ollie', 'nom nom',
   '1800petmeds', 'hill\'s pet nutrition', 'hills pet nutrition', 'petsafe',
   'blue buffalo', 'purina', 'royal canin', 'iams', 'science diet',
 };
+// Keep private alias so existing internal callsites don't need updating.
+const _kPetBrands = kPetBrandNames;
 
 bool _isFreeOrBogo(Promotion p) {
   final d = p.discountType.toLowerCase();
@@ -560,12 +562,14 @@ List<Promotion> selectTopDeals(
   UserPrefs? prefs,
   int limit = 10,
   int maxPerBrand = 2,
+  Set<String> extraFavBrands = const {},
 }) {
   final isBday  = _isBirthdayMonth(prefs);
   final hasBday = prefs?.birthdayMonth != null;
 
   final favBrands = {
-    for (final b in prefs?.favoriteBrands ?? <String>[]) b.toLowerCase()
+    for (final b in prefs?.favoriteBrands ?? <String>[]) b.toLowerCase(),
+    ...extraFavBrands,
   };
 
   final brandMap = <String, List<Promotion>>{};
