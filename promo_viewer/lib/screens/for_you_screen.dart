@@ -16,7 +16,7 @@ const _kCategories = [
   ('Fashion',     ['fashion', 'clothing', 'retail']),
   ('Beauty',      ['beauty', 'Premium Beauty']),
   ('Tech',        ['electronics', 'tech', 'gaming']),
-  ('Home',        ['home', 'Premium Appliances']),
+  ('Household',   ['home', 'Premium Appliances', 'pets', 'pet supplies', 'household']),
   ('Travel',      ['travel']),
   ('Fitness',     ['fitness', 'Outdoor / Adventure Gear']),
 ];
@@ -41,9 +41,24 @@ class _ForYouScreenState extends State<ForYouScreen> {
   int _selectedChip = 0;
   String _lastRecordedKey = '';
 
+  bool _isPetBrand(Promotion p) =>
+      kPetBrandNames.contains(p.brand.toLowerCase());
+
   List<Promotion> _applyCategory(List<Promotion> deals) {
-    final cats = _kCategories[_selectedChip].$2;
+    final (name, cats) = _kCategories[_selectedChip];
     if (cats == null) return deals;
+    if (name == 'Household') {
+      // Include home-category deals AND pet brand deals (scraped as 'food')
+      return deals.where((p) =>
+          _isPetBrand(p) ||
+          cats.any((c) => p.category.toLowerCase() == c.toLowerCase())).toList();
+    }
+    if (name == 'Food') {
+      // Exclude pet brands even though their raw category is 'food'
+      return deals.where((p) =>
+          !_isPetBrand(p) &&
+          cats.any((c) => p.category.toLowerCase() == c.toLowerCase())).toList();
+    }
     return deals.where((p) => cats.any((c) =>
         p.category.toLowerCase() == c.toLowerCase())).toList();
   }
@@ -76,12 +91,15 @@ class _ForYouScreenState extends State<ForYouScreen> {
         final poolForChip =
             _selectedChip == 0 ? activeDeals : _applyCategory(activeDeals);
 
+        final isHousehold = _kCategories[_selectedChip].$1 == 'Household';
         final ranked = selectTopDeals(
           poolForChip,
           svc,
           prefs: prefs,
           limit: _kFeedLimit,
           maxPerBrand: 2,
+          // Allow pet brands through isFeedWorthy when Household chip is active.
+          extraFavBrands: isHousehold ? kPetBrandNames : const {},
         );
 
         // Record deals as seen so fatigue accrues. Use a sorted string key so
