@@ -220,26 +220,27 @@ ScoreBreakdown computeBreakdown(
   );
 }
 
-/// Fatigue penalty based purely on seenCount.
-/// recordClick() bumps seenCount directly, so opening a deal detail
-/// page contributes to fatigue without needing a separate clicks branch here.
+/// Fatigue only applies to deals the user keeps seeing without acting on them.
+/// Tapping a deal signals interest — clicks permanently protect it from fatigue.
+/// Passive impressions (seen without tap) trigger exponential growth after 3 views.
 double fatiguePenalty(String id, InteractionService svc) {
   if (svc.isDealSkipped(id)) return _kHide;
   if (svc.hasFastRedeemed(id)) return 8.0;
 
+  // User tapped = interest signal. No fatigue regardless of impression count.
+  if (svc.clickCount(id) > 0) return 0;
+
   final seen = svc.seenCount(id);
+  // First 3 passive impressions: free pass — user may just be browsing.
+  if (seen <= 3) return 0;
+
+  // Exponential growth for repeatedly ignored deals.
   switch (seen) {
-    case 0:
-    case 1:  return 0;
-    case 2:  return 3;
-    case 3:  return 8;
-    case 4:  return 15;
-    default:
-      final last = svc.lastSeenAt(id);
-      if (last != null && DateTime.now().difference(last).inDays < 7) {
-        return _kHide;
-      }
-      return 8;
+    case 4:  return 5;
+    case 5:  return 15;
+    case 6:  return 40;
+    case 7:  return 80;
+    default: return _kHide;
   }
 }
 
