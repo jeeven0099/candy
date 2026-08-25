@@ -70,12 +70,7 @@ class InteractionService {
     if (p == null) return;
     final nextClick = (p.getInt('$_click$id') ?? 0) + 1;
     await p.setInt('$_click$id', nextClick);
-    // Opening the detail counts as a view — bumping seenCount here means
-    // fatigue accrues even if ForYouScreen doesn't re-render between sessions.
-    final nextSeen = (p.getInt('$_seen$id') ?? 0) + 1;
-    await p.setInt('$_seen$id', nextSeen);
-    await p.setString('$_lastSeen$id', DateTime.now().toIso8601String());
-    debugPrint('[Fatigue] recordClick $id → clicks=$nextClick seenCount=$nextSeen');
+    debugPrint('[Fatigue] recordClick $id → clicks=$nextClick (seenCount unchanged — tap = interest, not fatigue)');
 
     _writeInteraction('deal_card_clicked',
         promotionId: id, brand: brand, category: category);
