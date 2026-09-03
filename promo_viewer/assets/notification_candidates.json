@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-03T10:00:32.815242+00:00",
+  "generated_at": "2026-09-03T11:16:01.369196+00:00",
   "threshold": 65.0,
-  "total": 47,
+  "total": 46,
   "candidates": [
     {
       "promo_id": "wayfair_ardin_solid_wood_bed_frame_87_off",
@@ -743,25 +743,6 @@
       "end_date": null,
       "website_domain": "eloquii.com",
       "source_url": "https://www.eloquii.com/c/accessibility-statement.html"
-    },
-    {
-      "promo_id": "burrow_free_swatches",
-      "brand": "Burrow",
-      "category": "home",
-      "title": "Free Swatches",
-      "notify_score": 69.04,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Burrow",
-      "notification_body": "Free: Free Swatches",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "burrow.com",
-      "source_url": null
     },
     {
       "promo_id": "ecoflow_labor_day_sale_up_to_55_off",
