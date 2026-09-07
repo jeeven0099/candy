@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-07T09:38:42.376783+00:00",
+  "generated_at": "2026-09-07T11:14:05.710196+00:00",
   "threshold": 65.0,
   "total": 53,
   "candidates": [
@@ -384,23 +384,23 @@
       "source_url": "https://ninewest.com/collections/sale"
     },
     {
-      "promo_id": "dillard_s_summer_clearance_event",
+      "promo_id": "dillard_s_the_summer_clearance_event",
       "brand": "Dillard's",
       "category": "retail",
-      "title": "Summer Clearance Event",
+      "title": "The Summer Clearance Event",
       "notify_score": 77.21,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Dillard's",
-      "notification_body": "Summer Clearance Event",
+      "notification_body": "The Summer Clearance Event",
       "discount_type": "percentage_off",
       "discount_value": "30-65%",
       "estimated_savings": 29.25,
       "end_date": null,
       "website_domain": "dillards.com",
-      "source_url": null
+      "source_url": "https://www.dillards.com/c/sale-clearance"
     },
     {
       "promo_id": "coach_up_to_50_off_select_styles",
