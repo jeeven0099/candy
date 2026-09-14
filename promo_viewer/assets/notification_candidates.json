@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-14T08:25:26.189750+00:00",
+  "generated_at": "2026-09-14T09:01:19.436861+00:00",
   "threshold": 65.0,
-  "total": 37,
+  "total": 38,
   "candidates": [
     {
       "promo_id": "purple_labor_day_mattress_sale",
@@ -268,6 +268,25 @@
       "end_date": null,
       "website_domain": "hottopic.com",
       "source_url": "https://www.hottopic.com/sale/"
+    },
+    {
+      "promo_id": "myprotein_protein_clearance_sports_nutrition_sale",
+      "brand": "MyProtein",
+      "category": "food",
+      "title": "Protein Clearance & Sports Nutrition Sale",
+      "notify_score": 80.07,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "MyProtein",
+      "notification_body": "Protein Clearance & Sports Nutrition Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 90%",
+      "estimated_savings": 9.0,
+      "end_date": null,
+      "website_domain": "myprotein.com",
+      "source_url": "https://www.myprotein.com/c/myreferrals/"
     },
     {
       "promo_id": "kroger_buy_one_gatorade_water_get_one_free",
