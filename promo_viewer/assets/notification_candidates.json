@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-09-16T10:33:52.812084+00:00",
+  "generated_at": "2026-09-17T03:14:04.170344+00:00",
   "threshold": 65.0,
-  "total": 54,
+  "total": 51,
   "candidates": [
     {
       "promo_id": "thredup_free_clean_out_bag_zero_fees_for_sellers",
@@ -78,25 +78,6 @@
       "end_date": null,
       "website_domain": "osprey.com",
       "source_url": "https://www.osprey.com/sale"
-    },
-    {
-      "promo_id": "lane_bryant_doorbuster_shoes_belts_accessories_up_to_60_off",
-      "brand": "Lane Bryant",
-      "category": "retail",
-      "title": "Doorbuster Shoes, Belts & Accessories Up to 60% Off",
-      "notify_score": 84.31,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Lane Bryant",
-      "notification_body": "Doorbuster Shoes, Belts & Accessories Up to 60% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "estimated_savings": 54.0,
-      "end_date": "2026-09-17",
-      "website_domain": "lanebryant.com",
-      "source_url": "https://www.lanebryant.com/sale/sleep-lingerie"
     },
     {
       "promo_id": "ann_taylor_tiered_extra_discount_on_sale_styles",
@@ -479,25 +460,6 @@
       "source_url": "https://www.prose.com/consultation/category"
     },
     {
-      "promo_id": "a_p_c_a_p_c_summer_sale_50_off",
-      "brand": "A.P.C.",
-      "category": "retail",
-      "title": "A.P.C. Summer Sale 50% Off",
-      "notify_score": 73.67,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "A.P.C.",
-      "notification_body": "A.P.C. Summer Sale 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 22.5,
-      "end_date": null,
-      "website_domain": "apc-us.com",
-      "source_url": "https://www.apc-us.com/collections/sale-women-skirts-shorts"
-    },
-    {
       "promo_id": "rei_mid_season_sale_up_to_50_off",
       "brand": "REI",
       "category": "retail",
@@ -629,25 +591,6 @@
       "end_date": null,
       "website_domain": "us.akris.com",
       "source_url": null
-    },
-    {
-      "promo_id": "lane_bryant_40_off_clothing_sleep",
-      "brand": "Lane Bryant",
-      "category": "retail",
-      "title": "40% Off Clothing & Sleep",
-      "notify_score": 72.36,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Lane Bryant",
-      "notification_body": "40% Off Clothing & Sleep",
-      "discount_type": "percentage_off",
-      "discount_value": "40%",
-      "estimated_savings": 18.0,
-      "end_date": "2026-09-17",
-      "website_domain": "lanebryant.com",
-      "source_url": "https://www.lanebryant.com/sale/jackets-coats"
     },
     {
       "promo_id": "jo_malone_complimentary_9ml_cologne",
