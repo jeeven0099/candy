@@ -1,140 +1,64 @@
 {
-  "generated_at": "2026-09-17T03:14:04.170344+00:00",
+  "generated_at": "2026-09-20T04:19:24.175009+00:00",
   "threshold": 65.0,
-  "total": 51,
+  "total": 39,
   "candidates": [
     {
-      "promo_id": "thredup_free_clean_out_bag_zero_fees_for_sellers",
-      "brand": "ThredUp",
-      "category": "retail",
-      "title": "Free Clean Out Bag & Zero Fees for Sellers",
-      "notify_score": 91.0,
+      "promo_id": "l_agence_selma_feather_coated_jean_free",
+      "brand": "L'Agence",
+      "category": "clothing",
+      "title": "Selma Feather Coated Jean - Free",
+      "notify_score": 87.76,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "ThredUp",
-      "notification_body": "Free: Free Clean Out Bag & Zero Fees for Sellers",
+      "notification_title": "L'Agence",
+      "notification_body": "Free: Selma Feather Coated Jean - Free",
       "discount_type": "free_item",
-      "discount_value": "free clean out bag",
-      "estimated_savings": 100.0,
+      "discount_value": "free",
+      "estimated_savings": 55.0,
       "end_date": null,
-      "website_domain": "thredup.com",
-      "source_url": "https://www.thredup.com/"
+      "website_domain": "lagence.com",
+      "source_url": "https://lagence.com/collections/sale"
     },
     {
-      "promo_id": "asos_asos_women_s_sale_up_to_80_off",
-      "brand": "ASOS",
+      "promo_id": "loft_extra_70_off_sale_styles",
+      "brand": "LOFT",
       "category": "retail",
-      "title": "ASOS Women's Sale - up to 80% off",
-      "notify_score": 85.58,
+      "title": "Extra 70% Off Sale Styles",
+      "notify_score": 84.73,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "ASOS",
-      "notification_body": "ASOS Women's Sale - up to 80% off",
+      "notification_title": "LOFT",
+      "notification_body": "Extra 70% Off Sale Styles",
       "discount_type": "percentage_off",
-      "discount_value": "up to 80%",
-      "estimated_savings": 36.0,
+      "discount_value": "70%",
+      "estimated_savings": 38.5,
       "end_date": null,
-      "website_domain": "asos.com",
-      "source_url": "https://www.asos.com/us/women/sale/dresses/cat/?cid=5235"
+      "website_domain": "loft.com",
+      "source_url": "https://www.loft.com/sale/catl000011/"
     },
     {
-      "promo_id": "alo_yoga_alo_yoga_sale_up_to_70_off",
-      "brand": "Alo Yoga",
-      "category": "retail",
-      "title": "Alo Yoga Sale - up to 70% off",
-      "notify_score": 85.23,
+      "promo_id": "champs_sports_up_to_75_off",
+      "brand": "Champs Sports",
+      "category": "fashion",
+      "title": "Up To 75% Off",
+      "notify_score": 83.64,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Alo Yoga",
-      "notification_body": "Alo Yoga Sale - up to 70% off",
+      "notification_title": "Champs Sports",
+      "notification_body": "Up To 75% Off",
       "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 63.0,
+      "discount_value": "up to 75%",
+      "estimated_savings": 48.75,
       "end_date": null,
-      "website_domain": "aloyoga.com",
-      "source_url": "https://www.aloyoga.com/collections/womens-sale"
-    },
-    {
-      "promo_id": "osprey_sale_packs_bags_travel_gear_deals",
-      "brand": "Osprey",
-      "category": "retail",
-      "title": "Sale Packs, Bags & Travel Gear Deals",
-      "notify_score": 85.23,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Osprey",
-      "notification_body": "Sale Packs, Bags & Travel Gear Deals",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 70.0,
-      "end_date": null,
-      "website_domain": "osprey.com",
-      "source_url": "https://www.osprey.com/sale"
-    },
-    {
-      "promo_id": "ann_taylor_tiered_extra_discount_on_sale_styles",
-      "brand": "Ann Taylor",
-      "category": "retail",
-      "title": "Tiered Extra Discount on Sale Styles",
-      "notify_score": 83.31,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Ann Taylor",
-      "notification_body": "Tiered Extra Discount on Sale Styles",
-      "discount_type": "percentage_off",
-      "discount_value": "60% (2+), 50% (1)",
-      "estimated_savings": 48.0,
-      "end_date": null,
-      "website_domain": "anntaylor.com",
-      "source_url": "https://www.anntaylor.com/cata7000012?ipid=at_global_all_pph_40topssweatersdenimpants50dressesjackets_curatedbucket_20260914"
-    },
-    {
-      "promo_id": "allsaints_women_s_sale_outlet",
-      "brand": "AllSaints",
-      "category": "retail",
-      "title": "Women's Sale & Outlet",
-      "notify_score": 82.1,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "AllSaints",
-      "notification_body": "Women's Sale & Outlet",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 31.5,
-      "end_date": null,
-      "website_domain": "allsaints.com",
-      "source_url": "https://www.allsaints.com/womenswear/suri-cropped-leather-bomber-jacket/W052LE-5.html"
-    },
-    {
-      "promo_id": "boohoo_womens_sale_up_to_70_off",
-      "brand": "Boohoo",
-      "category": "retail",
-      "title": "Womens Sale - up to 70% off",
-      "notify_score": 82.1,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Boohoo",
-      "notification_body": "Womens Sale - up to 70% off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 31.5,
-      "end_date": null,
-      "website_domain": "us.boohoo.com",
-      "source_url": "https://us.boohoo.com/categories/womens-sale"
+      "website_domain": "champssports.com",
+      "source_url": "https://www.champssports.com/category/sale.html"
     },
     {
       "promo_id": "club_monaco_shop_all_sale_up_to_70_off",
@@ -156,80 +80,61 @@
       "source_url": "https://www.clubmonaco.com/collections/sale"
     },
     {
-      "promo_id": "express_up_to_70_off_all_markdowns",
-      "brand": "Express",
+      "promo_id": "pacsun_last_chance_savings_up_to_70_off_all_markdowns",
+      "brand": "PacSun",
       "category": "retail",
-      "title": "Up to 70% Off All Markdowns",
+      "title": "Last Chance Savings - Up to 70% Off All Markdowns",
       "notify_score": 82.1,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Express",
-      "notification_body": "Up to 70% Off All Markdowns",
+      "notification_title": "PacSun",
+      "notification_body": "Last Chance Savings - Up to 70% Off All Markdowns",
       "discount_type": "percentage_off",
       "discount_value": "up to 70%",
       "estimated_savings": 31.5,
       "end_date": null,
-      "website_domain": "express.com",
-      "source_url": null
+      "website_domain": "pacsun.com",
+      "source_url": "https://www.pacsun.com/mens/sale/"
     },
     {
-      "promo_id": "kroger_buy_1_get_1_free_gatorade_water_single_serve",
+      "promo_id": "kroger_buy_one_get_one_free_gatorade_water_single_serve",
       "brand": "Kroger",
       "category": "food",
-      "title": "Buy 1 Get 1 Free Gatorade Water Single Serve",
-      "notify_score": 81.74,
+      "title": "Buy One Get One Free Gatorade Water Single Serve",
+      "notify_score": 81.24,
       "signal_groups": [
         "personal",
         "value"
       ],
       "notification_title": "Kroger",
-      "notification_body": "Free: Buy 1 Get 1 Free Gatorade Water Single Serve",
+      "notification_body": "Free: Buy One Get One Free Gatorade Water Single Serve",
       "discount_type": "free_item",
       "discount_value": "free item",
       "estimated_savings": 10.0,
-      "end_date": null,
+      "end_date": "2026-10-31",
       "website_domain": "kroger.com",
-      "source_url": "https://www.kroger.com/pr/weekly-digital-deals"
+      "source_url": "https://www.kroger.com/savings/"
     },
     {
-      "promo_id": "green_man_gaming_weekly_hottest_deals_up_to_91_off",
-      "brand": "Green Man Gaming",
-      "category": "gaming",
-      "title": "Weekly Hottest Deals - up to 91% off",
-      "notify_score": 81.21,
+      "promo_id": "logitech_logitech_sale",
+      "brand": "Logitech",
+      "category": "tech",
+      "title": "Logitech Sale",
+      "notify_score": 81.04,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Green Man Gaming",
-      "notification_body": "Weekly Hottest Deals - up to 91% off",
+      "notification_title": "Logitech",
+      "notification_body": "Logitech Sale",
       "discount_type": "percentage_off",
-      "discount_value": "up to 91%",
-      "estimated_savings": 27.3,
+      "discount_value": "up to 81% off",
+      "estimated_savings": 202.5,
       "end_date": null,
-      "website_domain": "greenmangaming.com",
-      "source_url": "https://www.greenmangaming.com/hot-deals/"
-    },
-    {
-      "promo_id": "ann_taylor_extra_50_off_sale_styles",
-      "brand": "Ann Taylor",
-      "category": "retail",
-      "title": "Extra 50% Off Sale Styles",
-      "notify_score": 81.16,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Ann Taylor",
-      "notification_body": "Extra 50% Off Sale Styles",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 40.0,
-      "end_date": null,
-      "website_domain": "anntaylor.com",
-      "source_url": "https://www.anntaylor.com/sale/all-sale/cata000055/"
+      "website_domain": "logitech.com",
+      "source_url": "https://www.logitech.com/en-us/shop/p/mevo-start.961-000498"
     },
     {
       "promo_id": "dsw_up_to_60_off_clearance_online",
@@ -248,64 +153,45 @@
       "estimated_savings": 48.0,
       "end_date": null,
       "website_domain": "dsw.com",
-      "source_url": "https://www.dsw.com/"
+      "source_url": null
     },
     {
-      "promo_id": "acer_acer_store_sale",
-      "brand": "Acer",
+      "promo_id": "hyperx_hyperx_gaming_gear_sale_up_to_50_off",
+      "brand": "HyperX",
       "category": "electronics",
-      "title": "Acer Store Sale",
+      "title": "HyperX Gaming Gear Sale - Up to 50% Off",
       "notify_score": 79.36,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Acer",
-      "notification_body": "Acer Store Sale",
+      "notification_title": "HyperX",
+      "notification_body": "HyperX Gaming Gear Sale - Up to 50% Off",
       "discount_type": "percentage_off",
       "discount_value": "up to 50%",
       "estimated_savings": 125.0,
       "end_date": null,
-      "website_domain": "store.acer.com",
-      "source_url": "https://www.store.acer.com/en-us/nitro-gaming-monitor-sale-a"
+      "website_domain": "hyperx.com",
+      "source_url": "https://hyperx.com/collections/sale"
     },
     {
-      "promo_id": "amazon_lightning_deals_over_50_off",
-      "brand": "Amazon",
-      "category": "tech",
-      "title": "Lightning deals over 50% off",
-      "notify_score": 79.36,
+      "promo_id": "pacsun_70_off_markdown_rumi_linen_tie_front_halter_top",
+      "brand": "PacSun",
+      "category": "retail",
+      "title": "70% Off Markdown - Rumi Linen Tie Front Halter Top",
+      "notify_score": 76.85,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Amazon",
-      "notification_body": "Lightning deals over 50% off",
+      "notification_title": "PacSun",
+      "notification_body": "70% Off Markdown - Rumi Linen Tie Front Halter Top",
       "discount_type": "percentage_off",
-      "discount_value": "50%+",
-      "estimated_savings": 125.0,
+      "discount_value": "70%",
+      "estimated_savings": 21.0,
       "end_date": null,
-      "website_domain": "amazon.com",
-      "source_url": "https://www.amazon.com/deals"
-    },
-    {
-      "promo_id": "ikea_kids_eat_free_every_wednesday",
-      "brand": "IKEA",
-      "category": "food",
-      "title": "Kids eat free every Wednesday",
-      "notify_score": 79.24,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "IKEA",
-      "notification_body": "Free: Kids eat free every Wednesday",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 10.0,
-      "end_date": "2026-09-30",
-      "website_domain": "ikea.com",
-      "source_url": "https://www.ikea.com/us/en/offers/"
+      "website_domain": "pacsun.com",
+      "source_url": "https://www.pacsun.com/sale/"
     },
     {
       "promo_id": "pottery_barn_home_decor_sale",
@@ -327,80 +213,118 @@
       "source_url": "https://www.potterybarn.com/customer-service/order-shipment-tracking/?cm_type=gnav"
     },
     {
-      "promo_id": "wendy_s_free_6pc_nuggets_with_purchase_wednesday",
-      "brand": "Wendy's",
-      "category": "food",
-      "title": "Free 6pc Nuggets with Purchase (Wednesday)",
-      "notify_score": 74.52,
+      "promo_id": "coach_up_to_50_off_select_styles",
+      "brand": "Coach",
+      "category": "retail",
+      "title": "Up to 50% off select styles",
+      "notify_score": 76.31,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Wendy's",
-      "notification_body": "Free: Free 6pc Nuggets with Purchase (Wednesday)",
-      "discount_type": "free_item",
-      "discount_value": "free 6pc nuggets",
-      "estimated_savings": 9.0,
+      "notification_title": "Coach",
+      "notification_body": "Up to 50% off select styles",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 37.5,
       "end_date": null,
-      "website_domain": "wendys.com",
-      "source_url": "https://www.wendys.com/offers-coupons"
+      "website_domain": "coach.com",
+      "source_url": "https://www.coach.com/content/promo"
     },
     {
-      "promo_id": "cartier_free_gift_wrapping",
-      "brand": "Cartier",
-      "category": "Jewelry",
-      "title": "Free Gift Wrapping",
+      "promo_id": "pacsun_denim_sale_up_to_50_off",
+      "brand": "PacSun",
+      "category": "retail",
+      "title": "Denim Sale - Up to 50% Off",
+      "notify_score": 76.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "PacSun",
+      "notification_body": "Denim Sale - Up to 50% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 27.5,
+      "end_date": null,
+      "website_domain": "pacsun.com",
+      "source_url": "https://www.pacsun.com/company/accessibility-statement.html"
+    },
+    {
+      "promo_id": "pacsun_50_off_markdown_casey_low_rise_baggy_jeans",
+      "brand": "PacSun",
+      "category": "retail",
+      "title": "50% Off Markdown - Casey Low Rise Baggy Jeans",
+      "notify_score": 76.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "PacSun",
+      "notification_body": "50% Off Markdown - Casey Low Rise Baggy Jeans",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 27.5,
+      "end_date": null,
+      "website_domain": "pacsun.com",
+      "source_url": "https://www.pacsun.com/sale/"
+    },
+    {
+      "promo_id": "burrow_free_swatches",
+      "brand": "Burrow",
+      "category": "Premium Furniture",
+      "title": "Free Swatches",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Cartier",
-      "notification_body": "Free: Free Gift Wrapping",
+      "notification_title": "Burrow",
+      "notification_body": "Free: Free Swatches",
       "discount_type": "free_item",
-      "discount_value": "free",
+      "discount_value": null,
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "cartier.com",
-      "source_url": "https://www.cartier.com/on/demandware.store/Sites-CartierUS-Site/en_US/Home-ModelPOPUP?sqs=OWWrQogCAJhR4wVdAJyGirqqO8ip86FlGwupXmLoPZ4oSPgcbWlZ2yL0wYopft4b8ihbvrEwTPJSBuK4pXJEROuyGwifjz5CEYPjDy6nfM6Ov8sdsio2TRVaVt0ydEp7hX8HFk6dF6dyh4216xOUjVLOlDpfq9%2F%2FXi1EV5DGkKPvhLx6q8f9i2mhEwtGCczHs9x%2FUOWqLRfFLayFvW7NBbJMrZesdA1wAeYonIqRHE7oG%2BkGUDFsQVKUgQ2mokwf81UVuJFymJY0eqwQzAzeJH0nHlHk9hFkfWCJ8iXe64Hd2MszVIUGS3aY%2B0gF3LFgN1gRODH6%2Bk0f2wS9J4y27Q%3D%3D"
+      "website_domain": "burrow.com",
+      "source_url": "https://burrow.com/sale"
     },
     {
-      "promo_id": "epic_games_store_weekly_free_pc_game",
+      "promo_id": "epic_games_store_free_games_weekly_free_pc_game",
       "brand": "Epic Games Store",
       "category": "Gaming",
-      "title": "Weekly Free PC Game",
+      "title": "Free Games - Weekly Free PC Game",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Epic Games Store",
-      "notification_body": "Free: Weekly Free PC Game",
+      "notification_body": "Free: Free Games - Weekly Free PC Game",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/en-US/free-games"
+      "source_url": "https://www.store.epicgames.com/browse"
     },
     {
-      "promo_id": "fenty_beauty_fenty_beauty_sale_free_items_across_site",
-      "brand": "Fenty Beauty",
-      "category": "beauty",
-      "title": "Fenty Beauty Sale - Free Items Across Site",
+      "promo_id": "epic_games_store_free_demos_play_game_demos_at_no_cost",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "Free Demos - Play Game Demos at No Cost",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Fenty Beauty",
-      "notification_body": "Free: Fenty Beauty Sale - Free Items Across Site",
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: Free Demos - Play Game Demos at No Cost",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "fentybeauty.com",
-      "source_url": "https://www.fentybeauty.com/collections/sale/products/gloss-bomb-stix-high-shine-gloss-stick-caviar-crystalz"
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://www.store.epicgames.com/p/valorant"
     },
     {
       "promo_id": "inside_weather_free_swatches",
@@ -422,25 +346,6 @@
       "source_url": "https://insideweather.com/"
     },
     {
-      "promo_id": "lulu_and_georgia_complimentary_design_services",
-      "brand": "Lulu and Georgia",
-      "category": "Premium Home",
-      "title": "Complimentary Design Services",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Lulu and Georgia",
-      "notification_body": "Free: Complimentary Design Services",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "luluandgeorgia.com",
-      "source_url": "https://www.luluandgeorgia.com/collections/sale"
-    },
-    {
       "promo_id": "prose_first_order_free_love_your_first_order",
       "brand": "Prose",
       "category": "beauty",
@@ -460,8 +365,46 @@
       "source_url": "https://www.prose.com/consultation/category"
     },
     {
-      "promo_id": "rei_mid_season_sale_up_to_50_off",
-      "brand": "REI",
+      "promo_id": "champs_sports_up_to_50_off",
+      "brand": "Champs Sports",
+      "category": "fashion",
+      "title": "Up To 50% Off",
+      "notify_score": 73.87,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Champs Sports",
+      "notification_body": "Up To 50% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 32.5,
+      "end_date": null,
+      "website_domain": "champssports.com",
+      "source_url": "https://www.champssports.com/category/sale.html"
+    },
+    {
+      "promo_id": "maje_maje_sale_up_to_50_off",
+      "brand": "Maje",
+      "category": "retail",
+      "title": "Maje Sale - up to 50% off",
+      "notify_score": 73.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Maje",
+      "notification_body": "Maje Sale - up to 50% off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "us.maje.com",
+      "source_url": "https://www.us.maje.com/conditions-generales-de-vente/terms-2025.html"
+    },
+    {
+      "promo_id": "reiss_mid_season_sale_up_to_50_off",
+      "brand": "Reiss",
       "category": "retail",
       "title": "Mid-Season Sale - Up to 50% Off",
       "notify_score": 73.67,
@@ -469,52 +412,14 @@
         "context",
         "value"
       ],
-      "notification_title": "REI",
-      "notification_body": "Mid-Season Sale - Up to 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 22.5,
-      "end_date": null,
-      "website_domain": "rei.com",
-      "source_url": "https://www.reiss.com/us/en/sales"
-    },
-    {
-      "promo_id": "reiss_mid_season_sale",
-      "brand": "Reiss",
-      "category": "retail",
-      "title": "Mid-Season Sale",
-      "notify_score": 73.67,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
       "notification_title": "Reiss",
-      "notification_body": "Mid-Season Sale",
+      "notification_body": "Mid-Season Sale - Up to 50% Off",
       "discount_type": "percentage_off",
       "discount_value": "up to 50%",
       "estimated_savings": 22.5,
       "end_date": null,
       "website_domain": "reiss.com",
       "source_url": "https://www.reiss.com/us/en/sales"
-    },
-    {
-      "promo_id": "sur_la_table_anniversary_sale",
-      "brand": "Sur La Table",
-      "category": "retail",
-      "title": "Anniversary Sale",
-      "notify_score": 73.67,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Sur La Table",
-      "notification_body": "Anniversary Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 22.5,
-      "end_date": null,
-      "website_domain": "surlatable.com",
-      "source_url": "https://www.surlatable.com/category/cat-6070003/Sale"
     },
     {
       "promo_id": "joybird_free_fabric_samples",
@@ -555,42 +460,42 @@
       "source_url": null
     },
     {
-      "promo_id": "vineyard_vines_vineyard_vines_sale",
-      "brand": "Vineyard Vines",
-      "category": "fashion",
-      "title": "Vineyard Vines Sale",
-      "notify_score": 73.53,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Vineyard Vines",
-      "notification_body": "Vineyard Vines Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 62% off",
-      "estimated_savings": 40.3,
-      "end_date": null,
-      "website_domain": "vineyardvines.com",
-      "source_url": "https://www.vineyardvines.com/product/mens-pants/slim-straight-garment-dyed-jeans/1P001396.html?color=J765"
-    },
-    {
-      "promo_id": "akris_free_returns",
-      "brand": "Akris",
+      "promo_id": "mejuri_complimentary_jewelry_cleaning",
+      "brand": "Mejuri",
       "category": "retail",
-      "title": "Free Returns",
+      "title": "Complimentary Jewelry Cleaning",
       "notify_score": 73.33,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Akris",
-      "notification_body": "Free: Free Returns",
+      "notification_title": "Mejuri",
+      "notification_body": "Free: Complimentary Jewelry Cleaning",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "us.akris.com",
-      "source_url": null
+      "website_domain": "mejuri.com",
+      "source_url": "https://www.mejuri.com/collections/interconnected"
+    },
+    {
+      "promo_id": "astro_gaming_astro_gaming_sale",
+      "brand": "Astro Gaming",
+      "category": "gaming",
+      "title": "Astro Gaming Sale",
+      "notify_score": 72.54,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Astro Gaming",
+      "notification_body": "Astro Gaming Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 80% off",
+      "estimated_savings": 24.0,
+      "end_date": null,
+      "website_domain": "logitechg.com",
+      "source_url": "https://www.logitechg.com/en-us/shop/p/rs50-system"
     },
     {
       "promo_id": "jo_malone_complimentary_9ml_cologne",
@@ -631,6 +536,25 @@
       "source_url": "https://www.jomalone.com/ai-scent-advisor"
     },
     {
+      "promo_id": "lulu_and_georgia_complimentary_design_services",
+      "brand": "Lulu and Georgia",
+      "category": "Premium Home",
+      "title": "Complimentary Design Services",
+      "notify_score": 71.61,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Lulu and Georgia",
+      "notification_body": "Free: Complimentary Design Services",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "luluandgeorgia.com",
+      "source_url": "https://www.luluandgeorgia.com/pages/top-questions"
+    },
+    {
       "promo_id": "firestone_free_brake_inspection",
       "brand": "Firestone",
       "category": "auto_parts",
@@ -669,6 +593,25 @@
       "source_url": "https://www.zumiez.com/sale.html"
     },
     {
+      "promo_id": "moda_operandi_moda_operandi_sale",
+      "brand": "Moda Operandi",
+      "category": "Luxury Retail",
+      "title": "Moda Operandi Sale",
+      "notify_score": 71.05,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Moda Operandi",
+      "notification_body": "Moda Operandi Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 75% off",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "modaoperandi.com",
+      "source_url": "https://www.modaoperandi.com/sale"
+    },
+    {
       "promo_id": "mcdonald_s_free_10_piece_mcnuggets_for_first_time_app_users",
       "brand": "McDonald's",
       "category": "food",
@@ -688,23 +631,23 @@
       "source_url": "https://www.mcdonalds.com/us/en-us/mcdonalds-email-signup.html"
     },
     {
-      "promo_id": "burrow_free_swatches",
-      "brand": "Burrow",
-      "category": "home",
-      "title": "Free Swatches",
-      "notify_score": 69.04,
+      "promo_id": "sur_la_table_anniversary_sale",
+      "brand": "Sur La Table",
+      "category": "home_goods",
+      "title": "Anniversary Sale",
+      "notify_score": 69.62,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Burrow",
-      "notification_body": "Free: Free Swatches",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
+      "notification_title": "Sur La Table",
+      "notification_body": "Anniversary Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 45.0,
       "end_date": null,
-      "website_domain": "burrow.com",
-      "source_url": "https://burrow.com/sale"
+      "website_domain": "surlatable.com",
+      "source_url": "https://www.surlatable.com/category/cat-6070003/Sale"
     },
     {
       "promo_id": "bcbg_bcbg_sale",
@@ -726,63 +669,6 @@
       "source_url": "https://www.bcbg.com/collections/ready-to-wear"
     },
     {
-      "promo_id": "urban_outfitters_women_s_clothing_sale",
-      "brand": "Urban Outfitters",
-      "category": "retail",
-      "title": "Women's Clothing Sale",
-      "notify_score": 68.66,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Urban Outfitters",
-      "notification_body": "Women's Clothing Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 22.5,
-      "end_date": null,
-      "website_domain": "urbanoutfitters.com",
-      "source_url": "https://www.urbanoutfitters.com/sale"
-    },
-    {
-      "promo_id": "urban_outfitters_men_s_clothing_sale",
-      "brand": "Urban Outfitters",
-      "category": "retail",
-      "title": "Men's Clothing Sale",
-      "notify_score": 68.66,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Urban Outfitters",
-      "notification_body": "Men's Clothing Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 22.5,
-      "end_date": null,
-      "website_domain": "urbanoutfitters.com",
-      "source_url": "https://www.urbanoutfitters.com/sale"
-    },
-    {
-      "promo_id": "main_event_kids_bowl_free",
-      "brand": "Main Event",
-      "category": "gaming",
-      "title": "Kids Bowl Free",
-      "notify_score": 68.49,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Main Event",
-      "notification_body": "Free: Kids Bowl Free",
-      "discount_type": "free_item",
-      "discount_value": "2 free games",
-      "estimated_savings": 10.0,
-      "end_date": null,
-      "website_domain": "mainevent.com",
-      "source_url": "https://www.mainevent.com/specials/"
-    },
-    {
       "promo_id": "altuzarra_altuzarra_sale",
       "brand": "Altuzarra",
       "category": "Designer Fashion",
@@ -802,23 +688,23 @@
       "source_url": "https://www.altuzarra.com/collections/new-arrivals"
     },
     {
-      "promo_id": "boohoo_70_off_almost_everything",
-      "brand": "Boohoo",
+      "promo_id": "prettylittlething_70_off_everything",
+      "brand": "PrettyLittleThing",
       "category": "retail",
-      "title": "70% Off Almost Everything",
+      "title": "70% OFF EVERYTHING",
       "notify_score": 67.69,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Boohoo",
-      "notification_body": "70% Off Almost Everything",
+      "notification_title": "PrettyLittleThing",
+      "notification_body": "70% OFF EVERYTHING",
       "discount_type": "percentage_off",
       "discount_value": "70%",
       "estimated_savings": 14.0,
       "end_date": null,
-      "website_domain": "us.boohoo.com",
-      "source_url": "https://us.boohoo.com/categories/womens-sale"
+      "website_domain": "prettylittlething.us",
+      "source_url": "https://www.prettylittlething.us/categories/womens-sale"
     },
     {
       "promo_id": "james_allen_up_to_50_off_the_james_allen_collection",
@@ -840,137 +726,23 @@
       "source_url": "https://www.bluenile.com/"
     },
     {
-      "promo_id": "lg_appliances_labor_day_deals_30_50_off_home_appliances",
-      "brand": "LG Appliances",
-      "category": "home appliances",
-      "title": "Labor Day Deals - 30-50% Off Home Appliances",
-      "notify_score": 66.42,
+      "promo_id": "applebee_s_late_night_half_price_appetizers",
+      "brand": "Applebee's",
+      "category": "food",
+      "title": "Late Night Half Price Appetizers",
+      "notify_score": 65.39,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "LG Appliances",
-      "notification_body": "Labor Day Deals - 30-50% Off Home Appliances",
+      "notification_title": "Applebee's",
+      "notification_body": "Late Night Half Price Appetizers",
       "discount_type": "percentage_off",
-      "discount_value": "30-50%",
-      "estimated_savings": 15.0,
+      "discount_value": "50%",
+      "estimated_savings": 8.0,
       "end_date": null,
-      "website_domain": "lg.com",
-      "source_url": "https://www.lg.com/us/home-appliances"
-    },
-    {
-      "promo_id": "jackery_jackery_sitewide_sale_up_to_60_off",
-      "brand": "Jackery",
-      "category": "electronics",
-      "title": "Jackery Sitewide Sale - Up to 60% Off",
-      "notify_score": 65.29,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Jackery",
-      "notification_body": "Jackery Sitewide Sale - Up to 60% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 36.0,
-      "end_date": null,
-      "website_domain": "jackery.com",
-      "source_url": "https://www.jackery.com/pages/compare"
-    },
-    {
-      "promo_id": "article_free_interior_design_services",
-      "brand": "Article",
-      "category": "furniture",
-      "title": "Free Interior Design Services",
-      "notify_score": 65.14,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Article",
-      "notification_body": "Free: Free Interior Design Services",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "article.com",
-      "source_url": "https://www.article.com/browse/213/sale"
-    },
-    {
-      "promo_id": "avis_free_car_rental_upgrade_coupon",
-      "brand": "Avis",
-      "category": "travel",
-      "title": "Free Car Rental Upgrade Coupon",
-      "notify_score": 65.14,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Avis",
-      "notification_body": "Free: Free Car Rental Upgrade Coupon",
-      "discount_type": "free_item",
-      "discount_value": "free upgrade",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "avis.com",
-      "source_url": "https://www.avis.com/en/offers"
-    },
-    {
-      "promo_id": "extended_stay_america_kids_stay_free",
-      "brand": "Extended Stay America",
-      "category": "travel",
-      "title": "Kids Stay Free",
-      "notify_score": 65.14,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Extended Stay America",
-      "notification_body": "Free: Kids Stay Free",
-      "discount_type": "free_item",
-      "discount_value": "Free stay for children under 17",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "extendedstayamerica.com",
-      "source_url": "https://www.extendedstayamerica.com/special-offers?customer_id=347-521-0300&gclsrc=aw.ds&&mid=ps-google&channel=paid-search&partner=google&campaign=g_cs_extended_stay_america_homepage&adgroup=&ppckw=extended%20stay%20america%20greenville&adtype=regular&gad_source=1&gad_campaignid=10048702300&gclid=CjwKCAjwpefSBhBvEiwAzyEtZ8Tr3u47PsViiu273442P31w9YEb2GVQxOjzsKvlQE6PbVT_L2zUihoC3V8QAvD_BwE"
-    },
-    {
-      "promo_id": "hilton_breakfast_included",
-      "brand": "Hilton",
-      "category": "travel",
-      "title": "Breakfast Included",
-      "notify_score": 65.14,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Hilton",
-      "notification_body": "Free: Breakfast Included",
-      "discount_type": "free_item",
-      "discount_value": "free breakfast",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "hilton.com",
-      "source_url": "https://www.hilton.com/en/offers/"
-    },
-    {
-      "promo_id": "hilton_park_stay",
-      "brand": "Hilton",
-      "category": "travel",
-      "title": "Park & Stay",
-      "notify_score": 65.14,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Hilton",
-      "notification_body": "Free: Park & Stay",
-      "discount_type": "free_item",
-      "discount_value": "free parking",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "hilton.com",
-      "source_url": "https://www.hilton.com/en/offers/"
+      "website_domain": "applebees.com",
+      "source_url": "https://www.applebees.com/en/accounts/register-user"
     }
   ]
 }
