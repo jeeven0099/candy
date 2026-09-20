@@ -1,8 +1,27 @@
 {
-  "generated_at": "2026-09-20T04:19:24.175009+00:00",
+  "generated_at": "2026-09-20T05:32:00.580204+00:00",
   "threshold": 65.0,
-  "total": 39,
+  "total": 40,
   "candidates": [
+    {
+      "promo_id": "shake_shack_chicken_sundays_free_chicken_shack_with_10_minimum_purchase",
+      "brand": "Shake Shack",
+      "category": "food",
+      "title": "Chicken Sundays - Free Chicken Shack with $10 Minimum Purchase",
+      "notify_score": 94.59,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Shake Shack",
+      "notification_body": "Free: Chicken Sundays - Free Chicken Shack with $10 Minimum Purchase",
+      "discount_type": "free_item",
+      "discount_value": "free Chicken Shack",
+      "estimated_savings": 13.0,
+      "end_date": "2026-12-27",
+      "website_domain": "shakeshack.com",
+      "source_url": "https://www.shakeshack.com/privacy-settings/accept"
+    },
     {
       "promo_id": "l_agence_selma_feather_coated_jean_free",
       "brand": "L'Agence",
@@ -154,6 +173,25 @@
       "end_date": null,
       "website_domain": "dsw.com",
       "source_url": null
+    },
+    {
+      "promo_id": "pinstripes_kids_eat_free_sunday",
+      "brand": "Pinstripes",
+      "category": "entertainment",
+      "title": "Kids Eat Free (Sunday)",
+      "notify_score": 80.47,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Pinstripes",
+      "notification_body": "Free: Kids Eat Free (Sunday)",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 14.0,
+      "end_date": null,
+      "website_domain": "pinstripes.com",
+      "source_url": "https://www.pinstripes.com/private-events"
     },
     {
       "promo_id": "hyperx_hyperx_gaming_gear_sale_up_to_50_off",
@@ -422,44 +460,6 @@
       "source_url": "https://www.reiss.com/us/en/sales"
     },
     {
-      "promo_id": "joybird_free_fabric_samples",
-      "brand": "Joybird",
-      "category": "retail",
-      "title": "Free Fabric Samples",
-      "notify_score": 73.6,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Joybird",
-      "notification_body": "Free: Free Fabric Samples",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "joybird.com",
-      "source_url": null
-    },
-    {
-      "promo_id": "joybird_free_design_services",
-      "brand": "Joybird",
-      "category": "retail",
-      "title": "Free Design Services",
-      "notify_score": 73.6,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Joybird",
-      "notification_body": "Free: Free Design Services",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "joybird.com",
-      "source_url": null
-    },
-    {
       "promo_id": "mejuri_complimentary_jewelry_cleaning",
       "brand": "Mejuri",
       "category": "retail",
@@ -629,6 +629,25 @@
       "end_date": null,
       "website_domain": "mcdonalds.com",
       "source_url": "https://www.mcdonalds.com/us/en-us/mcdonalds-email-signup.html"
+    },
+    {
+      "promo_id": "joybird_free_fabric_samples",
+      "brand": "Joybird",
+      "category": "home_goods",
+      "title": "Free Fabric Samples",
+      "notify_score": 70.55,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Joybird",
+      "notification_body": "Free: Free Fabric Samples",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "joybird.com",
+      "source_url": "https://joybird.com/sale/"
     },
     {
       "promo_id": "sur_la_table_anniversary_sale",
