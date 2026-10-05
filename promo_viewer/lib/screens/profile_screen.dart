@@ -59,7 +59,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
           slivers: [
             SliverToBoxAdapter(child: _buildHeader()),
             if (SupabaseService.isLoggedIn)
-              SliverToBoxAdapter(child: _buildAccountSection()),
+              SliverToBoxAdapter(child: _buildAccountSection())
+            else
+              SliverToBoxAdapter(child: _buildSignInSection()),
             SliverToBoxAdapter(child: _buildLocationSection()),
             SliverToBoxAdapter(child: _buildAboutSection()),
             const SliverPadding(padding: EdgeInsets.only(bottom: 32)),
@@ -73,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return const Padding(
       padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
       child: Text(
-        'Profile',
+        'Settings',
         style: TextStyle(
           fontSize: 28,
           fontWeight: FontWeight.w700,
@@ -131,11 +133,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   // ── Location radius ────────────────────────────────────────────────────────
 
+  Widget _buildSignInSection() {
+    return _Section(
+      icon: Icons.account_circle_outlined,
+      title: 'Account',
+      child: _TileRow(
+        icon: Icons.login,
+        label: 'Create account or sign in',
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => const OnboardingScreen()),
+        ),
+      ),
+    );
+  }
+
   Widget _buildLocationSection() {
     return _Section(
       icon: Icons.near_me_outlined,
       title: 'Near Me Radius',
-      subtitle: 'Distance for the Near Me chip in Deals',
+      subtitle: 'Distance used for Near Me deals',
       child: Row(
         children: _kRadiusOptions.map((mi) {
           final selected = mi == _radiusMi;

@@ -13,6 +13,7 @@ import '../theme/candy_colors.dart';
 import 'deal_detail_screen.dart';
 import 'for_you_screen.dart';
 import 'near_me_screen.dart';
+import 'profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -138,7 +139,10 @@ class _MainScreenState extends State<MainScreen> {
 
   void _selectTab(int index) {
     setState(() => _tab = index);
-    _svc.recordTabSwitch(index, const ['For You', 'Near Me'][index]);
+    _svc.recordTabSwitch(
+      index,
+      const ['For You', 'Near Me', 'Settings'][index],
+    );
     if (index == 1) {
       _ensureLocation();
     }
@@ -204,6 +208,7 @@ class _MainScreenState extends State<MainScreen> {
               onRefresh: _refreshCurrentTab,
               onRequestLocation: _ensureLocation,
             ),
+            const ProfileScreen(),
           ],
         ),
       ),
@@ -236,6 +241,11 @@ class _GlassNavBar extends StatelessWidget {
       icon: Icons.near_me_outlined,
       selectedIcon: Icons.near_me,
       label: 'Near Me',
+    ),
+    (
+      icon: Icons.settings_outlined,
+      selectedIcon: Icons.settings,
+      label: 'Settings',
     ),
   ];
 
