@@ -1,4 +1,4 @@
-﻿$root     = "C:\Users\user\Downloads\promo-raw-scraper"
+﻿$root     = "C:\Users\user\Desktop\promo-raw-scraper"
 $python   = "C:\Python314\python.exe"
 $pipeline = "$root\promo-raw-scraper\run_pipeline.py"
 $lockFile = "$root\promo-raw-scraper\.pipeline.lock"

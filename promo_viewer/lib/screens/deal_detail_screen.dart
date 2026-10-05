@@ -85,7 +85,8 @@ class _DealDetailScreenState extends State<DealDetailScreen> {
 
   Promotion get _p => widget.promo;
 
-  bool get _hasSticky => _p.fastRedemption != null && _p.fastRedemption!.eligible;
+  bool get _hasSticky =>
+      _p.fastRedemption != null && _p.fastRedemption!.eligible;
 
   @override
   Widget build(BuildContext context) {
@@ -176,8 +177,6 @@ class _DealDetailScreenState extends State<DealDetailScreen> {
                 _WhenCard(promo: _p),
                 const SizedBox(height: 10),
               ],
-
-
             ],
           ),
         ),
@@ -243,10 +242,14 @@ class _DealHeroSection extends StatelessWidget {
             runSpacing: 6,
             children: [
               if (promo.globalQualityScore > 0)
-                ValueTierBadge(qualityScore: promo.globalQualityScore, fontSize: 12),
+                ValueTierBadge(
+                  qualityScore: promo.globalQualityScore,
+                  fontSize: 12,
+                ),
               EffortChip(promo: promo),
               UrgencyChip(promo: promo),
-              if (promo.endDate != null && UrgencyChip(promo: promo).build(context) is SizedBox)
+              if (promo.endDate != null &&
+                  UrgencyChip(promo: promo).build(context) is SizedBox)
                 _TagChip(
                   label: 'Expires ${promo.endDate!}',
                   icon: Icons.calendar_today_outlined,
@@ -260,7 +263,10 @@ class _DealHeroSection extends StatelessWidget {
             runSpacing: 6,
             children: [
               if (promo.displayValue.isNotEmpty)
-                _ValueBadge(value: promo.displayValue, type: promo.discountType),
+                _ValueBadge(
+                  value: promo.displayValue,
+                  type: promo.discountType,
+                ),
               _TagChip(label: _capitalize(promo.category)),
               if (promo.redemptionMethod != 'unknown')
                 _TagChip(label: _formatRedemption(promo.redemptionMethod)),
@@ -285,13 +291,15 @@ class _DealHeroSection extends StatelessWidget {
   static String _capitalize(String s) =>
       s.isEmpty ? s : s[0].toUpperCase() + s.substring(1).replaceAll('_', ' ');
 
-  static String _formatRedemption(String r) => const {
-        'in_app':       'In app',
-        'in_store':     'In store',
-        'online':       'Online',
-        'show_code':    'Promo code',
+  static String _formatRedemption(String r) =>
+      const {
+        'in_app': 'In app',
+        'in_store': 'In store',
+        'online': 'Online',
+        'show_code': 'Promo code',
         'scan_barcode': 'Scan barcode',
-      }[r] ?? r;
+      }[r] ??
+      r;
 }
 
 // ---------------------------------------------------------------------------
@@ -304,18 +312,20 @@ class _SavingsBreakdownCard extends StatelessWidget {
 
   static String _contextNote(Promotion p) {
     return switch (p.discountType) {
-      'free_item'      => 'Free item added to your order',
-      'free_shipping'  => 'Shipping cost eliminated from your order',
-      'points'         => 'Earned toward future rewards',
-      'cashback'       => 'Credited back after purchase',
-      _                => 'Estimated vs. typical full price',
+      'free_item' => 'Free item added to your order',
+      'free_shipping' => 'Shipping cost eliminated from your order',
+      'points' => 'Earned toward future rewards',
+      'cashback' => 'Credited back after purchase',
+      _ => 'Estimated vs. typical full price',
     };
   }
 
   @override
   Widget build(BuildContext context) {
     final savings = promo.estimatedSavings!;
-    final pct = promo.effectiveDiscountPct > 0 ? promo.effectiveDiscountPct / 100 : null;
+    final pct = promo.effectiveDiscountPct > 0
+        ? promo.effectiveDiscountPct / 100
+        : null;
     final rawUsual = pct != null && pct < 1.0 ? savings / pct : null;
     // Suppress price comparison when implied "usual" would be implausibly high.
     final usualPrice = (rawUsual != null && rawUsual <= 500) ? rawUsual : null;
@@ -358,7 +368,9 @@ class _SavingsBreakdownCard extends StatelessWidget {
                         fontWeight: FontWeight.w800,
                         letterSpacing: -1.5,
                         height: 1.0,
-                        color: todayPrice != null ? Candy.chocolate : Candy.mint,
+                        color: todayPrice != null
+                            ? Candy.chocolate
+                            : Candy.mint,
                       ),
                     ),
                   ],
@@ -366,11 +378,16 @@ class _SavingsBreakdownCard extends StatelessWidget {
               ),
               if (discountPct != null)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 8,
+                  ),
                   decoration: BoxDecoration(
                     color: Candy.mint.withValues(alpha: 0.10),
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Candy.mint.withValues(alpha: 0.25)),
+                    border: Border.all(
+                      color: Candy.mint.withValues(alpha: 0.25),
+                    ),
                   ),
                   child: Text(
                     '$discountPct%\nOFF',
@@ -388,9 +405,14 @@ class _SavingsBreakdownCard extends StatelessWidget {
           ),
 
           // Price comparison (when we have enough data for before/after)
-          if (usualPrice != null && todayPrice != null && paidFraction != null) ...[
+          if (usualPrice != null &&
+              todayPrice != null &&
+              paidFraction != null) ...[
             const SizedBox(height: 16),
-            _SpendBar(paidFraction: paidFraction, savingsAmount: savings.round()),
+            _SpendBar(
+              paidFraction: paidFraction,
+              savingsAmount: savings.round(),
+            ),
             const SizedBox(height: 14),
             IntrinsicHeight(
               child: Row(
@@ -448,7 +470,7 @@ class _SpendBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final paidPct  = (paidFraction * 100).round().clamp(1, 99);
+    final paidPct = (paidFraction * 100).round().clamp(1, 99);
     final savedPct = (100 - paidPct).clamp(1, 99);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -460,7 +482,10 @@ class _SpendBar extends StatelessWidget {
               // Paid portion — chocolate/dark
               Expanded(
                 flex: paidPct,
-                child: Container(height: 8, color: Candy.chocolate.withValues(alpha: 0.18)),
+                child: Container(
+                  height: 8,
+                  color: Candy.chocolate.withValues(alpha: 0.18),
+                ),
               ),
               // Saved portion — mint/green
               Expanded(
@@ -477,7 +502,10 @@ class _SpendBar extends StatelessWidget {
             Container(
               width: 8,
               height: 8,
-              decoration: const BoxDecoration(color: Candy.mint, shape: BoxShape.circle),
+              decoration: const BoxDecoration(
+                color: Candy.mint,
+                shape: BoxShape.circle,
+              ),
             ),
             const SizedBox(width: 5),
             Text(
@@ -549,15 +577,18 @@ class _QuickSummaryCard extends StatelessWidget {
 
   static String? _codeToText(String code) {
     return switch (code) {
-      'HIGH_EFFECTIVE_DISCOUNT' => 'Higher than average discount for this category',
-      'STRONG_DISCOUNT'         => 'Strong discount — above average for this category',
-      'HIGH_VALUE_SAVINGS'      => 'Saves more than \$50 — significant dollar value',
-      'GOOD_VALUE_SAVINGS'      => 'Solid dollar savings on this purchase',
-      'NO_MEMBERSHIP_REQUIRED'  => 'No membership required — open to everyone',
+      'HIGH_EFFECTIVE_DISCOUNT' =>
+        'Higher than average discount for this category',
+      'STRONG_DISCOUNT' => 'Strong discount — above average for this category',
+      'HIGH_VALUE_SAVINGS' => 'Saves more than \$50 — significant dollar value',
+      'GOOD_VALUE_SAVINGS' => 'Solid dollar savings on this purchase',
+      'NO_MEMBERSHIP_REQUIRED' => 'No membership required — open to everyone',
       'LOW_REDEMPTION_FRICTION' => 'Easy to redeem — no extra steps',
-      'NO_PURCHASE_MINIMUM'     => 'No minimum spend — works on any purchase amount',
-      'STRONG_ECONOMIC_VALUE'   => 'Strong overall value for this type of promotion',
-      _                         => null,
+      'NO_PURCHASE_MINIMUM' =>
+        'No minimum spend — works on any purchase amount',
+      'STRONG_ECONOMIC_VALUE' =>
+        'Strong overall value for this type of promotion',
+      _ => null,
     };
   }
 
@@ -580,7 +611,9 @@ class _QuickSummaryCard extends StatelessWidget {
       if (!result.contains(line)) result.add(line);
     }
     if (result.length < 3 && promo.confidenceScore >= 0.8) {
-      result.add('Verified from ${promo.websiteDomain ?? 'the official website'}');
+      result.add(
+        'Verified from ${promo.websiteDomain ?? 'the official website'}',
+      );
     }
     if (result.isEmpty) {
       result.add('${promo.displayValue} — ${promo.brand} promotion');
@@ -597,7 +630,10 @@ class _QuickSummaryCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (promo.globalQualityScore > 0) ...[
-            ValueTierBadge(qualityScore: promo.globalQualityScore, fontSize: 13),
+            ValueTierBadge(
+              qualityScore: promo.globalQualityScore,
+              fontSize: 13,
+            ),
             const SizedBox(height: 12),
           ],
           ...bullets.map(
@@ -639,7 +675,10 @@ class _GreenDot extends StatelessWidget {
     return Container(
       width: 7,
       height: 7,
-      decoration: const BoxDecoration(color: Candy.mint, shape: BoxShape.circle),
+      decoration: const BoxDecoration(
+        color: Candy.mint,
+        shape: BoxShape.circle,
+      ),
     );
   }
 }
@@ -671,14 +710,29 @@ class _TrustCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final now = DateTime.now();
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
     final dateLabel = '${months[now.month - 1]} ${now.day}';
     return _Card(
       child: GestureDetector(
         onTap: () async {
           InteractionService().recordVerifyTap(promoId, brand: brand);
           final uri = Uri.tryParse(url);
-          if (uri != null) await launchUrl(uri, mode: LaunchMode.externalApplication);
+          if (uri != null) {
+            await launchUrl(uri, mode: LaunchMode.externalApplication);
+          }
         },
         behavior: HitTestBehavior.opaque,
         child: Row(
@@ -714,21 +768,29 @@ class _TrustCard extends StatelessWidget {
                     'Last checked $dateLabel · $_confidenceLabel',
                     style: const TextStyle(fontSize: 11, color: Candy.muted),
                   ),
-                  Builder(builder: (context) {
-                    final uri = Uri.tryParse(url);
-                    final path = uri != null && (uri.path.isNotEmpty && uri.path != '/')
-                        ? uri.path + (uri.query.isNotEmpty ? '?${uri.query}' : '')
-                        : null;
-                    if (path == null) return const SizedBox.shrink();
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 2),
-                      child: Text(
-                        path,
-                        style: const TextStyle(fontSize: 10, color: Candy.muted),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    );
-                  }),
+                  Builder(
+                    builder: (context) {
+                      final uri = Uri.tryParse(url);
+                      final path =
+                          uri != null &&
+                              (uri.path.isNotEmpty && uri.path != '/')
+                          ? uri.path +
+                                (uri.query.isNotEmpty ? '?${uri.query}' : '')
+                          : null;
+                      if (path == null) return const SizedBox.shrink();
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 2),
+                        child: Text(
+                          path,
+                          style: const TextStyle(
+                            fontSize: 10,
+                            color: Candy.muted,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
@@ -765,21 +827,35 @@ class _HistoricalComparisonCard extends StatelessWidget {
     final int topPct;
     if (peers.length < 5) {
       // Sparse category — fall back to score thresholds
-      if (score >= 80) topPct = 10;
-      else if (score >= 65) topPct = 25;
-      else if (score >= 50) topPct = 40;
-      else topPct = 50;
+      if (score >= 80) {
+        topPct = 10;
+      } else if (score >= 65) {
+        topPct = 25;
+      } else if (score >= 50) {
+        topPct = 40;
+      } else {
+        topPct = 50;
+      }
     } else {
       final beaten = peers.where((p) => p.globalQualityScore < score).length;
       final raw = ((1.0 - beaten / peers.length) * 100).round();
-      if (raw <= 5) topPct = 5;
-      else if (raw <= 10) topPct = 10;
-      else if (raw <= 15) topPct = 15;
-      else if (raw <= 20) topPct = 20;
-      else if (raw <= 25) topPct = 25;
-      else if (raw <= 30) topPct = 30;
-      else if (raw <= 40) topPct = 40;
-      else topPct = 50;
+      if (raw <= 5) {
+        topPct = 5;
+      } else if (raw <= 10) {
+        topPct = 10;
+      } else if (raw <= 15) {
+        topPct = 15;
+      } else if (raw <= 20) {
+        topPct = 20;
+      } else if (raw <= 25) {
+        topPct = 25;
+      } else if (raw <= 30) {
+        topPct = 30;
+      } else if (raw <= 40) {
+        topPct = 40;
+      } else {
+        topPct = 50;
+      }
     }
     return 'Top $topPct%';
   }
@@ -827,15 +903,27 @@ class _HistoricalComparisonCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   'in ${_categoryLabel()}',
-                  style: const TextStyle(fontSize: 13, color: Candy.muted, height: 1.3),
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: Candy.muted,
+                    height: 1.3,
+                  ),
                 ),
               ),
             ],
           ),
           const SizedBox(height: 16),
-          _CompareBar(label: 'Today\'s deal', ratio: todayRatio, highlight: true),
+          _CompareBar(
+            label: 'Today\'s deal',
+            ratio: todayRatio,
+            highlight: true,
+          ),
           const SizedBox(height: 8),
-          _CompareBar(label: 'Typical deal', ratio: typicalRatio, highlight: false),
+          _CompareBar(
+            label: 'Typical deal',
+            ratio: typicalRatio,
+            highlight: false,
+          ),
         ],
       ),
     );
@@ -846,7 +934,11 @@ class _CompareBar extends StatelessWidget {
   final String label;
   final double ratio;
   final bool highlight;
-  const _CompareBar({required this.label, required this.ratio, required this.highlight});
+  const _CompareBar({
+    required this.label,
+    required this.ratio,
+    required this.highlight,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -886,19 +978,22 @@ class _WhyGoodDealSection extends StatelessWidget {
 
   static String? _codeToText(String code) {
     return switch (code) {
-      'HIGH_EFFECTIVE_DISCOUNT' => 'Higher than average discount for this category',
-      'STRONG_DISCOUNT'         => 'Strong discount — above average for this category',
-      'HIGH_VALUE_SAVINGS'      => 'Saves more than \$50 — significant dollar value',
-      'GOOD_VALUE_SAVINGS'      => 'Solid dollar savings on this purchase',
-      'EXPIRES_SOON'            => 'Ending soon — act before it expires',
-      'EXPIRES_TODAY'           => 'Last chance — expires today',
-      'NO_MEMBERSHIP_REQUIRED'  => 'No membership required — anyone can use this',
+      'HIGH_EFFECTIVE_DISCOUNT' =>
+        'Higher than average discount for this category',
+      'STRONG_DISCOUNT' => 'Strong discount — above average for this category',
+      'HIGH_VALUE_SAVINGS' => 'Saves more than \$50 — significant dollar value',
+      'GOOD_VALUE_SAVINGS' => 'Solid dollar savings on this purchase',
+      'EXPIRES_SOON' => 'Ending soon — act before it expires',
+      'EXPIRES_TODAY' => 'Last chance — expires today',
+      'NO_MEMBERSHIP_REQUIRED' =>
+        'No membership required — anyone can use this',
       'LOW_REDEMPTION_FRICTION' => 'Easy to redeem — no extra steps required',
-      'NO_PURCHASE_MINIMUM'     => 'No minimum spend — works on a single item',
-      'STRONG_ECONOMIC_VALUE'   => 'Strong overall economic value for this promotion',
-      'HIGH_SPEND_REQUIRED'     => null,
-      'LOW_CONFIDENCE_WARNING'  => null,
-      _                         => null,
+      'NO_PURCHASE_MINIMUM' => 'No minimum spend — works on a single item',
+      'STRONG_ECONOMIC_VALUE' =>
+        'Strong overall economic value for this promotion',
+      'HIGH_SPEND_REQUIRED' => null,
+      'LOW_CONFIDENCE_WARNING' => null,
+      _ => null,
     };
   }
 
@@ -931,8 +1026,11 @@ class _WhyGoodDealSection extends StatelessWidget {
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(top: 3),
-                    child: Icon(Icons.check_circle_outline,
-                        size: 17, color: Candy.mint),
+                    child: Icon(
+                      Icons.check_circle_outline,
+                      size: 17,
+                      color: Candy.mint,
+                    ),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
@@ -971,7 +1069,11 @@ class _PromoCodeCard extends StatelessWidget {
         children: [
           const Text(
             'Promo code',
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: Candy.chocolate),
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              color: Candy.chocolate,
+            ),
           ),
           const SizedBox(height: 10),
           _PromoCodeBox(promo: promo),
@@ -1027,7 +1129,11 @@ class _PromoCodeBoxState extends State<_PromoCodeBox> {
         ),
         child: Row(
           children: [
-            const Icon(Icons.confirmation_number_outlined, size: 18, color: Candy.lavender),
+            const Icon(
+              Icons.confirmation_number_outlined,
+              size: 18,
+              color: Candy.lavender,
+            ),
             const SizedBox(width: 10),
             Expanded(
               child: Text(
@@ -1068,18 +1174,26 @@ class _EligibilityCard extends StatelessWidget {
           const Text(
             'Can I use this?',
             style: TextStyle(
-              fontSize: 15, fontWeight: FontWeight.w700, color: Candy.chocolate),
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              color: Candy.chocolate,
+            ),
           ),
           const SizedBox(height: 12),
           if (!promo.requiresMembership)
-            _EligRow(Icons.check_circle_outline, 'No membership required', Candy.mint)
+            _EligRow(
+              Icons.check_circle_outline,
+              'No membership required',
+              Candy.mint,
+            )
           else ...[
             _EligRow(
               Icons.lock_outline,
               promo.membershipName ?? 'Members only',
               _orange,
             ),
-            if (promo.membershipCost != null && promo.membershipCost!.isNotEmpty)
+            if (promo.membershipCost != null &&
+                promo.membershipCost!.isNotEmpty)
               _EligRow(
                 promo.membershipCost!.toLowerCase().contains('free')
                     ? Icons.check_circle_outline
@@ -1097,7 +1211,11 @@ class _EligibilityCard extends StatelessWidget {
           else
             _EligRow(Icons.phone_android_outlined, 'App required', _orange),
           if (promo.purchaseRequired)
-            _EligRow(Icons.shopping_cart_outlined, 'Purchase required', Candy.muted),
+            _EligRow(
+              Icons.shopping_cart_outlined,
+              'Purchase required',
+              Candy.muted,
+            ),
           if (promo.redemptionMethod != 'unknown')
             _EligRow(
               _redemptionIcon(promo.redemptionMethod),
@@ -1105,7 +1223,11 @@ class _EligibilityCard extends StatelessWidget {
               Candy.muted,
             ),
           if (promo.minimumSpend != null)
-            _EligRow(Icons.attach_money, 'Min spend: ${promo.minimumSpend}', Candy.muted),
+            _EligRow(
+              Icons.attach_money,
+              'Min spend: ${promo.minimumSpend}',
+              Candy.muted,
+            ),
           if (promo.distanceKm != null)
             _EligRow(
               Icons.near_me,
@@ -1118,21 +1240,23 @@ class _EligibilityCard extends StatelessWidget {
   }
 
   static IconData _redemptionIcon(String r) => switch (r) {
-        'online'       => Icons.language,
-        'in_store'     => Icons.store_outlined,
-        'in_app'       => Icons.phone_android_outlined,
-        'show_code'    => Icons.confirmation_number_outlined,
-        'scan_barcode' => Icons.qr_code_scanner,
-        _              => Icons.storefront_outlined,
-      };
+    'online' => Icons.language,
+    'in_store' => Icons.store_outlined,
+    'in_app' => Icons.phone_android_outlined,
+    'show_code' => Icons.confirmation_number_outlined,
+    'scan_barcode' => Icons.qr_code_scanner,
+    _ => Icons.storefront_outlined,
+  };
 
-  static String _redemptionText(String r) => const {
-        'online':       'Redeem online',
-        'in_store':     'Redeem in store',
-        'in_app':       'Redeem in app',
-        'show_code':    'Show promo code',
+  static String _redemptionText(String r) =>
+      const {
+        'online': 'Redeem online',
+        'in_store': 'Redeem in store',
+        'in_app': 'Redeem in app',
+        'show_code': 'Show promo code',
         'scan_barcode': 'Scan barcode at checkout',
-      }[r] ?? 'Redeem';
+      }[r] ??
+      'Redeem';
 }
 
 class _EligRow extends StatelessWidget {
@@ -1152,7 +1276,11 @@ class _EligRow extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: const TextStyle(fontSize: 14, color: Candy.chocolate, height: 1.3),
+              style: const TextStyle(
+                fontSize: 14,
+                color: Candy.chocolate,
+                height: 1.3,
+              ),
             ),
           ),
         ],
@@ -1178,7 +1306,10 @@ class _RedemptionStepsCard extends StatelessWidget {
           const Text(
             'How to redeem',
             style: TextStyle(
-              fontSize: 15, fontWeight: FontWeight.w700, color: Candy.chocolate),
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              color: Candy.chocolate,
+            ),
           ),
           const SizedBox(height: 12),
           ...steps.asMap().entries.map(
@@ -1207,7 +1338,10 @@ class _WhenCard extends StatelessWidget {
           const Text(
             'Available',
             style: TextStyle(
-              fontSize: 15, fontWeight: FontWeight.w700, color: Candy.chocolate),
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              color: Candy.chocolate,
+            ),
           ),
           const SizedBox(height: 10),
           if (promo.validDays.isNotEmpty) _ValidDaysRow(days: promo.validDays),
@@ -1280,7 +1414,9 @@ class _DetailSaveButton extends StatelessWidget {
                 showModalBottomSheet(
                   context: ctx,
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(20),
+                    ),
                   ),
                   builder: (_) => SaveSheet(promo: promo, svc: svc),
                 );
@@ -1312,7 +1448,9 @@ class _ShopNowButton extends StatelessWidget {
           meta: InteractionService.promoMeta(promo),
         );
         final uri = Uri.tryParse(promo.verifyUrl!);
-        if (uri != null) await launchUrl(uri, mode: LaunchMode.externalApplication);
+        if (uri != null) {
+          await launchUrl(uri, mode: LaunchMode.externalApplication);
+        }
       },
       style: FilledButton.styleFrom(
         backgroundColor: Candy.raspberry,
@@ -1321,7 +1459,11 @@ class _ShopNowButton extends StatelessWidget {
       ),
       child: const Text(
         'View Deal',
-        style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, color: Colors.white),
+        style: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w700,
+          color: Colors.white,
+        ),
       ),
     );
   }
@@ -1362,14 +1504,14 @@ class _ValueBadge extends StatelessWidget {
   const _ValueBadge({required this.value, required this.type});
 
   Color get _color => switch (type) {
-        'percentage_off' => Candy.mint,
-        'amount_off'     => Candy.raspberry,
-        'free_item'      => Candy.mint,
-        'free_shipping'  => Candy.mint,
-        'points'         => Candy.lavender,
-        'sale_price'     => Candy.raspberry,
-        _                => Candy.muted,
-      };
+    'percentage_off' => Candy.mint,
+    'amount_off' => Candy.raspberry,
+    'free_item' => Candy.mint,
+    'free_shipping' => Candy.mint,
+    'points' => Candy.lavender,
+    'sale_price' => Candy.raspberry,
+    _ => Candy.muted,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -1461,7 +1603,11 @@ class _StepRow extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: const TextStyle(fontSize: 14, height: 1.4, color: Candy.chocolate),
+              style: const TextStyle(
+                fontSize: 14,
+                height: 1.4,
+                color: Candy.chocolate,
+              ),
             ),
           ),
         ],
@@ -1476,26 +1622,46 @@ class _ValidDaysRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const order = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
-    const abbr  = {
-      'Monday': 'Mon', 'Tuesday': 'Tue', 'Wednesday': 'Wed',
-      'Thursday': 'Thu', 'Friday': 'Fri', 'Saturday': 'Sat', 'Sunday': 'Sun',
+    const order = [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ];
+    const abbr = {
+      'Monday': 'Mon',
+      'Tuesday': 'Tue',
+      'Wednesday': 'Wed',
+      'Thursday': 'Thu',
+      'Friday': 'Fri',
+      'Saturday': 'Sat',
+      'Sunday': 'Sun',
     };
-    final sorted = [...days]..sort((a, b) =>
-        order.indexOf(a).compareTo(order.indexOf(b)));
+    final sorted = [...days]
+      ..sort((a, b) => order.indexOf(a).compareTo(order.indexOf(b)));
     return Wrap(
       spacing: 6,
-      children: sorted.map((d) => Chip(
-        label: Text(
-          abbr[d] ?? d,
-          style: const TextStyle(
-            fontSize: 12, fontWeight: FontWeight.w600, color: Candy.raspberry),
-        ),
-        padding: EdgeInsets.zero,
-        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        backgroundColor: Candy.raspberry.withValues(alpha: 0.08),
-        side: BorderSide(color: Candy.raspberry.withValues(alpha: 0.2)),
-      )).toList(),
+      children: sorted
+          .map(
+            (d) => Chip(
+              label: Text(
+                abbr[d] ?? d,
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: Candy.raspberry,
+                ),
+              ),
+              padding: EdgeInsets.zero,
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              backgroundColor: Candy.raspberry.withValues(alpha: 0.08),
+              side: BorderSide(color: Candy.raspberry.withValues(alpha: 0.2)),
+            ),
+          )
+          .toList(),
     );
   }
 }
@@ -1504,15 +1670,19 @@ class _TimeRow extends StatelessWidget {
   final String timeStart;
   final String? timeEnd;
   final String promoTz;
-  const _TimeRow({required this.timeStart, this.timeEnd, required this.promoTz});
+  const _TimeRow({
+    required this.timeStart,
+    this.timeEnd,
+    required this.promoTz,
+  });
 
   @override
   Widget build(BuildContext context) {
     final localStart = TimezoneService.convertTime(timeStart, promoTz);
-    final localEnd   = timeEnd != null
+    final localEnd = timeEnd != null
         ? TimezoneService.convertTime(timeEnd!, promoTz)
         : null;
-    final deviceTz   = TimezoneService.tzAbbr(TimezoneService.deviceTimezoneName);
+    final deviceTz = TimezoneService.tzAbbr(TimezoneService.deviceTimezoneName);
     final label = localEnd != null
         ? '${TimezoneService.formatTime(localStart)} – ${TimezoneService.formatTime(localEnd)} $deviceTz'
         : '${TimezoneService.formatTime(localStart)} $deviceTz';
@@ -1523,7 +1693,10 @@ class _TimeRow extends StatelessWidget {
         Text(
           label,
           style: const TextStyle(
-            fontSize: 14, fontWeight: FontWeight.w500, color: Candy.chocolate),
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: Candy.chocolate,
+          ),
         ),
       ],
     );

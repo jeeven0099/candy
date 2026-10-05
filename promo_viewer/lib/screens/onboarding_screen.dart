@@ -16,7 +16,7 @@ import 'main_screen.dart';
 
 // ── Limits ────────────────────────────────────────────────────────────────────
 
-const _kMaxCats   = 3;
+const _kMaxCats = 3;
 const _kMaxBrands = 7;
 const _kRadiusKey = 'near_me_radius_mi';
 
@@ -32,42 +32,89 @@ class _Cat {
 }
 
 const _kCategories = [
-  _Cat('food', '🍔', 'Food & Beverages',
-      'Eating out, coffee runs, quick meals',
-      ['Starbucks', 'Chipotle', "McDonald's", 'Dunkin']),
-  _Cat('grocery', '🛒', 'Groceries & Essentials',
-      'Groceries, pharmacy, household items',
-      ['Kroger', 'H-E-B', 'Target', 'CVS']),
-  _Cat('fashion', '👕', 'Clothes & Shoes',
-      'Fashion, shoes, activewear, contemporary',
-      ['Nike', 'Zara', 'Maje', 'Aritzia']),
-  _Cat('luxury', '👜', 'Bags, Jewelry & Accessible Luxury',
-      'Coach, Pandora, Tiffany, Dagne Dover, etc.',
-      ['Coach', 'Pandora', 'Tiffany & Co.', 'Dagne Dover']),
-  _Cat('designer', '✨', 'Designer & Ultra Luxury',
-      'Gucci, Prada, Valentino, Bottega Veneta, etc.',
-      ['Gucci', 'Prada', 'Bottega Veneta', 'Loewe']),
-  _Cat('beauty', '💄', 'Beauty & Personal Care',
-      'Makeup, skincare, fragrance, grooming',
-      ['Sephora', 'Tatcha', 'Glossier', 'Drunk Elephant']),
-  _Cat('entertainment', '🎬', 'Entertainment',
-      'Movies, bowling, events, streaming, gaming',
-      ['AMC Theatres', 'Topgolf', 'Steam', 'Spotify']),
-  _Cat('home', '🏠', 'Home & Kitchen',
-      'Furniture, bedding, kitchen, appliances, decor',
-      ['IKEA', 'Wayfair', 'Le Creuset', 'West Elm']),
-  _Cat('tech', '💻', 'Tech & Audio',
-      'Laptops, electronics, smart home, audio',
-      ['Best Buy', 'Sonos', 'Dyson', 'Samsung']),
-  _Cat('outdoor', '🏕️', 'Outdoor & Fitness',
-      'Hiking, camping, fitness equipment, wellness',
-      ['REI', "Arc'teryx", 'Osprey', 'Rogue Fitness']),
-  _Cat('kids', '🧸', 'Kids & Family',
-      'Toys, baby gear, kids clothing, games',
-      ['LEGO', 'Carter\'s', 'Hasbro', 'UPPAbaby']),
-  _Cat('travel', '✈️', 'Travel & Luggage',
-      'Hotels, luggage, airlines, car rental',
-      ['Away', 'Marriott', 'Hyatt', 'Samsonite']),
+  _Cat(
+    'food',
+    '🍔',
+    'Food & Beverages',
+    'Eating out, coffee runs, quick meals',
+    ['Starbucks', 'Chipotle', "McDonald's", 'Dunkin'],
+  ),
+  _Cat(
+    'grocery',
+    '🛒',
+    'Groceries & Essentials',
+    'Groceries, pharmacy, household items',
+    ['Kroger', 'H-E-B', 'Target', 'CVS'],
+  ),
+  _Cat(
+    'fashion',
+    '👕',
+    'Clothes & Shoes',
+    'Fashion, shoes, activewear, contemporary',
+    ['Nike', 'Zara', 'Maje', 'Aritzia'],
+  ),
+  _Cat(
+    'luxury',
+    '👜',
+    'Bags, Jewelry & Accessible Luxury',
+    'Coach, Pandora, Tiffany, Dagne Dover, etc.',
+    ['Coach', 'Pandora', 'Tiffany & Co.', 'Dagne Dover'],
+  ),
+  _Cat(
+    'designer',
+    '✨',
+    'Designer & Ultra Luxury',
+    'Gucci, Prada, Valentino, Bottega Veneta, etc.',
+    ['Gucci', 'Prada', 'Bottega Veneta', 'Loewe'],
+  ),
+  _Cat(
+    'beauty',
+    '💄',
+    'Beauty & Personal Care',
+    'Makeup, skincare, fragrance, grooming',
+    ['Sephora', 'Tatcha', 'Glossier', 'Drunk Elephant'],
+  ),
+  _Cat(
+    'entertainment',
+    '🎬',
+    'Entertainment',
+    'Movies, bowling, events, streaming, gaming',
+    ['AMC Theatres', 'Topgolf', 'Steam', 'Spotify'],
+  ),
+  _Cat(
+    'home',
+    '🏠',
+    'Home & Kitchen',
+    'Furniture, bedding, kitchen, appliances, decor',
+    ['IKEA', 'Wayfair', 'Le Creuset', 'West Elm'],
+  ),
+  _Cat(
+    'tech',
+    '💻',
+    'Tech & Audio',
+    'Laptops, electronics, smart home, audio',
+    ['Best Buy', 'Sonos', 'Dyson', 'Samsung'],
+  ),
+  _Cat(
+    'outdoor',
+    '🏕️',
+    'Outdoor & Fitness',
+    'Hiking, camping, fitness equipment, wellness',
+    ['REI', "Arc'teryx", 'Osprey', 'Rogue Fitness'],
+  ),
+  _Cat('kids', '🧸', 'Kids & Family', 'Toys, baby gear, kids clothing, games', [
+    'LEGO',
+    'Carter\'s',
+    'Hasbro',
+    'UPPAbaby',
+  ]),
+  _Cat(
+    'travel',
+    '✈️',
+    'Travel & Luggage',
+    'Hotels, luggage, airlines, car rental',
+    ['Away', 'Marriott', 'Hyatt', 'Samsonite'],
+  ),
 ];
 
 // ── Brand → domain map (for logo lookup) ─────────────────────────────────────
@@ -83,7 +130,8 @@ const _kBrandDomains = <String, String>{
   'Pizza Hut': 'pizzahut.com', 'Sonic Drive-In': 'sonicdrivein.com',
   'Five Guys': 'fiveguys.com', "Arby's": 'arbys.com',
   'Jack in the Box': 'jackinthebox.com', "Jimmy John's": 'jimmyjohns.com',
-  "Jersey Mike's": 'jerseymikes.com', 'Buffalo Wild Wings': 'buffalowildwings.com',
+  "Jersey Mike's": 'jerseymikes.com',
+  'Buffalo Wild Wings': 'buffalowildwings.com',
   "Applebee's": 'applebees.com', 'IHOP': 'ihop.com',
   "Chili's": 'chilis.com', 'Del Taco': 'deltaco.com',
   "Culver's": 'culvers.com', 'Whataburger': 'whataburger.com',
@@ -95,9 +143,11 @@ const _kBrandDomains = <String, String>{
   'Tropical Smoothie Cafe': 'tropicalsmoothiecafe.com',
   'Baskin-Robbins': 'baskinrobbins.com', 'Qdoba': 'qdoba.com',
   "Moe's Southwest Grill": 'moes.com', "Church's Chicken": 'churchs.com',
-  'LongHorn Steakhouse': 'longhornsteakhouse.com', "P.F. Chang's": 'pfchangs.com',
+  'LongHorn Steakhouse': 'longhornsteakhouse.com',
+  "P.F. Chang's": 'pfchangs.com',
   'Benihana': 'benihana.com', 'Caribou Coffee': 'cariboucoffee.com',
-  'Einstein Bros Bagels': 'einsteinbros.com', 'Black Rock Coffee Bar': 'blackrockcoffee.com',
+  'Einstein Bros Bagels': 'einsteinbros.com',
+  'Black Rock Coffee Bar': 'blackrockcoffee.com',
   // grocery
   'Kroger': 'kroger.com', 'Whole Foods Market': 'wholefoods.com',
   'Costco': 'costco.com', 'Target': 'target.com', 'Walmart': 'walmart.com',
@@ -135,7 +185,8 @@ const _kBrandDomains = <String, String>{
   'Columbia': 'columbia.com', 'Eddie Bauer': 'eddiebauer.com',
   "Lands' End": 'landsend.com', 'L.L.Bean': 'llbean.com',
   'T.J.Maxx': 'tjmaxx.com', 'Marshalls': 'marshalls.com',
-  'Fashion Nova': 'fashionnova.com', 'PrettyLittleThing': 'prettylittlething.com',
+  'Fashion Nova': 'fashionnova.com',
+  'PrettyLittleThing': 'prettylittlething.com',
   'Boohoo': 'boohoo.com', 'Nasty Gal': 'nastygal.com',
   'Aritzia': 'aritzia.com', 'Windsor': 'windsorstore.com',
   'Lucky Brand': 'luckybrand.com', 'Tillys': 'tillys.com',
@@ -156,7 +207,9 @@ const _kBrandDomains = <String, String>{
   'Revolve': 'revolve.com', 'Cider': 'shopcider.com', 'Torrid': 'torrid.com',
   'Adore Me': 'adoreme.com', 'Eloquii': 'eloquii.com', 'Showpo': 'showpo.com',
   'Urban Outfitters': 'urbanoutfitters.com', 'Free People': 'freepeople.com',
-  'Express': 'express.com', 'J.Crew': 'jcrew.com', 'Lane Bryant': 'lanebryant.com',
+  'Express': 'express.com',
+  'J.Crew': 'jcrew.com',
+  'Lane Bryant': 'lanebryant.com',
   'DSW': 'dsw.com', 'Famous Footwear': 'famousfootwear.com',
   'Foot Locker': 'footlocker.com', 'Champs Sports': 'champssports.com',
   'Finish Line': 'finishline.com', 'JD Sports': 'jdsports.com',
@@ -199,7 +252,8 @@ const _kBrandDomains = <String, String>{
   'Farfetch': 'farfetch.com', '24S': '24s.com',
   'Dagne Dover': 'dagnedover.com', 'MZ Wallace': 'mzwallace.com',
   'Strathberry': 'strathberry.com', 'Polene': 'polene-paris.com',
-  'DeMellier': 'demellierlondon.com', 'Aspinal of London': 'aspinaloflondon.com',
+  'DeMellier': 'demellierlondon.com',
+  'Aspinal of London': 'aspinaloflondon.com',
   'Mark Cross': 'markcross.com', 'Mansur Gavriel': 'mansurgavriel.com',
   'Rebag': 'rebag.com', 'Fashionphile': 'fashionphile.com',
   'Vestiaire Collective': 'vestiairecollective.com',
@@ -220,7 +274,8 @@ const _kBrandDomains = <String, String>{
   'Etro': 'etro.com', 'Marni': 'marni.com', 'Jil Sander': 'jilsander.com',
   'Lemaire': 'lemaire.fr', 'Dries Van Noten': 'driesvannoten.com',
   'Isabel Marant': 'isabelmarant.com', 'Zimmermann': 'zimmermann.com',
-  'Oscar de la Renta': 'oscardelarenta.com', 'Carolina Herrera': 'carolinaherrera.com',
+  'Oscar de la Renta': 'oscardelarenta.com',
+  'Carolina Herrera': 'carolinaherrera.com',
   'Marchesa': 'marchesa.com', 'Roksanda': 'roksanda.com',
   'Simone Rocha': 'simonerocha.com', 'Erdem': 'erdem.com',
   'Khaite': 'khaite.com', 'The Row': 'therow.com',
@@ -234,7 +289,8 @@ const _kBrandDomains = <String, String>{
   'Off-White': 'off---white.com', 'Fear of God': 'fearofgod.com',
   'Stone Island': 'stoneisland.com', 'Moncler': 'moncler.com',
   'Mackage': 'mackage.com', 'Bogner': 'bogner.com',
-  'Perfect Moment': 'perfectmoment.com', 'Moose Knuckles': 'mooseknucklescanada.com',
+  'Perfect Moment': 'perfectmoment.com',
+  'Moose Knuckles': 'mooseknucklescanada.com',
   'Bvlgari': 'bulgari.com', 'Chopard': 'chopard.com',
   'Van Cleef & Arpels': 'vancleefarpels.com', 'Pomellato': 'pomellato.com',
   'Mikimoto': 'mikimotoamerica.com', 'Messika': 'messika.com',
@@ -245,9 +301,11 @@ const _kBrandDomains = <String, String>{
   'Christopher Esber': 'christopheresber.com.au',
   // beauty
   'Ulta Beauty': 'ulta.com', 'Sephora': 'sephora.com',
-  'Bath & Body Works': 'bathandbodyworks.com', 'e.l.f. Cosmetics': 'elfcosmetics.com',
+  'Bath & Body Works': 'bathandbodyworks.com',
+  'e.l.f. Cosmetics': 'elfcosmetics.com',
   'ColourPop': 'colourpop.com', 'Fenty Beauty': 'fentybeauty.com',
-  'The Ordinary': 'theordinary.com', 'NYX Professional Makeup': 'nyxcosmetics.com',
+  'The Ordinary': 'theordinary.com',
+  'NYX Professional Makeup': 'nyxcosmetics.com',
   'Tarte Cosmetics': 'tartecosmetics.com', 'Clinique': 'clinique.com',
   'Dermstore': 'dermstore.com', 'SkinStore': 'skinstore.com',
   'Bluemercury': 'bluemercury.com', 'Space NK': 'spacenk.com',
@@ -258,16 +316,19 @@ const _kBrandDomains = <String, String>{
   'Aesop': 'aesop.com', 'Le Labo': 'lelabofragrances.com',
   'Jo Malone': 'jomalone.com', 'Diptyque': 'diptyqueparis.com',
   'Byredo': 'byredo.com', 'Nécessaire': 'necessaire.com',
-  'Augustinus Bader': 'augustinusbader.com', "Paula's Choice": 'paulaschoice.com',
+  'Augustinus Bader': 'augustinusbader.com',
+  "Paula's Choice": 'paulaschoice.com',
   'Supergoop': 'supergoop.com', 'SkinCeuticals': 'skinceuticals.com',
   'La Roche-Posay': 'laroche-posay.us', 'Fresh': 'fresh.com',
   'Caudalie': 'caudalie.com', 'Sol de Janeiro': 'soldejaneiro.com',
-  'Charlotte Tilbury': 'charlottetilbury.com', 'Hourglass': 'hourglasscosmetics.com',
+  'Charlotte Tilbury': 'charlottetilbury.com',
+  'Hourglass': 'hourglasscosmetics.com',
   'Pat McGrath Labs': 'patmcgrath.com', 'Dior Beauty': 'dior.com',
   'YSL Beauty': 'yslbeautyus.com', 'Armani Beauty': 'armanibeauty.com',
   'Maison Margiela Fragrances': 'maisonmargiela-fragrances.us',
   'Urban Decay': 'urbandecay.com', 'Too Faced': 'toofaced.com',
-  'Benefit Cosmetics': 'benefitcosmetics.com', 'Kylie Cosmetics': 'kyliecosmetics.com',
+  'Benefit Cosmetics': 'benefitcosmetics.com',
+  'Kylie Cosmetics': 'kyliecosmetics.com',
   'Rare Beauty': 'rarebeauty.com', 'Morphe': 'morphe.com',
   'Milk Makeup': 'milkmakeup.com', 'IL MAKIAGE': 'ilmakiage.com',
   'Sally Beauty': 'sallybeauty.com',
@@ -287,7 +348,8 @@ const _kBrandDomains = <String, String>{
   'IKEA': 'ikea.com', 'Home Depot': 'homedepot.com',
   "Lowe's": 'lowes.com', 'Wayfair': 'wayfair.com',
   'Crate & Barrel': 'crateandbarrel.com', 'West Elm': 'westelm.com',
-  'Pottery Barn': 'potterybarn.com', 'Bed Bath & Beyond': 'bedbathandbeyond.com',
+  'Pottery Barn': 'potterybarn.com',
+  'Bed Bath & Beyond': 'bedbathandbeyond.com',
   'Williams-Sonoma': 'williams-sonoma.com', 'Sur La Table': 'surlatable.com',
   'CB2': 'cb2.com', 'The Container Store': 'containerstore.com',
   'At Home': 'athome.com', 'World Market': 'worldmarket.com',
@@ -295,7 +357,9 @@ const _kBrandDomains = <String, String>{
   'Ethan Allen': 'ethanallen.com', 'Article': 'article.com',
   'Joybird': 'joybird.com', 'La-Z-Boy': 'la-z-boy.com',
   'Herman Miller': 'hermanmiller.com', 'Design Within Reach': 'dwr.com',
-  'Overstock': 'overstock.com', 'Burrow': 'burrow.com', 'Lovesac': 'lovesac.com',
+  'Overstock': 'overstock.com',
+  'Burrow': 'burrow.com',
+  'Lovesac': 'lovesac.com',
   'Floyd': 'floydhome.com', 'Inside Weather': 'insideweather.com',
   'Castlery': 'castlery.com', 'Lulu and Georgia': 'luluandgeorgia.com',
   'Revival': 'revivalrugs.com', 'Ruggable': 'ruggable.com',
@@ -319,7 +383,8 @@ const _kBrandDomains = <String, String>{
   'LG Appliances': 'lg.com', 'KitchenAid Appliances': 'kitchenaid.com',
   'Whirlpool': 'whirlpool.com', 'Maytag': 'maytag.com',
   'Frigidaire': 'frigidaire.com', 'Bosch': 'bosch-home.com',
-  'Fisher & Paykel': 'fisherpaykel.com', 'Cafe Appliances': 'cafeappliances.com',
+  'Fisher & Paykel': 'fisherpaykel.com',
+  'Cafe Appliances': 'cafeappliances.com',
   'Sub-Zero': 'subzero-wolf.com', 'Wolf': 'subzero-wolf.com',
   'Viking': 'vikingrange.com', 'Thermador': 'thermador.com',
   'Abt': 'abt.com', 'Appliances Connection': 'appliancesconnection.com',
@@ -336,7 +401,9 @@ const _kBrandDomains = <String, String>{
   'SteelSeries': 'steelseries.com', 'HyperX': 'hyperx.com',
   'Sony': 'electronics.sony.com', 'LG': 'lg.com',
   'Canon': 'usa.canon.com', 'Nikon': 'nikonusa.com',
-  'DJI': 'dji.com', 'Fujifilm': 'fujifilm-x.com', 'Sony Alpha': 'electronics.sony.com',
+  'DJI': 'dji.com',
+  'Fujifilm': 'fujifilm-x.com',
+  'Sony Alpha': 'electronics.sony.com',
   'Bose': 'bose.com', 'Sonos': 'sonos.com', 'JBL': 'jbl.com',
   'Bang & Olufsen': 'bang-olufsen.com', 'Bowers & Wilkins': 'bowerswilkins.com',
   'Sennheiser': 'sennheiser-hearing.com', 'KEF': 'kef.com',
@@ -382,8 +449,10 @@ const _kBrandDomains = <String, String>{
   'TCGplayer': 'tcgplayer.com', 'Lovevery': 'lovevery.com',
   'Nuna': 'nunababy.com', 'UPPAbaby': 'uppababy.com', 'Doona': 'doona.com',
   'Babylist': 'babylist.com', "Carter's": 'carters.com',
-  'Hanna Andersson': 'hannaandersson.com', 'Pottery Barn Kids': 'potterybarnkids.com',
-  'Crate & Kids': 'crateandbarrel.com', "The Children's Place": 'childrensplace.com',
+  'Hanna Andersson': 'hannaandersson.com',
+  'Pottery Barn Kids': 'potterybarnkids.com',
+  'Crate & Kids': 'crateandbarrel.com',
+  "The Children's Place": 'childrensplace.com',
   'Hobby Lobby': 'hobbylobby.com', 'Michaels': 'michaels.com',
   'JOANN': 'michaels.com',
   // travel & luggage
@@ -397,7 +466,9 @@ const _kBrandDomains = <String, String>{
   'Four Seasons': 'fourseasons.com', 'Ritz-Carlton': 'ritzcarlton.com',
   'Fairmont': 'fairmont.com', 'Omni Hotels': 'omnihotels.com',
   'Wyndham Hotels': 'wyndhamhotels.com', 'Choice Hotels': 'choicehotels.com',
-  'Hotels.com': 'hotels.com', 'Booking.com': 'booking.com', 'Hopper': 'hopper.com',
+  'Hotels.com': 'hotels.com',
+  'Booking.com': 'booking.com',
+  'Hopper': 'hopper.com',
   'VRBO': 'vrbo.com', 'Delta Air Lines': 'delta.com',
   'Southwest Airlines': 'southwest.com', 'JetBlue': 'jetblue.com',
   'Frontier Airlines': 'flyfrontier.com',
@@ -435,7 +506,8 @@ const _kBrandDomains = <String, String>{
   'Function of Beauty': 'functionofbeauty.com', 'Prose': 'prose.com',
   // gaming
   'Steam': 'steampowered.com', 'Epic Games Store': 'epicgames.com',
-  'PlayStation': 'playstation.com', 'PlayStation Store': 'direct.playstation.com',
+  'PlayStation': 'playstation.com',
+  'PlayStation Store': 'direct.playstation.com',
   'Xbox': 'xbox.com', 'Nintendo': 'nintendo.com',
   'Humble Bundle': 'humblebundle.com', 'Green Man Gaming': 'greenmangaming.com',
   'GOG': 'gog.com',
@@ -452,154 +524,583 @@ const _kBrandDomains = <String, String>{
 
 const _kBrandsByCategory = <String, List<String>>{
   'food': [
-    'Starbucks', 'Chipotle', "McDonald's", 'Dunkin', 'Chick-fil-A',
-    'Taco Bell', 'Wingstop', 'Panera Bread', "Domino's", 'Shake Shack',
-    "Wendy's", 'Subway', 'Pizza Hut', 'Sonic Drive-In', 'Five Guys',
-    "Arby's", "Jimmy John's", "Jersey Mike's", 'Buffalo Wild Wings',
-    "Applebee's", 'IHOP', "Chili's", 'Whataburger', "Culver's",
-    'Panda Express', 'Little Caesars', 'Krispy Kreme', 'Jamba',
-    'Baskin-Robbins', 'Olive Garden', 'Cracker Barrel', 'Outback Steakhouse',
-    'Benihana', 'Caribou Coffee', 'Einstein Bros Bagels', 'Firehouse Subs',
+    'Starbucks',
+    'Chipotle',
+    "McDonald's",
+    'Dunkin',
+    'Chick-fil-A',
+    'Taco Bell',
+    'Wingstop',
+    'Panera Bread',
+    "Domino's",
+    'Shake Shack',
+    "Wendy's",
+    'Subway',
+    'Pizza Hut',
+    'Sonic Drive-In',
+    'Five Guys',
+    "Arby's",
+    "Jimmy John's",
+    "Jersey Mike's",
+    'Buffalo Wild Wings',
+    "Applebee's",
+    'IHOP',
+    "Chili's",
+    'Whataburger',
+    "Culver's",
+    'Panda Express',
+    'Little Caesars',
+    'Krispy Kreme',
+    'Jamba',
+    'Baskin-Robbins',
+    'Olive Garden',
+    'Cracker Barrel',
+    'Outback Steakhouse',
+    'Benihana',
+    'Caribou Coffee',
+    'Einstein Bros Bagels',
+    'Firehouse Subs',
   ],
   'grocery': [
-    'Kroger', 'Whole Foods Market', 'Costco', 'Target', 'Walmart',
-    'Aldi', 'Publix', "Trader Joe's", 'CVS', 'Walgreens',
-    'H-E-B', "Sam's Club", 'Sprouts', 'Safeway', 'Albertsons',
-    'Lidl', 'Meijer', 'Wegmans', 'Food Lion', 'Stop & Shop',
-    "BJ's Wholesale Club", 'Vitamin Shoppe', 'Five Below', 'Dollar General',
-    'Tractor Supply', 'Thrive Market', 'Misfits Market',
+    'Kroger',
+    'Whole Foods Market',
+    'Costco',
+    'Target',
+    'Walmart',
+    'Aldi',
+    'Publix',
+    "Trader Joe's",
+    'CVS',
+    'Walgreens',
+    'H-E-B',
+    "Sam's Club",
+    'Sprouts',
+    'Safeway',
+    'Albertsons',
+    'Lidl',
+    'Meijer',
+    'Wegmans',
+    'Food Lion',
+    'Stop & Shop',
+    "BJ's Wholesale Club",
+    'Vitamin Shoppe',
+    'Five Below',
+    'Dollar General',
+    'Tractor Supply',
+    'Thrive Market',
+    'Misfits Market',
   ],
   'fashion': [
-    'Nike', 'Zara', 'H&M', 'Lululemon', 'Adidas', 'Old Navy', 'Uniqlo',
-    'Aritzia', 'Maje', 'Sandro', 'GANNI', 'COS', '& Other Stories',
-    'Madewell', 'Anthropologie', 'Free People', 'Urban Outfitters',
-    'American Eagle', 'Abercrombie & Fitch', 'Hollister', 'Gap',
-    'Banana Republic', 'Athleta', 'Ann Taylor', 'LOFT', 'J.Crew',
-    'Revolve', 'Shopbop', 'ASOS', 'SHEIN', 'ThredUp', 'Nordstrom',
-    'Nordstrom Rack', 'FWRD', 'Ted Baker', 'Club Monaco', 'AllSaints',
-    'Rag & Bone', 'Theory', 'Vince', 'Tommy Hilfiger', 'Guess',
-    'Reiss', 'Cuyana', 'FARM Rio', 'STAUD', 'Alice + Olivia',
-    'Veronica Beard', 'Self-Portrait', 'Massimo Dutti',
-    'FRAME', 'Rails', 'Anine Bing', 'Ba&sh', 'Zadig & Voltaire',
-    'L\'Agence', 'Diane von Furstenberg', 'Tibi', 'Ulla Johnson',
-    'Hoka', 'On', 'Veja', 'Axel Arigato', 'Common Projects', 'Golden Goose',
-    'UGG', 'Reebok', 'Puma', 'Dr. Martens', 'Converse', 'Vans', 'Crocs',
-    'Steve Madden', 'Cole Haan', 'Sperry', 'Saucony', 'Brooks Running',
-    'DSW', 'Foot Locker', 'Journeys', 'Famous Footwear',
-    'Torrid', 'Eloquii', 'Lane Bryant', 'Windsor', 'Fashion Nova',
-    'Talbots', "Chico's", 'White House Black Market', 'Express',
-    'Stuart Weitzman', 'Sam Edelman', 'Koio', 'Aquazzura', 'Larroudé',
-    'Margaux', 'Sarah Flint', 'Birdies',
+    'Nike',
+    'Zara',
+    'H&M',
+    'Lululemon',
+    'Adidas',
+    'Old Navy',
+    'Uniqlo',
+    'Aritzia',
+    'Maje',
+    'Sandro',
+    'GANNI',
+    'COS',
+    '& Other Stories',
+    'Madewell',
+    'Anthropologie',
+    'Free People',
+    'Urban Outfitters',
+    'American Eagle',
+    'Abercrombie & Fitch',
+    'Hollister',
+    'Gap',
+    'Banana Republic',
+    'Athleta',
+    'Ann Taylor',
+    'LOFT',
+    'J.Crew',
+    'Revolve',
+    'Shopbop',
+    'ASOS',
+    'SHEIN',
+    'ThredUp',
+    'Nordstrom',
+    'Nordstrom Rack',
+    'FWRD',
+    'Ted Baker',
+    'Club Monaco',
+    'AllSaints',
+    'Rag & Bone',
+    'Theory',
+    'Vince',
+    'Tommy Hilfiger',
+    'Guess',
+    'Reiss',
+    'Cuyana',
+    'FARM Rio',
+    'STAUD',
+    'Alice + Olivia',
+    'Veronica Beard',
+    'Self-Portrait',
+    'Massimo Dutti',
+    'FRAME',
+    'Rails',
+    'Anine Bing',
+    'Ba&sh',
+    'Zadig & Voltaire',
+    'L\'Agence',
+    'Diane von Furstenberg',
+    'Tibi',
+    'Ulla Johnson',
+    'Hoka',
+    'On',
+    'Veja',
+    'Axel Arigato',
+    'Common Projects',
+    'Golden Goose',
+    'UGG',
+    'Reebok',
+    'Puma',
+    'Dr. Martens',
+    'Converse',
+    'Vans',
+    'Crocs',
+    'Steve Madden',
+    'Cole Haan',
+    'Sperry',
+    'Saucony',
+    'Brooks Running',
+    'DSW',
+    'Foot Locker',
+    'Journeys',
+    'Famous Footwear',
+    'Torrid',
+    'Eloquii',
+    'Lane Bryant',
+    'Windsor',
+    'Fashion Nova',
+    'Talbots',
+    "Chico's",
+    'White House Black Market',
+    'Express',
+    'Stuart Weitzman',
+    'Sam Edelman',
+    'Koio',
+    'Aquazzura',
+    'Larroudé',
+    'Margaux',
+    'Sarah Flint',
+    'Birdies',
   ],
   'luxury': [
-    'Coach', 'Kate Spade', 'Michael Kors', 'Tory Burch', 'Kendra Scott',
-    'TUMI', 'Vera Bradley', 'Rebecca Minkoff', 'Ralph Lauren', 'Calvin Klein',
-    'Pandora', 'Swarovski', 'Tiffany & Co.', 'David Yurman', 'Cartier',
-    'Monica Vinader', 'Gorjana', 'Catbird', 'Missoma', 'Ana Luisa', 'Aurate',
-    'Brilliant Earth', 'Blue Nile', 'Daniel Wellington', 'MVMT', 'Jomashop',
-    'Mansur Gavriel', 'Dagne Dover', 'MZ Wallace', 'Strathberry', 'Polene',
-    'DeMellier', 'Aspinal of London', 'Mark Cross', 'Briggs & Riley',
-    'NET-A-PORTER', 'Mytheresa', 'Farfetch', 'Saks OFF 5TH',
-    'Rebag', 'Fashionphile', 'Vestiaire Collective', 'The RealReal',
-    'StockX', 'GOAT', 'Grailed',
+    'Coach',
+    'Kate Spade',
+    'Michael Kors',
+    'Tory Burch',
+    'Kendra Scott',
+    'TUMI',
+    'Vera Bradley',
+    'Rebecca Minkoff',
+    'Ralph Lauren',
+    'Calvin Klein',
+    'Pandora',
+    'Swarovski',
+    'Tiffany & Co.',
+    'David Yurman',
+    'Cartier',
+    'Monica Vinader',
+    'Gorjana',
+    'Catbird',
+    'Missoma',
+    'Ana Luisa',
+    'Aurate',
+    'Brilliant Earth',
+    'Blue Nile',
+    'Daniel Wellington',
+    'MVMT',
+    'Jomashop',
+    'Mansur Gavriel',
+    'Dagne Dover',
+    'MZ Wallace',
+    'Strathberry',
+    'Polene',
+    'DeMellier',
+    'Aspinal of London',
+    'Mark Cross',
+    'Briggs & Riley',
+    'NET-A-PORTER',
+    'Mytheresa',
+    'Farfetch',
+    'Saks OFF 5TH',
+    'Rebag',
+    'Fashionphile',
+    'Vestiaire Collective',
+    'The RealReal',
+    'StockX',
+    'GOAT',
+    'Grailed',
   ],
   'designer': [
-    'Gucci', 'Prada', 'Bottega Veneta', 'Loewe', 'Valentino',
-    'Balenciaga', 'Givenchy', 'Alexander McQueen', 'Miu Miu', 'Chloé',
-    'Ferragamo', 'Jimmy Choo', 'Christian Louboutin', 'Manolo Blahnik',
-    'Gianvito Rossi', 'Aquazzura', 'Max Mara', 'Etro', 'Marni', 'Jil Sander',
-    'Dries Van Noten', 'Isabel Marant', 'Zimmermann', 'The Row', 'Khaite',
-    'Proenza Schouler', 'Altuzarra', 'Acne Studios', 'A.P.C.', 'AMI Paris',
-    'Jacquemus', 'Coperni', 'Maison Kitsune', 'Kenzo', 'Toteme', 'Nanushka',
-    'Off-White', 'Palm Angels', 'Fear of God', 'Stone Island', 'Moncler',
-    'Mackage', 'Oscar de la Renta', 'Carolina Herrera', 'Erdem', 'Lemaire',
-    'Roksanda', 'Simone Rocha', 'Gabriela Hearst', 'Akris', 'St. John',
-    'Mugler', 'Rabanne', 'Courreges', 'Bvlgari', 'Chopard',
-    'Van Cleef & Arpels', 'Pomellato', 'Mikimoto', 'Messika',
-    'MR PORTER', 'Moda Operandi', 'LUISAVIAROMA', '24S',
+    'Gucci',
+    'Prada',
+    'Bottega Veneta',
+    'Loewe',
+    'Valentino',
+    'Balenciaga',
+    'Givenchy',
+    'Alexander McQueen',
+    'Miu Miu',
+    'Chloé',
+    'Ferragamo',
+    'Jimmy Choo',
+    'Christian Louboutin',
+    'Manolo Blahnik',
+    'Gianvito Rossi',
+    'Aquazzura',
+    'Max Mara',
+    'Etro',
+    'Marni',
+    'Jil Sander',
+    'Dries Van Noten',
+    'Isabel Marant',
+    'Zimmermann',
+    'The Row',
+    'Khaite',
+    'Proenza Schouler',
+    'Altuzarra',
+    'Acne Studios',
+    'A.P.C.',
+    'AMI Paris',
+    'Jacquemus',
+    'Coperni',
+    'Maison Kitsune',
+    'Kenzo',
+    'Toteme',
+    'Nanushka',
+    'Off-White',
+    'Palm Angels',
+    'Fear of God',
+    'Stone Island',
+    'Moncler',
+    'Mackage',
+    'Oscar de la Renta',
+    'Carolina Herrera',
+    'Erdem',
+    'Lemaire',
+    'Roksanda',
+    'Simone Rocha',
+    'Gabriela Hearst',
+    'Akris',
+    'St. John',
+    'Mugler',
+    'Rabanne',
+    'Courreges',
+    'Bvlgari',
+    'Chopard',
+    'Van Cleef & Arpels',
+    'Pomellato',
+    'Mikimoto',
+    'Messika',
+    'MR PORTER',
+    'Moda Operandi',
+    'LUISAVIAROMA',
+    '24S',
   ],
   'beauty': [
-    'Sephora', 'Ulta Beauty', 'Bath & Body Works', 'e.l.f. Cosmetics',
-    'Fenty Beauty', 'Glossier', 'Tatcha', 'Drunk Elephant', 'Sunday Riley',
-    'ColourPop', 'The Ordinary', 'NYX Professional Makeup', 'Tarte Cosmetics',
-    'Clinique', 'La Mer', "Kiehl's", 'Aesop', 'Charlotte Tilbury',
-    'Hourglass', 'Pat McGrath Labs', 'Urban Decay', 'Too Faced',
-    'Benefit Cosmetics', 'Kylie Cosmetics', 'Rare Beauty', 'Morphe',
-    'Milk Makeup', 'IL MAKIAGE', 'Dior Beauty', 'YSL Beauty', 'Armani Beauty',
-    "Paula's Choice", 'Supergoop', 'SkinCeuticals', 'La Roche-Posay',
-    'Augustinus Bader', 'Bluemercury', 'Space NK', 'Dermstore', 'Lookfantastic',
-    'Sol de Janeiro', 'Nécessaire', 'Caudalie', 'Fresh', 'Byredo',
-    'Le Labo', 'Diptyque', 'Jo Malone', 'Maison Margiela Fragrances',
+    'Sephora',
+    'Ulta Beauty',
+    'Bath & Body Works',
+    'e.l.f. Cosmetics',
+    'Fenty Beauty',
+    'Glossier',
+    'Tatcha',
+    'Drunk Elephant',
+    'Sunday Riley',
+    'ColourPop',
+    'The Ordinary',
+    'NYX Professional Makeup',
+    'Tarte Cosmetics',
+    'Clinique',
+    'La Mer',
+    "Kiehl's",
+    'Aesop',
+    'Charlotte Tilbury',
+    'Hourglass',
+    'Pat McGrath Labs',
+    'Urban Decay',
+    'Too Faced',
+    'Benefit Cosmetics',
+    'Kylie Cosmetics',
+    'Rare Beauty',
+    'Morphe',
+    'Milk Makeup',
+    'IL MAKIAGE',
+    'Dior Beauty',
+    'YSL Beauty',
+    'Armani Beauty',
+    "Paula's Choice",
+    'Supergoop',
+    'SkinCeuticals',
+    'La Roche-Posay',
+    'Augustinus Bader',
+    'Bluemercury',
+    'Space NK',
+    'Dermstore',
+    'Lookfantastic',
+    'Sol de Janeiro',
+    'Nécessaire',
+    'Caudalie',
+    'Fresh',
+    'Byredo',
+    'Le Labo',
+    'Diptyque',
+    'Jo Malone',
+    'Maison Margiela Fragrances',
     'Sally Beauty',
   ],
   'entertainment': [
-    'AMC Theatres', 'Regal Cinemas', 'Cinemark', 'Main Event',
-    "Dave & Buster's", 'Topgolf', 'Bowlero', 'Sky Zone', 'Pinstripes',
-    'Spotify', 'Disney+', 'Hulu', 'Netflix', 'Peacock', 'Paramount+',
-    'Max', 'Apple TV+', 'Steam', 'Epic Games Store', 'PlayStation',
-    'Xbox', 'Nintendo', 'Humble Bundle', 'GameStop',
-    'Universal Studios', 'Dollywood', 'Great Wolf Lodge',
+    'AMC Theatres',
+    'Regal Cinemas',
+    'Cinemark',
+    'Main Event',
+    "Dave & Buster's",
+    'Topgolf',
+    'Bowlero',
+    'Sky Zone',
+    'Pinstripes',
+    'Spotify',
+    'Disney+',
+    'Hulu',
+    'Netflix',
+    'Peacock',
+    'Paramount+',
+    'Max',
+    'Apple TV+',
+    'Steam',
+    'Epic Games Store',
+    'PlayStation',
+    'Xbox',
+    'Nintendo',
+    'Humble Bundle',
+    'GameStop',
+    'Universal Studios',
+    'Dollywood',
+    'Great Wolf Lodge',
   ],
   'home': [
-    'IKEA', 'Wayfair', 'West Elm', 'Pottery Barn', 'Crate & Barrel',
-    'Williams-Sonoma', 'CB2', 'Article', 'Joybird', 'Burrow',
-    'Herman Miller', 'Design Within Reach', 'Floyd', 'Inside Weather',
-    'Castlery', 'Lulu and Georgia', 'Revival', 'Ruggable',
-    'Boll & Branch', 'Brooklinen', 'Parachute', 'Coyuchi',
-    'Casper', 'Purple', 'Tempur-Pedic', 'Saatva', 'Avocado Green Mattress',
-    'The Citizenry', 'Le Creuset', 'Made In', 'Our Place', 'Caraway',
-    'HexClad', 'Zwilling', 'All-Clad', 'Staub', 'Ninja', 'Cuisinart',
-    'KitchenAid', 'Vitamix', 'Breville', 'Nespresso', "De'Longhi",
-    'GE Appliances', 'Whirlpool', 'Bosch', 'Miele', 'Sub-Zero',
-    'Home Depot', 'Bed Bath & Beyond', 'HomeGoods', 'At Home', 'World Market',
-    'Overstock', 'Pottery Barn Kids', 'Sur La Table',
+    'IKEA',
+    'Wayfair',
+    'West Elm',
+    'Pottery Barn',
+    'Crate & Barrel',
+    'Williams-Sonoma',
+    'CB2',
+    'Article',
+    'Joybird',
+    'Burrow',
+    'Herman Miller',
+    'Design Within Reach',
+    'Floyd',
+    'Inside Weather',
+    'Castlery',
+    'Lulu and Georgia',
+    'Revival',
+    'Ruggable',
+    'Boll & Branch',
+    'Brooklinen',
+    'Parachute',
+    'Coyuchi',
+    'Casper',
+    'Purple',
+    'Tempur-Pedic',
+    'Saatva',
+    'Avocado Green Mattress',
+    'The Citizenry',
+    'Le Creuset',
+    'Made In',
+    'Our Place',
+    'Caraway',
+    'HexClad',
+    'Zwilling',
+    'All-Clad',
+    'Staub',
+    'Ninja',
+    'Cuisinart',
+    'KitchenAid',
+    'Vitamix',
+    'Breville',
+    'Nespresso',
+    "De'Longhi",
+    'GE Appliances',
+    'Whirlpool',
+    'Bosch',
+    'Miele',
+    'Sub-Zero',
+    'Home Depot',
+    'Bed Bath & Beyond',
+    'HomeGoods',
+    'At Home',
+    'World Market',
+    'Overstock',
+    'Pottery Barn Kids',
+    'Sur La Table',
   ],
   'tech': [
-    'Amazon', 'Best Buy', 'Apple', 'Samsung', 'Dell', 'Microsoft',
-    'HP', 'Lenovo', 'ASUS', 'Acer', 'Newegg', 'Micro Center',
-    'Sonos', 'Bose', 'Bang & Olufsen', 'Bowers & Wilkins', 'Sennheiser',
-    'Klipsch', 'Denon', 'Marantz', 'SVS', 'Audio-Technica', 'Shure',
-    'Dyson', 'iRobot', 'Roborock', 'Eufy', 'Ring', 'Arlo', 'Google Nest',
-    'Razer', 'Logitech', 'Corsair', 'SteelSeries', 'NZXT',
-    'Alienware', 'LG UltraGear', 'BenQ', 'Secretlab',
-    'DJI', 'GoPro', 'Fujifilm', 'Sony Alpha', 'Peak Design', 'Moment',
-    'Anker', 'Belkin', 'Western Digital', 'B&H Photo', 'Adorama',
+    'Amazon',
+    'Best Buy',
+    'Apple',
+    'Samsung',
+    'Dell',
+    'Microsoft',
+    'HP',
+    'Lenovo',
+    'ASUS',
+    'Acer',
+    'Newegg',
+    'Micro Center',
+    'Sonos',
+    'Bose',
+    'Bang & Olufsen',
+    'Bowers & Wilkins',
+    'Sennheiser',
+    'Klipsch',
+    'Denon',
+    'Marantz',
+    'SVS',
+    'Audio-Technica',
+    'Shure',
+    'Dyson',
+    'iRobot',
+    'Roborock',
+    'Eufy',
+    'Ring',
+    'Arlo',
+    'Google Nest',
+    'Razer',
+    'Logitech',
+    'Corsair',
+    'SteelSeries',
+    'NZXT',
+    'Alienware',
+    'LG UltraGear',
+    'BenQ',
+    'Secretlab',
+    'DJI',
+    'GoPro',
+    'Fujifilm',
+    'Sony Alpha',
+    'Peak Design',
+    'Moment',
+    'Anker',
+    'Belkin',
+    'Western Digital',
+    'B&H Photo',
+    'Adorama',
     'Garmin',
   ],
   'outdoor': [
-    'REI', "Arc'teryx", 'Osprey', 'Patagonia', 'The North Face',
-    'Columbia', 'Eddie Bauer', 'Backcountry', 'Public Lands',
-    'Snow Peak', 'Big Agnes', 'MSR', 'NEMO Equipment', 'BioLite',
-    'YETI', 'Solo Stove', 'Thule', 'Yakima',
-    'Jackery', 'Goal Zero', 'EcoFlow',
-    'Rogue Fitness', 'REP Fitness', 'TRX', 'Concept2', 'Hydrow', 'Tonal',
-    'Peloton', 'NordicTrack', 'Bowflex', 'Alo Yoga', 'Vuori',
-    'Outdoor Voices', 'Carbon38', 'Therabody', 'Hyperice',
-    'Oura', 'Whoop', 'Headspace',
+    'REI',
+    "Arc'teryx",
+    'Osprey',
+    'Patagonia',
+    'The North Face',
+    'Columbia',
+    'Eddie Bauer',
+    'Backcountry',
+    'Public Lands',
+    'Snow Peak',
+    'Big Agnes',
+    'MSR',
+    'NEMO Equipment',
+    'BioLite',
+    'YETI',
+    'Solo Stove',
+    'Thule',
+    'Yakima',
+    'Jackery',
+    'Goal Zero',
+    'EcoFlow',
+    'Rogue Fitness',
+    'REP Fitness',
+    'TRX',
+    'Concept2',
+    'Hydrow',
+    'Tonal',
+    'Peloton',
+    'NordicTrack',
+    'Bowflex',
+    'Alo Yoga',
+    'Vuori',
+    'Outdoor Voices',
+    'Carbon38',
+    'Therabody',
+    'Hyperice',
+    'Oura',
+    'Whoop',
+    'Headspace',
   ],
   'kids': [
-    'LEGO', 'Hasbro', 'Hasbro Pulse', 'Mattel', 'Fisher-Price',
-    'Melissa & Doug', 'Funko', 'TCGplayer', 'Lovevery',
-    'UPPAbaby', 'Nuna', 'Doona', 'Babylist',
-    "Carter's", 'Hanna Andersson', 'Pottery Barn Kids',
-    "The Children's Place", 'Crate & Kids',
-    'Hobby Lobby', 'Michaels', 'Steam', 'Epic Games Store',
-    'Nintendo', 'PlayStation',
+    'LEGO',
+    'Hasbro',
+    'Hasbro Pulse',
+    'Mattel',
+    'Fisher-Price',
+    'Melissa & Doug',
+    'Funko',
+    'TCGplayer',
+    'Lovevery',
+    'UPPAbaby',
+    'Nuna',
+    'Doona',
+    'Babylist',
+    "Carter's",
+    'Hanna Andersson',
+    'Pottery Barn Kids',
+    "The Children's Place",
+    'Crate & Kids',
+    'Hobby Lobby',
+    'Michaels',
+    'Steam',
+    'Epic Games Store',
+    'Nintendo',
+    'PlayStation',
   ],
   'travel': [
-    'Away', 'Rimowa', 'TUMI', 'Samsonite', 'Monos', 'BEIS',
-    'Briggs & Riley', 'Travelpro', 'Carl Friedrik', 'July',
+    'Away',
+    'Rimowa',
+    'TUMI',
+    'Samsonite',
+    'Monos',
+    'BEIS',
+    'Briggs & Riley',
+    'Travelpro',
+    'Carl Friedrik',
+    'July',
     'SteamLine Luggage',
-    'Marriott', 'Hilton', 'Hyatt', 'IHG', 'Four Seasons',
-    'Ritz-Carlton', 'Fairmont', 'Omni Hotels', 'Wyndham Hotels',
-    'Hotels.com', 'Booking.com', 'Hopper', 'VRBO',
-    'Delta Air Lines', 'Southwest Airlines', 'JetBlue', 'Frontier Airlines',
-    'Enterprise', 'Avis', 'Alamo', 'National Car Rental',
+    'Marriott',
+    'Hilton',
+    'Hyatt',
+    'IHG',
+    'Four Seasons',
+    'Ritz-Carlton',
+    'Fairmont',
+    'Omni Hotels',
+    'Wyndham Hotels',
+    'Hotels.com',
+    'Booking.com',
+    'Hopper',
+    'VRBO',
+    'Delta Air Lines',
+    'Southwest Airlines',
+    'JetBlue',
+    'Frontier Airlines',
+    'Enterprise',
+    'Avis',
+    'Alamo',
+    'National Car Rental',
   ],
 };
 
 List<String> _brandsForCategories(Set<String> cats) {
-  final seen   = <String>{};
+  final seen = <String>{};
   final result = <String>[];
   for (final cat in _kCategories.map((c) => c.slug)) {
     if (!cats.contains(cat)) continue;
@@ -621,33 +1122,42 @@ class _DealType {
 }
 
 const _kDealTypes = [
-  _DealType('free',     '🎁', 'Free items & birthday rewards',
-      'Free food, birthday deals, loyalty freebies'),
-  _DealType('bogo',     '🔥', 'BOGO deals',
-      'Buy one get one free or 50% off'),
-  _DealType('discount', '💸', 'Big discounts',
-      '30% off or more, major sales'),
-  _DealType('nearby',   '📍', 'Nearby deals',
-      'Deals within your chosen radius'),
-  _DealType('online',   '🛍', 'Online promo codes',
-      'Discount codes usable from any device'),
-  _DealType('rewards',  '🏷', 'Rewards & member deals',
-      'Loyalty program and membership exclusives'),
+  _DealType(
+    'free',
+    '🎁',
+    'Free items & birthday rewards',
+    'Free food, birthday deals, loyalty freebies',
+  ),
+  _DealType('bogo', '🔥', 'BOGO deals', 'Buy one get one free or 50% off'),
+  _DealType('discount', '💸', 'Big discounts', '30% off or more, major sales'),
+  _DealType('nearby', '📍', 'Nearby deals', 'Deals within your chosen radius'),
+  _DealType(
+    'online',
+    '🛍',
+    'Online promo codes',
+    'Discount codes usable from any device',
+  ),
+  _DealType(
+    'rewards',
+    '🏷',
+    'Rewards & member deals',
+    'Loyalty program and membership exclusives',
+  ),
 ];
 
 // ── Radius options ────────────────────────────────────────────────────────────
 
 class _Radius {
-  final int    miles;
+  final int miles;
   final String label;
   final String subtitle;
   const _Radius(this.miles, this.label, this.subtitle);
 }
 
 const _kRadii = [
-  _Radius(1,  '1 mile',   'Walking distance'),
-  _Radius(3,  '3 miles',  'Short drive'),
-  _Radius(5,  '5 miles',  'Good for most cities'),
+  _Radius(1, '1 mile', 'Walking distance'),
+  _Radius(3, '3 miles', 'Short drive'),
+  _Radius(5, '5 miles', 'Good for most cities'),
   _Radius(10, '10 miles', 'Wider area, great for Houston'),
   _Radius(25, '25 miles', 'Large metro or suburb'),
 ];
@@ -669,25 +1179,25 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   // Page 0: Auth  1: Categories  2: Brands  3: Deal types  4: Radius
   late final PageController _pageCtrl;
 
-  bool    _isSignIn = false;
-  bool    _loading  = false;
+  bool _isSignIn = false;
+  bool _loading = false;
   String? _error;
 
   final _emailCtrl = TextEditingController();
-  final _passCtrl  = TextEditingController();
-  final _codeCtrl  = TextEditingController();
-  bool  _obscure   = true;
+  final _passCtrl = TextEditingController();
+  final _codeCtrl = TextEditingController();
+  bool _obscure = true;
 
   StreamSubscription<AuthState>? _authSub;
   bool _oauthSignInInitiated = false;
 
-  final _selectedCats      = <String>{};
-  final _selectedBrands    = <String>{};
+  final _selectedCats = <String>{};
+  final _selectedBrands = <String>{};
   final _selectedDealTypes = <String>{};
-  final _failedLogoBrands  = <String>{};
-  int   _radiusMi          = 5;
-  int?  _birthdayMonth;
-  int?  _birthdayDay;
+  final _failedLogoBrands = <String>{};
+  int _radiusMi = 5;
+  int? _birthdayMonth;
+  int? _birthdayDay;
 
   @override
   void initState() {
@@ -700,14 +1210,16 @@ class _OnboardingScreenState extends State<OnboardingScreen>
         _selectedBrands.addAll(prefs.favoriteBrands);
         _selectedDealTypes.addAll(prefs.dealPriorities);
         _birthdayMonth = prefs.birthdayMonth;
-        _birthdayDay   = prefs.birthdayDay;
+        _birthdayDay = prefs.birthdayDay;
       }
       _loadRadius();
     }
     // Rebuild password strength bar as the user types
     _passCtrl.addListener(_onPassChanged);
     // Handle OAuth sign-ins (Google / Apple) which complete asynchronously
-    _authSub = SupabaseService.client.auth.onAuthStateChange.listen(_onAuthStateChange);
+    _authSub = SupabaseService.client.auth.onAuthStateChange.listen(
+      _onAuthStateChange,
+    );
     WidgetsBinding.instance.addObserver(this);
   }
 
@@ -773,25 +1285,38 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       _goToPage(1);
     }
     // Dismiss SFSafariViewController so the user sees the new screen immediately.
-    try { await closeInAppWebView(); } catch (_) {}
+    try {
+      await closeInAppWebView();
+    } catch (_) {}
   }
 
-  static const _kPageNames = ['auth', 'categories', 'brands', 'deal_types', 'radius'];
+  static const _kPageNames = [
+    'auth',
+    'categories',
+    'brands',
+    'deal_types',
+    'radius',
+  ];
 
   void _goToPage(int p) {
     FocusScope.of(context).unfocus();
     setState(() => _error = null);
-    InteractionService().recordSearchEvent('onboarding_page_viewed',
-        params: {'page': p < _kPageNames.length ? _kPageNames[p] : '$p'});
-    _pageCtrl.animateToPage(p,
-        duration: const Duration(milliseconds: 350), curve: Curves.easeInOut);
+    InteractionService().recordSearchEvent(
+      'onboarding_page_viewed',
+      params: {'page': p < _kPageNames.length ? _kPageNames[p] : '$p'},
+    );
+    _pageCtrl.animateToPage(
+      p,
+      duration: const Duration(milliseconds: 350),
+      curve: Curves.easeInOut,
+    );
   }
 
   // ── Auth ──────────────────────────────────────────────────────────────────
 
   Future<void> _submit() async {
     final email = _emailCtrl.text.trim();
-    final pass  = _passCtrl.text;
+    final pass = _passCtrl.text;
     if (email.isEmpty || pass.isEmpty) {
       setState(() => _error = 'Please fill in all fields.');
       return;
@@ -802,9 +1327,11 @@ class _OnboardingScreenState extends State<OnboardingScreen>
         return;
       }
       final hasLetter = pass.contains(RegExp(r'[a-zA-Z]'));
-      final hasDigit  = pass.contains(RegExp(r'[0-9]'));
+      final hasDigit = pass.contains(RegExp(r'[0-9]'));
       if (!hasLetter || !hasDigit) {
-        setState(() => _error = 'Password must contain both letters and numbers.');
+        setState(
+          () => _error = 'Password must contain both letters and numbers.',
+        );
         return;
       }
     }
@@ -812,7 +1339,10 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       setState(() => _error = 'Please enter your invite code.');
       return;
     }
-    setState(() { _loading = true; _error = null; });
+    setState(() {
+      _loading = true;
+      _error = null;
+    });
     try {
       if (_isSignIn) {
         await AuthService.signIn(email: email, password: pass);
@@ -822,7 +1352,10 @@ class _OnboardingScreenState extends State<OnboardingScreen>
         if (mounted) _launchApp();
       } else {
         await AuthService.signUp(
-            email: email, password: pass, inviteCode: _codeCtrl.text);
+          email: email,
+          password: pass,
+          inviteCode: _codeCtrl.text,
+        );
         if (mounted) _goToPage(1);
       }
     } on AuthException catch (e) {
@@ -835,7 +1368,10 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   }
 
   Future<void> _savePrefsAndFinish() async {
-    setState(() { _loading = true; _error = null; });
+    setState(() {
+      _loading = true;
+      _error = null;
+    });
 
     // Save radius to SharedPreferences (non-fatal)
     try {
@@ -845,18 +1381,21 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
     // Save category/brand/deal prefs to Supabase — show error if it fails
     try {
-      await UserPrefsService().save(UserPrefs(
-        favoriteCategories: _selectedCats.toList(),
-        favoriteBrands:     _selectedBrands.toList(),
-        dealPriorities:     _selectedDealTypes.toList(),
-        birthdayMonth:      _birthdayMonth,
-        birthdayDay:        _birthdayDay,
-      ));
+      await UserPrefsService().save(
+        UserPrefs(
+          favoriteCategories: _selectedCats.toList(),
+          favoriteBrands: _selectedBrands.toList(),
+          dealPriorities: _selectedDealTypes.toList(),
+          birthdayMonth: _birthdayMonth,
+          birthdayDay: _birthdayDay,
+        ),
+      );
     } catch (e) {
       if (mounted) {
         setState(() {
           _loading = false;
-          _error = 'Could not save your preferences. Please check your connection and try again.';
+          _error =
+              'Could not save your preferences. Please check your connection and try again.';
         });
       }
       return;
@@ -867,10 +1406,13 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       try {
         final authId = SupabaseService.currentUserId;
         if (authId != null) {
-          await SupabaseService.client.from('users').update({
-            'onboarding_completed':    true,
-            'onboarding_completed_at': DateTime.now().toIso8601String(),
-          }).eq('auth_id', authId);
+          await SupabaseService.client
+              .from('users')
+              .update({
+                'onboarding_completed': true,
+                'onboarding_completed_at': DateTime.now().toIso8601String(),
+              })
+              .eq('auth_id', authId);
         }
       } catch (_) {}
     }
@@ -887,7 +1429,9 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   }
 
   void _launchApp() => Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (_) => const MainScreen()), (_) => false);
+    MaterialPageRoute(builder: (_) => const MainScreen()),
+    (_) => false,
+  );
 
   void _toggleCat(String slug) {
     setState(() {
@@ -943,105 +1487,173 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     return SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(28, 48, 28, 28),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Row(children: [
-            Container(
-              width: 44, height: 44,
-              decoration: BoxDecoration(color: Candy.raspberry,
-                  borderRadius: BorderRadius.circular(12)),
-              child: const Icon(Icons.local_offer, color: Colors.white, size: 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 44,
+                  height: 44,
+                  decoration: BoxDecoration(
+                    color: Candy.raspberry,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Icon(
+                    Icons.local_offer,
+                    color: Colors.white,
+                    size: 24,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                const Text(
+                  'Candy',
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: -1,
+                    color: Candy.chocolate,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(width: 12),
-            const Text('Candy', style: TextStyle(fontSize: 32,
-                fontWeight: FontWeight.w800, letterSpacing: -1, color: Candy.chocolate)),
-          ]),
-          const SizedBox(height: 32),
-          Text(_isSignIn ? 'Welcome back' : 'Join the beta',
-              style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w700,
-                  color: Candy.chocolate, letterSpacing: -0.5)),
-          const SizedBox(height: 6),
-          Text(
-            _isSignIn ? 'Sign in to your Candy account'
-                      : 'Discover the best deals around you',
-            style: TextStyle(fontSize: 15, color: Colors.grey.shade500),
-          ),
-          const SizedBox(height: 28),
-          _Field(controller: _emailCtrl, label: 'Email',
-              hint: 'you@example.com', inputType: TextInputType.emailAddress),
-          const SizedBox(height: 14),
-          _Field(
-            controller: _passCtrl,
-            label: 'Password',
-            hint: _isSignIn ? 'Your password' : '8+ chars, letters & numbers',
-            obscure: _obscure,
-            suffix: IconButton(
-              icon: Icon(_obscure ? Icons.visibility_off : Icons.visibility,
-                  size: 20, color: Colors.grey),
-              onPressed: () => setState(() => _obscure = !_obscure),
+            const SizedBox(height: 32),
+            Text(
+              _isSignIn ? 'Welcome back' : 'Join the beta',
+              style: const TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.w700,
+                color: Candy.chocolate,
+                letterSpacing: -0.5,
+              ),
             ),
-          ),
-          if (!_isSignIn) ...[
-            const SizedBox(height: 8),
-            _PasswordStrengthBar(password: _passCtrl.text),
+            const SizedBox(height: 6),
+            Text(
+              _isSignIn
+                  ? 'Sign in to your Candy account'
+                  : 'Discover the best deals around you',
+              style: TextStyle(fontSize: 15, color: Colors.grey.shade500),
+            ),
+            const SizedBox(height: 28),
+            _Field(
+              controller: _emailCtrl,
+              label: 'Email',
+              hint: 'you@example.com',
+              inputType: TextInputType.emailAddress,
+            ),
             const SizedBox(height: 14),
-            _Field(controller: _codeCtrl, label: 'Invite code',
+            _Field(
+              controller: _passCtrl,
+              label: 'Password',
+              hint: _isSignIn ? 'Your password' : '8+ chars, letters & numbers',
+              obscure: _obscure,
+              suffix: IconButton(
+                icon: Icon(
+                  _obscure ? Icons.visibility_off : Icons.visibility,
+                  size: 20,
+                  color: Colors.grey,
+                ),
+                onPressed: () => setState(() => _obscure = !_obscure),
+              ),
+            ),
+            if (!_isSignIn) ...[
+              const SizedBox(height: 8),
+              _PasswordStrengthBar(password: _passCtrl.text),
+              const SizedBox(height: 14),
+              _Field(
+                controller: _codeCtrl,
+                label: 'Invite code',
                 hint: 'e.g. CANDY2025',
-                capitalization: TextCapitalization.characters),
-          ],
-          if (_error != null) ...[
-            const SizedBox(height: 14),
-            _ErrorBox(message: _error!),
-          ],
-          const SizedBox(height: 24),
-          _PrimaryButton(label: _isSignIn ? 'Sign In' : 'Join Beta',
-              loading: _loading, onTap: _submit),
-          const SizedBox(height: 20),
-          _OAuthDivider(),
-          const SizedBox(height: 16),
-          _OAuthButton(
-            icon: _googleIcon(),
-            label: 'Continue with Google',
-            onTap: _loading ? null : () async {
-              _oauthSignInInitiated = true;
-              setState(() { _loading = true; _error = null; });
-              try {
-                await AuthService.signInWithGoogle();
-              } catch (_) {}
-              if (mounted) setState(() => _loading = false);
-            },
-          ),
-          const SizedBox(height: 10),
-          _OAuthButton(
-            icon: const Icon(Icons.apple, size: 20, color: Colors.black87),
-            label: 'Continue with Apple',
-            onTap: _loading ? null : () async {
-              _oauthSignInInitiated = true;
-              setState(() { _loading = true; _error = null; });
-              try {
-                await AuthService.signInWithApple();
-              } catch (_) {
-                // Same as Google — session established; _onAuthStateChange handles navigation.
-              }
-              if (mounted) setState(() => _loading = false);
-            },
-          ),
-          const SizedBox(height: 18),
-          Center(child: TextButton(
-            onPressed: () => setState(() { _isSignIn = !_isSignIn; _error = null; }),
-            child: Text(
-              _isSignIn ? "Don't have an account? Join Beta"
-                        : 'Already have an account? Sign In',
-              style: const TextStyle(color: Candy.raspberry, fontWeight: FontWeight.w500),
+                capitalization: TextCapitalization.characters,
+              ),
+            ],
+            if (_error != null) ...[
+              const SizedBox(height: 14),
+              _ErrorBox(message: _error!),
+            ],
+            const SizedBox(height: 24),
+            _PrimaryButton(
+              label: _isSignIn ? 'Sign In' : 'Join Beta',
+              loading: _loading,
+              onTap: _submit,
             ),
-          )),
-        ]),
+            const SizedBox(height: 20),
+            _OAuthDivider(),
+            const SizedBox(height: 16),
+            _OAuthButton(
+              icon: _googleIcon(),
+              label: 'Continue with Google',
+              onTap: _loading
+                  ? null
+                  : () async {
+                      _oauthSignInInitiated = true;
+                      setState(() {
+                        _loading = true;
+                        _error = null;
+                      });
+                      try {
+                        await AuthService.signInWithGoogle();
+                      } catch (_) {}
+                      if (mounted) setState(() => _loading = false);
+                    },
+            ),
+            const SizedBox(height: 10),
+            _OAuthButton(
+              icon: const Icon(Icons.apple, size: 20, color: Colors.black87),
+              label: 'Continue with Apple',
+              onTap: _loading
+                  ? null
+                  : () async {
+                      _oauthSignInInitiated = true;
+                      setState(() {
+                        _loading = true;
+                        _error = null;
+                      });
+                      try {
+                        await AuthService.signInWithApple();
+                      } catch (_) {
+                        // Same as Google — session established; _onAuthStateChange handles navigation.
+                      }
+                      if (mounted) setState(() => _loading = false);
+                    },
+            ),
+            const SizedBox(height: 18),
+            Center(
+              child: TextButton(
+                onPressed: () => setState(() {
+                  _isSignIn = !_isSignIn;
+                  _error = null;
+                }),
+                child: Text(
+                  _isSignIn
+                      ? "Don't have an account? Join Beta"
+                      : 'Already have an account? Sign In',
+                  style: const TextStyle(
+                    color: Candy.raspberry,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   static const _kMonths = [
-    'January','February','March','April','May','June',
-    'July','August','September','October','November','December',
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
 
   Widget _birthdayPicker() {
@@ -1050,7 +1662,11 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       children: [
         const Text(
           'Birthday (optional)',
-          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Candy.chocolate),
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w600,
+            color: Candy.chocolate,
+          ),
         ),
         const SizedBox(height: 6),
         Row(
@@ -1060,10 +1676,16 @@ class _OnboardingScreenState extends State<OnboardingScreen>
               child: _BirthdayDropdown<int>(
                 hint: 'Month',
                 value: _birthdayMonth,
-                items: List.generate(12, (i) => DropdownMenuItem(
-                  value: i + 1,
-                  child: Text(_kMonths[i], style: const TextStyle(fontSize: 14)),
-                )),
+                items: List.generate(
+                  12,
+                  (i) => DropdownMenuItem(
+                    value: i + 1,
+                    child: Text(
+                      _kMonths[i],
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  ),
+                ),
                 onChanged: (v) => setState(() => _birthdayMonth = v),
               ),
             ),
@@ -1073,10 +1695,16 @@ class _OnboardingScreenState extends State<OnboardingScreen>
               child: _BirthdayDropdown<int>(
                 hint: 'Day',
                 value: _birthdayDay,
-                items: List.generate(31, (i) => DropdownMenuItem(
-                  value: i + 1,
-                  child: Text('${i + 1}', style: const TextStyle(fontSize: 14)),
-                )),
+                items: List.generate(
+                  31,
+                  (i) => DropdownMenuItem(
+                    value: i + 1,
+                    child: Text(
+                      '${i + 1}',
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  ),
+                ),
                 onChanged: (v) => setState(() => _birthdayDay = v),
               ),
             ),
@@ -1091,52 +1719,60 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   Widget _buildCategoriesPage() {
     final count = _selectedCats.length;
     return SafeArea(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        _PageHeader(
-          step: 1, totalSteps: 4,
-          showDots: !widget.startAtPreferences,
-          title: 'Make Candy yours',
-          subtitle: 'Pick what you usually buy. Candy will show better deals first.\nYou can change this anytime.',
-          trailing: widget.startAtPreferences
-              ? IconButton(icon: const Icon(Icons.close, color: Candy.chocolate),
-                  onPressed: () => Navigator.of(context).pop())
-              : const SizedBox.shrink(),
-          badge: count == 0 ? 'Pick up to $_kMaxCats'
-              : '$count / $_kMaxCats selected',
-          badgeHighlight: count == _kMaxCats,
-        ),
-        Expanded(
-          child: GridView.builder(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-              childAspectRatio: 0.88,
-            ),
-            itemCount: _kCategories.length,
-            itemBuilder: (context, i) {
-              final cat      = _kCategories[i];
-              final sel      = _selectedCats.contains(cat.slug);
-              final disabled = !sel && count >= _kMaxCats;
-              return _CatGridTile(
-                emoji: cat.emoji,
-                title: cat.title,
-                selected: sel,
-                disabled: disabled,
-                onTap: disabled ? null : () => _toggleCat(cat.slug),
-              );
-            },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _PageHeader(
+            step: 1,
+            totalSteps: 4,
+            showDots: !widget.startAtPreferences,
+            title: 'Make Candy yours',
+            subtitle:
+                'Pick what you usually buy. Candy will show better deals first.\nYou can change this anytime.',
+            trailing: widget.startAtPreferences
+                ? IconButton(
+                    icon: const Icon(Icons.close, color: Candy.chocolate),
+                    onPressed: () => Navigator.of(context).pop(),
+                  )
+                : const SizedBox.shrink(),
+            badge: count == 0
+                ? 'Pick up to $_kMaxCats'
+                : '$count / $_kMaxCats selected',
+            badgeHighlight: count == _kMaxCats,
           ),
-        ),
-        _BottomActions(
-          primaryLabel: 'Continue →',
-          primaryEnabled: count > 0,
-          onPrimary: count > 0 ? () => _goToPage(2) : null,
-          onSkip: () => _goToPage(2),
-          loading: false,
-        ),
-      ]),
+          Expanded(
+            child: GridView.builder(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                childAspectRatio: 0.88,
+              ),
+              itemCount: _kCategories.length,
+              itemBuilder: (context, i) {
+                final cat = _kCategories[i];
+                final sel = _selectedCats.contains(cat.slug);
+                final disabled = !sel && count >= _kMaxCats;
+                return _CatGridTile(
+                  emoji: cat.emoji,
+                  title: cat.title,
+                  selected: sel,
+                  disabled: disabled,
+                  onTap: disabled ? null : () => _toggleCat(cat.slug),
+                );
+              },
+            ),
+          ),
+          _BottomActions(
+            primaryLabel: 'Continue →',
+            primaryEnabled: count > 0,
+            onPrimary: count > 0 ? () => _goToPage(2) : null,
+            onSkip: () => _goToPage(2),
+            loading: false,
+          ),
+        ],
+      ),
     );
   }
 
@@ -1147,65 +1783,79 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     // loaded — brands that fell back to initials are added to _failedLogoBrands
     // via the onLogoFailed callback and filtered out here.
     final brands = _brandsForCategories(_selectedCats)
-        .where((b) => _kBrandDomains.containsKey(b) && !_failedLogoBrands.contains(b))
+        .where(
+          (b) =>
+              _kBrandDomains.containsKey(b) && !_failedLogoBrands.contains(b),
+        )
         .toList();
-    final count  = _selectedBrands.length;
+    final count = _selectedBrands.length;
     return SafeArea(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        _PageHeader(
-          step: 2, totalSteps: 4,
-          showDots: !widget.startAtPreferences,
-          backOnTap: () => _goToPage(1),
-          title: 'Which brands do you care about?',
-          subtitle: 'Pick brands you actually shop from, or would buy from if there was a good deal.',
-          badge: count == 0 ? 'Pick up to $_kMaxBrands'
-              : '$count / $_kMaxBrands selected',
-          badgeHighlight: count == _kMaxBrands,
-        ),
-        Expanded(
-          child: brands.isEmpty
-              ? Center(child: Text('Select categories first to see brands here.',
-                  style: TextStyle(color: Colors.grey.shade500)))
-              : GridView.builder(
-                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 5,
-                    mainAxisSpacing: 8,
-                    crossAxisSpacing: 8,
-                    childAspectRatio: 0.82,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _PageHeader(
+            step: 2,
+            totalSteps: 4,
+            showDots: !widget.startAtPreferences,
+            backOnTap: () => _goToPage(1),
+            title: 'Which brands do you care about?',
+            subtitle:
+                'Pick brands you actually shop from, or would buy from if there was a good deal.',
+            badge: count == 0
+                ? 'Pick up to $_kMaxBrands'
+                : '$count / $_kMaxBrands selected',
+            badgeHighlight: count == _kMaxBrands,
+          ),
+          Expanded(
+            child: brands.isEmpty
+                ? Center(
+                    child: Text(
+                      'Select categories first to see brands here.',
+                      style: TextStyle(color: Colors.grey.shade500),
+                    ),
+                  )
+                : GridView.builder(
+                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 5,
+                          mainAxisSpacing: 8,
+                          crossAxisSpacing: 8,
+                          childAspectRatio: 0.82,
+                        ),
+                    itemCount: brands.length,
+                    itemBuilder: (context, i) {
+                      final b = brands[i];
+                      final sel = _selectedBrands.contains(b);
+                      final disabled = !sel && count >= _kMaxBrands;
+                      return _BrandLogoTile(
+                        key: ValueKey(b),
+                        brandName: b,
+                        domain: _kBrandDomains[b],
+                        selected: sel,
+                        disabled: disabled,
+                        onTap: disabled ? null : () => _toggleBrand(b),
+                        onLogoFailed: () {
+                          if (mounted) {
+                            setState(() {
+                              _failedLogoBrands.add(b);
+                              _selectedBrands.remove(b);
+                            });
+                          }
+                        },
+                      );
+                    },
                   ),
-                  itemCount: brands.length,
-                  itemBuilder: (context, i) {
-                    final b        = brands[i];
-                    final sel      = _selectedBrands.contains(b);
-                    final disabled = !sel && count >= _kMaxBrands;
-                    return _BrandLogoTile(
-                      key: ValueKey(b),
-                      brandName: b,
-                      domain: _kBrandDomains[b],
-                      selected: sel,
-                      disabled: disabled,
-                      onTap: disabled ? null : () => _toggleBrand(b),
-                      onLogoFailed: () {
-                        if (mounted) {
-                          setState(() {
-                            _failedLogoBrands.add(b);
-                            _selectedBrands.remove(b);
-                          });
-                        }
-                      },
-                    );
-                  },
-                ),
-        ),
-        _BottomActions(
-          primaryLabel: 'Continue →',
-          primaryEnabled: true,
-          onPrimary: () => _goToPage(3),
-          onSkip: () => _goToPage(3),
-          loading: false,
-        ),
-      ]),
+          ),
+          _BottomActions(
+            primaryLabel: 'Continue →',
+            primaryEnabled: true,
+            onPrimary: () => _goToPage(3),
+            onSkip: () => _goToPage(3),
+            loading: false,
+          ),
+        ],
+      ),
     );
   }
 
@@ -1213,37 +1863,45 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
   Widget _buildDealTypesPage() {
     return SafeArea(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        _PageHeader(
-          step: 3, totalSteps: 4,
-          showDots: !widget.startAtPreferences,
-          backOnTap: () => _goToPage(2),
-          title: 'What kind of deals should Candy prioritize?',
-          subtitle: 'Select all that apply. This directly improves your ranking.',
-        ),
-        Expanded(
-          child: ListView.separated(
-            padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
-            itemCount: _kDealTypes.length,
-            separatorBuilder: (context, i) => const SizedBox(height: 10),
-            itemBuilder: (context, i) {
-              final dt  = _kDealTypes[i];
-              final sel = _selectedDealTypes.contains(dt.slug);
-              return _SimpleCard(
-                emoji: dt.emoji, title: dt.title, subtitle: dt.subtitle,
-                selected: sel, onTap: () => _toggleDeal(dt.slug),
-              );
-            },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _PageHeader(
+            step: 3,
+            totalSteps: 4,
+            showDots: !widget.startAtPreferences,
+            backOnTap: () => _goToPage(2),
+            title: 'What kind of deals should Candy prioritize?',
+            subtitle:
+                'Select all that apply. This directly improves your ranking.',
           ),
-        ),
-        _BottomActions(
-          primaryLabel: 'Continue →',
-          primaryEnabled: true,
-          onPrimary: () => _goToPage(4),
-          onSkip: () => _goToPage(4),
-          loading: false,
-        ),
-      ]),
+          Expanded(
+            child: ListView.separated(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
+              itemCount: _kDealTypes.length,
+              separatorBuilder: (context, i) => const SizedBox(height: 10),
+              itemBuilder: (context, i) {
+                final dt = _kDealTypes[i];
+                final sel = _selectedDealTypes.contains(dt.slug);
+                return _SimpleCard(
+                  emoji: dt.emoji,
+                  title: dt.title,
+                  subtitle: dt.subtitle,
+                  selected: sel,
+                  onTap: () => _toggleDeal(dt.slug),
+                );
+              },
+            ),
+          ),
+          _BottomActions(
+            primaryLabel: 'Continue →',
+            primaryEnabled: true,
+            onPrimary: () => _goToPage(4),
+            onSkip: () => _goToPage(4),
+            loading: false,
+          ),
+        ],
+      ),
     );
   }
 
@@ -1251,63 +1909,74 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
   Widget _buildRadiusPage() {
     return SafeArea(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        _PageHeader(
-          step: 4, totalSteps: 4,
-          showDots: !widget.startAtPreferences,
-          backOnTap: () => _goToPage(3),
-          title: 'How far should Candy look?',
-          subtitle: 'Set the distance for nearby deals. You can always change this in Profile.',
-        ),
-        Expanded(
-          child: ListView.separated(
-            padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
-            itemCount: _kRadii.length,
-            separatorBuilder: (context, i) => const SizedBox(height: 10),
-            itemBuilder: (context, i) {
-              final r   = _kRadii[i];
-              final sel = r.miles == _radiusMi;
-              return _SimpleCard(
-                emoji: '📍',
-                title: r.label,
-                subtitle: r.label == '5 miles'
-                    ? '${r.subtitle} (default)' : r.subtitle,
-                selected: sel,
-                onTap: () => setState(() => _radiusMi = r.miles),
-              );
-            },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _PageHeader(
+            step: 4,
+            totalSteps: 4,
+            showDots: !widget.startAtPreferences,
+            backOnTap: () => _goToPage(3),
+            title: 'How far should Candy look?',
+            subtitle:
+                'Set the distance for nearby deals. You can always change this in Profile.',
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 4, 20, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Divider(height: 24),
-              const Text(
-                'Birthday (optional)',
-                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: Candy.chocolate),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                'Unlock birthday deals from your favourite brands.',
-                style: TextStyle(fontSize: 12, color: Colors.grey.shade500),
-              ),
-              const SizedBox(height: 10),
-              _birthdayPicker(),
-            ],
+          Expanded(
+            child: ListView.separated(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
+              itemCount: _kRadii.length,
+              separatorBuilder: (context, i) => const SizedBox(height: 10),
+              itemBuilder: (context, i) {
+                final r = _kRadii[i];
+                final sel = r.miles == _radiusMi;
+                return _SimpleCard(
+                  emoji: '📍',
+                  title: r.label,
+                  subtitle: r.label == '5 miles'
+                      ? '${r.subtitle} (default)'
+                      : r.subtitle,
+                  selected: sel,
+                  onTap: () => setState(() => _radiusMi = r.miles),
+                );
+              },
+            ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
-          child: _PrimaryButton(
-            label: widget.startAtPreferences ? 'Save preferences'
-                : 'Start discovering deals →',
-            loading: _loading,
-            onTap: _savePrefsAndFinish,
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 4, 20, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Divider(height: 24),
+                const Text(
+                  'Birthday (optional)',
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: Candy.chocolate,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'Unlock birthday deals from your favourite brands.',
+                  style: TextStyle(fontSize: 12, color: Colors.grey.shade500),
+                ),
+                const SizedBox(height: 10),
+                _birthdayPicker(),
+              ],
+            ),
           ),
-        ),
-      ]),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+            child: _PrimaryButton(
+              label: widget.startAtPreferences
+                  ? 'Save preferences'
+                  : 'Start discovering deals →',
+              loading: _loading,
+              onTap: _savePrefsAndFinish,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -1317,91 +1986,129 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _PageHeader extends StatelessWidget {
-  final int     step;
-  final int     totalSteps;
-  final bool    showDots;
-  final String  title;
-  final String  subtitle;
+  final int step;
+  final int totalSteps;
+  final bool showDots;
+  final String title;
+  final String subtitle;
   final String? badge;
-  final bool    badgeHighlight;
+  final bool badgeHighlight;
   final VoidCallback? backOnTap;
   final Widget trailing;
 
   const _PageHeader({
-    required this.step, required this.totalSteps, required this.showDots,
-    required this.title, required this.subtitle,
-    this.badge, this.badgeHighlight = false,
-    this.backOnTap, this.trailing = const SizedBox.shrink(),
+    required this.step,
+    required this.totalSteps,
+    required this.showDots,
+    required this.title,
+    required this.subtitle,
+    this.badge,
+    this.badgeHighlight = false,
+    this.backOnTap,
+    this.trailing = const SizedBox.shrink(),
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 28, 20, 0),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        if (showDots) ...[
-          _StepDots(current: step - 1, total: totalSteps),
-          const SizedBox(height: 20),
-        ],
-        Row(children: [
-          if (backOnTap != null) ...[
-            GestureDetector(
-              onTap: backOnTap,
-              child: const Icon(Icons.arrow_back_ios_new,
-                  size: 18, color: Candy.chocolate),
-            ),
-            const SizedBox(width: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (showDots) ...[
+            _StepDots(current: step - 1, total: totalSteps),
+            const SizedBox(height: 20),
           ],
-          Expanded(child: Text(title,
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700,
-                  color: Candy.chocolate, letterSpacing: -0.5))),
-          trailing,
-        ]),
-        const SizedBox(height: 6),
-        Text(subtitle, style: TextStyle(fontSize: 13, color: Colors.grey.shade500)),
-        if (badge != null) ...[
-          const SizedBox(height: 6),
-          Text(badge!,
-            style: TextStyle(
-              fontSize: 12,
-              color: badgeHighlight ? Candy.raspberry : Colors.grey.shade400,
-              fontWeight: badgeHighlight ? FontWeight.w600 : FontWeight.normal,
-            ),
+          Row(
+            children: [
+              if (backOnTap != null) ...[
+                GestureDetector(
+                  onTap: backOnTap,
+                  child: const Icon(
+                    Icons.arrow_back_ios_new,
+                    size: 18,
+                    color: Candy.chocolate,
+                  ),
+                ),
+                const SizedBox(width: 8),
+              ],
+              Expanded(
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    color: Candy.chocolate,
+                    letterSpacing: -0.5,
+                  ),
+                ),
+              ),
+              trailing,
+            ],
           ),
+          const SizedBox(height: 6),
+          Text(
+            subtitle,
+            style: TextStyle(fontSize: 13, color: Colors.grey.shade500),
+          ),
+          if (badge != null) ...[
+            const SizedBox(height: 6),
+            Text(
+              badge!,
+              style: TextStyle(
+                fontSize: 12,
+                color: badgeHighlight ? Candy.raspberry : Colors.grey.shade400,
+                fontWeight: badgeHighlight
+                    ? FontWeight.w600
+                    : FontWeight.normal,
+              ),
+            ),
+          ],
         ],
-      ]),
+      ),
     );
   }
 }
 
 class _BottomActions extends StatelessWidget {
-  final String       primaryLabel;
-  final bool         primaryEnabled;
-  final bool         loading;
+  final String primaryLabel;
+  final bool primaryEnabled;
+  final bool loading;
   final VoidCallback? onPrimary;
   final VoidCallback? onSkip;
 
   const _BottomActions({
-    required this.primaryLabel, required this.primaryEnabled,
-    required this.loading, this.onPrimary, this.onSkip,
+    required this.primaryLabel,
+    required this.primaryEnabled,
+    required this.loading,
+    this.onPrimary,
+    this.onSkip,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-      child: Column(children: [
-        _PrimaryButton(label: primaryLabel, loading: loading,
-            enabled: primaryEnabled, onTap: onPrimary),
-        if (onSkip != null) ...[
-          const SizedBox(height: 10),
-          TextButton(
-            onPressed: onSkip,
-            child: Text('Skip for now',
-                style: TextStyle(fontSize: 14, color: Colors.grey.shade500)),
+      child: Column(
+        children: [
+          _PrimaryButton(
+            label: primaryLabel,
+            loading: loading,
+            enabled: primaryEnabled,
+            onTap: onPrimary,
           ),
+          if (onSkip != null) ...[
+            const SizedBox(height: 10),
+            TextButton(
+              onPressed: onSkip,
+              child: Text(
+                'Skip for now',
+                style: TextStyle(fontSize: 14, color: Colors.grey.shade500),
+              ),
+            ),
+          ],
         ],
-      ]),
+      ),
     );
   }
 }
@@ -1417,31 +2124,36 @@ class _StepDots extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: List.generate(total, (i) {
-      final active = i == current;
-      return AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        margin: const EdgeInsets.only(right: 6),
-        width: active ? 24 : 8, height: 8,
-        decoration: BoxDecoration(
-          color: active ? Candy.raspberry : Colors.grey.shade300,
-          borderRadius: BorderRadius.circular(4),
-        ),
-      );
-    }));
+    return Row(
+      children: List.generate(total, (i) {
+        final active = i == current;
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          margin: const EdgeInsets.only(right: 6),
+          width: active ? 24 : 8,
+          height: 8,
+          decoration: BoxDecoration(
+            color: active ? Candy.raspberry : Colors.grey.shade300,
+            borderRadius: BorderRadius.circular(4),
+          ),
+        );
+      }),
+    );
   }
 }
 
 class _CatGridTile extends StatelessWidget {
-  final String        emoji;
-  final String        title;
-  final bool          selected;
-  final bool          disabled;
+  final String emoji;
+  final String title;
+  final bool selected;
+  final bool disabled;
   final VoidCallback? onTap;
 
   const _CatGridTile({
-    required this.emoji, required this.title,
-    required this.selected, required this.disabled,
+    required this.emoji,
+    required this.title,
+    required this.selected,
+    required this.disabled,
     required this.onTap,
   });
 
@@ -1454,11 +2166,16 @@ class _CatGridTile extends StatelessWidget {
         decoration: BoxDecoration(
           color: selected
               ? Candy.raspberry.withValues(alpha: 0.06)
-              : disabled ? Colors.grey.shade50 : Colors.white,
+              : disabled
+              ? Colors.grey.shade50
+              : Colors.white,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-            color: selected ? Candy.raspberry
-                : disabled ? Colors.grey.shade100 : Colors.grey.shade200,
+            color: selected
+                ? Candy.raspberry
+                : disabled
+                ? Colors.grey.shade100
+                : Colors.grey.shade200,
             width: selected ? 2.0 : 1.0,
           ),
         ),
@@ -1473,27 +2190,35 @@ class _CatGridTile extends StatelessWidget {
                   clipBehavior: Clip.none,
                   children: [
                     Container(
-                      width: 54, height: 54,
+                      width: 54,
+                      height: 54,
                       decoration: BoxDecoration(
                         color: Colors.grey.shade100,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Center(
-                        child: Text(emoji,
-                            style: const TextStyle(fontSize: 28)),
+                        child: Text(
+                          emoji,
+                          style: const TextStyle(fontSize: 28),
+                        ),
                       ),
                     ),
                     if (selected)
                       Positioned(
-                        right: -6, top: -6,
+                        right: -6,
+                        top: -6,
                         child: Container(
-                          width: 18, height: 18,
+                          width: 18,
+                          height: 18,
                           decoration: const BoxDecoration(
                             color: Candy.raspberry,
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(Icons.check,
-                              color: Colors.white, size: 12),
+                          child: const Icon(
+                            Icons.check,
+                            color: Colors.white,
+                            size: 12,
+                          ),
                         ),
                       ),
                   ],
@@ -1506,10 +2231,8 @@ class _CatGridTile extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontSize: 10,
-                    fontWeight:
-                        selected ? FontWeight.w600 : FontWeight.w500,
-                    color:
-                        selected ? Candy.raspberry : Candy.chocolate,
+                    fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
+                    color: selected ? Candy.raspberry : Candy.chocolate,
                   ),
                 ),
               ],
@@ -1522,15 +2245,18 @@ class _CatGridTile extends StatelessWidget {
 }
 
 class _SimpleCard extends StatelessWidget {
-  final String       emoji;
-  final String       title;
-  final String       subtitle;
-  final bool         selected;
+  final String emoji;
+  final String title;
+  final String subtitle;
+  final bool selected;
   final VoidCallback onTap;
 
   const _SimpleCard({
-    required this.emoji, required this.title, required this.subtitle,
-    required this.selected, required this.onTap,
+    required this.emoji,
+    required this.title,
+    required this.subtitle,
+    required this.selected,
+    required this.onTap,
   });
 
   @override
@@ -1541,31 +2267,49 @@ class _SimpleCard extends StatelessWidget {
         duration: const Duration(milliseconds: 150),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         decoration: BoxDecoration(
-          color: selected ? Candy.raspberry.withValues(alpha: 0.08) : Colors.white,
+          color: selected
+              ? Candy.raspberry.withValues(alpha: 0.08)
+              : Colors.white,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
-              color: selected ? Candy.raspberry : Colors.grey.shade200,
-              width: selected ? 1.5 : 1),
+            color: selected ? Candy.raspberry : Colors.grey.shade200,
+            width: selected ? 1.5 : 1,
+          ),
         ),
-        child: Row(children: [
-          Text(emoji, style: const TextStyle(fontSize: 24)),
-          const SizedBox(width: 14),
-          Expanded(child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title, style: TextStyle(
-                fontSize: 15, fontWeight: FontWeight.w600,
-                color: selected ? Candy.raspberry : Candy.chocolate,
-              )),
-              const SizedBox(height: 2),
-              Text(subtitle, style: TextStyle(fontSize: 12, color: Colors.grey.shade500)),
-            ],
-          )),
-          if (selected)
-            const Icon(Icons.check_circle, color: Candy.raspberry, size: 20)
-          else
-            Icon(Icons.circle_outlined, color: Colors.grey.shade300, size: 20),
-        ]),
+        child: Row(
+          children: [
+            Text(emoji, style: const TextStyle(fontSize: 24)),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: selected ? Candy.raspberry : Candy.chocolate,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    subtitle,
+                    style: TextStyle(fontSize: 12, color: Colors.grey.shade500),
+                  ),
+                ],
+              ),
+            ),
+            if (selected)
+              const Icon(Icons.check_circle, color: Candy.raspberry, size: 20)
+            else
+              Icon(
+                Icons.circle_outlined,
+                color: Colors.grey.shade300,
+                size: 20,
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -1606,8 +2350,12 @@ class _BrandLogoTileState extends State<_BrandLogoTile> {
 
   Color get _avatarColor {
     const colors = [
-      Candy.raspberry, Candy.mint, Candy.lavender, Candy.pink,
-      Color(0xFF1565C0), Color(0xFFE65100),
+      Candy.raspberry,
+      Candy.mint,
+      Candy.lavender,
+      Candy.pink,
+      Color(0xFF1565C0),
+      Color(0xFFE65100),
     ];
     return colors[widget.brandName.hashCode.abs() % colors.length];
   }
@@ -1626,28 +2374,32 @@ class _BrandLogoTileState extends State<_BrandLogoTile> {
   }
 
   Widget _shimmer(double size) => Container(
-        width: size, height: size,
-        decoration: BoxDecoration(
-          color: Colors.grey.shade200,
-          borderRadius: BorderRadius.circular(size * 0.2),
-        ),
-      );
+    width: size,
+    height: size,
+    decoration: BoxDecoration(
+      color: Colors.grey.shade200,
+      borderRadius: BorderRadius.circular(size * 0.2),
+    ),
+  );
 
   Widget _initials_(double size) => Container(
-        width: size, height: size,
-        decoration: BoxDecoration(
-          color: _avatarColor.withValues(alpha: 0.12),
-          borderRadius: BorderRadius.circular(size * 0.2),
+    width: size,
+    height: size,
+    decoration: BoxDecoration(
+      color: _avatarColor.withValues(alpha: 0.12),
+      borderRadius: BorderRadius.circular(size * 0.2),
+    ),
+    child: Center(
+      child: Text(
+        _initials,
+        style: TextStyle(
+          color: _avatarColor,
+          fontWeight: FontWeight.w700,
+          fontSize: size * 0.35,
         ),
-        child: Center(
-          child: Text(_initials,
-              style: TextStyle(
-                color: _avatarColor,
-                fontWeight: FontWeight.w700,
-                fontSize: size * 0.35,
-              )),
-        ),
-      );
+      ),
+    ),
+  );
 
   Widget _logo(double size) {
     final domain = widget.domain;
@@ -1656,7 +2408,9 @@ class _BrandLogoTileState extends State<_BrandLogoTile> {
     if (_attempt == 0) {
       return Image.asset(
         'assets/logos/$domain.png',
-        width: size, height: size, fit: BoxFit.contain,
+        width: size,
+        height: size,
+        fit: BoxFit.contain,
         errorBuilder: (_, _, _) {
           _nextAttempt();
           return _shimmer(size);
@@ -1669,7 +2423,9 @@ class _BrandLogoTileState extends State<_BrandLogoTile> {
         : 'https://www.google.com/s2/favicons?domain=$domain&sz=128';
     return Image.network(
       url,
-      width: size, height: size, fit: BoxFit.contain,
+      width: size,
+      height: size,
+      fit: BoxFit.contain,
       errorBuilder: (_, _, _) {
         _nextAttempt();
         return _attempt < 3 ? _shimmer(size) : _initials_(size);
@@ -1689,15 +2445,15 @@ class _BrandLogoTileState extends State<_BrandLogoTile> {
           color: widget.selected
               ? Candy.raspberry.withValues(alpha: 0.06)
               : widget.disabled
-                  ? Colors.grey.shade50
-                  : Colors.white,
+              ? Colors.grey.shade50
+              : Colors.white,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
             color: widget.selected
                 ? Candy.raspberry
                 : widget.disabled
-                    ? Colors.grey.shade100
-                    : Colors.grey.shade200,
+                ? Colors.grey.shade100
+                : Colors.grey.shade200,
             width: widget.selected ? 2.0 : 1.0,
           ),
         ),
@@ -1718,13 +2474,17 @@ class _BrandLogoTileState extends State<_BrandLogoTile> {
                           right: -5,
                           top: -5,
                           child: Container(
-                            width: 16, height: 16,
+                            width: 16,
+                            height: 16,
                             decoration: const BoxDecoration(
                               color: Candy.raspberry,
                               shape: BoxShape.circle,
                             ),
-                            child: const Icon(Icons.check,
-                                color: Colors.white, size: 10),
+                            child: const Icon(
+                              Icons.check,
+                              color: Colors.white,
+                              size: 10,
+                            ),
                           ),
                         ),
                     ],
@@ -1759,34 +2519,50 @@ class _BrandLogoTileState extends State<_BrandLogoTile> {
 }
 
 class _PrimaryButton extends StatelessWidget {
-  final String       label;
-  final bool         loading;
-  final bool         enabled;
+  final String label;
+  final bool loading;
+  final bool enabled;
   final VoidCallback? onTap;
 
   const _PrimaryButton({
-    required this.label, required this.loading,
-    this.enabled = true, this.onTap,
+    required this.label,
+    required this.loading,
+    this.enabled = true,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity, height: 52,
+      width: double.infinity,
+      height: 52,
       child: ElevatedButton(
         onPressed: (!enabled || loading) ? null : onTap,
         style: ElevatedButton.styleFrom(
           backgroundColor: Candy.raspberry,
           foregroundColor: Colors.white,
           disabledBackgroundColor: Colors.grey.shade200,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
           elevation: 0,
         ),
         child: loading
-            ? const SizedBox(width: 20, height: 20,
-                child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
-            : Text(label,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+            ? const SizedBox(
+                width: 20,
+                height: 20,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  color: Colors.white,
+                ),
+              )
+            : Text(
+                label,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
       ),
     );
   }
@@ -1808,24 +2584,33 @@ class _BirthdayDropdown<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<T>(
-      value: value,
-      hint: Text(hint, style: TextStyle(color: Colors.grey.shade400, fontSize: 14)),
+      initialValue: value,
+      hint: Text(
+        hint,
+        style: TextStyle(color: Colors.grey.shade400, fontSize: 14),
+      ),
       items: items,
       onChanged: onChanged,
       isExpanded: true,
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 12,
+          vertical: 14,
+        ),
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Colors.grey.shade200)),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Colors.grey.shade200),
+        ),
         enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: BorderSide(color: Colors.grey.shade200)),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: Colors.grey.shade200),
+        ),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-            borderSide: const BorderSide(color: Candy.raspberry, width: 1.5)),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Candy.raspberry, width: 1.5),
+        ),
       ),
     );
   }
@@ -1844,12 +2629,18 @@ class _ErrorBox extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: Colors.red.shade200),
       ),
-      child: Row(children: [
-        Icon(Icons.error_outline, size: 16, color: Colors.red.shade600),
-        const SizedBox(width: 8),
-        Expanded(child: Text(message,
-            style: TextStyle(fontSize: 13, color: Colors.red.shade700))),
-      ]),
+      child: Row(
+        children: [
+          Icon(Icons.error_outline, size: 16, color: Colors.red.shade600),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              message,
+              style: TextStyle(fontSize: 13, color: Colors.red.shade700),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -1858,42 +2649,66 @@ class _Field extends StatelessWidget {
   final TextEditingController controller;
   final String label;
   final String hint;
-  final bool   obscure;
+  final bool obscure;
   final Widget? suffix;
-  final TextInputType      inputType;
+  final TextInputType inputType;
   final TextCapitalization capitalization;
 
   const _Field({
-    required this.controller, required this.label, required this.hint,
-    this.obscure = false, this.suffix,
+    required this.controller,
+    required this.label,
+    required this.hint,
+    this.obscure = false,
+    this.suffix,
     this.inputType = TextInputType.text,
     this.capitalization = TextCapitalization.none,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Text(label, style: const TextStyle(fontSize: 13,
-          fontWeight: FontWeight.w600, color: Candy.chocolate)),
-      const SizedBox(height: 6),
-      TextField(
-        controller: controller, obscureText: obscure,
-        keyboardType: inputType, textCapitalization: capitalization,
-        decoration: InputDecoration(
-          hintText: hint,
-          hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 14),
-          suffixIcon: suffix,
-          filled: true, fillColor: Colors.white,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: Colors.grey.shade200)),
-          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: Colors.grey.shade200)),
-          focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Candy.raspberry, width: 1.5)),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w600,
+            color: Candy.chocolate,
+          ),
         ),
-      ),
-    ]);
+        const SizedBox(height: 6),
+        TextField(
+          controller: controller,
+          obscureText: obscure,
+          keyboardType: inputType,
+          textCapitalization: capitalization,
+          decoration: InputDecoration(
+            hintText: hint,
+            hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 14),
+            suffixIcon: suffix,
+            filled: true,
+            fillColor: Colors.white,
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 14,
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Colors.grey.shade200),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Colors.grey.shade200),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: Candy.raspberry, width: 1.5),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
 
@@ -1903,9 +2718,9 @@ enum _PwStrength { empty, short, noMix, good }
 
 _PwStrength _evalStrength(String pw) {
   if (pw.isEmpty) return _PwStrength.empty;
-  if (pw.length < 8)  return _PwStrength.short;
+  if (pw.length < 8) return _PwStrength.short;
   final hasLetter = pw.contains(RegExp(r'[a-zA-Z]'));
-  final hasDigit  = pw.contains(RegExp(r'[0-9]'));
+  final hasDigit = pw.contains(RegExp(r'[0-9]'));
   if (!hasLetter || !hasDigit) return _PwStrength.noMix;
   return _PwStrength.good;
 }
@@ -1920,10 +2735,14 @@ class _PasswordStrengthBar extends StatelessWidget {
     if (strength == _PwStrength.empty) return const SizedBox.shrink();
 
     final (filled, color, label) = switch (strength) {
-      _PwStrength.short  => (1, const Color(0xFFE53935), 'Too short'),
-      _PwStrength.noMix  => (2, const Color(0xFFFB8C00), 'Add numbers or letters'),
-      _PwStrength.good   => (3, const Color(0xFF2E7D32), 'Strong'),
-      _PwStrength.empty  => (0, Colors.transparent, ''),
+      _PwStrength.short => (1, const Color(0xFFE53935), 'Too short'),
+      _PwStrength.noMix => (
+        2,
+        const Color(0xFFFB8C00),
+        'Add numbers or letters',
+      ),
+      _PwStrength.good => (3, const Color(0xFF2E7D32), 'Strong'),
+      _PwStrength.empty => (0, Colors.transparent, ''),
     };
 
     return Row(
@@ -2002,7 +2821,9 @@ class _OAuthButton extends StatelessWidget {
         style: OutlinedButton.styleFrom(
           side: BorderSide(color: Colors.grey.shade300),
           backgroundColor: Colors.white,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
           foregroundColor: Candy.chocolate,
         ),
         child: Row(
