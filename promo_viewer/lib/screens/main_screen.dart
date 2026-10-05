@@ -1,17 +1,18 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 import '../models/promotion.dart';
-import '../theme/candy_colors.dart';
 import '../services/interaction_service.dart';
+import '../services/location_service.dart';
 import '../services/notification_service.dart';
 import '../services/promotions_service.dart';
 import '../services/user_memberships_service.dart';
+import '../theme/candy_colors.dart';
 import 'deal_detail_screen.dart';
-import 'profile_screen.dart';
-import 'saved_screen.dart';
-import 'search_screen.dart';
+import 'for_you_screen.dart';
+import 'near_me_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -21,13 +22,16 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  final _svc = InteractionService();
+
   List<Promotion> _all = [];
+  Set<String> _memberships = {};
+  Position? _position;
+  DateTime? _lastUpdated;
   bool _loading = true;
   bool _error = false;
-  Set<String> _memberships = {};
-  DateTime? _lastUpdated;
+  bool _locating = false;
   int _tab = 0;
-  final _svc = InteractionService();
 
   @override
   void initState() {
@@ -46,21 +50,20 @@ class _MainScreenState extends State<MainScreen> {
     final promoId = NotificationService.tapNotifier.value;
     if (promoId == null || !mounted) return;
     NotificationService.tapNotifier.value = null;
+    if (_all.isEmpty) return;
+    _openPromoById(promoId);
+  }
 
-    if (_all.isEmpty) {
-      // Data not loaded yet — already persisted to SharedPreferences in
-      // storePendingPromoId; _navigatePendingNotification will pick it up
-      // when _loadData() completes.
-      return;
-    }
+  void _openPromoById(String promoId) {
     final matches = _all.where((p) => p.id == promoId);
     if (matches.isEmpty) return;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => DealDetailScreen(promo: matches.first)),
-        );
-      }
+      if (!mounted) return;
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => DealDetailScreen(promo: matches.first),
+        ),
+      );
     });
   }
 
@@ -70,52 +73,81 @@ class _MainScreenState extends State<MainScreen> {
         PromotionsService.load(),
         UserMembershipsService.load(),
       ]);
-      final promos      = results[0] as List<Promotion>;
+      final promos = results[0] as List<Promotion>;
       final memberships = results[1] as Set<String>;
-      if (mounted) {
-        setState(() {
-          _all          = promos;
-          _memberships  = memberships;
-          _loading      = false;
-          _error        = false;
-          _lastUpdated  = DateTime.now();
-        });
+
+      final position = _position;
+      if (position != null) {
+        await LocationService.attachDistances(promos, position);
       }
+
+      if (!mounted) return;
+      setState(() {
+        _all = promos;
+        _memberships = memberships;
+        _loading = false;
+        _error = false;
+        _lastUpdated = DateTime.now();
+      });
       _svc.recordSessionStart();
-      await _navigatePendingNotification(promos);
+      await _navigatePendingNotification();
     } catch (_) {
-      if (mounted) setState(() { _loading = false; _error = true; });
+      if (!mounted) return;
+      setState(() {
+        _loading = false;
+        _error = true;
+      });
     }
   }
 
-  Future<void> _navigatePendingNotification(List<Promotion> promos) async {
-    // SharedPreferences is the authoritative store — written by every code path
-    // that receives a notification tap (FCM terminated, FCM background, local).
-    // In-memory pendingPromoId / tapNotifier are secondary and may be stale.
+  Future<void> _navigatePendingNotification() async {
     String? promoId = await NotificationService.consumePendingPromoId();
     promoId ??= NotificationService.pendingPromoId;
     NotificationService.pendingPromoId = null;
     promoId ??= NotificationService.tapNotifier.value;
     NotificationService.tapNotifier.value = null;
-
     if (promoId == null || !mounted) return;
-    final matches = promos.where((p) => p.id == promoId);
-    if (matches.isEmpty) return;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) {
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => DealDetailScreen(promo: matches.first)),
-        );
-      }
+    _openPromoById(promoId);
+  }
+
+  Future<void> _ensureLocation() async {
+    if (_locating || _position != null) return;
+    setState(() => _locating = true);
+    final position = await LocationService.getPosition();
+    if (position != null) {
+      await LocationService.attachDistances(_all, position);
+    }
+    if (!mounted) return;
+    setState(() {
+      _position = position;
+      _locating = false;
     });
+  }
+
+  Future<void> _refreshCurrentTab() async {
+    await _loadData();
+    if (_tab == 1) {
+      if (_position == null) {
+        await _ensureLocation();
+      } else {
+        await LocationService.attachDistances(_all, _position!);
+        if (mounted) setState(() {});
+      }
+    }
+  }
+
+  void _selectTab(int index) {
+    setState(() => _tab = index);
+    _svc.recordTabSwitch(index, const ['For You', 'Near Me'][index]);
+    if (index == 1) {
+      _ensureLocation();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     if (_loading) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     if (_error) {
       return Scaffold(
@@ -125,12 +157,17 @@ class _MainScreenState extends State<MainScreen> {
             children: [
               const Icon(Icons.wifi_off_rounded, size: 48, color: Colors.grey),
               const SizedBox(height: 16),
-              const Text('Could not load deals',
-                  style: TextStyle(fontSize: 16, color: Colors.black54)),
+              const Text(
+                'Could not load deals',
+                style: TextStyle(fontSize: 16, color: Colors.black54),
+              ),
               const SizedBox(height: 12),
               FilledButton(
                 onPressed: () {
-                  setState(() { _loading = true; _error = false; });
+                  setState(() {
+                    _loading = true;
+                    _error = false;
+                  });
                   _loadData();
                 },
                 child: const Text('Retry'),
@@ -153,37 +190,32 @@ class _MainScreenState extends State<MainScreen> {
         child: IndexedStack(
           index: _tab,
           children: [
-            SearchScreen(
-              all:         _all,
+            ForYouScreen(
+              all: _all,
+              memberships: _memberships,
+              onRefresh: _refreshCurrentTab,
+            ),
+            NearMeScreen(
+              all: _all,
+              position: _position,
+              locating: _locating,
               memberships: _memberships,
               lastUpdated: _lastUpdated,
-              onRefresh:   _loadData,
+              onRefresh: _refreshCurrentTab,
+              onRequestLocation: _ensureLocation,
             ),
-            SavedScreen(
-              all:         _all,
-              memberships: _memberships,
-              onRefresh:   _loadData,
-            ),
-            const ProfileScreen(),
           ],
         ),
       ),
       bottomNavigationBar: _GlassNavBar(
         selectedIndex: _tab,
-        onDestinationSelected: (i) {
-          setState(() => _tab = i);
-          _svc.recordTabSwitch(i, const ['Deals', 'Saved', 'Profile'][i]);
-        },
+        onDestinationSelected: _selectTab,
       ),
     );
   }
 }
 
-// ── Constants ─────────────────────────────────────────────────────────────────
-
 const double _kNavBarHeight = 60.0;
-
-// ── Glass navigation bar ──────────────────────────────────────────────────────
 
 class _GlassNavBar extends StatelessWidget {
   final int selectedIndex;
@@ -195,9 +227,16 @@ class _GlassNavBar extends StatelessWidget {
   });
 
   static const _destinations = [
-    (icon: Icons.local_offer_outlined, selectedIcon: Icons.local_offer,  label: 'Deals'),
-    (icon: Icons.favorite_border,      selectedIcon: Icons.favorite,      label: 'Saved'),
-    (icon: Icons.person_outline,       selectedIcon: Icons.person,        label: 'Profile'),
+    (
+      icon: Icons.auto_awesome_outlined,
+      selectedIcon: Icons.auto_awesome,
+      label: 'For You',
+    ),
+    (
+      icon: Icons.near_me_outlined,
+      selectedIcon: Icons.near_me,
+      label: 'Near Me',
+    ),
   ];
 
   @override
@@ -231,11 +270,11 @@ class _GlassNavBar extends StatelessWidget {
                   _destinations.length,
                   (i) => Expanded(
                     child: _GlassNavItem(
-                      icon:         _destinations[i].icon,
+                      icon: _destinations[i].icon,
                       selectedIcon: _destinations[i].selectedIcon,
-                      label:        _destinations[i].label,
-                      selected:     i == selectedIndex,
-                      onTap:        () => onDestinationSelected(i),
+                      label: _destinations[i].label,
+                      selected: i == selectedIndex,
+                      onTap: () => onDestinationSelected(i),
                     ),
                   ),
                 ),
