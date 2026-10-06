@@ -1,4 +1,4 @@
-﻿import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'supabase_service.dart';
 import 'push_token_service.dart';
@@ -6,41 +6,27 @@ import 'push_token_service.dart';
 String _appPlatform() {
   if (kIsWeb) return 'web';
   switch (defaultTargetPlatform) {
-    case TargetPlatform.iOS:     return 'ios';
-    case TargetPlatform.android: return 'android';
-    case TargetPlatform.macOS:   return 'macos';
-    case TargetPlatform.windows: return 'windows';
-    default:                     return 'unknown';
+    case TargetPlatform.iOS:
+      return 'ios';
+    case TargetPlatform.android:
+      return 'android';
+    case TargetPlatform.macOS:
+      return 'macos';
+    case TargetPlatform.windows:
+      return 'windows';
+    default:
+      return 'unknown';
   }
 }
 
 class AuthService {
   static SupabaseClient get _sb => SupabaseService.client;
 
-  /// Sign up with email + password + beta invite code.
+  /// Sign up with email + password.
   static Future<void> signUp({
     required String email,
     required String password,
-    required String inviteCode,
   }) async {
-    final code = inviteCode.trim().toUpperCase();
-
-    // Validate invite code against DB
-    final row = await _sb
-        .from('invite_codes')
-        .select('code, max_uses, use_count')
-        .eq('code', code)
-        .maybeSingle();
-
-    if (row == null) {
-      throw const AuthException('Invalid invite code. Check with the Candy team.');
-    }
-    final maxUses  = (row['max_uses']  as int?) ?? 0;
-    final useCount = (row['use_count'] as int?) ?? 0;
-    if (useCount >= maxUses) {
-      throw const AuthException('This invite code has reached its limit.');
-    }
-
     // Create Supabase auth account
     final res = await _sb.auth.signUp(email: email.trim(), password: password);
     if (res.user == null) {
@@ -50,18 +36,10 @@ class AuthService {
     // Insert user profile row
     try {
       await _sb.from('users').insert({
-        'auth_id':      res.user!.id,
-        'email':        res.user!.email,
-        'invite_code':  code,
+        'auth_id': res.user!.id,
+        'email': res.user!.email,
         'app_platform': _appPlatform(),
       });
-    } catch (_) {}
-
-    // Increment use_count (best-effort â€” non-fatal if RLS blocks it)
-    try {
-      await _sb.from('invite_codes')
-          .update({'use_count': useCount + 1})
-          .eq('code', code);
     } catch (_) {}
 
     PushTokenService.register();
@@ -78,11 +56,14 @@ class AuthService {
     // Update last_login_at (and backfill email/platform for accounts created before these columns)
     if (res.user != null) {
       try {
-        await _sb.from('users').update({
-          'last_login_at': DateTime.now().toIso8601String(),
-          'email':         res.user!.email,
-          'app_platform':  _appPlatform(),
-        }).eq('auth_id', res.user!.id);
+        await _sb
+            .from('users')
+            .update({
+              'last_login_at': DateTime.now().toIso8601String(),
+              'email': res.user!.email,
+              'app_platform': _appPlatform(),
+            })
+            .eq('auth_id', res.user!.id);
       } catch (_) {}
       PushTokenService.register();
     }
@@ -103,21 +84,14 @@ class AuthService {
     );
   }
 
-  static Future<void> signInWithApple() async {
-    await _sb.auth.signInWithOAuth(
-      OAuthProvider.apple,
-      redirectTo: _redirectUrl,
-    );
-  }
-
   /// Upserts the users table row after OAuth sign-in (non-fatal if it fails).
   static Future<void> ensureUserRow() async {
     final user = _sb.auth.currentUser;
     if (user == null) return;
     try {
       await _sb.from('users').upsert({
-        'auth_id':      user.id,
-        'email':        user.email,
+        'auth_id': user.id,
+        'email': user.email,
         'app_platform': _appPlatform(),
       }, onConflict: 'auth_id');
     } catch (_) {}
@@ -138,4 +112,3 @@ class AuthService {
     return e.message;
   }
 }
-
