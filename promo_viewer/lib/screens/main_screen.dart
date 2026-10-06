@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../models/promotion.dart';
+import '../services/email_deals_service.dart';
+import '../services/gmail_connection_service.dart';
 import '../services/interaction_service.dart';
 import '../services/location_service.dart';
 import '../services/notification_service.dart';
 import '../services/promotions_service.dart';
+import '../services/supabase_service.dart';
 import '../services/user_memberships_service.dart';
 import '../theme/candy_colors.dart';
 import 'deal_detail_screen.dart';
@@ -70,21 +73,35 @@ class _MainScreenState extends State<MainScreen> {
 
   Future<void> _loadData() async {
     try {
+      await GmailConnectionService.restorePendingConnect();
+      if (GmailConnectionService.hasPendingConnect) {
+        try {
+          await GmailConnectionService.vaultSessionIfPending(
+            SupabaseService.client.auth.currentSession,
+          );
+        } catch (_) {}
+      }
       final results = await Future.wait([
         PromotionsService.load(),
+        EmailDealsService.loadForCurrentUser(),
         UserMembershipsService.load(),
       ]);
       final promos = results[0] as List<Promotion>;
-      final memberships = results[1] as Set<String>;
+      final emailPromos = results[1] as List<Promotion>;
+      final memberships = results[2] as Set<String>;
+      final combined = EmailDealsService.mergeWithPublicPromotions(
+        promos,
+        emailPromos,
+      );
 
       final position = _position;
       if (position != null) {
-        await LocationService.attachDistances(promos, position);
+        await LocationService.attachDistances(combined, position);
       }
 
       if (!mounted) return;
       setState(() {
-        _all = promos;
+        _all = combined;
         _memberships = memberships;
         _loading = false;
         _error = false;

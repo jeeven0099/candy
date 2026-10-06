@@ -1,5 +1,5 @@
 class RankingContract {
-  static const version = 'v1_quality_top_10';
+  static const version = 'v2_personal_email_top_10';
 
   static const forYouLimit = 10;
   static const nearMeLimit = 10;
@@ -9,6 +9,8 @@ class RankingContract {
   static const nearMeQualityFloor = 55.0;
   static const strongUnknownDiscountFloor = 82.0;
   static const exceptionalPointsFloor = 78.0;
+  static const emailQualityFloor = 45.0;
+  static const emailPersonalRankFloor = 70.0;
 
   static const nearMeDefaultRadiusMi = 5;
   static const nearMeMaxDistanceKm = 8.05; // 5 miles
@@ -24,6 +26,10 @@ class RankingContract {
   static const savedDealBoost = 18.0;
   static const clickedDealBoost = 6.0;
   static const recentBrandSearchBoost = 12.0;
+  static const emailSourceBoost = 4.0;
+  static const personalModelMultiplier = 0.8;
+  static const personalModelBoostCap = 30.0;
+  static const personalModelPenaltyCap = 18.0;
 
   static const memberBoost = 12.0;
   static const noMembershipBoost = 3.0;

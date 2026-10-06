@@ -33,9 +33,17 @@ class Promotion {
   final String? ogImageUrl;
 
   // Email-only fields
-  final String? visibility;   // public_general_offer | member_offer | private_user_offer
+  final String?
+  visibility; // public_general_offer | member_offer | private_user_offer
   final String? emailSubject;
   final String? senderEmail;
+
+  // Per-user ranking fields. These are attached to private email deals after
+  // backend scoring and are not part of the public nightly dataset.
+  final double? personalRankScore;
+  final String? personalRankModel;
+  final List<String> personalRankReasons;
+  final String? personalRankSummary;
 
   final String? summary;
 
@@ -106,6 +114,10 @@ class Promotion {
     this.visibility,
     this.emailSubject,
     this.senderEmail,
+    this.personalRankScore,
+    this.personalRankModel,
+    this.personalRankReasons = const [],
+    this.personalRankSummary,
     this.summary,
     this.birthdayRelated = false,
     this.fastRedemption,
@@ -157,7 +169,8 @@ class Promotion {
       promoCode: json['promo_code'] as String?,
       redemptionSteps: steps,
       termsText: json['terms_text'] as String?,
-      validDays: (json['valid_days'] as List?)?.whereType<String>().toList() ?? [],
+      validDays:
+          (json['valid_days'] as List?)?.whereType<String>().toList() ?? [],
       timeStart: json['time_start'] as String?,
       timeEnd: json['time_end'] as String?,
       promotionTimezone: json['timezone'] as String? ?? 'America/New_York',
@@ -169,18 +182,37 @@ class Promotion {
       visibility: json['visibility'] as String?,
       emailSubject: json['email_subject'] as String?,
       senderEmail: json['sender_email'] as String?,
+      personalRankScore: (json['personal_rank_score'] as num?)?.toDouble(),
+      personalRankModel: json['personal_rank_model'] as String?,
+      personalRankReasons:
+          (json['personal_rank_reasons'] as List?)
+              ?.whereType<String>()
+              .toList() ??
+          [],
+      personalRankSummary: json['personal_rank_summary'] as String?,
       summary: json['short_summary'] as String?,
       birthdayRelated: json['birthday_related'] as bool? ?? false,
       fastRedemption: json['fast_redemption'] != null
           ? FastRedemption.fromJson(
-              json['fast_redemption'] as Map<String, dynamic>)
+              json['fast_redemption'] as Map<String, dynamic>,
+            )
           : null,
-      globalQualityScore: ((json['global_quality_score'] ?? json['rank_base_score']) as num?)?.toDouble() ?? 0.0,
-      economicValueScore: (json['economic_value_score'] as num?)?.toDouble() ?? 0.0,
-      expirationUrgencyScore: (json['expiration_urgency_score'] as num?)?.toDouble() ?? 0.0,
-      effectiveDiscountPct: (json['effective_discount_pct'] as num?)?.toDouble() ?? 0.0,
+      globalQualityScore:
+          ((json['global_quality_score'] ?? json['rank_base_score']) as num?)
+              ?.toDouble() ??
+          0.0,
+      economicValueScore:
+          (json['economic_value_score'] as num?)?.toDouble() ?? 0.0,
+      expirationUrgencyScore:
+          (json['expiration_urgency_score'] as num?)?.toDouble() ?? 0.0,
+      effectiveDiscountPct:
+          (json['effective_discount_pct'] as num?)?.toDouble() ?? 0.0,
       clarityScore: (json['clarity_score'] as num?)?.toDouble() ?? 0.0,
-      valueExplanationCodes: (json['value_explanation_codes'] as List?)?.whereType<String>().toList() ?? [],
+      valueExplanationCodes:
+          (json['value_explanation_codes'] as List?)
+              ?.whereType<String>()
+              .toList() ??
+          [],
       estimatedSavings: (json['estimated_savings'] as num?)?.toDouble(),
       neighborhood: json['neighborhood'] as String?,
       address: json['address'] as String?,
@@ -189,17 +221,33 @@ class Promotion {
       targetGender: json['target_gender'] as String?,
       synthesized: json['synthesized'] as bool? ?? false,
       synthesisReason: json['synthesis_reason'] as String?,
-      productCategories: (json['product_categories'] as List?)?.whereType<String>().toList() ?? [],
-      productKeywordsExplicit: (json['product_keywords_explicit'] as List?)?.whereType<String>().toList()
-          ?? (json['product_keywords'] as List?)?.whereType<String>().toList()
-          ?? [],
-      productKeywordsContextual: (json['product_keywords_contextual'] as List?)?.whereType<String>().toList() ?? [],
-      matchedProductExamples: (json['matched_product_examples'] as List?)?.whereType<String>().toList() ?? [],
+      productCategories:
+          (json['product_categories'] as List?)?.whereType<String>().toList() ??
+          [],
+      productKeywordsExplicit:
+          (json['product_keywords_explicit'] as List?)
+              ?.whereType<String>()
+              .toList() ??
+          (json['product_keywords'] as List?)?.whereType<String>().toList() ??
+          [],
+      productKeywordsContextual:
+          (json['product_keywords_contextual'] as List?)
+              ?.whereType<String>()
+              .toList() ??
+          [],
+      matchedProductExamples:
+          (json['matched_product_examples'] as List?)
+              ?.whereType<String>()
+              .toList() ??
+          [],
     );
   }
 
   String get id {
-    final raw = '${brand}_$title'.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+    final raw = '${brand}_$title'.toLowerCase().replaceAll(
+      RegExp(r'[^a-z0-9]+'),
+      '_',
+    );
     return raw.length > 100 ? raw.substring(0, 100) : raw;
   }
 
@@ -229,12 +277,16 @@ class Promotion {
   String? get verifyUrl {
     if (dealUrl != null && dealUrl!.isNotEmpty) return dealUrl;
     if (sourceUrl != null && sourceUrl!.isNotEmpty) return sourceUrl;
-    if (websiteDomain != null && websiteDomain!.isNotEmpty) return 'https://$websiteDomain';
+    if (websiteDomain != null && websiteDomain!.isNotEmpty) {
+      return 'https://$websiteDomain';
+    }
     return null;
   }
 
   bool get isActive =>
-      status == 'active' || status == 'probably_active' || status == 'online_only';
+      status == 'active' ||
+      status == 'probably_active' ||
+      status == 'online_only';
 
   bool get isLocal => source == 'local_neighborhood';
 
@@ -267,17 +319,25 @@ class Promotion {
 
     // ── Day-of-week factor ────────────────────────────────────────────────
     if (validDays.isNotEmpty) {
-      const dayNames = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
-      const dayShort = ['mon','tue','wed','thu','fri','sat','sun'];
+      const dayNames = [
+        'monday',
+        'tuesday',
+        'wednesday',
+        'thursday',
+        'friday',
+        'saturday',
+        'sunday',
+      ];
+      const dayShort = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
       final todayIdx = DateTime.now().weekday - 1; // 0=Mon … 6=Sun
       final normalized = validDays.map((d) => d.toLowerCase()).toList();
       final validToday = normalized.any(
         (d) => d == dayNames[todayIdx] || d == dayShort[todayIdx],
       );
       if (validToday) {
-        score += 5;   // deal is specifically on today — slight boost
+        score += 5; // deal is specifically on today — slight boost
       } else {
-        score -= 20;  // deal not valid today — rank below general deals
+        score -= 20; // deal not valid today — rank below general deals
       }
     }
 
@@ -302,11 +362,21 @@ class Promotion {
 
   bool get isValidToday {
     if (validDays.isEmpty) return true;
-    const dayNames = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
-    const dayShort = ['mon','tue','wed','thu','fri','sat','sun'];
+    const dayNames = [
+      'monday',
+      'tuesday',
+      'wednesday',
+      'thursday',
+      'friday',
+      'saturday',
+      'sunday',
+    ];
+    const dayShort = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
     final todayIdx = DateTime.now().weekday - 1;
     final normalized = validDays.map((d) => d.toLowerCase()).toList();
-    return normalized.any((d) => d == dayNames[todayIdx] || d == dayShort[todayIdx]);
+    return normalized.any(
+      (d) => d == dayNames[todayIdx] || d == dayShort[todayIdx],
+    );
   }
 
   /// Legacy value-only score (kept for backwards compatibility).
@@ -348,12 +418,18 @@ class Promotion {
   }
 
   String get displayValue {
-    if (discountValue != null && discountValue!.isNotEmpty) return discountValue!;
+    if (discountValue != null && discountValue!.isNotEmpty) {
+      return discountValue!;
+    }
     switch (discountType) {
-      case 'free_shipping': return 'Free Shipping';
-      case 'free_item':     return 'Free Item';
-      case 'points':        return 'Points';
-      default:              return '';
+      case 'free_shipping':
+        return 'Free Shipping';
+      case 'free_item':
+        return 'Free Item';
+      case 'points':
+        return 'Points';
+      default:
+        return '';
     }
   }
 }

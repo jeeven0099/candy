@@ -84,6 +84,23 @@ class AuthService {
     );
   }
 
+  static Future<void> connectGmailForDeals() async {
+    final launched = await _sb.auth.signInWithOAuth(
+      OAuthProvider.google,
+      redirectTo: _redirectUrl,
+      scopes:
+          'openid email profile https://www.googleapis.com/auth/gmail.readonly',
+      queryParams: {
+        'access_type': 'offline',
+        'prompt': 'consent',
+        'include_granted_scopes': 'true',
+        if (_sb.auth.currentUser?.email != null)
+          'login_hint': _sb.auth.currentUser!.email!,
+      },
+    );
+    if (!launched) throw StateError('Could not open Google.');
+  }
+
   /// Upserts the users table row after OAuth sign-in (non-fatal if it fails).
   static Future<void> ensureUserRow() async {
     final user = _sb.auth.currentUser;

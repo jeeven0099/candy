@@ -1,15 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../services/auth_service.dart';
+import '../services/gmail_connection_service.dart';
 import '../services/saved_deals_service.dart';
 import '../services/supabase_service.dart';
 import '../services/user_prefs_service.dart';
 import '../theme/candy_colors.dart';
 import 'onboarding_screen.dart';
 
-const _kRadiusKey     = 'near_me_radius_mi';
+const _kRadiusKey = 'near_me_radius_mi';
 const _kRadiusOptions = [1, 3, 5, 10, 25];
 
 class ProfileScreen extends StatefulWidget {
@@ -19,13 +23,40 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ProfileScreenState extends State<ProfileScreen>
+    with WidgetsBindingObserver {
   int _radiusMi = 5;
+  StreamSubscription<AuthState>? _authSub;
+  GmailConnectionStatus? _gmailStatus;
+  bool _gmailBusy = false;
+  String? _gmailError;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _loadRadius();
+    _loadGmailStatus();
+    _restoreGmailConnect();
+    if (SupabaseService.isReady) {
+      _authSub = SupabaseService.authStateChanges.listen(_onAuthStateChange);
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _authSub?.cancel();
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed ||
+        !GmailConnectionService.hasPendingConnect) {
+      return;
+    }
+    _finishGmailConnect(SupabaseService.client.auth.currentSession);
   }
 
   Future<void> _loadRadius() async {
@@ -50,6 +81,71 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
+  Future<void> _loadGmailStatus() async {
+    if (!SupabaseService.isLoggedIn) return;
+    final status = await GmailConnectionService.loadStatus();
+    if (!mounted) return;
+    setState(() => _gmailStatus = status);
+  }
+
+  Future<void> _restoreGmailConnect() async {
+    await GmailConnectionService.restorePendingConnect();
+    if (!mounted || !GmailConnectionService.hasPendingConnect) return;
+    await _finishGmailConnect(SupabaseService.client.auth.currentSession);
+  }
+
+  Future<void> _onAuthStateChange(AuthState state) async {
+    if (state.event != AuthChangeEvent.signedIn ||
+        !GmailConnectionService.hasPendingConnect) {
+      return;
+    }
+    await _finishGmailConnect(state.session);
+  }
+
+  Future<void> _finishGmailConnect(Session? session) async {
+    if (_gmailBusy || !mounted) return;
+    setState(() {
+      _gmailBusy = true;
+      _gmailError = null;
+    });
+    try {
+      final connected = await GmailConnectionService.vaultSessionIfPending(
+        session,
+      );
+      if (!connected) return;
+      await _loadGmailStatus();
+      try {
+        await closeInAppWebView();
+      } catch (_) {}
+    } catch (e) {
+      await GmailConnectionService.cancelPendingConnect();
+      if (mounted) {
+        setState(
+          () => _gmailError = e is StateError
+              ? e.message.toString()
+              : 'Could not connect Gmail.',
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _gmailBusy = false);
+    }
+  }
+
+  Future<void> _connectGmail() async {
+    setState(() {
+      _gmailBusy = true;
+      _gmailError = null;
+    });
+    try {
+      await GmailConnectionService.startConnect();
+    } catch (_) {
+      await GmailConnectionService.cancelPendingConnect();
+      if (mounted) setState(() => _gmailError = 'Could not open Google.');
+    } finally {
+      if (mounted) setState(() => _gmailBusy = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +158,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SliverToBoxAdapter(child: _buildAccountSection())
             else
               SliverToBoxAdapter(child: _buildSignInSection()),
+            if (SupabaseService.isLoggedIn)
+              SliverToBoxAdapter(child: _buildGmailSection()),
             SliverToBoxAdapter(child: _buildLocationSection()),
             SliverToBoxAdapter(child: _buildAboutSection()),
             const SliverPadding(padding: EdgeInsets.only(bottom: 32)),
@@ -99,15 +197,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
           if (email.isNotEmpty)
             Padding(
               padding: const EdgeInsets.only(bottom: 12),
-              child: Text(email,
-                  style: TextStyle(fontSize: 13, color: Colors.grey.shade500)),
+              child: Text(
+                email,
+                style: TextStyle(fontSize: 13, color: Colors.grey.shade500),
+              ),
             ),
           _TileRow(
             icon: Icons.tune_outlined,
             label: 'Edit preferences',
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
-                  builder: (_) => const OnboardingScreen(startAtPreferences: true)),
+                builder: (_) =>
+                    const OnboardingScreen(startAtPreferences: true),
+              ),
             ),
           ),
           const Divider(height: 1, indent: 40),
@@ -140,11 +242,100 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: _TileRow(
         icon: Icons.login,
         label: 'Create account or sign in',
-        onTap: () => Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => const OnboardingScreen()),
-        ),
+        onTap: () => Navigator.of(
+          context,
+        ).push(MaterialPageRoute(builder: (_) => const OnboardingScreen())),
       ),
     );
+  }
+
+  Widget _buildGmailSection() {
+    final status = _gmailStatus;
+    final connected = status?.isConnected ?? false;
+    final title = connected
+        ? (status?.googleEmail?.isNotEmpty == true
+              ? status!.googleEmail!
+              : 'Gmail connected')
+        : 'Gmail not connected';
+    final detail = connected
+        ? _formatLastSync(status?.lastSyncAt)
+        : 'Connect Gmail';
+
+    return _Section(
+      icon: Icons.mail_outline,
+      title: 'Gmail Deals',
+      subtitle: 'Private offers from your promotions inbox',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                connected ? Icons.check_circle : Icons.mail_outline,
+                size: 20,
+                color: connected ? const Color(0xFF2E7D32) : Candy.chocolate,
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Candy.chocolate,
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      detail,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey.shade500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 12),
+              FilledButton.icon(
+                onPressed: _gmailBusy ? null : _connectGmail,
+                icon: _gmailBusy
+                    ? const SizedBox(
+                        width: 14,
+                        height: 14,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.link, size: 16),
+                label: Text(connected ? 'Reconnect' : 'Connect'),
+                style: FilledButton.styleFrom(
+                  backgroundColor: Candy.raspberry,
+                  foregroundColor: Colors.white,
+                  visualDensity: VisualDensity.compact,
+                ),
+              ),
+            ],
+          ),
+          if (_gmailError != null || status?.syncError != null) ...[
+            const SizedBox(height: 10),
+            Text(
+              _gmailError ?? status!.syncError!,
+              style: const TextStyle(fontSize: 12, color: Color(0xFFC62828)),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  String _formatLastSync(DateTime? value) {
+    if (value == null) return 'Not synced yet';
+    final local = value.toLocal();
+    return 'Last sync ${local.month}/${local.day} ${local.hour.toString().padLeft(2, '0')}:${local.minute.toString().padLeft(2, '0')}';
   }
 
   Widget _buildLocationSection() {
@@ -164,7 +355,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               selectedColor: Candy.raspberry,
               backgroundColor: Colors.white,
               side: BorderSide(
-                  color: selected ? Candy.raspberry : Colors.grey.shade300),
+                color: selected ? Candy.raspberry : Colors.grey.shade300,
+              ),
               labelStyle: TextStyle(
                 fontSize: 13,
                 fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
@@ -193,7 +385,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             label: 'Send feedback',
             onTap: () async {
               final uri = Uri.parse(
-                  'mailto:support@candy.app?subject=Candy%20Feedback');
+                'mailto:support@candy.app?subject=Candy%20Feedback',
+              );
               if (await canLaunchUrl(uri)) await launchUrl(uri);
             },
           ),
@@ -224,7 +417,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
-
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -255,19 +447,23 @@ class _Section extends StatelessWidget {
             children: [
               Icon(icon, size: 18, color: Candy.raspberry),
               const SizedBox(width: 8),
-              Text(title,
-                  style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: Candy.chocolate)),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: Candy.chocolate,
+                ),
+              ),
             ],
           ),
           if (subtitle != null)
             Padding(
               padding: const EdgeInsets.only(top: 2, left: 26),
-              child: Text(subtitle!,
-                  style:
-                      TextStyle(fontSize: 12, color: Colors.grey.shade500)),
+              child: Text(
+                subtitle!,
+                style: TextStyle(fontSize: 12, color: Colors.grey.shade500),
+              ),
             ),
           const SizedBox(height: 12),
           Container(
@@ -291,7 +487,11 @@ class _TileRow extends StatelessWidget {
   final String label;
   final VoidCallback onTap;
 
-  const _TileRow({required this.icon, required this.label, required this.onTap});
+  const _TileRow({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -305,15 +505,15 @@ class _TileRow extends StatelessWidget {
             Icon(icon, size: 18, color: Candy.chocolate.withValues(alpha: 0.6)),
             const SizedBox(width: 12),
             Expanded(
-              child: Text(label,
-                  style: const TextStyle(fontSize: 14, color: Candy.chocolate)),
+              child: Text(
+                label,
+                style: const TextStyle(fontSize: 14, color: Candy.chocolate),
+              ),
             ),
-            Icon(Icons.chevron_right,
-                size: 18, color: Colors.grey.shade400),
+            Icon(Icons.chevron_right, size: 18, color: Colors.grey.shade400),
           ],
         ),
       ),
     );
   }
 }
-

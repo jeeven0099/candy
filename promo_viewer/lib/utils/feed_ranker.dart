@@ -68,6 +68,9 @@ bool _hasImmediateValue(Promotion p) {
 bool _isHiddenByPrefs(Promotion p, UserPrefs? prefs) =>
     prefs?.isHiddenBrand(p.brand) ?? false;
 
+bool _isEmailDerived(Promotion p) =>
+    p.source == 'email' || p.visibility == 'private_user_offer';
+
 bool isFeedWorthy(Promotion p, {Set<String> favBrands = const {}}) {
   if (!p.isActive || !p.isValidToday) return false;
   if (p.confidenceScore < RankingContract.minConfidence) return false;
@@ -77,7 +80,13 @@ bool isFeedWorthy(Promotion p, {Set<String> favBrands = const {}}) {
     return false;
   }
 
-  if (p.globalQualityScore < RankingContract.forYouQualityFloor) {
+  final emailQualityPass =
+      _isEmailDerived(p) &&
+      (p.personalRankScore ?? 0) >= RankingContract.emailPersonalRankFloor &&
+      p.globalQualityScore >= RankingContract.emailQualityFloor;
+
+  if (p.globalQualityScore < RankingContract.forYouQualityFloor &&
+      !emailQualityPass) {
     return false;
   }
 
@@ -209,6 +218,23 @@ double affinityBoost(Promotion p, InteractionService svc) {
   return boost;
 }
 
+double _personalModelBoost(Promotion p) {
+  final score = p.personalRankScore;
+  if (score == null) {
+    return _isEmailDerived(p) ? RankingContract.emailSourceBoost : 0.0;
+  }
+  final modelBoost = ((score - 60.0) * RankingContract.personalModelMultiplier)
+      .clamp(
+        -RankingContract.personalModelPenaltyCap,
+        RankingContract.personalModelBoostCap,
+      )
+      .toDouble();
+  if (_isEmailDerived(p) && score >= RankingContract.emailPersonalRankFloor) {
+    return modelBoost + RankingContract.emailSourceBoost;
+  }
+  return modelBoost;
+}
+
 double _contextBonus(Promotion p) {
   double bonus = 0.0;
   if (p.validDays.isNotEmpty && p.isValidToday) {
@@ -243,6 +269,7 @@ class ScoreBreakdown {
   final double membershipBonus;
   final double affinityBoost;
   final double preferenceBoost;
+  final double personalModelBoost;
   final double fatiguePenalty;
   final bool isHidden;
 
@@ -253,6 +280,7 @@ class ScoreBreakdown {
     required this.membershipBonus,
     required this.affinityBoost,
     required this.preferenceBoost,
+    required this.personalModelBoost,
     required this.fatiguePenalty,
     required this.isHidden,
   });
@@ -264,7 +292,8 @@ class ScoreBreakdown {
             dayBonus +
             membershipBonus +
             affinityBoost +
-            preferenceBoost -
+            preferenceBoost +
+            personalModelBoost -
             fatiguePenalty;
 }
 
@@ -285,6 +314,7 @@ ScoreBreakdown computeBreakdown(
     membershipBonus: _membershipBonus(p, isMember),
     affinityBoost: affinityBoost(p, svc),
     preferenceBoost: preferenceBoost(p, prefs),
+    personalModelBoost: _personalModelBoost(p),
     fatiguePenalty: hidden ? _kHide : rawFatigue,
     isHidden: hidden,
   );
