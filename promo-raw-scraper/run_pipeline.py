@@ -454,7 +454,8 @@ def write_run_summary(log_path: Path, log_fh) -> None:
     lines.append("")
 
     block = "\n".join(lines)
-    print(block)
+    sys.stdout.buffer.write((block + "\n").encode("utf-8", errors="replace"))
+    sys.stdout.buffer.flush()
     log_fh.write(block)
     log_fh.flush()
 
