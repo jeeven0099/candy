@@ -5,6 +5,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'screens/splash_screen.dart';
 import 'services/notification_service.dart';
+import 'services/gmail_connection_service.dart';
 import 'theme/candy_colors.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -20,7 +21,8 @@ Future<void> _fcmBackgroundHandler(RemoteMessage message) async {
 void main() async {
   await SentryFlutter.init(
     (options) {
-      options.dsn = 'https://c51b5b12b038586731b61a2de7c26a6b@o4511633696620544.ingest.us.sentry.io/4511633700683776';
+      options.dsn =
+          'https://c51b5b12b038586731b61a2de7c26a6b@o4511633696620544.ingest.us.sentry.io/4511633700683776';
       options.tracesSampleRate = 0.2;
     },
     appRunner: () async {
@@ -94,15 +96,22 @@ class PromoViewerApp extends StatelessWidget {
             if (states.contains(WidgetState.selected)) {
               return const IconThemeData(color: Candy.raspberry);
             }
-            return IconThemeData(color: Candy.chocolate.withValues(alpha: 0.45));
+            return IconThemeData(
+              color: Candy.chocolate.withValues(alpha: 0.45),
+            );
           }),
           labelTextStyle: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.selected)) {
               return const TextStyle(
-                  color: Candy.raspberry, fontWeight: FontWeight.w600, fontSize: 12);
+                color: Candy.raspberry,
+                fontWeight: FontWeight.w600,
+                fontSize: 12,
+              );
             }
             return TextStyle(
-                color: Candy.chocolate.withValues(alpha: 0.45), fontSize: 12);
+              color: Candy.chocolate.withValues(alpha: 0.45),
+              fontSize: 12,
+            );
           }),
         ),
       ),
@@ -114,11 +123,49 @@ class PromoViewerApp extends StatelessWidget {
       // getSessionFromUrl directly, which triggers onAuthStateChange.signedIn.
       onUnknownRoute: (settings) {
         final uri = Uri.tryParse(settings.name ?? '');
-        if (uri != null && uri.queryParameters.containsKey('code')) {
+        final callbackParameters = <String, String>{};
+        if (uri != null) {
+          try {
+            callbackParameters.addAll(uri.queryParameters);
+            if (uri.fragment.contains('=')) {
+              callbackParameters.addAll(Uri.splitQueryString(uri.fragment));
+            }
+          } on FormatException catch (e) {
+            if (GmailConnectionService.hasPendingConnect) {
+              GmailConnectionService.reportFailure('oauth_callback', e);
+            }
+          }
+        }
+        if (GmailConnectionService.hasPendingConnect &&
+            callbackParameters.containsKey('error')) {
+          GmailConnectionService.reportFailure(
+            'oauth_callback',
+            AuthException(
+              callbackParameters['error_description'] ??
+                  callbackParameters['error']!,
+              code: callbackParameters['error'],
+            ),
+          );
+          GmailConnectionService.cancelPendingConnect();
+        }
+        if (uri != null &&
+            callbackParameters.containsKey('code') &&
+            !callbackParameters.containsKey('error')) {
           () async {
             try {
+              if (GmailConnectionService.hasPendingConnect) {
+                GmailConnectionService.log(
+                  'oauth_callback',
+                  'Received Google authorization return; exchanging code',
+                );
+              }
               await Supabase.instance.client.auth.getSessionFromUrl(uri);
-            } catch (_) {}
+            } catch (e) {
+              if (GmailConnectionService.hasPendingConnect) {
+                GmailConnectionService.reportFailure('oauth_callback', e);
+                await GmailConnectionService.cancelPendingConnect();
+              }
+            }
           }();
         }
         return PageRouteBuilder<void>(

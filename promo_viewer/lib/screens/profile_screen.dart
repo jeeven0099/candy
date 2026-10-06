@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -35,17 +36,32 @@ class _ProfileScreenState extends State<ProfileScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    GmailConnectionService.lastError.addListener(_onGmailDiagnosticChange);
+    GmailConnectionService.diagnosticLog.addListener(_onGmailDiagnosticChange);
+    _gmailError = GmailConnectionService.lastError.value;
     _loadRadius();
     _loadGmailStatus();
     _restoreGmailConnect();
     if (SupabaseService.isReady) {
-      _authSub = SupabaseService.authStateChanges.listen(_onAuthStateChange);
+      _authSub = SupabaseService.authStateChanges.listen(
+        _onAuthStateChange,
+        onError: (Object error) {
+          if (GmailConnectionService.hasPendingConnect) {
+            GmailConnectionService.reportFailure('oauth_callback', error);
+            unawaited(GmailConnectionService.cancelPendingConnect());
+          }
+        },
+      );
     }
   }
 
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    GmailConnectionService.lastError.removeListener(_onGmailDiagnosticChange);
+    GmailConnectionService.diagnosticLog.removeListener(
+      _onGmailDiagnosticChange,
+    );
     _authSub?.cancel();
     super.dispose();
   }
@@ -99,10 +115,23 @@ class _ProfileScreenState extends State<ProfileScreen>
         !GmailConnectionService.hasPendingConnect) {
       return;
     }
-    await _finishGmailConnect(state.session);
+    GmailConnectionService.log(
+      'oauth_callback',
+      'Received signed-in event from Google',
+    );
+    await _finishGmailConnect(state.session, fromOAuthCallback: true);
   }
 
-  Future<void> _finishGmailConnect(Session? session) async {
+  void _onGmailDiagnosticChange() {
+    if (mounted) {
+      setState(() => _gmailError = GmailConnectionService.lastError.value);
+    }
+  }
+
+  Future<void> _finishGmailConnect(
+    Session? session, {
+    bool fromOAuthCallback = false,
+  }) async {
     if (_gmailBusy || !mounted) return;
     setState(() {
       _gmailBusy = true;
@@ -111,6 +140,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     try {
       final connected = await GmailConnectionService.vaultSessionIfPending(
         session,
+        fromOAuthCallback: fromOAuthCallback,
       );
       if (!connected) return;
       await _loadGmailStatus();
@@ -118,13 +148,13 @@ class _ProfileScreenState extends State<ProfileScreen>
         await closeInAppWebView();
       } catch (_) {}
     } catch (e) {
+      final failure = GmailConnectionService.reportFailure(
+        'save_connection',
+        e,
+      );
       await GmailConnectionService.cancelPendingConnect();
       if (mounted) {
-        setState(
-          () => _gmailError = e is StateError
-              ? e.message.toString()
-              : 'Could not connect Gmail.',
-        );
+        setState(() => _gmailError = failure);
       }
     } finally {
       if (mounted) setState(() => _gmailBusy = false);
@@ -138,9 +168,10 @@ class _ProfileScreenState extends State<ProfileScreen>
     });
     try {
       await GmailConnectionService.startConnect();
-    } catch (_) {
+    } catch (e) {
+      final failure = GmailConnectionService.reportFailure('open_google', e);
       await GmailConnectionService.cancelPendingConnect();
-      if (mounted) setState(() => _gmailError = 'Could not open Google.');
+      if (mounted) setState(() => _gmailError = failure);
     } finally {
       if (mounted) setState(() => _gmailBusy = false);
     }
@@ -322,11 +353,57 @@ class _ProfileScreenState extends State<ProfileScreen>
           ),
           if (_gmailError != null || status?.syncError != null) ...[
             const SizedBox(height: 10),
-            Text(
+            SelectableText(
               _gmailError ?? status!.syncError!,
               style: const TextStyle(fontSize: 12, color: Color(0xFFC62828)),
             ),
           ],
+          if (GmailConnectionService.diagnosticLog.value.isNotEmpty)
+            TextButton.icon(
+              onPressed: _showGmailLog,
+              icon: const Icon(Icons.article_outlined, size: 18),
+              label: const Text('Connection log'),
+            ),
+        ],
+      ),
+    );
+  }
+
+  void _showGmailLog() {
+    showDialog<void>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Gmail connection log'),
+        content: SizedBox(
+          width: 480,
+          height: MediaQuery.sizeOf(dialogContext).height * 0.5,
+          child: SingleChildScrollView(
+            child: ValueListenableBuilder<String>(
+              valueListenable: GmailConnectionService.diagnosticLog,
+              builder: (_, log, _) =>
+                  SelectableText(log, style: const TextStyle(fontSize: 12)),
+            ),
+          ),
+        ),
+        actions: [
+          IconButton(
+            tooltip: 'Copy connection log',
+            icon: const Icon(Icons.copy_outlined),
+            onPressed: () async {
+              await Clipboard.setData(
+                ClipboardData(text: GmailConnectionService.diagnosticLog.value),
+              );
+              if (dialogContext.mounted) {
+                ScaffoldMessenger.of(dialogContext).showSnackBar(
+                  const SnackBar(content: Text('Connection log copied')),
+                );
+              }
+            },
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: const Text('Close'),
+          ),
         ],
       ),
     );
