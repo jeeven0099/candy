@@ -1185,7 +1185,6 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
   final _emailCtrl = TextEditingController();
   final _passCtrl = TextEditingController();
-  final _codeCtrl = TextEditingController();
   bool _obscure = true;
 
   StreamSubscription<AuthState>? _authSub;
@@ -1216,7 +1215,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     }
     // Rebuild password strength bar as the user types
     _passCtrl.addListener(_onPassChanged);
-    // Handle OAuth sign-ins (Google / Apple) which complete asynchronously
+    // Handle Google OAuth sign-ins which complete asynchronously.
     _authSub = SupabaseService.client.auth.onAuthStateChange.listen(
       _onAuthStateChange,
     );
@@ -1249,7 +1248,6 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     _pageCtrl.dispose();
     _emailCtrl.dispose();
     _passCtrl.dispose();
-    _codeCtrl.dispose();
     super.dispose();
   }
 
@@ -1257,7 +1255,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     if (!_isSignIn && mounted) setState(() {});
   }
 
-  // Handles the async callback after Google / Apple OAuth completes.
+  // Handles the async callback after Google OAuth completes.
   // Email sign-in/sign-up is handled synchronously by _submit() instead.
   Future<void> _onAuthStateChange(AuthState state) async {
     if (state.event != AuthChangeEvent.signedIn) return;
@@ -1335,10 +1333,6 @@ class _OnboardingScreenState extends State<OnboardingScreen>
         return;
       }
     }
-    if (!_isSignIn && _codeCtrl.text.trim().isEmpty) {
-      setState(() => _error = 'Please enter your invite code.');
-      return;
-    }
     setState(() {
       _loading = true;
       _error = null;
@@ -1351,11 +1345,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
         if (uid != null) await SavedDealsService().loadForUser(uid);
         if (mounted) _launchApp();
       } else {
-        await AuthService.signUp(
-          email: email,
-          password: pass,
-          inviteCode: _codeCtrl.text,
-        );
+        await AuthService.signUp(email: email, password: pass);
         if (mounted) _goToPage(1);
       }
     } on AuthException catch (e) {
@@ -1519,7 +1509,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             ),
             const SizedBox(height: 32),
             Text(
-              _isSignIn ? 'Welcome back' : 'Join the beta',
+              _isSignIn ? 'Welcome back' : 'Create your account',
               style: const TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.w700,
@@ -1559,13 +1549,6 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             if (!_isSignIn) ...[
               const SizedBox(height: 8),
               _PasswordStrengthBar(password: _passCtrl.text),
-              const SizedBox(height: 14),
-              _Field(
-                controller: _codeCtrl,
-                label: 'Invite code',
-                hint: 'e.g. CANDY2025',
-                capitalization: TextCapitalization.characters,
-              ),
             ],
             if (_error != null) ...[
               const SizedBox(height: 14),
@@ -1573,7 +1556,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             ],
             const SizedBox(height: 24),
             _PrimaryButton(
-              label: _isSignIn ? 'Sign In' : 'Join Beta',
+              label: _isSignIn ? 'Sign In' : 'Create Account',
               loading: _loading,
               onTap: _submit,
             ),
@@ -1597,26 +1580,6 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                       if (mounted) setState(() => _loading = false);
                     },
             ),
-            const SizedBox(height: 10),
-            _OAuthButton(
-              icon: const Icon(Icons.apple, size: 20, color: Colors.black87),
-              label: 'Continue with Apple',
-              onTap: _loading
-                  ? null
-                  : () async {
-                      _oauthSignInInitiated = true;
-                      setState(() {
-                        _loading = true;
-                        _error = null;
-                      });
-                      try {
-                        await AuthService.signInWithApple();
-                      } catch (_) {
-                        // Same as Google — session established; _onAuthStateChange handles navigation.
-                      }
-                      if (mounted) setState(() => _loading = false);
-                    },
-            ),
             const SizedBox(height: 18),
             Center(
               child: TextButton(
@@ -1626,7 +1589,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                 }),
                 child: Text(
                   _isSignIn
-                      ? "Don't have an account? Join Beta"
+                      ? "Don't have an account? Create one"
                       : 'Already have an account? Sign In',
                   style: const TextStyle(
                     color: Candy.raspberry,
@@ -2652,7 +2615,6 @@ class _Field extends StatelessWidget {
   final bool obscure;
   final Widget? suffix;
   final TextInputType inputType;
-  final TextCapitalization capitalization;
 
   const _Field({
     required this.controller,
@@ -2661,7 +2623,6 @@ class _Field extends StatelessWidget {
     this.obscure = false,
     this.suffix,
     this.inputType = TextInputType.text,
-    this.capitalization = TextCapitalization.none,
   });
 
   @override
@@ -2682,7 +2643,6 @@ class _Field extends StatelessWidget {
           controller: controller,
           obscureText: obscure,
           keyboardType: inputType,
-          textCapitalization: capitalization,
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 14),
