@@ -30,6 +30,10 @@ class RuleBasedLocalModel(LocalModelInterface):
     Later, this can be replaced with Ollama/OpenAI while keeping the same interface.
     """
 
+    def __init__(self, min_text_length: int = 200, require_keywords: bool = True) -> None:
+        self.min_text_length = min_text_length
+        self.require_keywords = require_keywords
+
     def parse_text(
         self,
         text: str,
@@ -59,7 +63,8 @@ class RuleBasedLocalModel(LocalModelInterface):
 
         keyword_hits = sum(lower.count(k) for k in useful_keywords)
 
-        if keyword_hits == 0 or len(text.strip()) < 200:
+        lacks_signal = keyword_hits == 0 and (self.require_keywords or not self._has_clear_offer_evidence(lower))
+        if lacks_signal or len(text.strip()) < self.min_text_length:
             return [Promotion(
                 brand=brand,
                 category=category,

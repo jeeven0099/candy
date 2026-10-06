@@ -258,6 +258,126 @@ create table if not exists user_category_affinity (
   primary key (user_id, category)
 );
 
+-- Email ingestion: one Gmail connection and private deals per Candy user.
+-- Token rows intentionally have no client RLS policy; only service-role
+-- backend code should read or write them.
+
+create table if not exists gmail_connections (
+  user_id             uuid        primary key references users(id) on delete cascade,
+  google_email        text,
+  google_subject      text,
+  scopes              jsonb       not null default '[]',
+  status              text        not null default 'connected',
+  connected_at        timestamptz not null default now(),
+  disconnected_at     timestamptz,
+  last_sync_at        timestamptz,
+  last_history_id     text,
+  watch_expiration_at timestamptz,
+  sync_error          text,
+  updated_at          timestamptz not null default now()
+);
+
+alter table gmail_connections add column if not exists google_email        text;
+alter table gmail_connections add column if not exists google_subject      text;
+alter table gmail_connections add column if not exists scopes              jsonb       not null default '[]';
+alter table gmail_connections add column if not exists status              text        not null default 'connected';
+alter table gmail_connections add column if not exists connected_at        timestamptz not null default now();
+alter table gmail_connections add column if not exists disconnected_at     timestamptz;
+alter table gmail_connections add column if not exists last_sync_at        timestamptz;
+alter table gmail_connections add column if not exists last_history_id     text;
+alter table gmail_connections add column if not exists watch_expiration_at timestamptz;
+alter table gmail_connections add column if not exists sync_error          text;
+alter table gmail_connections add column if not exists updated_at          timestamptz not null default now();
+
+create table if not exists gmail_connection_tokens (
+  user_id                 uuid        primary key references users(id) on delete cascade,
+  access_token            text,
+  refresh_token           text,
+  access_token_expires_at timestamptz,
+  token_type              text,
+  updated_at              timestamptz not null default now()
+);
+
+alter table gmail_connection_tokens add column if not exists access_token            text;
+alter table gmail_connection_tokens add column if not exists refresh_token           text;
+alter table gmail_connection_tokens add column if not exists access_token_expires_at timestamptz;
+alter table gmail_connection_tokens add column if not exists token_type              text;
+alter table gmail_connection_tokens add column if not exists updated_at              timestamptz not null default now();
+
+create table if not exists email_sync_jobs (
+  id               uuid        primary key default gen_random_uuid(),
+  user_id          uuid        not null references users(id) on delete cascade,
+  status           text        not null default 'queued',
+  requested_reason text,
+  started_at       timestamptz,
+  finished_at      timestamptz,
+  messages_seen    integer     not null default 0,
+  deals_extracted  integer     not null default 0,
+  error            text,
+  created_at       timestamptz not null default now()
+);
+
+create index if not exists email_sync_jobs_user_created
+  on email_sync_jobs (user_id, created_at desc);
+
+create table if not exists user_email_deals (
+  id                    uuid             primary key default gen_random_uuid(),
+  user_id               uuid             not null references users(id) on delete cascade,
+  gmail_message_id      text             not null,
+  gmail_thread_id       text,
+  content_hash          text             not null,
+  deal_fingerprint      text             not null,
+  brand                 text,
+  category              text,
+  promotion_title       text,
+  sender_email          text,
+  email_subject         text,
+  email_date            timestamptz,
+  visibility            text             not null default 'unknown',
+  promotion_json        jsonb            not null default '{}',
+  extraction_model      text,
+  personal_rank_model   text,
+  personal_rank_score   double precision not null default 0,
+  personal_rank_reasons jsonb            not null default '[]',
+  personal_rank_summary text,
+  status                text             not null default 'active',
+  expires_at            timestamptz,
+  received_at           timestamptz,
+  extracted_at          timestamptz      not null default now(),
+  created_at            timestamptz      not null default now(),
+  updated_at            timestamptz      not null default now(),
+  unique (user_id, deal_fingerprint)
+);
+
+alter table user_email_deals add column if not exists gmail_thread_id       text;
+alter table user_email_deals add column if not exists content_hash          text;
+alter table user_email_deals add column if not exists deal_fingerprint      text;
+alter table user_email_deals add column if not exists brand                 text;
+alter table user_email_deals add column if not exists category              text;
+alter table user_email_deals add column if not exists promotion_title       text;
+alter table user_email_deals add column if not exists sender_email          text;
+alter table user_email_deals add column if not exists email_subject         text;
+alter table user_email_deals add column if not exists email_date            timestamptz;
+alter table user_email_deals add column if not exists visibility            text             not null default 'unknown';
+alter table user_email_deals add column if not exists promotion_json        jsonb            not null default '{}';
+alter table user_email_deals add column if not exists extraction_model      text;
+alter table user_email_deals add column if not exists personal_rank_model   text;
+alter table user_email_deals add column if not exists personal_rank_score   double precision not null default 0;
+alter table user_email_deals add column if not exists personal_rank_reasons jsonb            not null default '[]';
+alter table user_email_deals add column if not exists personal_rank_summary text;
+alter table user_email_deals add column if not exists status                text             not null default 'active';
+alter table user_email_deals add column if not exists expires_at            timestamptz;
+alter table user_email_deals add column if not exists received_at           timestamptz;
+alter table user_email_deals add column if not exists extracted_at          timestamptz      not null default now();
+alter table user_email_deals add column if not exists created_at            timestamptz      not null default now();
+alter table user_email_deals add column if not exists updated_at            timestamptz      not null default now();
+
+create index if not exists user_email_deals_user_rank
+  on user_email_deals (user_id, status, personal_rank_score desc);
+
+create index if not exists user_email_deals_message
+  on user_email_deals (user_id, gmail_message_id);
+
 -- ── Row Level Security ────────────────────────────────────────────────────────
 
 alter table invite_codes           enable row level security;
@@ -270,6 +390,10 @@ alter table search_events          enable row level security;
 alter table notification_history   enable row level security;
 alter table user_brand_affinity    enable row level security;
 alter table user_category_affinity enable row level security;
+alter table gmail_connections      enable row level security;
+alter table gmail_connection_tokens enable row level security;
+alter table email_sync_jobs        enable row level security;
+alter table user_email_deals       enable row level security;
 
 -- Invite codes: anyone can read (needed before auth during sign-up)
 drop policy if exists "invite_codes_select" on invite_codes;
@@ -322,6 +446,22 @@ create policy "brand_affinity_own" on user_brand_affinity
 drop policy if exists "category_affinity_own" on user_category_affinity;
 create policy "category_affinity_own" on user_category_affinity
   for all using (user_id = own_user_id());
+
+drop policy if exists "gmail_connections_own_select" on gmail_connections;
+create policy "gmail_connections_own_select" on gmail_connections
+  for select using (user_id = own_user_id());
+
+drop policy if exists "gmail_connections_own_update" on gmail_connections;
+create policy "gmail_connections_own_update" on gmail_connections
+  for update using (user_id = own_user_id());
+
+drop policy if exists "email_sync_jobs_own_select" on email_sync_jobs;
+create policy "email_sync_jobs_own_select" on email_sync_jobs
+  for select using (user_id = own_user_id());
+
+drop policy if exists "user_email_deals_own_select" on user_email_deals;
+create policy "user_email_deals_own_select" on user_email_deals
+  for select using (user_id = own_user_id());
 
 -- ── Affinity increment RPCs ───────────────────────────────────────────────────
 --

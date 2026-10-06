@@ -8,6 +8,7 @@ sys.path.insert(0, str(ROOT / 'src'))
 from clean_html import clean_visible_text
 from email_pipeline import extract_deal_signals, parse_email_message
 from hash_content import sha256_text
+from personal_email_ranker import PersonalEmailRanker
 from run_scraper import detect_bad_page
 from source_loader import load_sources, filter_sources
 
@@ -61,3 +62,42 @@ def test_email_pipeline_extracts_promo_signals():
     assert 'SAVE20' in signals['promo_codes']
     assert signals['has_signal'] is True
     assert parsed.links == ['https://example.com/deal']
+
+
+def test_personal_email_ranker_favors_matching_private_deal():
+    promo = {
+        'brand': 'Example Store',
+        'category': 'fashion',
+        'promotion_title': '40% off dresses',
+        'discount_type': 'percentage_off',
+        'global_quality_score': 72,
+        'visibility': 'private_user_offer',
+    }
+    profile = {
+        'favorite_brands': ['Example Store'],
+        'favorite_categories': ['fashion'],
+        'deal_priorities': ['discount'],
+        'hidden_brands': [],
+        'brand_affinity': [],
+        'category_affinity': [],
+    }
+    result = PersonalEmailRanker(api_key='').rank(promo, profile)
+    assert result.score >= 90
+    assert 'favorite_brand' in result.reasons
+    assert result.model_name == 'heuristic'
+
+
+def test_personal_email_ranker_default_is_model_free(monkeypatch):
+    monkeypatch.setenv('OPENROUTER_API_KEY', 'not-used-in-default-mode')
+    result = PersonalEmailRanker().rank(
+        {
+            'brand': 'Example Store',
+            'category': 'fashion',
+            'promotion_title': '20% off',
+            'discount_type': 'percentage_off',
+            'global_quality_score': 65,
+            'visibility': 'public_general_offer',
+        },
+        {'favorite_brands': [], 'favorite_categories': [], 'hidden_brands': []},
+    )
+    assert result.model_name == 'heuristic'

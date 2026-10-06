@@ -36,18 +36,46 @@ class DealCard extends StatelessWidget {
   void _showScoreDebug(BuildContext context) {
     final svc = InteractionService();
     final bd = computeBreakdown(
-      promo, svc,
+      promo,
+      svc,
       distanceKm: promo.distanceKm,
       isMember: _isMember,
     );
 
     final rows = [
-      ('Pipeline base',    bd.rankBase,         ''),
-      ('Distance',         bd.distanceBonus,    promo.distanceKm != null ? '${LocationService.formatDistance(promo.distanceKm)} away' : 'no location'),
-      ('Day of week',      bd.dayBonus,         promo.validDays.isEmpty ? 'any day' : promo.validDays.join(', ')),
-      ('Membership',       bd.membershipBonus,  _isMember ? 'member ✓' : promo.requiresMembership ? 'required' : 'open'),
-      ('Affinity',         bd.affinityBoost,    'saved/clicked/searched'),
-      ('Fatigue penalty',  -bd.fatiguePenalty,  bd.isHidden ? 'HIDDEN (cooldown)' : 'seen ${svc.seenCount(promo.id)}x'),
+      ('Pipeline base', bd.rankBase, ''),
+      (
+        'Distance',
+        bd.distanceBonus,
+        promo.distanceKm != null
+            ? '${LocationService.formatDistance(promo.distanceKm)} away'
+            : 'no location',
+      ),
+      (
+        'Day of week',
+        bd.dayBonus,
+        promo.validDays.isEmpty ? 'any day' : promo.validDays.join(', '),
+      ),
+      (
+        'Membership',
+        bd.membershipBonus,
+        _isMember
+            ? 'member ✓'
+            : promo.requiresMembership
+            ? 'required'
+            : 'open',
+      ),
+      ('Affinity', bd.affinityBoost, 'saved/clicked/searched'),
+      (
+        'Personal model',
+        bd.personalModelBoost,
+        promo.personalRankModel ?? 'runtime',
+      ),
+      (
+        'Fatigue penalty',
+        -bd.fatiguePenalty,
+        bd.isHidden ? 'HIDDEN (cooldown)' : 'seen ${svc.seenCount(promo.id)}x',
+      ),
     ];
 
     showModalBottomSheet(
@@ -61,25 +89,54 @@ class DealCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(promo.brand, style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
-            Text(promo.title, maxLines: 2,
-                style: TextStyle(fontSize: 13, color: Colors.grey.shade600)),
+            Text(
+              promo.brand,
+              style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
+            ),
+            Text(
+              promo.title,
+              maxLines: 2,
+              style: TextStyle(fontSize: 13, color: Colors.grey.shade600),
+            ),
             const SizedBox(height: 16),
             ...rows.map((r) {
               final (label, value, note) = r;
               final isNeg = value < 0;
-              final color = value > 0 ? const Color(0xFF2E7D32) : (value < 0 ? const Color(0xFFC62828) : Colors.grey.shade500);
+              final color = value > 0
+                  ? const Color(0xFF2E7D32)
+                  : (value < 0
+                        ? const Color(0xFFC62828)
+                        : Colors.grey.shade500);
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 child: Row(
                   children: [
-                    SizedBox(width: 140, child: Text(label, style: const TextStyle(fontSize: 13))),
+                    SizedBox(
+                      width: 140,
+                      child: Text(label, style: const TextStyle(fontSize: 13)),
+                    ),
                     Text(
-                      '${isNeg ? '' : value > 0 ? '+' : ''}${value.toStringAsFixed(0)}',
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: color),
+                      '${isNeg
+                          ? ''
+                          : value > 0
+                          ? '+'
+                          : ''}${value.toStringAsFixed(0)}',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        color: color,
+                      ),
                     ),
                     const SizedBox(width: 8),
-                    Expanded(child: Text(note, style: TextStyle(fontSize: 11, color: Colors.grey.shade500))),
+                    Expanded(
+                      child: Text(
+                        note,
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: Colors.grey.shade500,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               );
@@ -87,7 +144,13 @@ class DealCard extends StatelessWidget {
             const Divider(height: 24),
             Row(
               children: [
-                const SizedBox(width: 140, child: Text('TOTAL', style: TextStyle(fontWeight: FontWeight.w700))),
+                const SizedBox(
+                  width: 140,
+                  child: Text(
+                    'TOTAL',
+                    style: TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                ),
                 Text(
                   bd.isHidden ? 'HIDDEN' : bd.total.toStringAsFixed(1),
                   style: TextStyle(
@@ -108,14 +171,18 @@ class DealCard extends StatelessWidget {
     if (memberships.isEmpty || !promo.requiresMembership) return false;
     final brand = promo.brand.toLowerCase();
     final name = (promo.membershipName ?? '').toLowerCase();
-    return memberships.any((m) =>
-        m.contains(brand) || brand.contains(m) ||
-        (name.isNotEmpty && (m.contains(name) || name.contains(m))));
+    return memberships.any(
+      (m) =>
+          m.contains(brand) ||
+          brand.contains(m) ||
+          (name.isNotEmpty && (m.contains(name) || name.contains(m))),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final hasFastRedeem = promo.fastRedemption != null && promo.fastRedemption!.eligible;
+    final hasFastRedeem =
+        promo.fastRedemption != null && promo.fastRedemption!.eligible;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
@@ -132,7 +199,11 @@ class DealCard extends StatelessWidget {
                       promo.id,
                       brand: promo.brand,
                       category: promo.category,
-                      meta: InteractionService.promoMeta(promo, feedPosition: feedPosition, rankingMode: rankingMode),
+                      meta: InteractionService.promoMeta(
+                        promo,
+                        feedPosition: feedPosition,
+                        rankingMode: rankingMode,
+                      ),
                     );
                     onTap!();
                   },
@@ -142,7 +213,6 @@ class DealCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   // ── Brand header ──────────────────────────────────────────
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -168,7 +238,11 @@ class DealCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 4),
-                      _HeartButton(promo: promo, feedPosition: feedPosition, rankingMode: rankingMode),
+                      _HeartButton(
+                        promo: promo,
+                        feedPosition: feedPosition,
+                        rankingMode: rankingMode,
+                      ),
                       _MenuButton(promo: promo),
                     ],
                   ),
@@ -205,12 +279,19 @@ class DealCard extends StatelessWidget {
 
                   // ── Value signals ─────────────────────────────────────────
                   if (promo.globalQualityScore > 0)
-                    ValueTierBadge(qualityScore: promo.globalQualityScore, fontSize: 11),
+                    ValueTierBadge(
+                      qualityScore: promo.globalQualityScore,
+                      fontSize: 11,
+                    ),
                   if (_showSavings) ...[
                     const SizedBox(height: 4),
                     Row(
                       children: [
-                        const Icon(Icons.savings_outlined, size: 13, color: Color(0xFF2E7D32)),
+                        const Icon(
+                          Icons.savings_outlined,
+                          size: 13,
+                          color: Color(0xFF2E7D32),
+                        ),
                         const SizedBox(width: 4),
                         Text(
                           '~\$${promo.estimatedSavings!.toStringAsFixed(0)} in savings',
@@ -227,7 +308,11 @@ class DealCard extends StatelessWidget {
                     const SizedBox(height: 5),
                     Row(
                       children: [
-                        const Icon(Icons.check_circle_outline, size: 12, color: Color(0xFF2E7D32)),
+                        const Icon(
+                          Icons.check_circle_outline,
+                          size: 12,
+                          color: Color(0xFF2E7D32),
+                        ),
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
@@ -261,7 +346,9 @@ class DealCard extends StatelessWidget {
                       else if (promo.distanceKm != null)
                         _Tag(
                           icon: Icons.near_me,
-                          label: LocationService.formatDistance(promo.distanceKm),
+                          label: LocationService.formatDistance(
+                            promo.distanceKm,
+                          ),
                           color: const Color(0xFF1565C0),
                         ),
                       if (_isMember)
@@ -274,7 +361,9 @@ class DealCard extends StatelessWidget {
                       else if (promo.requiresMembership)
                         _Tag(
                           icon: Icons.card_membership,
-                          label: (promo.membershipName != null && promo.membershipName!.isNotEmpty)
+                          label:
+                              (promo.membershipName != null &&
+                                  promo.membershipName!.isNotEmpty)
                               ? promo.membershipName!
                               : 'Members only',
                           color: Candy.lavender,
@@ -305,35 +394,59 @@ class DealCard extends StatelessWidget {
                   ],
 
                   // ── Meta footer ───────────────────────────────────────────
-                  if (_onSaleCategories.isNotEmpty || (promo.source == 'web' && promo.websiteDomain != null)) ...[
+                  if (_onSaleCategories.isNotEmpty ||
+                      (promo.source == 'web' &&
+                          promo.websiteDomain != null)) ...[
                     const SizedBox(height: 10),
                     Row(
                       children: [
                         if (_onSaleCategories.isNotEmpty) ...[
-                          Icon(Icons.local_offer_outlined, size: 11, color: Colors.grey.shade400),
+                          Icon(
+                            Icons.local_offer_outlined,
+                            size: 11,
+                            color: Colors.grey.shade400,
+                          ),
                           const SizedBox(width: 3),
                           Text(
                             _onSaleCategories.take(3).join(' · '),
-                            style: TextStyle(fontSize: 11, color: Colors.grey.shade400),
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: Colors.grey.shade400,
+                            ),
                           ),
                         ],
-                        if (_onSaleCategories.isNotEmpty && promo.source == 'web' && promo.websiteDomain != null)
-                          Text('  ·  ', style: TextStyle(fontSize: 11, color: Colors.grey.shade300)),
-                        if (promo.source == 'web' && promo.websiteDomain != null) ...[
-                          Icon(Icons.verified_outlined, size: 11, color: Colors.grey.shade400),
+                        if (_onSaleCategories.isNotEmpty &&
+                            promo.source == 'web' &&
+                            promo.websiteDomain != null)
+                          Text(
+                            '  ·  ',
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: Colors.grey.shade300,
+                            ),
+                          ),
+                        if (promo.source == 'web' &&
+                            promo.websiteDomain != null) ...[
+                          Icon(
+                            Icons.verified_outlined,
+                            size: 11,
+                            color: Colors.grey.shade400,
+                          ),
                           const SizedBox(width: 3),
                           Expanded(
                             child: Text(
                               promo.websiteDomain!,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(fontSize: 11, color: Colors.grey.shade400),
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.grey.shade400,
+                              ),
                             ),
                           ),
                         ],
                       ],
                     ),
                   ],
-
                 ],
               ),
             ),
@@ -346,7 +459,13 @@ class DealCard extends StatelessWidget {
   bool get _showSavings =>
       promo.estimatedSavings != null &&
       promo.estimatedSavings! >= 10 &&
-      !const {'food', 'fast_food', 'coffee', 'grocery', 'restaurant'}.contains(promo.category.toLowerCase());
+      !const {
+        'food',
+        'fast_food',
+        'coffee',
+        'grocery',
+        'restaurant',
+      }.contains(promo.category.toLowerCase());
 
   String? get _rankingInsight {
     final score = promo.globalQualityScore;
@@ -354,14 +473,14 @@ class DealCard extends StatelessWidget {
     final cat = promo.category.toLowerCase();
     final catLabel = switch (cat) {
       'food' || 'fast_food' || 'restaurant' => 'food',
-      'coffee'      => 'coffee',
-      'clothing'    => 'clothing',
+      'coffee' => 'coffee',
+      'clothing' => 'clothing',
       'footwear' || 'shoes' => 'footwear',
       'electronics' => 'electronics',
-      'beauty'      => 'beauty',
-      'home'        => 'home',
-      'travel'      => 'travel',
-      _             => 'retail',
+      'beauty' => 'beauty',
+      'home' => 'home',
+      'travel' => 'travel',
+      _ => 'retail',
     };
     if (score >= 80) return 'One of this month\'s best $catLabel deals';
     if (score >= 65) return 'Better than most ${promo.brand} offers';
@@ -378,7 +497,12 @@ class _Tag extends StatelessWidget {
   final String label;
   final Color? color;
   final bool filled;
-  const _Tag({required this.icon, required this.label, this.color, this.filled = false});
+  const _Tag({
+    required this.icon,
+    required this.label,
+    this.color,
+    this.filled = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -415,7 +539,11 @@ class _HeartButton extends StatelessWidget {
   final Promotion promo;
   final int? feedPosition;
   final String? rankingMode;
-  const _HeartButton({required this.promo, this.feedPosition, this.rankingMode});
+  const _HeartButton({
+    required this.promo,
+    this.feedPosition,
+    this.rankingMode,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -442,13 +570,19 @@ class _HeartButton extends StatelessWidget {
                 promo.id,
                 brand: promo.brand,
                 category: promo.category,
-                meta: InteractionService.promoMeta(promo, feedPosition: feedPosition, rankingMode: rankingMode),
+                meta: InteractionService.promoMeta(
+                  promo,
+                  feedPosition: feedPosition,
+                  rankingMode: rankingMode,
+                ),
               );
               if (ctx.mounted) {
                 showModalBottomSheet(
                   context: ctx,
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(20),
+                    ),
                   ),
                   builder: (_) => SaveSheet(promo: promo, svc: svc),
                 );
@@ -461,7 +595,6 @@ class _HeartButton extends StatelessWidget {
   }
 }
 
-
 // ── Not-interested menu ───────────────────────────────────────────────────────
 
 class _MenuButton extends StatelessWidget {
@@ -473,14 +606,20 @@ class _MenuButton extends StatelessWidget {
     return PopupMenuButton<String>(
       padding: EdgeInsets.zero,
       iconSize: 18,
-      icon: Icon(Icons.more_vert, size: 18, color: Candy.muted.withValues(alpha: 0.45)),
+      icon: Icon(
+        Icons.more_vert,
+        size: 18,
+        color: Candy.muted.withValues(alpha: 0.45),
+      ),
       onSelected: (v) async {
         if (v == 'skip_deal') {
           await InteractionService().skipDeal(promo.id);
           if (context.mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: const Text('This deal will no longer appear in your feed'),
+                content: const Text(
+                  'This deal will no longer appear in your feed',
+                ),
                 duration: const Duration(seconds: 4),
                 behavior: SnackBarBehavior.floating,
                 action: SnackBarAction(
@@ -571,26 +710,55 @@ class _MenuItem extends StatelessWidget {
 // ── Report sheet ─────────────────────────────────────────────────────────────
 
 const _kReportTypes = [
-  (slug: 'wrong_deal',      icon: Icons.edit_off_outlined,         label: 'Wrong deal',         sub: 'The deal details are incorrect'),
-  (slug: 'expired',         icon: Icons.event_busy_outlined,        label: 'Expired',            sub: 'This deal has already ended'),
-  (slug: 'bad_link',        icon: Icons.link_off,                   label: 'Bad link',           sub: "The link doesn't work"),
-  (slug: 'not_real',        icon: Icons.block,                      label: 'Not a real deal',    sub: "Doesn't look like a genuine promotion"),
-  (slug: 'store_closed',    icon: Icons.store_mall_directory_outlined, label: 'Store closed',    sub: 'This store location is permanently closed'),
+  (
+    slug: 'wrong_deal',
+    icon: Icons.edit_off_outlined,
+    label: 'Wrong deal',
+    sub: 'The deal details are incorrect',
+  ),
+  (
+    slug: 'expired',
+    icon: Icons.event_busy_outlined,
+    label: 'Expired',
+    sub: 'This deal has already ended',
+  ),
+  (
+    slug: 'bad_link',
+    icon: Icons.link_off,
+    label: 'Bad link',
+    sub: "The link doesn't work",
+  ),
+  (
+    slug: 'not_real',
+    icon: Icons.block,
+    label: 'Not a real deal',
+    sub: "Doesn't look like a genuine promotion",
+  ),
+  (
+    slug: 'store_closed',
+    icon: Icons.store_mall_directory_outlined,
+    label: 'Store closed',
+    sub: 'This store location is permanently closed',
+  ),
 ];
 
-Future<void> _submitReport(Promotion promo, String reportType, BuildContext ctx) async {
+Future<void> _submitReport(
+  Promotion promo,
+  String reportType,
+  BuildContext ctx,
+) async {
   // Fire-and-forget: write to user_interactions so pipeline quality is tracked.
   if (SupabaseService.isLoggedIn) {
     final userId = UserPrefsService().userId;
     if (userId != null) {
       try {
         await SupabaseService.client.from('user_interactions').insert({
-          'user_id':    userId,
+          'user_id': userId,
           'event_type': 'reported',
           'promotion_id': promo.id,
-          'brand':      promo.brand,
-          'category':   promo.category,
-          'metadata':   {'report_type': reportType},
+          'brand': promo.brand,
+          'category': promo.category,
+          'metadata': {'report_type': reportType},
         });
       } catch (_) {}
     }
@@ -621,8 +789,10 @@ class _ReportSheet extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Text('Report this deal',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
+              const Text(
+                'Report this deal',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+              ),
               const Spacer(),
               IconButton(
                 onPressed: () => Navigator.pop(context),
@@ -632,16 +802,29 @@ class _ReportSheet extends StatelessWidget {
               ),
             ],
           ),
-          Text(promo.brand,
-              style: TextStyle(fontSize: 13, color: Colors.grey.shade500)),
+          Text(
+            promo.brand,
+            style: TextStyle(fontSize: 13, color: Colors.grey.shade500),
+          ),
           const SizedBox(height: 16),
-          ..._kReportTypes.map((t) => ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: Icon(t.icon, size: 22, color: Colors.grey.shade600),
-            title: Text(t.label, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
-            subtitle: Text(t.sub, style: TextStyle(fontSize: 12, color: Colors.grey.shade500)),
-            onTap: () => onSubmit(t.slug),
-          )),
+          ..._kReportTypes.map(
+            (t) => ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: Icon(t.icon, size: 22, color: Colors.grey.shade600),
+              title: Text(
+                t.label,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              subtitle: Text(
+                t.sub,
+                style: TextStyle(fontSize: 12, color: Colors.grey.shade500),
+              ),
+              onTap: () => onSubmit(t.slug),
+            ),
+          ),
         ],
       ),
     );
@@ -724,6 +907,10 @@ class _SourceLabel extends StatelessWidget {
       icon = Icons.near_me_outlined;
       label = '${LocationService.formatDistance(promo.distanceKm)} away';
       color = const Color(0xFF1565C0);
+    } else if (promo.source == 'email') {
+      icon = Icons.mail_outline;
+      label = 'From Gmail';
+      color = Candy.raspberry;
     } else {
       icon = Icons.language_outlined;
       label = 'Online';
@@ -780,7 +967,11 @@ class _PromoCodePill extends StatelessWidget {
             ),
             child: Row(
               children: [
-                const Icon(Icons.confirmation_number_outlined, size: 14, color: Candy.lavender),
+                const Icon(
+                  Icons.confirmation_number_outlined,
+                  size: 14,
+                  color: Candy.lavender,
+                ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
@@ -794,18 +985,24 @@ class _PromoCodePill extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Icon(Icons.copy_outlined, size: 14, color: Candy.lavender),
+                const Icon(
+                  Icons.copy_outlined,
+                  size: 14,
+                  color: Candy.lavender,
+                ),
               ],
             ),
           ),
           const SizedBox(height: 3),
           Text(
             'Tap to copy',
-            style: TextStyle(fontSize: 10, color: Candy.muted.withValues(alpha: 0.6)),
+            style: TextStyle(
+              fontSize: 10,
+              color: Candy.muted.withValues(alpha: 0.6),
+            ),
           ),
         ],
       ),
     );
   }
 }
-
