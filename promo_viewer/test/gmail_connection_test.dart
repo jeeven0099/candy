@@ -22,10 +22,14 @@ void main() {
     await GmailConnectionService.restorePendingConnect();
   }
 
-  Session session(String userId) => Session.fromJson({
+  Session session(
+    String userId, {
+    String signInAt = '2026-10-06T12:00:00Z',
+    String? providerToken = 'prior-google-token',
+  }) => Session.fromJson({
     'access_token': 'test-session',
     'refresh_token': 'test-refresh',
-    'provider_token': 'prior-google-token',
+    'provider_token': providerToken,
     'token_type': 'bearer',
     'user': {
       'id': userId,
@@ -33,7 +37,7 @@ void main() {
       'app_metadata': {},
       'user_metadata': {},
       'created_at': '2026-10-01T12:00:00Z',
-      'last_sign_in_at': '2026-10-06T12:00:00Z',
+      'last_sign_in_at': signInAt,
     },
   })!;
 
@@ -68,5 +72,71 @@ void main() {
           .millisecondsSinceEpoch,
     );
     expect(GmailConnectionService.hasPendingConnect, isFalse);
+  });
+
+  test('explicit callback with an old session surfaces the failure', () async {
+    await restoreAttempt();
+    await expectLater(
+      GmailConnectionService.vaultSessionIfPending(
+        session('owner'),
+        fromOAuthCallback: true,
+      ),
+      throwsA(
+        isA<StateError>().having(
+          (e) => e.message,
+          'message',
+          contains('previous sign-in'),
+        ),
+      ),
+    );
+  });
+
+  test(
+    'explicit callback without a Gmail token surfaces the failure',
+    () async {
+      await restoreAttempt();
+      await expectLater(
+        GmailConnectionService.vaultSessionIfPending(
+          session(
+            'owner',
+            signInAt: '2026-10-06T13:00:00Z',
+            providerToken: null,
+          ),
+          fromOAuthCallback: true,
+        ),
+        throwsA(
+          isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            contains('Gmail access token'),
+          ),
+        ),
+      );
+    },
+  );
+
+  test('backend failures retain safe details without exposing tokens', () {
+    final message = GmailConnectionService.reportFailure(
+      'save_connection',
+      FunctionException(
+        status: 400,
+        details: {
+          'error': 'gmail_access_not_granted',
+          'provider_status': 403,
+          'provider_reason': 'insufficientPermissions',
+          'request_id': 'attempt-12345',
+          'access_token': 'private-token',
+        },
+      ),
+    );
+    expect(message, contains('HTTP 400'));
+    expect(message, contains('provider_status: 403'));
+    expect(message, contains('insufficientPermissions'));
+    expect(message, isNot(contains('private-token')));
+    expect(GmailConnectionService.lastError.value, message);
+    expect(
+      GmailConnectionService.diagnosticLog.value,
+      contains('attempt-12345'),
+    );
   });
 }

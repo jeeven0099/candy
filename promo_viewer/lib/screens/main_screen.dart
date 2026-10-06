@@ -79,7 +79,9 @@ class _MainScreenState extends State<MainScreen> {
           await GmailConnectionService.vaultSessionIfPending(
             SupabaseService.client.auth.currentSession,
           );
-        } catch (_) {}
+        } catch (e) {
+          GmailConnectionService.reportFailure('restore_connection', e);
+        }
       }
       final results = await Future.wait([
         PromotionsService.load(),
