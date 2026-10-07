@@ -215,11 +215,13 @@ class _MainScreenState extends State<MainScreen> {
           children: [
             ForYouScreen(
               all: _all,
+              active: _tab == 0,
               memberships: _memberships,
               onRefresh: _refreshCurrentTab,
             ),
             NearMeScreen(
               all: _all,
+              active: _tab == 1,
               position: _position,
               locating: _locating,
               memberships: _memberships,

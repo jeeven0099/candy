@@ -11,6 +11,7 @@ import '../services/user_prefs_service.dart';
 import '../theme/candy_colors.dart';
 import '../utils/feed_ranker.dart';
 import 'brand_logo.dart';
+import 'deal_source_badge.dart';
 import 'effort_chip.dart';
 import 'fast_redeem_button.dart';
 import 'save_sheet.dart';
@@ -23,6 +24,7 @@ class DealCard extends StatelessWidget {
   final Set<String> memberships;
   final int? feedPosition;
   final String? rankingMode;
+  final VoidCallback? onInteraction;
 
   const DealCard({
     super.key,
@@ -31,6 +33,7 @@ class DealCard extends StatelessWidget {
     this.memberships = const {},
     this.feedPosition,
     this.rankingMode,
+    this.onInteraction,
   });
 
   void _showScoreDebug(BuildContext context) {
@@ -195,6 +198,7 @@ class DealCard extends StatelessWidget {
             onTap: onTap == null
                 ? null
                 : () {
+                    onInteraction?.call();
                     InteractionService().recordDealCardOpened(
                       promo.id,
                       brand: promo.brand,
@@ -223,15 +227,7 @@ class DealCard extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              promo.brand.toUpperCase(),
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 10,
-                                color: Candy.chocolate.withValues(alpha: 0.45),
-                                letterSpacing: 1.1,
-                              ),
-                            ),
+                            DealBrandLabel(promo: promo),
                             const SizedBox(height: 2),
                             _SourceLabel(promo: promo),
                           ],
@@ -240,10 +236,16 @@ class DealCard extends StatelessWidget {
                       const SizedBox(width: 4),
                       _HeartButton(
                         promo: promo,
+                        onInteraction: onInteraction,
                         feedPosition: feedPosition,
                         rankingMode: rankingMode,
                       ),
-                      _MenuButton(promo: promo),
+                      _MenuButton(
+                        promo: promo,
+                        onInteraction: onInteraction,
+                        feedPosition: feedPosition,
+                        rankingMode: rankingMode,
+                      ),
                     ],
                   ),
 
@@ -386,8 +388,14 @@ class DealCard extends StatelessWidget {
                         widthFactor: 0.62,
                         child: FastRedeemButton(
                           fr: promo.fastRedemption!,
+                          onInteraction: onInteraction,
                           brand: promo.brand,
                           promoId: promo.id,
+                          metadata: InteractionService.promoMeta(
+                            promo,
+                            feedPosition: feedPosition,
+                            rankingMode: rankingMode,
+                          ),
                         ),
                       ),
                     ),
@@ -537,10 +545,12 @@ class _Tag extends StatelessWidget {
 
 class _HeartButton extends StatelessWidget {
   final Promotion promo;
+  final VoidCallback? onInteraction;
   final int? feedPosition;
   final String? rankingMode;
   const _HeartButton({
     required this.promo,
+    this.onInteraction,
     this.feedPosition,
     this.rankingMode,
   });
@@ -562,6 +572,7 @@ class _HeartButton extends StatelessWidget {
             color: saved ? Candy.raspberry : Candy.muted.withValues(alpha: 0.5),
           ),
           onPressed: () async {
+            onInteraction?.call();
             if (saved) {
               await svc.unsave(promo.id);
             } else {
@@ -599,7 +610,15 @@ class _HeartButton extends StatelessWidget {
 
 class _MenuButton extends StatelessWidget {
   final Promotion promo;
-  const _MenuButton({required this.promo});
+  final VoidCallback? onInteraction;
+  final int? feedPosition;
+  final String? rankingMode;
+  const _MenuButton({
+    required this.promo,
+    this.feedPosition,
+    this.rankingMode,
+    this.onInteraction,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -612,8 +631,19 @@ class _MenuButton extends StatelessWidget {
         color: Candy.muted.withValues(alpha: 0.45),
       ),
       onSelected: (v) async {
+        onInteraction?.call();
+        final meta = InteractionService.promoMeta(
+          promo,
+          feedPosition: feedPosition,
+          rankingMode: rankingMode,
+        );
         if (v == 'skip_deal') {
-          await InteractionService().skipDeal(promo.id);
+          await InteractionService().skipDeal(
+            promo.id,
+            brand: promo.brand,
+            category: promo.category,
+            meta: meta,
+          );
           if (context.mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -624,7 +654,12 @@ class _MenuButton extends StatelessWidget {
                 behavior: SnackBarBehavior.floating,
                 action: SnackBarAction(
                   label: 'Undo',
-                  onPressed: () => InteractionService().unskipDeal(promo.id),
+                  onPressed: () => InteractionService().unskipDeal(
+                    promo.id,
+                    brand: promo.brand,
+                    category: promo.category,
+                    meta: meta,
+                  ),
                 ),
               ),
             );
@@ -656,7 +691,7 @@ class _MenuButton extends StatelessWidget {
                 promo: promo,
                 onSubmit: (type) {
                   Navigator.pop(sheetCtx);
-                  _submitReport(promo, type, outerCtx);
+                  _submitReport(promo, type, outerCtx, meta: meta);
                 },
               ),
             );
@@ -745,8 +780,9 @@ const _kReportTypes = [
 Future<void> _submitReport(
   Promotion promo,
   String reportType,
-  BuildContext ctx,
-) async {
+  BuildContext ctx, {
+  Map<String, dynamic>? meta,
+}) async {
   // Fire-and-forget: write to user_interactions so pipeline quality is tracked.
   if (SupabaseService.isLoggedIn) {
     final userId = UserPrefsService().userId;
@@ -758,7 +794,7 @@ Future<void> _submitReport(
           'promotion_id': promo.id,
           'brand': promo.brand,
           'category': promo.category,
-          'metadata': {'report_type': reportType},
+          'metadata': {...?meta, 'report_type': reportType},
         });
       } catch (_) {}
     }
@@ -907,10 +943,11 @@ class _SourceLabel extends StatelessWidget {
       icon = Icons.near_me_outlined;
       label = '${LocationService.formatDistance(promo.distanceKm)} away';
       color = const Color(0xFF1565C0);
-    } else if (promo.source == 'email') {
-      icon = Icons.mail_outline;
-      label = 'From Gmail';
-      color = Candy.raspberry;
+    } else if (promo.dealScope == 'in_store_only' ||
+        promo.redemptionMethod == 'in_store') {
+      icon = Icons.storefront_outlined;
+      label = 'In-store';
+      color = const Color(0xFF2E7D32);
     } else {
       icon = Icons.language_outlined;
       label = 'Online';

@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/promotion.dart';
 import '../services/interaction_service.dart';
+import '../services/supabase_service.dart';
 import '../services/location_service.dart';
 import '../services/user_prefs_service.dart';
 import '../theme/candy_colors.dart';
@@ -11,6 +14,7 @@ import '../utils/feed_ranker.dart';
 import '../utils/format_utils.dart';
 import '../utils/ranking_contract.dart';
 import '../widgets/deal_card.dart';
+import '../widgets/deal_impression_tracker.dart';
 import 'deal_detail_screen.dart';
 
 const _kRadiusKey = 'near_me_radius_mi';
@@ -18,6 +22,7 @@ const _kRadiusOptions = [1, 3, 5, 10];
 
 class NearMeScreen extends StatefulWidget {
   final List<Promotion> all;
+  final bool active;
   final Position? position;
   final bool locating;
   final Set<String> memberships;
@@ -34,6 +39,7 @@ class NearMeScreen extends StatefulWidget {
     this.memberships = const {},
     this.lastUpdated,
     this.onRequestLocation,
+    this.active = true,
   });
 
   @override
@@ -175,7 +181,8 @@ class _NearMeScreenState extends State<NearMeScreen> {
                     SliverToBoxAdapter(child: _countLabel(deals.length)),
                     SliverList(
                       delegate: SliverChildBuilderDelegate(
-                        (context, index) => _dealCard(context, deals[index]),
+                        (context, index) =>
+                            _dealCard(context, deals[index], index + 1),
                         childCount: deals.length,
                       ),
                     ),
@@ -301,22 +308,56 @@ class _NearMeScreenState extends State<NearMeScreen> {
     );
   }
 
-  Widget _dealCard(BuildContext context, Promotion promo) {
-    return DealCard(
-      promo: promo,
-      memberships: widget.memberships,
-      onTap: () async {
-        _svc.recordClick(
-          promo.id,
-          brand: promo.brand,
-          category: promo.category,
-        );
-        await Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => DealDetailScreen(promo: promo)),
-        );
-        if (mounted) setState(() => _lastRecordedKey = '');
-      },
+  Widget _dealCard(BuildContext context, Promotion promo, int position) {
+    final score = dealQualityScore(
+      promo,
+      _svc,
+      distanceKm: promo.distanceKm,
+      isMember: _hasMembership(promo),
+      prefs: UserPrefsService().prefs,
+    );
+    Future<bool> recordImpression() => _svc.recordFeedImpression(
+      promo,
+      rankingMode: 'near_me',
+      feedPosition: position,
+      runtimeScore: score,
+    );
+    return DealImpressionTracker(
+      trackingKey:
+          '${SupabaseService.currentUserId}|near_me|${promo.source}|${promo.id}',
+      active: widget.active,
+      onImpression: recordImpression,
+      child: DealCard(
+        promo: promo,
+        onInteraction: () => unawaited(recordImpression()),
+        memberships: widget.memberships,
+        feedPosition: position,
+        rankingMode: 'near_me',
+        onTap: () async {
+          _svc.recordClick(
+            promo.id,
+            brand: promo.brand,
+            category: promo.category,
+            meta: InteractionService.promoMeta(
+              promo,
+              rankingMode: 'near_me',
+              feedPosition: position,
+              runtimeScore: score,
+            ),
+          );
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => DealDetailScreen(
+                promo: promo,
+                rankingMode: 'near_me',
+                feedPosition: position,
+              ),
+            ),
+          );
+          if (mounted) setState(() => _lastRecordedKey = '');
+        },
+      ),
     );
   }
 
