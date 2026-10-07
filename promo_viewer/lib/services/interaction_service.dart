@@ -10,7 +10,7 @@ import 'user_prefs_service.dart';
 /// Local SharedPreferences state drives fatigue/affinity in the runtime ranker.
 /// Supabase writes are fire-and-forget: they populate analytics tables and
 /// the brand/category affinity RPCs for future ML use.
-class InteractionService {
+class InteractionService extends ChangeNotifier {
   static final InteractionService _i = InteractionService._();
   factory InteractionService() => _i;
   InteractionService._();
@@ -29,6 +29,7 @@ class InteractionService {
   int _eventSequence = 0;
   final Set<String> _feedImpressions = {};
   final Set<String> _pendingFeedImpressions = {};
+  final Set<String> _locallySeenFeedDeals = {};
 
   Future<bool> recordFeedImpression(
     Promotion promo, {
@@ -36,6 +37,11 @@ class InteractionService {
     required int feedPosition,
     double? runtimeScore,
   }) async {
+    final seenKey =
+        '${SupabaseService.currentUserId ?? 'guest'}|$rankingMode|${promo.source}|${promo.id}';
+    if (_locallySeenFeedDeals.add(seenKey)) {
+      recordSeen([promo.id]);
+    }
     final userId = UserPrefsService().userId;
     if (!SupabaseService.isLoggedIn || userId == null) return false;
     final key = '$userId|$rankingMode|${promo.source}|${promo.id}';
@@ -265,6 +271,7 @@ class InteractionService {
       category: category,
       metadata: meta,
     );
+    notifyListeners();
   }
 
   Future<void> unskipDeal(
@@ -281,6 +288,7 @@ class InteractionService {
       category: category,
       metadata: meta,
     );
+    notifyListeners();
   }
 
   // ── Supabase: user_interactions ───────────────────────────────────────────

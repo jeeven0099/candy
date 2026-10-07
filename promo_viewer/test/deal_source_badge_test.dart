@@ -13,6 +13,24 @@ Promotion _promo(String source, {String brand = 'Example Store'}) =>
     Promotion.fromJson({'source': source, 'brand': brand});
 
 void main() {
+  testWidgets('private offers retain the badge with legacy source metadata', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: DealBrandLabel(
+            promo: Promotion.fromJson({
+              'brand': 'Store',
+              'visibility': 'private_user_offer',
+            }),
+          ),
+        ),
+      ),
+    );
+    expect(find.text('Email'), findsOneWidget);
+    expect(find.byIcon(Icons.mail_outline), findsOneWidget);
+  });
   for (final source in ['email', 'both', 'web', 'local_neighborhood']) {
     testWidgets('Email badge matches source=$source', (tester) async {
       await tester.pumpWidget(

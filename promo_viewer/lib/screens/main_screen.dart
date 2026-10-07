@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -157,6 +158,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _selectTab(int index) {
+    final returningFromSettings = _tab == 2 && index != 2;
     setState(() => _tab = index);
     _svc.recordTabSwitch(
       index,
@@ -164,6 +166,26 @@ class _MainScreenState extends State<MainScreen> {
     );
     if (index == 1) {
       _ensureLocation();
+    }
+    if (returningFromSettings) unawaited(_reloadEmailDeals());
+  }
+
+  Future<void> _reloadEmailDeals() async {
+    try {
+      final account = SupabaseService.currentUserId;
+      final emails = await EmailDealsService.loadForCurrentUser();
+      if (!mounted || account != SupabaseService.currentUserId) return;
+      final combined = EmailDealsService.mergeWithPublicPromotions(
+        PromotionsService.cached,
+        emails,
+      );
+      if (_position != null) {
+        await LocationService.attachDistances(combined, _position!);
+      }
+      if (!mounted || account != SupabaseService.currentUserId) return;
+      setState(() => _all = combined);
+    } catch (_) {
+      debugPrint('[MainScreen] Could not refresh email deals');
     }
   }
 

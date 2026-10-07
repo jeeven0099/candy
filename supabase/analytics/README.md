@@ -10,6 +10,13 @@ characteristics, not mailbox tokens, email subjects, sender addresses, or bodies
 `source_group=email` includes legacy `source=both`; `deal_source` preserves that
 distinction for further segmentation.
 
+Both feeds show up to 10 qualified deals with up to 30 additional ranked deals
+cached in memory per feed. Swiping in either direction means not interested;
+the next qualified cached deal replaces the rejected card. Menu dismissals use
+the same replacement path. Undo restores the deal and reverses its feedback.
+The reserve resets when the account, preferences, dataset, or Near Me radius
+changes. It is never stored as a shared public email dataset.
+
 Feed impressions require at least 50% of the card to be visible for one second
 on the active tab while the app is resumed. Opening, saving, selecting a menu
 action, or tapping redeem also qualifies as an exposure. An account/session/feed/source/deal is recorded once per app launch;
@@ -20,7 +27,8 @@ Existing actions include `deal_card_opened`, `deal_card_clicked`, `deal_saved`,
 `not_interested`, and the new `not_interested_undone`. Undo cancels the latest
 dismissal in the comparison query. `fast_redeem_clicked` and `redeem_clicked`
 represent intent only, never a confirmed purchase or redemption.
-Client event sequences preserve action/undo order even if requests reach
+Dismissal metadata includes `feedback_method` (`swipe` or `menu`), plus the
+logical swipe direction when applicable. Client event sequences preserve action/undo order even if requests reach
 Supabase out of order.
 
 Run `deal_source_metrics.sql` in the Supabase SQL editor to inspect views,
@@ -36,6 +44,6 @@ An eligible email deal can still lose to public offers in the top-10 ranker.
 Compare the same beta-user cohort and similar positions before drawing
 conclusions. These are observational metrics: different candidate pools,
 ranking, and the visible Email badge can influence results. They do not prove
-that the pipeline caused higher engagement. The 30-deal reserve and swipe
-replacement experiment remain a separate change; this update instruments the
-existing two feeds and their not-interested menu.
+that the pipeline caused higher engagement. The reserve is populated only from
+the existing quality-filtered ranker; email offers are not forced into the feed
+to make the Email badge appear.

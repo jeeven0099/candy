@@ -3,6 +3,8 @@ class RankingContract {
 
   static const forYouLimit = 10;
   static const nearMeLimit = 10;
+  static const feedReserveLimit = 30;
+  static const feedCandidateLimit = forYouLimit + feedReserveLimit;
 
   static const minConfidence = 0.70;
   static const forYouQualityFloor = 65.0;

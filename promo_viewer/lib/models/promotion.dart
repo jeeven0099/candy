@@ -290,7 +290,10 @@ class Promotion {
 
   bool get isLocal => source == 'local_neighborhood';
 
-  bool get isEmailDerived => source == 'email' || source == 'both';
+  bool get isEmailDerived =>
+      source == 'email' ||
+      source == 'both' ||
+      visibility == 'private_user_offer';
 
   /// Full rank score adding runtime signals (distance + membership) to the
   /// pipeline-computed base score.

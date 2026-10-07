@@ -14,6 +14,7 @@ import '../utils/feed_ranker.dart';
 import '../utils/format_utils.dart';
 import '../utils/ranking_contract.dart';
 import '../widgets/deal_card.dart';
+import '../widgets/deal_feed_sliver.dart';
 import '../widgets/deal_impression_tracker.dart';
 import 'deal_detail_screen.dart';
 
@@ -49,7 +50,6 @@ class NearMeScreen extends StatefulWidget {
 class _NearMeScreenState extends State<NearMeScreen> {
   final _svc = InteractionService();
   int _radiusMi = RankingContract.nearMeDefaultRadiusMi;
-  String _lastRecordedKey = '';
 
   @override
   void initState() {
@@ -66,7 +66,6 @@ class _NearMeScreenState extends State<NearMeScreen> {
   Future<void> _setRadius(int miles) async {
     setState(() {
       _radiusMi = miles;
-      _lastRecordedKey = '';
     });
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(_kRadiusKey, miles);
@@ -83,17 +82,6 @@ class _NearMeScreenState extends State<NearMeScreen> {
           (memberName.isNotEmpty &&
               (m.contains(memberName) || memberName.contains(m))),
     );
-  }
-
-  void _recordVisible(List<Promotion> deals) {
-    final ids = deals.map((p) => p.id).toList()..sort();
-    if (ids.isEmpty) return;
-    final key = ids.join(',');
-    if (key == _lastRecordedKey) return;
-    _lastRecordedKey = key;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) _svc.recordSeen(ids);
-    });
   }
 
   void _showRadiusPicker() {
@@ -139,7 +127,7 @@ class _NearMeScreenState extends State<NearMeScreen> {
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
-      listenable: UserPrefsService(),
+      listenable: Listenable.merge([UserPrefsService(), _svc]),
       builder: (context, _) {
         final prefs = UserPrefsService().prefs;
         final deals = widget.position == null
@@ -150,9 +138,8 @@ class _NearMeScreenState extends State<NearMeScreen> {
                 getIsMember: _hasMembership,
                 prefs: prefs,
                 radiusKm: _radiusMi * 1.60934,
-                limit: RankingContract.nearMeLimit,
+                limit: RankingContract.feedCandidateLimit,
               );
-        _recordVisible(deals);
 
         return Scaffold(
           backgroundColor: Candy.cream,
@@ -172,19 +159,25 @@ class _NearMeScreenState extends State<NearMeScreen> {
                       hasScrollBody: false,
                       child: _locationState(),
                     )
-                  else if (deals.isEmpty)
-                    SliverFillRemaining(
-                      hasScrollBody: false,
-                      child: _emptyState(),
-                    )
                   else ...[
-                    SliverToBoxAdapter(child: _countLabel(deals.length)),
-                    SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) =>
-                            _dealCard(context, deals[index], index + 1),
-                        childCount: deals.length,
+                    DealFeedSliver(
+                      rankedDeals: deals,
+                      revision: (
+                        widget.all,
+                        prefs,
+                        widget.memberships,
+                        SupabaseService.currentUserId,
+                        _radiusMi,
+                        widget.position?.latitude,
+                        widget.position?.longitude,
                       ),
+                      itemBuilder: _dealCard,
+                      countBuilder: _countLabel,
+                      emptyState: _emptyState(),
+                      onDismiss: (p, position, direction) =>
+                          _dismissFeedback(p, position, direction),
+                      onUndo: (p, position, direction) =>
+                          _dismissFeedback(p, position, direction, undo: true),
                     ),
                     const SliverPadding(padding: EdgeInsets.only(bottom: 32)),
                   ],
@@ -308,7 +301,12 @@ class _NearMeScreenState extends State<NearMeScreen> {
     );
   }
 
-  Widget _dealCard(BuildContext context, Promotion promo, int position) {
+  Widget _dealCard(
+    BuildContext context,
+    Promotion promo,
+    int position,
+    VoidCallback dismiss,
+  ) {
     final score = dealQualityScore(
       promo,
       _svc,
@@ -329,6 +327,7 @@ class _NearMeScreenState extends State<NearMeScreen> {
       onImpression: recordImpression,
       child: DealCard(
         promo: promo,
+        onNotInterested: dismiss,
         onInteraction: () => unawaited(recordImpression()),
         memberships: widget.memberships,
         feedPosition: position,
@@ -355,10 +354,52 @@ class _NearMeScreenState extends State<NearMeScreen> {
               ),
             ),
           );
-          if (mounted) setState(() => _lastRecordedKey = '');
+          if (mounted) setState(() {});
         },
       ),
     );
+  }
+
+  Future<void> _dismissFeedback(
+    Promotion p,
+    int position,
+    DismissDirection direction, {
+    bool undo = false,
+  }) async {
+    final meta = {
+      ...InteractionService.promoMeta(
+        p,
+        rankingMode: 'near_me',
+        feedPosition: position,
+      ),
+      'feedback_method': direction == DismissDirection.none ? 'menu' : 'swipe',
+      if (direction != DismissDirection.none)
+        'swipe_direction': direction == DismissDirection.startToEnd
+            ? 'start_to_end'
+            : 'end_to_start',
+    };
+    if (undo) {
+      await _svc.unskipDeal(
+        p.id,
+        brand: p.brand,
+        category: p.category,
+        meta: meta,
+      );
+    } else {
+      unawaited(
+        _svc.recordFeedImpression(
+          p,
+          rankingMode: 'near_me',
+          feedPosition: position,
+        ),
+      );
+      await _svc.skipDeal(
+        p.id,
+        brand: p.brand,
+        category: p.category,
+        meta: meta,
+      );
+    }
   }
 
   Widget _locationState() {
