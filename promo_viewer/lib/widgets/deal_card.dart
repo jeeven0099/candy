@@ -25,6 +25,7 @@ class DealCard extends StatelessWidget {
   final int? feedPosition;
   final String? rankingMode;
   final VoidCallback? onInteraction;
+  final VoidCallback? onNotInterested;
 
   const DealCard({
     super.key,
@@ -34,6 +35,7 @@ class DealCard extends StatelessWidget {
     this.feedPosition,
     this.rankingMode,
     this.onInteraction,
+    this.onNotInterested,
   });
 
   void _showScoreDebug(BuildContext context) {
@@ -243,6 +245,7 @@ class DealCard extends StatelessWidget {
                       _MenuButton(
                         promo: promo,
                         onInteraction: onInteraction,
+                        onNotInterested: onNotInterested,
                         feedPosition: feedPosition,
                         rankingMode: rankingMode,
                       ),
@@ -611,6 +614,7 @@ class _HeartButton extends StatelessWidget {
 class _MenuButton extends StatelessWidget {
   final Promotion promo;
   final VoidCallback? onInteraction;
+  final VoidCallback? onNotInterested;
   final int? feedPosition;
   final String? rankingMode;
   const _MenuButton({
@@ -618,6 +622,7 @@ class _MenuButton extends StatelessWidget {
     this.feedPosition,
     this.rankingMode,
     this.onInteraction,
+    this.onNotInterested,
   });
 
   @override
@@ -637,7 +642,12 @@ class _MenuButton extends StatelessWidget {
           feedPosition: feedPosition,
           rankingMode: rankingMode,
         );
+        meta['feedback_method'] = 'menu';
         if (v == 'skip_deal') {
+          if (onNotInterested != null) {
+            onNotInterested!();
+            return;
+          }
           await InteractionService().skipDeal(
             promo.id,
             brand: promo.brand,
@@ -736,7 +746,14 @@ class _MenuItem extends StatelessWidget {
       children: [
         Icon(icon, size: 16, color: Colors.grey.shade600),
         const SizedBox(width: 10),
-        Text(label, style: const TextStyle(fontSize: 14)),
+        Expanded(
+          child: Text(
+            label,
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(fontSize: 14),
+          ),
+        ),
       ],
     );
   }

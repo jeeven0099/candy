@@ -34,8 +34,8 @@ void main() {
     'user': {
       'id': userId,
       'aud': 'authenticated',
-      'app_metadata': {},
-      'user_metadata': {},
+      'app_metadata': <String, dynamic>{},
+      'user_metadata': <String, dynamic>{},
       'created_at': '2026-10-01T12:00:00Z',
       'last_sign_in_at': signInAt,
     },

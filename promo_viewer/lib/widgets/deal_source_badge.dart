@@ -29,20 +29,20 @@ class DealBrandLabel extends StatelessWidget {
             label: 'Deal from your email',
             child: ExcludeSemantics(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
                 decoration: BoxDecoration(
-                  color: Candy.raspberry.withValues(alpha: 0.08),
+                  color: Candy.raspberry.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(4),
                 ),
                 child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.mail_outline, size: 11, color: Candy.raspberry),
+                    Icon(Icons.mail_outline, size: 14, color: Candy.raspberry),
                     SizedBox(width: 3),
                     Text(
                       'Email',
                       style: TextStyle(
-                        fontSize: 10,
+                        fontSize: 11,
                         fontWeight: FontWeight.w600,
                         color: Candy.raspberry,
                       ),
