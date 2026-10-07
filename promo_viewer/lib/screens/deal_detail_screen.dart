@@ -93,7 +93,15 @@ class _DealDetailScreenState extends State<DealDetailScreen> {
     return Scaffold(
       backgroundColor: Candy.cream,
       bottomNavigationBar: _hasSticky
-          ? _StickyRedeemBar(fr: _p.fastRedemption!, promo: _p)
+          ? _StickyRedeemBar(
+              fr: _p.fastRedemption!,
+              promo: _p,
+              metadata: InteractionService.promoMeta(
+                _p,
+                rankingMode: widget.rankingMode,
+                feedPosition: widget.feedPosition,
+              ),
+            )
           : null,
       appBar: AppBar(
         backgroundColor: Candy.cream,
@@ -1366,14 +1374,24 @@ class _WhenCard extends StatelessWidget {
 class _StickyRedeemBar extends StatelessWidget {
   final FastRedemption fr;
   final Promotion promo;
-  const _StickyRedeemBar({required this.fr, required this.promo});
+  final Map<String, dynamic>? metadata;
+  const _StickyRedeemBar({
+    required this.fr,
+    required this.promo,
+    this.metadata,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 12),
-        child: FastRedeemButton(fr: fr, brand: promo.brand, promoId: promo.id),
+        child: FastRedeemButton(
+          fr: fr,
+          brand: promo.brand,
+          promoId: promo.id,
+          metadata: metadata,
+        ),
       ),
     );
   }
