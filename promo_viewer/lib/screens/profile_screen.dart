@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -11,10 +10,10 @@ import '../services/gmail_connection_service.dart';
 import '../services/saved_deals_service.dart';
 import '../services/supabase_service.dart';
 import '../services/user_prefs_service.dart';
+import '../models/user_prefs.dart';
 import '../theme/candy_colors.dart';
 import 'onboarding_screen.dart';
 
-const _kRadiusKey = 'near_me_radius_mi';
 const _kRadiusOptions = [1, 3, 5, 10, 25];
 
 class ProfileScreen extends StatefulWidget {
@@ -68,39 +67,44 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state != AppLifecycleState.resumed ||
-        !GmailConnectionService.hasPendingConnect) {
+    if (state != AppLifecycleState.resumed) {
       return;
     }
+    _loadGmailStatus();
+    if (!GmailConnectionService.hasPendingConnect) return;
     _finishGmailConnect(SupabaseService.client.auth.currentSession);
   }
 
   Future<void> _loadRadius() async {
-    final prefs = await SharedPreferences.getInstance();
-    final saved = prefs.getInt(_kRadiusKey);
-    if (saved != null && mounted) setState(() => _radiusMi = saved);
+    final owner = SupabaseService.currentUserId;
+    final saved = await UserPrefsService.loadNearMeRadius();
+    if (mounted && owner == SupabaseService.currentUserId) {
+      setState(() => _radiusMi = saved);
+    }
   }
 
   Future<void> _saveRadius(int mi) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_kRadiusKey, mi);
-    UserPrefsService.nearMeRadiusNotifier.value = mi;
-    if (mounted) setState(() => _radiusMi = mi);
-    // Persist to users table so the DB reflects the actual choice
-    final authId = SupabaseService.currentUserId;
-    if (authId != null) {
-      SupabaseService.client
-          .from('users')
-          .update({'radius_miles': mi})
-          .eq('auth_id', authId)
-          .then((_) {}, onError: (_) {});
+    final owner = SupabaseService.currentUserId;
+    try {
+      await UserPrefsService.setNearMeRadius(mi);
+      if (mounted && owner == SupabaseService.currentUserId) {
+        setState(() => _radiusMi = mi);
+      }
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Could not sync your radius')),
+        );
+      }
     }
   }
 
   Future<void> _loadGmailStatus() async {
     if (!SupabaseService.isLoggedIn) return;
+    final owner = SupabaseService.currentUserId;
     final status = await GmailConnectionService.loadStatus();
     if (!mounted) return;
+    if (owner != SupabaseService.currentUserId) return;
     setState(() => _gmailStatus = status);
   }
 
@@ -177,6 +181,91 @@ class _ProfileScreenState extends State<ProfileScreen>
     }
   }
 
+  Future<void> _editMemberships() async {
+    final owner = SupabaseService.currentUserId;
+    final current = UserPrefsService().prefs ?? const UserPrefs();
+    final controller = TextEditingController();
+    final programs = {...current.memberships};
+    final selected = await showDialog<List<String>>(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, update) => AlertDialog(
+          title: const Text('Memberships'),
+          content: SizedBox(
+            width: 320,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Wrap(
+                    spacing: 6,
+                    children: programs
+                        .map(
+                          (name) => InputChip(
+                            label: Text(name, overflow: TextOverflow.ellipsis),
+                            onDeleted: () =>
+                                update(() => programs.remove(name)),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                  TextField(
+                    controller: controller,
+                    maxLength: 80,
+                    decoration: InputDecoration(
+                      labelText: 'Program or brand',
+                      suffixIcon: IconButton(
+                        tooltip: 'Add membership',
+                        icon: const Icon(Icons.add),
+                        onPressed: () {
+                          final name = controller.text.trim();
+                          if (name.isNotEmpty && programs.length < 30) {
+                            update(() => programs.add(name));
+                          }
+                          controller.clear();
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, programs.toList()),
+              child: const Text('Save'),
+            ),
+          ],
+        ),
+      ),
+    );
+    // The dialog's exit transition still uses its controller.
+    await Future<void>.delayed(const Duration(milliseconds: 300));
+    controller.dispose();
+    if (selected == null ||
+        !mounted ||
+        owner != SupabaseService.currentUserId) {
+      return;
+    }
+    try {
+      await UserPrefsService().save(
+        (UserPrefsService().prefs ?? current).withMemberships(selected),
+      );
+      if (mounted) setState(() {});
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Could not save memberships')),
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -242,6 +331,12 @@ class _ProfileScreenState extends State<ProfileScreen>
                     const OnboardingScreen(startAtPreferences: true),
               ),
             ),
+          ),
+          const Divider(height: 1, indent: 40),
+          _TileRow(
+            icon: Icons.card_membership,
+            label: 'Memberships',
+            onTap: _editMemberships,
           ),
           const Divider(height: 1, indent: 40),
           _TileRow(

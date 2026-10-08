@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -18,7 +17,6 @@ import 'main_screen.dart';
 
 const _kMaxCats = 3;
 const _kMaxBrands = 7;
-const _kRadiusKey = 'near_me_radius_mi';
 
 // ── Category definitions ──────────────────────────────────────────────────────
 
@@ -1223,9 +1221,11 @@ class _OnboardingScreenState extends State<OnboardingScreen>
   }
 
   Future<void> _loadRadius() async {
-    final sp = await SharedPreferences.getInstance();
-    final saved = sp.getInt(_kRadiusKey);
-    if (saved != null && mounted) setState(() => _radiusMi = saved);
+    final owner = SupabaseService.currentUserId;
+    final saved = await UserPrefsService.loadNearMeRadius();
+    if (mounted && owner == SupabaseService.currentUserId) {
+      setState(() => _radiusMi = saved);
+    }
   }
 
   @override
@@ -1365,14 +1365,15 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
     // Save radius to SharedPreferences (non-fatal)
     try {
-      final sp = await SharedPreferences.getInstance();
-      await sp.setInt(_kRadiusKey, _radiusMi);
+      await UserPrefsService.setNearMeRadius(_radiusMi);
     } catch (_) {}
 
     // Save category/brand/deal prefs to Supabase — show error if it fails
     try {
       await UserPrefsService().save(
         UserPrefs(
+          memberships: UserPrefsService().prefs?.memberships ?? const [],
+          hiddenBrands: UserPrefsService().prefs?.hiddenBrands ?? const [],
           favoriteCategories: _selectedCats.toList(),
           favoriteBrands: _selectedBrands.toList(),
           dealPriorities: _selectedDealTypes.toList(),

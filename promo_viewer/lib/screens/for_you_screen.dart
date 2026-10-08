@@ -7,6 +7,7 @@ import '../services/interaction_service.dart';
 import '../services/learned_preference_service.dart';
 import '../services/supabase_service.dart';
 import '../services/user_prefs_service.dart';
+import '../services/user_memberships_service.dart';
 import '../theme/candy_colors.dart';
 import '../utils/feed_ranker.dart';
 import '../utils/ranking_contract.dart';
@@ -37,15 +38,10 @@ class _ForYouScreenState extends State<ForYouScreen> {
   final _svc = InteractionService();
 
   bool _hasMembership(Promotion p) {
-    if (widget.memberships.isEmpty) return false;
-    final brand = p.brand.toLowerCase();
-    final memberName = (p.membershipName ?? '').toLowerCase();
-    return widget.memberships.any(
-      (m) =>
-          m.contains(brand) ||
-          brand.contains(m) ||
-          (memberName.isNotEmpty &&
-              (m.contains(memberName) || memberName.contains(m))),
+    return UserMembershipsService.hasMembership(
+      widget.memberships,
+      p.brand,
+      p.membershipName,
     );
   }
 

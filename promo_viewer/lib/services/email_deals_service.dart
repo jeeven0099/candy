@@ -8,12 +8,20 @@ import 'supabase_service.dart';
 import 'user_prefs_service.dart';
 
 class EmailDealsService {
-  static List<Promotion> cached = [];
+  static List<Promotion> _cached = [];
+  static String? _owner;
+  static int _generation = 0;
+  static List<Promotion> get cached =>
+      _owner == SupabaseService.currentUserId ? _cached : [];
 
   static Future<List<Promotion>> loadForCurrentUser() async {
+    final owner = SupabaseService.currentUserId;
+    final generation = ++_generation;
+    if (_owner != owner) _cached = [];
+    _owner = owner;
     if (!SupabaseService.isLoggedIn) {
-      cached = [];
-      return cached;
+      _cached = [];
+      return [];
     }
 
     var userId = UserPrefsService().userId;
@@ -22,8 +30,11 @@ class EmailDealsService {
       userId = UserPrefsService().userId;
     }
     if (userId == null) {
-      cached = [];
-      return cached;
+      if (generation == _generation) _cached = [];
+      return [];
+    }
+    if (owner != SupabaseService.currentUserId || generation != _generation) {
+      return [];
     }
 
     try {
@@ -88,10 +99,18 @@ class EmailDealsService {
         final promo = Promotion.fromJson(promotionJson);
         if (promo.title.isNotEmpty) deals.add(promo);
       }
-      cached = deals;
+      if (owner != SupabaseService.currentUserId || generation != _generation) {
+        return [];
+      }
+      _cached = deals;
     } catch (e) {
       debugPrint('[EmailDealsService] loadForCurrentUser: $e');
-      cached = [];
+      if (owner == SupabaseService.currentUserId && generation == _generation) {
+        _cached = [];
+      }
+    }
+    if (owner != SupabaseService.currentUserId || generation != _generation) {
+      return [];
     }
     return cached;
   }

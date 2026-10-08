@@ -39,18 +39,50 @@ class _MainScreenState extends State<MainScreen> {
   bool _error = false;
   bool _locating = false;
   int _tab = 0;
+  int _loadGeneration = 0;
+  StreamSubscription<dynamic>? _authSubscription;
+  String? _feedOwner;
 
   @override
   void initState() {
     super.initState();
     NotificationService.tapNotifier.addListener(_onLateNotificationTap);
+    UserPrefsService().addListener(_onPreferencesChanged);
+    _feedOwner = SupabaseService.currentUserId;
+    if (SupabaseService.isReady) {
+      _authSubscription = SupabaseService.authStateChanges.listen((_) {
+        final owner = SupabaseService.currentUserId;
+        if (!mounted || owner == _feedOwner) return;
+        _feedOwner = owner;
+        _loadGeneration++;
+        setState(() {
+          _all = [];
+          _memberships = {};
+          _loading = true;
+        });
+        _loadData();
+      });
+    }
     _loadData();
   }
 
   @override
   void dispose() {
     NotificationService.tapNotifier.removeListener(_onLateNotificationTap);
+    UserPrefsService().removeListener(_onPreferencesChanged);
+    _authSubscription?.cancel();
     super.dispose();
+  }
+
+  void _onPreferencesChanged() {
+    if (!mounted) return;
+    final memberships =
+        (UserPrefsService().prefs?.memberships ?? const <String>[])
+            .map((name) => name.trim().toLowerCase())
+            .where((name) => name.isNotEmpty)
+            .toSet();
+    LearnedPreferenceService().setMembershipContext(memberships);
+    setState(() => _memberships = memberships);
   }
 
   void _onLateNotificationTap() {
@@ -75,6 +107,8 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Future<void> _loadData() async {
+    final owner = SupabaseService.currentUserId;
+    final generation = ++_loadGeneration;
     try {
       await GmailConnectionService.restorePendingConnect();
       if (GmailConnectionService.hasPendingConnect) {
@@ -86,6 +120,12 @@ class _MainScreenState extends State<MainScreen> {
           GmailConnectionService.reportFailure('restore_connection', e);
         }
       }
+      await UserPrefsService().load();
+      if (!mounted ||
+          owner != SupabaseService.currentUserId ||
+          generation != _loadGeneration) {
+        return;
+      }
       final results = await Future.wait([
         PromotionsService.load(),
         EmailDealsService.loadForCurrentUser(),
@@ -94,6 +134,11 @@ class _MainScreenState extends State<MainScreen> {
       final promos = results[0] as List<Promotion>;
       final emailPromos = results[1] as List<Promotion>;
       final memberships = results[2] as Set<String>;
+      if (!mounted ||
+          owner != SupabaseService.currentUserId ||
+          generation != _loadGeneration) {
+        return;
+      }
       final learned = LearnedPreferenceService();
       unawaited(learned.loadForCurrentUser(UserPrefsService().userId));
       learned.setMembershipContext(memberships);
@@ -107,7 +152,11 @@ class _MainScreenState extends State<MainScreen> {
         await LocationService.attachDistances(combined, position);
       }
 
-      if (!mounted) return;
+      if (!mounted ||
+          owner != SupabaseService.currentUserId ||
+          generation != _loadGeneration) {
+        return;
+      }
       setState(() {
         _all = combined;
         _memberships = memberships;
@@ -118,7 +167,11 @@ class _MainScreenState extends State<MainScreen> {
       _svc.recordSessionStart();
       await _navigatePendingNotification();
     } catch (_) {
-      if (!mounted) return;
+      if (!mounted ||
+          owner != SupabaseService.currentUserId ||
+          generation != _loadGeneration) {
+        return;
+      }
       setState(() {
         _loading = false;
         _error = true;
@@ -241,12 +294,14 @@ class _MainScreenState extends State<MainScreen> {
           index: _tab,
           children: [
             ForYouScreen(
+              key: ValueKey('for-you|${SupabaseService.currentUserId}'),
               all: _all,
               active: _tab == 0,
               memberships: _memberships,
               onRefresh: _refreshCurrentTab,
             ),
             NearMeScreen(
+              key: ValueKey('near-me|${SupabaseService.currentUserId}'),
               all: _all,
               active: _tab == 1,
               position: _position,
@@ -256,7 +311,9 @@ class _MainScreenState extends State<MainScreen> {
               onRefresh: _refreshCurrentTab,
               onRequestLocation: _ensureLocation,
             ),
-            const ProfileScreen(),
+            ProfileScreen(
+              key: ValueKey('settings|${SupabaseService.currentUserId}'),
+            ),
           ],
         ),
       ),
