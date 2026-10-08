@@ -52,6 +52,63 @@ Widget fixture({
 );
 
 void main() {
+  testWidgets('rapid dismissals replace Undo without queuing old bars', (
+    tester,
+  ) async {
+    final undone = <String>[];
+    await tester.pumpWidget(
+      fixture(
+        onUndo: (p, pos, dir) async {
+          undone.add(p.id);
+        },
+      ),
+    );
+    for (var i = 0; i < 4; i++) {
+      await tester.tap(find.byTooltip('Not interested').at(i));
+      await tester.pump(const Duration(milliseconds: 30));
+    }
+    await tester.pumpAndSettle();
+    expect(find.text('Undo'), findsOneWidget);
+    await tester.tap(find.text('Undo'));
+    await tester.pumpAndSettle();
+    expect(undone, [deal(3).id]);
+    expect(find.text('Offer 3'), findsOneWidget);
+    await tester.pump(const Duration(seconds: 5));
+    await tester.pumpAndSettle();
+    expect(find.text('Undo'), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('out of order feedback cannot replace latest Undo', (
+    tester,
+  ) async {
+    final first = Completer<void>();
+    final second = Completer<void>();
+    final undone = <String>[];
+    await tester.pumpWidget(
+      fixture(
+        onDismiss: (p, pos, dir) =>
+            p.id == deal(0).id ? first.future : second.future,
+        onUndo: (p, pos, dir) async {
+          undone.add(p.id);
+        },
+      ),
+    );
+    await tester.tap(find.byTooltip('Not interested').first);
+    await tester.pump();
+    await tester.tap(find.byTooltip('Not interested').at(1));
+    await tester.pump();
+    second.complete();
+    await tester.pumpAndSettle();
+    first.complete();
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Undo'));
+    await tester.pumpAndSettle();
+    expect(undone, [deal(1).id]);
+    expect(find.text('Offer 0'), findsNothing);
+    expect(find.text('Offer 1'), findsOneWidget);
+  });
+
   void expectTenDeals(WidgetTester tester) {
     expect(
       tester

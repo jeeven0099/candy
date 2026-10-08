@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/promotion.dart';
 import '../services/interaction_service.dart';
@@ -10,6 +9,7 @@ import '../services/learned_preference_service.dart';
 import '../services/supabase_service.dart';
 import '../services/location_service.dart';
 import '../services/user_prefs_service.dart';
+import '../services/user_memberships_service.dart';
 import '../theme/candy_colors.dart';
 import '../utils/feed_ranker.dart';
 import '../utils/format_utils.dart';
@@ -19,7 +19,6 @@ import '../widgets/deal_feed_sliver.dart';
 import '../widgets/deal_impression_tracker.dart';
 import 'deal_detail_screen.dart';
 
-const _kRadiusKey = 'near_me_radius_mi';
 const _kRadiusOptions = [1, 3, 5, 10];
 
 class NearMeScreen extends StatefulWidget {
@@ -55,33 +54,50 @@ class _NearMeScreenState extends State<NearMeScreen> {
   @override
   void initState() {
     super.initState();
+    UserPrefsService.nearMeRadiusNotifier.addListener(_onRadiusChanged);
     _loadRadius();
   }
 
+  void _onRadiusChanged() {
+    if (mounted) {
+      setState(() => _radiusMi = UserPrefsService.nearMeRadiusNotifier.value);
+    }
+  }
+
+  @override
+  void dispose() {
+    UserPrefsService.nearMeRadiusNotifier.removeListener(_onRadiusChanged);
+    super.dispose();
+  }
+
   Future<void> _loadRadius() async {
-    final prefs = await SharedPreferences.getInstance();
-    final saved = prefs.getInt(_kRadiusKey);
-    if (saved != null && mounted) setState(() => _radiusMi = saved);
+    final owner = SupabaseService.currentUserId;
+    final saved = await UserPrefsService.loadNearMeRadius();
+    if (mounted && owner == SupabaseService.currentUserId) {
+      setState(() => _radiusMi = saved);
+    }
   }
 
   Future<void> _setRadius(int miles) async {
     setState(() {
       _radiusMi = miles;
     });
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_kRadiusKey, miles);
+    try {
+      await UserPrefsService.setNearMeRadius(miles);
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Could not sync your radius')),
+        );
+      }
+    }
   }
 
   bool _hasMembership(Promotion p) {
-    if (widget.memberships.isEmpty) return false;
-    final brand = p.brand.toLowerCase();
-    final memberName = (p.membershipName ?? '').toLowerCase();
-    return widget.memberships.any(
-      (m) =>
-          m.contains(brand) ||
-          brand.contains(m) ||
-          (memberName.isNotEmpty &&
-              (m.contains(memberName) || memberName.contains(m))),
+    return UserMembershipsService.hasMembership(
+      widget.memberships,
+      p.brand,
+      p.membershipName,
     );
   }
 

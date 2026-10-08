@@ -39,6 +39,7 @@ class DealFeedSliver extends StatefulWidget {
 class _DealFeedSliverState extends State<DealFeedSliver> {
   final _queue = DealFeedQueue(reserveLimit: RankingContract.feedReserveLimit);
   int _generation = 0;
+  int _dismissSequence = 0;
 
   @override
   void initState() {
@@ -51,6 +52,7 @@ class _DealFeedSliverState extends State<DealFeedSliver> {
     super.didUpdateWidget(oldWidget);
     if (widget.revision != oldWidget.revision) {
       _generation++;
+      _dismissSequence++;
       _queue.reset(widget.rankedDeals);
     } else {
       _queue.reconcile(widget.rankedDeals);
@@ -64,6 +66,10 @@ class _DealFeedSliverState extends State<DealFeedSliver> {
   ) async {
     final dismissal = _queue.dismiss(promo.id);
     if (dismissal == null) return;
+    final sequence = ++_dismissSequence;
+    final currentMessenger = ScaffoldMessenger.of(context);
+    currentMessenger.clearSnackBars();
+    currentMessenger.removeCurrentSnackBar();
     final revision = widget.revision;
     final undo = widget.onUndo;
     setState(() {});
@@ -81,28 +87,42 @@ class _DealFeedSliverState extends State<DealFeedSliver> {
       }
       if (!mounted || widget.revision != revision) return;
       setState(() => _queue.undo(dismissal));
+      if (sequence != _dismissSequence) return;
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).removeCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Could not save your feedback')),
       );
       return;
     }
-    if (!mounted || widget.revision != revision) return;
+    if (!mounted ||
+        widget.revision != revision ||
+        sequence != _dismissSequence) {
+      return;
+    }
     final messenger = ScaffoldMessenger.of(context);
-    messenger.hideCurrentSnackBar();
+    messenger.clearSnackBars();
+    messenger.removeCurrentSnackBar();
     messenger.showSnackBar(
       SnackBar(
         content: const Text('Deal dismissed'),
-        duration: const Duration(seconds: 4),
+        duration: const Duration(seconds: 2),
         action: SnackBarAction(
           label: 'Undo',
           onPressed: () async {
-            if (!mounted || widget.revision != revision) return;
+            if (!mounted ||
+                widget.revision != revision ||
+                sequence != _dismissSequence) {
+              return;
+            }
             try {
               await undo(promo, position, direction);
               if (!mounted || widget.revision != revision) return;
               setState(() => _queue.undo(dismissal));
             } catch (_) {
-              if (mounted) {
+              if (mounted &&
+                  widget.revision == revision &&
+                  sequence == _dismissSequence) {
                 messenger.showSnackBar(
                   const SnackBar(content: Text('Could not restore this deal')),
                 );

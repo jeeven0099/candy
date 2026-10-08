@@ -31,6 +31,8 @@ class InteractionService extends ChangeNotifier {
   final Set<String> _feedImpressions = {};
   final Set<String> _pendingFeedImpressions = {};
   final Set<String> _locallySeenFeedDeals = {};
+  String _accountKey(String key) =>
+      '${SupabaseService.currentUserId ?? 'guest'}|$key';
 
   Future<bool> recordFeedImpression(
     Promotion promo, {
@@ -77,10 +79,10 @@ class InteractionService extends ChangeNotifier {
 
   // ── Seen ──────────────────────────────────────────────────────────────────
 
-  int seenCount(String id) => _prefs?.getInt('$_seen$id') ?? 0;
+  int seenCount(String id) => _prefs?.getInt(_accountKey('$_seen$id')) ?? 0;
 
   DateTime? lastSeenAt(String id) {
-    final s = _prefs?.getString('$_lastSeen$id');
+    final s = _prefs?.getString(_accountKey('$_lastSeen$id'));
     return s != null ? DateTime.tryParse(s) : null;
   }
 
@@ -98,17 +100,21 @@ class InteractionService extends ChangeNotifier {
     }
     debugPrint('[Fatigue] recordSeen: writing ${ids.length} deals');
     final now = DateTime.now().toIso8601String();
+    final owner = SupabaseService.currentUserId;
     for (final id in ids) {
-      final next = (p.getInt('$_seen$id') ?? 0) + 1;
-      await p.setInt('$_seen$id', next);
-      await p.setString('$_lastSeen$id', now);
+      if (owner != SupabaseService.currentUserId) return;
+      final seenKey = _accountKey('$_seen$id');
+      final dateKey = _accountKey('$_lastSeen$id');
+      final next = (p.getInt(seenKey) ?? 0) + 1;
+      await p.setInt(seenKey, next);
+      await p.setString(dateKey, now);
       debugPrint('[Fatigue]   $id → seenCount=$next');
     }
   }
 
   // ── Click ─────────────────────────────────────────────────────────────────
 
-  int clickCount(String id) => _prefs?.getInt('$_click$id') ?? 0;
+  int clickCount(String id) => _prefs?.getInt(_accountKey('$_click$id')) ?? 0;
 
   Future<void> recordClick(
     String id, {
@@ -118,8 +124,11 @@ class InteractionService extends ChangeNotifier {
   }) async {
     final p = _prefs;
     if (p == null) return;
-    final nextClick = (p.getInt('$_click$id') ?? 0) + 1;
-    await p.setInt('$_click$id', nextClick);
+    final owner = SupabaseService.currentUserId;
+    final key = _accountKey('$_click$id');
+    final nextClick = (p.getInt(key) ?? 0) + 1;
+    await p.setInt(key, nextClick);
+    if (owner != SupabaseService.currentUserId) return;
     debugPrint(
       '[Fatigue] recordClick $id → clicks=$nextClick (seenCount unchanged — tap = interest, not fatigue)',
     );
@@ -137,7 +146,8 @@ class InteractionService extends ChangeNotifier {
 
   // ── Fast Redeem ───────────────────────────────────────────────────────────
 
-  bool hasFastRedeemed(String id) => _prefs?.getBool('$_redeem$id') ?? false;
+  bool hasFastRedeemed(String id) =>
+      _prefs?.getBool(_accountKey('$_redeem$id')) ?? false;
 
   Future<void> recordFastRedeem(
     String id, {
@@ -145,7 +155,9 @@ class InteractionService extends ChangeNotifier {
     String category = '',
     Map<String, dynamic>? meta,
   }) async {
-    await _prefs?.setBool('$_redeem$id', true);
+    final owner = SupabaseService.currentUserId;
+    await _prefs?.setBool(_accountKey('$_redeem$id'), true);
+    if (owner != SupabaseService.currentUserId) return;
 
     _writeInteraction(
       'fast_redeem_clicked',
@@ -161,17 +173,19 @@ class InteractionService extends ChangeNotifier {
   // ── Brand search ──────────────────────────────────────────────────────────
 
   bool isBrandRecentlySearched(String brand, {int withinDays = 3}) {
-    final s = _prefs?.getString('$_brandSrc${_norm(brand)}');
+    final s = _prefs?.getString(_accountKey('$_brandSrc${_norm(brand)}'));
     if (s == null) return false;
     final dt = DateTime.tryParse(s);
     return dt != null && DateTime.now().difference(dt).inDays < withinDays;
   }
 
   Future<void> recordBrandSearch(String brand) async {
+    final owner = SupabaseService.currentUserId;
     await _prefs?.setString(
-      '$_brandSrc${_norm(brand)}',
+      _accountKey('$_brandSrc${_norm(brand)}'),
       DateTime.now().toIso8601String(),
     );
+    if (owner != SupabaseService.currentUserId) return;
     _writeInteraction('search_submitted', brand: brand);
     _bumpBrandAffinity(brand, searches: 1);
   }
@@ -189,25 +203,30 @@ class InteractionService extends ChangeNotifier {
     final p = _prefs;
     if (p == null || query.trim().isEmpty) return;
     final normed = _norm(query);
+    final owner = SupabaseService.currentUserId;
+    final failedKey = _accountKey(_srchFailedKey);
 
     // Local counts
-    final key = '$_srchPrefix$normed';
+    final key = _accountKey('$_srchPrefix$normed');
     await p.setInt(key, (p.getInt(key) ?? 0) + 1);
     if (resultCount == 0) {
-      final failed = List<String>.from(p.getStringList(_srchFailedKey) ?? []);
+      final failed = List<String>.from(p.getStringList(failedKey) ?? []);
       if (!failed.contains(normed)) {
         failed.add(normed);
         if (failed.length > 50) failed.removeAt(0);
-        await p.setStringList(_srchFailedKey, failed);
+        await p.setStringList(failedKey, failed);
       }
     }
 
     // Supabase search_events
-    _writeSearchEvent(query, normed, resultCount, context: context);
+    if (owner == SupabaseService.currentUserId) {
+      _writeSearchEvent(query, normed, resultCount, context: context);
+    }
   }
 
-  List<String> getFailedSearches() =>
-      List<String>.from(_prefs?.getStringList(_srchFailedKey) ?? []);
+  List<String> getFailedSearches() => List<String>.from(
+    _prefs?.getStringList(_accountKey(_srchFailedKey)) ?? [],
+  );
 
   // ── Recent searches ───────────────────────────────────────────────────────
 
@@ -218,22 +237,24 @@ class InteractionService extends ChangeNotifier {
     if (q.length < 2) return;
     final p = _prefs;
     if (p == null) return;
-    final raw = List<String>.from(p.getStringList(_recentKey) ?? []);
+    final key = _accountKey(_recentKey);
+    final raw = List<String>.from(p.getStringList(key) ?? []);
     raw.remove(q);
     raw.insert(0, q);
     if (raw.length > 10) raw.removeLast();
-    await p.setStringList(_recentKey, raw);
+    await p.setStringList(key, raw);
   }
 
   List<String> getRecentSearches() =>
-      List<String>.from(_prefs?.getStringList(_recentKey) ?? []);
+      List<String>.from(_prefs?.getStringList(_accountKey(_recentKey)) ?? []);
 
   Future<void> clearRecentSearch(String query) async {
     final p = _prefs;
     if (p == null) return;
-    final raw = List<String>.from(p.getStringList(_recentKey) ?? []);
+    final key = _accountKey(_recentKey);
+    final raw = List<String>.from(p.getStringList(key) ?? []);
     raw.remove(query.trim());
-    await p.setStringList(_recentKey, raw);
+    await p.setStringList(key, raw);
   }
 
   // ── Notification feedback ─────────────────────────────────────────────────
@@ -269,7 +290,9 @@ class InteractionService extends ChangeNotifier {
     String category = '',
     Map<String, dynamic>? meta,
   }) async {
+    final owner = SupabaseService.currentUserId;
     await _prefs?.setBool(_skipKey(id), true);
+    if (owner != SupabaseService.currentUserId) return;
     _writeInteraction(
       'not_interested',
       promotionId: id,
@@ -286,7 +309,9 @@ class InteractionService extends ChangeNotifier {
     String category = '',
     Map<String, dynamic>? meta,
   }) async {
+    final owner = SupabaseService.currentUserId;
     await _prefs?.remove(_skipKey(id));
+    if (owner != SupabaseService.currentUserId) return;
     _writeInteraction(
       'not_interested_undone',
       promotionId: id,

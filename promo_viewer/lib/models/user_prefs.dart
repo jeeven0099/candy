@@ -14,38 +14,45 @@ class HiddenBrand {
     if (j is String) return HiddenBrand(brand: j, hiddenAt: DateTime.now());
     final m = j as Map<String, dynamic>;
     return HiddenBrand(
-      brand:    m['brand']    as String,
-      hiddenAt: DateTime.tryParse(m['hidden_at'] as String? ?? '') ?? DateTime.now(),
-      source:   m['source']   as String? ?? 'user_menu',
+      brand: m['brand'] as String,
+      hiddenAt:
+          DateTime.tryParse(m['hidden_at'] as String? ?? '') ?? DateTime.now(),
+      source: m['source'] as String? ?? 'user_menu',
     );
   }
 
   Map<String, dynamic> toJson() => {
-    'brand':     brand,
+    'brand': brand,
     'hidden_at': hiddenAt.toIso8601String(),
-    'source':    source,
+    'source': source,
   };
 }
 
 class UserPrefs {
-  final List<String>       favoriteCategories;
-  final List<String>       favoriteBrands;
-  final List<String>       dealPriorities; // slugs: free, bogo, discount, nearby, online, rewards
-  final List<HiddenBrand>  hiddenBrands;
-  final int?               birthdayMonth;  // 1–12
-  final int?               birthdayDay;    // 1–31
+  final List<String> favoriteCategories;
+  final List<String> favoriteBrands;
+  final List<String>
+  dealPriorities; // slugs: free, bogo, discount, nearby, online, rewards
+  final List<HiddenBrand> hiddenBrands;
+  final List<String> memberships;
+  final int? birthdayMonth; // 1–12
+  final int? birthdayDay; // 1–31
 
   const UserPrefs({
     this.favoriteCategories = const [],
-    this.favoriteBrands     = const [],
-    this.dealPriorities     = const [],
-    this.hiddenBrands       = const [],
+    this.favoriteBrands = const [],
+    this.dealPriorities = const [],
+    this.hiddenBrands = const [],
+    this.memberships = const [],
     this.birthdayMonth,
     this.birthdayDay,
   });
 
   bool get isEmpty =>
-      favoriteCategories.isEmpty && favoriteBrands.isEmpty && dealPriorities.isEmpty;
+      favoriteCategories.isEmpty &&
+      favoriteBrands.isEmpty &&
+      dealPriorities.isEmpty &&
+      memberships.isEmpty;
 
   bool isHiddenBrand(String brand) {
     final b = brand.toLowerCase();
@@ -53,47 +60,65 @@ class UserPrefs {
   }
 
   factory UserPrefs.fromJson(Map<String, dynamic> j) => UserPrefs(
-    favoriteCategories: List<String>.from(j['favorite_categories'] as List? ?? []),
-    favoriteBrands:     List<String>.from(j['favorite_brands']     as List? ?? []),
-    dealPriorities:     List<String>.from(j['preferred_contexts']  as List? ?? []),
+    favoriteCategories: List<String>.from(
+      j['favorite_categories'] as List? ?? [],
+    ),
+    favoriteBrands: List<String>.from(j['favorite_brands'] as List? ?? []),
+    dealPriorities: List<String>.from(j['preferred_contexts'] as List? ?? []),
+    memberships: List<String>.from(j['memberships'] as List? ?? []),
     hiddenBrands: (j['hidden_brands'] as List? ?? [])
         .map((e) => HiddenBrand.fromJson(e))
         .toList(),
     birthdayMonth: j['birthday_month'] as int?,
-    birthdayDay:   j['birthday_day']   as int?,
+    birthdayDay: j['birthday_day'] as int?,
   );
 
   Map<String, dynamic> toJson() => {
     'favorite_categories': favoriteCategories,
-    'favorite_brands':     favoriteBrands,
-    'preferred_contexts':  dealPriorities,
-    'hidden_brands':       hiddenBrands.map((h) => h.toJson()).toList(),
+    'favorite_brands': favoriteBrands,
+    'preferred_contexts': dealPriorities,
+    'memberships': memberships,
+    'hidden_brands': hiddenBrands.map((h) => h.toJson()).toList(),
     if (birthdayMonth != null) 'birthday_month': birthdayMonth,
-    if (birthdayDay   != null) 'birthday_day':   birthdayDay,
-    'updated_at':          DateTime.now().toIso8601String(),
+    if (birthdayDay != null) 'birthday_day': birthdayDay,
+    'updated_at': DateTime.now().toIso8601String(),
   };
 
   UserPrefs withHiddenBrand(String brand) => UserPrefs(
+    memberships: memberships,
     favoriteCategories: favoriteCategories,
-    favoriteBrands:     favoriteBrands,
-    dealPriorities:     dealPriorities,
+    favoriteBrands: favoriteBrands,
+    dealPriorities: dealPriorities,
     hiddenBrands: [
       ...hiddenBrands,
       HiddenBrand(brand: brand, hiddenAt: DateTime.now()),
     ],
     birthdayMonth: birthdayMonth,
-    birthdayDay:   birthdayDay,
+    birthdayDay: birthdayDay,
   );
 
   UserPrefs withoutHiddenBrand(String brand) {
     final b = brand.toLowerCase();
     return UserPrefs(
+      memberships: memberships,
       favoriteCategories: favoriteCategories,
-      favoriteBrands:     favoriteBrands,
-      dealPriorities:     dealPriorities,
-      hiddenBrands: hiddenBrands.where((h) => h.brand.toLowerCase() != b).toList(),
+      favoriteBrands: favoriteBrands,
+      dealPriorities: dealPriorities,
+      hiddenBrands: hiddenBrands
+          .where((h) => h.brand.toLowerCase() != b)
+          .toList(),
       birthdayMonth: birthdayMonth,
-      birthdayDay:   birthdayDay,
+      birthdayDay: birthdayDay,
     );
   }
+
+  UserPrefs withMemberships(List<String> programs) => UserPrefs(
+    favoriteCategories: favoriteCategories,
+    favoriteBrands: favoriteBrands,
+    dealPriorities: dealPriorities,
+    hiddenBrands: hiddenBrands,
+    birthdayMonth: birthdayMonth,
+    birthdayDay: birthdayDay,
+    memberships: programs,
+  );
 }

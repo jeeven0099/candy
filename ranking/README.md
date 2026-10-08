@@ -38,8 +38,10 @@ Brand/category/type are represented by the user's smoothed prior reactions,
 not arbitrary numeric IDs or memorized email text. Explicit favorites, deal
 value, discount kind, app/purchase/membership requirements and the app's
 existing membership context are additional features. That membership context
-comes from the existing membership loader, not a new verified user-membership
-system. Feature names/order are shared with `feature_schema.json` and tested.
+comes from the signed-in user's declared programs in Settings > Memberships,
+not a shared catalog or verified membership system. These are stored in that
+user's `user_preferences.memberships` under the existing row-level policies.
+Feature names/order are shared with `feature_schema.json` and tested.
 
 Save events are emitted once by `SavedDealsService`, including context from a
 feed when available. Unsave emits `deal_unsaved`. These follow the existing
@@ -79,6 +81,10 @@ python ranking/train_preferences.py --linked --supabase-cli <path-to-supabase> -
 Apply `supabase/migrations/004_learned_ranking_model.sql` first. Publication
 replaces only the beta model row. Apps fetch that row on startup/pull-to-refresh,
 so a later validated model does not require another iOS binary.
+
+Build 69 also requires `005_user_preference_memberships.sql` before release.
+It adds only the per-user membership field. The new Gmail automation migration,
+worker, and Edge function changes are deferred and are not part of this build.
 
 Feedback updates the app's input profile immediately, but CatBoost trees do not
 train on the phone after each swipe. Rerun the training command periodically,
