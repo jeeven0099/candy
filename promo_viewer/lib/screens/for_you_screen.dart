@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../models/promotion.dart';
 import '../services/interaction_service.dart';
+import '../services/learned_preference_service.dart';
 import '../services/supabase_service.dart';
 import '../services/user_prefs_service.dart';
 import '../theme/candy_colors.dart';
@@ -51,7 +52,11 @@ class _ForYouScreenState extends State<ForYouScreen> {
   @override
   Widget build(BuildContext context) {
     return ListenableBuilder(
-      listenable: Listenable.merge([UserPrefsService(), _svc]),
+      listenable: Listenable.merge([
+        UserPrefsService(),
+        _svc,
+        LearnedPreferenceService(),
+      ]),
       builder: (context, _) {
         final prefs = UserPrefsService().prefs;
         final deals = selectTopDeals(

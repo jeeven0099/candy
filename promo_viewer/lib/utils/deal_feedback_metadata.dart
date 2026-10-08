@@ -1,5 +1,6 @@
 import '../models/promotion.dart';
 import 'ranking_contract.dart';
+import 'preference_features.dart';
 
 Map<String, dynamic> dealFeedbackMetadata(
   Promotion p, {
@@ -15,6 +16,8 @@ Map<String, dynamic> dealFeedbackMetadata(
     'source_group': p.isEmailDerived ? 'email' : 'public',
     'ranking_version': RankingContract.version,
     'confidence_score': p.confidenceScore,
+    'feature_schema': preferenceFeatureVersion,
+    'offer_features': preferenceOfferSnapshot(p),
   };
   if (p.personalRankScore != null) {
     m['personal_rank_score'] = p.personalRankScore;

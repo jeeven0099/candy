@@ -25,32 +25,33 @@ class SavedDeal {
   });
 
   SavedDeal copyWith({DateTime? remindAt}) => SavedDeal(
-        id: id,
-        brand: brand,
-        title: title,
-        endDate: endDate,
-        savedAt: savedAt,
-        remindAt: remindAt ?? this.remindAt,
-      );
+    id: id,
+    brand: brand,
+    title: title,
+    endDate: endDate,
+    savedAt: savedAt,
+    remindAt: remindAt ?? this.remindAt,
+  );
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'brand': brand,
-        'title': title,
-        'endDate': endDate,
-        'savedAt': savedAt.toIso8601String(),
-        'remindAt': remindAt?.toIso8601String(),
-      };
+    'id': id,
+    'brand': brand,
+    'title': title,
+    'endDate': endDate,
+    'savedAt': savedAt.toIso8601String(),
+    'remindAt': remindAt?.toIso8601String(),
+  };
 
   factory SavedDeal.fromJson(Map<String, dynamic> j) => SavedDeal(
-        id: j['id'] as String,
-        brand: j['brand'] as String,
-        title: j['title'] as String,
-        endDate: j['endDate'] as String?,
-        savedAt: DateTime.parse(j['savedAt'] as String),
-        remindAt:
-            j['remindAt'] != null ? DateTime.parse(j['remindAt'] as String) : null,
-      );
+    id: j['id'] as String,
+    brand: j['brand'] as String,
+    title: j['title'] as String,
+    endDate: j['endDate'] as String?,
+    savedAt: DateTime.parse(j['savedAt'] as String),
+    remindAt: j['remindAt'] != null
+        ? DateTime.parse(j['remindAt'] as String)
+        : null,
+  );
 }
 
 class SavedDealsService extends ChangeNotifier {
@@ -105,7 +106,13 @@ class SavedDealsService extends ChangeNotifier {
     return list;
   }
 
-  Future<void> save(Promotion promo, {DateTime? remindAt}) async {
+  Future<void> save(
+    Promotion promo, {
+    DateTime? remindAt,
+    Map<String, dynamic>? feedbackMeta,
+  }) async {
+    if (_saved.containsKey(promo.id)) return;
+    final meta = feedbackMeta ?? InteractionService.promoMeta(promo);
     final now = DateTime.now();
     _saved[promo.id] = SavedDeal(
       id: promo.id,
@@ -118,20 +125,33 @@ class SavedDealsService extends ChangeNotifier {
     await _persist();
     notifyListeners();
 
+    InteractionService().recordDealSaved(
+      promo.id,
+      brand: promo.brand,
+      category: promo.category,
+      meta: meta,
+    );
+
     // Supabase write (fire-and-forget)
     final uid = UserPrefsService().userId;
     if (uid != null && SupabaseService.isLoggedIn) {
-      SupabaseService.client.from('saved_deals').upsert({
-        'user_id':          uid,
-        'promotion_id':     promo.id,
-        'brand':            promo.brand,
-        'title_snapshot':   promo.title,
-        'source_url_snapshot': promo.sourceUrl,
-        'saved_at':         now.toIso8601String(),
-        'status':           'active',
-      }, onConflict: 'user_id,promotion_id').then((_) {}, onError: (e) {
-        if (kDebugMode) debugPrint('[SavedDealsService] save: $e');
-      });
+      SupabaseService.client
+          .from('saved_deals')
+          .upsert({
+            'user_id': uid,
+            'promotion_id': promo.id,
+            'brand': promo.brand,
+            'title_snapshot': promo.title,
+            'source_url_snapshot': promo.sourceUrl,
+            'saved_at': now.toIso8601String(),
+            'status': 'active',
+          }, onConflict: 'user_id,promotion_id')
+          .then(
+            (_) {},
+            onError: (e) {
+              if (kDebugMode) debugPrint('[SavedDealsService] save: $e');
+            },
+          );
       InteractionService().bumpBrandAffinityPublic(promo.brand, saves: 1);
       InteractionService().bumpCategoryAffinityPublic(promo.category, saves: 1);
     }
@@ -152,21 +172,32 @@ class SavedDealsService extends ChangeNotifier {
   }
 
   Future<void> unsave(String id) async {
+    final existing = _saved[id];
+    if (existing == null) return;
     await NotificationService().cancelReminder(id);
     _saved.remove(id);
     await _persist();
     notifyListeners();
 
+    InteractionService().recordDealUnsaved(id, brand: existing.brand);
+
     // Supabase write (fire-and-forget)
     final uid = UserPrefsService().userId;
     if (uid != null && SupabaseService.isLoggedIn) {
-      SupabaseService.client.from('saved_deals')
-          .update({'status': 'deleted', 'deleted_at': DateTime.now().toIso8601String()})
+      SupabaseService.client
+          .from('saved_deals')
+          .update({
+            'status': 'deleted',
+            'deleted_at': DateTime.now().toIso8601String(),
+          })
           .eq('user_id', uid)
           .eq('promotion_id', id)
-          .then((_) {}, onError: (e) {
-        if (kDebugMode) debugPrint('[SavedDealsService] unsave: $e');
-      });
+          .then(
+            (_) {},
+            onError: (e) {
+              if (kDebugMode) debugPrint('[SavedDealsService] unsave: $e');
+            },
+          );
     }
   }
 

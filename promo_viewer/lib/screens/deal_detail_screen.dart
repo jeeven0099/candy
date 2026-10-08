@@ -1422,12 +1422,6 @@ class _DetailSaveButton extends StatelessWidget {
               await svc.unsave(promo.id);
             } else {
               await svc.save(promo);
-              InteractionService().recordDealSaved(
-                promo.id,
-                brand: promo.brand,
-                category: promo.category,
-                meta: InteractionService.promoMeta(promo),
-              );
               if (ctx.mounted) {
                 showModalBottomSheet(
                   context: ctx,

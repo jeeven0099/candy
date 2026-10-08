@@ -5,6 +5,7 @@ import '../models/promotion.dart';
 import '../utils/deal_feedback_metadata.dart';
 import 'supabase_service.dart';
 import 'user_prefs_service.dart';
+import 'learned_preference_service.dart';
 
 /// Tracks per-deal user interactions.
 /// Local SharedPreferences state drives fatigue/affinity in the runtime ranker.
@@ -255,7 +256,12 @@ class InteractionService extends ChangeNotifier {
 
   static const _skipDeal = 'skip_deal_';
 
-  bool isDealSkipped(String id) => _prefs?.getBool('$_skipDeal$id') ?? false;
+  String _skipKey(String id) =>
+      '$_skipDeal${SupabaseService.currentUserId ?? 'guest'}|$id';
+
+  bool isDealSkipped(String id) =>
+      (_prefs?.getBool(_skipKey(id)) ?? false) ||
+      LearnedPreferenceService().isDismissed(id);
 
   Future<void> skipDeal(
     String id, {
@@ -263,7 +269,7 @@ class InteractionService extends ChangeNotifier {
     String category = '',
     Map<String, dynamic>? meta,
   }) async {
-    await _prefs?.setBool('$_skipDeal$id', true);
+    await _prefs?.setBool(_skipKey(id), true);
     _writeInteraction(
       'not_interested',
       promotionId: id,
@@ -280,7 +286,7 @@ class InteractionService extends ChangeNotifier {
     String category = '',
     Map<String, dynamic>? meta,
   }) async {
-    await _prefs?.remove('$_skipDeal$id');
+    await _prefs?.remove(_skipKey(id));
     _writeInteraction(
       'not_interested_undone',
       promotionId: id,
@@ -327,6 +333,10 @@ class InteractionService extends ChangeNotifier {
     final now = DateTime.now().microsecondsSinceEpoch;
     _eventSequence = now > _eventSequence ? now : _eventSequence + 1;
     row['metadata'] = {...?metadata, 'event_sequence': _eventSequence};
+    LearnedPreferenceService().record({
+      ...row,
+      'created_at': DateTime.now().toUtc().toIso8601String(),
+    });
 
     try {
       await SupabaseService.client.from('user_interactions').insert(row);
@@ -562,6 +572,9 @@ class InteractionService extends ChangeNotifier {
     metadata: meta,
   );
 
+  void recordDealUnsaved(String promoId, {String brand = ''}) =>
+      _writeInteraction('deal_unsaved', promotionId: promoId, brand: brand);
+
   // ── Rich event metadata builder ───────────────────────────────────────────
   //
   // Call at every analytics site that has a Promotion in scope:
@@ -572,12 +585,24 @@ class InteractionService extends ChangeNotifier {
     String? rankingMode,
     int? feedPosition,
     double? runtimeScore,
-  }) => dealFeedbackMetadata(
-    p,
-    rankingMode: rankingMode,
-    feedPosition: feedPosition,
-    runtimeScore: runtimeScore,
-  );
+  }) {
+    final learned = LearnedPreferenceService();
+    final features = learned.features(p, prefs: UserPrefsService().prefs);
+    return {
+      ...dealFeedbackMetadata(
+        p,
+        rankingMode: rankingMode,
+        feedPosition: feedPosition,
+        runtimeScore: runtimeScore,
+      ),
+      'preference_features': features,
+      'learned_model_version': learned.modelVersion ?? 'none',
+      'learned_adjustment': learned.adjustment(
+        p,
+        prefs: UserPrefsService().prefs,
+      ),
+    };
+  }
 
   void recordTabSwitch(int tabIndex, String tabName) => _writeInteraction(
     'tab_switched',

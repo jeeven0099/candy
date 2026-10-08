@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "features": [
+    "quality", "economic_value", "confidence", "discount",
+    "requires_membership", "has_membership", "membership_known",
+    "requires_app", "purchase_required", "minimum_spend_required",
+    "online_only", "email", "favorite_brand", "favorite_category", "priority_match",
+    "brand_preference", "brand_evidence", "category_preference", "category_evidence",
+    "type_preference", "type_evidence", "membership_preference", "membership_evidence",
+    "total_evidence", "discount_free", "discount_percentage", "discount_amount",
+    "discount_points", "discount_bogo", "promotion_reward"
+  ]
+}

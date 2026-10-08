@@ -1,5 +1,5 @@
 class RankingContract {
-  static const version = 'v2_personal_email_top_10';
+  static const version = 'v3_catboost_hybrid_top_10';
 
   static const forYouLimit = 10;
   static const nearMeLimit = 10;
