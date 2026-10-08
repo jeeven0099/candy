@@ -579,12 +579,9 @@ class _HeartButton extends StatelessWidget {
             if (saved) {
               await svc.unsave(promo.id);
             } else {
-              await svc.save(promo);
-              InteractionService().recordDealSaved(
-                promo.id,
-                brand: promo.brand,
-                category: promo.category,
-                meta: InteractionService.promoMeta(
+              await svc.save(
+                promo,
+                feedbackMeta: InteractionService.promoMeta(
                   promo,
                   feedPosition: feedPosition,
                   rankingMode: rankingMode,

@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import '../models/user_prefs.dart';
 import 'supabase_service.dart';
+import 'learned_preference_service.dart';
 
 class UserPrefsService extends ChangeNotifier {
   static final UserPrefsService _i = UserPrefsService._();
@@ -62,7 +63,7 @@ class UserPrefsService extends ChangeNotifier {
           final email = SupabaseService.client.auth.currentUser?.email ?? '';
           await SupabaseService.client.from('users').insert({
             'auth_id': authId,
-            'email':   email,
+            'email': email,
           });
           userRow = await SupabaseService.client
               .from('users')
@@ -76,10 +77,10 @@ class UserPrefsService extends ChangeNotifier {
       }
 
       // onConflict: 'user_id' ensures UPDATE on re-save, not duplicate INSERT.
-      await SupabaseService.client.from('user_preferences').upsert(
-        {'user_id': uid, ...prefs.toJson()},
-        onConflict: 'user_id',
-      );
+      await SupabaseService.client.from('user_preferences').upsert({
+        'user_id': uid,
+        ...prefs.toJson(),
+      }, onConflict: 'user_id');
       _prefs = prefs;
       notifyListeners();
     } catch (e) {
@@ -101,6 +102,7 @@ class UserPrefsService extends ChangeNotifier {
   }
 
   void clear() {
+    LearnedPreferenceService().clear();
     _prefs = null;
     _userId = null;
     notifyListeners();

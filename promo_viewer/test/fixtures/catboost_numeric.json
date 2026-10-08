@@ -1,0 +1,281 @@
+{
+  "artifact": {
+    "schema_version": 1,
+    "format": "catboost_numeric_v1",
+    "version": "test_fixture_never_publish",
+    "feature_names": [
+      "quality",
+      "economic_value",
+      "confidence",
+      "discount",
+      "requires_membership",
+      "has_membership",
+      "membership_known",
+      "requires_app",
+      "purchase_required",
+      "minimum_spend_required",
+      "online_only",
+      "email",
+      "favorite_brand",
+      "favorite_category",
+      "priority_match",
+      "brand_preference",
+      "brand_evidence",
+      "category_preference",
+      "category_evidence",
+      "type_preference",
+      "type_evidence",
+      "membership_preference",
+      "membership_evidence",
+      "total_evidence",
+      "discount_free",
+      "discount_percentage",
+      "discount_amount",
+      "discount_points",
+      "discount_bogo",
+      "promotion_reward"
+    ],
+    "prior": 0.5,
+    "validated": true,
+    "trees": [
+      {
+        "splits": [],
+        "leaves": [
+          0.0
+        ]
+      },
+      {
+        "splits": [
+          {
+            "feature": 15,
+            "border": 0
+          },
+          {
+            "feature": 0,
+            "border": 0.3500000238418579
+          }
+        ],
+        "leaves": [
+          -1.1625363532081863,
+          1.162536353208186,
+          -1.293622643353497,
+          1.293622643353497
+        ]
+      },
+      {
+        "splits": [
+          {
+            "feature": 15,
+            "border": 0
+          }
+        ],
+        "leaves": [
+          -1.0693723146164775,
+          1.0693723146164777
+        ]
+      },
+      {
+        "splits": [
+          {
+            "feature": 15,
+            "border": 0
+          },
+          {
+            "feature": 0,
+            "border": 0.44999998807907104
+          }
+        ],
+        "leaves": [
+          -0.6249826772293305,
+          0.5278585539746116,
+          -0.4955765971193655,
+          0.601453943777412
+        ]
+      },
+      {
+        "splits": [
+          {
+            "feature": 15,
+            "border": 0
+          }
+        ],
+        "leaves": [
+          -0.6020080473299718,
+          0.6032830639661002
+        ]
+      },
+      {
+        "splits": [
+          {
+            "feature": 15,
+            "border": 0
+          }
+        ],
+        "leaves": [
+          -0.45129743363947683,
+          0.4521456686246962
+        ]
+      },
+      {
+        "splits": [
+          {
+            "feature": 15,
+            "border": 0
+          },
+          {
+            "feature": 0,
+            "border": 0.05000000074505806
+          }
+        ],
+        "leaves": [
+          -0.11064448593590169,
+          0.0,
+          -0.3042496594663819,
+          0.3513663213252709
+        ]
+      }
+    ]
+  },
+  "samples": [
+    {
+      "features": {
+        "quality": 0.0,
+        "economic_value": 0.0,
+        "confidence": 0.0,
+        "discount": 0.0,
+        "requires_membership": 0.0,
+        "has_membership": 0.0,
+        "membership_known": 0.0,
+        "requires_app": 0.0,
+        "purchase_required": 0.0,
+        "minimum_spend_required": 0.0,
+        "online_only": 0.0,
+        "email": 0.0,
+        "favorite_brand": 0.0,
+        "favorite_category": 0.0,
+        "priority_match": 0.0,
+        "brand_preference": -0.4,
+        "brand_evidence": 0.0,
+        "category_preference": 0.0,
+        "category_evidence": 0.0,
+        "type_preference": 0.0,
+        "type_evidence": 0.0,
+        "membership_preference": 0.0,
+        "membership_evidence": 0.0,
+        "total_evidence": 0.5,
+        "discount_free": 0.0,
+        "discount_percentage": 0.0,
+        "discount_amount": 0.0,
+        "discount_points": 0.0,
+        "discount_bogo": 0.0,
+        "promotion_reward": 0.0
+      },
+      "probability": 0.017621770271428746
+    },
+    {
+      "features": {
+        "quality": 0.1,
+        "economic_value": 0.0,
+        "confidence": 0.0,
+        "discount": 0.0,
+        "requires_membership": 0.0,
+        "has_membership": 0.0,
+        "membership_known": 0.0,
+        "requires_app": 0.0,
+        "purchase_required": 0.0,
+        "minimum_spend_required": 0.0,
+        "online_only": 0.0,
+        "email": 0.0,
+        "favorite_brand": 0.0,
+        "favorite_category": 0.0,
+        "priority_match": 0.0,
+        "brand_preference": 0.4,
+        "brand_evidence": 0.0,
+        "category_preference": 0.0,
+        "category_evidence": 0.0,
+        "type_preference": 0.0,
+        "type_evidence": 0.0,
+        "membership_preference": 0.0,
+        "membership_evidence": 0.0,
+        "total_evidence": 0.5,
+        "discount_free": 0.0,
+        "discount_percentage": 0.0,
+        "discount_amount": 0.0,
+        "discount_points": 0.0,
+        "discount_bogo": 0.0,
+        "promotion_reward": 0.0
+      },
+      "probability": 0.9847312766195581
+    },
+    {
+      "features": {
+        "quality": 0.2,
+        "economic_value": 0.0,
+        "confidence": 0.0,
+        "discount": 0.0,
+        "requires_membership": 0.0,
+        "has_membership": 0.0,
+        "membership_known": 0.0,
+        "requires_app": 0.0,
+        "purchase_required": 0.0,
+        "minimum_spend_required": 0.0,
+        "online_only": 0.0,
+        "email": 0.0,
+        "favorite_brand": 0.0,
+        "favorite_category": 0.0,
+        "priority_match": 0.0,
+        "brand_preference": -0.4,
+        "brand_evidence": 0.0,
+        "category_preference": 0.0,
+        "category_evidence": 0.0,
+        "type_preference": 0.0,
+        "type_evidence": 0.0,
+        "membership_preference": 0.0,
+        "membership_evidence": 0.0,
+        "total_evidence": 0.5,
+        "discount_free": 0.0,
+        "discount_percentage": 0.0,
+        "discount_amount": 0.0,
+        "discount_points": 0.0,
+        "discount_bogo": 0.0,
+        "promotion_reward": 0.0
+      },
+      "probability": 0.014565219487715018
+    },
+    {
+      "features": {
+        "quality": 0.3,
+        "economic_value": 0.0,
+        "confidence": 0.0,
+        "discount": 0.0,
+        "requires_membership": 0.0,
+        "has_membership": 0.0,
+        "membership_known": 0.0,
+        "requires_app": 0.0,
+        "purchase_required": 0.0,
+        "minimum_spend_required": 0.0,
+        "online_only": 0.0,
+        "email": 0.0,
+        "favorite_brand": 0.0,
+        "favorite_category": 0.0,
+        "priority_match": 0.0,
+        "brand_preference": 0.4,
+        "brand_evidence": 0.0,
+        "category_preference": 0.0,
+        "category_evidence": 0.0,
+        "type_preference": 0.0,
+        "type_evidence": 0.0,
+        "membership_preference": 0.0,
+        "membership_evidence": 0.0,
+        "total_evidence": 0.5,
+        "discount_free": 0.0,
+        "discount_percentage": 0.0,
+        "discount_amount": 0.0,
+        "discount_points": 0.0,
+        "discount_bogo": 0.0,
+        "promotion_reward": 0.0
+      },
+      "probability": 0.9847312766195581
+    }
+  ]
+}

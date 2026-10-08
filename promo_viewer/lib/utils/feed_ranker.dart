@@ -1,6 +1,7 @@
 import '../models/promotion.dart';
 import '../models/user_prefs.dart';
 import '../services/interaction_service.dart';
+import '../services/learned_preference_service.dart';
 import '../services/saved_deals_service.dart';
 import 'ranking_contract.dart';
 
@@ -270,6 +271,7 @@ class ScoreBreakdown {
   final double affinityBoost;
   final double preferenceBoost;
   final double personalModelBoost;
+  final double learnedAdjustment;
   final double fatiguePenalty;
   final bool isHidden;
 
@@ -281,6 +283,7 @@ class ScoreBreakdown {
     required this.affinityBoost,
     required this.preferenceBoost,
     required this.personalModelBoost,
+    this.learnedAdjustment = 0,
     required this.fatiguePenalty,
     required this.isHidden,
   });
@@ -294,7 +297,8 @@ class ScoreBreakdown {
             affinityBoost +
             preferenceBoost +
             personalModelBoost -
-            fatiguePenalty;
+            fatiguePenalty +
+            learnedAdjustment;
 }
 
 ScoreBreakdown computeBreakdown(
@@ -315,6 +319,13 @@ ScoreBreakdown computeBreakdown(
     affinityBoost: affinityBoost(p, svc),
     preferenceBoost: preferenceBoost(p, prefs),
     personalModelBoost: _personalModelBoost(p),
+    learnedAdjustment: hidden
+        ? 0
+        : LearnedPreferenceService().adjustment(
+            p,
+            prefs: prefs,
+            isMember: isMember,
+          ),
     fatiguePenalty: hidden ? _kHide : rawFatigue,
     isHidden: hidden,
   );

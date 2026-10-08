@@ -8,6 +8,8 @@ import '../models/promotion.dart';
 import '../services/email_deals_service.dart';
 import '../services/gmail_connection_service.dart';
 import '../services/interaction_service.dart';
+import '../services/learned_preference_service.dart';
+import '../services/user_prefs_service.dart';
 import '../services/location_service.dart';
 import '../services/notification_service.dart';
 import '../services/promotions_service.dart';
@@ -92,6 +94,9 @@ class _MainScreenState extends State<MainScreen> {
       final promos = results[0] as List<Promotion>;
       final emailPromos = results[1] as List<Promotion>;
       final memberships = results[2] as Set<String>;
+      final learned = LearnedPreferenceService();
+      unawaited(learned.loadForCurrentUser(UserPrefsService().userId));
+      learned.setMembershipContext(memberships);
       final combined = EmailDealsService.mergeWithPublicPromotions(
         promos,
         emailPromos,
