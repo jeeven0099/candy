@@ -13,8 +13,15 @@ permissions:
 jobs:
   build:
     runs-on: macos-14
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_16.2.app/Contents/Developer
     steps:
       - uses: actions/checkout@v4
+
+      - name: Verify iOS toolchain
+        run: |
+          xcodebuild -version
+          xcrun swift --version
 
       - name: Set build version
         id: meta
