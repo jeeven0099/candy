@@ -80,12 +80,12 @@ class RemoteDataService {
     return null;
   }
 
-  static Future<String> load(String filename) async {
+  static Future<String> load(String filename, {bool forceRefresh = false}) async {
     final cf = await _cacheFile(filename);
     final tf = await _tsFile(filename);
 
     // 1. Fresh disk cache
-    if (cf.existsSync() && tf.existsSync()) {
+    if (!forceRefresh && cf.existsSync() && tf.existsSync()) {
       final ts    = int.tryParse(await tf.readAsString()) ?? 0;
       final ageMs = DateTime.now().millisecondsSinceEpoch - ts;
       if (ageMs < _dataTtlMs) return cf.readAsString();

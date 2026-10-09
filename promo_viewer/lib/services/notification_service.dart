@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'remote_data_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -77,19 +79,75 @@ class NotificationService {
 
   static String? pendingPromoId;
   static final tapNotifier = ValueNotifier<String?>(null);
+  static Future<void>? _pendingWrite;
+
+  @visibleForTesting
+  static void resetPendingTapsForTesting() {
+    _pendingWrite = null;
+    pendingPromoId = null;
+    tapNotifier.value = null;
+  }
+
+  static Future<String?> nativeLaunchPromoId() async {
+    if (kIsWeb || defaultTargetPlatform != TargetPlatform.iOS) return null;
+    try {
+      return await const MethodChannel('com.jeeven.candy/notification_launch')
+          .invokeMethod<String>('getInitialPromoId')
+          .timeout(const Duration(seconds: 2));
+    } catch (_) {
+      return null;
+    }
+  }
 
   /// Persists a notification promo_id to SharedPreferences so it survives
   /// app restarts and iOS memory termination.
-  static Future<void> storePendingPromoId(String id) async {
+  static Future<void> storePendingPromoId(String id) {
+    if (id.trim().isEmpty) return Future<void>.value();
+    pendingPromoId = id;
+    _pendingWrite = (_pendingWrite ?? Future<void>.value())
+        .then((_) async {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString(_kPendingPromoId, id);
+        })
+        .catchError((Object error) {
+          debugPrint('[Notification] Could not persist tap');
+        });
+    return _pendingWrite!;
+  }
+
+  static Future<void> queuePromoTap(String id) async {
+    if (id.trim().isEmpty) return;
+    await storePendingPromoId(id);
+    tapNotifier.value = id;
+  }
+
+  static Future<void> restorePendingPromoId() async {
+    await _pendingWrite;
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_kPendingPromoId, id);
+    pendingPromoId ??= prefs.getString(_kPendingPromoId);
+  }
+
+  static Future<void> acknowledgePromoTap(String id) {
+    if (pendingPromoId == id) pendingPromoId = null;
+    if (tapNotifier.value == id) tapNotifier.value = null;
+    _pendingWrite = (_pendingWrite ?? Future<void>.value())
+        .then((_) async {
+          final prefs = await SharedPreferences.getInstance();
+          if (prefs.getString(_kPendingPromoId) == id) {
+            await prefs.remove(_kPendingPromoId);
+          }
+        })
+        .catchError((Object error) {
+          debugPrint('[Notification] Could not clear tap');
+        });
+    return _pendingWrite!;
   }
 
   /// Reads and clears the persisted promo_id. Returns null if none stored.
   static Future<String?> consumePendingPromoId() async {
-    final prefs = await SharedPreferences.getInstance();
-    final id = prefs.getString(_kPendingPromoId);
-    if (id != null) await prefs.remove(_kPendingPromoId);
+    await restorePendingPromoId();
+    final id = pendingPromoId;
+    if (id != null) await acknowledgePromoTap(id);
     return id;
   }
 
@@ -110,11 +168,14 @@ class NotificationService {
               actions: [
                 DarwinNotificationAction.plain(_kInterested, 'Interested'),
                 DarwinNotificationAction.plain(
-                  _kDismissed, 'Not Interested',
+                  _kDismissed,
+                  'Not Interested',
                   options: {DarwinNotificationActionOption.destructive},
                 ),
               ],
-              options: {DarwinNotificationCategoryOption.hiddenPreviewShowTitle},
+              options: {
+                DarwinNotificationCategoryOption.hiddenPreviewShowTitle,
+              },
             ),
           ],
         ),
@@ -124,8 +185,12 @@ class NotificationService {
     );
     final launchDetails = await svc._plugin!.getNotificationAppLaunchDetails();
     if (launchDetails?.didNotificationLaunchApp == true) {
-      final payload = launchDetails?.notificationResponse?.payload;
-      if (payload != null && payload.isNotEmpty) {
+      final response = launchDetails?.notificationResponse;
+      final payload = response?.payload;
+      if (payload != null &&
+          payload.isNotEmpty &&
+          response?.actionId != _kInterested &&
+          response?.actionId != _kDismissed) {
         final id = _parsePayload(payload).id;
         pendingPromoId = id;
         await storePendingPromoId(id);
@@ -133,13 +198,16 @@ class NotificationService {
     }
     final androidPlugin = svc._plugin!
         .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>();
-    await androidPlugin?.createNotificationChannel(const AndroidNotificationChannel(
-      _channelId,
-      _channelName,
-      description: 'Reminders for saved deals expiring soon.',
-      importance: Importance.high,
-    ));
+          AndroidFlutterLocalNotificationsPlugin
+        >();
+    await androidPlugin?.createNotificationChannel(
+      const AndroidNotificationChannel(
+        _channelId,
+        _channelName,
+        description: 'Reminders for saved deals expiring soon.',
+        importance: Importance.high,
+      ),
+    );
     await androidPlugin?.requestNotificationsPermission();
     await androidPlugin?.requestExactAlarmsPermission();
   }
@@ -152,13 +220,15 @@ class NotificationService {
   static String _makePayload(String id, String brand, String category) =>
       jsonEncode({'id': id, 'brand': brand, 'cat': category});
 
-  static ({String id, String brand, String category}) _parsePayload(String payload) {
+  static ({String id, String brand, String category}) _parsePayload(
+    String payload,
+  ) {
     try {
       final m = jsonDecode(payload) as Map<String, dynamic>;
       return (
-        id:       m['id']    as String? ?? payload,
-        brand:    m['brand'] as String? ?? '',
-        category: m['cat']   as String? ?? '',
+        id: m['id'] as String? ?? payload,
+        brand: m['brand'] as String? ?? '',
+        category: m['cat'] as String? ?? '',
       );
     } catch (_) {
       // Legacy payloads are plain promoId strings
@@ -174,23 +244,21 @@ class NotificationService {
     final payload = response.payload;
     if (payload == null || payload.isEmpty) return;
 
-    final parsed  = _parsePayload(payload);
+    final parsed = _parsePayload(payload);
     final promoId = parsed.id;
     final actionId = response.actionId;
 
     if (actionId == _kInterested || actionId == _kDismissed) {
       _recordFeedback(
-          promoId, parsed.brand, parsed.category, actionId == _kInterested);
+        promoId,
+        parsed.brand,
+        parsed.category,
+        actionId == _kInterested,
+      );
       return;
     }
 
-    // Always persist first (for terminated-app restarts), then set tapNotifier
-    // so MainScreen can navigate via addPostFrameCallback when the navigator is
-    // guaranteed ready. Direct _navigatorKey?.currentState?.push() is fragile
-    // because it fires while the app may still be transitioning to foreground.
-    storePendingPromoId(promoId);
-    pendingPromoId = promoId;
-    tapNotifier.value = promoId;
+    unawaited(queuePromoTap(promoId));
   }
 
   static Future<void> _recordFeedback(
