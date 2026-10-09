@@ -12,9 +12,9 @@ permissions:
 
 jobs:
   build:
-    runs-on: macos-14
+    runs-on: macos-15
     env:
-      DEVELOPER_DIR: /Applications/Xcode_16.2.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
     steps:
       - uses: actions/checkout@v4
 
@@ -22,6 +22,7 @@ jobs:
         run: |
           xcodebuild -version
           xcrun swift --version
+          xcrun --sdk iphoneos --show-sdk-version
 
       - name: Set build version
         id: meta
