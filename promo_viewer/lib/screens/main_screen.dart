@@ -11,12 +11,10 @@ import '../services/interaction_service.dart';
 import '../services/learned_preference_service.dart';
 import '../services/user_prefs_service.dart';
 import '../services/location_service.dart';
-import '../services/notification_service.dart';
 import '../services/promotions_service.dart';
 import '../services/supabase_service.dart';
 import '../services/user_memberships_service.dart';
 import '../theme/candy_colors.dart';
-import 'deal_detail_screen.dart';
 import 'for_you_screen.dart';
 import 'near_me_screen.dart';
 import 'profile_screen.dart';
@@ -46,7 +44,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    NotificationService.tapNotifier.addListener(_onLateNotificationTap);
     UserPrefsService().addListener(_onPreferencesChanged);
     _feedOwner = SupabaseService.currentUserId;
     if (SupabaseService.isReady) {
@@ -68,7 +65,6 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void dispose() {
-    NotificationService.tapNotifier.removeListener(_onLateNotificationTap);
     UserPrefsService().removeListener(_onPreferencesChanged);
     _authSubscription?.cancel();
     super.dispose();
@@ -83,27 +79,6 @@ class _MainScreenState extends State<MainScreen> {
             .toSet();
     LearnedPreferenceService().setMembershipContext(memberships);
     setState(() => _memberships = memberships);
-  }
-
-  void _onLateNotificationTap() {
-    final promoId = NotificationService.tapNotifier.value;
-    if (promoId == null || !mounted) return;
-    NotificationService.tapNotifier.value = null;
-    if (_all.isEmpty) return;
-    _openPromoById(promoId);
-  }
-
-  void _openPromoById(String promoId) {
-    final matches = _all.where((p) => p.id == promoId);
-    if (matches.isEmpty) return;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted) return;
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => DealDetailScreen(promo: matches.first),
-        ),
-      );
-    });
   }
 
   Future<void> _loadData() async {
@@ -165,7 +140,6 @@ class _MainScreenState extends State<MainScreen> {
         _lastUpdated = DateTime.now();
       });
       _svc.recordSessionStart();
-      await _navigatePendingNotification();
     } catch (_) {
       if (!mounted ||
           owner != SupabaseService.currentUserId ||
@@ -177,16 +151,6 @@ class _MainScreenState extends State<MainScreen> {
         _error = true;
       });
     }
-  }
-
-  Future<void> _navigatePendingNotification() async {
-    String? promoId = await NotificationService.consumePendingPromoId();
-    promoId ??= NotificationService.pendingPromoId;
-    NotificationService.pendingPromoId = null;
-    promoId ??= NotificationService.tapNotifier.value;
-    NotificationService.tapNotifier.value = null;
-    if (promoId == null || !mounted) return;
-    _openPromoById(promoId);
   }
 
   Future<void> _ensureLocation() async {

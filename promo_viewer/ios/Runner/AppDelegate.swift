@@ -5,6 +5,8 @@ import FirebaseMessaging
 
 @main
 @objc class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate {
+  static var notificationLaunchPromoId: String?
+  private var notificationLaunchChannel: FlutterMethodChannel?
   override func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -30,5 +32,17 @@ import FirebaseMessaging
 
   func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
+    notificationLaunchChannel = FlutterMethodChannel(
+      name: "com.jeeven.candy/notification_launch",
+      binaryMessenger: engineBridge.applicationRegistrar.messenger()
+    )
+    notificationLaunchChannel?.setMethodCallHandler { call, result in
+      guard call.method == "getInitialPromoId" else {
+        result(FlutterMethodNotImplemented)
+        return
+      }
+      result(AppDelegate.notificationLaunchPromoId)
+      AppDelegate.notificationLaunchPromoId = nil
+    }
   }
 }

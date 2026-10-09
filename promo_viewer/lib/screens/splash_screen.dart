@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-import '../services/interaction_service.dart';
+import '../services/app_startup_service.dart';
 import '../services/notification_service.dart';
-import '../services/push_token_service.dart';
-import '../services/saved_deals_service.dart';
 import '../services/supabase_service.dart';
-import '../services/timezone_service.dart';
-import '../services/user_prefs_service.dart';
 import '../theme/candy_colors.dart';
 import 'main_screen.dart';
 import 'onboarding_screen.dart';
@@ -46,7 +41,8 @@ double _t(int ms) => ms / _kDur;
 // ── Screen ────────────────────────────────────────────────────────────────────
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen({super.key, this.onFinished});
+  final VoidCallback? onFinished;
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -119,24 +115,16 @@ class _SplashScreenState extends State<SplashScreen>
   Future<void> _init() async {
     final t = Stopwatch()..start();
 
-    await TimezoneService.init();
-    await SavedDealsService.init();
-    await InteractionService.init();
-    await SupabaseService.init();
-
-    if (SupabaseService.isLoggedIn) {
-      await UserPrefsService().load();
-      final uid = SupabaseService.currentUserId;
-      if (uid != null) await SavedDealsService().loadForUser(uid);
-      _tagSentryUser();
-      PushTokenService.register();
-    }
+    await AppStartupService.init();
+    if (!mounted) return;
 
     NotificationService().processNotificationCandidates();
 
     final remaining = 2200 - t.elapsedMilliseconds;
     if (remaining > 0) await Future.delayed(Duration(milliseconds: remaining));
     if (!mounted) return;
+
+    widget.onFinished?.call();
 
     Navigator.of(context).pushReplacement(
       PageRouteBuilder(
@@ -147,14 +135,6 @@ class _SplashScreenState extends State<SplashScreen>
             FadeTransition(opacity: anim, child: child),
         transitionDuration: const Duration(milliseconds: 400),
       ),
-    );
-  }
-
-  void _tagSentryUser() {
-    final user = SupabaseService.currentUser;
-    if (user == null) return;
-    Sentry.configureScope(
-      (scope) => scope.setUser(SentryUser(id: user.id, email: user.email)),
     );
   }
 

@@ -21,11 +21,13 @@ class DealDetailScreen extends StatefulWidget {
   final Promotion promo;
   final String? rankingMode;
   final int? feedPosition;
+  final VoidCallback? onBack;
   const DealDetailScreen({
     super.key,
     required this.promo,
     this.rankingMode,
     this.feedPosition,
+    this.onBack,
   });
 
   @override
@@ -104,6 +106,13 @@ class _DealDetailScreenState extends State<DealDetailScreen> {
             )
           : null,
       appBar: AppBar(
+        leading: widget.onBack == null
+            ? null
+            : IconButton(
+                tooltip: 'Back',
+                onPressed: widget.onBack,
+                icon: const Icon(Icons.arrow_back),
+              ),
         backgroundColor: Candy.cream,
         elevation: 0,
         scrolledUnderElevation: 0,
