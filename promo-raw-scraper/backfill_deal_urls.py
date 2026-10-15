@@ -13,10 +13,12 @@ import json
 import re
 import sys
 from pathlib import Path
+from urllib.parse import urljoin
 
 ROOT = Path(__file__).resolve().parent
 SRC  = ROOT / "src"
 sys.path.insert(0, str(SRC))
+from source_evidence import matches_domain
 
 NORMALIZED_DIR = ROOT / "normalized_outputs"
 RAW_TEXT_DIR   = ROOT / "raw_text"
@@ -107,9 +109,14 @@ def process_brand(norm_path: Path) -> tuple[int, int]:
 
         path = find_deal_url_for_promo(promo, text, markers)
         if path:
-            absolute = f"https://www.{domain}{path}" if domain else path
+            evidence = promo.get("source_evidence")
+            if evidence and f"[deal_url:{path}]" not in (evidence.get("excerpt") or ""):
+                continue
+            target_domain = promo.get("website_domain") or domain
+            absolute = urljoin(f"https://www.{target_domain}/", path) if target_domain else path
+            if evidence and not matches_domain(absolute, target_domain):
+                continue
             promo["deal_url"] = absolute
-            promo["source_url"] = absolute
             updated += 1
 
     if updated:

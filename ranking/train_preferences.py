@@ -44,6 +44,9 @@ def examples_from_events(events: list[dict]) -> list[dict]:
         user, deal = event.get("user_id"), event.get("promotion_id")
         if not user or not deal:
             continue
+        if (event.get("metadata", {}).get("reliability_eligible") is False
+                and event.get("event_type") in {"deal_saved", "not_interested"}):
+            continue
         state = states.setdefault((user, deal), {"save": None, "dismiss": None})
         kind = event.get("event_type")
         if kind == "deal_saved":

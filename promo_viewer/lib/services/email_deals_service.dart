@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import '../config.dart';
 import '../models/promotion.dart';
 import '../utils/ranking_contract.dart';
 import 'supabase_service.dart';
@@ -19,7 +20,7 @@ class EmailDealsService {
     final generation = ++_generation;
     if (_owner != owner) _cached = [];
     _owner = owner;
-    if (!SupabaseService.isLoggedIn) {
+    if (!kGmailDealsEnabled || !SupabaseService.isLoggedIn) {
       _cached = [];
       return [];
     }

@@ -12,18 +12,19 @@ import '../config.dart';
 /// Large JSON files (all_promotions.json, brand_locations.json) are written to
 /// the app's support directory so iOS does not keep them in RAM permanently.
 class RemoteDataService {
-  static const _dataTtlMs   = 6 * 60 * 60 * 1000; // 6 h
+  static const _dataTtlMs = 6 * 60 * 60 * 1000; // 6 h
   static const _serverTtlMs = 1 * 60 * 60 * 1000; // 1 h
-  static const _timeout     = Duration(seconds: 12);
+  static const _timeout = Duration(seconds: 12);
 
-  static const _serverUrlKey   = '_rds_server_url';
-  static const _serverUrlTsKey = '_rds_server_url_ts';
+  static const _serverUrlKey = '_rds_server_url_v2';
+  static const _serverUrlTsKey = '_rds_server_url_ts_v2';
 
   static String? _serverUrlMem;
 
   static Future<Directory> _cacheDir() async {
     final base = await getApplicationSupportDirectory();
-    final dir  = Directory('${base.path}/rds_cache');
+    // Pre-evidence catalogs cannot serve the strict reliability gate.
+    final dir = Directory('${base.path}/rds_cache_v2');
     if (!dir.existsSync()) dir.createSync(recursive: true);
     return dir;
   }
@@ -49,7 +50,7 @@ class RemoteDataService {
     }
 
     final cached = prefs.getString(_serverUrlKey);
-    final ts     = prefs.getInt(_serverUrlTsKey) ?? 0;
+    final ts = prefs.getInt(_serverUrlTsKey) ?? 0;
     if (cached != null &&
         DateTime.now().millisecondsSinceEpoch - ts < _serverTtlMs) {
       _serverUrlMem = cached;
@@ -57,16 +58,17 @@ class RemoteDataService {
     }
 
     try {
-      final response =
-          await http.get(Uri.parse(kConfigUrl)).timeout(_timeout);
+      final response = await http.get(Uri.parse(kConfigUrl)).timeout(_timeout);
       if (response.statusCode == 200) {
         final data = json.decode(response.body) as Map<String, dynamic>;
-        final url  = (data['server_url'] as String?)?.trimRight();
+        final url = (data['server_url'] as String?)?.trimRight();
         if (url != null && url.isNotEmpty) {
           _serverUrlMem = url;
           await prefs.setString(_serverUrlKey, url);
           await prefs.setInt(
-              _serverUrlTsKey, DateTime.now().millisecondsSinceEpoch);
+            _serverUrlTsKey,
+            DateTime.now().millisecondsSinceEpoch,
+          );
           return url;
         }
       }
@@ -80,13 +82,16 @@ class RemoteDataService {
     return null;
   }
 
-  static Future<String> load(String filename, {bool forceRefresh = false}) async {
+  static Future<String> load(
+    String filename, {
+    bool forceRefresh = false,
+  }) async {
     final cf = await _cacheFile(filename);
     final tf = await _tsFile(filename);
 
     // 1. Fresh disk cache
     if (!forceRefresh && cf.existsSync() && tf.existsSync()) {
-      final ts    = int.tryParse(await tf.readAsString()) ?? 0;
+      final ts = int.tryParse(await tf.readAsString()) ?? 0;
       final ageMs = DateTime.now().millisecondsSinceEpoch - ts;
       if (ageMs < _dataTtlMs) return cf.readAsString();
     }
@@ -95,13 +100,12 @@ class RemoteDataService {
     final serverUrl = await _resolveServerUrl();
     if (serverUrl != null) {
       try {
-        final uri      = Uri.parse('$serverUrl/$filename');
+        final uri = Uri.parse('$serverUrl/$filename');
         final response = await http.get(uri).timeout(_timeout);
         if (response.statusCode == 200) {
           final body = response.body;
           await cf.writeAsString(body);
-          await tf.writeAsString(
-              '${DateTime.now().millisecondsSinceEpoch}');
+          await tf.writeAsString('${DateTime.now().millisecondsSinceEpoch}');
           return body;
         }
       } catch (_) {}

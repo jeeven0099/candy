@@ -89,6 +89,10 @@ class PreferenceProfile {
     final at = DateTime.tryParse(event['created_at'] as String? ?? '');
     if (at == null) return;
     final meta = event['metadata'] is Map ? event['metadata'] as Map : const {};
+    if (meta['reliability_eligible'] == false &&
+        const {'deal_saved', 'not_interested'}.contains(type)) {
+      return;
+    }
     final raw = meta['offer_features'];
     final offer = raw is Map
         ? Map<String, dynamic>.from(raw)
