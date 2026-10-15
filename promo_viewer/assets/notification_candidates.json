@@ -1,102 +1,178 @@
 {
-  "generated_at": "2026-10-10T14:25:37.522641+00:00",
+  "generated_at": "2026-10-15T07:31:22.332594+00:00",
   "threshold": 65.0,
-  "total": 13,
+  "total": 28,
   "candidates": [
     {
-      "promo_id": "main_event_free_10_arcade_game_card_with_costume_halloween",
-      "brand": "Main Event",
-      "category": "entertainment",
-      "title": "FREE $10 Arcade Game Card with Costume (Halloween)",
-      "notify_score": 82.47,
+      "promo_id": "thredup_free_clean_out_bag_zero_selling_fees",
+      "brand": "ThredUp",
+      "category": "retail",
+      "title": "Free Clean Out Bag & Zero Selling Fees",
+      "notify_score": 91.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Main Event",
-      "notification_body": "Free: FREE $10 Arcade Game Card with Costume (Halloween)",
+      "notification_title": "ThredUp",
+      "notification_body": "Free: Free Clean Out Bag & Zero Selling Fees",
       "discount_type": "free_item",
-      "discount_value": "FREE $10 Arcade Game Card",
-      "estimated_savings": 14.0,
+      "discount_value": "free",
+      "estimated_savings": 100.0,
       "end_date": null,
-      "website_domain": "mainevent.com",
-      "source_url": "https://www.mainevent.com/specials/"
+      "website_domain": "thredup.com",
+      "source_url": "https://www.thredup.com/"
     },
     {
-      "promo_id": "ba_sh_outlet_up_to_70_off",
-      "brand": "Ba&sh",
-      "category": "retail",
-      "title": "Outlet Up to 70% Off",
-      "notify_score": 82.1,
+      "promo_id": "skinceuticals_welcome_offer_complimentary_vanity_case_mini_serum",
+      "brand": "SkinCeuticals",
+      "category": "beauty",
+      "title": "Welcome Offer - Complimentary Vanity Case + Mini Serum",
+      "notify_score": 82.43,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Ba&sh",
-      "notification_body": "Outlet Up to 70% Off",
+      "notification_title": "SkinCeuticals",
+      "notification_body": "Free: Welcome Offer - Complimentary Vanity Case + Mini Serum",
+      "discount_type": "free_item",
+      "discount_value": "vanity case + mini serum",
+      "estimated_savings": 25.0,
+      "end_date": null,
+      "website_domain": "skinceuticals.com",
+      "source_url": "https://www.skinceuticals.com/skincare/vitamin-c-serums/c-e-ferulic-with-15-l-ascorbic-acid/S17.html"
+    },
+    {
+      "promo_id": "cinemark_become_a_movie_fan_for_free",
+      "brand": "Cinemark",
+      "category": "entertainment",
+      "title": "Become a Movie Fan for Free",
+      "notify_score": 82.34,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Cinemark",
+      "notification_body": "Free: Become a Movie Fan for Free",
+      "discount_type": "free_item",
+      "discount_value": "free membership",
+      "estimated_savings": 13.0,
+      "end_date": null,
+      "website_domain": "cinemark.com",
+      "source_url": "https://www.cinemark.com/movie-rewards-info/"
+    },
+    {
+      "promo_id": "walmart_flash_deals",
+      "brand": "Walmart",
+      "category": "retail",
+      "title": "Flash Deals",
+      "notify_score": 80.21,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Walmart",
+      "notification_body": "Flash Deals",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 65%",
+      "estimated_savings": 29.25,
+      "end_date": null,
+      "website_domain": "walmart.com",
+      "source_url": "https://www.walmart.com/"
+    },
+    {
+      "promo_id": "express_up_to_70_off_all_markdowns",
+      "brand": "Express",
+      "category": "retail",
+      "title": "UP TO 70% OFF ALL MARKDOWNS",
+      "notify_score": 79.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Express",
+      "notification_body": "UP TO 70% OFF ALL MARKDOWNS",
       "discount_type": "percentage_off",
       "discount_value": "up to 70%",
       "estimated_savings": 31.5,
       "end_date": null,
-      "website_domain": "ba-sh.com",
-      "source_url": "https://ba-sh.com/us/sale/"
+      "website_domain": "express.com",
+      "source_url": "https://www.express.com/g/returns-policy"
     },
     {
-      "promo_id": "other_stories_sale_up_to_70_off",
-      "brand": "& Other Stories",
+      "promo_id": "carter_s_up_to_60_off_black_friday_preview",
+      "brand": "Carter's",
       "category": "retail",
-      "title": "Sale: Up to 70% off",
-      "notify_score": 82.1,
+      "title": "Up to 60% Off Black Friday preview",
+      "notify_score": 78.18,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "& Other Stories",
-      "notification_body": "Sale: Up to 70% off",
+      "notification_title": "Carter's",
+      "notification_body": "Up to 60% Off Black Friday preview",
       "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 31.5,
+      "discount_value": "up to 60%",
+      "estimated_savings": 27.0,
       "end_date": null,
-      "website_domain": "stories.com",
-      "source_url": "https://www.stories.com/en_usd/sale.html"
-    },
-    {
-      "promo_id": "sperry_up_to_50_off_sale_styles",
-      "brand": "Sperry",
-      "category": "retail",
-      "title": "Up to 50% off Sale Styles",
-      "notify_score": 81.16,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Sperry",
-      "notification_body": "Up to 50% off Sale Styles",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 42.5,
-      "end_date": null,
-      "website_domain": "sperry.com",
-      "source_url": "https://www.sperry.com/collections/sale"
+      "website_domain": "carters.com",
+      "source_url": "https://www.carters.com/c/deals"
     },
     {
       "promo_id": "floyd_up_to_60_off_last_chance_items",
       "brand": "Floyd",
       "category": "home",
-      "title": "Up to 60% off Last Chance Items",
+      "title": "Up to 60% Off Last Chance Items",
       "notify_score": 76.73,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Floyd",
-      "notification_body": "Up to 60% off Last Chance Items",
+      "notification_body": "Up to 60% Off Last Chance Items",
       "discount_type": "percentage_off",
       "discount_value": "up to 60%",
       "estimated_savings": 54.0,
       "end_date": null,
       "website_domain": "floydhome.com",
       "source_url": "https://floydhome.com/"
+    },
+    {
+      "promo_id": "inside_weather_free_swatches",
+      "brand": "Inside Weather",
+      "category": "retail",
+      "title": "Free Swatches",
+      "notify_score": 76.33,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Inside Weather",
+      "notification_body": "Free: Free Swatches",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "insideweather.com",
+      "source_url": "https://insideweather.com/"
+    },
+    {
+      "promo_id": "coach_up_to_50_off_select_styles",
+      "brand": "Coach",
+      "category": "retail",
+      "title": "Up to 50% off select styles",
+      "notify_score": 76.31,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Coach",
+      "notification_body": "Up to 50% off select styles",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 37.5,
+      "end_date": null,
+      "website_domain": "coach.com",
+      "source_url": "https://www.coach.com/content/promo"
     },
     {
       "promo_id": "jetblue_up_to_50_off_flights",
@@ -118,11 +194,182 @@
       "source_url": "https://www.jetblue.com/trueblue/trueblue-deals"
     },
     {
+      "promo_id": "epic_games_store_free_game_of_the_week",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "Free Game of the Week",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: Free Game of the Week",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://store.epicgames.com/free-games?lang=en-US"
+    },
+    {
+      "promo_id": "jo_malone_complimentary_9ml_cologne",
+      "brand": "Jo Malone",
+      "category": "beauty",
+      "title": "Complimentary 9ml Cologne",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Jo Malone",
+      "notification_body": "Free: Complimentary 9ml Cologne",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "jomalone.com",
+      "source_url": "https://www.jomalone.com/complimentary-benefits"
+    },
+    {
+      "promo_id": "jo_malone_complimentary_gift_wrapping",
+      "brand": "Jo Malone",
+      "category": "beauty",
+      "title": "Complimentary gift wrapping",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Jo Malone",
+      "notification_body": "Free: Complimentary gift wrapping",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "jomalone.com",
+      "source_url": "https://www.jomalone.com/product/26322/107822/gift-sets/christmas-kist-advent-calendar"
+    },
+    {
+      "promo_id": "jo_malone_two_limited_edition_deluxe_minis_on_us",
+      "brand": "Jo Malone",
+      "category": "beauty",
+      "title": "Two Limited-Edition Deluxe Minis, On Us",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Jo Malone",
+      "notification_body": "Free: Two Limited-Edition Deluxe Minis, On Us",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "jomalone.com",
+      "source_url": "https://www.jomalone.com/online-exclusive-offers"
+    },
+    {
+      "promo_id": "rare_beauty_free_samples_choose_2",
+      "brand": "Rare Beauty",
+      "category": "beauty",
+      "title": "Free Samples - Choose 2",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Rare Beauty",
+      "notification_body": "Free: Free Samples - Choose 2",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "rarebeauty.com",
+      "source_url": "https://www.rarebeauty.com/collections/best-sellers"
+    },
+    {
+      "promo_id": "joann_up_to_50_off_halloween",
+      "brand": "JOANN",
+      "category": "retail",
+      "title": "Up to 50% off Halloween",
+      "notify_score": 73.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "JOANN",
+      "notification_body": "Up to 50% off Halloween",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "michaels.com",
+      "source_url": "https://www.michaels.com/sale"
+    },
+    {
+      "promo_id": "floor_decor_free_design_services",
+      "brand": "Floor & Decor",
+      "category": "retail",
+      "title": "Free Design Services",
+      "notify_score": 73.33,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Floor & Decor",
+      "notification_body": "Free: Free Design Services",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "flooranddecor.com",
+      "source_url": "https://www.flooranddecor.com/"
+    },
+    {
+      "promo_id": "einstein_bros_bagels_unlimited_free_coffee_with_one_visit",
+      "brand": "Einstein Bros Bagels",
+      "category": "food",
+      "title": "Unlimited FREE Coffee with one visit",
+      "notify_score": 71.76,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Einstein Bros Bagels",
+      "notification_body": "Free: Unlimited FREE Coffee with one visit",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 5.5,
+      "end_date": null,
+      "website_domain": "einsteinbros.com",
+      "source_url": "https://www.einsteinbros.com/rewards/"
+    },
+    {
+      "promo_id": "lucky_brand_insider_event",
+      "brand": "Lucky Brand",
+      "category": "retail",
+      "title": "Insider Event",
+      "notify_score": 70.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Lucky Brand",
+      "notification_body": "Insider Event",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "luckybrand.com",
+      "source_url": "https://www.luckybrand.com/women/clothing/new"
+    },
+    {
       "promo_id": "article_free_interior_design_services",
       "brand": "Article",
-      "category": "Premium Furniture",
+      "category": "home",
       "title": "Free Interior Design Services",
-      "notify_score": 74.26,
+      "notify_score": 69.04,
       "signal_groups": [
         "context",
         "value"
@@ -130,125 +377,163 @@
       "notification_title": "Article",
       "notification_body": "Free: Free Interior Design Services",
       "discount_type": "free_item",
-      "discount_value": "free interior design services",
+      "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "article.com",
-      "source_url": "https://www.article.com/browse/213/sale"
+      "source_url": "https://www.article.com/browse"
     },
     {
-      "promo_id": "inside_weather_free_swatches",
-      "brand": "Inside Weather",
-      "category": "Premium Furniture",
-      "title": "Free Swatches",
-      "notify_score": 74.26,
+      "promo_id": "joybird_free_design_services",
+      "brand": "Joybird",
+      "category": "home",
+      "title": "Free Design Services",
+      "notify_score": 69.04,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Inside Weather",
-      "notification_body": "Free: Free Swatches",
+      "notification_title": "Joybird",
+      "notification_body": "Free: Free Design Services",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "insideweather.com",
-      "source_url": "https://insideweather.com/"
+      "website_domain": "joybird.com",
+      "source_url": "https://joybird.com/semi-annual-sale/"
     },
     {
-      "promo_id": "mejuri_complimentary_jewelry_cleaning",
-      "brand": "Mejuri",
-      "category": "retail",
-      "title": "Complimentary Jewelry Cleaning",
-      "notify_score": 73.33,
+      "promo_id": "joybird_free_fabric_samples",
+      "brand": "Joybird",
+      "category": "home",
+      "title": "Free Fabric Samples",
+      "notify_score": 69.04,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Mejuri",
-      "notification_body": "Free: Complimentary Jewelry Cleaning",
+      "notification_title": "Joybird",
+      "notification_body": "Free: Free Fabric Samples",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "mejuri.com",
-      "source_url": "https://www.mejuri.com/collections/open-dome-collection"
+      "website_domain": "joybird.com",
+      "source_url": "https://joybird.com/semi-annual-sale/"
     },
     {
-      "promo_id": "boxlunch_up_to_60_off_sitewide",
-      "brand": "BoxLunch",
-      "category": "fashion",
-      "title": "Up To 60% Off Sitewide",
-      "notify_score": 72.33,
+      "promo_id": "yardzen_free_consultation_call",
+      "brand": "Yardzen",
+      "category": "home",
+      "title": "Free consultation call",
+      "notify_score": 69.04,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "BoxLunch",
-      "notification_body": "Up To 60% Off Sitewide",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 16.8,
+      "notification_title": "Yardzen",
+      "notification_body": "Free: Free consultation call",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "boxlunch.com",
-      "source_url": "https://www.boxlunch.com/pop-culture/?cm_sp=Homepage-_-GlobalBanner-_-UpTo60OffSitewide"
+      "website_domain": "yardzen.com",
+      "source_url": "https://www.yardzen.com/reviews"
     },
     {
-      "promo_id": "tillys_extra_50_off_swim",
-      "brand": "Tillys",
-      "category": "retail",
-      "title": "Extra 50% Off Swim",
-      "notify_score": 70.67,
+      "promo_id": "epic_games_store_free_game_thursday",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "Free Game Thursday",
+      "notify_score": 68.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Tillys",
-      "notification_body": "Extra 50% Off Swim",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 22.5,
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: Free Game Thursday",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "tillys.com",
-      "source_url": "https://www.tillys.com/"
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://www.store.epicgames.com/collection/top-free-to-play"
     },
     {
-      "promo_id": "article_fall_clearance_event",
-      "brand": "Article",
-      "category": "Premium Furniture",
-      "title": "Fall Clearance Event",
+      "promo_id": "asus_free_returns_within_30_days",
+      "brand": "ASUS",
+      "category": "electronics",
+      "title": "Free Returns Within 30 Days",
+      "notify_score": 66.63,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "ASUS",
+      "notification_body": "Free: Free Returns Within 30 Days",
+      "discount_type": "free_item",
+      "discount_value": null,
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "asus.com",
+      "source_url": "https://www.asus.com/us/store/"
+    },
+    {
+      "promo_id": "asus_free_accidental_damage_protection_adp",
+      "brand": "ASUS",
+      "category": "electronics",
+      "title": "Free Accidental Damage Protection (ADP)",
+      "notify_score": 66.63,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "ASUS",
+      "notification_body": "Free: Free Accidental Damage Protection (ADP)",
+      "discount_type": "free_item",
+      "discount_value": null,
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "asus.com",
+      "source_url": "https://www.asus.com/us/store/"
+    },
+    {
+      "promo_id": "joybird_free_swatch_kit",
+      "brand": "Joybird",
+      "category": "home",
+      "title": "Free Swatch Kit",
+      "notify_score": 66.6,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Joybird",
+      "notification_body": "Free: Free Swatch Kit",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "joybird.com",
+      "source_url": "https://www.joybird.com/living-room-furniture/"
+    },
+    {
+      "promo_id": "bluemercury_up_to_50_off_sale",
+      "brand": "Bluemercury",
+      "category": "Premium Beauty",
+      "title": "Up to 50% Off Sale",
       "notify_score": 66.42,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Article",
-      "notification_body": "Fall Clearance Event",
+      "notification_title": "Bluemercury",
+      "notification_body": "Up to 50% Off Sale",
       "discount_type": "percentage_off",
       "discount_value": "up to 50%",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "article.com",
-      "source_url": "https://www.article.com/browse/213/sale"
-    },
-    {
-      "promo_id": "sony_alpha_save_up_to_50_off_sony_tech",
-      "brand": "Sony Alpha",
-      "category": "Creator Gear / Camera",
-      "title": "Save up to 50% off Sony Tech",
-      "notify_score": 66.42,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Sony Alpha",
-      "notification_body": "Save up to 50% off Sony Tech",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "electronics.sony.com",
-      "source_url": "https://electronics.sony.com/"
+      "website_domain": "bluemercury.com",
+      "source_url": "https://bluemercury.com/collections/sale"
     }
   ]
 }
