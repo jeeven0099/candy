@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 import '../models/promotion.dart';
 import '../services/interaction_service.dart';
 import '../services/learned_preference_service.dart';
+import '../services/saved_deals_service.dart';
 import '../services/supabase_service.dart';
 import '../services/user_prefs_service.dart';
 import '../services/user_memberships_service.dart';
 import '../theme/candy_colors.dart';
 import '../utils/feed_ranker.dart';
+import '../utils/deal_feed_feedback.dart';
 import '../utils/ranking_contract.dart';
 import '../widgets/deal_card.dart';
 import '../widgets/deal_feed_sliver.dart';
@@ -52,6 +54,7 @@ class _ForYouScreenState extends State<ForYouScreen> {
         UserPrefsService(),
         _svc,
         LearnedPreferenceService(),
+        SavedDealsService(),
       ]),
       builder: (context, _) {
         final prefs = UserPrefsService().prefs;
@@ -82,10 +85,14 @@ class _ForYouScreenState extends State<ForYouScreen> {
                     itemBuilder: _dealCard,
                     countBuilder: _countLabel,
                     emptyState: _emptyState(),
-                    onDismiss: (p, position, direction) =>
-                        _dismissFeedback(p, position, direction),
-                    onUndo: (p, position, direction) =>
-                        _dismissFeedback(p, position, direction, undo: true),
+                    onFeedback: (p, position, action, swipeDirection) =>
+                        recordDealFeedFeedback(
+                          p,
+                          position: position,
+                          rankingMode: 'for_you',
+                          action: action,
+                          swipeDirection: swipeDirection,
+                        ),
                   ),
                   const SliverPadding(padding: EdgeInsets.only(bottom: 32)),
                 ],
@@ -167,48 +174,6 @@ class _ForYouScreenState extends State<ForYouScreen> {
         },
       ),
     );
-  }
-
-  Future<void> _dismissFeedback(
-    Promotion p,
-    int position,
-    DismissDirection direction, {
-    bool undo = false,
-  }) async {
-    final meta = {
-      ...InteractionService.promoMeta(
-        p,
-        rankingMode: 'for_you',
-        feedPosition: position,
-      ),
-      'feedback_method': direction == DismissDirection.none ? 'menu' : 'swipe',
-      if (direction != DismissDirection.none)
-        'swipe_direction': direction == DismissDirection.startToEnd
-            ? 'start_to_end'
-            : 'end_to_start',
-    };
-    if (undo) {
-      await _svc.unskipDeal(
-        p.id,
-        brand: p.brand,
-        category: p.category,
-        meta: meta,
-      );
-    } else {
-      unawaited(
-        _svc.recordFeedImpression(
-          p,
-          rankingMode: 'for_you',
-          feedPosition: position,
-        ),
-      );
-      await _svc.skipDeal(
-        p.id,
-        brand: p.brand,
-        category: p.category,
-        meta: meta,
-      );
-    }
   }
 
   Widget _emptyState() {

@@ -1,5 +1,5 @@
 class RankingContract {
-  static const version = 'v4_reliability_hybrid_top_10';
+  static const version = 'v5_swipe_saved_hybrid_top_10';
 
   static const forYouLimit = 10;
   static const nearMeLimit = 10;

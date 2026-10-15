@@ -517,7 +517,8 @@ class _ProfileScreenState extends State<ProfileScreen>
       icon: Icons.near_me_outlined,
       title: 'Near Me Radius',
       subtitle: 'Distance used for Near Me deals',
-      child: Row(
+      child: Wrap(
+        runSpacing: 8,
         children: _kRadiusOptions.map((mi) {
           final selected = mi == _radiusMi;
           return Padding(

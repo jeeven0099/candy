@@ -3,14 +3,8 @@ import 'package:flutter/material.dart';
 import '../models/promotion.dart';
 import '../theme/candy_colors.dart';
 import '../utils/deal_feed_queue.dart';
+import '../utils/deal_feed_feedback.dart';
 import '../utils/ranking_contract.dart';
-
-typedef DealDismissalCallback =
-    Future<void> Function(
-      Promotion promo,
-      int position,
-      DismissDirection direction,
-    );
 
 class DealFeedSliver extends StatefulWidget {
   final List<Promotion> rankedDeals;
@@ -18,8 +12,7 @@ class DealFeedSliver extends StatefulWidget {
   final Widget Function(BuildContext, Promotion, int, VoidCallback) itemBuilder;
   final Widget Function(int) countBuilder;
   final Widget emptyState;
-  final DealDismissalCallback onDismiss;
-  final DealDismissalCallback onUndo;
+  final DealFeedbackCallback onFeedback;
 
   const DealFeedSliver({
     super.key,
@@ -28,8 +21,7 @@ class DealFeedSliver extends StatefulWidget {
     required this.itemBuilder,
     required this.countBuilder,
     required this.emptyState,
-    required this.onDismiss,
-    required this.onUndo,
+    required this.onFeedback,
   });
 
   @override
@@ -71,27 +63,41 @@ class _DealFeedSliverState extends State<DealFeedSliver> {
     currentMessenger.clearSnackBars();
     currentMessenger.removeCurrentSnackBar();
     final revision = widget.revision;
-    final undo = widget.onUndo;
+    final right =
+        direction ==
+        (Directionality.of(context) == TextDirection.ltr
+            ? DismissDirection.startToEnd
+            : DismissDirection.endToStart);
+    final action = right ? DealFeedAction.save : DealFeedAction.dismiss;
+    late final UndoDealFeedback undo;
     setState(() {});
     try {
-      await widget.onDismiss(promo, position, direction);
+      undo = await widget.onFeedback(
+        promo,
+        position,
+        action,
+        direction == DismissDirection.none
+            ? null
+            : right
+            ? 'right'
+            : 'left',
+      );
     } catch (_) {
       if (!mounted || widget.revision != revision) return;
       // Dispose the completed Dismissible before restoring its original key.
       await WidgetsBinding.instance.endOfFrame;
       if (!mounted || widget.revision != revision) return;
-      try {
-        await undo(promo, position, direction);
-      } catch (_) {
-        // Keep the local card available even when persistence is unavailable.
-      }
       if (!mounted || widget.revision != revision) return;
       setState(() => _queue.undo(dismissal));
       if (sequence != _dismissSequence) return;
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).removeCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Could not save your feedback')),
+        SnackBar(
+          content: Text(
+            right ? 'Could not save this deal' : 'Could not save your feedback',
+          ),
+        ),
       );
       return;
     }
@@ -105,7 +111,7 @@ class _DealFeedSliverState extends State<DealFeedSliver> {
     messenger.removeCurrentSnackBar();
     messenger.showSnackBar(
       SnackBar(
-        content: const Text('Deal dismissed'),
+        content: Text(right ? 'Deal saved' : 'Deal dismissed'),
         duration: const Duration(seconds: 2),
         action: SnackBarAction(
           label: 'Undo',
@@ -116,7 +122,7 @@ class _DealFeedSliverState extends State<DealFeedSliver> {
               return;
             }
             try {
-              await undo(promo, position, direction);
+              await undo();
               if (!mounted || widget.revision != revision) return;
               setState(() => _queue.undo(dismissal));
             } catch (_) {
@@ -134,16 +140,22 @@ class _DealFeedSliverState extends State<DealFeedSliver> {
     );
   }
 
-  Widget _background(Alignment alignment) => Padding(
+  Widget _background(Alignment alignment, {required bool save}) => Padding(
     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
     child: Container(
       alignment: alignment,
       padding: const EdgeInsets.symmetric(horizontal: 24),
       decoration: BoxDecoration(
-        color: Candy.raspberry.withValues(alpha: 0.12),
+        color: (save ? Candy.mint : Candy.raspberry).withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(8),
       ),
-      child: const Icon(Icons.thumb_down_outlined, color: Candy.raspberry),
+      child: Semantics(
+        label: save ? 'Save deal' : 'Not interested',
+        child: Icon(
+          save ? Icons.favorite : Icons.thumb_down_outlined,
+          color: save ? Candy.mint : Candy.raspberry,
+        ),
+      ),
     ),
   );
 
@@ -171,11 +183,13 @@ class _DealFeedSliverState extends State<DealFeedSliver> {
                     AlignmentDirectional.centerStart.resolve(
                       Directionality.of(context),
                     ),
+                    save: Directionality.of(context) == TextDirection.ltr,
                   ),
                   secondaryBackground: _background(
                     AlignmentDirectional.centerEnd.resolve(
                       Directionality.of(context),
                     ),
+                    save: Directionality.of(context) == TextDirection.rtl,
                   ),
                   onDismissed: (direction) =>
                       _dismiss(promo, index + 1, direction),

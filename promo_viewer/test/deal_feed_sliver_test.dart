@@ -5,6 +5,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:promo_viewer/models/promotion.dart';
 import 'package:promo_viewer/widgets/deal_feed_sliver.dart';
 import 'package:promo_viewer/widgets/deal_source_badge.dart';
+import 'package:promo_viewer/utils/deal_feed_feedback.dart';
+
+typedef DealDismissalCallback =
+    Future<void> Function(Promotion, int, DismissDirection);
 
 Promotion deal(int i) => Promotion.fromJson({
   'brand': 'Brand $i',
@@ -18,7 +22,11 @@ Widget fixture({
   List<Promotion>? ranked,
   DealDismissalCallback? onDismiss,
   DealDismissalCallback? onUndo,
+  DealFeedbackCallback? onFeedback,
+  TextDirection textDirection = TextDirection.ltr,
 }) => MaterialApp(
+  builder: (_, child) =>
+      Directionality(textDirection: textDirection, child: child!),
   home: Scaffold(
     body: CustomScrollView(
       cacheExtent: 5000,
@@ -28,8 +36,19 @@ Widget fixture({
           revision: revision,
           countBuilder: (n) => Text('$n deals'),
           emptyState: const Center(child: Text('No deals')),
-          onDismiss: onDismiss ?? (p, pos, dir) async {},
-          onUndo: onUndo ?? (p, pos, dir) async {},
+          onFeedback:
+              onFeedback ??
+              (p, pos, action, swipeDirection) async {
+                final direction = swipeDirection == null
+                    ? DismissDirection.none
+                    : swipeDirection == 'right'
+                    ? DismissDirection.startToEnd
+                    : DismissDirection.endToStart;
+                await onDismiss?.call(p, pos, direction);
+                return () async {
+                  await onUndo?.call(p, pos, direction);
+                };
+              },
           itemBuilder: (context, p, pos, dismiss) => SizedBox(
             height: 110,
             child: Column(
@@ -52,6 +71,68 @@ Widget fixture({
 );
 
 void main() {
+  for (final textDirection in TextDirection.values) {
+    for (final dx in [-450.0, 450.0]) {
+      testWidgets(
+        'physical swipe $dx means ${dx > 0 ? 'save' : 'dismiss'} in $textDirection',
+        (tester) async {
+          final actions = <(DealFeedAction, String?)>[];
+          await tester.pumpWidget(
+            fixture(
+              textDirection: textDirection,
+              onFeedback: (p, position, action, direction) async {
+                actions.add((action, direction));
+                return () async {};
+              },
+            ),
+          );
+          await tester.drag(find.text('Offer 0'), Offset(dx, 0));
+          await tester.pumpAndSettle();
+          expect(actions.single, (
+            dx > 0 ? DealFeedAction.save : DealFeedAction.dismiss,
+            dx > 0 ? 'right' : 'left',
+          ));
+          expect(
+            find.text(dx > 0 ? 'Deal saved' : 'Deal dismissed'),
+            findsOneWidget,
+          );
+        },
+      );
+    }
+  }
+
+  testWidgets('rapid mixed swipes keep Undo attached to the last action', (
+    tester,
+  ) async {
+    final actions = <DealFeedAction>[];
+    final undone = <String>[];
+    await tester.pumpWidget(
+      fixture(
+        onFeedback: (p, position, action, direction) async {
+          actions.add(action);
+          return () async {
+            undone.add(p.id);
+          };
+        },
+      ),
+    );
+    for (var i = 0; i < 3; i++) {
+      await tester.drag(find.text('Offer $i'), Offset(i == 1 ? -450 : 450, 0));
+      await tester.pumpAndSettle();
+    }
+    expect(actions, [
+      DealFeedAction.save,
+      DealFeedAction.dismiss,
+      DealFeedAction.save,
+    ]);
+    expect(find.text('Undo'), findsOneWidget);
+    await tester.tap(find.text('Undo'));
+    await tester.pumpAndSettle();
+    expect(undone, [deal(2).id]);
+    expect(find.text('Offer 2'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('rapid dismissals replace Undo without queuing old bars', (
     tester,
   ) async {
@@ -264,7 +345,7 @@ void main() {
     await tester.drag(find.text('Offer 0'), const Offset(450, 0));
     await tester.pumpAndSettle();
     expect(find.text('Offer 0'), findsOneWidget);
-    expect(find.text('Could not save your feedback'), findsOneWidget);
+    expect(find.text('Could not save this deal'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 
