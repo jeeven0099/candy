@@ -566,6 +566,7 @@ class _HeartButton extends StatelessWidget {
       builder: (ctx, _) {
         final saved = svc.isSaved(promo.id);
         return IconButton(
+          tooltip: saved ? 'Remove from Saved' : 'Save deal',
           padding: EdgeInsets.zero,
           constraints: const BoxConstraints(),
           visualDensity: VisualDensity.compact,
@@ -576,26 +577,40 @@ class _HeartButton extends StatelessWidget {
           ),
           onPressed: () async {
             onInteraction?.call();
-            if (saved) {
-              await svc.unsave(promo.id);
-            } else {
-              await svc.save(
-                promo,
-                feedbackMeta: InteractionService.promoMeta(
+            try {
+              if (saved) {
+                await svc.unsave(promo.id);
+              } else {
+                await svc.save(
                   promo,
-                  feedPosition: feedPosition,
-                  rankingMode: rankingMode,
-                ),
-              );
+                  feedbackMeta: InteractionService.promoMeta(
+                    promo,
+                    feedPosition: feedPosition,
+                    rankingMode: rankingMode,
+                  ),
+                );
+                if (ctx.mounted) {
+                  showModalBottomSheet(
+                    context: ctx,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(20),
+                      ),
+                    ),
+                    builder: (_) => SaveSheet(promo: promo, svc: svc),
+                  );
+                }
+              }
+            } catch (_) {
               if (ctx.mounted) {
-                showModalBottomSheet(
-                  context: ctx,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(20),
+                ScaffoldMessenger.of(ctx).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      saved
+                          ? 'Could not remove this deal'
+                          : 'Could not save this deal',
                     ),
                   ),
-                  builder: (_) => SaveSheet(promo: promo, svc: svc),
                 );
               }
             }

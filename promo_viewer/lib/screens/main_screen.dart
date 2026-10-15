@@ -13,12 +13,14 @@ import '../services/learned_preference_service.dart';
 import '../services/user_prefs_service.dart';
 import '../services/location_service.dart';
 import '../services/promotions_service.dart';
+import '../services/saved_deals_service.dart';
 import '../services/supabase_service.dart';
 import '../services/user_memberships_service.dart';
 import '../theme/candy_colors.dart';
 import 'for_you_screen.dart';
 import 'near_me_screen.dart';
 import 'profile_screen.dart';
+import 'saved_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -86,6 +88,7 @@ class _MainScreenState extends State<MainScreen> {
     final owner = SupabaseService.currentUserId;
     final generation = ++_loadGeneration;
     try {
+      await SavedDealsService().loadForUser(owner ?? 'guest');
       if (kGmailDealsEnabled) {
         await GmailConnectionService.restorePendingConnect();
         if (GmailConnectionService.hasPendingConnect) {
@@ -183,11 +186,11 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _selectTab(int index) {
-    final returningFromSettings = _tab == 2 && index != 2;
+    final returningFromSettings = _tab == 3 && index != 3;
     setState(() => _tab = index);
     _svc.recordTabSwitch(
       index,
-      const ['For You', 'Near Me', 'Settings'][index],
+      const ['For You', 'Near Me', 'Saved', 'Settings'][index],
     );
     if (index == 1) {
       _ensureLocation();
@@ -280,6 +283,12 @@ class _MainScreenState extends State<MainScreen> {
               onRefresh: _refreshCurrentTab,
               onRequestLocation: _ensureLocation,
             ),
+            SavedScreen(
+              key: ValueKey('saved|${SupabaseService.currentUserId}'),
+              all: _all,
+              memberships: _memberships,
+              onRefresh: _refreshCurrentTab,
+            ),
             ProfileScreen(
               key: ValueKey('settings|${SupabaseService.currentUserId}'),
             ),
@@ -316,6 +325,7 @@ class _GlassNavBar extends StatelessWidget {
       selectedIcon: Icons.near_me,
       label: 'Near Me',
     ),
+    (icon: Icons.favorite_border, selectedIcon: Icons.favorite, label: 'Saved'),
     (
       icon: Icons.settings_outlined,
       selectedIcon: Icons.settings,
@@ -396,6 +406,9 @@ class _GlassNavItem extends StatelessWidget {
         children: [
           AnimatedContainer(
             duration: const Duration(milliseconds: 200),
+            width: 56,
+            height: 34,
+            alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
             decoration: selected
                 ? BoxDecoration(
@@ -423,14 +436,22 @@ class _GlassNavItem extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 2),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 10,
-              fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
-              color: selected
-                  ? Candy.raspberry
-                  : Candy.muted.withValues(alpha: 0.55),
+          SizedBox(
+            height: 14,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                label,
+                maxLines: 1,
+                softWrap: false,
+                style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
+                  color: selected
+                      ? Candy.raspberry
+                      : Candy.muted.withValues(alpha: 0.55),
+                ),
+              ),
             ),
           ),
         ],

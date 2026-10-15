@@ -1,9 +1,11 @@
-# Beta Release 73
+# Beta Release 74
 
 ## Included
 
 - Public For You and Near Me feeds, up to 10 qualified deals each.
 - Up to 30 qualified replacements; no filler when the eligible pool runs out.
+- Swipe right to like/save, left to dismiss, with action-specific Undo.
+- Separate Saved tab; saved offers leave discovery feeds until unsaved.
 - Signup, Settings, per-account preferences, memberships, saves, and swipe feedback.
 - Birthday rewards only during the user's birthday month.
 - Captured-source reliability checks before rule scores or learned adjustments.
@@ -48,7 +50,7 @@ learned model. Local checks do not establish that production policies match.
    older published catalog that lacks evidence.
 2. Verify both public URLs in `promo_viewer/lib/config.dart` and
    `server_config.json` return successfully, and audit the published catalog.
-3. Let the existing Codemagic workflow build version `1.0.0+73`. A GitHub unsigned
+3. Let the existing Codemagic workflow build version `1.0.0+74`. A GitHub unsigned
    IPA build is not confirmation of a successful Codemagic/TestFlight upload.
 4. Perform the device smoke test below before expanding beyond a small cohort.
 

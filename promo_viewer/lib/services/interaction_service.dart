@@ -597,8 +597,16 @@ class InteractionService extends ChangeNotifier {
     metadata: meta,
   );
 
-  void recordDealUnsaved(String promoId, {String brand = ''}) =>
-      _writeInteraction('deal_unsaved', promotionId: promoId, brand: brand);
+  void recordDealUnsaved(
+    String promoId, {
+    String brand = '',
+    Map<String, dynamic>? meta,
+  }) => _writeInteraction(
+    'deal_unsaved',
+    promotionId: promoId,
+    brand: brand,
+    metadata: meta,
+  );
 
   // ── Rich event metadata builder ───────────────────────────────────────────
   //

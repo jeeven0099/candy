@@ -13,6 +13,7 @@ import 'package:promo_viewer/models/promotion.dart';
 import 'package:promo_viewer/screens/for_you_screen.dart';
 import 'package:promo_viewer/screens/near_me_screen.dart';
 import 'package:promo_viewer/services/interaction_service.dart';
+import 'package:promo_viewer/services/saved_deals_service.dart';
 import 'package:promo_viewer/services/user_prefs_service.dart';
 import 'package:promo_viewer/widgets/deal_card.dart';
 
@@ -38,6 +39,8 @@ void main() {
     scenario++;
     SharedPreferences.setMockInitialValues({});
     await InteractionService.init();
+    await SavedDealsService.init();
+    SavedDealsService().clearLocal();
     UserPrefsService().clear();
     VisibilityDetectorController.instance.updateInterval = Duration.zero;
   });
@@ -140,12 +143,14 @@ void main() {
         final dx = width * (nearby ? -0.7 : 0.7);
         await tester.drag(card, Offset(dx, 0));
         await tester.pumpAndSettle();
-        expect(InteractionService().isDealSkipped(all.first.id), isTrue);
+        expect(InteractionService().isDealSkipped(all.first.id), nearby);
+        expect(SavedDealsService().isSaved(all.first.id), !nearby);
         expect(find.text('Offer 0'), findsNothing);
         expect(find.text('Offer 10'), findsOneWidget);
         await tester.tap(find.text('Undo'));
         await tester.pumpAndSettle();
         expect(InteractionService().isDealSkipped(all.first.id), isFalse);
+        expect(SavedDealsService().isSaved(all.first.id), isFalse);
         expect(find.text('Offer 0'), findsOneWidget);
         expect(find.text('Offer 10'), findsNothing);
         expect(tester.takeException(), isNull);

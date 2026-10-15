@@ -57,28 +57,49 @@ class SavedDeal {
 class SavedDealsService extends ChangeNotifier {
   static final SavedDealsService _instance = SavedDealsService._();
   factory SavedDealsService() => _instance;
-  SavedDealsService._();
+  SavedDealsService._()
+    : _currentAccount = (() => SupabaseService.currentUserId);
+
+  @visibleForTesting
+  SavedDealsService.forTesting({
+    required String? Function() currentAccount,
+    required SharedPreferences storage,
+  }) : _currentAccount = currentAccount,
+       _prefs = storage;
 
   static const _key = 'candy_saved_deals';
   final Map<String, SavedDeal> _saved = {};
   SharedPreferences? _prefs;
+  final String? Function() _currentAccount;
+  String? _owner;
+  int _generation = 0;
+  Future<void> _remoteWrites = Future<void>.value();
+  bool get _ownsState => _owner == _currentAccount();
 
   // User-scoped key so two accounts on the same device never share saves.
-  String get _userKey {
-    final uid = SupabaseService.currentUserId ?? 'guest';
+  String _userKey(String? owner) {
+    final uid = owner ?? 'guest';
     return '${_key}_$uid';
   }
 
   static Future<void> init() async {
-    // Only initialises SharedPreferences — data is loaded in loadForUser()
-    // once the authenticated user ID is known.
+    // Load only the current account's cache; startup reloads after auth restores.
     SavedDealsService()._prefs = await SharedPreferences.getInstance();
+    await SavedDealsService().loadForUser(
+      SupabaseService.currentUserId ?? 'guest',
+    );
   }
 
   /// Call after login / on app start when already logged in.
   Future<void> loadForUser(String userId) async {
+    final owner = userId == 'guest' ? null : userId;
+    if (owner != _currentAccount()) return;
+    final generation = ++_generation;
+    _prefs ??= await SharedPreferences.getInstance();
+    if (owner != _currentAccount() || generation != _generation) return;
+    _owner = owner;
     _saved.clear();
-    final raw = _prefs?.getString('${_key}_$userId');
+    final raw = _prefs?.getString(_userKey(owner));
     if (raw != null) {
       try {
         final list = jsonDecode(raw) as List<dynamic>;
@@ -93,14 +114,17 @@ class SavedDealsService extends ChangeNotifier {
 
   /// Call on sign-out to wipe in-memory state immediately.
   void clearLocal() {
+    _generation++;
+    _owner = _currentAccount();
     _saved.clear();
     notifyListeners();
   }
 
-  bool isSaved(String id) => _saved.containsKey(id);
-  SavedDeal? get(String id) => _saved[id];
+  bool isSaved(String id) => _ownsState && _saved.containsKey(id);
+  SavedDeal? get(String id) => _ownsState ? _saved[id] : null;
 
   List<SavedDeal> get all {
+    if (!_ownsState) return [];
     final list = _saved.values.toList();
     list.sort((a, b) => b.savedAt.compareTo(a.savedAt));
     return list;
@@ -111,10 +135,15 @@ class SavedDealsService extends ChangeNotifier {
     DateTime? remindAt,
     Map<String, dynamic>? feedbackMeta,
   }) async {
+    final owner = _currentAccount();
+    _prefs ??= await SharedPreferences.getInstance();
+    if (owner != _currentAccount()) return;
+    if (!_ownsState) clearLocal();
     if (_saved.containsKey(promo.id)) return;
+    final uid = UserPrefsService().userId;
     final meta = feedbackMeta ?? InteractionService.promoMeta(promo);
     final now = DateTime.now();
-    _saved[promo.id] = SavedDeal(
+    final entry = SavedDeal(
       id: promo.id,
       brand: promo.brand,
       title: promo.title,
@@ -122,9 +151,22 @@ class SavedDealsService extends ChangeNotifier {
       savedAt: now,
       remindAt: remindAt,
     );
-    await _persist();
+    _saved[promo.id] = entry;
+    try {
+      await _persist(owner);
+    } catch (_) {
+      if (owner == _currentAccount() &&
+          _ownsState &&
+          identical(_saved[promo.id], entry)) {
+        _saved.remove(promo.id);
+        notifyListeners();
+      }
+      rethrow;
+    }
+    if (owner != _currentAccount()) return;
     notifyListeners();
 
+    if (owner != _currentAccount()) return;
     InteractionService().recordDealSaved(
       promo.id,
       brand: promo.brand,
@@ -132,37 +174,37 @@ class SavedDealsService extends ChangeNotifier {
       meta: meta,
     );
 
-    // Supabase write (fire-and-forget)
-    final uid = UserPrefsService().userId;
+    // Keep save/remove requests ordered, including rapid swipe Undo.
     if (uid != null && SupabaseService.isLoggedIn) {
-      SupabaseService.client
-          .from('saved_deals')
-          .upsert({
-            'user_id': uid,
-            'promotion_id': promo.id,
-            'brand': promo.brand,
-            'title_snapshot': promo.title,
-            'source_url_snapshot': promo.sourceUrl,
-            'saved_at': now.toIso8601String(),
-            'status': 'active',
-          }, onConflict: 'user_id,promotion_id')
-          .then(
-            (_) {},
-            onError: (e) {
-              if (kDebugMode) debugPrint('[SavedDealsService] save: $e');
-            },
-          );
+      _queueRemoteWrite(
+        owner,
+        'save',
+        () => SupabaseService.client.from('saved_deals').upsert({
+          'user_id': uid,
+          'promotion_id': promo.id,
+          'brand': promo.brand,
+          'title_snapshot': promo.title,
+          'source_url_snapshot': promo.sourceUrl,
+          'saved_at': now.toIso8601String(),
+          'status': 'active',
+          'deleted_at': null,
+        }, onConflict: 'user_id,promotion_id'),
+      );
       InteractionService().bumpBrandAffinityPublic(promo.brand, saves: 1);
       InteractionService().bumpCategoryAffinityPublic(promo.category, saves: 1);
     }
   }
 
   Future<void> setReminder(String id, DateTime remindAt) async {
+    if (!_ownsState) return;
+    final owner = _currentAccount();
     final existing = _saved[id];
     if (existing == null) return;
     _saved[id] = existing.copyWith(remindAt: remindAt);
-    await _persist();
+    await _persist(owner);
+    if (owner != _currentAccount()) return;
     notifyListeners();
+    if (owner != _currentAccount()) return;
     await NotificationService().scheduleReminder(
       promoId: id,
       brand: existing.brand,
@@ -171,38 +213,69 @@ class SavedDealsService extends ChangeNotifier {
     );
   }
 
-  Future<void> unsave(String id) async {
+  Future<void> unsave(String id, {Map<String, dynamic>? feedbackMeta}) async {
+    if (!_ownsState) return;
+    final owner = _currentAccount();
+    final uid = UserPrefsService().userId;
     final existing = _saved[id];
     if (existing == null) return;
     await NotificationService().cancelReminder(id);
+    if (owner != _currentAccount()) return;
     _saved.remove(id);
-    await _persist();
+    try {
+      await _persist(owner);
+    } catch (_) {
+      if (owner == _currentAccount() && _ownsState && !_saved.containsKey(id)) {
+        _saved[id] = existing;
+        notifyListeners();
+      }
+      rethrow;
+    }
+    if (owner != _currentAccount()) return;
     notifyListeners();
 
-    InteractionService().recordDealUnsaved(id, brand: existing.brand);
+    if (owner != _currentAccount()) return;
+    InteractionService().recordDealUnsaved(
+      id,
+      brand: existing.brand,
+      meta: feedbackMeta,
+    );
 
     // Supabase write (fire-and-forget)
-    final uid = UserPrefsService().userId;
     if (uid != null && SupabaseService.isLoggedIn) {
-      SupabaseService.client
-          .from('saved_deals')
-          .update({
-            'status': 'deleted',
-            'deleted_at': DateTime.now().toIso8601String(),
-          })
-          .eq('user_id', uid)
-          .eq('promotion_id', id)
-          .then(
-            (_) {},
-            onError: (e) {
-              if (kDebugMode) debugPrint('[SavedDealsService] unsave: $e');
-            },
-          );
+      _queueRemoteWrite(
+        owner,
+        'unsave',
+        () => SupabaseService.client
+            .from('saved_deals')
+            .update({
+              'status': 'deleted',
+              'deleted_at': DateTime.now().toIso8601String(),
+            })
+            .eq('user_id', uid)
+            .eq('promotion_id', id),
+      );
     }
   }
 
-  Future<void> _persist() async {
+  void _queueRemoteWrite(
+    String? owner,
+    String action,
+    Future<dynamic> Function() write,
+  ) {
+    _remoteWrites = _remoteWrites.then((_) async {
+      if (owner != _currentAccount()) return;
+      try {
+        await write();
+      } catch (error) {
+        if (kDebugMode) debugPrint('[SavedDealsService] $action: $error');
+      }
+    });
+  }
+
+  Future<void> _persist(String? owner) async {
     final list = _saved.values.map((d) => d.toJson()).toList();
-    await _prefs?.setString(_userKey, jsonEncode(list));
+    final written = await _prefs?.setString(_userKey(owner), jsonEncode(list));
+    if (written != true) throw StateError('Could not store saved deals.');
   }
 }

@@ -85,6 +85,7 @@ bool isFeedWorthy(
   UserPrefs? prefs,
 }) {
   if (!p.isActive || !p.isValidToday) return false;
+  if (SavedDealsService().isSaved(p.id)) return false;
   if (!_isBirthdayEligible(p, prefs)) return false;
   if (!assessDealReliability(p).eligible) return false;
   if (p.confidenceScore < RankingContract.minConfidence) return false;
@@ -445,6 +446,7 @@ List<Promotion> selectTopDeals(
 bool _isNearMeEligible(Promotion p, double radiusKm, UserPrefs? prefs) {
   if (_isHiddenByPrefs(p, prefs)) return false;
   if (!p.isActive || !p.isValidToday) return false;
+  if (SavedDealsService().isSaved(p.id)) return false;
   if (!_isBirthdayEligible(p, prefs)) return false;
   if (!assessDealReliability(p).eligible) return false;
   if (p.confidenceScore < RankingContract.minConfidence) return false;
