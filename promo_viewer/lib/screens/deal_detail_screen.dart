@@ -9,6 +9,7 @@ import '../services/location_service.dart';
 import '../services/saved_deals_service.dart';
 import '../services/timezone_service.dart';
 import '../theme/candy_colors.dart';
+import '../utils/deal_reliability.dart';
 import '../widgets/brand_logo.dart';
 import '../widgets/effort_chip.dart';
 import '../widgets/fast_redeem_button.dart';
@@ -92,6 +93,7 @@ class _DealDetailScreenState extends State<DealDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final reliability = assessDealReliability(_p);
     return Scaffold(
       backgroundColor: Candy.cream,
       bottomNavigationBar: _hasSticky
@@ -135,6 +137,25 @@ class _DealDetailScreenState extends State<DealDetailScreen> {
             controller: _scrollController,
             padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
             children: [
+              if (!reliability.eligible) ...[
+                const Row(
+                  children: [
+                    Icon(
+                      Icons.warning_amber_outlined,
+                      size: 18,
+                      color: Candy.muted,
+                    ),
+                    SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        'Offer details need verification',
+                        style: TextStyle(fontSize: 13, color: Candy.muted),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+              ],
               // 1. Hero: brand + title + quality badge + primary CTA
               _DealHeroSection(promo: _p, hasSticky: _hasSticky),
               const SizedBox(height: 10),
@@ -150,11 +171,11 @@ class _DealDetailScreenState extends State<DealDetailScreen> {
               const SizedBox(height: 10),
 
               // 4. Source trust
-              if (_p.source == 'web' && _p.verifyUrl != null) ...[
+              if (_p.verifyUrl != null) ...[
                 _TrustCard(
                   domain: _p.websiteDomain ?? _p.brand,
                   url: _p.verifyUrl!,
-                  score: _p.confidenceScore,
+                  checkedAt: sourceCaptureDate(_p.sourceEvidence?.checkedAt),
                   promoId: _p.id,
                   brand: _p.brand,
                 ),
@@ -182,6 +203,33 @@ class _DealDetailScreenState extends State<DealDetailScreen> {
               // 8. Eligibility ("Can I use this?")
               _EligibilityCard(promo: _p),
               const SizedBox(height: 10),
+              if (_p.termsText?.trim().isNotEmpty == true) ...[
+                _Card(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Offer terms',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          color: Candy.chocolate,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        _p.termsText!,
+                        style: const TextStyle(
+                          fontSize: 13,
+                          height: 1.45,
+                          color: Candy.muted,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 10),
+              ],
 
               // 9. Step-by-step redemption
               if (_p.redemptionSteps.isNotEmpty) ...[
@@ -599,7 +647,7 @@ class _QuickSummaryCard extends StatelessWidget {
       'STRONG_DISCOUNT' => 'Strong discount — above average for this category',
       'HIGH_VALUE_SAVINGS' => 'Saves more than \$50 — significant dollar value',
       'GOOD_VALUE_SAVINGS' => 'Solid dollar savings on this purchase',
-      'NO_MEMBERSHIP_REQUIRED' => 'No membership required — open to everyone',
+      'NO_MEMBERSHIP_REQUIRED' => 'No membership required',
       'LOW_REDEMPTION_FRICTION' => 'Easy to redeem — no extra steps',
       'NO_PURCHASE_MINIMUM' =>
         'No minimum spend — works on any purchase amount',
@@ -620,17 +668,12 @@ class _QuickSummaryCard extends StatelessWidget {
 
     // Fallbacks from structured fields
     if (result.length < 3 && !promo.requiresMembership) {
-      const line = 'No membership required — open to everyone';
+      const line = 'No membership required';
       if (!result.contains(line)) result.add(line);
     }
     if (result.length < 3 && !promo.requiresApp) {
       const line = 'No app required — works without installing anything';
       if (!result.contains(line)) result.add(line);
-    }
-    if (result.length < 3 && promo.confidenceScore >= 0.8) {
-      result.add(
-        'Verified from ${promo.websiteDomain ?? 'the official website'}',
-      );
     }
     if (result.isEmpty) {
       result.add('${promo.displayValue} — ${promo.brand} promotion');
@@ -707,26 +750,19 @@ class _GreenDot extends StatelessWidget {
 class _TrustCard extends StatelessWidget {
   final String domain;
   final String url;
-  final double score;
+  final DateTime? checkedAt;
   final String promoId;
   final String brand;
   const _TrustCard({
     required this.domain,
     required this.url,
-    required this.score,
+    required this.checkedAt,
     required this.promoId,
     required this.brand,
   });
 
-  String get _confidenceLabel {
-    if (score >= 0.8) return 'High confidence';
-    if (score >= 0.6) return 'Medium confidence';
-    return 'Low confidence';
-  }
-
   @override
   Widget build(BuildContext context) {
-    final now = DateTime.now();
     const months = [
       'Jan',
       'Feb',
@@ -741,7 +777,10 @@ class _TrustCard extends StatelessWidget {
       'Nov',
       'Dec',
     ];
-    final dateLabel = '${months[now.month - 1]} ${now.day}';
+    final date = checkedAt?.toLocal();
+    final dateLabel = date == null
+        ? null
+        : '${months[date.month - 1]} ${date.day}, ${date.year}';
     return _Card(
       child: GestureDetector(
         onTap: () async {
@@ -761,11 +800,7 @@ class _TrustCard extends StatelessWidget {
                 color: const Color(0xFF2E7D32).withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: const Icon(
-                Icons.verified_outlined,
-                size: 18,
-                color: Color(0xFF2E7D32),
-              ),
+              child: const Icon(Icons.link, size: 18, color: Color(0xFF2E7D32)),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -773,7 +808,7 @@ class _TrustCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Official source: $domain',
+                    'Source: $domain',
                     style: const TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
@@ -782,7 +817,9 @@ class _TrustCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    'Last checked $dateLabel · $_confidenceLabel',
+                    dateLabel == null
+                        ? 'Source capture date unavailable'
+                        : 'Source captured $dateLabel',
                     style: const TextStyle(fontSize: 11, color: Candy.muted),
                   ),
                   Builder(
@@ -1002,8 +1039,7 @@ class _WhyGoodDealSection extends StatelessWidget {
       'GOOD_VALUE_SAVINGS' => 'Solid dollar savings on this purchase',
       'EXPIRES_SOON' => 'Ending soon — act before it expires',
       'EXPIRES_TODAY' => 'Last chance — expires today',
-      'NO_MEMBERSHIP_REQUIRED' =>
-        'No membership required — anyone can use this',
+      'NO_MEMBERSHIP_REQUIRED' => 'No membership required',
       'LOW_REDEMPTION_FRICTION' => 'Easy to redeem — no extra steps required',
       'NO_PURCHASE_MINIMUM' => 'No minimum spend — works on a single item',
       'STRONG_ECONOMIC_VALUE' =>
@@ -1223,6 +1259,8 @@ class _EligibilityCard extends StatelessWidget {
                     : _orange,
               ),
           ],
+          if (promo.newUserOnly)
+            _EligRow(Icons.person_add_outlined, 'New customers only', _orange),
           if (!promo.requiresApp)
             _EligRow(Icons.check_circle_outline, 'No app required', Candy.mint)
           else

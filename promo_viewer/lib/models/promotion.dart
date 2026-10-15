@@ -1,4 +1,6 @@
 import 'fast_redemption.dart';
+import 'source_evidence.dart';
+import '../utils/source_link.dart';
 
 class Promotion {
   final String brand;
@@ -17,7 +19,12 @@ class Promotion {
   final String? membershipCost;
   final bool requiresApp;
   final String? minimumSpend;
+  final String? startDate;
   final String? endDate;
+  final String? lastConfirmed;
+  final String? extractionStatus;
+  final SourceEvidence? sourceEvidence;
+  final bool newUserOnly;
   final bool purchaseRequired;
   final String? promoCode;
   final List<String> redemptionSteps;
@@ -97,7 +104,12 @@ class Promotion {
     this.membershipCost,
     required this.requiresApp,
     this.minimumSpend,
+    this.startDate,
     this.endDate,
+    this.lastConfirmed,
+    this.extractionStatus,
+    this.sourceEvidence,
+    this.newUserOnly = false,
     this.purchaseRequired = false,
     this.promoCode,
     this.redemptionSteps = const [],
@@ -164,7 +176,16 @@ class Promotion {
       membershipCost: json['membership_cost'] as String?,
       requiresApp: json['requires_app'] as bool? ?? false,
       minimumSpend: json['minimum_spend'] as String?,
+      startDate: json['start_date'] as String?,
       endDate: json['end_date'] as String?,
+      lastConfirmed: json['last_confirmed'] as String?,
+      extractionStatus: json['extraction_status'] as String?,
+      sourceEvidence: json['source_evidence'] is Map<String, dynamic>
+          ? SourceEvidence.fromJson(
+              json['source_evidence'] as Map<String, dynamic>,
+            )
+          : null,
+      newUserOnly: json['new_user_only'] as bool? ?? false,
       purchaseRequired: json['purchase_required'] as bool? ?? false,
       promoCode: json['promo_code'] as String?,
       redemptionSteps: steps,
@@ -273,15 +294,41 @@ class Promotion {
   }
 
   /// Best available URL for verifying the promotion.
-  /// Prefers the deal-specific deep-link over the generic source page.
+  /// Prefer the captured source over a deal link inferred during extraction.
   String? get verifyUrl {
-    if (dealUrl != null && dealUrl!.isNotEmpty) return dealUrl;
-    if (sourceUrl != null && sourceUrl!.isNotEmpty) return sourceUrl;
-    if (websiteDomain != null && websiteDomain!.isNotEmpty) {
-      return 'https://$websiteDomain';
+    for (final url in [sourceUrl, dealUrl]) {
+      if (publicSourceUri(url) != null &&
+          sourceMatchesDomain(url, websiteDomain)) {
+        return url;
+      }
     }
     return null;
   }
+
+  Map<String, dynamic> get sourceEvidenceSnapshot => {
+    'brand': brand,
+    'promotion_title': title,
+    'promotion_type': promotionType,
+    'discount_type': discountType,
+    'discount_value': discountValue,
+    'promo_code': promoCode,
+    'minimum_spend': minimumSpend,
+    'requires_membership': requiresMembership,
+    'membership_name': membershipName,
+    'requires_app': requiresApp,
+    'purchase_required': purchaseRequired,
+    'new_user_only': newUserOnly,
+    'start_date': startDate,
+    'end_date': endDate,
+    'redemption_method': redemptionMethod,
+    'redemption_steps': redemptionSteps,
+    'birthday_related': birthdayRelated,
+    'terms_text': termsText,
+    'valid_days': validDays,
+    'time_start': timeStart,
+    'time_end': timeEnd,
+    'timezone': promotionTimezone,
+  };
 
   bool get isActive =>
       status == 'active' ||

@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../config.dart';
 import '../services/auth_service.dart';
 import '../services/gmail_connection_service.dart';
 import '../services/saved_deals_service.dart';
@@ -35,10 +36,11 @@ class _ProfileScreenState extends State<ProfileScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    _loadRadius();
+    if (!kGmailDealsEnabled) return;
     GmailConnectionService.lastError.addListener(_onGmailDiagnosticChange);
     GmailConnectionService.diagnosticLog.addListener(_onGmailDiagnosticChange);
     _gmailError = GmailConnectionService.lastError.value;
-    _loadRadius();
     _loadGmailStatus();
     _restoreGmailConnect();
     if (SupabaseService.isReady) {
@@ -67,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state != AppLifecycleState.resumed) {
+    if (!kGmailDealsEnabled || state != AppLifecycleState.resumed) {
       return;
     }
     _loadGmailStatus();
@@ -278,7 +280,7 @@ class _ProfileScreenState extends State<ProfileScreen>
               SliverToBoxAdapter(child: _buildAccountSection())
             else
               SliverToBoxAdapter(child: _buildSignInSection()),
-            if (SupabaseService.isLoggedIn)
+            if (kGmailDealsEnabled && SupabaseService.isLoggedIn)
               SliverToBoxAdapter(child: _buildGmailSection()),
             SliverToBoxAdapter(child: _buildLocationSection()),
             SliverToBoxAdapter(child: _buildAboutSection()),

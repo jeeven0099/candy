@@ -16,6 +16,8 @@ import 'package:promo_viewer/services/interaction_service.dart';
 import 'package:promo_viewer/services/user_prefs_service.dart';
 import 'package:promo_viewer/widgets/deal_card.dart';
 
+import 'fixtures/reliable_offer.dart';
+
 void main() {
   final screenshotDir = Platform.environment['CANDY_FEED_SCREENSHOT_DIR'];
   setUpAll(() async {
@@ -41,20 +43,22 @@ void main() {
   });
 
   List<Promotion> offers() => List.generate(50, (i) {
-    final p = Promotion.fromJson({
-      'brand': i == 0 ? 'Nike $scenario' : 'Example Store $scenario $i',
-      'website_domain': i == 0 ? 'nike.com' : null,
-      'promotion_title': 'Offer $i',
-      'source': i == 0 ? 'email' : 'web',
-      'status': 'active',
-      'confidence_score': 0.9,
-      'global_quality_score': 95.0 - i / 10,
-      'personal_rank_score': i == 0 ? 85.0 : null,
-      'discount_type': 'percentage_off',
-      'economic_value_score': 60.0,
-      'redemption_method': 'in_store',
-      'deal_scope': 'in_store_only',
-    });
+    final p = Promotion.fromJson(
+      reliableOfferJson({
+        'brand': i == 0 ? 'Nike $scenario' : 'Example Store $scenario $i',
+        'website_domain': i == 0 ? 'nike.com' : null,
+        'promotion_title': 'Offer $i',
+        'source': i == 0 ? 'email' : 'web',
+        'status': 'active',
+        'confidence_score': 0.9,
+        'global_quality_score': 95.0 - i / 10,
+        'personal_rank_score': i == 0 ? 85.0 : null,
+        'discount_type': 'percentage_off',
+        'economic_value_score': 60.0,
+        'redemption_method': 'in_store',
+        'deal_scope': 'in_store_only',
+      }),
+    );
     p.distanceKm = 0.5;
     return p;
   });

@@ -4,6 +4,7 @@ import '../services/interaction_service.dart';
 import '../services/learned_preference_service.dart';
 import '../services/saved_deals_service.dart';
 import 'ranking_contract.dart';
+import 'deal_reliability.dart';
 
 const _kHide = 999.0;
 
@@ -54,6 +55,12 @@ bool _isBirthdayMonth(UserPrefs? prefs) {
   return month != null && month == DateTime.now().month;
 }
 
+bool _isBirthdayReward(Promotion p) =>
+    p.birthdayRelated || _norm(p.promotionType) == 'birthday_reward';
+
+bool _isBirthdayEligible(Promotion p, UserPrefs? prefs) =>
+    !_isBirthdayReward(p) || _isBirthdayMonth(prefs);
+
 bool _isRewardProgram(Promotion p) =>
     p.promotionType == 'reward' || p.promotionType == 'membership_benefit';
 
@@ -72,8 +79,14 @@ bool _isHiddenByPrefs(Promotion p, UserPrefs? prefs) =>
 bool _isEmailDerived(Promotion p) =>
     p.source == 'email' || p.visibility == 'private_user_offer';
 
-bool isFeedWorthy(Promotion p, {Set<String> favBrands = const {}}) {
+bool isFeedWorthy(
+  Promotion p, {
+  Set<String> favBrands = const {},
+  UserPrefs? prefs,
+}) {
   if (!p.isActive || !p.isValidToday) return false;
+  if (!_isBirthdayEligible(p, prefs)) return false;
+  if (!assessDealReliability(p).eligible) return false;
   if (p.confidenceScore < RankingContract.minConfidence) return false;
 
   final brand = _norm(p.brand);
@@ -164,7 +177,7 @@ double preferenceBoost(Promotion p, UserPrefs? prefs) {
     boost += RankingContract.favoriteCategoryBoost;
   }
 
-  if (p.birthdayRelated && _isBirthdayMonth(prefs)) {
+  if (_isBirthdayReward(p) && _isBirthdayMonth(prefs)) {
     boost += RankingContract.birthdayBoost;
   }
 
@@ -413,7 +426,7 @@ List<Promotion> selectTopDeals(
   final scored = <_ScoredPromo>[];
   for (final p in candidates) {
     if (_isHiddenByPrefs(p, prefs)) continue;
-    if (!isFeedWorthy(p, favBrands: favBrands)) continue;
+    if (!isFeedWorthy(p, favBrands: favBrands, prefs: prefs)) continue;
 
     final score = dealQualityScore(
       p,
@@ -432,6 +445,8 @@ List<Promotion> selectTopDeals(
 bool _isNearMeEligible(Promotion p, double radiusKm, UserPrefs? prefs) {
   if (_isHiddenByPrefs(p, prefs)) return false;
   if (!p.isActive || !p.isValidToday) return false;
+  if (!_isBirthdayEligible(p, prefs)) return false;
+  if (!assessDealReliability(p).eligible) return false;
   if (p.confidenceScore < RankingContract.minConfidence) return false;
   if (p.globalQualityScore < RankingContract.nearMeQualityFloor) return false;
   if (p.distanceKm == null || p.distanceKm! > radiusKm) return false;

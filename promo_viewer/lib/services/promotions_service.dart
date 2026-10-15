@@ -5,8 +5,11 @@ import 'remote_data_service.dart';
 class PromotionsService {
   static List<Promotion> cached = [];
 
-  static Future<List<Promotion>> load() async {
-    final raw = await RemoteDataService.load('all_promotions.json');
+  static Future<List<Promotion>> load({bool forceRefresh = false}) async {
+    final raw = await RemoteDataService.load(
+      'all_promotions.json',
+      forceRefresh: forceRefresh,
+    );
     final data = json.decode(raw) as Map<String, dynamic>;
     final list = data['promotions'] as List<dynamic>? ?? [];
     final all = list
@@ -20,7 +23,8 @@ class PromotionsService {
     for (final p in all) {
       final key = '${p.brand.toLowerCase()}||${p.title.toLowerCase()}';
       final existing = dedupMap[key];
-      if (existing == null || p.globalQualityScore > existing.globalQualityScore) {
+      if (existing == null ||
+          p.globalQualityScore > existing.globalQualityScore) {
         dedupMap[key] = p;
       }
     }

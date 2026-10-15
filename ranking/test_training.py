@@ -20,6 +20,15 @@ def event(kind, sequence, user="u", deal="d", valid=True):
 
 
 class TrainingTests(unittest.TestCase):
+    def test_unreliable_offers_do_not_create_preference_labels(self):
+        bad = event("not_interested", 1)
+        bad["metadata"]["reliability_eligible"] = False
+        self.assertEqual(examples_from_events([bad]), [])
+        saved = event("deal_saved", 2)
+        cancel = event("deal_unsaved", 3)
+        cancel["metadata"]["reliability_eligible"] = False
+        self.assertEqual(examples_from_events([saved, cancel]), [])
+
     def test_undo_and_unsave_cancel_labels(self):
         self.assertEqual(examples_from_events([event("not_interested", 1), event("not_interested_undone", 2)]), [])
         self.assertEqual(examples_from_events([event("deal_saved", 1), event("deal_unsaved", 2)]), [])

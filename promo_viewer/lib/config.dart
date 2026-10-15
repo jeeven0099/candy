@@ -2,4 +2,7 @@
 /// server URL. To point the app at a new server, edit server_config.json
 /// at the repo root and push. No app rebuild needed.
 const String kConfigUrl =
-    'https://raw.githubusercontent.com/jeeven0099/candy/main/server_config.json';
+    'https://raw.githubusercontent.com/jeeven0099/candy/master/server_config.json';
+
+// Gmail stays off until private ingestion supports the source-evidence contract.
+const bool kGmailDealsEnabled = false;

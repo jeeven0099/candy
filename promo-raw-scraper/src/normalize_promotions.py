@@ -22,6 +22,8 @@ from pathlib import Path
 from typing import Dict, List, Optional
 from urllib.parse import urlparse
 
+from source_evidence import build_source_evidence
+
 ROOT = Path(__file__).resolve().parents[1]
 STRUCTURED_DIR = ROOT / "structured_outputs"
 NORMALIZED_DIR = ROOT / "normalized_outputs"
@@ -110,7 +112,8 @@ def load_brand_lookup(sources_file: Path) -> Dict[str, Dict[str, str]]:
     lookup: Dict[str, Dict[str, str]] = {}
     for entry in sources:
         brand = entry.get("brand", "")
-        domain = _extract_domain(entry.get("url", ""))
+        urls = entry.get("urls") or []
+        domain = _extract_domain(entry.get("url") or (urls[0] if urls else ""))
         info = {
             "brand": brand,
             "category": entry.get("category", ""),
@@ -579,7 +582,7 @@ def compute_status(promo: dict, now: datetime) -> str:
       probably_active — no end_date, freshly confirmed (< 14 days)
       active          — end_date in future, all checks passed
 
-    Age is measured from last_confirmed if present (set on re-parse and on
+    Age is measured from last_confirmed if present (set from captured source and on
     skipped_duplicate_hash — meaning the page was re-fetched and was identical,
     so the deal is still live). Falls back to source_path timestamp for promos
     that predate the last_confirmed field.
@@ -636,6 +639,7 @@ def normalize_file(
     input_path: Path,
     brand_lookup: Dict[str, Dict[str, str]],
     now: Optional[datetime] = None,
+    previous_output: Optional[dict] = None,
 ) -> Optional[dict]:
     if now is None:
         now = datetime.now(timezone.utc)
@@ -651,6 +655,8 @@ def normalize_file(
     # Load og:image and source URL from the scrape meta.json if available
     og_image: Optional[str] = None
     source_url: Optional[str] = None
+    source_text = ""
+    source_checked_at: Optional[str] = None
     source_path = data.get("source_path", "")
     if source_path:
         meta_path = RAW_TEXT_DIR / (Path(source_path).stem + ".meta.json")
@@ -659,6 +665,10 @@ def normalize_file(
                 meta = json.loads(meta_path.read_text(encoding="utf-8"))
                 og_image = meta.get("og_image")
                 source_url = meta.get("final_url") or meta.get("url")
+                source_checked_at = meta.get("scraped_at")
+                text_path = RAW_TEXT_DIR / (Path(source_path).stem + ".txt")
+                if text_path.exists():
+                    source_text = text_path.read_text(encoding="utf-8", errors="replace")
             except Exception:
                 pass
 
@@ -707,8 +717,50 @@ def normalize_file(
             if promo.get("redemption_method") not in ("online", "show_code"):
                 promo["redemption_method"] = "online"
         promo = fix_confidence(promo)
+        for date_field in ("start_date", "end_date"):
+            raw_date = promo.get(date_field)
+            if raw_date:
+                parsed_date = _parse_end_date(raw_date)
+                if parsed_date and not re.match(r"^\d{4}-\d{2}-\d{2}T", raw_date):
+                    promo[date_field] = parsed_date.isoformat()
+        # Normalizing old output is not evidence of a fresh source fetch.
+        if source_checked_at:
+            promo["last_confirmed"] = source_checked_at
+        promo["source_evidence"] = build_source_evidence(
+            promo, source_text, source_url=source_url,
+            checked_at=source_checked_at, trusted_domain=website_domain,
+        )
+        evidence = promo["source_evidence"]
+        for old in (previous_output or {}).get("promotions", []):
+            prior = old.get("source_evidence") or {}
+            if (prior.get("check_failed_at")
+                    and prior.get("source_url") == evidence["source_url"]
+                    and prior.get("content_hash") == evidence["content_hash"]):
+                try:
+                    failure = datetime.fromisoformat(prior["check_failed_at"])
+                    capture = datetime.fromisoformat(evidence["checked_at"])
+                    if capture <= failure <= now:
+                        evidence.update(status="unverified", reasons=["source_fetch_failed"],
+                                        check_failed_at=prior["check_failed_at"])
+                except (ValueError, TypeError):
+                    pass
+            if (prior.get("status") == evidence["status"] == "supported"
+                    and prior.get("offer") == evidence["offer"]
+                    and prior.get("content_hash") == evidence["content_hash"]
+                    and prior.get("source_url") == evidence["source_url"]):
+                try:
+                    prior_time = datetime.fromisoformat(prior.get("checked_at") or "")
+                    capture_time = datetime.fromisoformat(evidence["checked_at"])
+                    if capture_time < prior_time <= now:
+                        evidence["checked_at"] = prior["checked_at"]
+                        promo["last_confirmed"] = prior["checked_at"]
+                except (ValueError, TypeError):
+                    pass
+        if evidence.get("source_url"):
+            promo["source_url"] = evidence["source_url"]
         promo["status"] = compute_status(promo, now)
-        promo["last_confirmed"] = now.isoformat()
+        if evidence["status"] != "supported" and promo["status"] != "expired":
+            promo["status"] = "needs_review"
         normalized.append(promo)
 
     normalized = deduplicate(normalized)
@@ -753,13 +805,19 @@ def main() -> None:
 
     for path in files:
         try:
-            result = normalize_file(path, brand_lookup, now)
+            out_path = output_dir / path.name
+            previous = None
+            if out_path.exists():
+                try:
+                    previous = json.loads(out_path.read_text(encoding="utf-8"))
+                except (OSError, ValueError):
+                    pass
+            result = normalize_file(path, brand_lookup, now, previous_output=previous)
             if result is None:
                 print(f"  [SKIP] {path.stem} — no promotions array")
                 skipped += 1
                 continue
 
-            out_path = output_dir / path.name
             out_path.write_text(
                 json.dumps(result, indent=2, ensure_ascii=False),
                 encoding="utf-8",

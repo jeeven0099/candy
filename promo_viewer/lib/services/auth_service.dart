@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../config.dart';
 import 'supabase_service.dart';
 import 'push_token_service.dart';
 
@@ -85,6 +86,9 @@ class AuthService {
   }
 
   static Future<void> connectGmailForDeals() async {
+    if (!kGmailDealsEnabled) {
+      throw StateError('Gmail deals are unavailable in this beta.');
+    }
     final launched = await _sb.auth.signInWithOAuth(
       OAuthProvider.google,
       redirectTo: _redirectUrl,

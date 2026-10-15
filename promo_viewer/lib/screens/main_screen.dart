@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
+import '../config.dart';
 import '../models/promotion.dart';
 import '../services/email_deals_service.dart';
 import '../services/gmail_connection_service.dart';
@@ -81,18 +82,20 @@ class _MainScreenState extends State<MainScreen> {
     setState(() => _memberships = memberships);
   }
 
-  Future<void> _loadData() async {
+  Future<void> _loadData({bool forceRefresh = false}) async {
     final owner = SupabaseService.currentUserId;
     final generation = ++_loadGeneration;
     try {
-      await GmailConnectionService.restorePendingConnect();
-      if (GmailConnectionService.hasPendingConnect) {
-        try {
-          await GmailConnectionService.vaultSessionIfPending(
-            SupabaseService.client.auth.currentSession,
-          );
-        } catch (e) {
-          GmailConnectionService.reportFailure('restore_connection', e);
+      if (kGmailDealsEnabled) {
+        await GmailConnectionService.restorePendingConnect();
+        if (GmailConnectionService.hasPendingConnect) {
+          try {
+            await GmailConnectionService.vaultSessionIfPending(
+              SupabaseService.client.auth.currentSession,
+            );
+          } catch (e) {
+            GmailConnectionService.reportFailure('restore_connection', e);
+          }
         }
       }
       await UserPrefsService().load();
@@ -102,7 +105,7 @@ class _MainScreenState extends State<MainScreen> {
         return;
       }
       final results = await Future.wait([
-        PromotionsService.load(),
+        PromotionsService.load(forceRefresh: forceRefresh),
         EmailDealsService.loadForCurrentUser(),
         UserMembershipsService.load(),
       ]);
@@ -168,7 +171,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Future<void> _refreshCurrentTab() async {
-    await _loadData();
+    await _loadData(forceRefresh: true);
     if (_tab == 1) {
       if (_position == null) {
         await _ensureLocation();
@@ -189,7 +192,9 @@ class _MainScreenState extends State<MainScreen> {
     if (index == 1) {
       _ensureLocation();
     }
-    if (returningFromSettings) unawaited(_reloadEmailDeals());
+    if (kGmailDealsEnabled && returningFromSettings) {
+      unawaited(_reloadEmailDeals());
+    }
   }
 
   Future<void> _reloadEmailDeals() async {

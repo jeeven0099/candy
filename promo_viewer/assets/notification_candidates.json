@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15T07:31:22.332594+00:00",
+  "generated_at": "2026-10-15T17:12:01.045851+00:00",
   "threshold": 65.0,
   "total": 28,
   "candidates": [
@@ -39,7 +39,7 @@
       "estimated_savings": 25.0,
       "end_date": null,
       "website_domain": "skinceuticals.com",
-      "source_url": "https://www.skinceuticals.com/skincare/vitamin-c-serums/c-e-ferulic-with-15-l-ascorbic-acid/S17.html"
+      "source_url": "https://www.skinceuticals.com/"
     },
     {
       "promo_id": "cinemark_become_a_movie_fan_for_free",
@@ -96,7 +96,7 @@
       "estimated_savings": 31.5,
       "end_date": null,
       "website_domain": "express.com",
-      "source_url": "https://www.express.com/g/returns-policy"
+      "source_url": "https://www.express.com/exp/clothing-sales?ICID=N_HEADER_SALE"
     },
     {
       "promo_id": "carter_s_up_to_60_off_black_friday_preview",
@@ -191,7 +191,7 @@
       "estimated_savings": 105.0,
       "end_date": null,
       "website_domain": "jetblue.com",
-      "source_url": "https://www.jetblue.com/trueblue/trueblue-deals"
+      "source_url": "https://www.jetblue.com/sale"
     },
     {
       "promo_id": "epic_games_store_free_game_of_the_week",
@@ -229,7 +229,7 @@
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "jomalone.com",
-      "source_url": "https://www.jomalone.com/complimentary-benefits"
+      "source_url": "https://www.jomalone.com/"
     },
     {
       "promo_id": "jo_malone_complimentary_gift_wrapping",
@@ -248,7 +248,7 @@
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "jomalone.com",
-      "source_url": "https://www.jomalone.com/product/26322/107822/gift-sets/christmas-kist-advent-calendar"
+      "source_url": "https://www.jomalone.com/"
     },
     {
       "promo_id": "jo_malone_two_limited_edition_deluxe_minis_on_us",
@@ -267,7 +267,7 @@
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "jomalone.com",
-      "source_url": "https://www.jomalone.com/online-exclusive-offers"
+      "source_url": "https://www.jomalone.com/"
     },
     {
       "promo_id": "rare_beauty_free_samples_choose_2",
@@ -286,7 +286,7 @@
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "rarebeauty.com",
-      "source_url": "https://www.rarebeauty.com/collections/best-sellers"
+      "source_url": "https://www.rarebeauty.com/collections/shop-all"
     },
     {
       "promo_id": "joann_up_to_50_off_halloween",
@@ -362,7 +362,7 @@
       "estimated_savings": 22.5,
       "end_date": null,
       "website_domain": "luckybrand.com",
-      "source_url": "https://www.luckybrand.com/women/clothing/new"
+      "source_url": "https://www.luckybrand.com/"
     },
     {
       "promo_id": "article_free_interior_design_services",
@@ -438,7 +438,7 @@
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "yardzen.com",
-      "source_url": "https://www.yardzen.com/reviews"
+      "source_url": "https://yardzen.com/"
     },
     {
       "promo_id": "epic_games_store_free_game_thursday",
@@ -457,7 +457,7 @@
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "store.epicgames.com",
-      "source_url": "https://www.store.epicgames.com/collection/top-free-to-play"
+      "source_url": "https://store.epicgames.com/free-games?lang=en-US"
     },
     {
       "promo_id": "asus_free_returns_within_30_days",
@@ -514,7 +514,7 @@
       "estimated_savings": 15.0,
       "end_date": null,
       "website_domain": "joybird.com",
-      "source_url": "https://www.joybird.com/living-room-furniture/"
+      "source_url": "https://joybird.com/semi-annual-sale/"
     },
     {
       "promo_id": "bluemercury_up_to_50_off_sale",

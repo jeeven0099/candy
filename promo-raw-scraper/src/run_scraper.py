@@ -13,6 +13,7 @@ from fetch_page_js import fetch_page_js, PlaywrightSession
 from hash_content import hash_exists_for_brand, sha256_text
 from logger import append_jsonl
 from source_loader import filter_sources, load_sources
+from source_evidence import matches_domain
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW_HTML_DIR = ROOT / 'raw_html'
@@ -110,9 +111,9 @@ def _fetch_one_url(
     *,
     requests_only: bool = False,
     pw_session: PlaywrightSession | None = None,
-) -> tuple[str, str, str | None, str | None] | None:
+) -> tuple[str, str, str | None, str | None, str] | None:
     """
-    Fetch a single URL and return (text, html, title, og_image) on success, else None.
+    Return (text, html, title, og_image, final_url) on success, else None.
     Handles Playwright fallback transparently.
     """
     fetch = fetch_page(url)
@@ -153,10 +154,10 @@ def _fetch_one_url(
     if detect_bad_page(title, text, fetch.final_url):
         return None
 
-    return text, html, title, og_image
+    return text, html, title, og_image, fetch.final_url or url
 
 
-def process_source(source, dry_run: bool = False, *,
+def _process_source(source, dry_run: bool = False, *,
                    requests_only: bool = False,
                    pw_session: PlaywrightSession | None = None) -> dict:
     scraped_at = utc_iso()
@@ -174,6 +175,7 @@ def process_source(source, dry_run: bool = False, *,
         og_image: str | None = None
         title: str | None = None
         failed_urls: list[str] = []
+        captured_urls: set[str] = set()
 
         for url in source.urls:
             result = _fetch_one_url(url, requests_only=requests_only, pw_session=pw_session)
@@ -185,8 +187,9 @@ def process_source(source, dry_run: bool = False, *,
                             'scraped_at': scraped_at}
                 failed_urls.append(url)
                 continue
-            url_text, url_html, url_title, url_og = result
-            sections.append(f'=== {url} ===\n{url_text}')
+            url_text, url_html, url_title, url_og, final_url = result
+            sections.append(f'=== {final_url} ===\n{url_text}')
+            captured_urls.add(final_url)
             combined_html += url_html
             if not og_image:
                 og_image = url_og
@@ -275,6 +278,7 @@ def process_source(source, dry_run: bool = False, *,
                         'http_status': fetch.status_code, 'scraped_at': scraped_at,
                         'error': 'clean_text_too_short', 'text_length': len(text),
                         'final_url': fetch.final_url}
+        captured_urls = {fetch.final_url or source.url}
 
     # ── Common write path ─────────────────────────────────────────────────────
     content_hash = sha256_text(text)
@@ -290,7 +294,19 @@ def process_source(source, dry_run: bool = False, *,
                 data = json.loads(norm_path.read_text(encoding='utf-8'))
                 now_iso = datetime.now(timezone.utc).isoformat()
                 for p in data.get('promotions', []):
-                    p['last_confirmed'] = now_iso
+                    evidence = p.get('source_evidence') or {}
+                    if (evidence.get('schema_version') == 1
+                            and evidence.get('validator') == 'captured_text_v1'
+                            and (evidence.get('status') == 'supported'
+                                 or evidence.get('reasons') == ['source_fetch_failed'])
+                            and evidence.get('content_hash') == content_hash
+                            and evidence.get('source_url') in captured_urls
+                            and matches_domain(evidence.get('source_url'), p.get('website_domain'))):
+                        evidence['checked_at'] = now_iso
+                        evidence['status'] = 'supported'
+                        evidence['reasons'] = []
+                        evidence.pop('check_failed_at', None)
+                        p['last_confirmed'] = now_iso
                 norm_path.write_text(
                     json.dumps(data, indent=2, ensure_ascii=False), encoding='utf-8')
             except Exception:
@@ -318,6 +334,7 @@ def process_source(source, dry_run: bool = False, *,
         'source_type': source.source_type,
         'scraped_at':  scraped_at,
         'fetch_method': fetch_method,
+        'final_url': fetch.final_url if len(source.urls) == 1 else None,
         'content_hash': content_hash,
         'title':       title,
         'og_image':    og_image,
@@ -329,6 +346,32 @@ def process_source(source, dry_run: bool = False, *,
     meta_path.write_text(json.dumps(meta, indent=2, ensure_ascii=False), encoding='utf-8')
 
     return {**meta, 'status': 'success', 'error': None}
+
+
+def process_source(source, dry_run: bool = False, *,
+                   requests_only: bool = False,
+                   pw_session: PlaywrightSession | None = None) -> dict:
+    record = _process_source(source, dry_run, requests_only=requests_only, pw_session=pw_session)
+    if record.get('status') != 'failed':
+        return record
+    norm_path = NORMALIZED_DIR / f'{source.slug}.json'
+    if not norm_path.exists():
+        return record
+    try:
+        data = json.loads(norm_path.read_text(encoding='utf-8'))
+        changed = False
+        for p in data.get('promotions', []):
+            evidence = p.get('source_evidence') or {}
+            if evidence.get('status') == 'supported':
+                evidence.update(status='unverified', reasons=['source_fetch_failed'],
+                                check_failed_at=record['scraped_at'])
+                p['status'] = 'needs_review'
+                changed = True
+        if changed:
+            norm_path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding='utf-8')
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        print(f'    -> Could not quarantine failed source: {exc}')
+    return record
 
 
 def main() -> None:

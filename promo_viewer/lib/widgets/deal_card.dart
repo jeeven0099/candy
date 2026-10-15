@@ -439,7 +439,7 @@ class DealCard extends StatelessWidget {
                         if (promo.source == 'web' &&
                             promo.websiteDomain != null) ...[
                           Icon(
-                            Icons.verified_outlined,
+                            Icons.link,
                             size: 11,
                             color: Colors.grey.shade400,
                           ),

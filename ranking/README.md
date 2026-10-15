@@ -1,7 +1,7 @@
 # Beta Learned Preferences
 
-The public scraper, nightly runner, Gmail extractor, and Codemagic workflow are
-unchanged. This is a separate training tool for the 30-user beta.
+This is a separate training tool for the 30-user beta. Nightly scheduling and
+Codemagic build/publishing configuration are unchanged.
 
 ## Serving
 
@@ -17,6 +17,10 @@ promotion/discount type, and membership-requirement outcomes. Evidence decays
 with a 30-day half-life; repeated actions on one deal are not extra evidence.
 Undo cancels a dismissal, and unsave cancels a save, without guessing a new
 negative preference. Profiles are cleared on sign-out/account changes.
+New events marked `reliability_eligible=false` cannot create save/dismiss
+preference labels. Unsave and Undo still cancel prior actions. Historical events
+without reliability metadata keep their existing behavior; they are not assigned
+a guessed verification result.
 Recent server-recorded dismissals are also excluded from candidates. Local skip
 keys are now account-scoped; unscoped legacy keys are not assigned to another
 account. Online dismissals from older builds are recovered from feedback history.

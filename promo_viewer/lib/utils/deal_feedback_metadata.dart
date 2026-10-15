@@ -1,6 +1,7 @@
 import '../models/promotion.dart';
 import 'ranking_contract.dart';
 import 'preference_features.dart';
+import 'deal_reliability.dart';
 
 Map<String, dynamic> dealFeedbackMetadata(
   Promotion p, {
@@ -8,6 +9,7 @@ Map<String, dynamic> dealFeedbackMetadata(
   int? feedPosition,
   double? runtimeScore,
 }) {
+  final reliability = assessDealReliability(p);
   final m = <String, dynamic>{
     'brand_id': p.brand.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]'), '_'),
     'value_tier': _valueTier(p.globalQualityScore),
@@ -18,6 +20,9 @@ Map<String, dynamic> dealFeedbackMetadata(
     'confidence_score': p.confidenceScore,
     'feature_schema': preferenceFeatureVersion,
     'offer_features': preferenceOfferSnapshot(p),
+    'reliability_version': reliabilityVersion,
+    'reliability_eligible': reliability.eligible,
+    'reliability_reasons': reliability.reasons,
   };
   if (p.personalRankScore != null) {
     m['personal_rank_score'] = p.personalRankScore;

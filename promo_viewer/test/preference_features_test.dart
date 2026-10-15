@@ -35,6 +35,22 @@ Map<String, dynamic> event(
 
 void main() {
   final now = DateTime.utc(2026, 10, 7);
+  test(
+    'unreliable offers cannot teach a brand preference, but cancellation still works',
+    () {
+      final profile = PreferenceProfile();
+      final p = offer('old');
+      final bad = event(p, 'not_interested', 1, now);
+      bad['metadata']['reliability_eligible'] = false;
+      profile.apply(bad);
+      expect(profile.features(offer('new'), now: now)['total_evidence'], 0);
+      profile.apply(event(p, 'deal_saved', 2, now));
+      final cancel = event(p, 'deal_unsaved', 3, now);
+      cancel['metadata']['reliability_eligible'] = false;
+      profile.apply(cancel);
+      expect(profile.features(offer('new'), now: now)['total_evidence'], 0);
+    },
+  );
   test('training and app feature schemas have identical ordered names', () {
     final schema = jsonDecode(
       File('../ranking/feature_schema.json').readAsStringSync(),
