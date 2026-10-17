@@ -1,26 +1,26 @@
 {
-  "generated_at": "2026-10-16T07:57:14.459595+00:00",
+  "generated_at": "2026-10-17T08:08:44.972539+00:00",
   "threshold": 65.0,
   "total": 28,
   "candidates": [
     {
-      "promo_id": "asos_asos_women_s_sale_up_to_80_off",
-      "brand": "ASOS",
+      "promo_id": "eddie_bauer_extra_60_off_clearance",
+      "brand": "Eddie Bauer",
       "category": "retail",
-      "title": "ASOS Women's Sale - up to 80% off",
-      "notify_score": 85.58,
+      "title": "Extra 60% off Clearance!",
+      "notify_score": 83.31,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "ASOS",
-      "notification_body": "ASOS Women's Sale - up to 80% off",
+      "notification_title": "Eddie Bauer",
+      "notification_body": "Extra 60% off Clearance!",
       "discount_type": "percentage_off",
-      "discount_value": "up to 80%",
-      "estimated_savings": 36.0,
+      "discount_value": "60%",
+      "estimated_savings": 54.0,
       "end_date": null,
-      "website_domain": "asos.com",
-      "source_url": "https://www.asos.com/us/women/sale/cat/?cid=7046#nlid=ww|sale|shop+by+category|view+all+sale"
+      "website_domain": "eddiebauer.com",
+      "source_url": "https://www.eddiebauer.com/"
     },
     {
       "promo_id": "main_event_free_10_arcade_game_card_with_costume_halloween",
@@ -61,42 +61,23 @@
       "source_url": "https://www.cinemark.com/movie-rewards-info/"
     },
     {
-      "promo_id": "express_up_to_70_off_all_markdowns",
-      "brand": "Express",
-      "category": "clothing",
-      "title": "Up to 70% Off All Markdowns",
-      "notify_score": 81.98,
+      "promo_id": "kroger_buy_1_get_1_free_sodastream_syrup",
+      "brand": "Kroger",
+      "category": "food",
+      "title": "Buy 1 Get 1 Free - Sodastream Syrup",
+      "notify_score": 81.74,
       "signal_groups": [
-        "context",
+        "personal",
         "value"
       ],
-      "notification_title": "Express",
-      "notification_body": "Up to 70% Off All Markdowns",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 38.5,
+      "notification_title": "Kroger",
+      "notification_body": "Free: Buy 1 Get 1 Free - Sodastream Syrup",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 10.0,
       "end_date": null,
-      "website_domain": "express.com",
-      "source_url": "https://www.express.com/exp/clothing-sales?ICID=N_HEADER_SALE"
-    },
-    {
-      "promo_id": "hot_topic_up_to_50_off_backpacks_bags",
-      "brand": "Hot Topic",
-      "category": "retail",
-      "title": "Up To 50% Off Backpacks & Bags",
-      "notify_score": 81.16,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Hot Topic",
-      "notification_body": "Up To 50% Off Backpacks & Bags",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 50.0,
-      "end_date": null,
-      "website_domain": "hottopic.com",
-      "source_url": "https://www.hottopic.com/sale/"
+      "website_domain": "kroger.com",
+      "source_url": "https://www.kroger.com/savings/"
     },
     {
       "promo_id": "sur_la_table_cookware_flash_sale",
@@ -118,23 +99,42 @@
       "source_url": "https://www.surlatable.com/search?cgid=cat-6070003"
     },
     {
-      "promo_id": "hot_topic_up_to_60_off_clearance",
-      "brand": "Hot Topic",
-      "category": "retail",
-      "title": "Up To 60% Off Clearance",
-      "notify_score": 78.18,
+      "promo_id": "kroger_buy_3_get_1_free_similac",
+      "brand": "Kroger",
+      "category": "food",
+      "title": "Buy 3, Get 1 Free - Similac",
+      "notify_score": 79.24,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Kroger",
+      "notification_body": "Free: Buy 3, Get 1 Free - Similac",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 10.0,
+      "end_date": null,
+      "website_domain": "kroger.com",
+      "source_url": "https://www.kroger.com/savings/"
+    },
+    {
+      "promo_id": "lane_bryant_clearance_extra_60_off",
+      "brand": "Lane Bryant",
+      "category": "clothing",
+      "title": "Clearance Extra 60% Off",
+      "notify_score": 79.15,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Hot Topic",
-      "notification_body": "Up To 60% Off Clearance",
+      "notification_title": "Lane Bryant",
+      "notification_body": "Clearance Extra 60% Off",
       "discount_type": "percentage_off",
-      "discount_value": "up to 60%",
-      "estimated_savings": 27.0,
-      "end_date": null,
-      "website_domain": "hottopic.com",
-      "source_url": "https://www.hottopic.com/sale/"
+      "discount_value": "60%",
+      "estimated_savings": 33.0,
+      "end_date": "2026-10-18",
+      "website_domain": "lanebryant.com",
+      "source_url": "https://www.lanebryant.com/clearance"
     },
     {
       "promo_id": "floyd_up_to_60_off_last_chance_items",
@@ -194,25 +194,6 @@
       "source_url": "https://www.jetblue.com/sale"
     },
     {
-      "promo_id": "epic_games_store_free_games_download_a_free_pc_or_mobile_game_every_week",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "Free Games - Download a Free PC or Mobile Game Every Week",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: Free Games - Download a Free PC or Mobile Game Every Week",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/free-games?lang=en-US"
-    },
-    {
       "promo_id": "jo_malone_complimentary_9ml_cologne",
       "brand": "Jo Malone",
       "category": "beauty",
@@ -270,61 +251,23 @@
       "source_url": "https://www.jomalone.com/"
     },
     {
-      "promo_id": "lulu_and_georgia_complimentary_design_services",
-      "brand": "Lulu and Georgia",
-      "category": "Premium Home",
-      "title": "Complimentary Design Services",
+      "promo_id": "skinceuticals_complimentary_1_1_virtual_consultation",
+      "brand": "SkinCeuticals",
+      "category": "beauty",
+      "title": "Complimentary 1:1 Virtual Consultation",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Lulu and Georgia",
-      "notification_body": "Free: Complimentary Design Services",
+      "notification_title": "SkinCeuticals",
+      "notification_body": "Free: Complimentary 1:1 Virtual Consultation",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "luluandgeorgia.com",
-      "source_url": "https://www.luluandgeorgia.com/collections/sale"
-    },
-    {
-      "promo_id": "yeti_free_customization_code",
-      "brand": "YETI",
-      "category": "Outdoor / Lifestyle",
-      "title": "Free Customization Code",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "YETI",
-      "notification_body": "Free: Free Customization Code",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "yeti.com",
-      "source_url": "https://www.yeti.com/search?cgid=sale"
-    },
-    {
-      "promo_id": "hot_topic_up_to_50_off_halloween",
-      "brand": "Hot Topic",
-      "category": "retail",
-      "title": "Up To 50% Off Halloween",
-      "notify_score": 73.67,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Hot Topic",
-      "notification_body": "Up To 50% Off Halloween",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 22.5,
-      "end_date": null,
-      "website_domain": "hottopic.com",
-      "source_url": "https://www.hottopic.com/sale/"
+      "website_domain": "skinceuticals.com",
+      "source_url": "https://www.skinceuticals.com/"
     },
     {
       "promo_id": "joann_up_to_50_off_halloween",
@@ -346,23 +289,23 @@
       "source_url": "https://www.michaels.com/sale"
     },
     {
-      "promo_id": "lxrandco_over_50_off_retail",
-      "brand": "LXRandCo",
+      "promo_id": "sandro_up_to_50_off_sale",
+      "brand": "Sandro",
       "category": "retail",
-      "title": "Over 50% Off Retail",
+      "title": "Up to 50% off Sale",
       "notify_score": 73.67,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "LXRandCo",
-      "notification_body": "Over 50% Off Retail",
+      "notification_title": "Sandro",
+      "notification_body": "Up to 50% off Sale",
       "discount_type": "percentage_off",
-      "discount_value": "50%",
+      "discount_value": "up to 50%",
       "estimated_savings": 22.5,
       "end_date": null,
-      "website_domain": "fashionphile.com",
-      "source_url": "https://www.fashionphile.com/"
+      "website_domain": "us.sandro-paris.com",
+      "source_url": "https://us.sandro-paris.com/en/womens/sale/see-all/"
     },
     {
       "promo_id": "showpo_up_to_an_extra_50_off_outlet_styles",
@@ -382,6 +325,25 @@
       "end_date": null,
       "website_domain": "showpo.com",
       "source_url": "https://www.showpo.com/us/collections/sale/new-sale"
+    },
+    {
+      "promo_id": "zwilling_knives_sale",
+      "brand": "Zwilling",
+      "category": "retail",
+      "title": "Knives Sale",
+      "notify_score": 73.67,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Zwilling",
+      "notification_body": "Knives Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 22.5,
+      "end_date": null,
+      "website_domain": "zwilling.com",
+      "source_url": "https://www.zwilling.com/us/sale/"
     },
     {
       "promo_id": "floor_decor_free_design_services",
@@ -420,6 +382,25 @@
       "end_date": null,
       "website_domain": "einsteinbros.com",
       "source_url": "https://www.einsteinbros.com/rewards/"
+    },
+    {
+      "promo_id": "yeti_free_customization_code_for_new_email_subscribers",
+      "brand": "YETI",
+      "category": "Outdoor / Lifestyle",
+      "title": "Free customization code for new email subscribers",
+      "notify_score": 71.61,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "YETI",
+      "notification_body": "Free: Free customization code for new email subscribers",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "yeti.com",
+      "source_url": "https://www.yeti.com/search?cgid=sale"
     },
     {
       "promo_id": "lucky_brand_insider_event",
@@ -479,23 +460,23 @@
       "source_url": "https://joybird.com/semi-annual-sale/"
     },
     {
-      "promo_id": "gog_games_for_free",
-      "brand": "GOG",
-      "category": "gaming",
-      "title": "Games for free",
-      "notify_score": 68.96,
+      "promo_id": "ann_taylor_50_off_everything",
+      "brand": "Ann Taylor",
+      "category": "retail",
+      "title": "50% OFF EVERYTHING",
+      "notify_score": 68.78,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "GOG",
-      "notification_body": "Free: Games for free",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
+      "notification_title": "Ann Taylor",
+      "notification_body": "50% OFF EVERYTHING",
+      "discount_type": "percentage_off",
+      "discount_value": "50%",
+      "estimated_savings": 21.0,
       "end_date": null,
-      "website_domain": "gog.com",
-      "source_url": "https://www.gog.com/en/games?discounted=true"
+      "website_domain": "anntaylor.com",
+      "source_url": "https://www.anntaylor.com/sale/all-sale/cata000055/"
     },
     {
       "promo_id": "joybird_free_swatch_kit",
@@ -515,6 +496,25 @@
       "end_date": null,
       "website_domain": "joybird.com",
       "source_url": "https://joybird.com/semi-annual-sale/"
+    },
+    {
+      "promo_id": "lulu_and_georgia_complimentary_design_services",
+      "brand": "Lulu and Georgia",
+      "category": "home",
+      "title": "Complimentary Design Services",
+      "notify_score": 66.6,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Lulu and Georgia",
+      "notification_body": "Free: Complimentary Design Services",
+      "discount_type": "free_item",
+      "discount_value": "complimentary design services",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "luluandgeorgia.com",
+      "source_url": "https://www.luluandgeorgia.com/collections/sale"
     },
     {
       "promo_id": "bluemercury_up_to_50_off_sale",
