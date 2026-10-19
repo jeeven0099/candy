@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-18T05:45:48.159738+00:00",
+  "generated_at": "2026-10-19T05:37:48.278609+00:00",
   "threshold": 65.0,
-  "total": 21,
+  "total": 23,
   "candidates": [
     {
       "promo_id": "eddie_bauer_extra_60_off_clearance",
@@ -21,6 +21,25 @@
       "end_date": null,
       "website_domain": "eddiebauer.com",
       "source_url": "https://www.eddiebauer.com/"
+    },
+    {
+      "promo_id": "outback_steakhouse_kids_eat_free_mondays",
+      "brand": "Outback Steakhouse",
+      "category": "food",
+      "title": "Kids Eat Free Mondays",
+      "notify_score": 82.76,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Outback Steakhouse",
+      "notification_body": "Free: Kids Eat Free Mondays",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "outback.com",
+      "source_url": "https://www.outback.com/specials"
     },
     {
       "promo_id": "main_event_free_10_arcade_game_card_with_costume_halloween",
@@ -61,42 +80,61 @@
       "source_url": "https://www.cinemark.com/movie-rewards-info/"
     },
     {
-      "promo_id": "express_up_to_70_off_all_markdowns",
-      "brand": "Express",
-      "category": "retail",
-      "title": "Up to 70% Off All Markdowns",
-      "notify_score": 82.1,
+      "promo_id": "sur_la_table_cookware_flash_sale",
+      "brand": "Sur La Table",
+      "category": "home",
+      "title": "Cookware Flash Sale",
+      "notify_score": 80.29,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Express",
-      "notification_body": "Up to 70% Off All Markdowns",
+      "notification_title": "Sur La Table",
+      "notification_body": "Cookware Flash Sale",
       "discount_type": "percentage_off",
       "discount_value": "up to 70%",
-      "estimated_savings": 31.5,
+      "estimated_savings": 63.0,
       "end_date": null,
-      "website_domain": "express.com",
-      "source_url": "https://www.express.com/exp/clothing-sales?ICID=N_HEADER_SALE"
+      "website_domain": "surlatable.com",
+      "source_url": "https://www.surlatable.com/search?cgid=cat-6070003"
     },
     {
-      "promo_id": "pinstripes_kids_eat_free",
-      "brand": "Pinstripes",
-      "category": "food",
-      "title": "Kids Eat Free",
-      "notify_score": 79.24,
+      "promo_id": "vineyard_vines_limited_time_up_to_65_off_sale_styles",
+      "brand": "Vineyard Vines",
+      "category": "clothing",
+      "title": "Limited Time: Up To 65% Off Sale Styles",
+      "notify_score": 80.13,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Pinstripes",
-      "notification_body": "Free: Kids Eat Free",
+      "notification_title": "Vineyard Vines",
+      "notification_body": "Limited Time: Up To 65% Off Sale Styles",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 65%",
+      "estimated_savings": 35.75,
+      "end_date": null,
+      "website_domain": "vineyardvines.com",
+      "source_url": "https://www.vineyardvines.com/category/Sale"
+    },
+    {
+      "promo_id": "kroger_buy_1_get_1_free_sodastream_syrup",
+      "brand": "Kroger",
+      "category": "food",
+      "title": "Buy 1, Get 1 Free SodaStream Syrup",
+      "notify_score": 79.24,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Kroger",
+      "notification_body": "Free: Buy 1, Get 1 Free SodaStream Syrup",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 10.0,
       "end_date": null,
-      "website_domain": "pinstripes.com",
-      "source_url": "https://www.pinstripes.com/promos"
+      "website_domain": "kroger.com",
+      "source_url": "https://www.kroger.com/savings/"
     },
     {
       "promo_id": "floyd_up_to_60_off_last_chance_items",
@@ -135,25 +173,6 @@
       "end_date": null,
       "website_domain": "insideweather.com",
       "source_url": "https://insideweather.com/"
-    },
-    {
-      "promo_id": "epic_games_store_free_pc_game_every_week",
-      "brand": "Epic Games Store",
-      "category": "Gaming",
-      "title": "Free PC Game Every Week",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Epic Games Store",
-      "notification_body": "Free: Free PC Game Every Week",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "store.epicgames.com",
-      "source_url": "https://store.epicgames.com/free-games?lang=en-US"
     },
     {
       "promo_id": "jo_malone_complimentary_9ml_cologne",
@@ -213,23 +232,42 @@
       "source_url": "https://www.jomalone.com/"
     },
     {
-      "promo_id": "joann_up_to_50_off_halloween",
-      "brand": "JOANN",
+      "promo_id": "skinceuticals_complimentary_1_1_virtual_consultation",
+      "brand": "SkinCeuticals",
+      "category": "beauty",
+      "title": "Complimentary 1:1 virtual consultation",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "SkinCeuticals",
+      "notification_body": "Free: Complimentary 1:1 virtual consultation",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "skinceuticals.com",
+      "source_url": "https://www.skinceuticals.com/"
+    },
+    {
+      "promo_id": "fashionphile_over_50_off_retail",
+      "brand": "Fashionphile",
       "category": "retail",
-      "title": "Up to 50% off Halloween",
+      "title": "Over 50% Off Retail",
       "notify_score": 73.67,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "JOANN",
-      "notification_body": "Up to 50% off Halloween",
+      "notification_title": "Fashionphile",
+      "notification_body": "Over 50% Off Retail",
       "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
+      "discount_value": "50%",
       "estimated_savings": 22.5,
       "end_date": null,
-      "website_domain": "michaels.com",
-      "source_url": "https://www.michaels.com/sale"
+      "website_domain": "fashionphile.com",
+      "source_url": "https://www.fashionphile.com/"
     },
     {
       "promo_id": "floor_decor_free_design_services",
