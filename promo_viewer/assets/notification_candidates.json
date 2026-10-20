@@ -1,45 +1,26 @@
 {
-  "generated_at": "2026-10-19T05:37:48.278609+00:00",
+  "generated_at": "2026-10-20T07:00:40.431137+00:00",
   "threshold": 65.0,
-  "total": 23,
+  "total": 21,
   "candidates": [
     {
-      "promo_id": "eddie_bauer_extra_60_off_clearance",
-      "brand": "Eddie Bauer",
-      "category": "retail",
-      "title": "Extra 60% off Clearance!",
-      "notify_score": 83.31,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Eddie Bauer",
-      "notification_body": "Extra 60% off Clearance!",
-      "discount_type": "percentage_off",
-      "discount_value": "60%",
-      "estimated_savings": 54.0,
-      "end_date": null,
-      "website_domain": "eddiebauer.com",
-      "source_url": "https://www.eddiebauer.com/"
-    },
-    {
-      "promo_id": "outback_steakhouse_kids_eat_free_mondays",
-      "brand": "Outback Steakhouse",
+      "promo_id": "kroger_save_up_to_20_by_getting_vaccinated",
+      "brand": "Kroger",
       "category": "food",
-      "title": "Kids Eat Free Mondays",
-      "notify_score": 82.76,
+      "title": "Save Up to $20 by Getting Vaccinated",
+      "notify_score": 83.84,
       "signal_groups": [
         "context",
-        "value"
+        "personal"
       ],
-      "notification_title": "Outback Steakhouse",
-      "notification_body": "Free: Kids Eat Free Mondays",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
+      "notification_title": "Kroger",
+      "notification_body": "Save Up to $20 by Getting Vaccinated",
+      "discount_type": "amount_off",
+      "discount_value": "$20",
+      "estimated_savings": 20.0,
       "end_date": null,
-      "website_domain": "outback.com",
-      "source_url": "https://www.outback.com/specials"
+      "website_domain": "kroger.com",
+      "source_url": "https://www.kroger.com/savings/"
     },
     {
       "promo_id": "main_event_free_10_arcade_game_card_with_costume_halloween",
@@ -80,63 +61,6 @@
       "source_url": "https://www.cinemark.com/movie-rewards-info/"
     },
     {
-      "promo_id": "sur_la_table_cookware_flash_sale",
-      "brand": "Sur La Table",
-      "category": "home",
-      "title": "Cookware Flash Sale",
-      "notify_score": 80.29,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Sur La Table",
-      "notification_body": "Cookware Flash Sale",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 70%",
-      "estimated_savings": 63.0,
-      "end_date": null,
-      "website_domain": "surlatable.com",
-      "source_url": "https://www.surlatable.com/search?cgid=cat-6070003"
-    },
-    {
-      "promo_id": "vineyard_vines_limited_time_up_to_65_off_sale_styles",
-      "brand": "Vineyard Vines",
-      "category": "clothing",
-      "title": "Limited Time: Up To 65% Off Sale Styles",
-      "notify_score": 80.13,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Vineyard Vines",
-      "notification_body": "Limited Time: Up To 65% Off Sale Styles",
-      "discount_type": "percentage_off",
-      "discount_value": "up to 65%",
-      "estimated_savings": 35.75,
-      "end_date": null,
-      "website_domain": "vineyardvines.com",
-      "source_url": "https://www.vineyardvines.com/category/Sale"
-    },
-    {
-      "promo_id": "kroger_buy_1_get_1_free_sodastream_syrup",
-      "brand": "Kroger",
-      "category": "food",
-      "title": "Buy 1, Get 1 Free SodaStream Syrup",
-      "notify_score": 79.24,
-      "signal_groups": [
-        "personal",
-        "value"
-      ],
-      "notification_title": "Kroger",
-      "notification_body": "Free: Buy 1, Get 1 Free SodaStream Syrup",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 10.0,
-      "end_date": null,
-      "website_domain": "kroger.com",
-      "source_url": "https://www.kroger.com/savings/"
-    },
-    {
       "promo_id": "floyd_up_to_60_off_last_chance_items",
       "brand": "Floyd",
       "category": "home",
@@ -175,6 +99,101 @@
       "source_url": "https://insideweather.com/"
     },
     {
+      "promo_id": "kendra_scott_free_gift_boxing",
+      "brand": "Kendra Scott",
+      "category": "retail",
+      "title": "Free Gift Boxing",
+      "notify_score": 76.33,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Kendra Scott",
+      "notification_body": "Free: Free Gift Boxing",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "kendrascott.com",
+      "source_url": "https://www.kendrascott.com/"
+    },
+    {
+      "promo_id": "coach_up_to_50_off_select_styles",
+      "brand": "Coach",
+      "category": "retail",
+      "title": "Up to 50% off select styles",
+      "notify_score": 76.31,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Coach",
+      "notification_body": "Up to 50% off select styles",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 37.5,
+      "end_date": null,
+      "website_domain": "coach.com",
+      "source_url": "https://www.coach.com/content/promo"
+    },
+    {
+      "promo_id": "old_navy_up_to_60_off_select_deals",
+      "brand": "Old Navy",
+      "category": "retail",
+      "title": "Up to 60% Off Select Deals",
+      "notify_score": 74.93,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Old Navy",
+      "notification_body": "Up to 60% Off Select Deals",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 21.0,
+      "end_date": null,
+      "website_domain": "oldnavy.gap.com",
+      "source_url": "https://oldnavy.gap.com/browse/todays-deals/for-fam?cid=3033029&nav=meganav%3AToday%E2%80%99s%20Deals!%3ASale%3AShop%20All%20Sale"
+    },
+    {
+      "promo_id": "article_free_interior_design_services",
+      "brand": "Article",
+      "category": "Premium Furniture",
+      "title": "Free Interior Design Services",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Article",
+      "notification_body": "Free: Free Interior Design Services",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "article.com",
+      "source_url": "https://www.article.com/browse"
+    },
+    {
+      "promo_id": "epic_games_store_free_games_weekly_free_pc_game",
+      "brand": "Epic Games Store",
+      "category": "Gaming",
+      "title": "Free Games - Weekly Free PC Game",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Epic Games Store",
+      "notification_body": "Free: Free Games - Weekly Free PC Game",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "store.epicgames.com",
+      "source_url": "https://store.epicgames.com/free-games?lang=en-US"
+    },
+    {
       "promo_id": "jo_malone_complimentary_9ml_cologne",
       "brand": "Jo Malone",
       "category": "beauty",
@@ -194,80 +213,23 @@
       "source_url": "https://www.jomalone.com/"
     },
     {
-      "promo_id": "jo_malone_complimentary_gift_wrapping",
-      "brand": "Jo Malone",
+      "promo_id": "sol_de_janeiro_free_sample_with_every_order",
+      "brand": "Sol de Janeiro",
       "category": "beauty",
-      "title": "Complimentary gift wrapping",
+      "title": "Free Sample With Every Order",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Jo Malone",
-      "notification_body": "Free: Complimentary gift wrapping",
+      "notification_title": "Sol de Janeiro",
+      "notification_body": "Free: Free Sample With Every Order",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "jomalone.com",
-      "source_url": "https://www.jomalone.com/"
-    },
-    {
-      "promo_id": "jo_malone_two_limited_edition_deluxe_minis_on_us",
-      "brand": "Jo Malone",
-      "category": "beauty",
-      "title": "Two Limited-Edition Deluxe Minis, On Us",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Jo Malone",
-      "notification_body": "Free: Two Limited-Edition Deluxe Minis, On Us",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "jomalone.com",
-      "source_url": "https://www.jomalone.com/"
-    },
-    {
-      "promo_id": "skinceuticals_complimentary_1_1_virtual_consultation",
-      "brand": "SkinCeuticals",
-      "category": "beauty",
-      "title": "Complimentary 1:1 virtual consultation",
-      "notify_score": 74.26,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "SkinCeuticals",
-      "notification_body": "Free: Complimentary 1:1 virtual consultation",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "skinceuticals.com",
-      "source_url": "https://www.skinceuticals.com/"
-    },
-    {
-      "promo_id": "fashionphile_over_50_off_retail",
-      "brand": "Fashionphile",
-      "category": "retail",
-      "title": "Over 50% Off Retail",
-      "notify_score": 73.67,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Fashionphile",
-      "notification_body": "Over 50% Off Retail",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 22.5,
-      "end_date": null,
-      "website_domain": "fashionphile.com",
-      "source_url": "https://www.fashionphile.com/"
+      "website_domain": "soldejaneiro.com",
+      "source_url": "https://soldejaneiro.com/"
     },
     {
       "promo_id": "floor_decor_free_design_services",
@@ -287,6 +249,25 @@
       "end_date": null,
       "website_domain": "flooranddecor.com",
       "source_url": "https://www.flooranddecor.com/"
+    },
+    {
+      "promo_id": "mejuri_complimentary_jewelry_cleaning_at_stores",
+      "brand": "Mejuri",
+      "category": "retail",
+      "title": "Complimentary Jewelry Cleaning at Stores",
+      "notify_score": 73.33,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Mejuri",
+      "notification_body": "Free: Complimentary Jewelry Cleaning at Stores",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "mejuri.com",
+      "source_url": "https://mejuri.com/"
     },
     {
       "promo_id": "einstein_bros_bagels_unlimited_free_coffee_with_one_visit",
@@ -401,25 +382,6 @@
       "end_date": null,
       "website_domain": "joybird.com",
       "source_url": "https://joybird.com/semi-annual-sale/"
-    },
-    {
-      "promo_id": "lulu_and_georgia_complimentary_design_services",
-      "brand": "Lulu and Georgia",
-      "category": "home",
-      "title": "Complimentary Design Services",
-      "notify_score": 66.6,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Lulu and Georgia",
-      "notification_body": "Free: Complimentary Design Services",
-      "discount_type": "free_item",
-      "discount_value": "complimentary design services",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "luluandgeorgia.com",
-      "source_url": "https://www.luluandgeorgia.com/collections/sale"
     },
     {
       "promo_id": "bluemercury_up_to_50_off_sale",
