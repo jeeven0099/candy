@@ -1,26 +1,83 @@
 {
-  "generated_at": "2026-10-31T08:07:46.945176+00:00",
+  "generated_at": "2026-11-27T21:47:12.888441+00:00",
   "threshold": 65.0,
-  "total": 17,
+  "total": 25,
   "candidates": [
     {
-      "promo_id": "bodybuilding_com_buy_1_get_1_free",
-      "brand": "Bodybuilding.com",
-      "category": "fitness",
-      "title": "Buy 1 Get 1 Free",
-      "notify_score": 83.67,
+      "promo_id": "thredup_free_clean_out_bag_for_sellers",
+      "brand": "ThredUp",
+      "category": "retail",
+      "title": "Free Clean Out Bag for Sellers",
+      "notify_score": 91.0,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Bodybuilding.com",
-      "notification_body": "Free: Buy 1 Get 1 Free",
+      "notification_title": "ThredUp",
+      "notification_body": "Free: Free Clean Out Bag for Sellers",
       "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 30.0,
+      "discount_value": "free Clean Out bag",
+      "estimated_savings": 100.0,
       "end_date": null,
-      "website_domain": "shop.bodybuilding.com",
-      "source_url": "https://shop.bodybuilding.com/collections/on-sale"
+      "website_domain": "thredup.com",
+      "source_url": "https://www.thredup.com/"
+    },
+    {
+      "promo_id": "rainbow_shops_up_to_90_off_sale",
+      "brand": "Rainbow Shops",
+      "category": "retail",
+      "title": "Up to 90% Off Sale",
+      "notify_score": 88.55,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Rainbow Shops",
+      "notification_body": "Up to 90% Off Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 90%",
+      "estimated_savings": 40.5,
+      "end_date": null,
+      "website_domain": "rainbowshops.com",
+      "source_url": "https://www.rainbowshops.com/"
+    },
+    {
+      "promo_id": "dries_van_noten_complimentary_fragrance_samples_with_code_dvngift26",
+      "brand": "Dries Van Noten",
+      "category": "retail",
+      "title": "Complimentary fragrance samples with code DVNGIFT26",
+      "notify_score": 84.33,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Dries Van Noten",
+      "notification_body": "Free: Complimentary fragrance samples with code DVNGIFT26",
+      "discount_type": "free_item",
+      "discount_value": "free fragrance sample",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "driesvannoten.com",
+      "source_url": "https://www.driesvannoten.com/"
+    },
+    {
+      "promo_id": "dsw_up_to_60_off_clearance",
+      "brand": "DSW",
+      "category": "retail",
+      "title": "Up to 60% Off Clearance",
+      "notify_score": 83.31,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "DSW",
+      "notification_body": "Up to 60% Off Clearance",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 48.0,
+      "end_date": null,
+      "website_domain": "dsw.com",
+      "source_url": "https://www.dsw.com/"
     },
     {
       "promo_id": "cinemark_become_a_movie_fan_for_free",
@@ -42,232 +99,270 @@
       "source_url": "https://www.cinemark.com/movie-rewards-info/"
     },
     {
-      "promo_id": "adore_me_up_to_70_off_all_sale",
-      "brand": "Adore Me",
+      "promo_id": "kroger_buy_1_get_1_free",
+      "brand": "Kroger",
+      "category": "food",
+      "title": "Buy 1 Get 1 Free",
+      "notify_score": 81.74,
+      "signal_groups": [
+        "personal",
+        "value"
+      ],
+      "notification_title": "Kroger",
+      "notification_body": "Free: Buy 1 Get 1 Free",
+      "discount_type": "free_item",
+      "discount_value": "free",
+      "estimated_savings": 10.0,
+      "end_date": null,
+      "website_domain": "kroger.com",
+      "source_url": "https://www.kroger.com/savings/"
+    },
+    {
+      "promo_id": "tory_burch_black_friday_sale",
+      "brand": "Tory Burch",
       "category": "retail",
-      "title": "Up to 70% OFF All Sale",
-      "notify_score": 82.1,
+      "title": "Black Friday Sale",
+      "notify_score": 81.16,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Adore Me",
-      "notification_body": "Up to 70% OFF All Sale",
+      "notification_title": "Tory Burch",
+      "notification_body": "Black Friday Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 130.0,
+      "end_date": null,
+      "website_domain": "toryburch.com",
+      "source_url": "https://www.toryburch.com/en-us/sale/view-all/"
+    },
+    {
+      "promo_id": "lenovo_black_friday_deals",
+      "brand": "Lenovo",
+      "category": "electronics",
+      "title": "Black Friday Deals",
+      "notify_score": 79.78,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Lenovo",
+      "notification_body": "Black Friday Deals",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 51%",
+      "estimated_savings": 127.5,
+      "end_date": null,
+      "website_domain": "lenovo.com",
+      "source_url": "https://www.lenovo.com/us/en/d/deals/doorbusters/"
+    },
+    {
+      "promo_id": "joann_black_friday_sale_up_to_70_off_store_wide",
+      "brand": "JOANN",
+      "category": "retail",
+      "title": "Black Friday Sale Up to 70% Off Store Wide",
+      "notify_score": 79.1,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "JOANN",
+      "notification_body": "Black Friday Sale Up to 70% Off Store Wide",
       "discount_type": "percentage_off",
       "discount_value": "up to 70%",
       "estimated_savings": 31.5,
       "end_date": null,
-      "website_domain": "adoreme.com",
-      "source_url": "https://www.adoreme.com/?redirect_from=sets-and-bundles%2Fsale&"
+      "website_domain": "michaels.com",
+      "source_url": "https://www.michaels.com/sale"
     },
     {
-      "promo_id": "acer_27_nitro_vg2_gaming_monitor_sale",
-      "brand": "Acer",
-      "category": "tech",
-      "title": "27\" Nitro VG2 Gaming Monitor Sale",
-      "notify_score": 79.36,
+      "promo_id": "american_eagle_50_off_all_jeans",
+      "brand": "American Eagle",
+      "category": "retail",
+      "title": "50% off ALL jeans",
+      "notify_score": 76.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Acer",
-      "notification_body": "27\" Nitro VG2 Gaming Monitor Sale",
+      "notification_title": "American Eagle",
+      "notification_body": "50% off ALL jeans",
       "discount_type": "percentage_off",
       "discount_value": "50%",
-      "estimated_savings": 125.0,
+      "estimated_savings": 27.5,
       "end_date": null,
-      "website_domain": "store.acer.com",
-      "source_url": "https://store.acer.com/en-us/sale"
+      "website_domain": "ae.com",
+      "source_url": "https://www.ae.com/us/en?redirectedFrom=plp/us/en/c/ae/sale/cat4840004"
     },
     {
-      "promo_id": "dollar_shave_club_electrics_50_off",
-      "brand": "Dollar Shave Club",
-      "category": "electronics",
-      "title": "Electrics 50% Off",
-      "notify_score": 79.36,
+      "promo_id": "mcdonald_s_free_snack_wrap_for_new_app_users",
+      "brand": "McDonald's",
+      "category": "food",
+      "title": "Free Snack Wrap for New App Users",
+      "notify_score": 76.24,
       "signal_groups": [
-        "context",
+        "personal",
         "value"
       ],
-      "notification_title": "Dollar Shave Club",
-      "notification_body": "Electrics 50% Off",
-      "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 125.0,
-      "end_date": null,
-      "website_domain": "dollarshaveclub.com",
-      "source_url": "https://us.dollarshaveclub.com/products/the-no-frills-starter-set"
-    },
-    {
-      "promo_id": "bodybuilding_com_buy_2_get_1_free",
-      "brand": "Bodybuilding.com",
-      "category": "fitness",
-      "title": "Buy 2 Get 1 Free",
-      "notify_score": 78.67,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Bodybuilding.com",
-      "notification_body": "Free: Buy 2 Get 1 Free",
+      "notification_title": "McDonald's",
+      "notification_body": "Free: Free Snack Wrap for New App Users",
       "discount_type": "free_item",
       "discount_value": "free",
-      "estimated_savings": 30.0,
+      "estimated_savings": 10.0,
       "end_date": null,
-      "website_domain": "shop.bodybuilding.com",
-      "source_url": "https://shop.bodybuilding.com/collections/on-sale"
+      "website_domain": "mcdonalds.com",
+      "source_url": "https://www.mcdonalds.com/us/en-us/deals.html"
     },
     {
-      "promo_id": "target_bogo_25_off_select_paper_towels_bath_facial_tissues",
-      "brand": "Target",
+      "promo_id": "athleta_all_sale_up_to_60_off",
+      "brand": "Athleta",
       "category": "retail",
-      "title": "BOGO 25% off select paper towels, bath & facial tissues",
-      "notify_score": 77.16,
+      "title": "All Sale: Up to 60% Off",
+      "notify_score": 75.49,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Target",
-      "notification_body": "BOGO 25% off select paper towels, bath & facial tissues",
+      "notification_title": "Athleta",
+      "notification_body": "All Sale: Up to 60% Off",
       "discount_type": "percentage_off",
-      "discount_value": "25%",
+      "discount_value": "up to 60%",
+      "estimated_savings": 27.0,
+      "end_date": null,
+      "website_domain": "athleta.gap.com",
+      "source_url": "https://athleta.gap.com/browse/sale/all-sale?cid=1023728"
+    },
+    {
+      "promo_id": "forever_21_clearance_sale_save_60",
+      "brand": "Forever 21",
+      "category": "retail",
+      "title": "Clearance Sale - Save 60%",
+      "notify_score": 75.49,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Forever 21",
+      "notification_body": "Clearance Sale - Save 60%",
+      "discount_type": "percentage_off",
+      "discount_value": "60%",
+      "estimated_savings": 27.0,
+      "end_date": null,
+      "website_domain": "forever21.com",
+      "source_url": "https://www.forever21.com/collections/sale"
+    },
+    {
+      "promo_id": "overstock_up_to_50_off_designer_shop",
+      "brand": "Overstock",
+      "category": "home_goods",
+      "title": "Up to 50% Off Designer Shop",
+      "notify_score": 74.72,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Overstock",
+      "notification_body": "Up to 50% Off Designer Shop",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
       "estimated_savings": 45.0,
       "end_date": null,
-      "website_domain": "target.com",
-      "source_url": "https://www.target.com/c/top-deals/-/N-4xw74"
+      "website_domain": "overstock.com",
+      "source_url": "https://www.overstock.com/deals"
     },
     {
-      "promo_id": "dries_van_noten_complimentary_gift_wrapping_message",
-      "brand": "Dries Van Noten",
-      "category": "retail",
-      "title": "Complimentary gift wrapping & message",
-      "notify_score": 76.33,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Dries Van Noten",
-      "notification_body": "Free: Complimentary gift wrapping & message",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "driesvannoten.com",
-      "source_url": "https://www.driesvannoten.com/"
-    },
-    {
-      "promo_id": "dries_van_noten_complimentary_samples",
-      "brand": "Dries Van Noten",
-      "category": "retail",
-      "title": "Complimentary samples",
-      "notify_score": 76.33,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Dries Van Noten",
-      "notification_body": "Free: Complimentary samples",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "driesvannoten.com",
-      "source_url": "https://www.driesvannoten.com/"
-    },
-    {
-      "promo_id": "inside_weather_free_swatches",
-      "brand": "Inside Weather",
-      "category": "retail",
-      "title": "Free Swatches",
-      "notify_score": 76.33,
-      "signal_groups": [
-        "context",
-        "value"
-      ],
-      "notification_title": "Inside Weather",
-      "notification_body": "Free: Free Swatches",
-      "discount_type": "free_item",
-      "discount_value": "free",
-      "estimated_savings": 15.0,
-      "end_date": null,
-      "website_domain": "insideweather.com",
-      "source_url": "https://insideweather.com/"
-    },
-    {
-      "promo_id": "tire_rack_free_2_year_road_hazard_protection",
-      "brand": "Tire Rack",
-      "category": "auto_parts",
-      "title": "Free 2-Year Road Hazard Protection",
+      "promo_id": "lovevery_welcome_gift_free_mini_kit_for_new_subscribers",
+      "brand": "Lovevery",
+      "category": "other",
+      "title": "Welcome Gift - Free Mini Kit for New Subscribers",
       "notify_score": 74.26,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Tire Rack",
-      "notification_body": "Free: Free 2-Year Road Hazard Protection",
+      "notification_title": "Lovevery",
+      "notification_body": "Free: Welcome Gift - Free Mini Kit for New Subscribers",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "tirerack.com",
-      "source_url": "https://www.tirerack.com/specialoffers/specialoffers.jsp"
+      "website_domain": "lovevery.com",
+      "source_url": "https://lovevery.com/"
     },
     {
-      "promo_id": "lucky_brand_the_insider_event_today_only",
+      "promo_id": "yeti_free_customization_code",
+      "brand": "YETI",
+      "category": "Outdoor / Lifestyle",
+      "title": "Free Customization Code",
+      "notify_score": 74.26,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "YETI",
+      "notification_body": "Free: Free Customization Code",
+      "discount_type": "free_item",
+      "discount_value": "free customization code",
+      "estimated_savings": 15.0,
+      "end_date": null,
+      "website_domain": "yeti.com",
+      "source_url": "https://www.yeti.com/search?cgid=sale"
+    },
+    {
+      "promo_id": "lucky_brand_sweaters_and_outerwear_50_off",
       "brand": "Lucky Brand",
-      "category": "retail",
-      "title": "The Insider Event - Today Only",
-      "notify_score": 73.67,
+      "category": "clothing",
+      "title": "Sweaters and Outerwear 50% Off",
+      "notify_score": 73.76,
       "signal_groups": [
         "context",
         "value"
       ],
       "notification_title": "Lucky Brand",
-      "notification_body": "The Insider Event - Today Only",
+      "notification_body": "Sweaters and Outerwear 50% Off",
       "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
-      "estimated_savings": 22.5,
+      "discount_value": "50%",
+      "estimated_savings": 27.5,
       "end_date": null,
       "website_domain": "luckybrand.com",
       "source_url": "https://www.luckybrand.com/"
     },
     {
-      "promo_id": "showpo_up_to_an_extra_50_off_outlet_styles",
-      "brand": "Showpo",
+      "promo_id": "lxrandco_over_50_off_retail",
+      "brand": "LXRandCo",
       "category": "retail",
-      "title": "UP TO AN EXTRA 50% OFF OUTLET STYLES",
+      "title": "Over 50% Off Retail",
       "notify_score": 73.67,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Showpo",
-      "notification_body": "UP TO AN EXTRA 50% OFF OUTLET STYLES",
+      "notification_title": "LXRandCo",
+      "notification_body": "Over 50% Off Retail",
       "discount_type": "percentage_off",
-      "discount_value": "up to 50%",
+      "discount_value": "50%",
       "estimated_savings": 22.5,
       "end_date": null,
-      "website_domain": "showpo.com",
-      "source_url": "https://www.showpo.com/us/collections/sale/new-sale"
+      "website_domain": "fashionphile.com",
+      "source_url": "https://www.fashionphile.com/"
     },
     {
-      "promo_id": "mejuri_complimentary_jewelry_cleaning_at_stores",
-      "brand": "Mejuri",
+      "promo_id": "cartier_free_gift_wrapping",
+      "brand": "Cartier",
       "category": "retail",
-      "title": "Complimentary Jewelry Cleaning at Stores",
-      "notify_score": 73.33,
+      "title": "Free Gift Wrapping",
+      "notify_score": 73.6,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Mejuri",
-      "notification_body": "Free: Complimentary Jewelry Cleaning at Stores",
+      "notification_title": "Cartier",
+      "notification_body": "Free: Free Gift Wrapping",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "mejuri.com",
-      "source_url": "https://mejuri.com/"
+      "website_domain": "cartier.com",
+      "source_url": "https://www.cartier.com/en-us/home"
     },
     {
       "promo_id": "einstein_bros_bagels_unlimited_free_coffee_with_one_visit",
@@ -289,42 +384,99 @@
       "source_url": "https://www.einsteinbros.com/rewards/"
     },
     {
-      "promo_id": "floor_decor_free_design_services",
-      "brand": "Floor & Decor",
+      "promo_id": "l_agence_up_to_50_off_sale",
+      "brand": "L'Agence",
+      "category": "clothing",
+      "title": "Up to 50% Off Sale",
+      "notify_score": 70.76,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "L'Agence",
+      "notification_body": "Up to 50% Off Sale",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 50%",
+      "estimated_savings": 27.5,
+      "end_date": null,
+      "website_domain": "lagence.com",
+      "source_url": "https://lagence.com/collections/sale"
+    },
+    {
+      "promo_id": "big_agnes_black_friday_up_to_60_off",
+      "brand": "Big Agnes",
+      "category": "Outdoor / Adventure Gear",
+      "title": "Black Friday Up to 60% Off",
+      "notify_score": 70.75,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Big Agnes",
+      "notification_body": "Black Friday Up to 60% Off",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 60%",
+      "estimated_savings": 18.0,
+      "end_date": null,
+      "website_domain": "bigagnes.com",
+      "source_url": "https://www.bigagnes.com/#seogid840144"
+    },
+    {
+      "promo_id": "charlotte_tilbury_black_friday_sale_up_to_70_off_sitewide_free_full_size_gifts",
+      "brand": "Charlotte Tilbury",
+      "category": "beauty",
+      "title": "Black Friday Sale - up to 70% off sitewide + free full-size gifts",
+      "notify_score": 69.7,
+      "signal_groups": [
+        "context",
+        "value"
+      ],
+      "notification_title": "Charlotte Tilbury",
+      "notification_body": "Black Friday Sale - up to 70% off sitewide + free full-size gifts",
+      "discount_type": "percentage_off",
+      "discount_value": "up to 70%",
+      "estimated_savings": 19.6,
+      "end_date": null,
+      "website_domain": "charlottetilbury.com",
+      "source_url": "https://www.charlottetilbury.com/us"
+    },
+    {
+      "promo_id": "burrow_free_swatches",
+      "brand": "Burrow",
       "category": "home",
-      "title": "Free Design Services",
+      "title": "Free Swatches",
       "notify_score": 69.04,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Floor & Decor",
-      "notification_body": "Free: Free Design Services",
+      "notification_title": "Burrow",
+      "notification_body": "Free: Free Swatches",
       "discount_type": "free_item",
       "discount_value": "free",
       "estimated_savings": 15.0,
       "end_date": null,
-      "website_domain": "flooranddecor.com",
-      "source_url": "https://www.flooranddecor.com/"
+      "website_domain": "burrow.com",
+      "source_url": "https://burrow.com/"
     },
     {
-      "promo_id": "bodybuilding_com_50_off_all_2lb_signature_proteins",
-      "brand": "Bodybuilding.com",
-      "category": "fitness",
-      "title": "50% Off All 2lb Signature Proteins",
-      "notify_score": 66.42,
+      "promo_id": "boll_branch_up_to_50_off_select_styles",
+      "brand": "Boll & Branch",
+      "category": "home",
+      "title": "Up to 50% Off Select Styles",
+      "notify_score": 66.77,
       "signal_groups": [
         "context",
         "value"
       ],
-      "notification_title": "Bodybuilding.com",
-      "notification_body": "50% Off All 2lb Signature Proteins",
+      "notification_title": "Boll & Branch",
+      "notification_body": "Up to 50% Off Select Styles",
       "discount_type": "percentage_off",
-      "discount_value": "50%",
-      "estimated_savings": 15.0,
+      "discount_value": "Up to 50%",
+      "estimated_savings": 17.5,
       "end_date": null,
-      "website_domain": "shop.bodybuilding.com",
-      "source_url": "https://shop.bodybuilding.com/collections/on-sale"
+      "website_domain": "bollandbranch.com",
+      "source_url": "https://www.bollandbranch.com/collections/sale/"
     }
   ]
 }
