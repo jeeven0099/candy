@@ -1,109 +1,87 @@
-# Promo Raw Scraper
+# promo-raw-scraper
 
-A raw collection foundation for public promotion/rewards/sales pages and promotional emails.
+The nightly Python pipeline that powers the Candy app. Scrapes 800+ brand promotion pages, extracts structured deal data with an LLM, verifies claims against the original text, scores results, and pushes the final JSON to the Flutter app.
 
-This project does **not** do AI extraction yet. It only:
+## Steps
 
-1. Loads configured public source URLs from `sources/urls.json`
-2. Fetches allowed pages politely
-3. Saves raw HTML to `raw_html/`
-4. Extracts visible text and saves it to `raw_text/`
-5. Collects promotional emails from IMAP or local `.eml` files
-6. Saves raw emails to `raw_email/` and cleaned email text to `raw_email_text/`
-7. Computes SHA256 content hashes
-8. Skips duplicate unchanged content
-9. Logs each run to `logs/*.jsonl`
-10. Produces summary/candidate files with keyword signals
+| # | Script | What it does |
+|---|--------|--------------|
+| 1 | `src/run_scraper.py` | Fetch brand pages (HTTP + Playwright for JS-rendered pages), hash-deduplicate, save raw text |
+| 2 | `src/inspect_raw_data.py` | Scan raw text, build summary CSV |
+| 3 | `src/list_text_candidates.py` | Rank and deduplicate candidates |
+| 4 | `src/parse_candidates.py` | LLM extraction → Pydantic-validated `Promotion` objects → `structured_outputs/{brand}.json` |
+| 5 | `src/normalize_promotions.py` | Clean, deduplicate, attach source evidence → `normalized_outputs/{brand}.json` |
+| 5b | `backfill_deal_urls.py` | Fill `deal_url` from raw text markers (no LLM needed) |
+| 6 | `src/generate_review_csv.py` | Human-readable `logs/promotion_review.csv` |
+| 7 | `src/generate_merged_json.py` | Web-only promotions → `merged_promotions.json` |
+| 8 | `src/merge_all_promotions.py` | Web + email → `all_promotions.json` |
+| 9 | `src/run_keyword_backfill.py` | Generate search keywords for new brands |
+| 10 | `src/apply_keyword_store.py` | Re-apply stored keywords after merge |
+| 11 | `src/generate_fast_redemption.py` | Add `fast_redemption` one-liner to each deal |
+| 12 | `src/generate_scores.py` | Compute `rank_base_score` |
+| 13 | `src/generate_notifications.py` | Build `notification_candidates.json` |
+| 14 | *(inline)* | Copy `all_promotions.json` to `promo_viewer/assets/` |
+| 15 | *(inline)* | `git commit + push` → triggers Flutter web rebuild |
 
-## Safety / scope
+Run all steps in order:
 
-This scraper does not bypass CAPTCHAs, login walls, anti-bot systems, or private pages. Sources default to normal public pages only. Set `allowed_to_fetch` to `false` for any source you have not reviewed.
+```powershell
+python run_pipeline.py --model openrouter --openrouter-model openai/gpt-4o-mini
+```
 
-The email pipeline only reads messages from an inbox you explicitly configure. Do not commit `.env`, raw email files, or email logs; `.gitignore` excludes them by default.
+Resume from a specific step after a crash:
+
+```powershell
+python run_pipeline.py --from-step 4 --skip-scrape --model openrouter --openrouter-model openai/gpt-4o-mini
+```
 
 ## Setup
 
-```bash
+```powershell
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
+.venv\Scripts\activate
 pip install -r requirements.txt
+python -m playwright install chromium
 ```
 
-## Run
+Copy `.env.example` to `.env` and add your keys.
 
-```bash
-python src/run_scraper.py
-```
+## Nightly run
 
-Run a single brand:
+`run_nightly.ps1` (at the repo root) is registered as a Windows scheduled task. It runs the full pipeline each night and runs a retry pass every three days for brands that previously failed.
 
-```bash
-python src/run_scraper.py --brand Starbucks
-```
+## Data model
 
-Dry run:
+Deals are validated against the `Promotion` Pydantic model in `src/models.py`. Key fields:
 
-```bash
-python src/run_scraper.py --dry-run --limit 5
-```
+- **Identity**: `brand`, `promotion_title`, `promotion_type`, `source`
+- **Discount**: `discount_type`, `discount_value`, `promo_code`, `minimum_spend`
+- **Eligibility**: `requires_membership`, `new_user_only`, `deal_scope`
+- **Timing**: `start_date`, `end_date`, `valid_days`
+- **Redemption**: `redemption_method`, `redemption_steps`, `deal_url`
+- **Quality**: `global_quality_score`, `confidence_score`, `extraction_status`
+- **Evidence**: `source_evidence` — excerpt from the original page that substantiates each claim
 
-Inspect raw text quality:
+## Sources
 
-```bash
-python src/inspect_raw_data.py
-```
+Sources are configured in `sources/urls.json`. Each entry has a `brand`, `category`, one or more `urls`, a `source_type`, and an `allowed_to_fetch` flag. Only sources with `allowed_to_fetch: true` are scraped.
 
-## Email Pipeline
-
-The email pipeline can read your mailbox through IMAP. Credentials are read from environment variables only.
-
-PowerShell example for Gmail with an app password:
+## Tests
 
 ```powershell
-$env:EMAIL_ADDRESS="your_email@gmail.com"
-$env:EMAIL_APP_PASSWORD="your_app_password"
-$env:EMAIL_GMAIL_QUERY='newer_than:30d (sale OR deal OR coupon OR promo OR offer OR discount)'
-python src/email_pipeline.py --limit 50
+python -m pytest tests/ -v
 ```
 
-Or fill in `.env.test` and load it directly:
-
-```powershell
-python src/email_pipeline.py --env-file .env.test --limit 50
-```
-
-Generic IMAP example:
-
-```powershell
-$env:EMAIL_ADDRESS="you@example.com"
-$env:EMAIL_APP_PASSWORD="your_app_password"
-$env:EMAIL_IMAP_HOST="imap.example.com"
-python src/email_pipeline.py --limit 50 --since-days 30
-```
-
-Process exported `.eml` files without connecting to email:
-
-```powershell
-python src/email_pipeline.py --eml-dir C:\path\to\eml_exports --limit 50
-```
+76 tests across 5 files.
 
 ## Outputs
 
-- `raw_html/*.html`: raw fetched HTML
-- `raw_text/*.txt`: cleaned visible text
-- `raw_text/*.meta.json`: metadata sidecar
-- `raw_email/*.eml`: raw fetched email messages
-- `raw_email_text/*.txt`: cleaned visible email text
-- `raw_email_text/*.meta.json`: email metadata sidecar
-- `logs/scrape_results.jsonl`: scrape attempts
-- `logs/email_results.jsonl`: email ingestion attempts
-- `logs/email_deal_candidates.jsonl`: email messages with deal-like signals
-- `logs/raw_data_summary.csv`: summary of extracted text files
-
-## Next step
-
-After raw data looks useful, add the AI extraction layer:
-
-```text
-raw_text/*.txt -> LLM extractor -> validated promotion JSON
-```
+| Path | Contents |
+|------|----------|
+| `raw_text/*.txt` | Cleaned visible page text |
+| `raw_text/*.meta.json` | URL, scrape timestamp, HTTP status |
+| `structured_outputs/{brand}.json` | Raw LLM extraction |
+| `normalized_outputs/{brand}.json` | Cleaned, verified deals |
+| `all_promotions.json` | Final merged output (web + email) |
+| `logs/promotion_review.csv` | Human-readable review sheet |
+| `logs/pipeline_*.log` | Full run log per pipeline execution |
