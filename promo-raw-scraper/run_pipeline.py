@@ -337,6 +337,7 @@ def main() -> None:
                 cwd=repo_root, capture_output=True, text=True,
             )
             if commit_result.returncode == 0:
+                subprocess.run(["git", "pull", "--rebase", "origin", "master"], cwd=repo_root, check=True)
                 subprocess.run(["git", "push", "origin", "master"], cwd=repo_root, check=True)
                 log_print(f"\n[Step 15/15] Assets pushed to GitHub.", log_fh)
             else:
